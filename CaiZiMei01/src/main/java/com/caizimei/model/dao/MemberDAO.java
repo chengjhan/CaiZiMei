@@ -16,6 +16,8 @@ public interface MemberDAO {
 
 	MemberBean insert(MemberBean memberBean);
 
+	MemberBean updateM_password(Integer m_id, String m_password);
+
 	MemberBean updateM_signin_time(Integer m_id);
 
 }

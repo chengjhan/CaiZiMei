@@ -40,5 +40,15 @@
 		<property name="contextRelative" value="true" />
 		<property name="url" value="/member/sign-in-success.jsp" />
 	</bean>
+	
+	<bean id="member.update-password" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true" />
+		<property name="url" value="/member/update-password.jsp" />
+	</bean>
+	
+	<bean id="member.update-password-success" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true" />
+		<property name="url" value="/member/update-password-success.jsp" />
+	</bean>
 
 </beans>

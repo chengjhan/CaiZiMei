@@ -26,6 +26,7 @@ public class MemberController {
 	@Autowired
 	private SimpleDateFormat simpleDateFormat;
 
+	// 登入
 	@RequestMapping(path = "/member/sign-in.controller", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam(name = "m_account") String m_account,
 			@RequestParam(name = "m_password") String m_password, Model model) {
@@ -37,6 +38,7 @@ public class MemberController {
 		}
 	}
 
+	// 登出
 	@RequestMapping(path = "/member/sign-out.controller", method = RequestMethod.GET)
 	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
 		// 清除 HttpSession
@@ -50,6 +52,7 @@ public class MemberController {
 		return "member.sign-in";
 	}
 
+	// 註冊
 	@RequestMapping(path = "/member/sign-up.controller", method = RequestMethod.POST)
 	public String signUpProcess(MemberBean memberBean, @RequestParam(name = "m_birth_year") String m_birth_year,
 			@RequestParam(name = "m_birth_month") String m_birth_month,
@@ -68,6 +71,20 @@ public class MemberController {
 		return "member.insert";
 	}
 
+	// 修改密碼
+	@RequestMapping(path = "/member/update-password.controller", method = RequestMethod.POST)
+	public String updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
+			@RequestParam(name = "m_password_new") String m_password_new, HttpSession session) {
+		MemberBean memberBean = (MemberBean) session.getAttribute("user");
+		if (memberService.passwordToMD5(m_password).equals(memberBean.getM_password())) {
+			memberService.updateM_password(memberBean.getM_id(), m_password_new);
+			return "member.update-password-success";
+		} else {
+			return "member.update-password";
+		}
+	}
+
+	// 條件查詢
 	@RequestMapping(path = "/member/select.controller", method = RequestMethod.GET)
 	public String selectByConditionsProcess(MemberBean memberBean, Model model) {
 		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_firstname(),

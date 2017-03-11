@@ -47,6 +47,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public MemberBean updateM_password(Integer m_id, String m_password) {
+		memberDAO.updateM_password(m_id, passwordToMD5(m_password));
+		return null;
+	}
+
+	@Override
+	public MemberBean selectByM_id(Integer m_id) {
+		return memberDAO.selectByM_id(m_id);
+	}
+
+	@Override
 	@Transactional(readOnly = true)
 	public MemberBean selectByM_account(String m_account) {
 		return memberDAO.selectByM_account(m_account);

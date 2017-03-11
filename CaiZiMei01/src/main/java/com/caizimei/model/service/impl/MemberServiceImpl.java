@@ -20,6 +20,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 
+	// 登入
 	@Override
 	@Transactional
 	public Boolean signIn(String m_account, String m_password) {
@@ -35,6 +36,7 @@ public class MemberServiceImpl implements MemberService {
 		return false;
 	}
 
+	// 註冊
 	@Override
 	@Transactional
 	public MemberBean signUp(MemberBean memberBean) {
@@ -46,23 +48,21 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	// 修改密碼
 	@Override
+	@Transactional
 	public MemberBean updateM_password(Integer m_id, String m_password) {
-		memberDAO.updateM_password(m_id, passwordToMD5(m_password));
-		return null;
+		return memberDAO.updateM_password(m_id, passwordToMD5(m_password));
 	}
 
-	@Override
-	public MemberBean selectByM_id(Integer m_id) {
-		return memberDAO.selectByM_id(m_id);
-	}
-
+	// 帳號查詢
 	@Override
 	@Transactional(readOnly = true)
 	public MemberBean selectByM_account(String m_account) {
 		return memberDAO.selectByM_account(m_account);
 	}
 
+	// 條件查詢
 	@Override
 	@Transactional(readOnly = true)
 	public List<MemberBean> selectByConditions(String m_firstname, String m_lastname, String m_telephone,
@@ -70,6 +70,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.selectByConditions(m_firstname, m_lastname, m_telephone, m_email);
 	}
 
+	// 轉換密碼為 MD5
 	@Override
 	public String passwordToMD5(String m_password) {
 		String passwordMD5 = null;

@@ -11,25 +11,25 @@
 	<form action="<c:url value='/member/update.controller' />" method="post">
 		<div>
 			<label for="id-m-lastname">姓氏</label>
-			<input type="text" id="id-m-lastname" name="m_lastname" value="${member.m_lastname}">
+			<input type="text" id="id-m-lastname" name="m_lastname" value="${user.m_lastname}">
 		</div>
 		<div>
 			<label for="id-m-firstname">名字</label>
-			<input type="text" id="id-m-firstname" name="m_firstname" value="${member.m_firstname}">
+			<input type="text" id="id-m-firstname" name="m_firstname" value="${user.m_firstname}">
 		</div>
 		<div>
 			<label for="id-m-birth">生日</label>
-			<input type="text" id="id-m-birth" name="m_birth" value="${member.m_birth}">
+			<input type="text" id="id-m-birth" name="m_birth" value="${user.m_birth}">
 		</div>
 		<div>
 			<label for="id-m-sex">性別</label>
 			<select id="id-m-sex" name="m_sex">
 				<option>---</option>
-				<c:if test="${member.m_sex eq 1}">
+				<c:if test="${user.m_sex eq 1}">
 					<option value="1" selected>男</option>
 					<option value="0">女</option>
 				</c:if>
-				<c:if test="${member.m_sex eq 0}">
+				<c:if test="${user.m_sex eq 0}">
 					<option value="1">男</option>
 					<option value="0" selected>女</option>
 				</c:if>
@@ -37,23 +37,23 @@
 		</div>
 		<div>
 			<label for="id-m-height">身高</label>
-			<input type="text" id="id-m-height" name="m_height" value="${member.m_height}">
+			<input type="text" id="id-m-height" name="m_height" value="${user.m_height}">
 		</div>
 		<div>
 			<label for="id-m-weight">體重</label>
-			<input type="text" id="id-m-weight" name="m_weight" value="${member.m_weight}">
+			<input type="text" id="id-m-weight" name="m_weight" value="${user.m_weight}">
 		</div>
 		<div>
 			<label for="id-m-telephone">電話</label>
-			<input type="text" id="id-m-telephone" name="m_telephone" value="${member.m_telephone}">
+			<input type="text" id="id-m-telephone" name="m_telephone" value="${user.m_telephone}">
 		</div>
 		<div>
 			<label for="id-m-address">地址</label>
-			<input type="text" id="id-m-address" name="m_address" value="${member.m_address}">
+			<input type="text" id="id-m-address" name="m_address" value="${user.m_address}">
 		</div>
 		<div>
 			<label for="id-m-email">信箱</label>
-			<input type="text" id="id-m-email" name="m_email" value="${member.m_email}">
+			<input type="text" id="id-m-email" name="m_email" value="${user.m_email}">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="修改">

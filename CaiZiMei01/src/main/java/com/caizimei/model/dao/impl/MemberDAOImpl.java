@@ -29,8 +29,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public MemberBean selectByM_account(String m_account) {
-		return (MemberBean) hibernateTemplate.find("from MemberBean where m_account=?", m_account).get(0);
+		List<MemberBean> list = (List<MemberBean>) hibernateTemplate.find("from MemberBean where m_account=?",
+				m_account);
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+		return null;
 	}
 
 	@Override

@@ -3,6 +3,8 @@ package com.caizimei.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.caizimei.model.MemberBean;
 import com.caizimei.model.service.MemberService;
 
 @Controller
-@SessionAttributes("member")
+@SessionAttributes("user")
 public class MemberController {
 
 	@Autowired
@@ -27,11 +30,24 @@ public class MemberController {
 	public String signInProcess(@RequestParam(name = "m_account") String m_account,
 			@RequestParam(name = "m_password") String m_password, Model model) {
 		if (memberService.signIn(m_account, m_password)) {
-			model.addAttribute("member", memberService.selectByM_account(m_account));
+			model.addAttribute("user", memberService.selectByM_account(m_account));
 			return "member.sign-in-success";
 		} else {
-			return "";
+			return "member.sign-in";
 		}
+	}
+
+	@RequestMapping(path = "/member/sign-out.controller", method = RequestMethod.GET)
+	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
+		// 清除 HttpSession
+		if (session.getAttribute("user") != null) {
+			session.removeAttribute("user"); // 清除特定 HttpSession
+		}
+		session.invalidate(); // 清除所有 HttpSession
+
+		// 清除 @SessionAttributes
+		sessionStatus.setComplete();
+		return "member.sign-in";
 	}
 
 	@RequestMapping(path = "/member/sign-up.controller", method = RequestMethod.POST)

@@ -18,5 +18,8 @@
 	<p>
 		<a href="${root}clinic/select.jsp">診所</a>
 	</p>
+	<p>
+		<a href="${root}member/sign-out.controller">登出</a>
+	</p>
 </body>
 </html>

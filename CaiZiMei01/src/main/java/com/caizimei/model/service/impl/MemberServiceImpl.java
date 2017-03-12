@@ -48,6 +48,13 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	// 修改會員資料
+	@Override
+	@Transactional
+	public MemberBean update(MemberBean memberBean) {
+		return memberDAO.update(memberBean);
+	}
+
 	// 修改密碼
 	@Override
 	@Transactional

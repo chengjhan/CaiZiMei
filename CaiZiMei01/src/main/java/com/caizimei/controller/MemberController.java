@@ -6,8 +6,11 @@ import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.caizimei.model.MemberBean;
 import com.caizimei.model.service.MemberService;
+
+import misc.PrimitiveNumberEditor;
 
 @Controller
 @SessionAttributes("user")
@@ -26,13 +31,20 @@ public class MemberController {
 	@Autowired
 	private SimpleDateFormat simpleDateFormat;
 
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		webDataBinder.registerCustomEditor(Integer.class, new PrimitiveNumberEditor(Integer.class, true));
+		webDataBinder.registerCustomEditor(Double.class, new PrimitiveNumberEditor(Double.class, true));
+		webDataBinder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(simpleDateFormat, true));
+	}
+
 	// 登入
 	@RequestMapping(path = "/member/sign-in.controller", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam(name = "m_account") String m_account,
 			@RequestParam(name = "m_password") String m_password, Model model) {
 		if (memberService.signIn(m_account, m_password)) {
 			model.addAttribute("user", memberService.selectByM_account(m_account));
-			return "member.sign-in-success";
+			return "index";
 		} else {
 			return "member.sign-in";
 		}
@@ -49,7 +61,7 @@ public class MemberController {
 
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
-		return "member.sign-in";
+		return "index";
 	}
 
 	// 註冊
@@ -68,17 +80,29 @@ public class MemberController {
 		memberBean.setM_birth(m_birth);
 		memberBean.setM_telephone(m_telephone_front + "-" + m_telephone_back);
 		memberService.signUp(memberBean);
-		return "member.insert";
+		return "member.sign-up";
+	}
+
+	// 修改會員資料
+	@RequestMapping(path = "/member/update.controller", method = RequestMethod.POST)
+	public String updateProcess(MemberBean memberBean, HttpSession session, Model model) throws ParseException {
+		MemberBean user = (MemberBean) session.getAttribute("user");
+		memberBean.setM_id(user.getM_id());
+		memberBean.setM_account(user.getM_account());
+		memberBean.setM_password(user.getM_password());
+		memberService.update(memberBean);
+		model.addAttribute("user", memberBean);
+		return "member.update";
 	}
 
 	// 修改密碼
 	@RequestMapping(path = "/member/update-password.controller", method = RequestMethod.POST)
 	public String updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_password_new") String m_password_new, HttpSession session) {
-		MemberBean memberBean = (MemberBean) session.getAttribute("user");
-		if (memberService.passwordToMD5(m_password).equals(memberBean.getM_password())) {
-			memberService.updateM_password(memberBean.getM_id(), m_password_new);
-			return "member.update-password-success";
+		MemberBean user = (MemberBean) session.getAttribute("user");
+		if (memberService.passwordToMD5(m_password).equals(user.getM_password())) {
+			memberService.updateM_password(user.getM_id(), m_password_new);
+			return "index";
 		} else {
 			return "member.update-password";
 		}

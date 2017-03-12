@@ -10,6 +10,8 @@ public interface MemberService {
 
 	MemberBean signUp(MemberBean memberBean);
 
+	MemberBean update(MemberBean memberBean);
+
 	MemberBean updateM_password(Integer m_id, String m_password);
 
 	MemberBean selectByM_account(String m_account);

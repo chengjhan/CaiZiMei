@@ -10,19 +10,19 @@
 <body>
 	<c:url value="/" var="root" />
 	<p>
-		<a href="<c:url value='/member/sign-in.jsp' />">登入</a>
+		<a href="${root}country/insert.jsp">國家</a>
 	</p>
 	<p>
-		<a href="${root}member/sign-out.controller">登出</a>
+		<a href="${root}city/insert.jsp">城市</a>
 	</p>
 	<p>
-		<a href="<c:url value='/member/sign-up.jsp' />">註冊</a>
+		<a href="${root}clinic/insert.jsp">診所</a>
 	</p>
 	<p>
-		<a href="<c:url value='/member/update.jsp' />">修改會員資料</a>
+		<a href="${root}clinic/search.jsp">診所查詢</a>
 	</p>
 	<p>
-		<a href="<c:url value='/member/update-password.jsp' />">修改密碼</a>
+		<a href="${root}member/search.jsp">會員查詢</a>
 	</p>
 </body>
 </html>

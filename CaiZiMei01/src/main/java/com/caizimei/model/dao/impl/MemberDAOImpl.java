@@ -66,6 +66,13 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	public MemberBean update(MemberBean memberBean) {
+		hibernateTemplate.clear();
+		hibernateTemplate.update(memberBean);
+		return memberBean;
+	}
+
+	@Override
 	public MemberBean updateM_password(Integer m_id, String m_password) {
 		MemberBean memberBean = hibernateTemplate.get(MemberBean.class, m_id);
 		memberBean.setM_password(m_password);

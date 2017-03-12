@@ -3,18 +3,35 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="city.insert" class="org.springframework.web.servlet.view.RedirectView">
+	<!-- 前台 -->
+	<bean id="index" class="org.springframework.web.servlet.view.RedirectView">
 		<property name="contextRelative" value="true" />
-		<property name="url" value="/city/insert.jsp" />
+		<property name="url" value="/index.jsp" />
 	</bean>
 
-	<bean id="clinic.search" class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/clinic/search.jsp" />
+	<bean id="member.sign-in" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true" />
+		<property name="url" value="/member/sign-in.jsp" />
 	</bean>
 
-	<bean id="clinic.insert" class="org.springframework.web.servlet.view.RedirectView">
+	<bean id="member.sign-up" class="org.springframework.web.servlet.view.RedirectView">
 		<property name="contextRelative" value="true" />
-		<property name="url" value="/clinic/insert.jsp" />
+		<property name="url" value="/member/sign-up.jsp" />
+	</bean>
+
+	<bean id="member.update" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true" />
+		<property name="url" value="/member/update.jsp" />
+	</bean>
+
+	<bean id="member.update-password" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true" />
+		<property name="url" value="/member/update-password.jsp" />
+	</bean>
+
+	<!-- 後台 -->
+	<bean id="member.search" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/member/search.jsp" />
 	</bean>
 
 	<bean id="country.insert" class="org.springframework.web.servlet.view.RedirectView">
@@ -22,33 +39,18 @@
 		<property name="url" value="/country/insert.jsp" />
 	</bean>
 
-	<bean id="member.insert" class="org.springframework.web.servlet.view.RedirectView">
+	<bean id="city.insert" class="org.springframework.web.servlet.view.RedirectView">
 		<property name="contextRelative" value="true" />
-		<property name="url" value="/member/sign-up.jsp" />
+		<property name="url" value="/city/insert.jsp" />
 	</bean>
-	
-	<bean id="member.search" class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/member/search.jsp" />
-	</bean>
-	
-	<bean id="member.sign-in" class="org.springframework.web.servlet.view.RedirectView">
+
+	<bean id="clinic.insert" class="org.springframework.web.servlet.view.RedirectView">
 		<property name="contextRelative" value="true" />
-		<property name="url" value="/member/sign-in.jsp" />
+		<property name="url" value="/clinic/insert.jsp" />
 	</bean>
-	
-	<bean id="member.sign-in-success" class="org.springframework.web.servlet.view.RedirectView">
-		<property name="contextRelative" value="true" />
-		<property name="url" value="/member/sign-in-success.jsp" />
-	</bean>
-	
-	<bean id="member.update-password" class="org.springframework.web.servlet.view.RedirectView">
-		<property name="contextRelative" value="true" />
-		<property name="url" value="/member/update-password.jsp" />
-	</bean>
-	
-	<bean id="member.update-password-success" class="org.springframework.web.servlet.view.RedirectView">
-		<property name="contextRelative" value="true" />
-		<property name="url" value="/member/update-password-success.jsp" />
+
+	<bean id="clinic.search" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/clinic/search.jsp" />
 	</bean>
 
 </beans>

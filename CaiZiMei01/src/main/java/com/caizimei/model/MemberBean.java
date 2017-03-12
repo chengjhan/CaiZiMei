@@ -26,6 +26,7 @@ public class MemberBean {
 	private String m_email;
 	private java.util.Date m_signup_time;
 	private java.util.Date m_signin_time;
+	private Integer m_limit;
 
 	public Integer getM_id() {
 		return m_id;
@@ -137,6 +138,14 @@ public class MemberBean {
 
 	public void setM_signin_time(java.util.Date m_signin_time) {
 		this.m_signin_time = m_signin_time;
+	}
+
+	public Integer getM_limit() {
+		return m_limit;
+	}
+
+	public void setM_limit(Integer m_limit) {
+		this.m_limit = m_limit;
 	}
 
 }

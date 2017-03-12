@@ -66,16 +66,25 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberBean update(MemberBean memberBean) {
-		hibernateTemplate.clear();
-		hibernateTemplate.update(memberBean);
+	public MemberBean update(MemberBean newMemberBean) {
+		MemberBean memberBean = hibernateTemplate.get(MemberBean.class, newMemberBean.getM_id());
+		System.out.println(memberBean.getM_id());
+		memberBean.setM_lastname(newMemberBean.getM_lastname());
+		memberBean.setM_firstname(newMemberBean.getM_firstname());
+		memberBean.setM_birth(newMemberBean.getM_birth());
+		memberBean.setM_sex(newMemberBean.getM_sex());
+		memberBean.setM_height(newMemberBean.getM_height());
+		memberBean.setM_weight(newMemberBean.getM_weight());
+		memberBean.setM_telephone(newMemberBean.getM_telephone());
+		memberBean.setM_address(newMemberBean.getM_address());
+		memberBean.setM_email(newMemberBean.getM_email());
 		return memberBean;
 	}
 
 	@Override
-	public MemberBean updateM_password(Integer m_id, String m_password) {
+	public MemberBean updateM_password(Integer m_id, String m_password_new_MD5) {
 		MemberBean memberBean = hibernateTemplate.get(MemberBean.class, m_id);
-		memberBean.setM_password(m_password);
+		memberBean.setM_password(m_password_new_MD5);
 		return memberBean;
 	}
 

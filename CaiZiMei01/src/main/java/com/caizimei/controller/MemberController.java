@@ -42,7 +42,7 @@ public class MemberController {
 	@RequestMapping(path = "/member/sign-in.controller", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam(name = "m_account") String m_account,
 			@RequestParam(name = "m_password") String m_password, Model model) {
-		if (memberService.signIn(m_account, m_password)) {
+		if (memberService.signIn(m_account, memberService.passwordToMD5(m_password))) {
 			model.addAttribute("user", memberService.selectByM_account(m_account));
 			return "index";
 		} else {
@@ -70,7 +70,8 @@ public class MemberController {
 			@RequestParam(name = "m_birth_month") String m_birth_month,
 			@RequestParam(name = "m_birth_date") String m_birth_date,
 			@RequestParam(name = "m_telephone_front") String m_telephone_front,
-			@RequestParam(name = "m_telephone_back") String m_telephone_back) {
+			@RequestParam(name = "m_telephone_back") String m_telephone_back, Model model) {
+		memberBean.setM_password(memberService.passwordToMD5(memberBean.getM_password()));
 		java.util.Date m_birth = null;
 		try {
 			m_birth = simpleDateFormat.parse(m_birth_year + "-" + m_birth_month + "-" + m_birth_date);
@@ -79,29 +80,32 @@ public class MemberController {
 		}
 		memberBean.setM_birth(m_birth);
 		memberBean.setM_telephone(m_telephone_front + "-" + m_telephone_back);
+		memberBean.setM_signup_time(new java.util.Date());
+		memberBean.setM_limit(0);
 		memberService.signUp(memberBean);
-		return "member.sign-up";
+		memberService.signIn(memberBean.getM_account(), memberBean.getM_password());
+		model.addAttribute("user", memberBean);
+		return "index";
 	}
 
 	// 修改會員資料
 	@RequestMapping(path = "/member/update.controller", method = RequestMethod.POST)
-	public String updateProcess(MemberBean memberBean, HttpSession session, Model model) throws ParseException {
+	public String updateProcess(MemberBean memberBean, HttpSession session, Model model) {
 		MemberBean user = (MemberBean) session.getAttribute("user");
 		memberBean.setM_id(user.getM_id());
-		memberBean.setM_account(user.getM_account());
-		memberBean.setM_password(user.getM_password());
 		memberService.update(memberBean);
 		model.addAttribute("user", memberBean);
-		return "member.update";
+		return "index";
 	}
 
 	// 修改密碼
 	@RequestMapping(path = "/member/update-password.controller", method = RequestMethod.POST)
 	public String updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
-			@RequestParam(name = "m_password_new") String m_password_new, HttpSession session) {
+			@RequestParam(name = "m_password_new") String m_password_new, HttpSession session, Model model) {
 		MemberBean user = (MemberBean) session.getAttribute("user");
 		if (memberService.passwordToMD5(m_password).equals(user.getM_password())) {
-			memberService.updateM_password(user.getM_id(), m_password_new);
+			memberService.updateM_password(user.getM_id(), memberService.passwordToMD5(m_password_new));
+			model.addAttribute("user", memberService.selectByM_id(user.getM_id()));
 			return "index";
 		} else {
 			return "member.update-password";

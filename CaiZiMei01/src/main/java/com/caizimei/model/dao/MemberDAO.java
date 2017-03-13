@@ -1,9 +1,18 @@
+/*
+ * CaiZiMei
+ * File: MemberDAO.java
+ * Author: Cheng Jhan
+ * Date: 2017/3/13
+ * Version: 1.0
+ * Since: JDK 1.8
+ */
 package com.caizimei.model.dao;
 
 import java.util.List;
 
 import com.caizimei.model.MemberBean;
 
+/** member DAO */
 public interface MemberDAO {
 
 	List<MemberBean> select();

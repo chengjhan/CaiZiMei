@@ -1,3 +1,11 @@
+/*
+ * CaiZiMei
+ * File: MemberBean.java
+ * Author: Cheng Jhan
+ * Date: 2017/3/13
+ * Version: 1.0
+ * Since: JDK 1.8
+ */
 package com.caizimei.model;
 
 import javax.persistence.Entity;
@@ -6,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/** member entity */
 @Entity
 @Table(name = "member")
 public class MemberBean {

@@ -1,3 +1,11 @@
+/*
+ * CaiZiMei
+ * File: MemberServiceImpl.java
+ * Author: Cheng Jhan
+ * Date: 2017/3/13
+ * Version: 1.0
+ * Since: JDK 1.8
+ */
 package com.caizimei.model.service.impl;
 
 import java.math.BigInteger;
@@ -13,14 +21,16 @@ import com.caizimei.model.MemberBean;
 import com.caizimei.model.dao.MemberDAO;
 import com.caizimei.model.service.MemberService;
 
+/** member service implement */
 @Service(value = "memberService")
 @Transactional
 public class MemberServiceImpl implements MemberService {
 
+	/** 注入 MemberDAO */
 	@Autowired
 	private MemberDAO memberDAO;
 
-	// 登入
+	/** 登入 */
 	@Override
 	@Transactional
 	public Boolean signIn(String m_account, String m_password_MD5) {
@@ -36,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 		return false;
 	}
 
-	// 註冊
+	/** 註冊 */
 	@Override
 	@Transactional
 	public MemberBean signUp(MemberBean memberBean) {
@@ -47,21 +57,21 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	// 流水號查詢
+	/** 流水號查詢 */
 	@Override
 	@Transactional(readOnly = true)
 	public MemberBean selectByM_id(Integer m_id) {
 		return memberDAO.selectByM_id(m_id);
 	}
 
-	// 帳號查詢
+	/** 帳號查詢 */
 	@Override
 	@Transactional(readOnly = true)
 	public MemberBean selectByM_account(String m_account) {
 		return memberDAO.selectByM_account(m_account);
 	}
 
-	// 條件查詢
+	/** 條件查詢 */
 	@Override
 	@Transactional(readOnly = true)
 	public List<MemberBean> selectByConditions(String m_firstname, String m_lastname, String m_telephone,
@@ -69,21 +79,21 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.selectByConditions(m_firstname, m_lastname, m_telephone, m_email);
 	}
 
-	// 修改會員資料
+	/** 修改會員資料 */
 	@Override
 	@Transactional
 	public MemberBean update(MemberBean memberBean) {
 		return memberDAO.update(memberBean);
 	}
 
-	// 修改密碼
+	/** 修改密碼 */
 	@Override
 	@Transactional
 	public MemberBean updateM_password(Integer m_id, String m_password_new_MD5) {
 		return memberDAO.updateM_password(m_id, m_password_new_MD5);
 	}
 
-	// 轉換密碼為 MD5
+	/** 轉換密碼為 MD5 */
 	@Override
 	public String passwordToMD5(String m_password) {
 		String m_password_MD5 = null;

@@ -1,3 +1,11 @@
+/*
+ * CaiZiMei
+ * File: MemberController.java
+ * Author: Cheng Jhan
+ * Date: 2017/3/13
+ * Version: 1.0
+ * Since: JDK 1.8
+ */
 package com.caizimei.controller;
 
 import java.text.ParseException;
@@ -11,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,15 +31,20 @@ import com.caizimei.model.service.MemberService;
 
 import misc.PrimitiveNumberEditor;
 
+/** member controller */
 @Controller
 @SessionAttributes("user")
 public class MemberController {
 
+	/** 注入 MemberService */
 	@Autowired
 	private MemberService memberService;
+
+	/** 注入 SimpleDateFormat */
 	@Autowired
 	private SimpleDateFormat simpleDateFormat;
 
+	/** 提供 form-backing bean 資料轉換 */
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
 		webDataBinder.registerCustomEditor(Integer.class, new PrimitiveNumberEditor(Integer.class, true));
@@ -38,7 +52,7 @@ public class MemberController {
 		webDataBinder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(simpleDateFormat, true));
 	}
 
-	// 登入
+	/** 登入 */
 	@RequestMapping(path = "/member/sign-in.controller", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam(name = "m_account") String m_account,
 			@RequestParam(name = "m_password") String m_password, Model model) {
@@ -50,7 +64,7 @@ public class MemberController {
 		}
 	}
 
-	// 登出
+	/** 登出 */
 	@RequestMapping(path = "/member/sign-out.controller", method = RequestMethod.GET)
 	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
 		// 清除 HttpSession
@@ -64,7 +78,7 @@ public class MemberController {
 		return "index";
 	}
 
-	// 註冊
+	/** 註冊 */
 	@RequestMapping(path = "/member/sign-up.controller", method = RequestMethod.POST)
 	public String signUpProcess(MemberBean memberBean, @RequestParam(name = "m_birth_year") String m_birth_year,
 			@RequestParam(name = "m_birth_month") String m_birth_month,
@@ -88,20 +102,20 @@ public class MemberController {
 		return "index";
 	}
 
-	// 修改會員資料
+	/** 修改會員資料 */
 	@RequestMapping(path = "/member/update.controller", method = RequestMethod.POST)
-	public String updateProcess(MemberBean memberBean, HttpSession session, Model model) {
-		MemberBean user = (MemberBean) session.getAttribute("user");
+	public String updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean, Model model) {
 		memberBean.setM_id(user.getM_id());
 		memberService.update(memberBean);
 		model.addAttribute("user", memberBean);
 		return "index";
 	}
 
-	// 修改密碼
+	/** 修改密碼 */
 	@RequestMapping(path = "/member/update-password.controller", method = RequestMethod.POST)
 	public String updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
-			@RequestParam(name = "m_password_new") String m_password_new, HttpSession session, Model model) {
+			@RequestParam(name = "m_password_new") String m_password_new, HttpSession session,
+			SessionStatus sessionStatus, Model model) {
 		MemberBean user = (MemberBean) session.getAttribute("user");
 		if (memberService.passwordToMD5(m_password).equals(user.getM_password())) {
 			memberService.updateM_password(user.getM_id(), memberService.passwordToMD5(m_password_new));
@@ -112,7 +126,7 @@ public class MemberController {
 		}
 	}
 
-	// 條件查詢
+	/** 條件查詢 */
 	@RequestMapping(path = "/member/select.controller", method = RequestMethod.GET)
 	public String selectByConditionsProcess(MemberBean memberBean, Model model) {
 		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_firstname(),

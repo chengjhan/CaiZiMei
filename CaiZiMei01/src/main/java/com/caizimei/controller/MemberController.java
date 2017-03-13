@@ -104,22 +104,19 @@ public class MemberController {
 
 	/** 修改會員資料 */
 	@RequestMapping(path = "/member/update.controller", method = RequestMethod.POST)
-	public String updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean, Model model) {
+	public String updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
 		memberBean.setM_id(user.getM_id());
 		memberService.update(memberBean);
-		model.addAttribute("user", memberBean);
 		return "index";
 	}
 
 	/** 修改密碼 */
 	@RequestMapping(path = "/member/update-password.controller", method = RequestMethod.POST)
 	public String updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
-			@RequestParam(name = "m_password_new") String m_password_new, HttpSession session,
-			SessionStatus sessionStatus, Model model) {
-		MemberBean user = (MemberBean) session.getAttribute("user");
-		if (memberService.passwordToMD5(m_password).equals(user.getM_password())) {
+			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user) {
+		if (memberService.passwordToMD5(m_password)
+				.equals(memberService.selectByM_id(user.getM_id()).getM_password())) {
 			memberService.updateM_password(user.getM_id(), memberService.passwordToMD5(m_password_new));
-			model.addAttribute("user", memberService.selectByM_id(user.getM_id()));
 			return "index";
 		} else {
 			return "member.update-password";

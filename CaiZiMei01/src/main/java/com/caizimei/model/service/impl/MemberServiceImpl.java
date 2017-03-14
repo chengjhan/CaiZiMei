@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberServiceImpl.java
  * Author: 詹晟
- * Date: 2017/3/14
+ * Date: 2017/3/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -42,10 +42,11 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	@Transactional
-	public Boolean signIn(String m_username, String m_password_hashed) {
+	public Boolean signIn(String m_username, String m_password) {
 		MemberBean memberBean = memberDAO.selectByM_username(m_username);
 		if (memberBean != null) {
-			if (memberBean.getM_password().equals(m_password_hashed)) {
+			String m_salt = memberBean.getM_salt();
+			if (memberBean.getM_password().equals(getHashedPassword(m_password, m_salt))) {
 				memberDAO.updateM_signin_time(memberBean.getM_id());
 				return true;
 			} else {
@@ -110,8 +111,16 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	@Transactional
-	public MemberBean updateM_password(Integer m_id, String m_password_new_hashed) {
-		return memberDAO.updateM_password(m_id, m_password_new_hashed);
+	public MemberBean updateM_password(Integer m_id, String m_password_new, String m_salt) {
+		return memberDAO.updateM_password(m_id, getHashedPassword(m_password_new, m_salt));
+	}
+
+	/**
+	 * 製造雜湊密碼
+	 */
+	@Override
+	public String getHashedPassword(String m_password, String m_salt) {
+		return getMD5(m_salt.replaceAll("-", getMD5(m_password)));
 	}
 
 	/**
@@ -143,14 +152,6 @@ public class MemberServiceImpl implements MemberService {
 	public String getSalt() {
 		UUID uuid = UUID.randomUUID();
 		return uuid.toString();
-	}
-
-	/**
-	 * 製造雜湊密碼
-	 */
-	@Override
-	public String getHashedPassword(String m_password, String m_salt) {
-		return getMD5(getSalt().replaceAll("-", getMD5(m_password)));
 	}
 
 }

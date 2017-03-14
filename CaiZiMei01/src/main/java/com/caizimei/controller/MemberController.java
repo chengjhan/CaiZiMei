@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/3/14
+ * Date: 2017/3/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -68,8 +68,7 @@ public class MemberController {
 	@RequestMapping(path = "/member/sign-in.controller", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam(name = "m_username") String m_username,
 			@RequestParam(name = "m_password") String m_password, Model model) {
-		if (memberService.signIn(m_username, memberService.getHashedPassword(m_password,
-				memberService.selectByM_username(m_username).getM_salt()))) {
+		if (memberService.signIn(m_username, m_password)) {
 			model.addAttribute("user", memberService.selectByM_username(m_username));
 			return "index";
 		} else {
@@ -97,14 +96,15 @@ public class MemberController {
 	 * 註冊
 	 */
 	@RequestMapping(path = "/member/sign-up.controller", method = RequestMethod.POST)
-	public String signUpProcess(MemberBean memberBean, @RequestParam(name = "m_birth_year") String m_birth_year,
+	public String signUpProcess(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
+			@RequestParam(name = "m_birth_year") String m_birth_year,
 			@RequestParam(name = "m_birth_month") String m_birth_month,
 			@RequestParam(name = "m_birth_date") String m_birth_date,
 			@RequestParam(name = "m_telephone_front") String m_telephone_front,
 			@RequestParam(name = "m_telephone_back") String m_telephone_back, Model model) {
 		String m_salt = memberService.getSalt();
 		memberBean.setM_salt(m_salt);
-		memberBean.setM_password(memberService.getHashedPassword(memberBean.getM_password(), m_salt));
+		memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
 		java.util.Date m_birth = null;
 		try {
 			m_birth = simpleDateFormat.parse(m_birth_year + "-" + m_birth_month + "-" + m_birth_date);
@@ -116,7 +116,7 @@ public class MemberController {
 		memberBean.setM_signup_time(new java.util.Date());
 		memberBean.setM_limit(0);
 		memberService.signUp(memberBean);
-		memberService.signIn(memberBean.getM_username(), memberBean.getM_password());
+		memberService.signIn(memberBean.getM_username(), m_password);
 		model.addAttribute("user", memberBean);
 		return "index";
 	}
@@ -139,8 +139,7 @@ public class MemberController {
 			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user) {
 		if (memberService.getHashedPassword(m_password, user.getM_salt())
 				.equals(memberService.selectByM_id(user.getM_id()).getM_password())) {
-			memberService.updateM_password(user.getM_id(),
-					memberService.getHashedPassword(m_password_new, user.getM_salt()));
+			memberService.updateM_password(user.getM_id(), m_password_new, user.getM_salt());
 			return "index";
 		} else {
 			return "member.update-password";

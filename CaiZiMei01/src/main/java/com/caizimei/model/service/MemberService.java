@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberService.java
  * Author: 詹晟
- * Date: 2017/3/14
+ * Date: 2017/3/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,7 +19,7 @@ import com.caizimei.model.MemberBean;
  */
 public interface MemberService {
 
-	Boolean signIn(String m_username, String m_password_hashed);
+	Boolean signIn(String m_username, String m_password);
 
 	MemberBean signUp(MemberBean memberBean);
 
@@ -31,12 +31,12 @@ public interface MemberService {
 
 	MemberBean update(MemberBean memberBean);
 
-	MemberBean updateM_password(Integer m_id, String m_password_new_hashed);
+	MemberBean updateM_password(Integer m_id, String m_password_new, String m_salt);
+
+	String getHashedPassword(String m_password, String m_salt);
 
 	String getMD5(String str);
 
 	String getSalt();
-
-	String getHashedPassword(String m_password, String m_salt);
 
 }

@@ -10,8 +10,8 @@
 <body>
 	<form action="<c:url value='/member/sign-up.controller' />" method="post">
 		<div>
-			<label for="id-m-account">帳號</label>
-			<input type="text" id="id-m-account" name="m_account">
+			<label for="id-m-username">帳號</label>
+			<input type="text" id="id-m-username" name="m_username">
 		</div>
 		<div>
 			<label for="id-m-password">密碼</label>

@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
  * File: MemberBean.java
- * Author: Cheng Jhan
- * Date: 2017/3/13
+ * Author: 詹晟
+ * Date: 2017/3/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,7 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/** member entity */
+/**
+ * member entity
+ * 
+ * @author 詹晟
+ */
 @Entity
 @Table(name = "member")
 public class MemberBean {
@@ -22,8 +26,9 @@ public class MemberBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer m_id;
-	private String m_account;
+	private String m_username;
 	private String m_password;
+	private String m_salt;
 	private String m_lastname;
 	private String m_firstname;
 	private java.util.Date m_birth;
@@ -45,12 +50,12 @@ public class MemberBean {
 		this.m_id = m_id;
 	}
 
-	public String getM_account() {
-		return m_account;
+	public String getM_username() {
+		return m_username;
 	}
 
-	public void setM_account(String m_account) {
-		this.m_account = m_account;
+	public void setM_username(String m_username) {
+		this.m_username = m_username;
 	}
 
 	public String getM_password() {
@@ -59,6 +64,14 @@ public class MemberBean {
 
 	public void setM_password(String m_password) {
 		this.m_password = m_password;
+	}
+
+	public String getM_salt() {
+		return m_salt;
+	}
+
+	public void setM_salt(String m_salt) {
+		this.m_salt = m_salt;
 	}
 
 	public String getM_lastname() {

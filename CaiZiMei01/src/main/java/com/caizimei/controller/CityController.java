@@ -1,5 +1,6 @@
 package com.caizimei.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.caizimei.model.CityBean;
 import com.caizimei.model.service.CityService;
 import com.caizimei.model.service.CountryService;
+import com.google.gson.Gson;
 
 @Controller
 public class CityController {
@@ -54,9 +56,18 @@ public class CityController {
 		return "city.insert";
 	}
 
-	@RequestMapping(value = "/city/select.ajax", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<CityBean> ajaxProcess() {
-		return cityService.select();
+	@RequestMapping(path = "/city/select.ajax", method = RequestMethod.GET)
+	public @ResponseBody String ajaxProcess(String co_name) {
+		List<CityBean> result = cityService.selectByCi_co_name(co_name);
+		List<CityBean> jsonList = new ArrayList<CityBean>();
+		for (CityBean bean : result) {
+			CityBean jsonBean = new CityBean();
+			jsonBean.setCi_name(bean.getCi_name());
+			jsonList.add(jsonBean);
+		}
+		String json = new Gson().toJson(jsonList);
+		System.out.println("JSON = " + json);
+		return json;
 	}
 
 }

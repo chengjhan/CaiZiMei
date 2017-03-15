@@ -19,7 +19,7 @@ import com.caizimei.model.CityBean;
 import com.caizimei.model.service.CityService;
 import com.google.gson.Gson;
 
-@WebServlet("/city/select.ajax")
+@WebServlet("/city/.ajax")
 public class CitySelectAjaxServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

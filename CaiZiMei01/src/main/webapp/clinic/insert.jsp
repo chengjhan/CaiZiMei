@@ -127,18 +127,6 @@
 		</tbody>
 	</table>
 	<script>
-// 		$("#id-co-name").change(function(){
-// 			var co_name = $("#id-co-name").val();
-// 			var city_select = $("#id-ci-name");
-// 			$.getJSON("${root}/city/select.ajax", {"co_name": co_name}, function(data){
-// 				city_select.empty();
-// 				$.each(data, function(index, city){
-// 					var city_option = $("<option></option>").append(city.ci_name);
-// 					city_select.append(city_option);
-// 				});
-// 			});
-// 		});
-		
 		$("#id-co-name").change(function(){
 			var co_name = $("#id-co-name").val();
 			var city_select = $("#id-ci-name");

@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 	<%@ page import="org.springframework.web.context.WebApplicationContext"%>
@@ -61,5 +62,44 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<table id="id-table" border="1">
+		<thead>
+			<tr>
+				<td>編號</td>
+				<td>國家</td>
+				<td>代碼</td>
+				<td>修改</td>
+				<td>刪除</td>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	<script>
+		$(document).ready(select);
+		$(document).on("click", "#id-submit", select);
+		
+		function select(){
+			$.ajax({
+				url: '${root}country/select.ajax',
+				type: 'get',
+				dataType: 'json',
+				success: function(data){
+					var tb = $("#id-table>tbody");
+					tb.empty();
+					$.each(data, function(index, country){
+						var cell1 = $("<td></td>").text(country.co_id);
+						var cell2 = $("<td></td>").text(country.co_name);
+						var cell3 = $("<td></td>").text(country.co_countrycode);
+						var cell4_a = $("<a></a>").attr("href", "${root}country/update.jsp?co_id=" + country.co_id + "co_country=" + country.co_name + "co_countrycode=" + country.co_countrycode).text("修改");
+						var cell4 = $("<td></td>").append(cell4_a);
+						var cell5_a = $("<a></a>").attr("href", "${root}country/delete.controller?co_id=" + country.co_id).text("刪除"); 
+						var cell5 = $("<td></td>").append(cell5_a);
+						var row = $("<tr></tr>").append([ cell1, cell2, cell3, cell4, cell5 ]);
+						tb.append(row);
+					});
+				}
+			})
+		}
+	</script>
 </body>
 </html>

@@ -143,8 +143,8 @@
 			var co_name = $("#id-co-name").val();
 			var city_select = $("#id-ci-name");
 			$.ajax({
-				type: 'get',
 				url: '${root}city/select.ajax?co_name=' + co_name,
+				type: 'get',
 				dataType: 'json',
 				success: function(data){
 					city_select.empty();

@@ -62,17 +62,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<table id="id-table" border="1">
-		<thead>
-			<tr>
-				<td>編號</td>
-				<td>國家</td>
-				<td>代碼</td>
-				<td>修改</td>
-				<td>刪除</td>
-			</tr>
-		</thead>
-		<tbody></tbody>
-	</table>
 </body>
 </html>

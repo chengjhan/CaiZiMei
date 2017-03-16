@@ -52,6 +52,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
-    <url-pattern>*.controller</url-pattern>
+    <url-pattern>*.ajax</url-pattern>
   </servlet-mapping>
 </web-app>

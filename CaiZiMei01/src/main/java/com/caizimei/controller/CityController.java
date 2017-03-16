@@ -56,8 +56,9 @@ public class CityController {
 		return "city.insert";
 	}
 
-	@RequestMapping(path = "/city/select.ajax", method = RequestMethod.GET)
-	public @ResponseBody String ajaxProcess(String co_name) {
+	@RequestMapping(path = "/city/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String selectByCountryAjaxProcess(String co_name) {
 		List<CityBean> result = cityService.selectByCi_co_name(co_name);
 		List<CityBean> jsonList = new ArrayList<CityBean>();
 		for (CityBean bean : result) {

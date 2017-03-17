@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/3/15
+ * Date: 2017/3/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -64,6 +65,11 @@ public class MemberController {
 
 	/**
 	 * 登入
+	 * 
+	 * @param m_username-->帳號
+	 * @param m_password-->密碼(原碼)
+	 * @return /index.jsp
+	 * @return /member/sign-in.jsp
 	 */
 	@RequestMapping(path = "/member/sign-in.controller", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam(name = "m_username") String m_username,
@@ -78,6 +84,8 @@ public class MemberController {
 
 	/**
 	 * 登出
+	 * 
+	 * @return /index.jsp
 	 */
 	@RequestMapping(path = "/member/sign-out.controller", method = RequestMethod.GET)
 	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
@@ -94,6 +102,15 @@ public class MemberController {
 
 	/**
 	 * 註冊
+	 * 
+	 * @param memberBean-->MemberBean
+	 * @param m_password-->密碼(原碼)
+	 * @param m_birth_year-->生日(年)
+	 * @param m_birth_month-->生日(月)
+	 * @param m_birth_date-->生日(日)
+	 * @param m_telephone_front-->電話(前碼)
+	 * @param m_telephone_back-->電話(後碼)
+	 * @return /index.jsp
 	 */
 	@RequestMapping(path = "/member/sign-up.controller", method = RequestMethod.POST)
 	public String signUpProcess(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
@@ -122,7 +139,29 @@ public class MemberController {
 	}
 
 	/**
+	 * 驗證帳號是否已使用 (ajax)
+	 * 
+	 * @param m_username-->帳號
+	 * @return 1-->已使用
+	 * @return 0-->未使用
+	 */
+	@RequestMapping(path = "/member/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String validateUsernameAjaxProcess(String m_username) {
+		MemberBean result = memberService.selectByM_username(m_username);
+		if (result != null) {
+			return "1";
+		} else {
+			return "0";
+		}
+	}
+
+	/**
 	 * 修改會員資料
+	 * 
+	 * @param user-->Session
+	 * @param memberBean-->MemberBean
+	 * @return /index.jsp
 	 */
 	@RequestMapping(path = "/member/update.controller", method = RequestMethod.POST)
 	public String updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
@@ -133,6 +172,12 @@ public class MemberController {
 
 	/**
 	 * 修改密碼
+	 * 
+	 * @param m_password-->舊密碼(原碼)
+	 * @param m_password_new-->新密碼(原碼)
+	 * @param user-->Session
+	 * @return /index.jsp
+	 * @return /member/update-password.jsp
 	 */
 	@RequestMapping(path = "/member/update-password.controller", method = RequestMethod.POST)
 	public String updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
@@ -148,6 +193,9 @@ public class MemberController {
 
 	/**
 	 * 條件查詢
+	 * 
+	 * @param memberBean-->MemberBean
+	 * @return /member/search.jsp
 	 */
 	@RequestMapping(path = "/member/select.controller", method = RequestMethod.GET)
 	public String selectByConditionsProcess(MemberBean memberBean, Model model) {

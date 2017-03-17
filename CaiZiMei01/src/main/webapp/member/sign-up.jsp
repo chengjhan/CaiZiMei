@@ -6,12 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
+	<c:url value="/" var="root" />
 	<form action="<c:url value='/member/sign-up.controller' />" method="post">
 		<div>
 			<label for="id-m-username">帳號</label>
 			<input type="text" id="id-m-username" name="m_username">
+			<span id="id-m-username-span"></span>
 		</div>
 		<div>
 			<label for="id-m-password">密碼</label>
@@ -67,5 +70,17 @@
 			<input type="submit" id="id-submit" value="註冊">
 		</div>
 	</form>
+	<script>
+		$("#id-m-username").blur(function(){
+			var m_username = $("#id-m-username").val();
+			var m_username_span = $("#id-m-username-span");
+			m_username_span.empty();
+			$.get("${root}member/select-username.ajax", { "m_username": m_username }, function(data){
+				if(data == "1"){
+					m_username_span.text("已使用");					
+				}
+			});
+		});
+	</script>
 </body>
 </html>

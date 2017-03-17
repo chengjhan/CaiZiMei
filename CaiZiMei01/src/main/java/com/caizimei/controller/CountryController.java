@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/3/17
+ * Date: 2017/3/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,7 @@ public class CountryController {
 	/**
 	 * 新增國家
 	 * 
-	 * @param 表單的CountryBean
+	 * @param countryBean-->CountryBean
 	 * @return /country/insert.jsp
 	 */
 	@RequestMapping(path = "/country/insert.controller", method = RequestMethod.POST)
@@ -45,7 +45,7 @@ public class CountryController {
 	/**
 	 * 修改國家資訊
 	 * 
-	 * @param 表單的CountryBean
+	 * @param countryBean-->CountryBean
 	 * @return /country/insert.jsp
 	 */
 	@RequestMapping(path = "/country/update.controller", method = RequestMethod.POST)
@@ -57,7 +57,7 @@ public class CountryController {
 	/**
 	 * 刪除國家
 	 * 
-	 * @param 表單的CountryBean
+	 * @param countryBean-->CountryBean
 	 * @return /country/insert.jsp
 	 */
 	@RequestMapping(path = "/country/delete.controller", method = RequestMethod.GET)

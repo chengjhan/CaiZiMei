@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityBean.java
  * Author: 詹晟
- * Date: 2017/2/24
+ * Date: 2017/3/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,6 +22,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * city entity
+ * 
+ * @author 詹晟
+ */
 @Entity
 @Table(name = "city")
 public class CityBean {

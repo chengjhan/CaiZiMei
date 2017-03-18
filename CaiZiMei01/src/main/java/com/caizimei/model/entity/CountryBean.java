@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: ClinicBean.java
+ * File: CountryBean.java
  * Author: 詹晟
- * Date: 2017/2/23
+ * Date: 2017/3/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,6 +20,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * country entity
+ * 
+ * @author 詹晟
+ */
 @Entity
 @Table(name = "country")
 public class CountryBean {

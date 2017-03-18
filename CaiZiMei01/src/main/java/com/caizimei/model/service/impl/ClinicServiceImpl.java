@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 
-import com.caizimei.model.ClinicBean;
 import com.caizimei.model.dao.ClinicDAO;
+import com.caizimei.model.entity.ClinicBean;
 import com.caizimei.model.service.ClinicService;
 
 @Service(value = "clinicService")

@@ -2,7 +2,7 @@ package com.caizimei.model.service;
 
 import java.util.List;
 
-import com.caizimei.model.CountryBean;
+import com.caizimei.model.entity.CountryBean;
 
 public interface CountryService {
 

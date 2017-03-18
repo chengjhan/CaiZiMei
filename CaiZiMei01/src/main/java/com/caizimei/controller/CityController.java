@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.caizimei.model.CityBean;
+import com.caizimei.model.entity.CityBean;
 import com.caizimei.model.service.CityService;
 import com.caizimei.model.service.CountryService;
 import com.google.gson.Gson;

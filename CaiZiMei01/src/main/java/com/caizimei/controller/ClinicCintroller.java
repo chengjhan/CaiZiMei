@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.caizimei.model.ClinicBean;
+import com.caizimei.model.entity.ClinicBean;
 import com.caizimei.model.service.CityService;
 import com.caizimei.model.service.ClinicService;
 

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caizimei.model.CityBean;
 import com.caizimei.model.dao.CityDAO;
 import com.caizimei.model.dao.CountryDAO;
+import com.caizimei.model.entity.CityBean;
 import com.caizimei.model.service.CityService;
 
 @Service(value = "cityService")

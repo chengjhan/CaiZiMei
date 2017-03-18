@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caizimei.model.CountryBean;
 import com.caizimei.model.dao.CountryDAO;
+import com.caizimei.model.entity.CountryBean;
 import com.caizimei.model.service.CountryService;
 
 @Service(value = "countryService")

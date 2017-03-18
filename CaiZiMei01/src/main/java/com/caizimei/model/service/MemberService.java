@@ -10,7 +10,7 @@ package com.caizimei.model.service;
 
 import java.util.List;
 
-import com.caizimei.model.MemberBean;
+import com.caizimei.model.entity.MemberBean;
 
 /**
  * member service

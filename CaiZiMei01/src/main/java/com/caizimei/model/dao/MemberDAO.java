@@ -10,7 +10,7 @@ package com.caizimei.model.dao;
 
 import java.util.List;
 
-import com.caizimei.model.MemberBean;
+import com.caizimei.model.entity.MemberBean;
 
 /**
  * member DAO

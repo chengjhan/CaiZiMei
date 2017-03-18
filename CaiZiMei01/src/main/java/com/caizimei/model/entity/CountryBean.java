@@ -1,4 +1,12 @@
-package com.caizimei.model;
+/*
+ * CaiZiMei
+ * File: ClinicBean.java
+ * Author: 詹晟
+ * Date: 2017/2/23
+ * Version: 1.0
+ * Since: JDK 1.8
+ */
+package com.caizimei.model.entity;
 
 import java.util.HashSet;
 import java.util.Set;

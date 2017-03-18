@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.caizimei.model.CountryBean;
+import com.caizimei.model.entity.CountryBean;
 import com.caizimei.model.service.CountryService;
 
 /**

@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.caizimei.model.MemberBean;
+import com.caizimei.model.entity.MemberBean;
 import com.caizimei.model.service.MemberService;
 
 import misc.PrimitiveNumberEditor;

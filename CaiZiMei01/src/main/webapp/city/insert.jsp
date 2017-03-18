@@ -10,7 +10,7 @@
 <body>
 	<%@ page import="org.springframework.web.context.WebApplicationContext"%>
 	<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-	<%@ page import="com.caizimei.model.*"%>
+	<%@ page import="com.caizimei.model.entity.*"%>
 	<%@ page import="com.caizimei.model.service.*"%>
 	<%@ page import="java.util.List"%>
 	<%@ page import="java.util.ArrayList"%>

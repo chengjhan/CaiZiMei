@@ -2,7 +2,7 @@ package com.caizimei.model.service;
 
 import java.util.List;
 
-import com.caizimei.model.ClinicBean;
+import com.caizimei.model.entity.ClinicBean;
 
 public interface ClinicService {
 

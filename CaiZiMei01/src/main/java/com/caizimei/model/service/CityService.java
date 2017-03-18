@@ -2,7 +2,7 @@ package com.caizimei.model.service;
 
 import java.util.List;
 
-import com.caizimei.model.CityBean;
+import com.caizimei.model.entity.CityBean;
 
 public interface CityService {
 

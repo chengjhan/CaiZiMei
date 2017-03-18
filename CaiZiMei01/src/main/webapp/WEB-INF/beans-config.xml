@@ -21,10 +21,10 @@
 		</property>
 		<property name="annotatedClasses">
 			<list>
-				<value>com.caizimei.model.CityBean</value>
-				<value>com.caizimei.model.ClinicBean</value>
-				<value>com.caizimei.model.CountryBean</value>
-				<value>com.caizimei.model.MemberBean</value>
+				<value>com.caizimei.model.entity.CityBean</value>
+				<value>com.caizimei.model.entity.ClinicBean</value>
+				<value>com.caizimei.model.entity.CountryBean</value>
+				<value>com.caizimei.model.entity.MemberBean</value>
 			</list>
 		</property>
 	</bean>

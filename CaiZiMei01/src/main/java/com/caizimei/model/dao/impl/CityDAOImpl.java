@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.caizimei.model.CityBean;
 import com.caizimei.model.dao.CityDAO;
+import com.caizimei.model.entity.CityBean;
 
 @Repository(value = "cityDAO")
 public class CityDAOImpl implements CityDAO {

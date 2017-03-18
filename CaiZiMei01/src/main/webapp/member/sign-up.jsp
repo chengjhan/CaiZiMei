@@ -34,9 +34,17 @@
 		</div>
 		<div>
 			<label for="id-m-birth">生日</label>
-			<input type="text" id="id-m-birth" name="m_birth_year">
-			<input type="text" id="id-m-birth" name="m_birth_month">
-			<input type="text" id="id-m-birth" name="m_birth_date">
+			<div id="id-m-birth">
+				<select id="id-m-birth-year" name="m_birth_year">
+					<option></option>
+				</select>年
+				<select id="id-m-birth-month" name="m_birth_month">
+					<option></option>
+				</select>月
+				<select id="id-m-birth-date" name="m_birth_date">
+					<option></option>
+				</select>日
+			</div>
 		</div>
 		<div>
 			<label for="id-m-sex">性別</label>
@@ -71,6 +79,7 @@
 		</div>
 	</form>
 	<script>
+		// 帳號驗證
 		$("#id-m-username").blur(function(){
 			var m_username = $("#id-m-username").val();
 			var m_username_span = $("#id-m-username-span");
@@ -81,6 +90,56 @@
 				}
 			});
 		});
+		
+		// 日期選單
+		var theYear;
+		var theMonth;
+		var maxDate;
+
+		window.onload = function() {
+			var year_select = document.getElementById("id-m-birth-year");
+			var today = new Date();
+			var currentYear = today.getFullYear();
+			for (i = 0; i <= 100; i++) {
+				var opt = window.document.createElement("option");
+				opt.value = currentYear - i;
+				opt.innerHTML = currentYear - i;
+				year_select.appendChild(opt);
+			}
+			var month_select = document.getElementById("id-m-birth-month");
+			for (i = 1; i <= 12; i++) {
+				var opt = window.document.createElement("option");
+				var optName = document.createTextNode(i);
+				opt.appendChild(optName);
+				month_select.appendChild(opt);
+			}
+			year_select.onchange = changeYear;
+			month_select.onchange = changeMonth;
+		};
+
+		function changeYear() {
+			theYear = document.getElementById("id-m-birth-year").value;
+			theDate = new Date(theYear, theMonth, 0);
+			maxDate = theDate.getDate();
+			changeDate();
+		}
+
+		function changeMonth() {
+			theMonth = document.getElementById("id-m-birth-month").value;
+			var theDate = new Date(theYear, theMonth, 0);
+			maxDate = theDate.getDate();
+			changeDate();
+		}
+
+		function changeDate() {
+			document.getElementById("id-m-birth-date").innerHTML = "";
+			for (i = 1; i <= maxDate; i++) {
+				var opt = window.document.createElement("option");
+				var optName = document.createTextNode(i);
+				opt.appendChild(optName);
+				document.getElementById("id-m-birth-date").appendChild(opt);
+			}
+		}
 	</script>
 </body>
 </html>

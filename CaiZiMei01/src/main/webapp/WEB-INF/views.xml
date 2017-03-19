@@ -13,6 +13,11 @@
 		<property name="contextRelative" value="true" />
 		<property name="url" value="/member/sign-in.jsp" />
 	</bean>
+	
+	<bean id="member.sign-in-fail" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true" />
+		<property name="url" value="/member/sign-in-fail.jsp" />
+	</bean>
 
 	<bean id="member.sign-up" class="org.springframework.web.servlet.view.RedirectView">
 		<property name="contextRelative" value="true" />

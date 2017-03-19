@@ -78,7 +78,7 @@ public class MemberController {
 			model.addAttribute("user", memberService.selectByM_username(m_username));
 			return "index";
 		} else {
-			return "member.sign-in";
+			return "member.sign-in-fail";
 		}
 	}
 

@@ -52,8 +52,9 @@ public class MemberServiceImpl implements MemberService {
 			} else {
 				return false;
 			}
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 	/**

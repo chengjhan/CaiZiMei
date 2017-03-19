@@ -14,7 +14,7 @@
 		<div>
 			<label for="id-m-username">帳號</label>
 			<input type="text" id="id-m-username" name="m_username">
-			<span id="id-m-username-span"></span>
+			<span id="id-m-username-span" style="color:red"></span>
 		</div>
 		<div>
 			<label for="id-m-password">密碼</label>

@@ -205,4 +205,9 @@ public class MemberController {
 		return "member.search";
 	}
 
+	@RequestMapping("/member/sign-in")
+	public String index() {
+		return "member.sign-in";
+	}
+
 }

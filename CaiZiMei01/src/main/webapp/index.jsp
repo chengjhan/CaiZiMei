@@ -11,6 +11,7 @@
 	<c:url value="/" var="root" />
 	<p>
 		<a href="<c:url value='/member/sign-in.jsp' />">登入</a>
+		<a href="${root}member/sign-in">登入</a>
 	</p>
 	<p>
 		<a href="<c:url value='/member/sign-up.jsp' />">註冊</a>

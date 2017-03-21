@@ -61,7 +61,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>signInFilter</filter-name>
-		<url-pattern>*.controller</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 	<!-- DispatcherServlet -->
 	<servlet>

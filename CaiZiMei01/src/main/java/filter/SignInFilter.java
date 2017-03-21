@@ -51,7 +51,7 @@ public class SignInFilter implements Filter {
 				session.setAttribute("target", req.getServletPath());
 				System.out.println("333--->需要Login,尚未Login,ServletPath=" + req.getServletPath());
 				String path = req.getContextPath();
-				resp.sendRedirect(path + "/secure/login.jsp");
+				resp.sendRedirect(path + "/member/sign-in.jsp");
 				return;
 			}
 		} else {

@@ -78,7 +78,8 @@ public class MemberController {
 			model.addAttribute("user", memberService.selectByM_username(m_username));
 			return "index";
 		} else {
-			return "member.sign-in-fail";
+			model.addAttribute("error", "帳號或密碼錯誤");
+			return "member.sign-in";
 		}
 	}
 

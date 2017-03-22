@@ -15,15 +15,18 @@
 	</p>
 	<p>
 		<a href="<c:url value='/member/sign-up.jsp' />">註冊</a>
+		<a href="${root}member/sign-up">註冊</a>
 	</p>
 	<p>
 		<a href="${root}member/sign-out.controller">登出</a>
 	</p>
 	<p>
 		<a href="<c:url value='/member/update.jsp' />">修改會員資料</a>
+		<a href="${root}member/update">修改會員資料</a>
 	</p>
 	<p>
 		<a href="<c:url value='/member/update-password.jsp' />">修改密碼</a>
+		<a href="${root}member/update-password">修改密碼</a>
 	</p>
 </body>
 </html>

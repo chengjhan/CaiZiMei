@@ -74,6 +74,36 @@ public class MemberController {
 	public ModelAndView signIn() {
 		return new ModelAndView("member/sign-in");
 	}
+	
+	/**
+	 * member/sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/member/sign-up.jsp
+	 */
+	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
+	public ModelAndView signUp() {
+		return new ModelAndView("member/sign-up");
+	}
+	
+	/**
+	 * member/update 視圖解析
+	 * 
+	 * @return /WEB-INF/views/member/update.jsp
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public ModelAndView update() {
+		return new ModelAndView("member/update");
+	}
+	
+	/**
+	 * member/update-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/member/update-password.jsp
+	 */
+	@RequestMapping(value = "/update-password", method = RequestMethod.GET)
+	public ModelAndView updatePassword() {
+		return new ModelAndView("member/update-password");
+	}
 
 	/**
 	 * 登入
@@ -98,10 +128,10 @@ public class MemberController {
 	/**
 	 * 登出
 	 * 
-	 * @return /index.jsp
+	 * @return /WEB-INF/views/index.jsp
 	 */
-	@RequestMapping(path = "/member/sign-out.controller", method = RequestMethod.GET)
-	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
+	@RequestMapping(path = "/sign-out.controller", method = RequestMethod.GET)
+	public ModelAndView signOutProcess(HttpSession session, SessionStatus sessionStatus) {
 		// 清除 HttpSession
 		if (session.getAttribute("user") != null) {
 			session.removeAttribute("user"); // 清除特定 HttpSession
@@ -110,7 +140,7 @@ public class MemberController {
 
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
-		return "index";
+		return new ModelAndView("redirect:/index");
 	}
 
 	/**
@@ -123,10 +153,10 @@ public class MemberController {
 	 * @param m_birth_date-->生日(日)
 	 * @param m_telephone_front-->電話(前碼)
 	 * @param m_telephone_back-->電話(後碼)
-	 * @return /index.jsp
+	 * @return /WEB-INF/views/index.jsp
 	 */
-	@RequestMapping(path = "/member/sign-up.controller", method = RequestMethod.POST)
-	public String signUpProcess(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
+	@RequestMapping(path = "/sign-up.do", method = RequestMethod.POST)
+	public ModelAndView signUpProcess(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_birth_year") String m_birth_year,
 			@RequestParam(name = "m_birth_month") String m_birth_month,
 			@RequestParam(name = "m_birth_date") String m_birth_date,
@@ -148,7 +178,7 @@ public class MemberController {
 		memberService.signUp(memberBean);
 		memberService.signIn(memberBean.getM_username(), m_password);
 		model.addAttribute("user", memberBean);
-		return "index";
+		return new ModelAndView("redirect:/index");
 	}
 
 	/**
@@ -174,13 +204,13 @@ public class MemberController {
 	 * 
 	 * @param user-->Session
 	 * @param memberBean-->MemberBean
-	 * @return /index.jsp
+	 * @return /WEB-INF/views/index.jsp
 	 */
-	@RequestMapping(path = "/member/update.controller", method = RequestMethod.POST)
-	public String updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
+	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
+	public ModelAndView updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
 		memberBean.setM_id(user.getM_id());
 		memberService.update(memberBean);
-		return "index";
+		return new ModelAndView("redirect:/index");
 	}
 
 	/**
@@ -189,18 +219,18 @@ public class MemberController {
 	 * @param m_password-->舊密碼(原碼)
 	 * @param m_password_new-->新密碼(原碼)
 	 * @param user-->Session
-	 * @return /index.jsp
-	 * @return /member/update-password.jsp
+	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/member/update-password.jsp
 	 */
-	@RequestMapping(path = "/member/update-password.controller", method = RequestMethod.POST)
-	public String updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
+	@RequestMapping(path = "/update-password.do", method = RequestMethod.POST)
+	public ModelAndView updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user) {
 		if (memberService.getHashedPassword(m_password, user.getM_salt())
 				.equals(memberService.selectByM_id(user.getM_id()).getM_password())) {
 			memberService.updateM_password(user.getM_id(), m_password_new, user.getM_salt());
-			return "index";
+			return new ModelAndView("redirect:/index");
 		} else {
-			return "member.update-password";
+			return new ModelAndView("member.update-password");
 		}
 	}
 

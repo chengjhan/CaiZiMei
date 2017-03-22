@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/member/update.controller' />" method="post">
+	<form action="<c:url value='/member/update.do' />" method="post">
 		<div>
 			<label for="id-m-lastname">姓氏</label>
 			<input type="text" id="id-m-lastname" name="m_lastname" value="${user.m_lastname}">

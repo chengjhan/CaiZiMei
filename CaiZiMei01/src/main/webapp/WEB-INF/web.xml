@@ -55,14 +55,14 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- Sign in filter -->
-	<filter>
-		<filter-name>signInFilter</filter-name>
-		<filter-class>filter.SignInFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>signInFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
+<!-- 	<filter> -->
+<!-- 		<filter-name>signInFilter</filter-name> -->
+<!-- 		<filter-class>filter.SignInFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>signInFilter</filter-name> -->
+<!-- 		<url-pattern>*.do</url-pattern> -->
+<!-- 	</filter-mapping> -->
 	<!-- DispatcherServlet -->
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>

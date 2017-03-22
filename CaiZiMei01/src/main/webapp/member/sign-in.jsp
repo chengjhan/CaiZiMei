@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/member/sign-in.controller' />" method="post">
+	<form action="<c:url value='/member/sign-in.do' />" method="post">
 		<div>
 			<label for="id-m-username">帳號</label>
 			<input type="text" id="id-m-username" name="m_username">

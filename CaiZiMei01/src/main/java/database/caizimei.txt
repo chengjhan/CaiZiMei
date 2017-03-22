@@ -1,0 +1,56 @@
+MySQL
+
+drop database if exists caizimeidb;
+
+create database if not exists caizimeidb;
+
+use caizimeidb;
+
+create table country(
+	co_id					int auto_increment not null,
+    co_name					nvarchar(50),
+    co_countrycode			varchar(50),
+    primary key (co_id)
+);
+
+create table city(
+	ci_id					int auto_increment not null,
+    ci_name					nvarchar(50),
+    ci_co_id				int not null,
+    primary key (ci_id),
+	foreign key (ci_co_id) references country (co_id)
+);
+
+create table clinic(
+	c_id					int auto_increment not null,
+    c_name					nvarchar(50) not null,
+    c_eng_name				varchar(50),
+    c_telephone				varchar(50),
+    c_ci_id					int not null,
+    c_address				nvarchar(50) not null,
+    c_latitude				decimal(10,6) not null,
+    c_longitude				decimal(10,6) not null,
+    c_url					varchar(100),
+    primary key (c_id),
+    foreign key (c_ci_id) references city (ci_id)
+);
+
+create table member(
+	m_id					int auto_increment not null,
+    m_username				nvarchar(50) not null,
+    m_password				varchar(50) not null,
+    m_salt					varchar(50) not null,
+    m_lastname				nvarchar(50) not null,
+    m_firstname				nvarchar(50) not null,
+    m_birth					date,
+    m_sex					tinyint,
+    m_height				double,
+    m_weight				double,
+    m_telephone				varchar(50),
+    m_address				nvarchar(50),
+    m_email					varchar(100),
+    m_signup_time			datetime,
+    m_signin_time			datetime,
+    m_limit					tinyint,
+    primary key (m_id)
+);

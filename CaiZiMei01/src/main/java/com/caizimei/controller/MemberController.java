@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/3/18
+ * Date: 2017/3/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.MemberBean;
 import com.caizimei.model.service.MemberService;
@@ -38,6 +39,7 @@ import misc.PrimitiveNumberEditor;
  * @author 詹晟
  */
 @Controller
+@RequestMapping("/member")
 @SessionAttributes("user")
 public class MemberController {
 
@@ -64,22 +66,32 @@ public class MemberController {
 	}
 
 	/**
+	 * member/sign-in 視圖解析
+	 * 
+	 * @return /WEB-INF/views/member/sign-in.jsp
+	 */
+	@RequestMapping(value = "/sign-in", method = RequestMethod.GET)
+	public ModelAndView signIn() {
+		return new ModelAndView("member/sign-in");
+	}
+
+	/**
 	 * 登入
 	 * 
 	 * @param m_username-->帳號
 	 * @param m_password-->密碼(原碼)
-	 * @return /index.jsp
-	 * @return /member/sign-in.jsp
+	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/member/sign-in.jsp
 	 */
-	@RequestMapping(path = "/member/sign-in.controller", method = RequestMethod.POST)
-	public String signInProcess(@RequestParam(name = "m_username") String m_username,
+	@RequestMapping(path = "/sign-in.do", method = RequestMethod.POST)
+	public ModelAndView signInProcess(@RequestParam(name = "m_username") String m_username,
 			@RequestParam(name = "m_password") String m_password, Model model) {
 		if (memberService.signIn(m_username, m_password)) {
 			model.addAttribute("user", memberService.selectByM_username(m_username));
-			return "index";
+			return new ModelAndView("redirect:/index");
 		} else {
 			model.addAttribute("error", "帳號或密碼錯誤");
-			return "member.sign-in";
+			return new ModelAndView("member/sign-in");
 		}
 	}
 
@@ -203,11 +215,6 @@ public class MemberController {
 		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_firstname(),
 				memberBean.getM_lastname(), memberBean.getM_telephone(), memberBean.getM_email()));
 		return "member.search";
-	}
-
-	@RequestMapping("/member/sign-in")
-	public String index() {
-		return "member.sign-in";
 	}
 
 }

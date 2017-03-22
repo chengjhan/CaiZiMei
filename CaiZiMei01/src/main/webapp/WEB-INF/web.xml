@@ -6,7 +6,7 @@
 	<display-name>CaiZiMei01</display-name>
 	<!-- home page -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>/WEB-INF/views/index.jsp</welcome-file>
 	</welcome-file-list>
 	<!-- DataSource -->
 	<resource-ref>

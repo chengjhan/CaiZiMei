@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.caizimei</groupId>
-	<artifactId>CaiZiMei01</artifactId>
+	<artifactId>CaiZiMei_springmvc</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
 
-	<name>CaiZiMei01</name>
+	<name>CaiZiMei_springmvc</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

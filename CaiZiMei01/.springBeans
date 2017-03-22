@@ -9,7 +9,6 @@
 	<configs>
 		<config>src/main/webapp/WEB-INF/beans-config.xml</config>
 		<config>src/main/webapp/WEB-INF/dispatcher-servlet.xml</config>
-		<config>src/main/webapp/WEB-INF/views.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

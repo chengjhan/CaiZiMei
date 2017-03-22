@@ -106,6 +106,16 @@ public class MemberController {
 	}
 
 	/**
+	 * member/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/member/search.jsp
+	 */
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView selectByConditions() {
+		return new ModelAndView("member/search");
+	}
+
+	/**
 	 * 登入
 	 * 
 	 * @param m_username-->會員帳號

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/member/select.controller' />" method="get">
+	<form action="<c:url value='/member/select.do' />" method="get">
 		<div>
 			<label for="id-m-lastname">姓</label>
 			<input type="text" id="id-m-lastname" name="m_lastname">
@@ -49,7 +49,7 @@
 			<c:forEach var="bean" items="${selectByConditions}">
 				<tr>
 					<td>${bean.m_id}</td>
-					<td>${bean.m_account}</td>
+					<td>${bean.m_username}</td>
 					<td>${bean.m_lastname}</td>
 					<td>${bean.m_firstname}</td>
 					<td>${bean.m_birth}</td>

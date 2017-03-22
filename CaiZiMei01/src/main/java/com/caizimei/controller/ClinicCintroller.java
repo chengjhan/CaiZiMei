@@ -47,7 +47,7 @@ public class ClinicCintroller {
 	 * @return /WEB-INF/views/clinic/select.jsp
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView search() {
+	public ModelAndView selectByConditions() {
 		return new ModelAndView("clinic/search");
 	}
 

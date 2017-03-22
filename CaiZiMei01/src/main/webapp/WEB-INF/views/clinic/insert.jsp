@@ -39,7 +39,7 @@
 		pageContext.setAttribute("select", clinicBeanList);
 	%>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/clinic/insert.controller' />" method="post">
+	<form action="<c:url value='/clinic/insert.do' />" method="post">
 		<div>
 			<label for="id-c-name">名稱</label>
 			<input type="text" id="id-c-name" name="c_name">
@@ -99,7 +99,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${select}">
-				<c:url value="/clinic/update.jsp" var="path">
+				<c:url value="/clinic/update" var="path">
 					<c:param name="c_id" value="${bean.c_id}" />
 					<c:param name="c_name" value="${bean.c_name}" />
 					<c:param name="c_eng_name" value="${bean.c_eng_name}" />
@@ -121,7 +121,7 @@
 					<td>${bean.c_longitude}</td>
 					<td><a href="${bean.c_url}">${bean.c_url}</a></td>
 					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}clinic/delete.controller?c_id=${bean.c_id}">刪除</a></td>
+					<td><a href="${root}clinic/delete.do?c_id=${bean.c_id}">刪除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

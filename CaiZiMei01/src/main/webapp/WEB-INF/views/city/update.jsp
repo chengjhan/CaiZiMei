@@ -30,7 +30,7 @@
 		List<CityBean> cityBeanList = cityService.select();
 		pageContext.setAttribute("select", cityBeanList);
 	%>
-	<form action="<c:url value='/city/update.controller' />" method="post">
+	<form action="<c:url value='/city/update.do' />" method="post">
 		<div style="display: none">
 			<input type="text" id="id-ci-id" name="ci_id" value="${param.ci_id}">
 		</div>

@@ -20,7 +20,7 @@
 		List<CountryBean> list = countryService.select();
 		request.setAttribute("select", list);
 	%>
-	<form action="<c:url value='/country/update.controller' />" method="post">
+	<form action="<c:url value='/country/update.do' />" method="post">
 		<div style="display:none">
 			<input type="text" id="id-co-id" name="co_id" value="${param.co_id}">
 		</div>

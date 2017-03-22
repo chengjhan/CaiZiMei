@@ -10,19 +10,19 @@
 <body>
 	<c:url value="/" var="root" />
 	<p>
-		<a href="${root}country/insert.jsp">國家</a>
+		<a href="${root}country/insert">國家</a>
 	</p>
 	<p>
-		<a href="${root}city/insert.jsp">城市</a>
+		<a href="${root}city/insert">城市</a>
 	</p>
 	<p>
-		<a href="${root}clinic/insert.jsp">診所</a>
+		<a href="${root}clinic/insert">診所</a>
 	</p>
 	<p>
-		<a href="${root}clinic/search.jsp">診所查詢</a>
+		<a href="${root}clinic/search">診所查詢</a>
 	</p>
 	<p>
-		<a href="${root}member/search.jsp">會員查詢</a>
+		<a href="${root}member/search">會員查詢</a>
 	</p>
 </body>
 </html>

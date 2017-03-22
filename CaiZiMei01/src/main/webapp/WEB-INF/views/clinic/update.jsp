@@ -37,7 +37,7 @@
 		List<ClinicBean> list = clinicService.select();
 		pageContext.setAttribute("select", list);
 	%>
-	<form action="<c:url value='/clinic/update.controller' />" method="post">
+	<form action="<c:url value='/clinic/update.do' />" method="post">
 		<div style="display: none">
 			<input type="text" name="c_id" value="${param.c_id}">
 		</div>

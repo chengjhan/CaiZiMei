@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/clinic/search.controller' />" method="get">
+	<form action="<c:url value='/clinic/search.do' />" method="get">
 		<div>
 			<label for="id-c-name">名稱</label>
 			<input type="text" id="id-c-name" name="c_name">
@@ -40,7 +40,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${selectByConditions}">
-				<c:url value="/clinic/update.jsp" var="path">
+				<c:url value="/clinic/update" var="path">
 					<c:param name="c_id" value="${bean.c_id}" />
 					<c:param name="c_name" value="${bean.c_name}" />
 					<c:param name="c_eng_name" value="${bean.c_eng_name}" />
@@ -62,7 +62,7 @@
 					<td>${bean.c_longitude}</td>
 					<td><a href="${bean.c_url}">${bean.c_url}</a></td>
 					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}clinic/delete.controller?c_id=${bean.c_id}">刪除</a></td>
+					<td><a href="${root}clinic/delete.do?c_id=${bean.c_id}">刪除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

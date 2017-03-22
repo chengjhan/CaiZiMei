@@ -16,13 +16,16 @@
 		<a href="${root}member/sign-up">註冊</a>
 	</p>
 	<p>
-		<a href="${root}member/sign-out.controller">登出</a>
+		<a href="${root}member/sign-out.do">登出</a>
 	</p>
 	<p>
 		<a href="${root}member/update">修改會員資料</a>
 	</p>
 	<p>
 		<a href="${root}member/update-password">修改密碼</a>
+	</p>
+	<p>
+		<a href="${root}back">後台管理系統</a>
 	</p>
 </body>
 </html>

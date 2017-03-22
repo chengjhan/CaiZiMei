@@ -31,4 +31,14 @@ public class HomeController {
 		return new ModelAndView("index");
 	}
 
+	/**
+	 * back 視圖解析
+	 * 
+	 * @return /WEB-INF/views/back.jsp
+	 */
+	@RequestMapping(value = "/back", method = RequestMethod.GET)
+	public ModelAndView back() {
+		return new ModelAndView("back");
+	}
+
 }

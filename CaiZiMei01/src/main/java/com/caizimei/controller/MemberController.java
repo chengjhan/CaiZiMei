@@ -74,7 +74,7 @@ public class MemberController {
 	public ModelAndView signIn() {
 		return new ModelAndView("member/sign-in");
 	}
-	
+
 	/**
 	 * member/sign-up 視圖解析
 	 * 
@@ -84,7 +84,7 @@ public class MemberController {
 	public ModelAndView signUp() {
 		return new ModelAndView("member/sign-up");
 	}
-	
+
 	/**
 	 * member/update 視圖解析
 	 * 
@@ -94,7 +94,7 @@ public class MemberController {
 	public ModelAndView update() {
 		return new ModelAndView("member/update");
 	}
-	
+
 	/**
 	 * member/update-password 視圖解析
 	 * 
@@ -108,8 +108,8 @@ public class MemberController {
 	/**
 	 * 登入
 	 * 
-	 * @param m_username-->帳號
-	 * @param m_password-->密碼(原碼)
+	 * @param m_username-->會員帳號
+	 * @param m_password-->會員密碼(原碼)
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/member/sign-in.jsp
 	 */
@@ -130,7 +130,7 @@ public class MemberController {
 	 * 
 	 * @return /WEB-INF/views/index.jsp
 	 */
-	@RequestMapping(path = "/sign-out.controller", method = RequestMethod.GET)
+	@RequestMapping(path = "/sign-out.do", method = RequestMethod.GET)
 	public ModelAndView signOutProcess(HttpSession session, SessionStatus sessionStatus) {
 		// 清除 HttpSession
 		if (session.getAttribute("user") != null) {
@@ -147,12 +147,12 @@ public class MemberController {
 	 * 註冊
 	 * 
 	 * @param memberBean-->MemberBean
-	 * @param m_password-->密碼(原碼)
-	 * @param m_birth_year-->生日(年)
-	 * @param m_birth_month-->生日(月)
-	 * @param m_birth_date-->生日(日)
-	 * @param m_telephone_front-->電話(前碼)
-	 * @param m_telephone_back-->電話(後碼)
+	 * @param m_password-->會員密碼(原碼)
+	 * @param m_birth_year-->會員生日(年)
+	 * @param m_birth_month-->會員生日(月)
+	 * @param m_birth_date-->會員生日(日)
+	 * @param m_telephone_front-->會員電話(前碼)
+	 * @param m_telephone_back-->會員電話(後碼)
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/sign-up.do", method = RequestMethod.POST)
@@ -184,11 +184,11 @@ public class MemberController {
 	/**
 	 * 驗證帳號是否已使用 (ajax)
 	 * 
-	 * @param m_username-->帳號
+	 * @param m_username-->會員帳號
 	 * @return 1-->已使用
 	 * @return 0-->未使用
 	 */
-	@RequestMapping(path = "/member/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(path = "/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String validateUsernameAjaxProcess(String m_username) {
 		MemberBean result = memberService.selectByM_username(m_username);
@@ -230,7 +230,7 @@ public class MemberController {
 			memberService.updateM_password(user.getM_id(), m_password_new, user.getM_salt());
 			return new ModelAndView("redirect:/index");
 		} else {
-			return new ModelAndView("member.update-password");
+			return new ModelAndView("member/update-password");
 		}
 	}
 
@@ -240,11 +240,11 @@ public class MemberController {
 	 * @param memberBean-->MemberBean
 	 * @return /member/search.jsp
 	 */
-	@RequestMapping(path = "/member/select.controller", method = RequestMethod.GET)
-	public String selectByConditionsProcess(MemberBean memberBean, Model model) {
+	@RequestMapping(path = "/select.do", method = RequestMethod.GET)
+	public ModelAndView selectByConditionsProcess(MemberBean memberBean, Model model) {
 		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_firstname(),
 				memberBean.getM_lastname(), memberBean.getM_telephone(), memberBean.getM_email()));
-		return "member.search";
+		return new ModelAndView("member/search");
 	}
 
 }

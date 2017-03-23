@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: MemberController.java
+ * File: ViewController.java
  * Author: 詹晟
- * Date: 2017/3/22
+ * Date: 2017/3/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * home controller (視圖解析)
+ * view controller (視圖解析)
  * 
  * @author 詹晟
  */
 @Controller
-public class HomeController {
+public class ViewController {
 
 	/**
 	 * index 視圖解析

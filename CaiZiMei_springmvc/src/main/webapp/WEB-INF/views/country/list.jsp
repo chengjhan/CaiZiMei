@@ -9,18 +9,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<%@ page import="org.springframework.web.context.WebApplicationContext"%>
-	<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-	<%@ page import="com.caizimei.model.entity.*"%>
-	<%@ page import="com.caizimei.model.service.*"%>
-	<%@ page import="java.util.List"%>
-	<%
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
-
-		CountryService countryService = (CountryService) context.getBean("countryService");
-		List<CountryBean> list = countryService.select();
-		request.setAttribute("select", list);
-	%>
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/country/insert.do' />" method="post">
 		<div>
@@ -46,7 +34,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${select}">
+			<c:forEach var="bean" items="${countryList}">
 				<c:url value="/country/update" var="path">
 					<c:param name="co_id" value="${bean.co_id}" />
 					<c:param name="co_name" value="${bean.co_name}" />

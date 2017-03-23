@@ -10,7 +10,7 @@
 <body>
 	<c:url value="/" var="root" />
 	<p>
-		<a href="${root}country/insert">國家</a>
+		<a href="${root}country/list.do">國家</a>
 	</p>
 	<p>
 		<a href="${root}city/insert">城市</a>

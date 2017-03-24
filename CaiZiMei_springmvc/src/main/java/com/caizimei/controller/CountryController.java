@@ -59,11 +59,14 @@ public class CountryController {
 	/**
 	 * 搜尋全部國家
 	 * 
+	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
 	public ModelAndView selectProcess(Model model) {
+		
 		model.addAttribute("countryList", countryService.select());
+		
 		return new ModelAndView("country/list");
 	}
 
@@ -71,12 +74,15 @@ public class CountryController {
 	 * 新增國家
 	 * 
 	 * @param countryBean-->CountryBean
+	 * @param redirectAttributes-->RedirectAttributes
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
 	public ModelAndView insertProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
+		
 		countryService.insert(countryBean);
 		redirectAttributes.addFlashAttribute("countryList", countryService.select());
+		
 		return new ModelAndView("redirect:/country/list");
 	}
 
@@ -84,12 +90,15 @@ public class CountryController {
 	 * 修改國家資訊
 	 * 
 	 * @param countryBean-->CountryBean
+	 * @param redirectAttributes-->RedirectAttributes
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
+		
 		countryService.update(countryBean);
 		redirectAttributes.addFlashAttribute("countryList", countryService.select());
+		
 		return new ModelAndView("redirect:/country/list");
 	}
 
@@ -97,12 +106,15 @@ public class CountryController {
 	 * 刪除國家
 	 * 
 	 * @param countryBean-->CountryBean
+	 * @param redirectAttributes-->RedirectAttributes
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
+		
 		countryService.delete(countryBean.getCo_id());
 		redirectAttributes.addFlashAttribute("countryList", countryService.select());
+		
 		return new ModelAndView("redirect:/country/list");
 	}
 

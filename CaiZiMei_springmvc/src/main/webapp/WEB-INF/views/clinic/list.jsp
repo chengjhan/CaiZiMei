@@ -33,10 +33,6 @@
 			cityStringList.add(bean.getCi_name());
 		}
 		pageContext.setAttribute("list_ci_name", cityStringList);
-
-		ClinicService clinicService = (ClinicService) context.getBean("clinicService");
-		List<ClinicBean> clinicBeanList = clinicService.select();
-		pageContext.setAttribute("select", clinicBeanList);
 	%>
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/clinic/insert.do' />" method="post">
@@ -98,7 +94,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${select}">
+			<c:forEach var="bean" items="${clinicList}">
 				<c:url value="/clinic/update" var="path">
 					<c:param name="c_id" value="${bean.c_id}" />
 					<c:param name="c_name" value="${bean.c_name}" />

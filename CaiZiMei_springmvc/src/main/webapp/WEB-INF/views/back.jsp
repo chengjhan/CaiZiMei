@@ -13,10 +13,10 @@
 		<a href="${root}country/list.do">國家</a>
 	</p>
 	<p>
-		<a href="${root}city/insert">城市</a>
+		<a href="${root}city/list.do">城市</a>
 	</p>
 	<p>
-		<a href="${root}clinic/insert">診所</a>
+		<a href="${root}clinic/list.do">診所</a>
 	</p>
 	<p>
 		<a href="${root}clinic/search">診所查詢</a>

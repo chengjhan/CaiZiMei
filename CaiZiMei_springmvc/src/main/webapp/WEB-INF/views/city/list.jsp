@@ -24,10 +24,6 @@
 			countryStringList.add(bean.getCo_name());
 		}
 		pageContext.setAttribute("co_name_list", countryStringList);
-		
-		CityService cityService = (CityService) context.getBean("cityService");
-		List<CityBean> cityBeanList = cityService.select();
-		pageContext.setAttribute("select", cityBeanList);
 	%>
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/city/insert.do' />" method="post">
@@ -59,7 +55,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${select}">
+			<c:forEach var="bean" items="${cityList}">
 				<c:url value="/city/update" var="path">
 					<c:param name="ci_id" value="${bean.ci_id}" />
 					<c:param name="co_name" value="${bean.ci_CountryBean.co_name}" />

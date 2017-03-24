@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/3/23
+ * Date: 2017/3/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,10 +13,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.CityBean;
@@ -31,6 +33,7 @@ import com.google.gson.Gson;
  */
 @Controller
 @RequestMapping("/city")
+@SessionAttributes("cityList")
 public class CityController {
 
 	/**
@@ -46,13 +49,13 @@ public class CityController {
 	private CountryService countryService;
 
 	/**
-	 * city/insert 視圖解析
+	 * city/list 視圖解析
 	 * 
-	 * @return /WEB-INF/views/city/insert.jsp
+	 * @return /WEB-INF/views/city/list.jsp
 	 */
-	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public ModelAndView insert() {
-		return new ModelAndView("city/insert");
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+		return new ModelAndView("city/list");
 	}
 
 	/**
@@ -66,20 +69,38 @@ public class CityController {
 	}
 
 	/**
+	 * 搜尋全部城市
+	 * 
+	 * @param model-->Model
+	 * @return /WEB-INF/views/city/list.jsp
+	 */
+	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
+	public ModelAndView selectProcess(Model model) {
+
+		model.addAttribute("cityList", cityService.select());
+
+		return new ModelAndView("city/list");
+	}
+
+	/**
 	 * 新增城市
 	 * 
 	 * @param co_name-->國家名
 	 * @param ci_name-->城市名
-	 * @return /WEB-INF/views/city/insert.jsp
+	 * @param model-->Model
+	 * @return /WEB-INF/views/city/list.jsp
 	 */
-	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/list.do", method = RequestMethod.POST)
 	public ModelAndView insertProcess(@RequestParam(name = "co_name") String co_name,
-			@RequestParam(name = "ci_name") String ci_name) {
+			@RequestParam(name = "ci_name") String ci_name, Model model) {
+
 		CityBean cityBean = new CityBean();
 		cityBean.setCi_name(ci_name);
 		cityBean.setCi_CountryBean(countryService.selectByCo_name(co_name));
 		cityService.insert(cityBean);
-		return new ModelAndView("redirect:/city/insert");
+		model.addAttribute("cityList", cityService.select());
+
+		return new ModelAndView("redirect:/city/list");
 	}
 
 	/**
@@ -88,29 +109,38 @@ public class CityController {
 	 * @param ci_id-->城市流水號
 	 * @param co_name-->國家名
 	 * @param ci_name-->城市名
-	 * @return /WEB-INF/views/city/insert.jsp
+	 * @param model-->Model
+	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProcess(@RequestParam(name = "ci_id") String ci_id,
-			@RequestParam(name = "co_name") String co_name, @RequestParam(name = "ci_name") String ci_name) {
+			@RequestParam(name = "co_name") String co_name, @RequestParam(name = "ci_name") String ci_name,
+			Model model) {
+
 		CityBean cityBean = new CityBean();
 		cityBean.setCi_id(Integer.parseInt(ci_id));
 		cityBean.setCi_CountryBean(countryService.selectByCo_name(co_name));
 		cityBean.setCi_name(ci_name);
 		cityService.update(cityBean);
-		return new ModelAndView("redirect:/city/insert");
+		model.addAttribute("cityList", cityService.select());
+
+		return new ModelAndView("redirect:/city/list");
 	}
 
 	/**
 	 * 刪除國家
 	 * 
 	 * @param cityBean-->CityBean
-	 * @return /WEB-INF/views/city/insert.jsp
+	 * @param model-->Model
+	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
-	public ModelAndView deleteProcess(CityBean cityBean) {
+	public ModelAndView deleteProcess(CityBean cityBean, Model model) {
+
 		cityService.delete(cityBean.getCi_id());
-		return new ModelAndView("redirect:/city/insert");
+		model.addAttribute("cityList", cityService.select());
+
+		return new ModelAndView("redirect:/city/list");
 	}
 
 	/**
@@ -122,6 +152,7 @@ public class CityController {
 	@RequestMapping(path = "/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String selectByCountryAjaxProcess(String co_name) {
+
 		List<CityBean> result = cityService.selectByCi_co_name(co_name);
 		List<CityBean> jsonList = new ArrayList<CityBean>();
 		for (CityBean bean : result) {
@@ -131,6 +162,7 @@ public class CityController {
 		}
 		String json = new Gson().toJson(jsonList);
 		System.out.println("JSON = " + json);
+
 		return json;
 	}
 

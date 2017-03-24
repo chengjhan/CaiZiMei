@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/3/22
+ * Date: 2017/3/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -111,7 +111,7 @@ public class MemberController {
 	 * @return /WEB-INF/views/member/search.jsp
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView selectByConditions() {
+	public ModelAndView search() {
 		return new ModelAndView("member/search");
 	}
 
@@ -120,17 +120,23 @@ public class MemberController {
 	 * 
 	 * @param m_username-->會員帳號
 	 * @param m_password-->會員密碼(原碼)
+	 * @param model-->Model
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/member/sign-in.jsp
 	 */
 	@RequestMapping(path = "/sign-in.do", method = RequestMethod.POST)
 	public ModelAndView signInProcess(@RequestParam(name = "m_username") String m_username,
 			@RequestParam(name = "m_password") String m_password, Model model) {
+
 		if (memberService.signIn(m_username, m_password)) {
+
 			model.addAttribute("user", memberService.selectByM_username(m_username));
+
 			return new ModelAndView("redirect:/index");
 		} else {
+
 			model.addAttribute("error", "帳號或密碼錯誤");
+
 			return new ModelAndView("member/sign-in");
 		}
 	}
@@ -142,6 +148,7 @@ public class MemberController {
 	 */
 	@RequestMapping(path = "/sign-out.do", method = RequestMethod.GET)
 	public ModelAndView signOutProcess(HttpSession session, SessionStatus sessionStatus) {
+
 		// 清除 HttpSession
 		if (session.getAttribute("user") != null) {
 			session.removeAttribute("user"); // 清除特定 HttpSession
@@ -150,6 +157,7 @@ public class MemberController {
 
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
+
 		return new ModelAndView("redirect:/index");
 	}
 
@@ -163,6 +171,7 @@ public class MemberController {
 	 * @param m_birth_date-->會員生日(日)
 	 * @param m_telephone_front-->會員電話(前碼)
 	 * @param m_telephone_back-->會員電話(後碼)
+	 * @param model-->Model
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/sign-up.do", method = RequestMethod.POST)
@@ -172,7 +181,9 @@ public class MemberController {
 			@RequestParam(name = "m_birth_date") String m_birth_date,
 			@RequestParam(name = "m_telephone_front") String m_telephone_front,
 			@RequestParam(name = "m_telephone_back") String m_telephone_back, Model model) {
+
 		String m_salt = memberService.getSalt();
+
 		memberBean.setM_salt(m_salt);
 		memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
 		java.util.Date m_birth = null;
@@ -185,9 +196,11 @@ public class MemberController {
 		memberBean.setM_telephone(m_telephone_front + "-" + m_telephone_back);
 		memberBean.setM_signup_time(new java.util.Date());
 		memberBean.setM_limit(0);
+
 		memberService.signUp(memberBean);
 		memberService.signIn(memberBean.getM_username(), m_password);
 		model.addAttribute("user", memberBean);
+
 		return new ModelAndView("redirect:/index");
 	}
 
@@ -201,7 +214,9 @@ public class MemberController {
 	@RequestMapping(path = "/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String validateUsernameAjaxProcess(String m_username) {
+
 		MemberBean result = memberService.selectByM_username(m_username);
+
 		if (result != null) {
 			return "1";
 		} else {
@@ -218,8 +233,10 @@ public class MemberController {
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
+
 		memberBean.setM_id(user.getM_id());
 		memberService.update(memberBean);
+
 		return new ModelAndView("redirect:/index");
 	}
 
@@ -235,9 +252,14 @@ public class MemberController {
 	@RequestMapping(path = "/update-password.do", method = RequestMethod.POST)
 	public ModelAndView updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user) {
-		if (memberService.getHashedPassword(m_password, user.getM_salt())
-				.equals(memberService.selectByM_id(user.getM_id()).getM_password())) {
+
+		String oldHashedPassword = memberService.selectByM_id(user.getM_id()).getM_password();
+		String inputOldHashedPassword = memberService.getHashedPassword(m_password, user.getM_salt());
+
+		if (oldHashedPassword.equals(inputOldHashedPassword)) {
+
 			memberService.updateM_password(user.getM_id(), m_password_new, user.getM_salt());
+
 			return new ModelAndView("redirect:/index");
 		} else {
 			return new ModelAndView("member/update-password");
@@ -248,12 +270,15 @@ public class MemberController {
 	 * 條件查詢
 	 * 
 	 * @param memberBean-->MemberBean
+	 * @param model-->Model
 	 * @return /member/search.jsp
 	 */
 	@RequestMapping(path = "/select.do", method = RequestMethod.GET)
 	public ModelAndView selectByConditionsProcess(MemberBean memberBean, Model model) {
+
 		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_firstname(),
 				memberBean.getM_lastname(), memberBean.getM_telephone(), memberBean.getM_email()));
+
 		return new ModelAndView("member/search");
 	}
 

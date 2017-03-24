@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: ViewController.java
+ * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/3/23
+ * Date: 2017/3/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * view controller (視圖解析)
+ * views controller (視圖解析)
  * 
  * @author 詹晟
  */
 @Controller
-public class ViewController {
+public class ViewsController {
 
 	/**
 	 * index 視圖解析

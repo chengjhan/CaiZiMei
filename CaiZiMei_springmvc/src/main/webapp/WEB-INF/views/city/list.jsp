@@ -6,34 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<%@ page import="org.springframework.web.context.WebApplicationContext"%>
-	<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-	<%@ page import="com.caizimei.model.entity.*"%>
-	<%@ page import="com.caizimei.model.service.*"%>
-	<%@ page import="java.util.List"%>
-	<%@ page import="java.util.ArrayList"%>
-	<%
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
-		
-		CountryService countryService = (CountryService) context.getBean("countryService");
-		List<CountryBean> countryBeanList = countryService.select();
-		List<String> countryStringList = new ArrayList<String>();
-		for (CountryBean bean : countryBeanList) {
-			countryStringList.add(bean.getCo_name());
-		}
-		pageContext.setAttribute("co_name_list", countryStringList);
-	%>
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/city/insert.do' />" method="post">
 		<div>
 			<label for="id-co-name">國家</label>
 			<select id="id-co-name" name="co_name">
-				<option></option>
-				<c:forEach var="co_name" items="${co_name_list}">
-					<option>${co_name}</option>
-				</c:forEach>
+				<option>請選擇國家</option>
 			</select>
 		</div>
 		<div>
@@ -71,5 +52,16 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<script>
+		$(document).ready(function(){
+			var country_select = $("#id-co-name");
+			$.getJSON("${root}country/select.ajax", function(data){
+				$.each(data, function(index, country){
+					var country_option = $("<option></option>").append(country.co_name);
+					country_select.append(country_option);
+				});
+			});
+		});
+	</script>
 </body>
 </html>

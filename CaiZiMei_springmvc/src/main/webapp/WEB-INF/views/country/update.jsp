@@ -6,20 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<%@ page import="org.springframework.web.context.WebApplicationContext"%>
-	<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-	<%@ page import="com.caizimei.model.entity.*"%>
-	<%@ page import="com.caizimei.model.service.*"%>
-	<%@ page import="java.util.List"%>
-	<%
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
-
-		CountryService countryService = (CountryService) context.getBean("countryService");
-		List<CountryBean> list = countryService.select();
-		request.setAttribute("select", list);
-	%>
 	<form action="<c:url value='/country/update.do' />" method="post">
 		<div style="display:none">
 			<input type="text" id="id-co-id" name="co_id" value="${param.co_id}">

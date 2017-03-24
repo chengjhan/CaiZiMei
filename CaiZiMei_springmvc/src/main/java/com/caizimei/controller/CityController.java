@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -92,7 +92,7 @@ public class CityController {
 	 * @param model-->Model
 	 * @return /WEB-INF/views/city/list.jsp
 	 */
-	@RequestMapping(path = "/list.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
 	public ModelAndView insertProcess(@RequestParam(name = "co_name") String co_name,
 			@RequestParam(name = "ci_name") String ci_name, Model model) {
 
@@ -156,6 +156,7 @@ public class CityController {
 	public String selectByCountryAjaxProcess(String co_name) {
 
 		List<CityBean> result = cityService.selectByCi_co_name(co_name);
+		
 		List<CityBean> jsonList = new ArrayList<CityBean>();
 		for (CityBean bean : result) {
 			CityBean jsonBean = new CityBean();

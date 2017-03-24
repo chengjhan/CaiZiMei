@@ -9,31 +9,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<%@ page import="org.springframework.web.context.WebApplicationContext"%>
-	<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-	<%@ page import="com.caizimei.model.entity.*"%>
-	<%@ page import="com.caizimei.model.service.*"%>
-	<%@ page import="java.util.List"%>
-	<%@ page import="java.util.ArrayList"%>
-	<%
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
-
-		CountryService countryService = (CountryService) context.getBean("countryService");
-		List<CountryBean> countryBeanList = countryService.select();
-		List<String> countryStringList = new ArrayList<String>();
-		for (CountryBean bean : countryBeanList) {
-			countryStringList.add(bean.getCo_name());
-		}
-		pageContext.setAttribute("list_co_name", countryStringList);
-
-		CityService cityService = (CityService) context.getBean("cityService");
-		List<CityBean> cityBeanList = cityService.select();
-		List<String> cityStringList = new ArrayList<String>();
-		for (CityBean bean : cityBeanList) {
-			cityStringList.add(bean.getCi_name());
-		}
-		pageContext.setAttribute("list_ci_name", cityStringList);
-	%>
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/clinic/insert.do' />" method="post">
 		<div>
@@ -52,16 +27,13 @@
 		<div>
 			<label for="id-co-name">國家</label>
 			<select id="id-co-name" name="co_name">
-				<option></option>
-				<c:forEach var="co_name" items="${list_co_name}">
-					<option>${co_name}</option>
-				</c:forEach>
+				<option>請選擇國家</option>
 			</select>
 		</div>
 		<div>
 			<label for="id-ci-name">城市</label>
 			<select id="id-ci-name" name="ci_name">
-				<option></option>
+				<option>請選擇城市</option>
 			</select>
 		</div>
 		<div>
@@ -123,6 +95,16 @@
 		</tbody>
 	</table>
 	<script>
+		$(document).ready(function(){
+			var country_select = $("#id-co-name");
+			$.getJSON("${root}country/select.ajax", function(data){
+				$.each(data, function(index, country){
+					var country_option = $("<option></option>").append(country.co_name);
+					country_select.append(country_option);
+				});
+			});
+		});
+	
 		$("#id-co-name").change(function(){
 			var co_name = $("#id-co-name").val();
 			var city_select = $("#id-ci-name");
@@ -132,6 +114,7 @@
 				dataType: 'json',
 				success: function(data){
 					city_select.empty();
+					city_select.append("<option>請選擇城市</option>");
 					$.each(data, function(index, city){
 						var city_option = $("<option></option>").append(city.ci_name);
 						city_select.append(city_option);

@@ -6,37 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<%@ page import="org.springframework.web.context.WebApplicationContext"%>
-	<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-	<%@ page import="com.caizimei.model.entity.*"%>
-	<%@ page import="com.caizimei.model.service.*"%>
-	<%@ page import="java.util.List"%>
-	<%@ page import="java.util.ArrayList"%>
-	<%
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
-
-		CountryService countryService = (CountryService) context.getBean("countryService");
-		List<CountryBean> countryBeanList = countryService.select();
-		List<String> countryStringList = new ArrayList<String>();
-		for (CountryBean bean : countryBeanList) {
-			countryStringList.add(bean.getCo_name());
-		}
-		pageContext.setAttribute("co_name_list", countryStringList);
-
-		CityService cityService = (CityService) context.getBean("cityService");
-		List<CityBean> cityBeanList = cityService.select();
-		List<String> cityStringList = new ArrayList<String>();
-		for (CityBean bean : cityBeanList) {
-			cityStringList.add(bean.getCi_name());
-		}
-		pageContext.setAttribute("ci_name_list", cityStringList);
-
-		ClinicService clinicService = (ClinicService) context.getBean("clinicService");
-		List<ClinicBean> list = clinicService.select();
-		pageContext.setAttribute("select", list);
-	%>
+	<c:url value="/" var="root" />
 	<form action="<c:url value='/clinic/update.do' />" method="post">
 		<div style="display: none">
 			<input type="text" name="c_id" value="${param.c_id}">
@@ -56,19 +29,13 @@
 		<div>
 			<label for="id-co-name">國家</label>
 			<select id="id-co-name" name="co_name">
-				<option></option>
-				<c:forEach var="co_name" items="${co_name_list}">
-					<option>${co_name}</option>
-				</c:forEach>
+				<option>請選擇國家</option>
 			</select>
 		</div>
 		<div>
 			<label for="id-ci-name">城市</label>
 			<select id="id-ci-name" name="ci_name">
-				<option></option>
-				<c:forEach var="ci_name" items="${ci_name_list}">
-					<option>${ci_name}</option>
-				</c:forEach>
+				<option>請選擇城市</option>
 			</select>
 		</div>
 		<div>
@@ -83,5 +50,34 @@
 			<input type="submit" id="id-submit" value="修改">
 		</div>
 	</form>
+	<script>
+		$(document).ready(function(){
+			var country_select = $("#id-co-name");
+			$.getJSON("${root}country/select.ajax", function(data){
+				$.each(data, function(index, country){
+					var country_option = $("<option></option>").append(country.co_name);
+					country_select.append(country_option);
+				});
+			});
+		});
+	
+		$("#id-co-name").change(function(){
+			var co_name = $("#id-co-name").val();
+			var city_select = $("#id-ci-name");
+			$.ajax({
+				url: '${root}city/select.ajax?co_name=' + co_name,
+				type: 'get',
+				dataType: 'json',
+				success: function(data){
+					city_select.empty();
+					city_select.append("<option>請選擇城市</option>");
+					$.each(data, function(index, city){
+						var city_option = $("<option></option>").append(city.ci_name);
+						city_select.append(city_option);
+					});
+				}
+			});
+		});
+	</script>
 </body>
 </html>

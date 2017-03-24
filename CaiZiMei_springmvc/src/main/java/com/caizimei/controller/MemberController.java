@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -72,7 +72,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/sign-in", method = RequestMethod.GET)
 	public ModelAndView signIn() {
-		
+
 		return new ModelAndView("member/sign-in");
 	}
 
@@ -83,7 +83,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
 	public ModelAndView signUp() {
-		
+
 		return new ModelAndView("member/sign-up");
 	}
 
@@ -94,7 +94,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
-		
+
 		return new ModelAndView("member/update");
 	}
 
@@ -105,7 +105,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/update-password", method = RequestMethod.GET)
 	public ModelAndView updatePassword() {
-		
+
 		return new ModelAndView("member/update-password");
 	}
 
@@ -116,7 +116,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search() {
-		
+
 		return new ModelAndView("member/search");
 	}
 
@@ -210,26 +210,6 @@ public class MemberController {
 	}
 
 	/**
-	 * 驗證帳號是否已使用 (ajax)
-	 * 
-	 * @param m_username-->會員帳號
-	 * @return 1-->已使用
-	 * @return 0-->未使用
-	 */
-	@RequestMapping(path = "/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String validateUsernameAjaxProcess(String m_username) {
-
-		MemberBean result = memberService.selectByM_username(m_username);
-
-		if (result != null) {
-			return "1";
-		} else {
-			return "0";
-		}
-	}
-
-	/**
 	 * 修改會員資料
 	 * 
 	 * @param user-->Session
@@ -285,6 +265,26 @@ public class MemberController {
 				memberBean.getM_lastname(), memberBean.getM_telephone(), memberBean.getM_email()));
 
 		return new ModelAndView("member/search");
+	}
+
+	/**
+	 * 驗證帳號是否已使用 (ajax)
+	 * 
+	 * @param m_username-->會員帳號
+	 * @return 1-->已使用
+	 * @return 0-->未使用
+	 */
+	@RequestMapping(path = "/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String validateUsernameAjaxProcess(String m_username) {
+
+		MemberBean result = memberService.selectByM_username(m_username);
+
+		if (result != null) {
+			return "1";
+		} else {
+			return "0";
+		}
 	}
 
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/clinic/update.do' />" method="post">
+	<form action="<c:url value='/admin/clinic/update.do' />" method="post">
 		<div style="display: none">
 			<input type="text" name="c_id" value="${param.c_id}">
 		</div>
@@ -53,7 +53,7 @@
 	<script>
 		$(document).ready(function(){
 			var country_select = $("#id-co-name");
-			$.getJSON("${root}country/select.ajax", function(data){
+			$.getJSON("${root}admin/country/select.ajax", function(data){
 				$.each(data, function(index, country){
 					var country_option = $("<option></option>").append(country.co_name);
 					country_select.append(country_option);
@@ -65,7 +65,7 @@
 			var co_name = $("#id-co-name").val();
 			var city_select = $("#id-ci-name");
 			$.ajax({
-				url: '${root}city/select.ajax?co_name=' + co_name,
+				url: '${root}admin/city/select.ajax?co_name=' + co_name,
 				type: 'get',
 				dataType: 'json',
 				success: function(data){

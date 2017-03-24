@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<form action="<c:url value='/country/update.do' />" method="post">
+	<form action="<c:url value='/admin/country/update.do' />" method="post">
 		<div style="display:none">
 			<input type="text" id="id-co-id" name="co_id" value="${param.co_id}">
 		</div>

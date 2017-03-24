@@ -31,7 +31,7 @@ import com.google.gson.Gson;
  * @author 詹晟
  */
 @Controller
-@RequestMapping("/country")
+@RequestMapping("/admin/country")
 @SessionAttributes("countryList")
 public class CountryController {
 
@@ -44,37 +44,37 @@ public class CountryController {
 	/**
 	 * country/list 視圖解析
 	 * 
-	 * @return /WEB-INF/views/country/list.jsp
+	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 
-		return new ModelAndView("country/list");
+		return new ModelAndView("admin/country/list");
 	}
 
 	/**
 	 * country/update 視圖解析
 	 * 
-	 * @return /WEB-INF/views/country/update.jsp
+	 * @return /WEB-INF/views/admin/country/update.jsp
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
 
-		return new ModelAndView("country/update");
+		return new ModelAndView("admin/country/update");
 	}
 
 	/**
 	 * 搜尋全部國家
 	 * 
 	 * @param model-->Model
-	 * @return /WEB-INF/views/country/list.jsp
+	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
 	public ModelAndView selectProcess(Model model) {
 
 		model.addAttribute("countryList", countryService.select());
 
-		return new ModelAndView("country/list");
+		return new ModelAndView("admin/country/list");
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class CountryController {
 	 * 
 	 * @param countryBean-->CountryBean
 	 * @param redirectAttributes-->RedirectAttributes
-	 * @return /WEB-INF/views/country/list.jsp
+	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
 	public ModelAndView insertProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
@@ -90,7 +90,7 @@ public class CountryController {
 		countryService.insert(countryBean);
 		redirectAttributes.addFlashAttribute("countryList", countryService.select());
 
-		return new ModelAndView("redirect:/country/list");
+		return new ModelAndView("redirect:/admin/country/list");
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class CountryController {
 	 * 
 	 * @param countryBean-->CountryBean
 	 * @param redirectAttributes-->RedirectAttributes
-	 * @return /WEB-INF/views/country/list.jsp
+	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
@@ -106,7 +106,7 @@ public class CountryController {
 		countryService.update(countryBean);
 		redirectAttributes.addFlashAttribute("countryList", countryService.select());
 
-		return new ModelAndView("redirect:/country/list");
+		return new ModelAndView("redirect:/admin/country/list");
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class CountryController {
 	 * 
 	 * @param countryBean-->CountryBean
 	 * @param redirectAttributes-->RedirectAttributes
-	 * @return /WEB-INF/views/country/list.jsp
+	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
@@ -122,7 +122,7 @@ public class CountryController {
 		countryService.delete(countryBean.getCo_id());
 		redirectAttributes.addFlashAttribute("countryList", countryService.select());
 
-		return new ModelAndView("redirect:/country/list");
+		return new ModelAndView("redirect:/admin/country/list");
 	}
 
 	/**

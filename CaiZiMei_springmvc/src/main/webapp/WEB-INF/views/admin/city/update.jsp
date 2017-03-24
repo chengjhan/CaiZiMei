@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/city/update.do' />" method="post">
+	<form action="<c:url value='/admin/city/update.do' />" method="post">
 		<div style="display: none">
 			<input type="text" id="id-ci-id" name="ci_id" value="${param.ci_id}">
 		</div>
@@ -31,7 +31,7 @@
 	<script>
 		$(document).ready(function(){
 			var country_select = $("#id-co-name");
-			$.getJSON("${root}country/select.ajax", function(data){
+			$.getJSON("${root}admin/country/select.ajax", function(data){
 				$.each(data, function(index, country){
 					var country_option = $("<option></option>").append(country.co_name);
 					country_select.append(country_option);

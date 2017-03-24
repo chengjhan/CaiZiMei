@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/country/insert.do' />" method="post">
+	<form action="<c:url value='/admin/country/insert.do' />" method="post">
 		<div>
 			<label for="id-co-name">國家</label>
 			<input type="text" id="id-co-name" name="co_name">
@@ -35,7 +35,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${countryList}">
-				<c:url value="/country/update" var="path">
+				<c:url value="/admin/country/update" var="path">
 					<c:param name="co_id" value="${bean.co_id}" />
 					<c:param name="co_name" value="${bean.co_name}" />
 					<c:param name="co_countrycode" value="${bean.co_countrycode}" />
@@ -45,7 +45,7 @@
 					<td>${bean.co_name}</td>
 					<td>${bean.co_countrycode}</td>
 					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}country/delete.do?co_id=${bean.co_id}">刪除</a></td>
+					<td><a href="${root}admin/country/delete.do?co_id=${bean.co_id}">刪除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

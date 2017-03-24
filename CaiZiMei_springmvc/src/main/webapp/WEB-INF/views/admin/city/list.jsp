@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/city/insert.do' />" method="post">
+	<form action="<c:url value='/admin/city/insert.do' />" method="post">
 		<div>
 			<label for="id-co-name">國家</label>
 			<select id="id-co-name" name="co_name">
@@ -37,7 +37,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${cityList}">
-				<c:url value="/city/update" var="path">
+				<c:url value="/admin/city/update" var="path">
 					<c:param name="ci_id" value="${bean.ci_id}" />
 					<c:param name="co_name" value="${bean.ci_CountryBean.co_name}" />
 					<c:param name="ci_name" value="${bean.ci_name}" />
@@ -47,7 +47,7 @@
 					<td>${bean.ci_CountryBean.co_name}</td>
 					<td>${bean.ci_name}</td>
 					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}city/delete.do?ci_id=${bean.ci_id}">刪除</a></td>
+					<td><a href="${root}admin/city/delete.do?ci_id=${bean.ci_id}">刪除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -55,7 +55,7 @@
 	<script>
 		$(document).ready(function(){
 			var country_select = $("#id-co-name");
-			$.getJSON("${root}country/select.ajax", function(data){
+			$.getJSON("${root}admin/country/select.ajax", function(data){
 				$.each(data, function(index, country){
 					var country_option = $("<option></option>").append(country.co_name);
 					country_select.append(country_option);

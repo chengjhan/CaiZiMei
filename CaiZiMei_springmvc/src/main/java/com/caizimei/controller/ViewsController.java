@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -35,12 +35,12 @@ public class ViewsController {
 	/**
 	 * back 視圖解析
 	 * 
-	 * @return /WEB-INF/views/back.jsp
+	 * @return /WEB-INF/views/admin/back.jsp
 	 */
-	@RequestMapping(value = "/back", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/back", method = RequestMethod.GET)
 	public ModelAndView back() {
 		
-		return new ModelAndView("back");
+		return new ModelAndView("admin/back");
 	}
 
 }

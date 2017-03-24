@@ -10,19 +10,19 @@
 <body>
 	<c:url value="/" var="root" />
 	<p>
-		<a href="${root}country/list.do">國家</a>
+		<a href="${root}admin/country/list.do">國家</a>
 	</p>
 	<p>
-		<a href="${root}city/list.do">城市</a>
+		<a href="${root}admin/city/list.do">城市</a>
 	</p>
 	<p>
-		<a href="${root}clinic/list.do">診所</a>
+		<a href="${root}admin/clinic/list.do">診所</a>
 	</p>
 	<p>
-		<a href="${root}clinic/search">診所查詢</a>
+		<a href="${root}admin/clinic/search">診所查詢</a>
 	</p>
 	<p>
-		<a href="${root}member/search">會員查詢</a>
+		<a href="${root}admin/member/search">會員查詢</a>
 	</p>
 </body>
 </html>

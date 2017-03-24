@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,7 +27,7 @@ import com.caizimei.model.service.ClinicService;
  * @author 詹晟
  */
 @Controller
-@RequestMapping("/clinic")
+@RequestMapping("/admin/clinic")
 @SessionAttributes("clinicList")
 public class ClinicCintroller {
 
@@ -46,48 +46,48 @@ public class ClinicCintroller {
 	/**
 	 * clinic/list 視圖解析
 	 * 
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		
-		return new ModelAndView("clinic/list");
+		return new ModelAndView("admin/clinic/list");
 	}
 
 	/**
 	 * clinic/update 視圖解析
 	 * 
-	 * @return /WEB-INF/views/clinic/update.jsp
+	 * @return /WEB-INF/views/admin/clinic/update.jsp
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
 		
-		return new ModelAndView("clinic/update");
+		return new ModelAndView("admin/clinic/update");
 	}
 
 	/**
 	 * clinic/search 視圖解析
 	 * 
-	 * @return /WEB-INF/views/clinic/search.jsp
+	 * @return /WEB-INF/views/admin/clinic/search.jsp
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search() {
 		
-		return new ModelAndView("clinic/search");
+		return new ModelAndView("admin/clinic/search");
 	}
 
 	/**
 	 * 搜尋全部診所
 	 * 
 	 * @param model-->Model
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
 	public ModelAndView selectProcess(Model model) {
 
 		model.addAttribute("clinicList", clinicService.select());
 
-		return new ModelAndView("clinic/list");
+		return new ModelAndView("admin/clinic/list");
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class ClinicCintroller {
 	 * @param c_telephone_back-->診所電話(後碼)
 	 * @param ci_name-->城市名
 	 * @param model-->Model
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
 	public ModelAndView insertProcess(ClinicBean clinicBean,
@@ -120,7 +120,7 @@ public class ClinicCintroller {
 		clinicService.insert(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
 
-		return new ModelAndView("redirect:/clinic/list");
+		return new ModelAndView("redirect:/admin/clinic/list");
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class ClinicCintroller {
 	 * @param c_address-->診所地址
 	 * @param c_url-->診所網址
 	 * @param model-->Model
-	 * @return /WEB-INF/views/clinic/insert.jsp
+	 * @return /WEB-INF/views/admin/clinic/insert.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProcess(@RequestParam(name = "c_id") String c_id,
@@ -162,7 +162,7 @@ public class ClinicCintroller {
 		clinicService.update(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
 
-		return new ModelAndView("redirect:/clinic/list");
+		return new ModelAndView("redirect:/admin/clinic/list");
 	}
 
 	/**
@@ -170,7 +170,7 @@ public class ClinicCintroller {
 	 * 
 	 * @param c_id-->診所流水號
 	 * @param model-->Model
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteProcess(@RequestParam(name = "c_id") String c_id, Model model) {
@@ -178,14 +178,14 @@ public class ClinicCintroller {
 		clinicService.delete(Integer.parseInt(c_id));
 		model.addAttribute("clinicList", clinicService.select());
 
-		return new ModelAndView("redirect:/clinic/list");
+		return new ModelAndView("redirect:/admin/clinic/list");
 	}
 
 	/**
 	 * 條件搜尋
 	 * 
 	 * @param clinicBean-->ClinicBean
-	 * @return /WEB-INF/views/clinic/search.jsp
+	 * @return /WEB-INF/views/admin/clinic/search.jsp
 	 */
 	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
 	public ModelAndView selectByConditionsProcess(ClinicBean clinicBean, Model model) {
@@ -193,7 +193,7 @@ public class ClinicCintroller {
 		model.addAttribute("selectByConditions",
 				clinicService.selectByConditions(clinicBean.getC_name().trim(), clinicBean.getC_telephone().trim()));
 
-		return new ModelAndView("clinic/search");
+		return new ModelAndView("admin/clinic/search");
 	}
 
 }

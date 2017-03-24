@@ -25,7 +25,7 @@
 		<a href="${root}member/update-password">修改密碼</a>
 	</p>
 	<p>
-		<a href="${root}back">後台管理系統</a>
+		<a href="${root}admin/back">後台管理系統</a>
 	</p>
 </body>
 </html>

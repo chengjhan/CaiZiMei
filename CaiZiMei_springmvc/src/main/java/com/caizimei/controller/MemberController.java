@@ -39,7 +39,6 @@ import misc.PrimitiveNumberEditor;
  * @author 詹晟
  */
 @Controller
-@RequestMapping("/member")
 @SessionAttributes("user")
 public class MemberController {
 
@@ -70,7 +69,7 @@ public class MemberController {
 	 * 
 	 * @return /WEB-INF/views/member/sign-in.jsp
 	 */
-	@RequestMapping(value = "/sign-in", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/sign-in", method = RequestMethod.GET)
 	public ModelAndView signIn() {
 
 		return new ModelAndView("member/sign-in");
@@ -81,7 +80,7 @@ public class MemberController {
 	 * 
 	 * @return /WEB-INF/views/member/sign-up.jsp
 	 */
-	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/sign-up", method = RequestMethod.GET)
 	public ModelAndView signUp() {
 
 		return new ModelAndView("member/sign-up");
@@ -92,7 +91,7 @@ public class MemberController {
 	 * 
 	 * @return /WEB-INF/views/member/update.jsp
 	 */
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/update", method = RequestMethod.GET)
 	public ModelAndView update() {
 
 		return new ModelAndView("member/update");
@@ -103,7 +102,7 @@ public class MemberController {
 	 * 
 	 * @return /WEB-INF/views/member/update-password.jsp
 	 */
-	@RequestMapping(value = "/update-password", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/update-password", method = RequestMethod.GET)
 	public ModelAndView updatePassword() {
 
 		return new ModelAndView("member/update-password");
@@ -112,12 +111,12 @@ public class MemberController {
 	/**
 	 * member/search 視圖解析
 	 * 
-	 * @return /WEB-INF/views/member/search.jsp
+	 * @return /WEB-INF/views/admin/member/search.jsp
 	 */
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/member/search", method = RequestMethod.GET)
 	public ModelAndView search() {
 
-		return new ModelAndView("member/search");
+		return new ModelAndView("admin/member/search");
 	}
 
 	/**
@@ -129,7 +128,7 @@ public class MemberController {
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/member/sign-in.jsp
 	 */
-	@RequestMapping(path = "/sign-in.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/member/sign-in.do", method = RequestMethod.POST)
 	public ModelAndView signInProcess(@RequestParam(name = "m_username") String m_username,
 			@RequestParam(name = "m_password") String m_password, Model model) {
 
@@ -151,7 +150,7 @@ public class MemberController {
 	 * 
 	 * @return /WEB-INF/views/index.jsp
 	 */
-	@RequestMapping(path = "/sign-out.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/member/sign-out.do", method = RequestMethod.GET)
 	public ModelAndView signOutProcess(HttpSession session, SessionStatus sessionStatus) {
 
 		// 清除 HttpSession
@@ -179,7 +178,7 @@ public class MemberController {
 	 * @param model-->Model
 	 * @return /WEB-INF/views/index.jsp
 	 */
-	@RequestMapping(path = "/sign-up.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/member/sign-up.do", method = RequestMethod.POST)
 	public ModelAndView signUpProcess(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_birth_year") String m_birth_year,
 			@RequestParam(name = "m_birth_month") String m_birth_month,
@@ -216,7 +215,7 @@ public class MemberController {
 	 * @param memberBean-->MemberBean
 	 * @return /WEB-INF/views/index.jsp
 	 */
-	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/member/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
 
 		memberBean.setM_id(user.getM_id());
@@ -234,7 +233,7 @@ public class MemberController {
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/member/update-password.jsp
 	 */
-	@RequestMapping(path = "/update-password.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/member/update-password.do", method = RequestMethod.POST)
 	public ModelAndView updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user) {
 
@@ -256,15 +255,15 @@ public class MemberController {
 	 * 
 	 * @param memberBean-->MemberBean
 	 * @param model-->Model
-	 * @return /member/search.jsp
+	 * @return /WEB-INF/views/admin/member/search.jsp
 	 */
-	@RequestMapping(path = "/select.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/admin/member/select.do", method = RequestMethod.GET)
 	public ModelAndView selectByConditionsProcess(MemberBean memberBean, Model model) {
 
 		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_firstname(),
 				memberBean.getM_lastname(), memberBean.getM_telephone(), memberBean.getM_email()));
 
-		return new ModelAndView("member/search");
+		return new ModelAndView("admin/member/search");
 	}
 
 	/**
@@ -274,7 +273,7 @@ public class MemberController {
 	 * @return 1-->已使用
 	 * @return 0-->未使用
 	 */
-	@RequestMapping(path = "/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(path = "/member/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String validateUsernameAjaxProcess(String m_username) {
 

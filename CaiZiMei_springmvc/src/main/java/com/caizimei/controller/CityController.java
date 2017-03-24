@@ -32,7 +32,7 @@ import com.google.gson.Gson;
  * @author 詹晟
  */
 @Controller
-@RequestMapping("/city")
+@RequestMapping("/admin/city")
 @SessionAttributes("cityList")
 public class CityController {
 
@@ -51,37 +51,37 @@ public class CityController {
 	/**
 	 * city/list 視圖解析
 	 * 
-	 * @return /WEB-INF/views/city/list.jsp
+	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		
-		return new ModelAndView("city/list");
+		return new ModelAndView("admin/city/list");
 	}
 
 	/**
 	 * city/update 視圖解析
 	 * 
-	 * @return /WEB-INF/views/city/update.jsp
+	 * @return /WEB-INF/views/admin/city/update.jsp
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
 		
-		return new ModelAndView("city/update");
+		return new ModelAndView("admin/city/update");
 	}
 
 	/**
 	 * 搜尋全部城市
 	 * 
 	 * @param model-->Model
-	 * @return /WEB-INF/views/city/list.jsp
+	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
 	public ModelAndView selectProcess(Model model) {
 
 		model.addAttribute("cityList", cityService.select());
 
-		return new ModelAndView("city/list");
+		return new ModelAndView("admin/city/list");
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class CityController {
 	 * @param co_name-->國家名
 	 * @param ci_name-->城市名
 	 * @param model-->Model
-	 * @return /WEB-INF/views/city/list.jsp
+	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
 	public ModelAndView insertProcess(@RequestParam(name = "co_name") String co_name,
@@ -102,7 +102,7 @@ public class CityController {
 		cityService.insert(cityBean);
 		model.addAttribute("cityList", cityService.select());
 
-		return new ModelAndView("redirect:/city/list");
+		return new ModelAndView("redirect:/admin/city/list");
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class CityController {
 	 * @param co_name-->國家名
 	 * @param ci_name-->城市名
 	 * @param model-->Model
-	 * @return /WEB-INF/views/city/list.jsp
+	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProcess(@RequestParam(name = "ci_id") String ci_id,
@@ -126,7 +126,7 @@ public class CityController {
 		cityService.update(cityBean);
 		model.addAttribute("cityList", cityService.select());
 
-		return new ModelAndView("redirect:/city/list");
+		return new ModelAndView("redirect:/admin/city/list");
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class CityController {
 	 * 
 	 * @param cityBean-->CityBean
 	 * @param model-->Model
-	 * @return /WEB-INF/views/city/list.jsp
+	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteProcess(CityBean cityBean, Model model) {
@@ -142,7 +142,7 @@ public class CityController {
 		cityService.delete(cityBean.getCi_id());
 		model.addAttribute("cityList", cityService.select());
 
-		return new ModelAndView("redirect:/city/list");
+		return new ModelAndView("redirect:/admin/city/list");
 	}
 
 	/**

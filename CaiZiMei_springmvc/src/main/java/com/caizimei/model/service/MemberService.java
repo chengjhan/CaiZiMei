@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberService.java
  * Author: 詹晟
- * Date: 2017/3/15
+ * Date: 2017/3/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,7 +13,7 @@ import java.util.List;
 import com.caizimei.model.entity.MemberBean;
 
 /**
- * member service
+ * member service interface
  * 
  * @author 詹晟
  */

@@ -50,6 +50,7 @@ public class ClinicCintroller {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
+		
 		return new ModelAndView("clinic/list");
 	}
 
@@ -60,6 +61,7 @@ public class ClinicCintroller {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
+		
 		return new ModelAndView("clinic/update");
 	}
 
@@ -70,6 +72,7 @@ public class ClinicCintroller {
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search() {
+		
 		return new ModelAndView("clinic/search");
 	}
 
@@ -113,6 +116,7 @@ public class ClinicCintroller {
 		}
 		clinicBean.setC_latitude(LatLng[0]);
 		clinicBean.setC_longitude(LatLng[1]);
+		
 		clinicService.insert(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
 
@@ -178,7 +182,7 @@ public class ClinicCintroller {
 	}
 
 	/**
-	 * 條件查詢
+	 * 條件搜尋
 	 * 
 	 * @param clinicBean-->ClinicBean
 	 * @return /WEB-INF/views/clinic/search.jsp

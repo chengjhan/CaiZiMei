@@ -72,6 +72,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/sign-in", method = RequestMethod.GET)
 	public ModelAndView signIn() {
+		
 		return new ModelAndView("member/sign-in");
 	}
 
@@ -82,6 +83,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
 	public ModelAndView signUp() {
+		
 		return new ModelAndView("member/sign-up");
 	}
 
@@ -92,6 +94,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
+		
 		return new ModelAndView("member/update");
 	}
 
@@ -102,6 +105,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/update-password", method = RequestMethod.GET)
 	public ModelAndView updatePassword() {
+		
 		return new ModelAndView("member/update-password");
 	}
 
@@ -112,6 +116,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search() {
+		
 		return new ModelAndView("member/search");
 	}
 
@@ -241,7 +246,7 @@ public class MemberController {
 	}
 
 	/**
-	 * 修改密碼
+	 * 修改會員密碼
 	 * 
 	 * @param m_password-->舊密碼(原碼)
 	 * @param m_password_new-->新密碼(原碼)
@@ -267,7 +272,7 @@ public class MemberController {
 	}
 
 	/**
-	 * 條件查詢
+	 * 條件搜尋
 	 * 
 	 * @param memberBean-->MemberBean
 	 * @param model-->Model

@@ -55,6 +55,7 @@ public class CityController {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
+		
 		return new ModelAndView("city/list");
 	}
 
@@ -65,6 +66,7 @@ public class CityController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
+		
 		return new ModelAndView("city/update");
 	}
 

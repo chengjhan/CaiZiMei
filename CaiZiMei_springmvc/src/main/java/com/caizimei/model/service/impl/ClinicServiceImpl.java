@@ -1,3 +1,11 @@
+/*
+ * CaiZiMei
+ * File: ClinicServiceImpl.java
+ * Author: 詹晟
+ * Date: 2017/3/24
+ * Version: 1.0
+ * Since: JDK 1.8
+ */
 package com.caizimei.model.service.impl;
 
 import java.net.HttpURLConnection;
@@ -21,47 +29,99 @@ import com.caizimei.model.dao.ClinicDAO;
 import com.caizimei.model.entity.ClinicBean;
 import com.caizimei.model.service.ClinicService;
 
+/**
+ * clinic service implement
+ * 
+ * @author 詹晟
+ */
 @Service(value = "clinicService")
 @Transactional
 public class ClinicServiceImpl implements ClinicService {
 
+	/**
+	 * 注入 ClinicDAO
+	 */
 	@Autowired
 	private ClinicDAO clinicDAO;
 
+	/**
+	 * 搜尋全部診所
+	 * 
+	 * @return List<ClinicBean>
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public List<ClinicBean> select() {
+
 		return clinicDAO.select();
 	}
 
+	/**
+	 * 條件搜尋
+	 * 
+	 * @param c_name-->診所名
+	 * @param c_telephone-->診所電話
+	 * @return List<ClinicBean>
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public List<ClinicBean> selectByConditions(String c_name, String c_telephone) {
+
 		return clinicDAO.selectByConditions(c_name, c_telephone);
 	}
 
+	/**
+	 * 新增診所
+	 * 
+	 * @param clinicBean-->ClinicBean
+	 * @return result-->ClinicBean
+	 */
 	@Override
 	@Transactional
 	public ClinicBean insert(ClinicBean clinicBean) {
+
 		ClinicBean result = null;
+
 		if (clinicBean != null) {
+
 			result = clinicDAO.insert(clinicBean);
 		}
 		return result;
 	}
 
+	/**
+	 * 修改診所資料
+	 * 
+	 * @param clinicBean-->ClinicBean
+	 * @return ClinicBean
+	 */
 	@Override
 	@Transactional
 	public ClinicBean update(ClinicBean clinicBean) {
+
 		return clinicDAO.update(clinicBean);
 	}
 
+	/**
+	 * 刪除診所
+	 * 
+	 * @param c_id-->診所流水號
+	 * @return true-->成功
+	 */
 	@Override
 	@Transactional
 	public Boolean delete(Integer c_id) {
+
 		return clinicDAO.delete(c_id);
 	}
 
+	/**
+	 * 地址轉換經緯度
+	 * 
+	 * @param address-->地址
+	 * @return return [緯度, 經度]
+	 * @return null
+	 */
 	@Override
 	public Double[] addressToLatLng(String address) throws Exception {
 		int responseCode = 0;

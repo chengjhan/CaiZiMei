@@ -28,6 +28,7 @@ public class ViewsController {
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView index() {
+		
 		return new ModelAndView("index");
 	}
 
@@ -38,6 +39,7 @@ public class ViewsController {
 	 */
 	@RequestMapping(value = "/back", method = RequestMethod.GET)
 	public ModelAndView back() {
+		
 		return new ModelAndView("back");
 	}
 

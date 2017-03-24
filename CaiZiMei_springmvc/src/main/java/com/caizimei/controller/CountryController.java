@@ -43,6 +43,7 @@ public class CountryController {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
+		
 		return new ModelAndView("country/list");
 	}
 
@@ -53,6 +54,7 @@ public class CountryController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
+		
 		return new ModelAndView("country/update");
 	}
 

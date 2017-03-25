@@ -2,18 +2,24 @@
  * CaiZiMei
  * File: ClinicBean.java
  * Author: 詹晟
- * Date: 2017/3/19
+ * Date: 2017/3/26
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.caizimei.model.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -38,6 +44,9 @@ public class ClinicBean {
 	private Double c_latitude;
 	private Double c_longitude;
 	private String c_url;
+
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "p_ClinicBean")
+	private Set<PurchaseBean> c_PurchaseBean = new HashSet<PurchaseBean>();
 
 	public Integer getC_id() {
 		return c_id;
@@ -109,6 +118,14 @@ public class ClinicBean {
 
 	public void setC_url(String c_url) {
 		this.c_url = c_url;
+	}
+
+	public Set<PurchaseBean> getC_PurchaseBean() {
+		return c_PurchaseBean;
+	}
+
+	public void setC_PurchaseBean(Set<PurchaseBean> c_PurchaseBean) {
+		this.c_PurchaseBean = c_PurchaseBean;
 	}
 
 }

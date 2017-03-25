@@ -2,16 +2,22 @@
  * CaiZiMei
  * File: MemberBean.java
  * Author: 詹晟
- * Date: 2017/3/19
+ * Date: 2017/3/26
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.caizimei.model.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -41,6 +47,9 @@ public class MemberBean {
 	private java.util.Date m_signup_time;
 	private java.util.Date m_signin_time;
 	private Integer m_limit;
+
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "p_MemberBean")
+	private Set<PurchaseBean> m_PurchaseBean = new HashSet<PurchaseBean>();
 
 	public Integer getM_id() {
 		return m_id;
@@ -168,6 +177,14 @@ public class MemberBean {
 
 	public void setM_limit(Integer m_limit) {
 		this.m_limit = m_limit;
+	}
+
+	public Set<PurchaseBean> getM_PurchaseBean() {
+		return m_PurchaseBean;
+	}
+
+	public void setM_PurchaseBean(Set<PurchaseBean> m_PurchaseBean) {
+		this.m_PurchaseBean = m_PurchaseBean;
 	}
 
 }

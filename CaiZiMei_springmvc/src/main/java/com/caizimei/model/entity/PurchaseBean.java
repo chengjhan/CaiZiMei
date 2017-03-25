@@ -1,3 +1,11 @@
+/*
+ * CaiZiMei
+ * File: PurchaseBean.java
+ * Author: 詹晟
+ * Date: 2017/3/26
+ * Version: 1.0
+ * Since: JDK 1.8
+ */
 package com.caizimei.model.entity;
 
 import javax.persistence.Entity;

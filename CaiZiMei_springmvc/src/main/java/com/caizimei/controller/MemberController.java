@@ -109,7 +109,18 @@ public class MemberController {
 	}
 
 	/**
-	 * member/search 視圖解析
+	 * admin/member/admin-sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/member/admin-sign-up.jsp
+	 */
+	@RequestMapping(value = "/admin/member/admin-sign-up", method = RequestMethod.GET)
+	public ModelAndView adminSignUp() {
+
+		return new ModelAndView("admin/member/admin-sign-up");
+	}
+
+	/**
+	 * admin/member/search 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/member/search.jsp
 	 */
@@ -248,6 +259,35 @@ public class MemberController {
 		} else {
 			return new ModelAndView("member/update-password");
 		}
+	}
+
+	/**
+	 * 管理者註冊
+	 * 
+	 * @param memberBean-->MemberBean
+	 * @param m_password-->管理者密碼(原碼)
+	 * @param m_telephone_front-->管理者電話(前碼)
+	 * @param m_telephone_back-->管理者電話(後碼)
+	 * @param model-->Model
+	 * @return /WEB-INF/views/admin/back.jsp
+	 */
+	@RequestMapping(path = "/admin/member/admin-sign-up.do", method = RequestMethod.POST)
+	public ModelAndView adminSignUp(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
+			@RequestParam(name = "m_telephone_front") String m_telephone_front,
+			@RequestParam(name = "m_telephone_back") String m_telephone_back, Model model) {
+
+		String m_salt = memberService.getSalt();
+
+		memberBean.setM_salt(m_salt);
+		memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
+		memberBean.setM_telephone(m_telephone_front + "-" + m_telephone_back);
+		memberBean.setM_signup_time(new java.util.Date());
+
+		memberService.signUp(memberBean);
+		memberService.signIn(memberBean.getM_username(), m_password);
+		model.addAttribute("user", memberBean);
+
+		return new ModelAndView("redirect:/admin/back");
 	}
 
 	/**

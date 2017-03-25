@@ -33,6 +33,10 @@
 					<option value="1">男</option>
 					<option value="0" selected>女</option>
 				</c:if>
+				<c:if test="${empty user.m_sex}">
+					<option value="1">男</option>
+					<option value="0">女</option>
+				</c:if>
 			</select>
 		</div>
 		<div>

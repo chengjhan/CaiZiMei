@@ -42,7 +42,7 @@ public class CountryController {
 	private CountryService countryService;
 
 	/**
-	 * country/list 視圖解析
+	 * admin/country/list 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
@@ -53,7 +53,7 @@ public class CountryController {
 	}
 
 	/**
-	 * country/update 視圖解析
+	 * admin/country/update 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/country/update.jsp
 	 */

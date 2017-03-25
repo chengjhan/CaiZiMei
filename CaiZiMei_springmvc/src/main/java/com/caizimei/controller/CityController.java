@@ -49,7 +49,7 @@ public class CityController {
 	private CountryService countryService;
 
 	/**
-	 * city/list 視圖解析
+	 * admin/city/list 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
@@ -60,7 +60,7 @@ public class CityController {
 	}
 
 	/**
-	 * city/update 視圖解析
+	 * admin/city/update 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/city/update.jsp
 	 */

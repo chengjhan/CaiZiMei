@@ -24,5 +24,8 @@
 	<p>
 		<a href="${root}admin/member/search">會員查詢</a>
 	</p>
+	<p>
+		<a href="${root}admin/member/admin-sign-up">管理者註冊</a>
+	</p>
 </body>
 </html>

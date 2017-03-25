@@ -44,7 +44,7 @@ public class ClinicCintroller {
 	private CityService cityService;
 
 	/**
-	 * clinic/list 視圖解析
+	 * admin/clinic/list 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
@@ -55,7 +55,7 @@ public class ClinicCintroller {
 	}
 
 	/**
-	 * clinic/update 視圖解析
+	 * admin/clinic/update 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/clinic/update.jsp
 	 */
@@ -66,7 +66,7 @@ public class ClinicCintroller {
 	}
 
 	/**
-	 * clinic/search 視圖解析
+	 * admin/clinic/search 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/clinic/search.jsp
 	 */

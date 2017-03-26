@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityServiceImpl.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -98,7 +98,7 @@ public class CityServiceImpl implements CityService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<CityBean> selectByCi_co_name(String co_name) {
+	public List<CityBean> selectByCo_name(String co_name) {
 
 		return cityDAO.selectByCi_co_id(countryDAO.selectByCo_name(co_name).get(0).getCo_id());
 	}

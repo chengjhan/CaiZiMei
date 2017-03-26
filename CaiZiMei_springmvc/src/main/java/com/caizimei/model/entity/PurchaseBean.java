@@ -26,8 +26,8 @@ public class PurchaseBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer p_id;
-	private MemberBean p_MemberBean;
-	private ClinicBean p_ClinicBean;
+	private Integer p_m_id;
+	private Integer p_c_id;
 
 	public Integer getP_id() {
 		return p_id;
@@ -37,20 +37,20 @@ public class PurchaseBean {
 		this.p_id = p_id;
 	}
 
-	public MemberBean getP_MemberBean() {
-		return p_MemberBean;
+	public Integer getP_m_id() {
+		return p_m_id;
 	}
 
-	public void setP_MemberBean(MemberBean p_MemberBean) {
-		this.p_MemberBean = p_MemberBean;
+	public void setP_m_id(Integer p_m_id) {
+		this.p_m_id = p_m_id;
 	}
 
-	public ClinicBean getP_ClinicBean() {
-		return p_ClinicBean;
+	public Integer getP_c_id() {
+		return p_c_id;
 	}
 
-	public void setP_ClinicBean(ClinicBean p_ClinicBean) {
-		this.p_ClinicBean = p_ClinicBean;
+	public void setP_c_id(Integer p_c_id) {
+		this.p_c_id = p_c_id;
 	}
 
 }

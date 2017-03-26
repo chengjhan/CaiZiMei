@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.caizimei.model.dao.ClinicDAO;
 import com.caizimei.model.dao.PurchaseDAO;
 import com.caizimei.model.entity.PurchaseBean;
 import com.caizimei.model.service.PurchaseService;
@@ -32,21 +33,27 @@ public class PurchaseServiceImpl implements PurchaseService {
 	private PurchaseDAO purchaseDAO;
 
 	/**
-	 * 新增訂單
+	 * 注入 clinicDAO
+	 */
+	@Autowired
+	private ClinicDAO clinicDAO;
+
+	/**
+	 * 訂購
 	 * 
-	 * @param purchaseBean-->PurchaseBean
-	 * @return result-->PurchaseBean
+	 * @param p_m_id-->會員流水號
+	 * @param c_name-->診所名
+	 * @return PurchaseBean
 	 */
 	@Override
-	public PurchaseBean insert(PurchaseBean purchaseBean) {
+	@Transactional
+	public PurchaseBean order(Integer p_m_id, String c_name) {
 
-		PurchaseBean result = null;
+		PurchaseBean purchaseBean = new PurchaseBean();
+		purchaseBean.setP_m_id(p_m_id);
+		purchaseBean.setP_c_id(clinicDAO.selectByC_name(c_name).get(0).getC_id());
 
-		if (purchaseBean != null) {
-
-			purchaseDAO.insert(purchaseBean);
-		}
-		return result;
+		return purchaseDAO.insert(purchaseBean);
 	}
 
 }

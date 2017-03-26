@@ -17,6 +17,5 @@ import com.caizimei.model.entity.PurchaseBean;
  */
 public interface PurchaseService {
 
-	PurchaseBean insert(PurchaseBean purchaseBean);
-	
+	PurchaseBean order(Integer p_m_id, String c_name);
 }

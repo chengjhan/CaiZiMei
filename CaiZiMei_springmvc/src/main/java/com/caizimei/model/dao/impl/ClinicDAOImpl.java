@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -43,6 +43,32 @@ public class ClinicDAOImpl implements ClinicDAO {
 	public List<ClinicBean> select() {
 
 		return (List<ClinicBean>) hibernateTemplate.find("from ClinicBean");
+	}
+
+	/**
+	 * 城市流水號搜尋
+	 * 
+	 * @param c_ci_id-->城市流水號
+	 * @return List<ClinicBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<ClinicBean> selectByC_ci_id(Integer c_ci_id) {
+
+		return (List<ClinicBean>) hibernateTemplate.find("from ClinicBean where c_ci_id=?", c_ci_id);
+	}
+
+	/**
+	 * 診所名搜尋
+	 * 
+	 * @param c_name-->診所名
+	 * @return List<ClinicBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<ClinicBean> selectByC_name(String c_name) {
+
+		return (List<ClinicBean>) hibernateTemplate.find("from ClinicBean where c_name=?", c_name);
 	}
 
 	/**

@@ -2,11 +2,14 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/3/25
+ * Date: 2017/3/26
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.caizimei.controller;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,12 +17,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.ClinicBean;
 import com.caizimei.model.service.CityService;
 import com.caizimei.model.service.ClinicService;
+import com.google.gson.Gson;
 
 /**
  * clinic controller
@@ -50,7 +55,7 @@ public class ClinicCintroller {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
-		
+
 		return new ModelAndView("admin/clinic/list");
 	}
 
@@ -61,7 +66,7 @@ public class ClinicCintroller {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
-		
+
 		return new ModelAndView("admin/clinic/update");
 	}
 
@@ -72,7 +77,7 @@ public class ClinicCintroller {
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search() {
-		
+
 		return new ModelAndView("admin/clinic/search");
 	}
 
@@ -116,7 +121,7 @@ public class ClinicCintroller {
 		}
 		clinicBean.setC_latitude(LatLng[0]);
 		clinicBean.setC_longitude(LatLng[1]);
-		
+
 		clinicService.insert(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
 
@@ -194,6 +199,29 @@ public class ClinicCintroller {
 				clinicService.selectByConditions(clinicBean.getC_name().trim(), clinicBean.getC_telephone().trim()));
 
 		return new ModelAndView("admin/clinic/search");
+	}
+
+	/**
+	 * 搜尋城市中的所有診所 (ajax)
+	 * 
+	 * @param ci_name-->城市名
+	 * @return 城市中的所有診所json
+	 */
+	@RequestMapping(path = "/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String selectByCityAjaxProcess(String ci_name) {
+		List<ClinicBean> result = clinicService.selectByCi_name(ci_name);
+
+		List<ClinicBean> jsonList = new ArrayList<ClinicBean>();
+		for (ClinicBean bean : result) {
+			ClinicBean jsonBean = new ClinicBean();
+			jsonBean.setC_name(bean.getC_name());
+			jsonList.add(jsonBean);
+		}
+		String json = new Gson().toJson(jsonList);
+		System.out.println("JSON = " + json);
+
+		return json;
 	}
 
 }

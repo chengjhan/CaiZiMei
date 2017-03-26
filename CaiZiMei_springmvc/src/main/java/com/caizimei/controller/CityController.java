@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/3/25
+ * Date: 2017/3/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -55,7 +55,7 @@ public class CityController {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
-		
+
 		return new ModelAndView("admin/city/list");
 	}
 
@@ -66,7 +66,7 @@ public class CityController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView update() {
-		
+
 		return new ModelAndView("admin/city/update");
 	}
 
@@ -155,8 +155,8 @@ public class CityController {
 	@ResponseBody
 	public String selectByCountryAjaxProcess(String co_name) {
 
-		List<CityBean> result = cityService.selectByCi_co_name(co_name);
-		
+		List<CityBean> result = cityService.selectByCo_name(co_name);
+
 		List<CityBean> jsonList = new ArrayList<CityBean>();
 		for (CityBean bean : result) {
 			CityBean jsonBean = new CityBean();

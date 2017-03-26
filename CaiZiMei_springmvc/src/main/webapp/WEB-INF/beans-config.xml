@@ -24,6 +24,7 @@
 				<value>com.caizimei.model.entity.ClinicBean</value>
 				<value>com.caizimei.model.entity.CountryBean</value>
 				<value>com.caizimei.model.entity.MemberBean</value>
+				<value>com.caizimei.model.entity.PurchaseBean</value>
 			</list>
 		</property>
 	</bean>

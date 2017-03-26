@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicServiceImpl.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 
+import com.caizimei.model.dao.CityDAO;
 import com.caizimei.model.dao.ClinicDAO;
 import com.caizimei.model.entity.ClinicBean;
 import com.caizimei.model.service.ClinicService;
@@ -45,6 +46,12 @@ public class ClinicServiceImpl implements ClinicService {
 	private ClinicDAO clinicDAO;
 
 	/**
+	 * 注入 CityDAO
+	 */
+	@Autowired
+	private CityDAO cityDAO;
+
+	/**
 	 * 搜尋全部診所
 	 * 
 	 * @return List<ClinicBean>
@@ -54,6 +61,38 @@ public class ClinicServiceImpl implements ClinicService {
 	public List<ClinicBean> select() {
 
 		return clinicDAO.select();
+	}
+
+	/**
+	 * 城市名搜尋
+	 * 
+	 * @param ci_name-->城市名
+	 * @return List<ClinicBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<ClinicBean> selectByCi_name(String ci_name) {
+
+		return clinicDAO.selectByC_ci_id(cityDAO.selectByCi_name(ci_name).get(0).getCi_id());
+	}
+
+	/**
+	 * 診所名搜尋
+	 * 
+	 * @param c_name-->診所名
+	 * @return result-->ClinicBean
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public ClinicBean selectByC_name(String c_name) {
+
+		ClinicBean result = null;
+
+		if (c_name != null) {
+
+			result = clinicDAO.selectByC_name(c_name).get(0);
+		}
+		return result;
 	}
 
 	/**

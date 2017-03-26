@@ -8,16 +8,16 @@
  */
 package com.caizimei.model.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -48,8 +48,9 @@ public class MemberBean {
 	private java.util.Date m_signin_time;
 	private Integer m_limit;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "p_MemberBean")
-	private Set<PurchaseBean> m_PurchaseBean = new HashSet<PurchaseBean>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "purchase", joinColumns = @JoinColumn(name = "p_m_id"), inverseJoinColumns = @JoinColumn(name = "p_c_id"))
+	private Set<ClinicBean> m_ClinicBean;
 
 	public Integer getM_id() {
 		return m_id;
@@ -179,12 +180,12 @@ public class MemberBean {
 		this.m_limit = m_limit;
 	}
 
-	public Set<PurchaseBean> getM_PurchaseBean() {
-		return m_PurchaseBean;
+	public Set<ClinicBean> getM_ClinicBean() {
+		return m_ClinicBean;
 	}
 
-	public void setM_PurchaseBean(Set<PurchaseBean> m_PurchaseBean) {
-		this.m_PurchaseBean = m_PurchaseBean;
+	public void setM_ClinicBean(Set<ClinicBean> m_ClinicBean) {
+		this.m_ClinicBean = m_ClinicBean;
 	}
 
 }

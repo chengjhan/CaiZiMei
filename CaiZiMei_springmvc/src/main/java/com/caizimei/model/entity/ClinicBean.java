@@ -8,18 +8,16 @@
  */
 package com.caizimei.model.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -45,8 +43,8 @@ public class ClinicBean {
 	private Double c_longitude;
 	private String c_url;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "p_ClinicBean")
-	private Set<PurchaseBean> c_PurchaseBean = new HashSet<PurchaseBean>();
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "m_ClinicBean")
+	private Set<MemberBean> c_MemberBaan;
 
 	public Integer getC_id() {
 		return c_id;
@@ -120,12 +118,12 @@ public class ClinicBean {
 		this.c_url = c_url;
 	}
 
-	public Set<PurchaseBean> getC_PurchaseBean() {
-		return c_PurchaseBean;
+	public Set<MemberBean> getC_MemberBaan() {
+		return c_MemberBaan;
 	}
 
-	public void setC_PurchaseBean(Set<PurchaseBean> c_PurchaseBean) {
-		this.c_PurchaseBean = c_PurchaseBean;
+	public void setC_MemberBaan(Set<MemberBean> c_MemberBaan) {
+		this.c_MemberBaan = c_MemberBaan;
 	}
 
 }

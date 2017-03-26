@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/3/25
+ * Date: 2017/3/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -28,8 +28,19 @@ public class ViewsController {
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView index() {
-		
+
 		return new ModelAndView("index");
+	}
+
+	/**
+	 * purchase/order 視圖解析
+	 * 
+	 * @return /WEB-INF/views/purchase/order.jsp
+	 */
+	@RequestMapping(value = "/purchase/order", method = RequestMethod.GET)
+	public ModelAndView order() {
+
+		return new ModelAndView("purchase/order");
 	}
 
 	/**
@@ -39,7 +50,7 @@ public class ViewsController {
 	 */
 	@RequestMapping(value = "/admin/back", method = RequestMethod.GET)
 	public ModelAndView back() {
-		
+
 		return new ModelAndView("admin/back");
 	}
 

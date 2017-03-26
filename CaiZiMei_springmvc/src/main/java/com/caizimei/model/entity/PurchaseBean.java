@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,11 +26,7 @@ public class PurchaseBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer p_id;
-	@ManyToOne
-	@JoinColumn(name = "p_m_id")
 	private MemberBean p_MemberBean;
-	@ManyToOne
-	@JoinColumn(name = "p_c_id")
 	private ClinicBean p_ClinicBean;
 
 	public Integer getP_id() {

@@ -25,6 +25,9 @@
 		<a href="${root}member/update-password">修改密碼</a>
 	</p>
 	<p>
+		<a href="${root}purchase/order">訂購</a>
+	</p>
+	<p>
 		<a href="${root}admin/back">後台管理系統</a>
 	</p>
 </body>

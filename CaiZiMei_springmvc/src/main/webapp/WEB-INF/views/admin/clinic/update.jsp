@@ -47,28 +47,27 @@
 		</div>
 	</form>
 	<script>
-		$(document).ready(returnCountry(), returnCity());
+		var country_option_selected = "${param.co_name}";
 		
-		// country select
-		function returnCountry(){
+		$(document).ready(function(){
+			
+			// return country
 			$.getJSON("${root}admin/country/select.ajax", function(data){
 				var country_select = $("#id-co-name");
 				country_select.append("<option>請選擇國家</option>");
 				$.each(data, function(index, country){
 					var country_option = $("<option></option>").append(country.co_name);
-					var country_option_selected = "${param.co_name}";
 					if(country.co_name == country_option_selected){
 						country_option.attr("selected", "selected");
 					}
 					country_select.append(country_option);
 				});
 			});
-		}
-		
-		// city select
-		function returnCity(){
-			$.getJSON("${root}admin/city/select.ajax", function(data){
+			
+			// return city
+			$.getJSON("${root}admin/city/select-by-country.ajax", {"co_name": country_option_selected}, function(data){
 				var city_select = $("#id-ci-name");
+				city_select.empty();
 				city_select.append("<option>請選擇城市</option>");
 				$.each(data, function(index, city){
 					var city_option = $("<option></option>").append(city.ci_name);
@@ -79,16 +78,17 @@
 					city_select.append(city_option);
 				});
 			});
-		}
-	
+			
+		});
+		
 		$("#id-co-name").change(function(){
 			var co_name = $("#id-co-name").val();
-			var city_select = $("#id-ci-name");
 			$.ajax({
 				url: '${root}admin/city/select-by-country.ajax?co_name=' + co_name,
 				type: 'get',
 				dataType: 'json',
 				success: function(data){
+					var city_select = $("#id-ci-name");
 					city_select.empty();
 					city_select.append("<option>請選擇城市</option>");
 					$.each(data, function(index, city){

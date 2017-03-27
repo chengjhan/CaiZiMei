@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/3/26
+ * Date: 2017/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -47,28 +47,6 @@ public class CityController {
 	 */
 	@Autowired
 	private CountryService countryService;
-
-	/**
-	 * admin/city/list 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/city/list.jsp
-	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
-
-		return new ModelAndView("admin/city/list");
-	}
-
-	/**
-	 * admin/city/update 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/city/update.jsp
-	 */
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView update() {
-
-		return new ModelAndView("admin/city/update");
-	}
 
 	/**
 	 * 搜尋全部城市

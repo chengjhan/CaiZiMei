@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/3/25
+ * Date: 2017/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -62,72 +62,6 @@ public class MemberController {
 		webDataBinder.registerCustomEditor(Integer.class, new PrimitiveNumberEditor(Integer.class, true));
 		webDataBinder.registerCustomEditor(Double.class, new PrimitiveNumberEditor(Double.class, true));
 		webDataBinder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(simpleDateFormat, true));
-	}
-
-	/**
-	 * member/sign-in 視圖解析
-	 * 
-	 * @return /WEB-INF/views/member/sign-in.jsp
-	 */
-	@RequestMapping(value = "/member/sign-in", method = RequestMethod.GET)
-	public ModelAndView signIn() {
-
-		return new ModelAndView("member/sign-in");
-	}
-
-	/**
-	 * member/sign-up 視圖解析
-	 * 
-	 * @return /WEB-INF/views/member/sign-up.jsp
-	 */
-	@RequestMapping(value = "/member/sign-up", method = RequestMethod.GET)
-	public ModelAndView signUp() {
-
-		return new ModelAndView("member/sign-up");
-	}
-
-	/**
-	 * member/update 視圖解析
-	 * 
-	 * @return /WEB-INF/views/member/update.jsp
-	 */
-	@RequestMapping(value = "/member/update", method = RequestMethod.GET)
-	public ModelAndView update() {
-
-		return new ModelAndView("member/update");
-	}
-
-	/**
-	 * member/update-password 視圖解析
-	 * 
-	 * @return /WEB-INF/views/member/update-password.jsp
-	 */
-	@RequestMapping(value = "/member/update-password", method = RequestMethod.GET)
-	public ModelAndView updatePassword() {
-
-		return new ModelAndView("member/update-password");
-	}
-
-	/**
-	 * admin/member/admin-sign-up 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/member/admin-sign-up.jsp
-	 */
-	@RequestMapping(value = "/admin/member/admin-sign-up", method = RequestMethod.GET)
-	public ModelAndView adminSignUp() {
-
-		return new ModelAndView("admin/member/admin-sign-up");
-	}
-
-	/**
-	 * admin/member/search 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/member/search.jsp
-	 */
-	@RequestMapping(value = "/admin/member/search", method = RequestMethod.GET)
-	public ModelAndView search() {
-
-		return new ModelAndView("admin/member/search");
 	}
 
 	/**

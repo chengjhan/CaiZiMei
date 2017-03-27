@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/3/26
+ * Date: 2017/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -47,39 +47,6 @@ public class ClinicCintroller {
 	 */
 	@Autowired
 	private CityService cityService;
-
-	/**
-	 * admin/clinic/list 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/clinic/list.jsp
-	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
-
-		return new ModelAndView("admin/clinic/list");
-	}
-
-	/**
-	 * admin/clinic/update 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/clinic/update.jsp
-	 */
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ModelAndView update() {
-
-		return new ModelAndView("admin/clinic/update");
-	}
-
-	/**
-	 * admin/clinic/search 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/clinic/search.jsp
-	 */
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView search() {
-
-		return new ModelAndView("admin/clinic/search");
-	}
 
 	/**
 	 * 搜尋全部診所

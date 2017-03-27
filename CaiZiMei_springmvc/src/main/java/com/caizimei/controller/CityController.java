@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/3/27
+ * Date: 2017/3/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -65,18 +65,18 @@ public class CityController {
 	/**
 	 * 新增城市
 	 * 
-	 * @param co_name-->國家名
+	 * @param co_id-->國家流水號
 	 * @param ci_name-->城市名
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
-	public ModelAndView insertProcess(@RequestParam(name = "co_name") String co_name,
+	public ModelAndView insertProcess(@RequestParam(name = "co_id") Integer co_id,
 			@RequestParam(name = "ci_name") String ci_name, Model model) {
 
 		CityBean cityBean = new CityBean();
 		cityBean.setCi_name(ci_name);
-		cityBean.setCi_CountryBean(countryService.selectByCo_name(co_name));
+		cityBean.setCi_CountryBean(countryService.selectByCo_id(co_id));
 		cityService.insert(cityBean);
 		model.addAttribute("cityList", cityService.select());
 

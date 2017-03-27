@@ -12,8 +12,8 @@
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/admin/city/insert.do' />" method="post">
 		<div>
-			<label for="id-co-name">國家</label>
-			<select id="id-co-name" name="co_name">
+			<label for="id-co-id">國家</label>
+			<select id="id-co-id" name="co_id">
 				<option>請選擇國家</option>
 			</select>
 		</div>
@@ -54,10 +54,10 @@
 	</table>
 	<script>
 		$(document).ready(function(){
-			var country_select = $("#id-co-name");
+			var country_select = $("#id-co-id");
 			$.getJSON("${root}admin/country/select.ajax", function(data){
 				$.each(data, function(index, country){
-					var country_option = $("<option></option>").append(country.co_name);
+					var country_option = $("<option value=" + country.co_id + "></option>").append(country.co_name);
 					country_select.append(country_option);
 				});
 			});

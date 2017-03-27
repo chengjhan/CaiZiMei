@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/3/27
+ * Date: 2017/3/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -117,6 +117,7 @@ public class CountryController {
 		List<CountryBean> jsonList = new ArrayList<CountryBean>();
 		for (CountryBean bean : result) {
 			CountryBean jsonBean = new CountryBean();
+			jsonBean.setCo_id(bean.getCo_id());
 			jsonBean.setCo_name(bean.getCo_name());
 			jsonList.add(jsonBean);
 		}

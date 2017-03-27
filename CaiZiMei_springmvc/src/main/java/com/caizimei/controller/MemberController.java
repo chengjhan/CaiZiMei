@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/3/27
+ * Date: 2017/3/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -143,7 +143,6 @@ public class MemberController {
 		}
 		memberBean.setM_birth(m_birth);
 		memberBean.setM_telephone(m_telephone_front + "-" + m_telephone_back);
-		memberBean.setM_signup_time(new java.util.Date());
 		memberBean.setM_limit(0);
 
 		memberService.signUp(memberBean);

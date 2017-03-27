@@ -109,7 +109,7 @@
 			var co_name = $("#id-co-name").val();
 			var city_select = $("#id-ci-name");
 			$.ajax({
-				url: '${root}admin/city/select.ajax?co_name=' + co_name,
+				url: '${root}admin/city/select-by-country.ajax?co_name=' + co_name,
 				type: 'get',
 				dataType: 'json',
 				success: function(data){

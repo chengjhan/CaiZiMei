@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/26
+ * Date: 2017/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -55,7 +55,8 @@ public class ClinicDAOImpl implements ClinicDAO {
 	@SuppressWarnings("unchecked")
 	public List<ClinicBean> selectByC_ci_id(Integer c_ci_id) {
 
-		return (List<ClinicBean>) hibernateTemplate.find("from ClinicBean where c_ci_id=?", c_ci_id);
+		return (List<ClinicBean>) hibernateTemplate.findByNamedParam("from ClinicBean where c_ci_id=:c_ci_id",
+				"c_ci_id", c_ci_id);
 	}
 
 	/**
@@ -68,7 +69,8 @@ public class ClinicDAOImpl implements ClinicDAO {
 	@SuppressWarnings("unchecked")
 	public List<ClinicBean> selectByC_name(String c_name) {
 
-		return (List<ClinicBean>) hibernateTemplate.find("from ClinicBean where c_name=?", c_name);
+		return (List<ClinicBean>) hibernateTemplate.findByNamedParam("from ClinicBean where c_name=:c_name", "c_name",
+				c_name);
 	}
 
 	/**

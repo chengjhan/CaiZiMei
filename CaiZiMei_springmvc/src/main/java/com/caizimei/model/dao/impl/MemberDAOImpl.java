@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -68,8 +68,8 @@ public class MemberDAOImpl implements MemberDAO {
 	@SuppressWarnings("unchecked")
 	public MemberBean selectByM_username(String m_username) {
 
-		List<MemberBean> list = (List<MemberBean>) hibernateTemplate.find("from MemberBean where m_username=?",
-				m_username);
+		List<MemberBean> list = (List<MemberBean>) hibernateTemplate
+				.findByNamedParam("from MemberBean where m_username=:m_username", "m_username", m_username);
 
 		if (!list.isEmpty()) {
 

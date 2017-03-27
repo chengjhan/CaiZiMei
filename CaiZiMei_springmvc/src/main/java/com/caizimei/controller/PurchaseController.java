@@ -47,7 +47,6 @@ public class PurchaseController {
 	public ModelAndView orderProcess(@ModelAttribute("user") MemberBean user,
 			@RequestParam(name = "c_name") String c_name) {
 
-		System.out.println(user.getM_id());
 		purchaseService.order(user.getM_id(), c_name);
 
 		return new ModelAndView("redirect:/index");

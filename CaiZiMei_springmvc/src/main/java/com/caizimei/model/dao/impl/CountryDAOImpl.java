@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -65,7 +65,8 @@ public class CountryDAOImpl implements CountryDAO {
 	@SuppressWarnings("unchecked")
 	public List<CountryBean> selectByCo_name(String co_name) {
 
-		return (List<CountryBean>) hibernateTemplate.find("from CountryBean where co_name=?", co_name);
+		return (List<CountryBean>) hibernateTemplate.findByNamedParam("from CountryBean where co_name=:co_name",
+				"co_name", co_name);
 	}
 
 	/**

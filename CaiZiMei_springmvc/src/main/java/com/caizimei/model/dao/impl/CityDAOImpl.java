@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -65,7 +65,8 @@ public class CityDAOImpl implements CityDAO {
 	@SuppressWarnings("unchecked")
 	public List<CityBean> selectByCi_name(String ci_name) {
 
-		return (List<CityBean>) hibernateTemplate.find("from CityBean where ci_name=?", ci_name);
+		return (List<CityBean>) hibernateTemplate.findByNamedParam("from CityBean where ci_name=:ci_name", "ci_name",
+				ci_name);
 	}
 
 	/**
@@ -78,7 +79,8 @@ public class CityDAOImpl implements CityDAO {
 	@SuppressWarnings("unchecked")
 	public List<CityBean> selectByCi_co_id(Integer ci_co_id) {
 
-		return (List<CityBean>) hibernateTemplate.find("from CityBean where ci_co_id=?", ci_co_id);
+		return (List<CityBean>) hibernateTemplate.findByNamedParam("from CityBean where ci_co_id=:ci_co_id", "ci_co_id",
+				ci_co_id);
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: PurchaseBean.java
  * Author: 詹晟
- * Date: 2017/3/26
+ * Date: 2017/3/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -28,6 +28,7 @@ public class PurchaseBean {
 	private Integer p_id;
 	private Integer p_m_id;
 	private Integer p_c_id;
+	private java.util.Date p_order_time;
 
 	public Integer getP_id() {
 		return p_id;
@@ -51,6 +52,14 @@ public class PurchaseBean {
 
 	public void setP_c_id(Integer p_c_id) {
 		this.p_c_id = p_c_id;
+	}
+
+	public java.util.Date getP_order_time() {
+		return p_order_time;
+	}
+
+	public void setP_order_time(java.util.Date p_order_time) {
+		this.p_order_time = p_order_time;
 	}
 
 }

@@ -59,6 +59,7 @@ create table purchase(
 	p_id					int auto_increment not null,
     p_m_id					int,
     p_c_id					int,
+    p_order_time			timestamp default current_timestamp,
     primary key (p_id),
     foreign key (p_m_id) references member (m_id),
     foreign key (p_c_id) references clinic (c_id)

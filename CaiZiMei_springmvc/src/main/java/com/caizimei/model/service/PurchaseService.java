@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: PurchaseService.java
  * Author: 詹晟
- * Date: 2017/3/26
+ * Date: 2017/3/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -17,5 +17,6 @@ import com.caizimei.model.entity.PurchaseBean;
  */
 public interface PurchaseService {
 
-	PurchaseBean order(Integer p_m_id, String c_name);
+	PurchaseBean order(PurchaseBean purchaseBean);
+
 }

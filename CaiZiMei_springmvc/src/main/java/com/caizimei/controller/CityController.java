@@ -124,12 +124,35 @@ public class CityController {
 	}
 
 	/**
+	 * 搜尋全部城市 (ajax)
+	 * 
+	 * @return 所有城市json
+	 */
+	@RequestMapping(path = "/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String selectAjaxProcess() {
+
+		List<CityBean> result = cityService.select();
+
+		List<CityBean> jsonList = new ArrayList<CityBean>();
+		for (CityBean bean : result) {
+			CityBean jsonBean = new CityBean();
+			jsonBean.setCi_name(bean.getCi_name());
+			jsonList.add(jsonBean);
+		}
+		String json = new Gson().toJson(jsonList);
+		System.out.println("JSON = " + json);
+
+		return json;
+	}
+
+	/**
 	 * 搜尋國家中的所有城市 (ajax)
 	 * 
 	 * @param co_name-->國家名
 	 * @return 國家中的所有城市json
 	 */
-	@RequestMapping(path = "/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(path = "/select-by-country.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String selectByCountryAjaxProcess(String co_name) {
 

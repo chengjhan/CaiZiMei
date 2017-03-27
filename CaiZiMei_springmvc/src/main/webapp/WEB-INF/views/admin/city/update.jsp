@@ -16,9 +16,7 @@
 		</div>
 		<div>
 			<label for="id-co-name">國家</label>
-			<select id="id-co-name" name="co_name">
-				<option>請選擇國家</option>
-			</select>
+			<select id="id-co-name" name="co_name" style="width:150px"></select>
 		</div>
 		<div>
 			<label for="id-ci-name">城市</label>
@@ -30,10 +28,15 @@
 	</form>
 	<script>
 		$(document).ready(function(){
-			var country_select = $("#id-co-name");
 			$.getJSON("${root}admin/country/select.ajax", function(data){
+				var country_select = $("#id-co-name");
+				country_select.append("<option>請選擇國家</option>");
 				$.each(data, function(index, country){
 					var country_option = $("<option></option>").append(country.co_name);
+					var country_option_selected = "${param.co_name}";
+					if(country.co_name == country_option_selected){
+						country_option.attr("selected", "selected");
+					}
 					country_select.append(country_option);
 				});
 			});

@@ -26,13 +26,13 @@
 		</div>
 		<div>
 			<label for="id-co-name">國家</label>
-			<select id="id-co-name" name="co_name">
+			<select id="id-co-name" name="co_name" style="width:150px">
 				<option>請選擇國家</option>
 			</select>
 		</div>
 		<div>
 			<label for="id-ci-name">城市</label>
-			<select id="id-ci-name" name="ci_name">
+			<select id="id-ci-name" name="ci_name" style="width:150px">
 				<option>請選擇城市</option>
 			</select>
 		</div>

@@ -21,9 +21,9 @@ public interface ClinicService {
 
 	List<ClinicBean> select();
 
-	ClinicBean selectByC_id(String c_id);
+	ClinicBean selectByC_id(Integer c_id);
 
-	List<ClinicBean> selectByC_r_id(String c_r_id);
+	List<ClinicBean> selectByC_r_id(Integer c_r_id);
 
 	List<ClinicBean> selectByConditions(String c_name, String c_localphone);
 

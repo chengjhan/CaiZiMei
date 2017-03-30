@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: PurchaseController.java
  * Author: 詹晟
- * Date: 2017/3/28
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.MemberBean;
 import com.caizimei.model.entity.PurchaseBean;
-import com.caizimei.model.service.ClinicService;
 import com.caizimei.model.service.PurchaseService;
 
 /**
@@ -39,25 +38,19 @@ public class PurchaseController {
 	private PurchaseService purchaseService;
 
 	/**
-	 * 注入 ClinicService
-	 */
-	@Autowired
-	private ClinicService clinicService;
-
-	/**
 	 * 訂購
 	 * 
 	 * @param user-->Session
-	 * @param c_name-->診所名
+	 * @param c_id-->診所流水號
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/order.do", method = RequestMethod.POST)
 	public ModelAndView orderProcess(@ModelAttribute("user") MemberBean user,
-			@RequestParam(name = "c_name") String c_name) {
+			@RequestParam(name = "c_id") String c_id) {
 
 		PurchaseBean purchaseBean = new PurchaseBean();
 		purchaseBean.setP_m_id(user.getM_id());
-		purchaseBean.setP_c_id(clinicService.selectByC_name(c_name).getC_id());
+		purchaseBean.setP_c_id(Integer.valueOf(c_id));
 		purchaseService.order(purchaseBean);
 
 		return new ModelAndView("redirect:/index");

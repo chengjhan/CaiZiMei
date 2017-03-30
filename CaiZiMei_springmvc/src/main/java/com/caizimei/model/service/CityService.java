@@ -23,7 +23,7 @@ public interface CityService {
 
 	CityBean selectByCi_id(Integer ci_id);
 
-	List<CityBean> selectByCi_co_id(String ci_co_id);
+	List<CityBean> selectByCi_co_id(Integer ci_co_id);
 
 	List<CityBean> selectByCo_name(String co_name);
 

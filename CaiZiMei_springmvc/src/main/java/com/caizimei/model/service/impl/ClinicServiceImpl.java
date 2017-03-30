@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicServiceImpl.java
  * Author: 詹晟
- * Date: 2017/3/26
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,7 +25,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 
-import com.caizimei.model.dao.CityDAO;
 import com.caizimei.model.dao.ClinicDAO;
 import com.caizimei.model.entity.ClinicBean;
 import com.caizimei.model.service.ClinicService;
@@ -46,12 +45,6 @@ public class ClinicServiceImpl implements ClinicService {
 	private ClinicDAO clinicDAO;
 
 	/**
-	 * 注入 CityDAO
-	 */
-	@Autowired
-	private CityDAO cityDAO;
-
-	/**
 	 * 搜尋全部診所
 	 * 
 	 * @return List<ClinicBean>
@@ -64,49 +57,42 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	/**
-	 * 城市名搜尋
+	 * 診所流水號搜尋
 	 * 
-	 * @param ci_name-->城市名
-	 * @return List<ClinicBean>
+	 * @param c_id-->診所流水號
+	 * @return ClinicBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<ClinicBean> selectByCi_name(String ci_name) {
+	public ClinicBean selectByC_id(Integer c_id) {
 
-		return clinicDAO.selectByC_ci_id(cityDAO.selectByCi_name(ci_name).get(0).getCi_id());
+		return clinicDAO.selectByC_id(c_id);
 	}
 
 	/**
-	 * 診所名搜尋
+	 * 區域流水號搜尋
 	 * 
-	 * @param c_name-->診所名
-	 * @return result-->ClinicBean
+	 * @param c_r_id-->區域流水號
+	 * @return List<ClinicBean>
 	 */
 	@Override
-	@Transactional(readOnly = true)
-	public ClinicBean selectByC_name(String c_name) {
+	public List<ClinicBean> selectByC_r_id(Integer c_r_id) {
 
-		ClinicBean result = null;
-
-		if (c_name != null) {
-
-			result = clinicDAO.selectByC_name(c_name).get(0);
-		}
-		return result;
+		return clinicDAO.selectByC_r_id(c_r_id);
 	}
 
 	/**
 	 * 條件搜尋
 	 * 
 	 * @param c_name-->診所名
-	 * @param c_telephone-->診所電話
+	 * @param c_localphone-->診所電話
 	 * @return List<ClinicBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<ClinicBean> selectByConditions(String c_name, String c_telephone) {
+	public List<ClinicBean> selectByConditions(String c_name, String c_localphone) {
 
-		return clinicDAO.selectByConditions(c_name, c_telephone);
+		return clinicDAO.selectByConditions(c_name, c_localphone);
 	}
 
 	/**

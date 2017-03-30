@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityServiceImpl.java
  * Author: 詹晟
- * Date: 2017/3/26
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -72,6 +72,32 @@ public class CityServiceImpl implements CityService {
 	}
 
 	/**
+	 * 國家流水號搜尋
+	 * 
+	 * @param ci_co_id-->國家流水號
+	 * @return List<CityBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<CityBean> selectByCi_co_id(Integer ci_co_id) {
+
+		return cityDAO.selectByCi_co_id(ci_co_id);
+	}
+
+	/**
+	 * 國家名搜尋
+	 * 
+	 * @param co_name-->國家名
+	 * @return List<CityBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<CityBean> selectByCo_name(String co_name) {
+
+		return cityDAO.selectByCi_co_id(countryDAO.selectByCo_name(co_name).get(0).getCo_id());
+	}
+
+	/**
 	 * 城市名搜尋
 	 * 
 	 * @param ci_name-->城市名
@@ -88,19 +114,6 @@ public class CityServiceImpl implements CityService {
 			result = cityDAO.selectByCi_name(ci_name).get(0);
 		}
 		return result;
-	}
-
-	/**
-	 * 國家名搜尋
-	 * 
-	 * @param co_name-->國家名
-	 * @return List<CityBean>
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<CityBean> selectByCo_name(String co_name) {
-
-		return cityDAO.selectByCi_co_id(countryDAO.selectByCo_name(co_name).get(0).getCo_id());
 	}
 
 	/**

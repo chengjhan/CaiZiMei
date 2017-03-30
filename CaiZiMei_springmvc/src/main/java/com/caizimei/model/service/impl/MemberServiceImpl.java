@@ -119,18 +119,18 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 條件搜尋
 	 * 
-	 * @param m_firstname-->會員名
 	 * @param m_lastname-->會員姓
-	 * @param m_telephone-->會員電話
+	 * @param m_firstname-->會員名
+	 * @param m_mobilephone-->會員電話
 	 * @param m_email-->會員信箱
 	 * @return List<MemberBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<MemberBean> selectByConditions(String m_firstname, String m_lastname, String m_telephone,
+	public List<MemberBean> selectByConditions(String m_lastname, String m_firstname, String m_mobilephone,
 			String m_email) {
 
-		return memberDAO.selectByConditions(m_firstname, m_lastname, m_telephone, m_email);
+		return memberDAO.selectByConditions(m_firstname, m_lastname, m_mobilephone, m_email);
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberService.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,15 +19,15 @@ import com.caizimei.model.entity.MemberBean;
  */
 public interface MemberService {
 
-	Boolean signIn(String m_username, String m_password);
-
 	MemberBean signUp(MemberBean memberBean);
+
+	Boolean signIn(String m_username, String m_password);
 
 	MemberBean selectByM_id(Integer m_id);
 
 	MemberBean selectByM_username(String m_username);
 
-	List<MemberBean> selectByConditions(String m_firstname, String m_lastname, String m_telephone, String m_email);
+	List<MemberBean> selectByConditions(String m_lastname, String m_firstname, String m_mobilephone, String m_email);
 
 	MemberBean update(MemberBean memberBean);
 

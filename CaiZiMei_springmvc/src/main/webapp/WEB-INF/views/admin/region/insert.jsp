@@ -39,37 +39,5 @@
 			<input type="submit" id="id-submit" value="新增">
 		</div>
 	</form>
-	<table border="1">
-		<thead>
-			<tr>
-				<td>編號</td>
-				<td>國家</td>
-				<td>城市</td>
-				<td>區域</td>
-				<td>郵遞區號</td>
-				<td>排序</td>
-				<td>修改</td>
-				<td>刪除</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="bean" items="${countryList}">
-				<c:url value="/admin/country/update" var="path">
-					<c:param name="co_id" value="${bean.co_id}" />
-					<c:param name="co_name" value="${bean.co_name}" />
-					<c:param name="co_eng_name" value="${bean.co_eng_name}" />
-					<c:param name="co_rank" value="${bean.co_rank}" />
-				</c:url>
-				<tr>
-					<td>${bean.co_id}</td>
-					<td>${bean.co_name}</td>
-					<td>${bean.co_eng_name}</td>
-					<td>${bean.co_rank}</td>
-					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}admin/country/delete.do?co_id=${bean.co_id}">刪除</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
 </body>
 </html>

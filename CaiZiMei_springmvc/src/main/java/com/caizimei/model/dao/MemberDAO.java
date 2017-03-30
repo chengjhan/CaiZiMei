@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAO.java
  * Author: 詹晟
- * Date: 2017/3/19
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,6 +32,10 @@ public interface MemberDAO {
 	MemberBean update(MemberBean memberBean);
 
 	MemberBean updateM_password(Integer m_id, String m_password_new_hashed);
+
+	MemberBean updateM_signin_number(Integer m_id);
+
+	MemberBean updateM_signin_ip(Integer m_id);
 
 	MemberBean updateM_signin_time(Integer m_id);
 

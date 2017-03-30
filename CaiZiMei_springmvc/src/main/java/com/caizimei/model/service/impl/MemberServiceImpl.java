@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberServiceImpl.java
  * Author: 詹晟
- * Date: 2017/3/24
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,6 +38,26 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO memberDAO;
 
 	/**
+	 * 註冊
+	 * 
+	 * @param memberBean-->MemberBean
+	 * @return result-->MemberBean
+	 */
+	@Override
+	@Transactional
+	public MemberBean signUp(MemberBean memberBean) {
+
+		MemberBean result = null;
+
+		if (memberBean != null) {
+
+			result = memberDAO.insert(memberBean);
+		}
+
+		return result;
+	}
+
+	/**
 	 * 登入
 	 * 
 	 * @param m_username-->會員帳號
@@ -57,6 +77,8 @@ public class MemberServiceImpl implements MemberService {
 
 			if (getHashedPassword(m_password, m_salt).equals(memberBean.getM_password())) {
 
+				memberDAO.updateM_signin_number(memberBean.getM_id());
+				memberDAO.updateM_signin_ip(memberBean.getM_id());
 				memberDAO.updateM_signin_time(memberBean.getM_id());
 
 				return true;
@@ -66,26 +88,6 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			return false;
 		}
-	}
-
-	/**
-	 * 註冊
-	 * 
-	 * @param memberBean-->MemberBean
-	 * @return result-->MemberBean
-	 */
-	@Override
-	@Transactional
-	public MemberBean signUp(MemberBean memberBean) {
-
-		MemberBean result = null;
-
-		if (memberBean != null) {
-
-			result = memberDAO.insert(memberBean);
-		}
-
-		return result;
 	}
 
 	/**
@@ -140,7 +142,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public MemberBean update(MemberBean memberBean) {
-		
+
 		return memberDAO.update(memberBean);
 	}
 

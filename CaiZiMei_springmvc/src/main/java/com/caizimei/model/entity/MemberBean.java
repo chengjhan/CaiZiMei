@@ -51,7 +51,7 @@ public class MemberBean {
 	private Integer m_limit;
 	private java.util.Date m_signup_time;
 	private Integer m_signin_number;
-	private String m_ip;
+	private String m_signin_ip;
 	private java.util.Date m_signin_time;
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -218,12 +218,12 @@ public class MemberBean {
 		this.m_signin_number = m_signin_number;
 	}
 
-	public String getM_ip() {
-		return m_ip;
+	public String getM_signin_ip() {
+		return m_signin_ip;
 	}
 
-	public void setM_ip(String m_ip) {
-		this.m_ip = m_ip;
+	public void setM_signin_ip(String m_signin_ip) {
+		this.m_signin_ip = m_signin_ip;
 	}
 
 	public java.util.Date getM_signin_time() {

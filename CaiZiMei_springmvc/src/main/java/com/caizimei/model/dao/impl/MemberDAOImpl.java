@@ -169,6 +169,34 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	/**
+	 * 更新登入次數
+	 * 
+	 * @param m_id-->會員流水號
+	 * @return memberBean-->MemberBean
+	 */
+	@Override
+	public MemberBean updateM_signin_number(Integer m_id) {
+		
+		MemberBean memberBean = hibernateTemplate.get(MemberBean.class, m_id);
+		Integer m_signin_number = hibernateTemplate.get(MemberBean.class, m_id).getM_signin_number();
+		memberBean.setM_signin_number(m_signin_number + 1);
+		
+		return memberBean;
+	}
+
+	/**
+	 * 更新登入IP
+	 * 
+	 * @param m_id-->會員流水號
+	 * @return memberBean-->MemberBean
+	 */
+	@Override
+	public MemberBean updateM_signin_ip(Integer m_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
 	 * 修改登入時間
 	 * 
 	 * @param m_id-->會員流水號

@@ -30,7 +30,7 @@ public class RegionBean {
 	private Integer r_id;
 	@ManyToOne
 	@JoinColumn(name = "r_ci_id")
-	private CityBean r_cityBean;
+	private CityBean r_CityBean;
 	private String r_name;
 	private String r_zipcode;
 	private Integer r_rank;
@@ -43,12 +43,12 @@ public class RegionBean {
 		this.r_id = r_id;
 	}
 
-	public CityBean getR_cityBean() {
-		return r_cityBean;
+	public CityBean getR_CityBean() {
+		return r_CityBean;
 	}
 
-	public void setR_cityBean(CityBean r_cityBean) {
-		this.r_cityBean = r_cityBean;
+	public void setR_CityBean(CityBean r_CityBean) {
+		this.r_CityBean = r_CityBean;
 	}
 
 	public String getR_name() {

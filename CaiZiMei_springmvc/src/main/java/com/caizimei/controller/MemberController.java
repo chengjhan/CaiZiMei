@@ -65,6 +65,54 @@ public class MemberController {
 	}
 
 	/**
+	 * 註冊
+	 * 
+	 * @param memberBean-->MemberBean
+	 * @param m_password-->會員密碼(原碼)
+	 * @param m_birth_year-->會員生日(年)
+	 * @param m_birth_month-->會員生日(月)
+	 * @param m_birth_date-->會員生日(日)
+	 * @param m_localphone_front-->會員電話(前碼)
+	 * @param m_localphone_back-->會員電話(後碼)
+	 * @param m_mobilephone_front-->會員手機(前碼)
+	 * @param m_mobilephone_back-->會員手機(後碼)
+	 * @param model-->Model
+	 * @return /WEB-INF/views/index.jsp
+	 */
+	@RequestMapping(path = "/member/sign-up.do", method = RequestMethod.POST)
+	public ModelAndView signUpProcess(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
+			@RequestParam(name = "m_birth_year") String m_birth_year,
+			@RequestParam(name = "m_birth_month") String m_birth_month,
+			@RequestParam(name = "m_birth_date") String m_birth_date,
+			@RequestParam(name = "m_localphone_front") String m_localphone_front,
+			@RequestParam(name = "m_localphone_back") String m_localphone_back,
+			@RequestParam(name = "m_mobilephone_front") String m_mobilephone_front,
+			@RequestParam(name = "m_mobilephone_back") String m_mobilephone_back, Model model) {
+
+		String m_salt = memberService.getSalt();
+
+		memberBean.setM_salt(m_salt);
+		memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
+		java.util.Date m_birth = null;
+		try {
+			m_birth = simpleDateFormat.parse(m_birth_year + "-" + m_birth_month + "-" + m_birth_date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		memberBean.setM_birth(m_birth);
+		memberBean.setM_localphone(m_localphone_front + "-" + m_localphone_back);
+		memberBean.setM_mobilephone(m_mobilephone_front + "-" + m_mobilephone_back);
+		memberBean.setM_limit(0);
+		memberBean.setM_signin_number(0);
+
+		memberService.signUp(memberBean);
+		memberService.signIn(memberBean.getM_username(), m_password);
+		model.addAttribute("user", memberBean);
+
+		return new ModelAndView("redirect:/index");
+	}
+
+	/**
 	 * 登入
 	 * 
 	 * @param m_username-->會員帳號
@@ -106,48 +154,6 @@ public class MemberController {
 
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
-
-		return new ModelAndView("redirect:/index");
-	}
-
-	/**
-	 * 註冊
-	 * 
-	 * @param memberBean-->MemberBean
-	 * @param m_password-->會員密碼(原碼)
-	 * @param m_birth_year-->會員生日(年)
-	 * @param m_birth_month-->會員生日(月)
-	 * @param m_birth_date-->會員生日(日)
-	 * @param m_telephone_front-->會員電話(前碼)
-	 * @param m_telephone_back-->會員電話(後碼)
-	 * @param model-->Model
-	 * @return /WEB-INF/views/index.jsp
-	 */
-	@RequestMapping(path = "/member/sign-up.do", method = RequestMethod.POST)
-	public ModelAndView signUpProcess(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
-			@RequestParam(name = "m_birth_year") String m_birth_year,
-			@RequestParam(name = "m_birth_month") String m_birth_month,
-			@RequestParam(name = "m_birth_date") String m_birth_date,
-			@RequestParam(name = "m_telephone_front") String m_telephone_front,
-			@RequestParam(name = "m_telephone_back") String m_telephone_back, Model model) {
-
-		String m_salt = memberService.getSalt();
-
-		memberBean.setM_salt(m_salt);
-		memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
-		java.util.Date m_birth = null;
-		try {
-			m_birth = simpleDateFormat.parse(m_birth_year + "-" + m_birth_month + "-" + m_birth_date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		memberBean.setM_birth(m_birth);
-		memberBean.setM_localphone(m_telephone_front + "-" + m_telephone_back);
-		memberBean.setM_limit(0);
-
-		memberService.signUp(memberBean);
-		memberService.signIn(memberBean.getM_username(), m_password);
-		model.addAttribute("user", memberBean);
 
 		return new ModelAndView("redirect:/index");
 	}

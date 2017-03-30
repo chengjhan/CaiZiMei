@@ -46,7 +46,7 @@ public class ClinicBean {
 	private java.util.Date c_update_time;
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "m_ClinicBean")
-	private Set<MemberBean> c_MemberBaan;
+	private Set<MemberBean> c_MemberBean;
 
 	public Integer getC_id() {
 		return c_id;
@@ -84,8 +84,8 @@ public class ClinicBean {
 		return c_RegionBean;
 	}
 
-	public void setC_RegionBean(RegionBean regionBean) {
-		this.c_RegionBean = regionBean;
+	public void setC_RegionBean(RegionBean c_RegionBean) {
+		this.c_RegionBean = c_RegionBean;
 	}
 
 	public String getC_address() {
@@ -136,12 +136,12 @@ public class ClinicBean {
 		this.c_update_time = c_update_time;
 	}
 
-	public Set<MemberBean> getC_MemberBaan() {
-		return c_MemberBaan;
+	public Set<MemberBean> getC_MemberBean() {
+		return c_MemberBean;
 	}
 
-	public void setC_MemberBaan(Set<MemberBean> c_MemberBaan) {
-		this.c_MemberBaan = c_MemberBaan;
+	public void setC_MemberBean(Set<MemberBean> c_MemberBean) {
+		this.c_MemberBean = c_MemberBean;
 	}
 
 }

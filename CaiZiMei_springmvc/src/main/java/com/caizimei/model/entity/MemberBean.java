@@ -44,6 +44,7 @@ public class MemberBean {
 	private String m_localphone;
 	private String m_mobilephone;
 	private String m_zipcode;
+	private String m_country;
 	private String m_city;
 	private String m_region;
 	private String m_address;
@@ -160,6 +161,14 @@ public class MemberBean {
 
 	public void setM_zipcode(String m_zipcode) {
 		this.m_zipcode = m_zipcode;
+	}
+
+	public String getM_country() {
+		return m_country;
+	}
+
+	public void setM_country(String m_country) {
+		this.m_country = m_country;
 	}
 
 	public String getM_city() {

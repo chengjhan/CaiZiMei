@@ -8,7 +8,6 @@
  */
 package com.caizimei.model.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,8 +39,8 @@ public class CityBean {
 	private String ci_name;
 	private Integer ci_rank;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "c_CityBean")
-	private Set<ClinicBean> ci_ClinicBean = new HashSet<ClinicBean>();
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "r_CityBean")
+	private Set<RegionBean> ci_RegionBean;
 
 	public Integer getCi_id() {
 		return ci_id;
@@ -75,12 +74,12 @@ public class CityBean {
 		this.ci_rank = ci_rank;
 	}
 
-	public Set<ClinicBean> getCi_ClinicBean() {
-		return ci_ClinicBean;
+	public Set<RegionBean> getCi_RegionBean() {
+		return ci_RegionBean;
 	}
 
-	public void setCi_ClinicBean(Set<ClinicBean> ci_ClinicBean) {
-		this.ci_ClinicBean = ci_ClinicBean;
+	public void setCi_RegionBean(Set<RegionBean> ci_RegionBean) {
+		this.ci_RegionBean = ci_RegionBean;
 	}
 
 }

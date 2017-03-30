@@ -8,12 +8,17 @@
  */
 package com.caizimei.model.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +39,9 @@ public class RegionBean {
 	private String r_name;
 	private String r_zipcode;
 	private Integer r_rank;
+
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "c_RegionBean")
+	private Set<ClinicBean> r_ClinicBean;
 
 	public Integer getR_id() {
 		return r_id;
@@ -73,6 +81,14 @@ public class RegionBean {
 
 	public void setR_rank(Integer r_rank) {
 		this.r_rank = r_rank;
+	}
+
+	public Set<ClinicBean> getR_ClinicBean() {
+		return r_ClinicBean;
+	}
+
+	public void setR_ClinicBean(Set<ClinicBean> r_ClinicBean) {
+		this.r_ClinicBean = r_ClinicBean;
 	}
 
 }

@@ -8,7 +8,6 @@
  */
 package com.caizimei.model.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -37,7 +36,7 @@ public class CountryBean {
 	private Integer co_rank;
 
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "ci_CountryBean")
-	private Set<CityBean> co_CityBean = new HashSet<CityBean>();
+	private Set<CityBean> co_CityBean;
 
 	public Integer getCo_id() {
 		return co_id;

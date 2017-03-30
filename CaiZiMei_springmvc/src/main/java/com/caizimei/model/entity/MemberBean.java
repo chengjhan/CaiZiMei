@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberBean.java
  * Author: 詹晟
- * Date: 2017/3/26
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,12 +41,18 @@ public class MemberBean {
 	private Integer m_sex;
 	private Double m_height;
 	private Double m_weight;
-	private String m_telephone;
+	private String m_localphone;
+	private String m_mobilephone;
+	private String m_zipcode;
+	private String m_city;
+	private String m_region;
 	private String m_address;
 	private String m_email;
-	private java.util.Date m_signup_time;
-	private java.util.Date m_signin_time;
 	private Integer m_limit;
+	private java.util.Date m_signup_time;
+	private Integer m_signin_number;
+	private String m_ip;
+	private java.util.Date m_signin_time;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "purchase", joinColumns = @JoinColumn(name = "p_m_id"), inverseJoinColumns = @JoinColumn(name = "p_c_id"))
@@ -132,12 +138,44 @@ public class MemberBean {
 		this.m_weight = m_weight;
 	}
 
-	public String getM_telephone() {
-		return m_telephone;
+	public String getM_localphone() {
+		return m_localphone;
 	}
 
-	public void setM_telephone(String m_telephone) {
-		this.m_telephone = m_telephone;
+	public void setM_localphone(String m_localphone) {
+		this.m_localphone = m_localphone;
+	}
+
+	public String getM_mobilephone() {
+		return m_mobilephone;
+	}
+
+	public void setM_mobilephone(String m_mobilephone) {
+		this.m_mobilephone = m_mobilephone;
+	}
+
+	public String getM_zipcode() {
+		return m_zipcode;
+	}
+
+	public void setM_zipcode(String m_zipcode) {
+		this.m_zipcode = m_zipcode;
+	}
+
+	public String getM_city() {
+		return m_city;
+	}
+
+	public void setM_city(String m_city) {
+		this.m_city = m_city;
+	}
+
+	public String getM_region() {
+		return m_region;
+	}
+
+	public void setM_region(String m_region) {
+		this.m_region = m_region;
 	}
 
 	public String getM_address() {
@@ -156,6 +194,14 @@ public class MemberBean {
 		this.m_email = m_email;
 	}
 
+	public Integer getM_limit() {
+		return m_limit;
+	}
+
+	public void setM_limit(Integer m_limit) {
+		this.m_limit = m_limit;
+	}
+
 	public java.util.Date getM_signup_time() {
 		return m_signup_time;
 	}
@@ -164,20 +210,28 @@ public class MemberBean {
 		this.m_signup_time = m_signup_time;
 	}
 
+	public Integer getM_signin_number() {
+		return m_signin_number;
+	}
+
+	public void setM_signin_number(Integer m_signin_number) {
+		this.m_signin_number = m_signin_number;
+	}
+
+	public String getM_ip() {
+		return m_ip;
+	}
+
+	public void setM_ip(String m_ip) {
+		this.m_ip = m_ip;
+	}
+
 	public java.util.Date getM_signin_time() {
 		return m_signin_time;
 	}
 
 	public void setM_signin_time(java.util.Date m_signin_time) {
 		this.m_signin_time = m_signin_time;
-	}
-
-	public Integer getM_limit() {
-		return m_limit;
-	}
-
-	public void setM_limit(Integer m_limit) {
-		this.m_limit = m_limit;
 	}
 
 	public Set<ClinicBean> getM_ClinicBean() {

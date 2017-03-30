@@ -18,8 +18,12 @@
 			<input type="text" id="id-co-name" name="co_name" value="${param.co_name}">
 		</div>
 		<div>
-			<label for="id-co-countrycode">代碼</label>
-			<input type="text" id="id-co-countrycode" name="co_countrycode" value="${param.co_countrycode}">
+			<label for="id-co-eng-name">英文</label>
+			<input type="text" id="id-co-eng-name" name="co_eng_name" value="${param.co_eng_name}">
+		</div>
+		<div>
+			<label for="id-co-rank">排序</label>
+			<input type="text" id="id-co-rank" name="co_rank" value="${param.co_rank}">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="修改">

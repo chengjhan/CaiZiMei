@@ -8,59 +8,499 @@ use caizimeidb;
 
 create table country(
 	co_id					int auto_increment not null,
-    co_name					nvarchar(50),
-    co_countrycode			varchar(50),
+    co_name					nvarchar(10) not null,
+    co_eng_name				varchar(50),
+    co_rank					tinyint,
     primary key (co_id)
 );
 
 create table city(
 	ci_id					int auto_increment not null,
-    ci_name					nvarchar(50),
     ci_co_id				int not null,
+    ci_name					nvarchar(10) not null,
+    ci_rank					tinyint,
     primary key (ci_id),
 	foreign key (ci_co_id) references country (co_id)
 );
 
+create table region(
+	r_id					int auto_increment not null,
+    r_ci_id					int not null,
+    r_name					nvarchar(10) not null,
+    r_zipcode				varchar(10),
+    r_rank					tinyint,
+    primary key (r_id),
+    foreign key (r_ci_id) references city (ci_id)
+);
+
 create table clinic(
 	c_id					int auto_increment not null,
-    c_name					nvarchar(50) not null,
+    c_name					nvarchar(20) not null,
     c_eng_name				varchar(50),
-    c_telephone				varchar(50),
-    c_ci_id					int not null,
+    c_localphone			varchar(20),
+    c_r_id					int not null,
     c_address				nvarchar(50) not null,
-    c_latitude				decimal(10,6) not null,
-    c_longitude				decimal(10,6) not null,
+    c_latitude				decimal(10,6),
+    c_longitude				decimal(10,6),
     c_url					varchar(100),
+    c_insert_time			timestamp default current_timestamp,
+    c_update_time			timestamp on update current_timestamp,
     primary key (c_id),
-    foreign key (c_ci_id) references city (ci_id)
+    foreign key (c_r_id) references region (r_id)
 );
 
 create table member(
 	m_id					int auto_increment not null,
-    m_username				nvarchar(50) not null,
+    m_username				varchar(50) not null,
     m_password				varchar(50) not null,
     m_salt					varchar(50) not null,
-    m_lastname				nvarchar(50) not null,
-    m_firstname				nvarchar(50) not null,
+    m_lastname				nvarchar(20),
+    m_firstname				nvarchar(20),
     m_birth					date,
     m_sex					tinyint,
     m_height				double,
     m_weight				double,
-    m_telephone				varchar(50),
+    m_localphone			varchar(20),
+    m_mobilephone			varchar(20),
+    m_zipcode				varchar(10),
+    m_city					nvarchar(10),
+    m_region				nvarchar(10),
     m_address				nvarchar(50),
-    m_email					varchar(100),
+    m_email					varchar(50),
+    m_limit					tinyint not null,
     m_signup_time			timestamp default current_timestamp,
-    m_signin_time			datetime,
-    m_limit					tinyint,
+    m_signin_number			int,
+    m_ip					varchar(20),
+    m_signin_time			timestamp on update current_timestamp,
     primary key (m_id)
 );
 
 create table purchase(
 	p_id					int auto_increment not null,
-    p_m_id					int,
-    p_c_id					int,
+    p_m_id					int not null,
+    p_c_id					int not null,
     p_order_time			timestamp default current_timestamp,
     primary key (p_id),
     foreign key (p_m_id) references member (m_id),
     foreign key (p_c_id) references clinic (c_id)
 );
+
+-- country
+insert into country (co_name, co_eng_name, co_rank) values ('臺灣', 'Taiwan', 1);
+insert into country (co_name, co_eng_name, co_rank) values ('中國', 'China', 2);
+
+-- city
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '基隆市', 1);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '臺北市', 2);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '新北市', 3);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '桃園市', 4);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '新竹市', 5);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '新竹縣', 6);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '苗栗縣', 7);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '臺中市', 8);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '彰化縣', 9);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '南投縣', 10);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '雲林縣', 11);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '嘉義市', 12);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '嘉義縣', 13);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '臺南市', 14);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '高雄市', 15);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '屏東縣', 16);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '臺東縣', 17);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '花蓮縣', 18);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '宜蘭縣', 19);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '澎湖縣', 20);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '金門縣', 21);
+insert into city (ci_co_id, ci_name, ci_rank) values (1, '連江縣', 22);
+
+-- region
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (1, '仁愛區', '200', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (1, '信義區', '201', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (1, '中正區', '202', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (1, '中山區', '203', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (1, '安樂區', '204', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (1, '暖暖區', '205', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (1, '七堵區', '206', 7);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '中正區', '100', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '大同區', '103', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '中山區', '104', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '松山區', '105', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '大安區', '106', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '萬華區', '108', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '信義區', '110', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '士林區', '111', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '北投區', '112', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '內湖區', '114', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '南港區', '115', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (2, '文山區', '116', 12);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '萬里區', '207', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '金山區', '208', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '板橋區', '220', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '汐止區', '221', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '深坑區', '222', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '石碇區', '223', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '瑞芳區', '224', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '平溪區', '226', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '雙溪區', '227', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '貢寮區', '228', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '新店區', '231', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '坪林區', '232', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '烏來區', '233', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '永和區', '234', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '中和區', '235', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '土城區', '236', 16);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '三峽區', '237', 17);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '樹林區', '238', 18);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '鶯歌區', '239', 19);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '三重區', '241', 20);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '新莊區', '242', 21);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '泰山區', '243', 22);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '林口區', '244', 23);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '蘆洲區', '247', 24);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '五股區', '248', 25);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '八里區', '249', 26);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '淡水區', '251', 27);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '三芝區', '252', 28);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (3, '石門區', '253', 29);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '中壢區', '320', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '平鎮區', '324', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '龍潭區', '325', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '楊梅區', '326', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '新屋區', '327', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '觀音區', '328', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '桃園區', '330', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '龜山區', '333', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '八德區', '334', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '大溪區', '335', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '復興區', '336', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '大園區', '337', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (4, '蘆竹區', '338', 13);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (5, '東區', '300', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (5, '北區', '300', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (5, '香山區', '300', 3);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '竹北市', '302', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '湖口鄉', '303', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '新豐鄉', '304', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '新埔鎮', '305', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '關西鎮', '306', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '芎林鄉', '307', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '寶山鄉', '308', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '竹東鎮', '310', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '五峰鄉', '311', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '橫山鄉', '312', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '尖石鄉', '313', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '北埔鄉', '314', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (6, '峨眉鄉', '315', 13);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '竹南鎮', '350', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '頭份市', '351', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '三灣鄉', '352', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '南庄鄉', '353', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '獅潭鄉', '354', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '後龍鎮', '356', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '通霄鎮', '357', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '苑裡鎮', '358', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '苗栗市', '360', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '造橋鄉', '361', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '頭屋鄉', '362', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '公館鄉', '363', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '大湖鄉', '364', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '泰安鄉', '365', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '銅鑼鄉', '366', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '三義鄉', '367', 16);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '西湖鄉', '368', 17);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (7, '卓蘭鎮', '369', 18);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '中區', '400', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '東區', '401', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '南區', '402', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '西區', '403', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '北區', '404', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '北屯區', '406', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '西屯區', '407', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '南屯區', '408', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '太平區', '411', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '大里區', '412', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '霧峰區', '413', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '烏日區', '414', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '豐原區', '420', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '后里區', '421', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '石岡區', '422', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '東勢區', '423', 16);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '和平區', '424', 17);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '新社區', '426', 18);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '潭子區', '427', 19);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '大雅區', '428', 20);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '神岡區', '429', 21);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '大肚區', '432', 22);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '沙鹿區', '433', 23);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '龍井區', '434', 24);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '梧棲區', '435', 25);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '清水區', '436', 26);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '大甲區', '437', 27);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '外埔區', '438', 28);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (8, '大安區', '439', 29);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '彰化市', '500', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '芬園鄉', '502', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '花壇鄉', '503', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '秀水鄉', '504', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '鹿港鎮', '505', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '福興鄉', '506', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '線西鄉', '507', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '和美鎮', '508', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '伸港鄉', '509', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '員林市', '510', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '社頭鄉', '511', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '永靖鄉', '512', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '埔心鄉', '513', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '溪湖鎮', '514', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '大村鄉', '515', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '埔鹽鄉', '516', 16);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '田中鎮', '520', 17);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '北斗鎮', '521', 18);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '田尾鄉', '522', 19);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '埤頭鄉', '523', 20);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '溪州鄉', '524', 21);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '竹塘鄉', '525', 22);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '二林鎮', '526', 23);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '大城鄉', '527', 24);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '芳苑鄉', '528', 25);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (9, '二水鄉', '530', 26);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '南投市', '540', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '中寮鄉', '541', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '草屯鎮', '542', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '國姓鄉', '544', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '埔里鎮', '545', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '仁愛鄉', '546', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '名間鄉', '551', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '集集鎮', '552', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '水里鄉', '553', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '魚池鄉', '555', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '信義鄉', '556', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '竹山鎮', '557', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (10, '鹿谷鄉', '558', 13);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '斗南鎮', '630', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '大埤鄉', '631', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '虎尾鎮', '632', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '土庫鎮', '633', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '褒忠鄉', '634', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '東勢鄉', '635', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '臺西鄉', '636', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '崙背鄉', '637', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '麥寮鄉', '638', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '斗六市', '640', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '林內鄉', '643', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '古坑鄉', '646', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '莿桐鄉', '647', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '西螺鎮', '648', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '二崙鄉', '649', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '北港鎮', '651', 16);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '水林鄉', '652', 17);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '口湖鄉', '653', 18);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '四湖鄉', '654', 19);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (11, '元長鄉', '655', 20);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (12, '東區', '600', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (12, '西區', '600', 2);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '番路鄉', '602', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '梅山鄉', '603', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '竹崎鄉', '604', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '阿里山鄉', '605', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '中埔鄉', '606', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '大埔鄉', '607', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '水上鄉', '608', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '鹿草鄉', '611', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '太保市', '612', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '朴子市', '613', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '東石鄉', '614', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '六腳鄉', '615', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '新港鄉', '616', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '民雄鄉', '621', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '大林鎮', '622', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '溪口鄉', '623', 16);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '義竹鄉', '624', 17);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (13, '布袋鎮', '625', 18);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '中西區', '700', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '東區', '701', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '南區', '702', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '北區', '704', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '安平區', '708', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '安南區', '709', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '永康區', '710', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '歸仁區', '711', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '新化區', '712', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '左鎮區', '713', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '玉井區', '714', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '楠西區', '715', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '南化區', '716', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '仁德區', '717', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '關廟區', '718', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '龍崎區', '719', 16);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '官田區', '720', 17);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '麻豆區', '721', 18);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '佳里區', '722', 19);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '西港區', '723', 20);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '七股區', '724', 21);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '將軍區', '725', 22);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '學甲區', '726', 23);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '北門區', '727', 24);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '新營區', '730', 25);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '後壁區', '731', 26);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '白河區', '732', 27);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '東山區', '733', 28);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '六甲區', '734', 29);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '下營區', '735', 30);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '柳營區', '736', 31);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '鹽水區', '737', 32);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '善化區', '741', 33);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '大內區', '742', 34);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '山上區', '743', 35);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '新市區', '744', 36);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (14, '安定區', '745', 37);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '新興區', '800', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '前金區', '801', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '苓雅區', '802', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '鹽埕區', '803', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '鼓山區', '804', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '旗津區', '805', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '前鎮區', '806', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '三民區', '807', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '楠梓區', '811', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '小港區', '812', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '左營區', '813', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '仁武區', '814', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '大社區', '815', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '岡山區', '820', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '路竹區', '821', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '阿蓮區', '822', 16);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '田寮區', '823', 17);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '燕巢區', '824', 18);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '橋頭區', '825', 19);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '梓官區', '826', 20);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '彌陀區', '827', 21);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '永安區', '828', 22);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '湖內區', '829', 23);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '鳳山區', '830', 24);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '大寮區', '831', 25);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '林園區', '832', 26);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '鳥松區', '833', 27);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '大樹區', '840', 28);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '旗山區', '842', 29);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '美濃區', '843', 30);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '六龜區', '844', 31);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '內門區', '845', 32);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '杉林區', '846', 33);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '甲仙區', '847', 34);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '桃源區', '848', 35);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '那瑪夏區', '849', 36);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '茂林區', '851', 37);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (15, '茄萣區', '852', 38);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '屏東市', '900', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '三地門鄉', '901', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '霧台鄉', '902', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '瑪家鄉', '903', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '九如鄉', '904', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '里港鄉', '905', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '高樹鄉', '906', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '鹽埔鄉', '907', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '長治鄉', '908', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '麟洛鄉', '909', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '竹田鄉', '911', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '內埔鄉', '912', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '萬丹鄉', '913', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '潮州鎮', '920', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '泰武鄉', '921', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '來義鄉', '922', 16);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '萬巒鄉', '923', 17);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '崁頂鄉', '924', 18);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '新埤鄉', '925', 19);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '南州鄉', '926', 20);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '林邊鄉', '927', 21);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '東港鎮', '928', 22);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '琉球鄉', '929', 23);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '佳冬鄉', '931', 24);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '新園鄉', '932', 25);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '枋寮鄉', '940', 26);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '枋山鄉', '941', 27);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '春日鄉', '942', 28);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '獅子鄉', '943', 29);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '車城鄉', '944', 30);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '牡丹鄉', '945', 31);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '恆春鎮', '946', 32);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (16, '滿州鄉', '947', 33);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '臺東市', '950', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '綠島鄉', '951', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '蘭嶼鄉', '952', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '延平鄉', '953', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '卑南鄉', '954', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '鹿野鄉', '955', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '關山鎮', '956', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '海端鄉', '957', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '池上鄉', '958', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '東河鄉', '959', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '成功鎮', '961', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '長濱鄉', '962', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '太麻里鄉', '963', 13);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '金峰鄉', '964', 14);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '大武鄉', '965', 15);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (17, '達仁鄉', '966', 16);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '花蓮市', '970', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '新城鄉', '971', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '秀林鄉', '972', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '吉安鄉', '973', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '壽豐鄉', '974', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '鳳林鎮', '975', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '光復鄉', '976', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '豐濱鄉', '977', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '瑞穗鄉', '978', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '萬榮鄉', '979', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '玉里鎮', '981', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '卓溪鄉', '982', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (18, '富里鄉', '983', 13);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '宜蘭市', '260', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '頭城鎮', '261', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '礁溪鄉', '262', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '壯圍鄉', '263', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '員山鄉', '264', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '羅東鎮', '265', 6);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '三星鄉', '266', 7);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '大同鄉', '267', 8);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '五結鄉', '268', 9);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '冬山鄉', '269', 10);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '蘇澳鎮', '270', 11);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '南澳鄉', '272', 12);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (19, '釣魚臺', '290', 13);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (20, '馬公市', '880', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (20, '西嶼鄉', '881', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (20, '望安鄉', '882', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (20, '七美鄉', '883', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (20, '白沙鄉', '884', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (20, '湖西鄉', '885', 6);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (21, '金沙鎮', '890', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (21, '金湖鎮', '891', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (21, '金寧鄉', '892', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (21, '金城鎮', '893', 4);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (21, '烈嶼鄉', '894', 5);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (21, '烏坵鄉', '896', 6);
+
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '南竿鄉', '209', 1);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '北竿鄉', '210', 2);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '莒光鄉', '211', 3);
+insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '東引鄉', '212', 4);

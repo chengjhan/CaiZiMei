@@ -22,6 +22,10 @@
 			<input type="text" id="id-ci-name" name="ci_name">
 		</div>
 		<div>
+			<label for="id-ci-rank">排序</label>
+			<input type="text" id="id-ci-rank" name="ci_rank">
+		</div>
+		<div>
 			<input type="submit" id="id-submit" value="新增">
 		</div>
 	</form>
@@ -31,6 +35,7 @@
 				<td>編號</td>
 				<td>國家</td>
 				<td>城市</td>
+				<td>排序</td>
 				<td>修改</td>
 				<td>刪除</td>
 			</tr>
@@ -41,11 +46,13 @@
 					<c:param name="ci_id" value="${bean.ci_id}" />
 					<c:param name="co_name" value="${bean.ci_CountryBean.co_name}" />
 					<c:param name="ci_name" value="${bean.ci_name}" />
+					<c:param name="ci_rank" value="${bean.ci_rank}" />
 				</c:url>
 				<tr>
 					<td>${bean.ci_id}</td>
 					<td>${bean.ci_CountryBean.co_name}</td>
 					<td>${bean.ci_name}</td>
+					<td>${bean.ci_rank}</td>
 					<td><a href="${path}">修改</a></td>
 					<td><a href="${root}admin/city/delete.do?ci_id=${bean.ci_id}">刪除</a></td>
 				</tr>

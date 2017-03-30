@@ -10,18 +10,30 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/admin/country/insert.do' />" method="post">
+	<form action="<c:url value='/admin/region/insert.do' />" method="post">
 		<div>
-			<label for="id-co-name">國家</label>
-			<input type="text" id="id-co-name" name="co_name">
+			<label for="id-co-id">國家</label>
+			<select id="id-co-id" name="co_id">
+				<option>請選擇國家</option>
+			</select>
 		</div>
 		<div>
-			<label for="id-co-eng-name">英文</label>
-			<input type="text" id="id-co-eng-name" name="co_eng_name">
+			<label for="id-r-ci-id">城市</label>
+			<select id="id-r-ci-id" name="r_ci_id">
+				<option>請選擇城市</option>
+			</select>
 		</div>
 		<div>
-			<label for="id-co-rank">排序</label>
-			<input type="text" id="id-co-rank" name="co_rank">
+			<label for="id-r-name">區域</label>
+			<input type="text" id="id-r-name" name="r_name">
+		</div>
+		<div>
+			<label for="id-r-zipcode">郵遞區號</label>
+			<input type="text" id="id-r-zipcode" name="r_zipcode">
+		</div>
+		<div>
+			<label for="id-r-rank">排序</label>
+			<input type="text" id="id-r-rank" name="r_rank">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="新增">
@@ -32,7 +44,9 @@
 			<tr>
 				<td>編號</td>
 				<td>國家</td>
-				<td>英文</td>
+				<td>城市</td>
+				<td>區域</td>
+				<td>郵遞區號</td>
 				<td>排序</td>
 				<td>修改</td>
 				<td>刪除</td>

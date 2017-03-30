@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/27
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -141,7 +141,11 @@ public class MemberDAOImpl implements MemberDAO {
 		memberBean.setM_sex(newMemberBean.getM_sex());
 		memberBean.setM_height(newMemberBean.getM_height());
 		memberBean.setM_weight(newMemberBean.getM_weight());
-		memberBean.setM_telephone(newMemberBean.getM_telephone());
+		memberBean.setM_localphone(newMemberBean.getM_localphone());
+		memberBean.setM_mobilephone(newMemberBean.getM_mobilephone());
+		memberBean.setM_zipcode(newMemberBean.getM_zipcode());
+		memberBean.setM_city(newMemberBean.getM_city());
+		memberBean.setM_region(newMemberBean.getM_region());
 		memberBean.setM_address(newMemberBean.getM_address());
 		memberBean.setM_email(newMemberBean.getM_email());
 

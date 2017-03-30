@@ -23,6 +23,10 @@
 			<input type="text" id="id-ci-name" name="ci_name" value="${param.ci_name}">
 		</div>
 		<div>
+			<label for="id-ci-rank">排序</label>
+			<input type="text" id="id-ci-rank" name="ci_rank" value="${param.ci_rank}">
+		</div>
+		<div>
 			<input type="submit" id="id-submit" value="修改">
 		</div>
 	</form>

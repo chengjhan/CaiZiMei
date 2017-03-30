@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicBean.java
  * Author: 詹晟
- * Date: 2017/3/26
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,14 +34,16 @@ public class ClinicBean {
 	private Integer c_id;
 	private String c_name;
 	private String c_eng_name;
-	private String c_telephone;
+	private String c_localphone;
 	@ManyToOne
-	@JoinColumn(name = "c_ci_id")
-	private CityBean c_CityBean;
+	@JoinColumn(name = "c_r_id")
+	private CityBean c_RegionBean;
 	private String c_address;
 	private Double c_latitude;
 	private Double c_longitude;
 	private String c_url;
+	private java.util.Date c_insert_time;
+	private java.util.Date c_update_time;
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "m_ClinicBean")
 	private Set<MemberBean> c_MemberBaan;
@@ -70,20 +72,20 @@ public class ClinicBean {
 		this.c_eng_name = c_eng_name;
 	}
 
-	public String getC_telephone() {
-		return c_telephone;
+	public String getC_localphone() {
+		return c_localphone;
 	}
 
-	public void setC_telephone(String c_telephone) {
-		this.c_telephone = c_telephone;
+	public void setC_localphone(String c_localphone) {
+		this.c_localphone = c_localphone;
 	}
 
-	public CityBean getC_CityBean() {
-		return c_CityBean;
+	public CityBean getC_RegionBean() {
+		return c_RegionBean;
 	}
 
-	public void setC_CityBean(CityBean c_CityBean) {
-		this.c_CityBean = c_CityBean;
+	public void setC_RegionBean(CityBean c_RegionBean) {
+		this.c_RegionBean = c_RegionBean;
 	}
 
 	public String getC_address() {
@@ -116,6 +118,22 @@ public class ClinicBean {
 
 	public void setC_url(String c_url) {
 		this.c_url = c_url;
+	}
+
+	public java.util.Date getC_insert_time() {
+		return c_insert_time;
+	}
+
+	public void setC_insert_time(java.util.Date c_insert_time) {
+		this.c_insert_time = c_insert_time;
+	}
+
+	public java.util.Date getC_update_time() {
+		return c_update_time;
+	}
+
+	public void setC_update_time(java.util.Date c_update_time) {
+		this.c_update_time = c_update_time;
 	}
 
 	public Set<MemberBean> getC_MemberBaan() {

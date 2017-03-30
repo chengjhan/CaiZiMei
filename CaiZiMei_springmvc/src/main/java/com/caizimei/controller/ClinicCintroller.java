@@ -91,13 +91,13 @@ public class ClinicCintroller {
 	public ModelAndView insertProcess(ClinicBean clinicBean,
 			@RequestParam(name = "c_localphone_front") String c_localphone_front,
 			@RequestParam(name = "c_localphone_back") String c_localphone_back,
-			@RequestParam(name = "r_id") String r_id, Model model) {
+			@RequestParam(name = "c_r_id") String c_r_id, Model model) {
 
 		clinicBean.setC_localphone(c_localphone_front + "-" + c_localphone_back);
-		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(r_id)));
+		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(c_r_id)));
 		// 取得經緯度
-		String ci_name = regionService.selectByR_id(Integer.valueOf(r_id)).getR_CityBean().getCi_name();
-		String r_name = regionService.selectByR_id(Integer.valueOf(r_id)).getR_name();
+		String ci_name = regionService.selectByR_id(Integer.valueOf(c_r_id)).getR_CityBean().getCi_name();
+		String r_name = regionService.selectByR_id(Integer.valueOf(c_r_id)).getR_name();
 		Double[] LatLng = new Double[2];
 		try {
 			LatLng = clinicService.addressToLatLng(ci_name + r_name + clinicBean.getC_address());

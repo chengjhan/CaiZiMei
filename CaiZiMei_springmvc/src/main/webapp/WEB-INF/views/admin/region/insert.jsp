@@ -13,7 +13,7 @@
 	<form action="<c:url value='/admin/region/insert.do' />" method="post">
 		<div>
 			<label for="id-co-id">國家</label>
-			<select id="id-co-id" name="co_id">
+			<select id="id-co-id">
 				<option>請選擇國家</option>
 			</select>
 		</div>

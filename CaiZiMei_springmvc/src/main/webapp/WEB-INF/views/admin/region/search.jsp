@@ -9,17 +9,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
+	<c:url value="/" var="root" />
 	<form action="<c:url value='/admin/region/search.do' />" method="get">
 		<div>
 			<label for="id-co-id">國家</label>
-			<select id="id-co-id" name="co_id">
-				<option>請選擇國家</option>
+			<select id="id-co-id">
+				<option value="0">請選擇國家</option>
 			</select>
 		</div>
 		<div>
 			<label for="id-r-ci-id">城市</label>
 			<select id="id-r-ci-id" name="r_ci_id">
-				<option>請選擇城市</option>
+				<option value="0">請選擇城市</option>
 			</select>
 		</div>
 		<div>
@@ -70,5 +71,33 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<script>
+		$(document).ready(function(){
+			$.getJSON("${root}admin/country/select.ajax", function(data){
+				$.each(data, function(index, country){
+					var country_option = $("<option value=" + country.co_id + "></option>").append(country.co_name);
+					$("#id-co-id").append(country_option);
+				});
+			});
+		});
+		
+		$("#id-co-id").change(function(){
+			var co_id = $("#id-co-id").val();
+			$.ajax({
+				url: '${root}admin/city/select-by-country.ajax?ci_co_id=' + co_id,
+				type: 'get',
+				dataType: 'json',
+				success: function(data){
+					var city_select = $("#id-r-ci-id");
+					city_select.empty();
+					city_select.append("<option value='0'>請選擇城市</option>");
+					$.each(data, function(index, city){
+						var city_option = $("<option value=" + city.ci_id + "></option>").append(city.ci_name);
+						city_select.append(city_option);
+					});
+				}
+			});
+		});
+	</script>
 </body>
 </html>

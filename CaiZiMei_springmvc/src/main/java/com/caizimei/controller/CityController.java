@@ -65,15 +65,15 @@ public class CityController {
 	/**
 	 * 新增城市
 	 * 
-	 * @param co_id-->國家流水號
+	 * @param ci_co_id-->國家流水號
 	 * @param cityBean-->CityBean
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
-	public ModelAndView insertProcess(@RequestParam(name = "co_id") Integer co_id, CityBean cityBean, Model model) {
+	public ModelAndView insertProcess(@RequestParam(name = "ci_co_id") Integer ci_co_id, CityBean cityBean, Model model) {
 
-		cityBean.setCi_CountryBean(countryService.selectByCo_id(co_id));
+		cityBean.setCi_CountryBean(countryService.selectByCo_id(ci_co_id));
 		cityService.insert(cityBean);
 		model.addAttribute("cityList", cityService.select());
 

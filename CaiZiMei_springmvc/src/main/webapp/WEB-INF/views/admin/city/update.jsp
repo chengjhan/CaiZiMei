@@ -15,8 +15,8 @@
 			<input type="text" id="id-ci-id" name="ci_id" value="${param.ci_id}">
 		</div>
 		<div>
-			<label for="id-co-name">國家</label>
-			<select id="id-co-name" name="co_name" style="width:150px"></select>
+			<label for="id-ci-co-id">國家</label>
+			<select id="id-ci-co-id" name="ci_co_id" style="width:150px"></select>
 		</div>
 		<div>
 			<label for="id-ci-name">城市</label>
@@ -33,12 +33,11 @@
 	<script>
 		$(document).ready(function(){
 			$.getJSON("${root}admin/country/select.ajax", function(data){
-				var country_select = $("#id-co-name");
-				country_select.append("<option>請選擇國家</option>");
+				var country_select = $("#id-ci-co-id");
+				country_select.append("<option value='0'>請選擇國家</option>");
 				$.each(data, function(index, country){
-					var country_option = $("<option></option>").append(country.co_name);
-					var country_option_selected = "${param.co_name}";
-					if(country.co_name == country_option_selected){
+					var country_option = $("<option value=" + country.co_id + "></option>").append(country.co_name);
+					if(country.co_id == "${param.ci_co_id}"){
 						country_option.attr("selected", "selected");
 					}
 					country_select.append(country_option);

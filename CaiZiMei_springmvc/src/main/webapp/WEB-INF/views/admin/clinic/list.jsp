@@ -20,20 +20,26 @@
 			<input type="text" id="id-c-eng-name" name="c_eng_name">
 		</div>
 		<div>
-			<label for="id-c-telephone">電話</label>
-			<input type="text" id="id-c-telephone" name="c_telephone_front">
-			<input type="text" id="id-c-telephone" name="c_telephone_back">
+			<label for="id-c-localphone">電話</label>
+			<input type="text" id="id-c-localphone" name="c_localphone_front">
+			<input type="text" id="id-c-localphone" name="c_localphone_back">
 		</div>
 		<div>
-			<label for="id-co-name">國家</label>
-			<select id="id-co-name" name="co_name" style="width:150px">
-				<option>請選擇國家</option>
+			<label for="id-co-id">國家</label>
+			<select id="id-co-id" style="width:150px">
+				<option value="0">請選擇國家</option>
 			</select>
 		</div>
 		<div>
-			<label for="id-ci-name">城市</label>
-			<select id="id-ci-name" name="ci_name" style="width:150px">
-				<option>請選擇城市</option>
+			<label for="id-ci-id">城市</label>
+			<select id="id-ci-id" style="width:150px">
+				<option value="0">請選擇城市</option>
+			</select>
+		</div>
+		<div>
+			<label for="id-c-r-id">區域</label>
+			<select id="id-c-r-id" name="c_r_id" style="width:150px">
+				<option value="0">請選擇區域</option>
 			</select>
 		</div>
 		<div>
@@ -52,42 +58,51 @@
 		<thead>
 			<tr>
 				<td>編號</td>
+				<td>流水號</td>
 				<td>名稱</td>
 				<td>英文名稱</td>
 				<td>電話</td>
 				<td>國家</td>
 				<td>城市</td>
+				<td>區域</td>
 				<td>地址</td>
 				<td>緯度</td>
 				<td>經度</td>
 				<td>網址</td>
+				<td>新增時間</td>
+				<td>更新時間</td>
 				<td>修改</td>
 				<td>刪除</td>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${clinicList}">
+			<c:forEach var="bean" items="${clinicList}" varStatus="status">
 				<c:url value="/admin/clinic/update" var="path">
 					<c:param name="c_id" value="${bean.c_id}" />
 					<c:param name="c_name" value="${bean.c_name}" />
 					<c:param name="c_eng_name" value="${bean.c_eng_name}" />
-					<c:param name="c_telephone" value="${bean.c_telephone}" />
-					<c:param name="co_name" value="${bean.c_CityBean.ci_CountryBean.co_name}" />
-					<c:param name="ci_name" value="${bean.c_CityBean.ci_name}" />
+					<c:param name="c_localphone" value="${bean.c_localphone}" />
+					<c:param name="co_id" value="${bean.c_RegionBean.r_CityBean.ci_CountryBean.co_id}" />
+					<c:param name="ci_id" value="${bean.c_RegionBean.r_CityBean.ci_id}" />
+					<c:param name="r_id" value="${bean.c_RegionBean.r_id}" />
 					<c:param name="c_address" value="${bean.c_address}" />
 					<c:param name="c_url" value="${bean.c_url}" />
 				</c:url>
 				<tr>
+					<td>${status.count}</td>
 					<td>${bean.c_id}</td>
 					<td>${bean.c_name}</td>
 					<td>${bean.c_eng_name}</td>
-					<td>${bean.c_telephone}</td>
-					<td>${bean.c_CityBean.ci_CountryBean.co_name}</td>
-					<td>${bean.c_CityBean.ci_name}</td>
+					<td>${bean.c_localphone}</td>
+					<td>${bean.c_RegionBean.r_CityBean.ci_CountryBean.co_name}</td>
+					<td>${bean.c_RegionBean.r_CityBean.ci_name}</td>
+					<td>${bean.c_RegionBean.r_name}</td>
 					<td>${bean.c_address}</td>
 					<td>${bean.c_latitude}</td>
 					<td>${bean.c_longitude}</td>
 					<td><a href="${bean.c_url}">${bean.c_url}</a></td>
+					<td>${bean.c_insert_time}</td>
+					<td>${bean.c_update_time}</td>
 					<td><a href="${path}">修改</a></td>
 					<td><a href="${root}admin/clinic/delete.do?c_id=${bean.c_id}">刪除</a></td>
 				</tr>
@@ -96,30 +111,42 @@
 	</table>
 	<script>
 		$(document).ready(function(){
-			var country_select = $("#id-co-name");
 			$.getJSON("${root}admin/country/select.ajax", function(data){
 				$.each(data, function(index, country){
-					var country_option = $("<option></option>").append(country.co_name);
-					country_select.append(country_option);
+					var country_option = $("<option value=" + country.co_id + "></option>").append(country.co_name);
+					$("#id-co-id").append(country_option);
 				});
 			});
 		});
 	
-		$("#id-co-name").change(function(){
-			var co_name = $("#id-co-name").val();
-			var city_select = $("#id-ci-name");
+		$("#id-co-id").change(function(){
+			var co_id = $("#id-co-id").val();
 			$.ajax({
-				url: '${root}admin/city/select-by-country.ajax?co_name=' + co_name,
+				url: '${root}admin/city/select-by-country.ajax?ci_co_id=' + co_id,
 				type: 'get',
 				dataType: 'json',
 				success: function(data){
+					var city_select = $("#id-ci-id");
 					city_select.empty();
-					city_select.append("<option>請選擇城市</option>");
+					city_select.append("<option value='0'>請選擇城市</option>");
 					$.each(data, function(index, city){
-						var city_option = $("<option></option>").append(city.ci_name);
+						var city_option = $("<option value=" + city.ci_id + "></option>").append(city.ci_name);
 						city_select.append(city_option);
 					});
 				}
+			});
+		});
+		
+		$("#id-ci-id").change(function(){
+			var ci_id = $("#id-ci-id").val();
+			$.getJSON("${root}admin/region/select-by-city.ajax", {"r_ci_id": ci_id}, function(data){
+				var region_select = $("#id-c-r-id");
+				region_select.empty();
+				region_select.append("<option value='0'>請選擇區域</option>");
+				$.each(data, function(index, region){
+					var region_option = $("<option value=" + region.r_id + "></option>").append(region.r_name);
+					region_select.append(region_option);
+				});
 			});
 		});
 	</script>

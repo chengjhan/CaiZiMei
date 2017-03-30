@@ -12,9 +12,9 @@
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/admin/city/insert.do' />" method="post">
 		<div>
-			<label for="id-co-id">國家</label>
-			<select id="id-co-id" name="co_id">
-				<option>請選擇國家</option>
+			<label for="id-ci-co-id">國家</label>
+			<select id="id-ci-co-id" name="ci_co_id">
+				<option value="0">請選擇國家</option>
 			</select>
 		</div>
 		<div>
@@ -33,6 +33,7 @@
 		<thead>
 			<tr>
 				<td>編號</td>
+				<td>流水號</td>
 				<td>國家</td>
 				<td>城市</td>
 				<td>排序</td>
@@ -41,14 +42,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${cityList}">
+			<c:forEach var="bean" items="${cityList}" varStatus="status">
 				<c:url value="/admin/city/update" var="path">
 					<c:param name="ci_id" value="${bean.ci_id}" />
-					<c:param name="co_name" value="${bean.ci_CountryBean.co_name}" />
+					<c:param name="ci_co_id" value="${bean.ci_CountryBean.co_id}" />
 					<c:param name="ci_name" value="${bean.ci_name}" />
 					<c:param name="ci_rank" value="${bean.ci_rank}" />
 				</c:url>
 				<tr>
+					<td>${status.count}</td>
 					<td>${bean.ci_id}</td>
 					<td>${bean.ci_CountryBean.co_name}</td>
 					<td>${bean.ci_name}</td>
@@ -61,11 +63,10 @@
 	</table>
 	<script>
 		$(document).ready(function(){
-			var country_select = $("#id-co-id");
 			$.getJSON("${root}admin/country/select.ajax", function(data){
 				$.each(data, function(index, country){
 					var country_option = $("<option value=" + country.co_id + "></option>").append(country.co_name);
-					country_select.append(country_option);
+					$("#id-ci-co-id").append(country_option);
 				});
 			});
 		});

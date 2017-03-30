@@ -76,6 +76,7 @@ public class ClinicServiceImpl implements ClinicService {
 	 * @return List<ClinicBean>
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public List<ClinicBean> selectByC_r_id(Integer c_r_id) {
 
 		return clinicDAO.selectByC_r_id(c_r_id);

@@ -63,6 +63,21 @@ public class ClinicCintroller {
 	}
 
 	/**
+	 * 條件搜尋
+	 * 
+	 * @param clinicBean-->ClinicBean
+	 * @return /WEB-INF/views/admin/clinic/search.jsp
+	 */
+	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
+	public ModelAndView selectByConditionsProcess(ClinicBean clinicBean, Model model) {
+
+		model.addAttribute("selectByConditions",
+				clinicService.selectByConditions(clinicBean.getC_name().trim(), clinicBean.getC_localphone().trim()));
+
+		return new ModelAndView("admin/clinic/search");
+	}
+
+	/**
 	 * 新增診所
 	 * 
 	 * @param clinicBean-->ClinicBean
@@ -80,20 +95,17 @@ public class ClinicCintroller {
 
 		clinicBean.setC_localphone(c_localphone_front + "-" + c_localphone_back);
 		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(r_id)));
-		//
-		// 需要修改
-		//
+		// 取得經緯度
+		String ci_name = regionService.selectByR_id(Integer.valueOf(r_id)).getR_CityBean().getCi_name();
+		String r_name = regionService.selectByR_id(Integer.valueOf(r_id)).getR_name();
 		Double[] LatLng = new Double[2];
 		try {
-			LatLng = clinicService.addressToLatLng(clinicBean.getC_address());
+			LatLng = clinicService.addressToLatLng(ci_name + r_name + clinicBean.getC_address());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		clinicBean.setC_latitude(LatLng[0]);
 		clinicBean.setC_longitude(LatLng[1]);
-		//
-		//
-		//
 
 		clinicService.insert(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
@@ -128,21 +140,19 @@ public class ClinicCintroller {
 		clinicBean.setC_localphone(c_localphone);
 		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(r_id)));
 		clinicBean.setC_address(c_address);
-		//
-		// 需要修改
-		//
+		// 取得經緯度
+		String ci_name = regionService.selectByR_id(Integer.valueOf(r_id)).getR_CityBean().getCi_name();
+		String r_name = regionService.selectByR_id(Integer.valueOf(r_id)).getR_name();
 		Double[] LatLng = new Double[2];
 		try {
-			LatLng = clinicService.addressToLatLng(c_address);
+			LatLng = clinicService.addressToLatLng(ci_name + r_name + c_address);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//
-		//
-		//
 		clinicBean.setC_latitude(LatLng[0]);
 		clinicBean.setC_longitude(LatLng[1]);
 		clinicBean.setC_url(c_url);
+
 		clinicService.update(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
 
@@ -166,34 +176,21 @@ public class ClinicCintroller {
 	}
 
 	/**
-	 * 條件搜尋
+	 * 搜尋區域中的所有診所 (ajax)
 	 * 
-	 * @param clinicBean-->ClinicBean
-	 * @return /WEB-INF/views/admin/clinic/search.jsp
-	 */
-	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
-	public ModelAndView selectByConditionsProcess(ClinicBean clinicBean, Model model) {
-
-		model.addAttribute("selectByConditions",
-				clinicService.selectByConditions(clinicBean.getC_name().trim(), clinicBean.getC_localphone().trim()));
-
-		return new ModelAndView("admin/clinic/search");
-	}
-
-	/**
-	 * 搜尋城市中的所有診所 (ajax)
-	 * 
-	 * @param ci_name-->城市名
-	 * @return 城市中的所有診所json
+	 * @param c_r_id-->區域流水號
+	 * @return 診所json
 	 */
 	@RequestMapping(path = "/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String selectByCityAjaxProcess(String ci_name) {
-		List<ClinicBean> result = clinicService.selectByCi_name(ci_name);
+	public String selectByRegionAjaxProcess(String c_r_id) {
+
+		List<ClinicBean> result = clinicService.selectByC_r_id(Integer.valueOf(c_r_id));
 
 		List<ClinicBean> jsonList = new ArrayList<ClinicBean>();
 		for (ClinicBean bean : result) {
 			ClinicBean jsonBean = new ClinicBean();
+			jsonBean.setC_id(bean.getC_id());
 			jsonBean.setC_name(bean.getC_name());
 			jsonList.add(jsonBean);
 		}

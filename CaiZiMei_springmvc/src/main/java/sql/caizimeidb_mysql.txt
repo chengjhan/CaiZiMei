@@ -1,10 +1,10 @@
 -- MySQL
 
-drop database if exists caizimeidb;
+drop database if exists caizimeidb2;
 
-create database if not exists caizimeidb;
+create database if not exists caizimeidb2;
 
-use caizimeidb;
+use caizimeidb2;
 
 create table country(
 	co_id					int auto_increment not null,
@@ -63,6 +63,7 @@ create table member(
     m_localphone			varchar(20),
     m_mobilephone			varchar(20),
     m_zipcode				varchar(10),
+    m_country				varchar(10),
     m_city					nvarchar(10),
     m_region				nvarchar(10),
     m_address				nvarchar(50),
@@ -70,8 +71,8 @@ create table member(
     m_limit					tinyint not null,
     m_signup_time			timestamp default current_timestamp,
     m_signin_number			int,
-    m_ip					varchar(20),
-    m_signin_time			timestamp on update current_timestamp,
+    m_signin_ip				varchar(20),
+    m_signin_time			datetime,
     primary key (m_id)
 );
 

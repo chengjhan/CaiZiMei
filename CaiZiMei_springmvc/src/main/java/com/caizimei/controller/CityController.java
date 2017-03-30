@@ -83,15 +83,15 @@ public class CityController {
 	/**
 	 * 修改城市資訊
 	 * 
+	 * @param co_id-->國家流水號
 	 * @param cityBean-->CityBean
-	 * @param co_name-->國家名
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(CityBean cityBean, @RequestParam(name = "co_name") String co_name, Model model) {
+	public ModelAndView updateProcess(@RequestParam(name = "co_id") Integer co_id, CityBean cityBean, Model model) {
 
-		cityBean.setCi_CountryBean(countryService.selectByCo_name(co_name));
+		cityBean.setCi_CountryBean(countryService.selectByCo_id(co_id));
 		cityService.update(cityBean);
 		model.addAttribute("cityList", cityService.select());
 
@@ -117,18 +117,19 @@ public class CityController {
 	/**
 	 * 搜尋國家中的所有城市 (ajax)
 	 * 
-	 * @param co_name-->國家名
-	 * @return 國家中的所有城市json
+	 * @param ci_co_id-->國家流水號
+	 * @return 城市json
 	 */
 	@RequestMapping(path = "/select-by-country.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String selectByCountryAjaxProcess(String co_name) {
+	public String selectByCountryAjaxProcess(Integer ci_co_id) {
 
-		List<CityBean> result = cityService.selectByCo_name(co_name);
+		List<CityBean> result = cityService.selectByCi_co_id(ci_co_id);
 
 		List<CityBean> jsonList = new ArrayList<CityBean>();
 		for (CityBean bean : result) {
 			CityBean jsonBean = new CityBean();
+			jsonBean.setCi_id(bean.getCi_id());
 			jsonBean.setCi_name(bean.getCi_name());
 			jsonList.add(jsonBean);
 		}

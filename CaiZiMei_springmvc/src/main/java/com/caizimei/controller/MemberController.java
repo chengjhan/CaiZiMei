@@ -239,8 +239,8 @@ public class MemberController {
 	@RequestMapping(path = "/admin/member/select.do", method = RequestMethod.GET)
 	public ModelAndView selectByConditionsProcess(MemberBean memberBean, Model model) {
 
-		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_firstname(),
-				memberBean.getM_lastname(), memberBean.getM_localphone(), memberBean.getM_email()));
+		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_lastname(),
+				memberBean.getM_firstname(), memberBean.getM_localphone(), memberBean.getM_email()));
 
 		return new ModelAndView("admin/member/search");
 	}

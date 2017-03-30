@@ -1,10 +1,10 @@
 -- MySQL
 
-drop database if exists caizimeidb2;
+drop database if exists caizimeidb;
 
-create database if not exists caizimeidb2;
+create database if not exists caizimeidb;
 
-use caizimeidb2;
+use caizimeidb;
 
 create table country(
 	co_id					int auto_increment not null,

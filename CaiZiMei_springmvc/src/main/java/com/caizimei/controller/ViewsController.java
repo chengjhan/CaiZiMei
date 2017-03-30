@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/3/27
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -203,6 +203,39 @@ public class ViewsController {
 	public ModelAndView admin_member_search() {
 
 		return new ModelAndView("admin/member/search");
+	}
+
+	/**
+	 * admin/region/insert 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/region/insert.jsp
+	 */
+	@RequestMapping(value = "/admin/region/insert", method = RequestMethod.GET)
+	public ModelAndView admin_region_insert() {
+
+		return new ModelAndView("admin/region/insert");
+	}
+
+	/**
+	 * admin/region/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/region/search.jsp
+	 */
+	@RequestMapping(value = "/admin/region/search", method = RequestMethod.GET)
+	public ModelAndView admin_region_search() {
+
+		return new ModelAndView("admin/region/search");
+	}
+
+	/**
+	 * admin/region/update 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/region/update.jsp
+	 */
+	@RequestMapping(value = "/admin/region/update", method = RequestMethod.GET)
+	public ModelAndView admin_region_update() {
+
+		return new ModelAndView("admin/region/update");
 	}
 
 }

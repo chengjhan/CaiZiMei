@@ -25,7 +25,7 @@ public interface MemberDAO {
 
 	MemberBean selectByM_username(String m_username);
 
-	List<MemberBean> selectByConditions(String m_firstname, String m_lastname, String m_telephone, String m_email);
+	List<MemberBean> selectByConditions(String m_lastname, String m_firstname, String m_mobilephone, String m_email);
 
 	MemberBean insert(MemberBean memberBean);
 

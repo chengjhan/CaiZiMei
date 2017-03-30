@@ -106,7 +106,7 @@ public class CountryController {
 	/**
 	 * 搜尋全部國家 (ajax)
 	 * 
-	 * @return 所有國家json
+	 * @return 國家json
 	 */
 	@RequestMapping(path = "/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody

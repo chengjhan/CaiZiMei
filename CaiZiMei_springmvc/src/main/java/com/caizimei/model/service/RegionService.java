@@ -27,6 +27,8 @@ public interface RegionService {
 
 	RegionBean selectByR_zipcode(String r_zipcode);
 
+	List<RegionBean> selectByConditions(Integer r_ci_id, String r_name, String r_zipcode);
+
 	RegionBean insert(RegionBean regionBean);
 
 	RegionBean update(RegionBean regionBean);

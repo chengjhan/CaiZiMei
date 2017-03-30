@@ -18,8 +18,7 @@
 		</div>
 		<div>
 			<label for="id-r-ci-id">城市</label>
-			<select id="id-r-ci-id"
-				name="r_ci_id">
+			<select id="id-r-ci-id" name="r_ci_id">
 				<option>請選擇城市</option>
 			</select>
 		</div>

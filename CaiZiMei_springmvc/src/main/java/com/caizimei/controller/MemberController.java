@@ -220,7 +220,6 @@ public class MemberController {
 		memberBean.setM_salt(m_salt);
 		memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
 		memberBean.setM_localphone(m_telephone_front + "-" + m_telephone_back);
-		memberBean.setM_signup_time(new java.util.Date());
 
 		memberService.signUp(memberBean);
 		memberService.signIn(memberBean.getM_username(), m_password);

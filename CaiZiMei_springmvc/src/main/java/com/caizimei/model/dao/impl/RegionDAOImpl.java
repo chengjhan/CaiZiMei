@@ -10,11 +10,14 @@ package com.caizimei.model.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.caizimei.model.dao.RegionDAO;
+import com.caizimei.model.entity.MemberBean;
 import com.caizimei.model.entity.RegionBean;
 
 /**
@@ -83,6 +86,33 @@ public class RegionDAOImpl implements RegionDAO {
 
 		return (List<RegionBean>) hibernateTemplate.findByNamedParam("from RegionBean where r_zipcode=:r_zipcode",
 				"r_zipcode", r_zipcode);
+	}
+
+	/**
+	 * 條件搜尋
+	 * 
+	 * @param r_ci_id-->城市流水號
+	 * @param r_name-->區域名
+	 * @param r_zipcode-->郵遞區號
+	 * @return List<RegionBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<RegionBean> selectByConditions(Integer r_ci_id, String r_name, String r_zipcode) {
+
+		DetachedCriteria criteria = DetachedCriteria.forClass(MemberBean.class);
+
+		if (r_ci_id != null) {
+			criteria.add(Restrictions.eq("r_ci_id", r_ci_id));
+		}
+		if (r_name != null && !r_name.trim().isEmpty()) {
+			criteria.add(Restrictions.like("r_name", "%" + r_name + "%"));
+		}
+		if (r_zipcode != null && !r_zipcode.trim().isEmpty()) {
+			criteria.add(Restrictions.like("r_zipcode", "%" + r_zipcode + "%"));
+		}
+
+		return (List<RegionBean>) hibernateTemplate.findByCriteria(criteria);
 	}
 
 	/**

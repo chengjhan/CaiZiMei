@@ -99,7 +99,7 @@ public class CityController {
 	}
 
 	/**
-	 * 刪除國家
+	 * 刪除城市
 	 * 
 	 * @param cityBean-->CityBean
 	 * @param model-->Model

@@ -98,6 +98,21 @@ public class RegionServiceImpl implements RegionService {
 	}
 
 	/**
+	 * 條件搜尋
+	 * 
+	 * @param r_ci_id-->城市流水號
+	 * @param r_name-->區域名
+	 * @param r_zipcode-->郵遞區號
+	 * @return List<RegionBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<RegionBean> selectByConditions(Integer r_ci_id, String r_name, String r_zipcode) {
+
+		return regionDAO.selectByConditions(r_ci_id, r_name, r_zipcode);
+	}
+
+	/**
 	 * 新增區域
 	 * 
 	 * @param regionBean-->RegionBean

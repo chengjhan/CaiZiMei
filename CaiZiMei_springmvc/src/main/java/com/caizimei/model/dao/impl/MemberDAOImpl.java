@@ -81,27 +81,27 @@ public class MemberDAOImpl implements MemberDAO {
 	/**
 	 * 條件搜尋
 	 * 
-	 * @param m_firstname-->會員名
 	 * @param m_lastname-->會員姓
-	 * @param m_telephone-->會員電話
+	 * @param m_firstname-->會員名
+	 * @param m_mobilephone-->會員手機
 	 * @param m_email-->會員信箱
 	 * @return List<MemberBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<MemberBean> selectByConditions(String m_firstname, String m_lastname, String m_telephone,
+	public List<MemberBean> selectByConditions(String m_lastname, String m_firstname, String m_mobilephone,
 			String m_email) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(MemberBean.class);
 
-		if (m_firstname != null && !m_firstname.trim().isEmpty()) {
-			criteria.add(Restrictions.like("m_firstname", "%" + m_firstname + "%"));
-		}
 		if (m_lastname != null && !m_lastname.trim().isEmpty()) {
 			criteria.add(Restrictions.like("m_lastname", "%" + m_lastname + "%"));
 		}
-		if (m_telephone != null && !m_telephone.trim().isEmpty()) {
-			criteria.add(Restrictions.eq("m_telephone", m_telephone));
+		if (m_firstname != null && !m_firstname.trim().isEmpty()) {
+			criteria.add(Restrictions.like("m_firstname", "%" + m_firstname + "%"));
+		}
+		if (m_mobilephone != null && !m_mobilephone.trim().isEmpty()) {
+			criteria.add(Restrictions.eq("m_mobilephone", m_mobilephone));
 		}
 		if (m_email != null && !m_email.trim().isEmpty()) {
 			criteria.add(Restrictions.like("m_email", "%" + m_email + "%"));
@@ -144,6 +144,7 @@ public class MemberDAOImpl implements MemberDAO {
 		memberBean.setM_localphone(newMemberBean.getM_localphone());
 		memberBean.setM_mobilephone(newMemberBean.getM_mobilephone());
 		memberBean.setM_zipcode(newMemberBean.getM_zipcode());
+		memberBean.setM_country(newMemberBean.getM_country());
 		memberBean.setM_city(newMemberBean.getM_city());
 		memberBean.setM_region(newMemberBean.getM_region());
 		memberBean.setM_address(newMemberBean.getM_address());
@@ -176,11 +177,11 @@ public class MemberDAOImpl implements MemberDAO {
 	 */
 	@Override
 	public MemberBean updateM_signin_number(Integer m_id) {
-		
+
 		MemberBean memberBean = hibernateTemplate.get(MemberBean.class, m_id);
 		Integer m_signin_number = hibernateTemplate.get(MemberBean.class, m_id).getM_signin_number();
 		memberBean.setM_signin_number(m_signin_number + 1);
-		
+
 		return memberBean;
 	}
 
@@ -197,7 +198,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	/**
-	 * 修改登入時間
+	 * 更新登入時間
 	 * 
 	 * @param m_id-->會員流水號
 	 * @return memberBean-->MemberBean

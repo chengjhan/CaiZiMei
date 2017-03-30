@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/27
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,17 +46,15 @@ public class ClinicDAOImpl implements ClinicDAO {
 	}
 
 	/**
-	 * 城市流水號搜尋
+	 * 診所流水號搜尋
 	 * 
-	 * @param c_ci_id-->城市流水號
+	 * @param c_id-->診所流水號
 	 * @return List<ClinicBean>
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public List<ClinicBean> selectByC_ci_id(Integer c_ci_id) {
+	public ClinicBean selectByC_id(Integer c_id) {
 
-		return (List<ClinicBean>) hibernateTemplate.findByNamedParam("from ClinicBean where c_ci_id=:c_ci_id",
-				"c_ci_id", c_ci_id);
+		return hibernateTemplate.get(ClinicBean.class, c_id);
 	}
 
 	/**
@@ -74,23 +72,37 @@ public class ClinicDAOImpl implements ClinicDAO {
 	}
 
 	/**
-	 * 條件搜尋
+	 * 城市流水號搜尋
 	 * 
-	 * @param c_name-->診所名
-	 * @param c_telephone-->診所電話
+	 * @param c_ci_id-->城市流水號
 	 * @return List<ClinicBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ClinicBean> selectByConditions(String c_name, String c_telephone) {
+	public List<ClinicBean> selectByC_r_id(Integer c_r_id) {
+
+		return (List<ClinicBean>) hibernateTemplate.findByNamedParam("from ClinicBean where c_r_id=:c_r_id", "c_r_id",
+				c_r_id);
+	}
+
+	/**
+	 * 條件搜尋
+	 * 
+	 * @param c_name-->診所名
+	 * @param c_localphone-->診所電話
+	 * @return List<ClinicBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<ClinicBean> selectByConditions(String c_name, String c_localphone) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(ClinicBean.class);
 
 		if (c_name != null && !c_name.trim().isEmpty()) {
 			criteria.add(Restrictions.like("c_name", "%" + c_name + "%"));
 		}
-		if (c_telephone != null && !c_telephone.trim().isEmpty()) {
-			criteria.add(Restrictions.like("c_telephone", "%" + c_telephone + "%"));
+		if (c_localphone != null && !c_localphone.trim().isEmpty()) {
+			criteria.add(Restrictions.like("c_localphone", "%" + c_localphone + "%"));
 		}
 
 		return (List<ClinicBean>) hibernateTemplate.findByCriteria(criteria);

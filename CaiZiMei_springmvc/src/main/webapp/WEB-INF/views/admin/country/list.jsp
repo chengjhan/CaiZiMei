@@ -31,6 +31,7 @@
 		<thead>
 			<tr>
 				<td>編號</td>
+				<td>流水號</td>
 				<td>國家</td>
 				<td>英文</td>
 				<td>排序</td>
@@ -39,7 +40,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${countryList}">
+			<c:forEach var="bean" items="${countryList}" varStatus="status">
 				<c:url value="/admin/country/update" var="path">
 					<c:param name="co_id" value="${bean.co_id}" />
 					<c:param name="co_name" value="${bean.co_name}" />
@@ -47,6 +48,7 @@
 					<c:param name="co_rank" value="${bean.co_rank}" />
 				</c:url>
 				<tr>
+					<td>${status.count}</td>
 					<td>${bean.co_id}</td>
 					<td>${bean.co_name}</td>
 					<td>${bean.co_eng_name}</td>

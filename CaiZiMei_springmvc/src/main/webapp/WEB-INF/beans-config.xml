@@ -25,6 +25,7 @@
 				<value>com.caizimei.model.entity.CountryBean</value>
 				<value>com.caizimei.model.entity.MemberBean</value>
 				<value>com.caizimei.model.entity.PurchaseBean</value>
+				<value>com.caizimei.model.entity.RegionBean</value>
 			</list>
 		</property>
 	</bean>

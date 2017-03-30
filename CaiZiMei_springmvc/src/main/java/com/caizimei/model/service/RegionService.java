@@ -1,23 +1,23 @@
 /*
  * CaiZiMei
- * File: RegionDAO.java
+ * File: RegionService.java
  * Author: 詹晟
  * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.model.dao;
+package com.caizimei.model.service;
 
 import java.util.List;
 
 import com.caizimei.model.entity.RegionBean;
 
 /**
- * region DAO interface
- *
+ * region service interface
+ * 
  * @author 詹晟
  */
-public interface RegionDAO {
+public interface RegionService {
 
 	RegionBean selectByR_id(Integer r_id);
 
@@ -25,7 +25,7 @@ public interface RegionDAO {
 
 	List<RegionBean> selectByR_name(String r_name);
 
-	List<RegionBean> selectByR_zipcode(String r_zipcode);
+	RegionBean selectByR_zipcode(String r_zipcode);
 
 	RegionBean insert(RegionBean regionBean);
 

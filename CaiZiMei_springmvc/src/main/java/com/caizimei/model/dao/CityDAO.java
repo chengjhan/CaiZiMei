@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDAO.java
  * Author: 詹晟
- * Date: 2017/3/19
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -23,9 +23,9 @@ public interface CityDAO {
 
 	CityBean selectByCi_id(Integer ci_id);
 
-	List<CityBean> selectByCi_name(String ci_name);
-
 	List<CityBean> selectByCi_co_id(Integer ci_co_id);
+
+	List<CityBean> selectByCi_name(String ci_name);
 
 	CityBean insert(CityBean cityBean);
 

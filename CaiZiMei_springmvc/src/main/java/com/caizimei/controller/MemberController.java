@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/3/28
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -142,7 +142,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		memberBean.setM_birth(m_birth);
-		memberBean.setM_telephone(m_telephone_front + "-" + m_telephone_back);
+		memberBean.setM_localphone(m_telephone_front + "-" + m_telephone_back);
 		memberBean.setM_limit(0);
 
 		memberService.signUp(memberBean);
@@ -213,7 +213,7 @@ public class MemberController {
 
 		memberBean.setM_salt(m_salt);
 		memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
-		memberBean.setM_telephone(m_telephone_front + "-" + m_telephone_back);
+		memberBean.setM_localphone(m_telephone_front + "-" + m_telephone_back);
 		memberBean.setM_signup_time(new java.util.Date());
 
 		memberService.signUp(memberBean);
@@ -234,7 +234,7 @@ public class MemberController {
 	public ModelAndView selectByConditionsProcess(MemberBean memberBean, Model model) {
 
 		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_firstname(),
-				memberBean.getM_lastname(), memberBean.getM_telephone(), memberBean.getM_email()));
+				memberBean.getM_lastname(), memberBean.getM_localphone(), memberBean.getM_email()));
 
 		return new ModelAndView("admin/member/search");
 	}

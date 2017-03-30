@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/3/27
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.ClinicBean;
-import com.caizimei.model.service.CityService;
 import com.caizimei.model.service.ClinicService;
+import com.caizimei.model.service.RegionService;
 import com.google.gson.Gson;
 
 /**
@@ -43,10 +43,10 @@ public class ClinicCintroller {
 	private ClinicService clinicService;
 
 	/**
-	 * 注入 CityService
+	 * 注入 RegionService
 	 */
 	@Autowired
-	private CityService cityService;
+	private RegionService regionService;
 
 	/**
 	 * 搜尋全部診所
@@ -66,20 +66,23 @@ public class ClinicCintroller {
 	 * 新增診所
 	 * 
 	 * @param clinicBean-->ClinicBean
-	 * @param c_telephone_front-->診所電話(前碼)
-	 * @param c_telephone_back-->診所電話(後碼)
-	 * @param ci_name-->城市名
+	 * @param c_localphone_front-->診所電話(前碼)
+	 * @param c_localphone_back-->診所電話(後碼)
+	 * @param r_id-->區域流水號
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
 	public ModelAndView insertProcess(ClinicBean clinicBean,
-			@RequestParam(name = "c_telephone_front") String c_telephone_front,
-			@RequestParam(name = "c_telephone_back") String c_telephone_back,
-			@RequestParam(name = "ci_name") String ci_name, Model model) {
+			@RequestParam(name = "c_localphone_front") String c_localphone_front,
+			@RequestParam(name = "c_localphone_back") String c_localphone_back,
+			@RequestParam(name = "r_id") String r_id, Model model) {
 
-		clinicBean.setC_telephone(c_telephone_front + "-" + c_telephone_back);
-		clinicBean.setC_CityBean(cityService.selectByCi_name(ci_name));
+		clinicBean.setC_localphone(c_localphone_front + "-" + c_localphone_back);
+		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(r_id)));
+		//
+		// 需要修改
+		//
 		Double[] LatLng = new Double[2];
 		try {
 			LatLng = clinicService.addressToLatLng(clinicBean.getC_address());
@@ -88,6 +91,9 @@ public class ClinicCintroller {
 		}
 		clinicBean.setC_latitude(LatLng[0]);
 		clinicBean.setC_longitude(LatLng[1]);
+		//
+		//
+		//
 
 		clinicService.insert(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
@@ -101,8 +107,8 @@ public class ClinicCintroller {
 	 * @param c_id-->診所流水號
 	 * @param c_name-->診所名
 	 * @param c_eng_name-->診所英文名
-	 * @param c_telephone-->診所電話
-	 * @param ci_name-->城市名
+	 * @param c_localphone-->診所電話
+	 * @param r_id-->區域流水號
 	 * @param c_address-->診所地址
 	 * @param c_url-->診所網址
 	 * @param model-->Model
@@ -111,7 +117,7 @@ public class ClinicCintroller {
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProcess(@RequestParam(name = "c_id") String c_id,
 			@RequestParam(name = "c_name") String c_name, @RequestParam(name = "c_eng_name") String c_eng_name,
-			@RequestParam(name = "c_telephone") String c_telephone, @RequestParam(name = "ci_name") String ci_name,
+			@RequestParam(name = "c_localphone") String c_localphone, @RequestParam(name = "r_id") String r_id,
 			@RequestParam(name = "c_address") String c_address, @RequestParam(name = "c_url") String c_url,
 			Model model) {
 
@@ -119,15 +125,21 @@ public class ClinicCintroller {
 		clinicBean.setC_id(Integer.parseInt(c_id));
 		clinicBean.setC_name(c_name);
 		clinicBean.setC_eng_name(c_eng_name);
-		clinicBean.setC_telephone(c_telephone);
-		clinicBean.setC_CityBean(cityService.selectByCi_name(ci_name));
+		clinicBean.setC_localphone(c_localphone);
+		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(r_id)));
 		clinicBean.setC_address(c_address);
+		//
+		// 需要修改
+		//
 		Double[] LatLng = new Double[2];
 		try {
 			LatLng = clinicService.addressToLatLng(c_address);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		//
+		//
+		//
 		clinicBean.setC_latitude(LatLng[0]);
 		clinicBean.setC_longitude(LatLng[1]);
 		clinicBean.setC_url(c_url);
@@ -163,7 +175,7 @@ public class ClinicCintroller {
 	public ModelAndView selectByConditionsProcess(ClinicBean clinicBean, Model model) {
 
 		model.addAttribute("selectByConditions",
-				clinicService.selectByConditions(clinicBean.getC_name().trim(), clinicBean.getC_telephone().trim()));
+				clinicService.selectByConditions(clinicBean.getC_name().trim(), clinicBean.getC_localphone().trim()));
 
 		return new ModelAndView("admin/clinic/search");
 	}

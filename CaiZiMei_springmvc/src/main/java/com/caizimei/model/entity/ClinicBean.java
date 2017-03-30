@@ -37,7 +37,7 @@ public class ClinicBean {
 	private String c_localphone;
 	@ManyToOne
 	@JoinColumn(name = "c_r_id")
-	private CityBean c_RegionBean;
+	private RegionBean c_RegionBean;
 	private String c_address;
 	private Double c_latitude;
 	private Double c_longitude;
@@ -80,12 +80,12 @@ public class ClinicBean {
 		this.c_localphone = c_localphone;
 	}
 
-	public CityBean getC_RegionBean() {
+	public RegionBean getC_RegionBean() {
 		return c_RegionBean;
 	}
 
-	public void setC_RegionBean(CityBean c_RegionBean) {
-		this.c_RegionBean = c_RegionBean;
+	public void setC_RegionBean(RegionBean regionBean) {
+		this.c_RegionBean = regionBean;
 	}
 
 	public String getC_address() {

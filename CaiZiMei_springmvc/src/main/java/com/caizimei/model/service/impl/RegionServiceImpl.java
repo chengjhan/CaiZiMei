@@ -1,35 +1,37 @@
 /*
  * CaiZiMei
- * File: RegionDAOImpl.java
+ * File: RegionServiceImpl.java
  * Author: 詹晟
  * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.model.dao.impl;
+package com.caizimei.model.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.caizimei.model.dao.RegionDAO;
 import com.caizimei.model.entity.RegionBean;
+import com.caizimei.model.service.RegionService;
 
 /**
- * region DAO implement
+ * region service implement
  * 
  * @author 詹晟
  */
-@Repository(value = "regionDAO")
-public class RegionDAOImpl implements RegionDAO {
+@Service(value = "regionService")
+@Transactional
+public class RegionServiceImpl implements RegionService {
 
 	/**
-	 * 注入 HibernateTemplate
+	 * 注入 RegionDAO
 	 */
 	@Autowired
-	private HibernateTemplate hibernateTemplate;
+	private RegionDAO regionDAO;
 
 	/**
 	 * 區域流水號搜尋
@@ -38,9 +40,10 @@ public class RegionDAOImpl implements RegionDAO {
 	 * @return RegionBean
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public RegionBean selectByR_id(Integer r_id) {
 
-		return hibernateTemplate.get(RegionBean.class, r_id);
+		return regionDAO.selectByR_id(r_id);
 	}
 
 	/**
@@ -50,11 +53,10 @@ public class RegionDAOImpl implements RegionDAO {
 	 * @return List<RegionBean>
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
 	public List<RegionBean> selectByR_ci_id(Integer r_ci_id) {
 
-		return (List<RegionBean>) hibernateTemplate.findByNamedParam("from RegionBean where r_ci_id=:r_ci_id",
-				"r_ci_id", r_ci_id);
+		return regionDAO.selectByR_ci_id(r_ci_id);
 	}
 
 	/**
@@ -64,11 +66,16 @@ public class RegionDAOImpl implements RegionDAO {
 	 * @return List<RegionBean>
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
 	public List<RegionBean> selectByR_name(String r_name) {
 
-		return (List<RegionBean>) hibernateTemplate.findByNamedParam("from RegionBean where r_name=:r_name", "r_name",
-				r_name);
+		List<RegionBean> result = null;
+
+		if (r_name != null) {
+
+			result = regionDAO.selectByR_name(r_name);
+		}
+		return (List<RegionBean>) result;
 	}
 
 	/**
@@ -78,11 +85,16 @@ public class RegionDAOImpl implements RegionDAO {
 	 * @return List<RegionBean>
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public List<RegionBean> selectByR_zipcode(String r_zipcode) {
+	@Transactional(readOnly = true)
+	public RegionBean selectByR_zipcode(String r_zipcode) {
 
-		return (List<RegionBean>) hibernateTemplate.findByNamedParam("from RegionBean where r_zipcode=:r_zipcode",
-				"r_zipcode", r_zipcode);
+		RegionBean result = null;
+
+		if (r_zipcode != null) {
+
+			result = regionDAO.selectByR_name(r_zipcode).get(0);
+		}
+		return result;
 	}
 
 	/**
@@ -92,11 +104,16 @@ public class RegionDAOImpl implements RegionDAO {
 	 * @return regionBean-->RegionBean
 	 */
 	@Override
+	@Transactional
 	public RegionBean insert(RegionBean regionBean) {
 
-		hibernateTemplate.save(regionBean);
+		RegionBean result = null;
 
-		return regionBean;
+		if (regionBean != null) {
+
+			result = regionDAO.insert(regionBean);
+		}
+		return result;
 	}
 
 	/**
@@ -106,12 +123,10 @@ public class RegionDAOImpl implements RegionDAO {
 	 * @return regionBean-->RegionBean
 	 */
 	@Override
+	@Transactional
 	public RegionBean update(RegionBean regionBean) {
 
-		hibernateTemplate.clear();
-		hibernateTemplate.update(regionBean);
-
-		return regionBean;
+		return regionDAO.update(regionBean);
 	}
 
 	/**
@@ -121,11 +136,10 @@ public class RegionDAOImpl implements RegionDAO {
 	 * @return true-->成功
 	 */
 	@Override
+	@Transactional
 	public Boolean delete(Integer r_id) {
 
-		hibernateTemplate.delete(hibernateTemplate.get(RegionBean.class, r_id));
-
-		return true;
+		return regionDAO.delete(r_id);
 	}
 
 }

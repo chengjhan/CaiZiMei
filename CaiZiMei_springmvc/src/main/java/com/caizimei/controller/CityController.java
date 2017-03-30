@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/3/28
+ * Date: 2017/3/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -66,16 +66,13 @@ public class CityController {
 	 * 新增城市
 	 * 
 	 * @param co_id-->國家流水號
-	 * @param ci_name-->城市名
+	 * @param cityBean-->CityBean
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
-	public ModelAndView insertProcess(@RequestParam(name = "co_id") Integer co_id,
-			@RequestParam(name = "ci_name") String ci_name, Model model) {
+	public ModelAndView insertProcess(@RequestParam(name = "co_id") Integer co_id, CityBean cityBean, Model model) {
 
-		CityBean cityBean = new CityBean();
-		cityBean.setCi_name(ci_name);
 		cityBean.setCi_CountryBean(countryService.selectByCo_id(co_id));
 		cityService.insert(cityBean);
 		model.addAttribute("cityList", cityService.select());
@@ -86,21 +83,15 @@ public class CityController {
 	/**
 	 * 修改城市資訊
 	 * 
-	 * @param ci_id-->城市流水號
+	 * @param cityBean-->CityBean
 	 * @param co_name-->國家名
-	 * @param ci_name-->城市名
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(@RequestParam(name = "ci_id") String ci_id,
-			@RequestParam(name = "co_name") String co_name, @RequestParam(name = "ci_name") String ci_name,
-			Model model) {
+	public ModelAndView updateProcess(CityBean cityBean, @RequestParam(name = "co_name") String co_name, Model model) {
 
-		CityBean cityBean = new CityBean();
-		cityBean.setCi_id(Integer.parseInt(ci_id));
 		cityBean.setCi_CountryBean(countryService.selectByCo_name(co_name));
-		cityBean.setCi_name(ci_name);
 		cityService.update(cityBean);
 		model.addAttribute("cityList", cityService.select());
 

@@ -104,6 +104,8 @@ public class MemberController {
 		memberBean.setM_mobilephone(m_mobilephone_front + "-" + m_mobilephone_back);
 		memberBean.setM_limit(0);
 		memberBean.setM_signin_number(0);
+		memberBean.setM_update_pass_time(new java.util.Date());
+		memberBean.setM_update_info_time(new java.util.Date());
 
 		memberService.signUp(memberBean);
 		memberService.signIn(memberBean.getM_username(), m_password);

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/3/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -149,6 +149,7 @@ public class MemberDAOImpl implements MemberDAO {
 		memberBean.setM_region(newMemberBean.getM_region());
 		memberBean.setM_address(newMemberBean.getM_address());
 		memberBean.setM_email(newMemberBean.getM_email());
+		memberBean.setM_update_info_time(new java.util.Date());
 
 		return memberBean;
 	}
@@ -165,6 +166,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 		MemberBean memberBean = hibernateTemplate.get(MemberBean.class, m_id);
 		memberBean.setM_password(m_password_new_hashed);
+		memberBean.setM_update_pass_time(new java.util.Date());
 
 		return memberBean;
 	}

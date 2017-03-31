@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberBean.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/3/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -54,6 +54,8 @@ public class MemberBean {
 	private Integer m_signin_number;
 	private String m_signin_ip;
 	private java.util.Date m_signin_time;
+	private java.util.Date m_update_pass_time;
+	private java.util.Date m_update_info_time;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "purchase", joinColumns = @JoinColumn(name = "p_m_id"), inverseJoinColumns = @JoinColumn(name = "p_c_id"))
@@ -249,6 +251,22 @@ public class MemberBean {
 
 	public void setM_ClinicBean(Set<ClinicBean> m_ClinicBean) {
 		this.m_ClinicBean = m_ClinicBean;
+	}
+
+	public java.util.Date getM_update_pass_time() {
+		return m_update_pass_time;
+	}
+
+	public void setM_update_pass_time(java.util.Date m_update_pass_time) {
+		this.m_update_pass_time = m_update_pass_time;
+	}
+
+	public java.util.Date getM_update_info_time() {
+		return m_update_info_time;
+	}
+
+	public void setM_update_info_time(java.util.Date m_update_info_time) {
+		this.m_update_info_time = m_update_info_time;
 	}
 
 }

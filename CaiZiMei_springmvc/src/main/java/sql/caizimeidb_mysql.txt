@@ -73,6 +73,8 @@ create table member(
     m_signin_number			int,
     m_signin_ip				varchar(20),
     m_signin_time			datetime,
+    m_update_pass_time		datetime,
+    m_update_info_time		datetime,
     primary key (m_id)
 );
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -77,6 +78,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${clinicList}" varStatus="status">
+				<fmt:formatDate value="${bean.c_update_time}" var="c_update_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
 				<c:url value="/admin/clinic/update" var="path">
 					<c:param name="c_id" value="${bean.c_id}" />
 					<c:param name="c_name" value="${bean.c_name}" />
@@ -102,7 +104,7 @@
 					<td>${bean.c_longitude}</td>
 					<td><a href="${bean.c_url}">${bean.c_url}</a></td>
 					<td>${bean.c_insert_time}</td>
-					<td>${bean.c_update_time}</td>
+					<td>${c_update_time_format}</td>
 					<td><a href="${path}">修改</a></td>
 					<td><a href="${root}admin/clinic/delete.do?c_id=${bean.c_id}">刪除</a></td>
 				</tr>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicBean.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,6 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * clinic entity
@@ -42,7 +44,9 @@ public class ClinicBean {
 	private Double c_latitude;
 	private Double c_longitude;
 	private String c_url;
+	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date c_insert_time;
+	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date c_update_time;
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "m_ClinicBean")

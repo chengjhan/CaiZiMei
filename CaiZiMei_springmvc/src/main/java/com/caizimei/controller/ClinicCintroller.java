@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/3/31
+ * Date: 2017/4/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -96,6 +96,7 @@ public class ClinicCintroller {
 
 		clinicBean.setC_localphone(c_localphone_front + "-" + c_localphone_back);
 		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(c_r_id)));
+
 		// 取得經緯度
 		String ci_name = regionService.selectByR_id(Integer.valueOf(c_r_id)).getR_CityBean().getCi_name();
 		String r_name = regionService.selectByR_id(Integer.valueOf(c_r_id)).getR_name();
@@ -105,8 +106,10 @@ public class ClinicCintroller {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		clinicBean.setC_latitude(LatLng[0]);
 		clinicBean.setC_longitude(LatLng[1]);
+		clinicBean.setC_insert_time(new java.util.Date());
 
 		clinicService.insert(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
@@ -117,42 +120,30 @@ public class ClinicCintroller {
 	/**
 	 * 修改診所資訊
 	 * 
-	 * @param c_id-->診所流水號
-	 * @param c_name-->診所名
-	 * @param c_eng_name-->診所英文名
-	 * @param c_localphone-->診所電話
+	 * @param clinicBean-->ClinicBean
 	 * @param c_r_id-->區域流水號
-	 * @param c_address-->診所地址
-	 * @param c_url-->診所網址
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/clinic/insert.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(@RequestParam(name = "c_id") String c_id,
-			@RequestParam(name = "c_name") String c_name, @RequestParam(name = "c_eng_name") String c_eng_name,
-			@RequestParam(name = "c_localphone") String c_localphone, @RequestParam(name = "c_r_id") String c_r_id,
-			@RequestParam(name = "c_address") String c_address, @RequestParam(name = "c_url") String c_url,
+	public ModelAndView updateProcess(ClinicBean clinicBean, @RequestParam(name = "c_r_id") String c_r_id,
 			Model model) {
 
-		ClinicBean clinicBean = new ClinicBean();
-		clinicBean.setC_id(Integer.parseInt(c_id));
-		clinicBean.setC_name(c_name);
-		clinicBean.setC_eng_name(c_eng_name);
-		clinicBean.setC_localphone(c_localphone);
 		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(c_r_id)));
-		clinicBean.setC_address(c_address);
+
 		// 取得經緯度
 		String ci_name = regionService.selectByR_id(Integer.valueOf(c_r_id)).getR_CityBean().getCi_name();
 		String r_name = regionService.selectByR_id(Integer.valueOf(c_r_id)).getR_name();
 		Double[] LatLng = new Double[2];
 		try {
-			LatLng = clinicService.addressToLatLng(ci_name + r_name + c_address);
+			LatLng = clinicService.addressToLatLng(ci_name + r_name + clinicBean.getC_address());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		clinicBean.setC_latitude(LatLng[0]);
 		clinicBean.setC_longitude(LatLng[1]);
-		clinicBean.setC_url(c_url);
+		clinicBean.setC_update_time(new java.util.Date());
 
 		clinicService.update(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());

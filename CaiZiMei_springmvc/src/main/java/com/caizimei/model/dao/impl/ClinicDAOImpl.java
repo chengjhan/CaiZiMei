@@ -125,14 +125,21 @@ public class ClinicDAOImpl implements ClinicDAO {
 	/**
 	 * 修改診所資料
 	 * 
-	 * @param clinicBean-->ClinicBean
+	 * @param newClinicBean-->ClinicBean
 	 * @return clinicBean-->ClinicBean
 	 */
 	@Override
-	public ClinicBean update(ClinicBean clinicBean) {
+	public ClinicBean update(ClinicBean newClinicBean) {
 
-		hibernateTemplate.clear();
-		hibernateTemplate.update(clinicBean);
+		ClinicBean clinicBean = hibernateTemplate.get(ClinicBean.class, newClinicBean.getC_id());
+
+		clinicBean.setC_name(newClinicBean.getC_name());
+		clinicBean.setC_eng_name(newClinicBean.getC_eng_name());
+		clinicBean.setC_localphone(newClinicBean.getC_localphone());
+		clinicBean.setC_RegionBean(newClinicBean.getC_RegionBean());
+		clinicBean.setC_address(newClinicBean.getC_address());
+		clinicBean.setC_url(newClinicBean.getC_url());
+		clinicBean.setC_update_time(new java.util.Date());
 
 		return clinicBean;
 	}

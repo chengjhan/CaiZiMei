@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,7 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
+	<fmt:formatDate value="${user.m_birth}" var="birth" pattern="yyyy-MM-dd" />
 	<form action="<c:url value='/member/update.do' />" method="post">
 		<div>
 			<label for="id-m-lastname">姓氏</label>
@@ -21,7 +23,7 @@
 		</div>
 		<div>
 			<label for="id-m-birth">生日</label>
-			<input type="text" id="id-m-birth" name="m_birth" value="${user.m_birth}">
+			<input type="text" id="id-m-birth" name="m_birth" value="${birth}">
 		</div>
 		<div>
 			<label for="id-m-sex">性別</label>
@@ -87,7 +89,7 @@
 	</form>
 	<script>
 		$(document).ready(function(){
-			
+
 			// return country
 			$.getJSON("${root}admin/country/select.ajax", function(data){
 				var country_select = $("#id-m-country");

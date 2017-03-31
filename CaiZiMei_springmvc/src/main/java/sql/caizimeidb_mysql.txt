@@ -43,8 +43,8 @@ create table clinic(
     c_latitude				decimal(10,6),
     c_longitude				decimal(10,6),
     c_url					varchar(100),
-    c_insert_time			timestamp default current_timestamp,
-    c_update_time			timestamp on update current_timestamp,
+    c_insert_time			datetime not null,
+    c_update_time			datetime,
     primary key (c_id),
     foreign key (c_r_id) references region (r_id)
 );
@@ -69,7 +69,7 @@ create table member(
     m_address				nvarchar(50),
     m_email					varchar(50),
     m_limit					tinyint not null,
-    m_signup_time			timestamp default current_timestamp,
+    m_signup_time			timestamp default current_timestamp not null,
     m_signin_number			int,
     m_signin_ip				varchar(20),
     m_signin_time			datetime,
@@ -82,7 +82,7 @@ create table purchase(
 	p_id					int auto_increment not null,
     p_m_id					int not null,
     p_c_id					int not null,
-    p_order_time			timestamp default current_timestamp,
+    p_order_time			timestamp default current_timestamp not null,
     primary key (p_id),
     foreign key (p_m_id) references member (m_id),
     foreign key (p_c_id) references clinic (c_id)
@@ -509,4 +509,4 @@ insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '莒光鄉',
 insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '東引鄉', '212', 4);
 
 -- clinic
-insert into clinic (c_name, c_eng_name, c_localphone, c_r_id, c_address, c_latitude, c_longitude, c_url, c_update_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 12, '信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now());
+insert into clinic (c_name, c_eng_name, c_localphone, c_r_id, c_address, c_latitude, c_longitude, c_url, c_insert_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 12, '信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now());

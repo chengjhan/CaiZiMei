@@ -35,6 +35,9 @@
 			<input type="submit" id="id-submit" value="搜尋">
 		</div>
 	</form>
+	<p>
+		<a href="${root}admin/region/insert">新增</a>
+	</p>
 	<table border="1">
 		<thead>
 			<tr>
@@ -53,6 +56,8 @@
 			<c:forEach var="bean" items="${selectByConditions}" varStatus="status">
 				<c:url value="/admin/region/update" var="path">
 					<c:param name="r_id" value="${bean.r_id}" />
+					<c:param name="co_id" value="${bean.r_CityBean.ci_CountryBean.co_id}" />
+					<c:param name="ci_id" value="${bean.r_CityBean.ci_id}" />
 					<c:param name="r_name" value="${bean.r_name}" />
 					<c:param name="r_zipcode" value="${bean.r_zipcode}" />
 					<c:param name="r_rank" value="${bean.r_rank}" />

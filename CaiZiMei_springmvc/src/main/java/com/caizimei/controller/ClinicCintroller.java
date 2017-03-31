@@ -84,7 +84,7 @@ public class ClinicCintroller {
 	 * @param clinicBean-->ClinicBean
 	 * @param c_localphone_front-->診所電話(前碼)
 	 * @param c_localphone_back-->診所電話(後碼)
-	 * @param r_id-->區域流水號
+	 * @param c_r_id-->區域流水號
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
@@ -121,7 +121,7 @@ public class ClinicCintroller {
 	 * @param c_name-->診所名
 	 * @param c_eng_name-->診所英文名
 	 * @param c_localphone-->診所電話
-	 * @param r_id-->區域流水號
+	 * @param c_r_id-->區域流水號
 	 * @param c_address-->診所地址
 	 * @param c_url-->診所網址
 	 * @param model-->Model
@@ -130,7 +130,7 @@ public class ClinicCintroller {
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
 	public ModelAndView updateProcess(@RequestParam(name = "c_id") String c_id,
 			@RequestParam(name = "c_name") String c_name, @RequestParam(name = "c_eng_name") String c_eng_name,
-			@RequestParam(name = "c_localphone") String c_localphone, @RequestParam(name = "r_id") String r_id,
+			@RequestParam(name = "c_localphone") String c_localphone, @RequestParam(name = "c_r_id") String c_r_id,
 			@RequestParam(name = "c_address") String c_address, @RequestParam(name = "c_url") String c_url,
 			Model model) {
 
@@ -139,11 +139,11 @@ public class ClinicCintroller {
 		clinicBean.setC_name(c_name);
 		clinicBean.setC_eng_name(c_eng_name);
 		clinicBean.setC_localphone(c_localphone);
-		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(r_id)));
+		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(c_r_id)));
 		clinicBean.setC_address(c_address);
 		// 取得經緯度
-		String ci_name = regionService.selectByR_id(Integer.valueOf(r_id)).getR_CityBean().getCi_name();
-		String r_name = regionService.selectByR_id(Integer.valueOf(r_id)).getR_name();
+		String ci_name = regionService.selectByR_id(Integer.valueOf(c_r_id)).getR_CityBean().getCi_name();
+		String r_name = regionService.selectByR_id(Integer.valueOf(c_r_id)).getR_name();
 		Double[] LatLng = new Double[2];
 		try {
 			LatLng = clinicService.addressToLatLng(ci_name + r_name + c_address);

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/3/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -71,7 +71,8 @@ public class CityController {
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
-	public ModelAndView insertProcess(@RequestParam(name = "ci_co_id") Integer ci_co_id, CityBean cityBean, Model model) {
+	public ModelAndView insertProcess(@RequestParam(name = "ci_co_id") Integer ci_co_id, CityBean cityBean,
+			Model model) {
 
 		cityBean.setCi_CountryBean(countryService.selectByCo_id(ci_co_id));
 		cityService.insert(cityBean);
@@ -83,15 +84,16 @@ public class CityController {
 	/**
 	 * 修改城市資訊
 	 * 
-	 * @param co_id-->國家流水號
+	 * @param ci_co_id-->國家流水號
 	 * @param cityBean-->CityBean
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(@RequestParam(name = "co_id") Integer co_id, CityBean cityBean, Model model) {
+	public ModelAndView updateProcess(@RequestParam(name = "ci_co_id") Integer ci_co_id, CityBean cityBean,
+			Model model) {
 
-		cityBean.setCi_CountryBean(countryService.selectByCo_id(co_id));
+		cityBean.setCi_CountryBean(countryService.selectByCo_id(ci_co_id));
 		cityService.update(cityBean);
 		model.addAttribute("cityList", cityService.select());
 

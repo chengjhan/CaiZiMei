@@ -14,13 +14,13 @@
 		<div>
 			<label for="id-co-id">國家</label>
 			<select id="id-co-id">
-				<option>請選擇國家</option>
+				<option value="0">請選擇國家</option>
 			</select>
 		</div>
 		<div>
 			<label for="id-r-ci-id">城市</label>
 			<select id="id-r-ci-id" name="r_ci_id">
-				<option>請選擇城市</option>
+				<option value="0">請選擇城市</option>
 			</select>
 		</div>
 		<div>
@@ -39,41 +39,33 @@
 			<input type="submit" id="id-submit" value="新增">
 		</div>
 	</form>
-	<table border="1">
-		<thead>
-			<tr>
-				<td>編號</td>
-				<td>流水號</td>
-				<td>國家</td>
-				<td>城市</td>
-				<td>區域</td>
-				<td>郵遞區號</td>
-				<td>序號</td>
-				<td>修改</td>
-				<td>刪除</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="bean" items="${regionList}">
-				<c:url value="/admin/region/update" var="path">
-					<c:param name="r_id" value="${bean.r_id}" />
-					<c:param name="r_name" value="${bean.r_name}" />
-					<c:param name="r_zipcode" value="${bean.r_zipcode}" />
-					<c:param name="r_rank" value="${bean.r_rank}" />
-				</c:url>
-				<tr>
-					<td></td>
-					<td>${bean.r_id}</td>
-					<td>${bean.r_CityBean.ci_CountryBean.co_name}</td>
-					<td>${bean.r_CityBean.ci_name}</td>
-					<td>${bean.r_name}</td>
-					<td>${bean.r_zipcode}</td>
-					<td>${bean.r_rank}</td>
-					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}admin/region/delete.do?c_id=${bean.r_id}">刪除</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<script>
+		$(document).ready(function(){
+			$.getJSON("${root}admin/country/select.ajax", function(data){
+				$.each(data, function(index, country){
+					var country_option = $("<option value=" + country.co_id + "></option>").append(country.co_name);
+					$("#id-co-id").append(country_option);
+				});
+			});
+		});
+		
+		$("#id-co-id").change(function(){
+			var co_id = $("#id-co-id").val();
+			$.ajax({
+				url: '${root}admin/city/select-by-country.ajax?ci_co_id=' + co_id,
+				type: 'get',
+				dataType: 'json',
+				success: function(data){
+					var city_select = $("#id-r-ci-id");
+					city_select.empty();
+					city_select.append("<option value='0'>請選擇城市</option>");
+					$.each(data, function(index, city){
+						var city_option = $("<option value=" + city.ci_id + "></option>").append(city.ci_name);
+						city_select.append(city_option);
+					});
+				}
+			});
+		});
+	</script>
 </body>
 </html>

@@ -69,37 +69,39 @@ public class RegionController {
 	/**
 	 * 新增區域
 	 * 
-	 * @param ci_id-->城市流水號
+	 * @param r_ci_id-->城市流水號
 	 * @param regionBean-->RegionBean
 	 * @param model-->Model
-	 * @return /WEB-INF/views/admin/region/insert.jsp
+	 * @return /WEB-INF/views/admin/region/search.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
-	public ModelAndView insertProcess(@RequestParam(name = "ci_id") Integer ci_id, RegionBean regionBean, Model model) {
+	public ModelAndView insertProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id, RegionBean regionBean,
+			Model model) {
 
-		regionBean.setR_CityBean(cityService.selectByCi_id(ci_id));
+		regionBean.setR_CityBean(cityService.selectByCi_id(r_ci_id));
 		regionService.insert(regionBean);
-		model.addAttribute("regionList", regionService.selectByR_ci_id(ci_id));
+		model.addAttribute("regionList", regionService.selectByR_ci_id(r_ci_id));
 
-		return new ModelAndView("redirect:/admin/region/insert");
+		return new ModelAndView("redirect:/admin/region/search");
 	}
 
 	/**
 	 * 修改城市資訊
 	 * 
-	 * @param ci_id-->城市流水號
+	 * @param r_ci_id-->城市流水號
 	 * @param regionBean-->RegionBean
 	 * @param model-->Model
-	 * @return /WEB-INF/views/admin/region/insert.jsp
+	 * @return /WEB-INF/views/admin/region/search.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(@RequestParam(name = "ci_id") Integer ci_id, RegionBean regionBean, Model model) {
+	public ModelAndView updateProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id, RegionBean regionBean,
+			Model model) {
 
-		regionBean.setR_CityBean(cityService.selectByCi_id(ci_id));
+		regionBean.setR_CityBean(cityService.selectByCi_id(r_ci_id));
 		regionService.update(regionBean);
-		model.addAttribute("regionList", regionService.selectByR_ci_id(ci_id));
+		model.addAttribute("regionList", regionService.selectByR_ci_id(r_ci_id));
 
-		return new ModelAndView("redirect:/admin/region/insert");
+		return new ModelAndView("redirect:/admin/region/search");
 	}
 
 	/**
@@ -107,7 +109,7 @@ public class RegionController {
 	 * 
 	 * @param regionBean-->RegionBean
 	 * @param model-->Model
-	 * @return /WEB-INF/views/admin/region/insert.jsp
+	 * @return /WEB-INF/views/admin/region/search.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteProcess(RegionBean regionBean, Model model) {
@@ -115,7 +117,7 @@ public class RegionController {
 		regionService.delete(regionBean.getR_id());
 		model.addAttribute("regionList", regionService.selectByR_ci_id(regionBean.getR_CityBean().getCi_id()));
 
-		return new ModelAndView("redirect:/admin/region/insert");
+		return new ModelAndView("redirect:/admin/region/search");
 	}
 
 	/**

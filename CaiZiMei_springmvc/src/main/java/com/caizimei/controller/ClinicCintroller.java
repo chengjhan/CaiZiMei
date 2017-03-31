@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/3/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -66,6 +66,7 @@ public class ClinicCintroller {
 	 * 條件搜尋
 	 * 
 	 * @param clinicBean-->ClinicBean
+	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/clinic/search.jsp
 	 */
 	@RequestMapping(path = "/search.do", method = RequestMethod.GET)

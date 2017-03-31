@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: RegionController.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/3/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -47,6 +47,24 @@ public class RegionController {
 	 */
 	@Autowired
 	private CityService cityService;
+
+	/**
+	 * 條件搜尋
+	 * 
+	 * @param r_ci_id-->城市流水號
+	 * @param regionBean-->RegionBean
+	 * @param model-->Model
+	 * @return /WEB-INF/views/admin/region/search.jsp
+	 */
+	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
+	public ModelAndView selectByConditionsProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id,
+			RegionBean regionBean, Model model) {
+
+		model.addAttribute("selectByConditions",
+				regionService.selectByConditions(r_ci_id, regionBean.getR_name(), regionBean.getR_zipcode()));
+
+		return new ModelAndView("admin/region/search");
+	}
 
 	/**
 	 * 新增區域

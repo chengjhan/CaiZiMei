@@ -50,7 +50,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${selectByConditions}">
+			<c:forEach var="bean" items="${selectByConditions}" varStatus="status">
 				<c:url value="/admin/region/update" var="path">
 					<c:param name="r_id" value="${bean.r_id}" />
 					<c:param name="r_name" value="${bean.r_name}" />
@@ -58,7 +58,7 @@
 					<c:param name="r_rank" value="${bean.r_rank}" />
 				</c:url>
 				<tr>
-					<td></td>
+					<td>${status.count}</td>
 					<td>${bean.r_id}</td>
 					<td>${bean.r_CityBean.ci_CountryBean.co_name}</td>
 					<td>${bean.r_CityBean.ci_name}</td>

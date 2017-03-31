@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: RegionServiceImpl.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/3/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.caizimei.model.dao.CityDAO;
 import com.caizimei.model.dao.RegionDAO;
 import com.caizimei.model.entity.RegionBean;
 import com.caizimei.model.service.RegionService;
@@ -32,6 +33,12 @@ public class RegionServiceImpl implements RegionService {
 	 */
 	@Autowired
 	private RegionDAO regionDAO;
+
+	/**
+	 * 注入 CityDAO
+	 */
+	@Autowired
+	private CityDAO cityDAO;
 
 	/**
 	 * 區域流水號搜尋
@@ -109,7 +116,7 @@ public class RegionServiceImpl implements RegionService {
 	@Transactional(readOnly = true)
 	public List<RegionBean> selectByConditions(Integer r_ci_id, String r_name, String r_zipcode) {
 
-		return regionDAO.selectByConditions(r_ci_id, r_name, r_zipcode);
+		return regionDAO.selectByConditions(cityDAO.selectByCi_id(r_ci_id), r_name, r_zipcode);
 	}
 
 	/**

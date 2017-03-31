@@ -10,6 +10,7 @@ package com.caizimei.model.dao;
 
 import java.util.List;
 
+import com.caizimei.model.entity.CityBean;
 import com.caizimei.model.entity.RegionBean;
 
 /**
@@ -27,7 +28,7 @@ public interface RegionDAO {
 
 	List<RegionBean> selectByR_zipcode(String r_zipcode);
 
-	List<RegionBean> selectByConditions(Integer r_ci_id, String r_name, String r_zipcode);
+	List<RegionBean> selectByConditions(CityBean cityBean, String r_name, String r_zipcode);
 
 	RegionBean insert(RegionBean regionBean);
 

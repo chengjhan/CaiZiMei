@@ -505,3 +505,6 @@ insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '南竿鄉',
 insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '北竿鄉', '210', 2);
 insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '莒光鄉', '211', 3);
 insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '東引鄉', '212', 4);
+
+-- clinic
+insert into clinic (c_name, c_eng_name, c_localphone, c_r_id, c_address, c_latitude, c_longitude, c_url, c_update_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 12, '信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now());

@@ -71,7 +71,7 @@
 					<td>${bean.r_zipcode}</td>
 					<td>${bean.r_rank}</td>
 					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}admin/region/delete.do?c_id=${bean.r_id}">刪除</a></td>
+					<td><a href="${root}admin/region/delete.do?r_id=${bean.r_id}">刪除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

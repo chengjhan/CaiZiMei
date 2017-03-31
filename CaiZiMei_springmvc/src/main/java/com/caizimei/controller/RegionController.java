@@ -115,7 +115,6 @@ public class RegionController {
 	public ModelAndView deleteProcess(RegionBean regionBean, Model model) {
 
 		regionService.delete(regionBean.getR_id());
-		model.addAttribute("regionList", regionService.selectByR_ci_id(regionBean.getR_CityBean().getCi_id()));
 
 		return new ModelAndView("redirect:/admin/region/search");
 	}

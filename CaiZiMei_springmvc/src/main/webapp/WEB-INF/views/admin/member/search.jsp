@@ -18,8 +18,8 @@
 			<input type="text" id="id-m-firstname" name="m_firstname">
 		</div>
 		<div>
-			<label for="id-m-telephone">電話</label>
-			<input type="text" id="id-m-telephone" name="m_telephone">
+			<label for="id-m-mobilephone">電話</label>
+			<input type="text" id="id-m-mobilephone" name="m_mobilephone">
 		</div>
 		<div>
 			<label for="id-m-email">信箱</label>
@@ -33,32 +33,38 @@
 		<thead>
 			<tr>
 				<td>編號</td>
+				<td>流水號</td>
 				<td>帳號</td>
-				<td>姓</td>
-				<td>名</td>
+				<td>姓名</td>
 				<td>生日</td>
 				<td>性別</td>
 				<td>身高</td>
 				<td>體重</td>
 				<td>電話</td>
+				<td>手機</td>
 				<td>地址</td>
 				<td>信箱</td>
+				<td>註冊時間</td>
+				<td>最後登入時間</td>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${selectByConditions}">
+			<c:forEach var="bean" items="${selectByConditions}" varStatus="status">
 				<tr>
+					<td>${status.count}</td>
 					<td>${bean.m_id}</td>
 					<td>${bean.m_username}</td>
-					<td>${bean.m_lastname}</td>
-					<td>${bean.m_firstname}</td>
+					<td>${bean.m_lastname} ${bean.m_firstname}</td>
 					<td>${bean.m_birth}</td>
 					<td>${bean.m_sex}</td>
 					<td>${bean.m_height}</td>
 					<td>${bean.m_weight}</td>
-					<td>${bean.m_telephone}</td>
-					<td>${bean.m_address}</td>
+					<td>${bean.m_localphone}</td>
+					<td>${bean.m_mobilephone}</td>
+					<td>${bean.m_zipcode} ${bean.m_country} ${bean.m_city} ${bean.m_region} ${bean.m_address}</td>
 					<td>${bean.m_email}</td>
+					<td>${bean.m_signup_time}</td>
+					<td>${bean.m_signin_time}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -49,8 +49,9 @@
 		<div>
 			<label for="id-m-sex">性別</label>
 			<select id="id-m-sex" name="m_sex">
+				<option value="0">--</option>
 				<option value="1">男</option>
-				<option value="0">女</option>
+				<option value="2">女</option>
 			</select>
 		</div>
 		<div>
@@ -62,9 +63,36 @@
 			<input type="text" id="id-m-weight" name="m_weight">
 		</div>
 		<div>
-			<label for="id-m-telephone">電話</label>
-			<input type="text" id="id-m-telephone" name="m_telephone_front">
-			<input type="text" id="id-m-telephone" name="m_telephone_back">
+			<label for="id-m-localphone">電話</label>
+			<input type="text" id="id-m-localphone" name="m_localphone_front">
+			<input type="text" id="id-m-localphone" name="m_localphone_back">
+		</div>
+		<div>
+			<label for="id-m-mobilephone">手機</label>
+			<input type="text" id="id-m-mobilephone" name="m_mobilephone_front">
+			<input type="text" id="id-m-mobilephone" name="m_mobilephone_back">
+		</div>
+		<div>
+			<label for="id-m-zipcode">郵遞區號</label>
+			<input type="text" id="id-m-zipcode" name="m_zipcode" readonly>
+		</div>
+		<div>
+			<label for="id-m-country">國家</label>
+			<select id="id-m-country" name="m_country" style="width:150px">
+				<option value="0">請選擇國家</option>
+			</select>
+		</div>
+		<div>
+			<label for="id-m-city">城市</label>
+			<select id="id-m-city" name="m_city" style="width:150px">
+				<option value="0">請選擇城市</option>
+			</select>
+		</div>
+		<div>
+			<label for="id-m-region">區域</label>
+			<select id="id-m-region" name="m_region" style="width:150px">
+				<option value="0">請選擇區域</option>
+			</select>
 		</div>
 		<div>
 			<label for="id-m-address">地址</label>
@@ -140,6 +168,54 @@
 				document.getElementById("id-m-birth-date").appendChild(opt);
 			}
 		}
+		
+		// 地區選單
+		$(document).ready(function(){
+			$.getJSON("${root}admin/country/select.ajax", function(data){
+				$.each(data, function(index, country){
+					var country_option = $("<option value=" + country.co_id + "></option>").append(country.co_name);
+					$("#id-m-country").append(country_option);
+				});
+			});
+		});
+	
+		$("#id-m-country").change(function(){
+			var co_id = $("#id-m-country").val();
+			$.ajax({
+				url: '${root}admin/city/select-by-country.ajax?ci_co_id=' + co_id,
+				type: 'get',
+				dataType: 'json',
+				success: function(data){
+					var city_select = $("#id-m-city");
+					city_select.empty();
+					city_select.append("<option value='0'>請選擇城市</option>");
+					$.each(data, function(index, city){
+						var city_option = $("<option value=" + city.ci_id + "></option>").append(city.ci_name);
+						city_select.append(city_option);
+					});
+				}
+			});
+		});
+		
+		$("#id-m-city").change(function(){
+			var ci_id = $("#id-m-city").val();
+			$.getJSON("${root}admin/region/select-by-city.ajax", {"r_ci_id": ci_id}, function(data){
+				var region_select = $("#id-m-region");
+				region_select.empty();
+				region_select.append("<option value='0'>請選擇區域</option>");
+				$.each(data, function(index, region){
+					var region_option = $("<option value=" + region.r_id + "></option>").append(region.r_name);
+					region_select.append(region_option);
+				});
+			});
+		});
+		
+		$("#id-m-region").change(function(){
+			var r_id = $("#id-m-region").val();
+			$.get("${root}admin/region/select-by-id.ajax", {"r_id": r_id}, function(data){
+				$("#id-m-zipcode").val(data);
+			});
+		});
 	</script>
 </body>
 </html>

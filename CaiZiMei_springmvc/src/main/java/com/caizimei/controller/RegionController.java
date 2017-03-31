@@ -145,4 +145,17 @@ public class RegionController {
 		return json;
 	}
 
+	/**
+	 * 區域流水號搜尋 (ajax)
+	 * 
+	 * @param r_id-->區域流水號
+	 * @return m_zipcode
+	 */
+	@RequestMapping(path = "/select-by-id.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String selectByIdAjaxProcess(Integer r_id) {
+
+		return regionService.selectByR_id(r_id).getR_zipcode();
+	}
+
 }

@@ -19,6 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * member entity
@@ -37,6 +39,7 @@ public class MemberBean {
 	private String m_salt;
 	private String m_lastname;
 	private String m_firstname;
+	@Temporal(TemporalType.DATE)
 	private java.util.Date m_birth;
 	private Integer m_sex;
 	private Double m_height;

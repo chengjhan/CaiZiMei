@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: PurchaseController.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,16 +41,16 @@ public class PurchaseController {
 	 * 訂購
 	 * 
 	 * @param user-->Session
-	 * @param c_id-->診所流水號
+	 * @param p_c_id-->診所流水號
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/order.do", method = RequestMethod.POST)
 	public ModelAndView orderProcess(@ModelAttribute("user") MemberBean user,
-			@RequestParam(name = "c_id") String c_id) {
+			@RequestParam(name = "p_c_id") String p_c_id) {
 
 		PurchaseBean purchaseBean = new PurchaseBean();
 		purchaseBean.setP_m_id(user.getM_id());
-		purchaseBean.setP_c_id(Integer.valueOf(c_id));
+		purchaseBean.setP_c_id(Integer.valueOf(p_c_id));
 		purchaseService.order(purchaseBean);
 
 		return new ModelAndView("redirect:/index");

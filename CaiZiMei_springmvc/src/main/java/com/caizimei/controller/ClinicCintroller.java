@@ -110,6 +110,7 @@ public class ClinicCintroller {
 		clinicBean.setC_latitude(LatLng[0]);
 		clinicBean.setC_longitude(LatLng[1]);
 		clinicBean.setC_insert_time(new java.util.Date());
+		clinicBean.setC_update_time(new java.util.Date());
 
 		clinicService.insert(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
@@ -173,7 +174,7 @@ public class ClinicCintroller {
 	 * @param c_r_id-->區域流水號
 	 * @return 診所json
 	 */
-	@RequestMapping(path = "/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(path = "/select-by-region.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String selectByRegionAjaxProcess(String c_r_id) {
 

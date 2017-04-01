@@ -12,21 +12,27 @@
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/purchase/order.do' />" method="post">
 		<div>
-			<label for="id-co-name">國家</label>
-			<select id="id-co-name" name="co_name">
-				<option>請選擇國家</option>
+			<label for="id-co-id">國家</label>
+			<select id="id-co-id">
+				<option value="0">請選擇國家</option>
 			</select>
 		</div>
 		<div>
-			<label for="id-ci-name">城市</label>
-			<select id="id-ci-name" name="ci_name">
-				<option>請選擇城市</option>
+			<label for="id-ci-id">城市</label>
+			<select id="id-ci-id">
+				<option value="0">請選擇城市</option>
 			</select>
 		</div>
 		<div>
-			<label for="id-c-name">診所</label>
-			<select id="id-c-name" name="c_name">
-				<option>請選擇診所</option>
+			<label for="id-r-id">區域</label>
+			<select id="id-r-id">
+				<option value="0">請選擇區域</option>
+			</select>
+		</div>
+		<div>
+			<label for="id-p-c-id">診所</label>
+			<select id="id-p-c-id" name="p_c_id">
+				<option value="0">請選擇診所</option>
 			</select>
 		</div>
 		<div>
@@ -35,39 +41,53 @@
 	</form>
 	<script>
 		$(document).ready(function(){
-			var country_select = $("#id-co-name");
 			$.getJSON("${root}admin/country/select.ajax", function(data){
 				$.each(data, function(index, country){
-					var country_option = $("<option></option>").append(country.co_name);
-					country_select.append(country_option);
+					var country_option = $("<option value=" + country.co_id + "></option>").append(country.co_name);
+					$("#id-co-id").append(country_option);
 				});
 			});
 		});
 	
-		$("#id-co-name").change(function(){
-			var co_name = $("#id-co-name").val();
-			var city_select = $("#id-ci-name");
+		$("#id-co-id").change(function(){
+			var co_id = $("#id-co-id").val();
 			$.ajax({
-				url: '${root}admin/city/select.ajax?co_name=' + co_name,
+				url: '${root}admin/city/select-by-country.ajax?ci_co_id=' + co_id,
 				type: 'get',
 				dataType: 'json',
 				success: function(data){
+					var city_select = $("#id-ci-id");
 					city_select.empty();
-					city_select.append("<option>請選擇城市</option>");
+					city_select.append("<option value='0'>請選擇城市</option>");
 					$.each(data, function(index, city){
-						var city_option = $("<option></option>").append(city.ci_name);
+						var city_option = $("<option value=" + city.ci_id + "></option>").append(city.ci_name);
 						city_select.append(city_option);
 					});
 				}
 			});
 		});
 		
-		$("#id-ci-name").change(function(){
-			var ci_name = $("#id-ci-name").val();
-			var clinic_select = $("#id-c-name");
-			$.getJSON("${root}admin/clinic/select.ajax", { "ci_name": ci_name }, function(data){
+		$("#id-ci-id").change(function(){
+			var ci_id = $("#id-ci-id").val();
+			$.getJSON("${root}admin/region/select-by-city.ajax", {"r_ci_id": ci_id}, function(data){
+				var region_select = $("#id-r-id");
+				region_select.empty();
+				region_select.append("<option value='0'>請選擇區域</option>");
+				$.each(data, function(index, region){
+					var region_option = $("<option value=" + region.r_id + "></option>").append(region.r_name);
+					region_select.append(region_option);
+				});
+			});
+		});
+		
+		$("#id-r-id").change(function(){
+			var r_id = $("#id-r-id").val();
+			$.getJSON("${root}admin/clinic/select-by-region.ajax", {"c_r_id": r_id}, function(data){
+				var clinic_select = $("#id-p-c-id");
+				clinic_select.empty();
+				clinic_select.append("<option value='0'>請選擇診所</option>");
 				$.each(data, function(index, clinic){
-					var clinic_option = $("<option></option>").append(clinic.c_name);
+					var clinic_option = $("<option value=" + clinic.c_id + "></option>").append(clinic.c_name);
 					clinic_select.append(clinic_option);
 				});
 			});

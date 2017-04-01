@@ -16,16 +16,16 @@
 		<a href="${root}admin/city/list.do">城市</a>
 	</p>
 	<p>
-		<a href="${root}admin/region/search">區域</a>
+		<a href="${root}admin/region/search">區域搜尋</a>
 	</p>
 	<p>
 		<a href="${root}admin/clinic/list.do">診所</a>
 	</p>
 	<p>
-		<a href="${root}admin/clinic/search">診所查詢</a>
+		<a href="${root}admin/clinic/search">診所搜尋</a>
 	</p>
 	<p>
-		<a href="${root}admin/member/search">會員查詢</a>
+		<a href="${root}admin/member/search">會員搜尋</a>
 	</p>
 	<p>
 		<a href="${root}admin/member/admin-sign-up">管理者註冊</a>

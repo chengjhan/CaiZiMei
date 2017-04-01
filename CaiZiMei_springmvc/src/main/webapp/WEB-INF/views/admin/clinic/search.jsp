@@ -10,7 +10,7 @@
 <body>
 	<form action="<c:url value='/admin/clinic/search.do' />" method="get">
 		<div>
-			<label for="id-c-name">名稱</label>
+			<label for="id-c-name">診所</label>
 			<input type="text" id="id-c-name" name="c_name">
 		</div>
 		<div>

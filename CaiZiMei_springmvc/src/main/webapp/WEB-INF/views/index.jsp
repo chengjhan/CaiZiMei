@@ -22,7 +22,7 @@
 		<a href="${root}member/update">修改會員資料</a>
 	</p>
 	<p>
-		<a href="${root}member/update-password">修改密碼</a>
+		<a href="${root}member/update-password">修改會員密碼</a>
 	</p>
 	<p>
 		<a href="${root}purchase/order">訂購</a>

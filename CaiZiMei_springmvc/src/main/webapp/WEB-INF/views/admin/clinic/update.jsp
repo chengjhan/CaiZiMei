@@ -15,11 +15,11 @@
 			<input type="text" name="c_id" value="${param.c_id}">
 		</div>
 		<div>
-			<label for="id-c-name">名稱</label>
+			<label for="id-c-name">診所</label>
 			<input type="text" id="id-c-name" name="c_name" value="${param.c_name}">
 		</div>
 		<div>
-			<label for="id-c-eng-name">英文</label>
+			<label for="id-c-eng-name">診所英文</label>
 			<input type="text" id="id-c-eng-name" name="c_eng_name" value="${param.c_eng_name}">
 		</div>
 		<div>

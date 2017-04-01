@@ -18,7 +18,7 @@
 			<input type="text" id="id-co-name" name="co_name" value="${param.co_name}">
 		</div>
 		<div>
-			<label for="id-co-eng-name">英文</label>
+			<label for="id-co-eng-name">國家英文</label>
 			<input type="text" id="id-co-eng-name" name="co_eng_name" value="${param.co_eng_name}">
 		</div>
 		<div>

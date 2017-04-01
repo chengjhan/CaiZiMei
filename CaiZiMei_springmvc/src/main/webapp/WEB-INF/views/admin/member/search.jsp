@@ -10,15 +10,15 @@
 <body>
 	<form action="<c:url value='/admin/member/select.do' />" method="get">
 		<div>
-			<label for="id-m-lastname">姓</label>
+			<label for="id-m-lastname">姓氏</label>
 			<input type="text" id="id-m-lastname" name="m_lastname">
 		</div>
 		<div>
-			<label for="id-m-firstname">名</label>
+			<label for="id-m-firstname">名字</label>
 			<input type="text" id="id-m-firstname" name="m_firstname">
 		</div>
 		<div>
-			<label for="id-m-mobilephone">電話</label>
+			<label for="id-m-mobilephone">手機</label>
 			<input type="text" id="id-m-mobilephone" name="m_mobilephone">
 		</div>
 		<div>

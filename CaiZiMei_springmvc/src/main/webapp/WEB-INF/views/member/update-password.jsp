@@ -22,7 +22,7 @@
 			<input type="password" id="id-m-password-new-again" name="m_password_new_again">
 		</div>
 		<div>
-			<input type="submit" id="id-submit" value="登入">
+			<input type="submit" id="id-submit" value="確定">
 		</div>
 	</form>
 </body>

@@ -78,6 +78,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${clinicList}" varStatus="status">
+				<fmt:formatDate value="${bean.c_insert_time}" var="c_insert_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
 				<fmt:formatDate value="${bean.c_update_time}" var="c_update_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
 				<c:url value="/admin/clinic/update" var="path">
 					<c:param name="c_id" value="${bean.c_id}" />
@@ -103,7 +104,7 @@
 					<td>${bean.c_latitude}</td>
 					<td>${bean.c_longitude}</td>
 					<td><a href="${bean.c_url}">${bean.c_url}</a></td>
-					<td>${bean.c_insert_time}</td>
+					<td>${c_insert_time_format}</td>
 					<td>${c_update_time_format}</td>
 					<td><a href="${path}">修改</a></td>
 					<td><a href="${root}admin/clinic/delete.do?c_id=${bean.c_id}">刪除</a></td>

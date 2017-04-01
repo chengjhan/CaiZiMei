@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberBean.java
  * Author: 詹晟
- * Date: 2017/3/31
+ * Date: 2017/4/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -35,6 +35,7 @@ public class MemberBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer m_id;
 	private String m_username;
+	private String m_email;
 	private String m_password;
 	private String m_salt;
 	private String m_lastname;
@@ -51,7 +52,6 @@ public class MemberBean {
 	private String m_city;
 	private String m_region;
 	private String m_address;
-	private String m_email;
 	private Integer m_limit;
 	private java.util.Date m_signup_time;
 	private Integer m_signin_number;
@@ -78,6 +78,14 @@ public class MemberBean {
 
 	public void setM_username(String m_username) {
 		this.m_username = m_username;
+	}
+
+	public String getM_email() {
+		return m_email;
+	}
+
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
 	}
 
 	public String getM_password() {
@@ -200,14 +208,6 @@ public class MemberBean {
 		this.m_address = m_address;
 	}
 
-	public String getM_email() {
-		return m_email;
-	}
-
-	public void setM_email(String m_email) {
-		this.m_email = m_email;
-	}
-
 	public Integer getM_limit() {
 		return m_limit;
 	}
@@ -248,14 +248,6 @@ public class MemberBean {
 		this.m_signin_time = m_signin_time;
 	}
 
-	public Set<ClinicBean> getM_ClinicBean() {
-		return m_ClinicBean;
-	}
-
-	public void setM_ClinicBean(Set<ClinicBean> m_ClinicBean) {
-		this.m_ClinicBean = m_ClinicBean;
-	}
-
 	public java.util.Date getM_update_pass_time() {
 		return m_update_pass_time;
 	}
@@ -270,6 +262,14 @@ public class MemberBean {
 
 	public void setM_update_info_time(java.util.Date m_update_info_time) {
 		this.m_update_info_time = m_update_info_time;
+	}
+
+	public Set<ClinicBean> getM_ClinicBean() {
+		return m_ClinicBean;
+	}
+
+	public void setM_ClinicBean(Set<ClinicBean> m_ClinicBean) {
+		this.m_ClinicBean = m_ClinicBean;
 	}
 
 }

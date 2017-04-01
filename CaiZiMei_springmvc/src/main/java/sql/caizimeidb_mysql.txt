@@ -52,6 +52,7 @@ create table clinic(
 create table member(
 	m_id					int auto_increment not null,
     m_username				varchar(50) not null,
+    m_email					varchar(50) not null,
     m_password				varchar(50) not null,
     m_salt					varchar(50) not null,
     m_lastname				nvarchar(20),
@@ -67,7 +68,6 @@ create table member(
     m_city					nvarchar(10),
     m_region				nvarchar(10),
     m_address				nvarchar(50),
-    m_email					varchar(50),
     m_limit					tinyint not null,
     m_signup_time			timestamp default current_timestamp not null,
     m_signin_number			int,

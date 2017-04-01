@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/3/31
+ * Date: 2017/4/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -172,6 +172,21 @@ public class MemberController {
 
 		memberBean.setM_id(user.getM_id());
 		memberService.update(memberBean);
+
+		return new ModelAndView("redirect:/index");
+	}
+
+	/**
+	 * 修改會員信箱
+	 * 
+	 * @param m_email-->會員信箱
+	 * @param user-->Session
+	 * @return /WEB-INF/views/index.jsp
+	 */
+	public ModelAndView updateEmailProcess(@RequestParam(name = "m_email") String m_email,
+			@ModelAttribute("user") MemberBean user) {
+
+		memberService.updateM_email(user.getM_id(), m_email);
 
 		return new ModelAndView("redirect:/index");
 	}

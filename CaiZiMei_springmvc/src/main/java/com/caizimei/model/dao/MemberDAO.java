@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAO.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,11 +25,13 @@ public interface MemberDAO {
 
 	MemberBean selectByM_username(String m_username);
 
-	List<MemberBean> selectByConditions(String m_lastname, String m_firstname, String m_mobilephone, String m_email);
+	List<MemberBean> selectByConditions(String m_email, String m_lastname, String m_firstname, String m_mobilephone);
 
 	MemberBean insert(MemberBean memberBean);
 
 	MemberBean update(MemberBean memberBean);
+
+	MemberBean updateM_email(Integer m_id, String m_email);
 
 	MemberBean updateM_password(Integer m_id, String m_password_new_hashed);
 

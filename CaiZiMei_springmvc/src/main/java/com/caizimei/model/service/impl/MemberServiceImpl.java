@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberServiceImpl.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -144,6 +144,20 @@ public class MemberServiceImpl implements MemberService {
 	public MemberBean update(MemberBean memberBean) {
 
 		return memberDAO.update(memberBean);
+	}
+
+	/**
+	 * 修改會員信箱
+	 * 
+	 * @param m_id-->會員流水號
+	 * @param m_email-->會員信箱
+	 * @return MemberBean
+	 */
+	@Override
+	@Transactional
+	public MemberBean updateM_email(Integer m_id, String m_email) {
+
+		return memberDAO.updateM_email(m_id, m_email);
 	}
 
 	/**

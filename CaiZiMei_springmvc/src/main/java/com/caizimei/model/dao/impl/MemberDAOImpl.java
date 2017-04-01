@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/31
+ * Date: 2017/4/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -81,19 +81,22 @@ public class MemberDAOImpl implements MemberDAO {
 	/**
 	 * 條件搜尋
 	 * 
+	 * @param m_email-->會員信箱
 	 * @param m_lastname-->會員姓
 	 * @param m_firstname-->會員名
 	 * @param m_mobilephone-->會員手機
-	 * @param m_email-->會員信箱
 	 * @return List<MemberBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<MemberBean> selectByConditions(String m_lastname, String m_firstname, String m_mobilephone,
-			String m_email) {
+	public List<MemberBean> selectByConditions(String m_email, String m_lastname, String m_firstname,
+			String m_mobilephone) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(MemberBean.class);
 
+		if (m_email != null && !m_email.trim().isEmpty()) {
+			criteria.add(Restrictions.like("m_email", "%" + m_email + "%"));
+		}
 		if (m_lastname != null && !m_lastname.trim().isEmpty()) {
 			criteria.add(Restrictions.like("m_lastname", "%" + m_lastname + "%"));
 		}
@@ -102,9 +105,6 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		if (m_mobilephone != null && !m_mobilephone.trim().isEmpty()) {
 			criteria.add(Restrictions.eq("m_mobilephone", m_mobilephone));
-		}
-		if (m_email != null && !m_email.trim().isEmpty()) {
-			criteria.add(Restrictions.like("m_email", "%" + m_email + "%"));
 		}
 
 		return (List<MemberBean>) hibernateTemplate.findByCriteria(criteria);
@@ -148,8 +148,23 @@ public class MemberDAOImpl implements MemberDAO {
 		memberBean.setM_city(newMemberBean.getM_city());
 		memberBean.setM_region(newMemberBean.getM_region());
 		memberBean.setM_address(newMemberBean.getM_address());
-		memberBean.setM_email(newMemberBean.getM_email());
 		memberBean.setM_update_info_time(new java.util.Date());
+
+		return memberBean;
+	}
+
+	/**
+	 * 修改會員信箱
+	 * 
+	 * @param m_id-->會員流水號
+	 * @param m_email-->會員信箱
+	 * @return memberBean-->MemberBean
+	 */
+	@Override
+	public MemberBean updateM_email(Integer m_id, String m_email) {
+
+		MemberBean memberBean = hibernateTemplate.get(MemberBean.class, m_id);
+		memberBean.setM_email(m_email);
 
 		return memberBean;
 	}

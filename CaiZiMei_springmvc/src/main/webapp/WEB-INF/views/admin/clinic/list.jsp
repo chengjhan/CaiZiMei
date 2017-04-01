@@ -132,6 +132,9 @@
 					var city_select = $("#id-ci-id");
 					city_select.empty();
 					city_select.append("<option value='0'>請選擇城市</option>");
+					var region_select = $("#id-c-r-id");
+					region_select.empty();
+					region_select.append("<option value='0'>請選擇區域</option>");
 					$.each(data, function(index, city){
 						var city_option = $("<option value=" + city.ci_id + "></option>").append(city.ci_name);
 						city_select.append(city_option);

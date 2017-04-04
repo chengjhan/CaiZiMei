@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/4/2
+ * Date: 2017/4/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -183,6 +183,7 @@ public class MemberController {
 	 * @param user-->Session
 	 * @return /WEB-INF/views/index.jsp
 	 */
+	@RequestMapping(path = "/member/update-email.do", method = RequestMethod.POST)
 	public ModelAndView updateEmailProcess(@RequestParam(name = "m_email") String m_email,
 			@ModelAttribute("user") MemberBean user) {
 

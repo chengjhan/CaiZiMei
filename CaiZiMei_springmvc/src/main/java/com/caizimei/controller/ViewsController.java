@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -78,6 +78,17 @@ public class ViewsController {
 	public ModelAndView member_updatePassword() {
 
 		return new ModelAndView("member/update-password");
+	}
+
+	/**
+	 * member/update-email 視圖解析
+	 * 
+	 * @return /WEB-INF/views/member/update-email.jsp
+	 */
+	@RequestMapping(value = "/member/update-email", method = RequestMethod.GET)
+	public ModelAndView member_updateEmail() {
+
+		return new ModelAndView("member/update-email");
 	}
 
 	/**

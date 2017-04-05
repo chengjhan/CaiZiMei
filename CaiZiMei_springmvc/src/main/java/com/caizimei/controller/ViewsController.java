@@ -37,6 +37,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * member/profile 視圖解析
+	 * 
+	 * @return /WEB-INF/views/member/profile.jsp
+	 */
+	@RequestMapping(value = "/member/profile", method = RequestMethod.GET)
+	public ModelAndView member_profile() {
+
+		return new ModelAndView("member/profile");
+	}
+
+	/**
 	 * member/sign-in 視圖解析
 	 * 
 	 * @return /WEB-INF/views/member/sign-in.jsp

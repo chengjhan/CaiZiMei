@@ -26,6 +26,9 @@
 		<a href="${root}member/sign-out.do">登出</a>
 	</p>
 	<p>
+		<a href="${root}member/profile">個人資訊</a>
+	</p>
+	<p>
 		<a href="${root}member/update">修改會員資料</a>
 	</p>
 	<p>

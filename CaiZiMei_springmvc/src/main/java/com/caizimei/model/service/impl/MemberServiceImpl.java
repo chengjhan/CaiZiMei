@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/2
+ * Date: 2017/4/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -71,20 +71,13 @@ public class MemberServiceImpl implements MemberService {
 
 		MemberBean memberBean = memberDAO.selectByM_username(m_username);
 
-		if (memberBean != null) {
+		String m_salt = memberBean.getM_salt();
 
-			String m_salt = memberBean.getM_salt();
+		if (getHashedPassword(m_password, m_salt).equals(memberBean.getM_password())) {
 
-			if (getHashedPassword(m_password, m_salt).equals(memberBean.getM_password())) {
+			memberDAO.updateM_signin_number(memberBean.getM_id());
 
-				memberDAO.updateM_signin_number(memberBean.getM_id());
-				memberDAO.updateM_signin_ip(memberBean.getM_id());
-				memberDAO.updateM_signin_time(memberBean.getM_id());
-
-				return true;
-			} else {
-				return false;
-			}
+			return true;
 		} else {
 			return false;
 		}
@@ -173,6 +166,31 @@ public class MemberServiceImpl implements MemberService {
 	public MemberBean updateM_password(Integer m_id, String m_password_new, String m_salt) {
 
 		return memberDAO.updateM_password(m_id, getHashedPassword(m_password_new, m_salt));
+	}
+
+	/**
+	 * 更新登入IP
+	 * 
+	 * @param m_id-->會員流水號
+	 * @param m_signin_ip-->登入IP
+	 * @return MemberBean
+	 */
+	@Override
+	public MemberBean updateM_signin_ip(Integer m_id, String m_signin_ip) {
+
+		return memberDAO.updateM_signin_ip(m_id, m_signin_ip);
+	}
+
+	/**
+	 * 更新登入時間
+	 * 
+	 * @param m_id-->會員流水號
+	 * @return MemberBean
+	 */
+	@Override
+	public MemberBean updateM_signin_time(Integer m_id) {
+
+		return memberDAO.updateM_signin_time(m_id);
 	}
 
 	/**

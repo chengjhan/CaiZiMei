@@ -11,6 +11,7 @@ package com.caizimei.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ import misc.PrimitiveNumberEditor;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes("user")
+@SessionAttributes(value = { "user", "lastSignInIp", "lastSignInTime" })
 public class MemberController {
 
 	/**
@@ -87,7 +88,8 @@ public class MemberController {
 			@RequestParam(name = "m_localphone_front") String m_localphone_front,
 			@RequestParam(name = "m_localphone_back") String m_localphone_back,
 			@RequestParam(name = "m_mobilephone_front") String m_mobilephone_front,
-			@RequestParam(name = "m_mobilephone_back") String m_mobilephone_back, Model model) {
+			@RequestParam(name = "m_mobilephone_back") String m_mobilephone_back, HttpServletRequest request,
+			Model model) {
 
 		String m_salt = memberService.getSalt();
 
@@ -103,13 +105,16 @@ public class MemberController {
 		memberBean.setM_localphone(m_localphone_front + "-" + m_localphone_back);
 		memberBean.setM_mobilephone(m_mobilephone_front + "-" + m_mobilephone_back);
 		memberBean.setM_limit(0);
-		memberBean.setM_signin_number(0);
+		memberBean.setM_signin_number(1);
+		memberBean.setM_signin_ip(request.getRemoteAddr());
+		memberBean.setM_signin_time(new java.util.Date());
 		memberBean.setM_update_pass_time(new java.util.Date());
 		memberBean.setM_update_info_time(new java.util.Date());
-
 		memberService.signUp(memberBean);
-		memberService.signIn(memberBean.getM_username(), m_password);
+
 		model.addAttribute("user", memberBean);
+		model.addAttribute("lastSignInIp", "第一次登入");
+		model.addAttribute("lastSignInTime", "第一次登入");
 
 		return new ModelAndView("redirect:/index");
 	}
@@ -125,15 +130,32 @@ public class MemberController {
 	 */
 	@RequestMapping(path = "/member/sign-in.do", method = RequestMethod.POST)
 	public ModelAndView signInProcess(@RequestParam(name = "m_username") String m_username,
-			@RequestParam(name = "m_password") String m_password, Model model) {
+			@RequestParam(name = "m_password") String m_password, HttpServletRequest request, Model model) {
 
-		if (memberService.signIn(m_username, m_password)) {
+		MemberBean memberBean = memberService.selectByM_username(m_username);
 
-			model.addAttribute("user", memberService.selectByM_username(m_username));
+		if (memberBean != null) {
 
-			return new ModelAndView("redirect:/index");
+			model.addAttribute("lastSignInIp", memberBean.getM_signin_ip());
+			model.addAttribute("lastSignInTime", memberBean.getM_signin_time());
+
+			if (memberService.signIn(m_username, m_password)) {
+
+				memberService.updateM_signin_ip(memberBean.getM_id(), request.getRemoteAddr());
+				memberService.updateM_signin_time(memberBean.getM_id());
+				model.addAttribute("user", memberService.selectByM_username(m_username));
+
+				return new ModelAndView("redirect:/index");
+			} else {
+
+				// 密碼錯誤
+				model.addAttribute("error", "帳號或密碼錯誤");
+
+				return new ModelAndView("member/sign-in");
+			}
 		} else {
 
+			// 帳號錯誤
 			model.addAttribute("error", "帳號或密碼錯誤");
 
 			return new ModelAndView("member/sign-in");

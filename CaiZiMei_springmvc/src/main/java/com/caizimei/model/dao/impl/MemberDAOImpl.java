@@ -207,12 +207,16 @@ public class MemberDAOImpl implements MemberDAO {
 	 * 更新登入IP
 	 * 
 	 * @param m_id-->會員流水號
+	 * @param m_signin_ip-->登入IP
 	 * @return memberBean-->MemberBean
 	 */
 	@Override
-	public MemberBean updateM_signin_ip(Integer m_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public MemberBean updateM_signin_ip(Integer m_id, String m_signin_ip) {
+
+		MemberBean memberBean = hibernateTemplate.get(MemberBean.class, m_id);
+		memberBean.setM_signin_ip(m_signin_ip);
+
+		return memberBean;
 	}
 
 	/**

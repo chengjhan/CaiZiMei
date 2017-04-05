@@ -45,6 +45,7 @@
 				<td>地址</td>
 				<td>信箱</td>
 				<td>註冊時間</td>
+				<td>最後登入IP</td>
 				<td>最後登入時間</td>
 			</tr>
 		</thead>
@@ -64,6 +65,7 @@
 					<td>${bean.m_zipcode} ${bean.m_country} ${bean.m_city} ${bean.m_region} ${bean.m_address}</td>
 					<td>${bean.m_email}</td>
 					<td>${bean.m_signup_time}</td>
+					<td>${bean.m_signin_ip}</td>
 					<td>${bean.m_signin_time}</td>
 				</tr>
 			</c:forEach>

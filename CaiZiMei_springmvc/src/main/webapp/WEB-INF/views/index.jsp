@@ -9,6 +9,10 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
+	<p>Welcome ${user.m_username}</p>
+	<p>登入次數: ${user.m_signin_number}</p>
+	<p>上次登入IP: ${lastSignInIp}</p>
+	<p>上次登入時間: ${lastSignInTime}</p>
 	<p>
 		<a href="${root}member/sign-in">登入</a>
 	</p>

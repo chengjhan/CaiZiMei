@@ -52,7 +52,6 @@ create table clinic(
 create table member(
 	m_id					int auto_increment not null,
     m_username				varchar(50) not null,
-    m_email					varchar(50) not null,
     m_password				varchar(50) not null,
     m_salt					varchar(50) not null,
     m_lastname				nvarchar(20),

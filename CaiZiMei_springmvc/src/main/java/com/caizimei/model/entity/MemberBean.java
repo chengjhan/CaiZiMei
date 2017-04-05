@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberBean.java
  * Author: 詹晟
- * Date: 2017/4/2
+ * Date: 2017/4/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -35,7 +35,6 @@ public class MemberBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer m_id;
 	private String m_username;
-	private String m_email;
 	private String m_password;
 	private String m_salt;
 	private String m_lastname;
@@ -78,14 +77,6 @@ public class MemberBean {
 
 	public void setM_username(String m_username) {
 		this.m_username = m_username;
-	}
-
-	public String getM_email() {
-		return m_email;
-	}
-
-	public void setM_email(String m_email) {
-		this.m_email = m_email;
 	}
 
 	public String getM_password() {

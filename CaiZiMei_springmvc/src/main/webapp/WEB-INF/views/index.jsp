@@ -32,9 +32,6 @@
 		<a href="${root}member/update-password">修改會員密碼</a>
 	</p>
 	<p>
-		<a href="${root}member/update-email">修改會員信箱</a>
-	</p>
-	<p>
 		<a href="${root}purchase/order">訂購</a>
 	</p>
 	<p>

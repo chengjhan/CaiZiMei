@@ -11,7 +11,7 @@
 <body>
 	<form action="<c:url value='/member/sign-in.do' />" method="post">
 		<div>
-			<label for="id-m-username">帳號</label>
+			<label for="id-m-username">信箱</label>
 			<input type="text" id="id-m-username" name="m_username">
 		</div>
 		<div>

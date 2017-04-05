@@ -69,7 +69,7 @@ public class MemberController {
 	 * 註冊
 	 * 
 	 * @param memberBean-->MemberBean
-	 * @param m_username-->會員帳號
+	 * @param m_username-->會員信箱
 	 * @param m_password-->會員密碼(原碼)
 	 * @param m_birth_year-->會員生日(年)
 	 * @param m_birth_month-->會員生日(月)
@@ -131,7 +131,7 @@ public class MemberController {
 	/**
 	 * 登入
 	 * 
-	 * @param m_username-->會員帳號
+	 * @param m_username-->會員信箱
 	 * @param m_password-->會員密碼(原碼)
 	 * @param model-->Model
 	 * @return /WEB-INF/views/index.jsp
@@ -158,14 +158,14 @@ public class MemberController {
 			} else {
 
 				// 密碼錯誤
-				model.addAttribute("error", "帳號或密碼錯誤");
+				model.addAttribute("error", "信箱或密碼錯誤");
 
 				return new ModelAndView("member/sign-in");
 			}
 		} else {
 
-			// 帳號錯誤
-			model.addAttribute("error", "帳號或密碼錯誤");
+			// 信箱錯誤
+			model.addAttribute("error", "信箱或密碼錯誤");
 
 			return new ModelAndView("member/sign-in");
 		}
@@ -203,22 +203,6 @@ public class MemberController {
 
 		memberBean.setM_id(user.getM_id());
 		memberService.update(memberBean);
-
-		return new ModelAndView("redirect:/index");
-	}
-
-	/**
-	 * 修改會員信箱
-	 * 
-	 * @param m_email-->會員信箱
-	 * @param user-->Session
-	 * @return /WEB-INF/views/index.jsp
-	 */
-	@RequestMapping(path = "/member/update-email.do", method = RequestMethod.POST)
-	public ModelAndView updateEmailProcess(@RequestParam(name = "m_email") String m_email,
-			@ModelAttribute("user") MemberBean user) {
-
-		memberService.updateM_email(user.getM_id(), m_email);
 
 		return new ModelAndView("redirect:/index");
 	}
@@ -287,16 +271,16 @@ public class MemberController {
 	@RequestMapping(path = "/admin/member/select.do", method = RequestMethod.GET)
 	public ModelAndView selectByConditionsProcess(MemberBean memberBean, Model model) {
 
-		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_lastname(),
-				memberBean.getM_firstname(), memberBean.getM_localphone(), memberBean.getM_email()));
+		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_username(),
+				memberBean.getM_lastname(), memberBean.getM_firstname(), memberBean.getM_localphone()));
 
 		return new ModelAndView("admin/member/search");
 	}
 
 	/**
-	 * 驗證帳號是否已使用 (ajax)
+	 * 驗證信箱是否已使用 (ajax)
 	 * 
-	 * @param m_username-->會員帳號
+	 * @param m_username-->會員信箱
 	 * @return 1-->已使用
 	 * @return 0-->未使用
 	 */

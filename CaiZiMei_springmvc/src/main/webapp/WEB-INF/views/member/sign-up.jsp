@@ -12,7 +12,7 @@
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/member/sign-up.do' />" method="post">
 		<div>
-			<label for="id-m-username">帳號</label>
+			<label for="id-m-username">信箱</label>
 			<input type="text" id="id-m-username" name="m_username">
 			<span id="id-m-username-span" style="color:red"></span>
 		</div>
@@ -97,10 +97,6 @@
 		<div>
 			<label for="id-m-address">地址</label>
 			<input type="text" id="id-m-address" name="m_address">
-		</div>
-		<div>
-			<label for="id-m-email">信箱</label>
-			<input type="text" id="id-m-email" name="m_email">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="註冊">

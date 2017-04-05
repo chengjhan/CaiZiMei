@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 登入
 	 * 
-	 * @param m_username-->會員帳號
+	 * @param m_username-->會員信箱
 	 * @param m_password-->會員密碼(原碼)
 	 * @return true-->登入成功
 	 * @return false-->登入失敗
@@ -97,9 +97,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/**
-	 * 會員帳號搜尋
+	 * 會員信箱搜尋
 	 * 
-	 * @param m_username-->會員帳號
+	 * @param m_username-->會員信箱
 	 * @return MemberBean
 	 */
 	@Override
@@ -112,18 +112,18 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 條件搜尋
 	 * 
+	 * @param m_username-->會員信箱
 	 * @param m_lastname-->會員姓
 	 * @param m_firstname-->會員名
 	 * @param m_mobilephone-->會員電話
-	 * @param m_email-->會員信箱
 	 * @return List<MemberBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<MemberBean> selectByConditions(String m_lastname, String m_firstname, String m_mobilephone,
-			String m_email) {
+	public List<MemberBean> selectByConditions(String m_username, String m_lastname, String m_firstname,
+			String m_mobilephone) {
 
-		return memberDAO.selectByConditions(m_firstname, m_lastname, m_mobilephone, m_email);
+		return memberDAO.selectByConditions(m_username, m_firstname, m_lastname, m_mobilephone);
 	}
 
 	/**
@@ -137,20 +137,6 @@ public class MemberServiceImpl implements MemberService {
 	public MemberBean update(MemberBean memberBean) {
 
 		return memberDAO.update(memberBean);
-	}
-
-	/**
-	 * 修改會員信箱
-	 * 
-	 * @param m_id-->會員流水號
-	 * @param m_email-->會員信箱
-	 * @return MemberBean
-	 */
-	@Override
-	@Transactional
-	public MemberBean updateM_email(Integer m_id, String m_email) {
-
-		return memberDAO.updateM_email(m_id, m_email);
 	}
 
 	/**

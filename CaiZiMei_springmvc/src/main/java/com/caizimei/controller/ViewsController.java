@@ -81,17 +81,6 @@ public class ViewsController {
 	}
 
 	/**
-	 * member/update-email 視圖解析
-	 * 
-	 * @return /WEB-INF/views/member/update-email.jsp
-	 */
-	@RequestMapping(value = "/member/update-email", method = RequestMethod.GET)
-	public ModelAndView member_updateEmail() {
-
-		return new ModelAndView("member/update-email");
-	}
-
-	/**
 	 * purchase/order 視圖解析
 	 * 
 	 * @return /WEB-INF/views/purchase/order.jsp

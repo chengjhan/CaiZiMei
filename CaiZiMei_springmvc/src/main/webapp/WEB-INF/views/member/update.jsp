@@ -80,10 +80,6 @@
 			<input type="text" id="id-m-address" name="m_address" value="${user.m_address}">
 		</div>
 		<div>
-			<label for="id-m-email">信箱</label>
-			<input type="text" id="id-m-email" name="m_email" value="${user.m_email}">
-		</div>
-		<div>
 			<input type="submit" id="id-submit" value="修改">
 		</div>
 	</form>

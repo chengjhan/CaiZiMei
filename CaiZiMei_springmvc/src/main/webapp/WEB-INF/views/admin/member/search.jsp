@@ -34,7 +34,7 @@
 			<tr>
 				<td>編號</td>
 				<td>流水號</td>
-				<td>帳號</td>
+				<td>信箱</td>
 				<td>姓名</td>
 				<td>生日</td>
 				<td>性別</td>
@@ -43,7 +43,6 @@
 				<td>電話</td>
 				<td>手機</td>
 				<td>地址</td>
-				<td>信箱</td>
 				<td>註冊時間</td>
 				<td>最後登入IP</td>
 				<td>最後登入時間</td>
@@ -63,7 +62,6 @@
 					<td>${bean.m_localphone}</td>
 					<td>${bean.m_mobilephone}</td>
 					<td>${bean.m_zipcode} ${bean.m_country} ${bean.m_city} ${bean.m_region} ${bean.m_address}</td>
-					<td>${bean.m_email}</td>
 					<td>${bean.m_signup_time}</td>
 					<td>${bean.m_signin_ip}</td>
 					<td>${bean.m_signin_time}</td>

@@ -69,6 +69,7 @@ public class MemberController {
 	 * 註冊
 	 * 
 	 * @param memberBean-->MemberBean
+	 * @param m_username-->會員帳號
 	 * @param m_password-->會員密碼(原碼)
 	 * @param m_birth_year-->會員生日(年)
 	 * @param m_birth_month-->會員生日(月)
@@ -79,9 +80,11 @@ public class MemberController {
 	 * @param m_mobilephone_back-->會員手機(後碼)
 	 * @param model-->Model
 	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/member/sign-up.jsp
 	 */
 	@RequestMapping(path = "/member/sign-up.do", method = RequestMethod.POST)
-	public ModelAndView signUpProcess(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
+	public ModelAndView signUpProcess(MemberBean memberBean, @RequestParam(name = "m_username") String m_username,
+			@RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_birth_year") String m_birth_year,
 			@RequestParam(name = "m_birth_month") String m_birth_month,
 			@RequestParam(name = "m_birth_date") String m_birth_date,
@@ -91,32 +94,38 @@ public class MemberController {
 			@RequestParam(name = "m_mobilephone_back") String m_mobilephone_back, HttpServletRequest request,
 			Model model) {
 
-		String m_salt = memberService.getSalt();
+		if (memberService.selectByM_username(m_username) == null) {
 
-		memberBean.setM_salt(m_salt);
-		memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
-		java.util.Date m_birth = null;
-		try {
-			m_birth = simpleDateFormat.parse(m_birth_year + "-" + m_birth_month + "-" + m_birth_date);
-		} catch (ParseException e) {
-			e.printStackTrace();
+			String m_salt = memberService.getSalt();
+
+			memberBean.setM_salt(m_salt);
+			memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
+			java.util.Date m_birth = null;
+			try {
+				m_birth = simpleDateFormat.parse(m_birth_year + "-" + m_birth_month + "-" + m_birth_date);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			memberBean.setM_birth(m_birth);
+			memberBean.setM_localphone(m_localphone_front + "-" + m_localphone_back);
+			memberBean.setM_mobilephone(m_mobilephone_front + "-" + m_mobilephone_back);
+			memberBean.setM_limit(0);
+			memberBean.setM_signin_number(1);
+			memberBean.setM_signin_ip(request.getRemoteAddr());
+			memberBean.setM_signin_time(new java.util.Date());
+			memberBean.setM_update_pass_time(new java.util.Date());
+			memberBean.setM_update_info_time(new java.util.Date());
+			memberService.signUp(memberBean);
+
+			model.addAttribute("user", memberBean);
+			model.addAttribute("lastSignInIp", "第一次登入");
+			model.addAttribute("lastSignInTime", "第一次登入");
+
+			return new ModelAndView("redirect:/index");
+		} else {
+
+			return new ModelAndView("redirect:/member/sign-up");
 		}
-		memberBean.setM_birth(m_birth);
-		memberBean.setM_localphone(m_localphone_front + "-" + m_localphone_back);
-		memberBean.setM_mobilephone(m_mobilephone_front + "-" + m_mobilephone_back);
-		memberBean.setM_limit(0);
-		memberBean.setM_signin_number(1);
-		memberBean.setM_signin_ip(request.getRemoteAddr());
-		memberBean.setM_signin_time(new java.util.Date());
-		memberBean.setM_update_pass_time(new java.util.Date());
-		memberBean.setM_update_info_time(new java.util.Date());
-		memberService.signUp(memberBean);
-
-		model.addAttribute("user", memberBean);
-		model.addAttribute("lastSignInIp", "第一次登入");
-		model.addAttribute("lastSignInTime", "第一次登入");
-
-		return new ModelAndView("redirect:/index");
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberBean.java
  * Author: 詹晟
- * Date: 2017/4/5
+ * Date: 2017/4/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -51,6 +51,7 @@ public class MemberBean {
 	private String m_city;
 	private String m_region;
 	private String m_address;
+	private Integer m_belong;
 	private Integer m_limit;
 	private java.util.Date m_signup_time;
 	private Integer m_signin_number;
@@ -197,6 +198,14 @@ public class MemberBean {
 
 	public void setM_address(String m_address) {
 		this.m_address = m_address;
+	}
+
+	public Integer getM_belong() {
+		return m_belong;
+	}
+
+	public void setM_belong(Integer m_belong) {
+		this.m_belong = m_belong;
 	}
 
 	public Integer getM_limit() {

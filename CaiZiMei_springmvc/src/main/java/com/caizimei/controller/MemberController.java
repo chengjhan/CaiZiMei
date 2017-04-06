@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/4/6
+ * Date: 2017/4/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -108,6 +108,7 @@ public class MemberController {
 			memberBean.setM_birth(m_birth);
 			memberBean.setM_localphone(m_localphone_front + "-" + m_localphone_back);
 			memberBean.setM_mobilephone(m_mobilephone_front + "-" + m_mobilephone_back);
+			memberBean.setM_belong(0);
 			memberBean.setM_limit(0);
 			memberBean.setM_signin_number(1);
 			memberBean.setM_signin_ip(request.getRemoteAddr());
@@ -265,7 +266,7 @@ public class MemberController {
 	}
 
 	/**
-	 * 設定會員密碼
+	 * 重設會員密碼
 	 * 
 	 * @param m_password-->驗證碼(原碼)
 	 * @param m_password_new-->新密碼(原碼)

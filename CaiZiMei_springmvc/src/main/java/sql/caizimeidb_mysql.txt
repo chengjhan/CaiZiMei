@@ -67,6 +67,7 @@ create table member(
     m_city					nvarchar(10),
     m_region				nvarchar(10),
     m_address				nvarchar(50),
+    m_belong				tinyint not null,
     m_limit					tinyint not null,
     m_signup_time			timestamp default current_timestamp not null,
     m_signin_number			int,
@@ -85,6 +86,13 @@ create table purchase(
     primary key (p_id),
     foreign key (p_m_id) references member (m_id),
     foreign key (p_c_id) references clinic (c_id)
+);
+
+create table agent(
+	a_id					int auto_increment not null,
+    a_name					nvarchar(20) not null,
+    a_localphone			varchar(20),
+    primary key (a_id)
 );
 
 -- country

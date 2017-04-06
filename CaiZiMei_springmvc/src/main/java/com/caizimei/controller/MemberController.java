@@ -271,7 +271,7 @@ public class MemberController {
 	public String selectByConditionsProcess(MemberBean memberBean, Model model) {
 
 		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_username(),
-				memberBean.getM_lastname(), memberBean.getM_firstname(), memberBean.getM_localphone()));
+				memberBean.getM_lastname(), memberBean.getM_firstname(), memberBean.getM_mobilephone()));
 
 		return "admin/member/search";
 	}

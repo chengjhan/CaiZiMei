@@ -58,6 +58,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * member/set-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/member/set-password.jsp
+	 */
+	@RequestMapping(value = "/member/set-password", method = RequestMethod.GET)
+	public String member_setPassword() {
+
+		return "member/set-password";
+	}
+
+	/**
 	 * member/sign-in 視圖解析
 	 * 
 	 * @return /WEB-INF/views/member/sign-in.jsp

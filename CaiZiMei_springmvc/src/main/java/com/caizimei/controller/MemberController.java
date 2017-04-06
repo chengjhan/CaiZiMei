@@ -239,6 +239,64 @@ public class MemberController {
 	}
 
 	/**
+	 * 忘記密碼
+	 * 
+	 * @param m_username-->會員信箱
+	 * @param model-->Model
+	 * @return /WEB-INF/views/member/set-password.jsp
+	 */
+	@RequestMapping(path = "/member/forget-password.do", method = RequestMethod.POST)
+	public String forgetPasswordProcess(@RequestParam(name = "m_username") String m_username, Model model) {
+
+		int random = (int) (Math.random() * 1000000);
+		String m_password_random = String.valueOf(random);
+
+		MemberBean memberBean = memberService.selectByM_username(m_username);
+		memberService.updateM_password(memberBean.getM_id(), m_password_random, memberBean.getM_salt());
+
+		String to = m_username;
+		String from = "chengjhan@gmail.com";
+		String subject = "更改密碼";
+		String text = m_password_random;
+		memberService.sendEmail(to, from, subject, text);
+
+		model.addAttribute("user", memberBean);
+
+		return "redirect:/member/set-password";
+	}
+
+	/**
+	 * 設定會員密碼
+	 * 
+	 * @param m_password-->驗證碼(原碼)
+	 * @param m_password_new-->新密碼(原碼)
+	 * @param user-->Session
+	 * @param sessionStatus-->SessionStatus
+	 * @return /WEB-INF/views/member/sign-in.jsp
+	 * @return /WEB-INF/views/member/set-password.jsp
+	 */
+	@RequestMapping(path = "/member/set-password.do", method = RequestMethod.POST)
+	public String setPasswordProcess(@RequestParam(name = "m_password") String m_password,
+			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user,
+			SessionStatus sessionStatus) {
+
+		String oldHashedPassword = memberService.selectByM_id(user.getM_id()).getM_password();
+		String inputOldHashedPassword = memberService.getHashedPassword(m_password, user.getM_salt());
+
+		if (oldHashedPassword.equals(inputOldHashedPassword)) {
+
+			memberService.updateM_password(user.getM_id(), m_password_new, user.getM_salt());
+
+			// 清除 @SessionAttributes
+			sessionStatus.setComplete();
+
+			return "redirect:/member/sign-in";
+		} else {
+			return "member/set-password";
+		}
+	}
+
+	/**
 	 * 管理者註冊
 	 * 
 	 * @param memberBean-->MemberBean

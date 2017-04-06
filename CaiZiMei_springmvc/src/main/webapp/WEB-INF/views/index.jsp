@@ -17,7 +17,7 @@
 		<a href="${root}member/sign-in">登入</a>
 	</p>
 	<p>
-		<a href="${root}member/sign-in">忘記密碼</a>
+		<a href="${root}member/forget-password">忘記密碼</a>
 	</p>
 	<p>
 		<a href="${root}member/sign-up">註冊</a>

@@ -14,7 +14,7 @@
 			<input type="text" id="id-m-username" name="m_username">
 		</div>
 		<div>
-			<input type="submit" id="id-submit" value="確定">
+			<input type="submit" id="id-submit" value="寄信">
 		</div>
 	</form>
 </body>

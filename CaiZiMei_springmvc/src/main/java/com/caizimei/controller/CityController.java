@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/3/31
+ * Date: 2017/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.CityBean;
 import com.caizimei.model.service.CityService;
@@ -55,11 +54,11 @@ public class CityController {
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public ModelAndView selectProcess(Model model) {
+	public String selectProcess(Model model) {
 
 		model.addAttribute("cityList", cityService.select());
 
-		return new ModelAndView("admin/city/list");
+		return "admin/city/list";
 	}
 
 	/**
@@ -71,14 +70,13 @@ public class CityController {
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
-	public ModelAndView insertProcess(@RequestParam(name = "ci_co_id") Integer ci_co_id, CityBean cityBean,
-			Model model) {
+	public String insertProcess(@RequestParam(name = "ci_co_id") Integer ci_co_id, CityBean cityBean, Model model) {
 
 		cityBean.setCi_CountryBean(countryService.selectByCo_id(ci_co_id));
 		cityService.insert(cityBean);
 		model.addAttribute("cityList", cityService.select());
 
-		return new ModelAndView("redirect:/admin/city/list");
+		return "redirect:/admin/city/list";
 	}
 
 	/**
@@ -90,14 +88,13 @@ public class CityController {
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(@RequestParam(name = "ci_co_id") Integer ci_co_id, CityBean cityBean,
-			Model model) {
+	public String updateProcess(@RequestParam(name = "ci_co_id") Integer ci_co_id, CityBean cityBean, Model model) {
 
 		cityBean.setCi_CountryBean(countryService.selectByCo_id(ci_co_id));
 		cityService.update(cityBean);
 		model.addAttribute("cityList", cityService.select());
 
-		return new ModelAndView("redirect:/admin/city/list");
+		return "redirect:/admin/city/list";
 	}
 
 	/**
@@ -108,12 +105,12 @@ public class CityController {
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
-	public ModelAndView deleteProcess(CityBean cityBean, Model model) {
+	public String deleteProcess(CityBean cityBean, Model model) {
 
 		cityService.delete(cityBean.getCi_id());
 		model.addAttribute("cityList", cityService.select());
 
-		return new ModelAndView("redirect:/admin/city/list");
+		return "redirect:/admin/city/list";
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/3/28
+ * Date: 2017/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.caizimei.model.entity.CountryBean;
@@ -48,11 +47,11 @@ public class CountryController {
 	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public ModelAndView selectProcess(Model model) {
+	public String selectProcess(Model model) {
 
 		model.addAttribute("countryList", countryService.select());
 
-		return new ModelAndView("admin/country/list");
+		return "admin/country/list";
 	}
 
 	/**
@@ -63,12 +62,12 @@ public class CountryController {
 	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
-	public ModelAndView insertProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
+	public String insertProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
 
 		countryService.insert(countryBean);
 		redirectAttributes.addFlashAttribute("countryList", countryService.select());
 
-		return new ModelAndView("redirect:/admin/country/list");
+		return "redirect:/admin/country/list";
 	}
 
 	/**
@@ -79,12 +78,12 @@ public class CountryController {
 	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
+	public String updateProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
 
 		countryService.update(countryBean);
 		redirectAttributes.addFlashAttribute("countryList", countryService.select());
 
-		return new ModelAndView("redirect:/admin/country/list");
+		return "redirect:/admin/country/list";
 	}
 
 	/**
@@ -95,12 +94,12 @@ public class CountryController {
 	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
-	public ModelAndView deleteProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
+	public String deleteProcess(CountryBean countryBean, RedirectAttributes redirectAttributes) {
 
 		countryService.delete(countryBean.getCo_id());
 		redirectAttributes.addFlashAttribute("countryList", countryService.select());
 
-		return new ModelAndView("redirect:/admin/country/list");
+		return "redirect:/admin/country/list";
 	}
 
 	/**

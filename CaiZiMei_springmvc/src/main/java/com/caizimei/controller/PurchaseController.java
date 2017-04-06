@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: PurchaseController.java
  * Author: 詹晟
- * Date: 2017/4/1
+ * Date: 2017/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.MemberBean;
 import com.caizimei.model.entity.PurchaseBean;
@@ -45,15 +44,14 @@ public class PurchaseController {
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/order.do", method = RequestMethod.POST)
-	public ModelAndView orderProcess(@ModelAttribute("user") MemberBean user,
-			@RequestParam(name = "p_c_id") String p_c_id) {
+	public String orderProcess(@ModelAttribute("user") MemberBean user, @RequestParam(name = "p_c_id") String p_c_id) {
 
 		PurchaseBean purchaseBean = new PurchaseBean();
 		purchaseBean.setP_m_id(user.getM_id());
 		purchaseBean.setP_c_id(Integer.valueOf(p_c_id));
 		purchaseService.order(purchaseBean);
 
-		return new ModelAndView("redirect:/index");
+		return "redirect:/index";
 	}
 
 }

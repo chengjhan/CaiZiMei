@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: RegionController.java
  * Author: 詹晟
- * Date: 2017/3/31
+ * Date: 2017/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.RegionBean;
 import com.caizimei.model.service.CityService;
@@ -57,13 +56,13 @@ public class RegionController {
 	 * @return /WEB-INF/views/admin/region/search.jsp
 	 */
 	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
-	public ModelAndView selectByConditionsProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id,
-			RegionBean regionBean, Model model) {
+	public String selectByConditionsProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id, RegionBean regionBean,
+			Model model) {
 
 		model.addAttribute("selectByConditions",
 				regionService.selectByConditions(r_ci_id, regionBean.getR_name(), regionBean.getR_zipcode()));
 
-		return new ModelAndView("admin/region/search");
+		return "admin/region/search";
 	}
 
 	/**
@@ -75,14 +74,13 @@ public class RegionController {
 	 * @return /WEB-INF/views/admin/region/search.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
-	public ModelAndView insertProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id, RegionBean regionBean,
-			Model model) {
+	public String insertProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id, RegionBean regionBean, Model model) {
 
 		regionBean.setR_CityBean(cityService.selectByCi_id(r_ci_id));
 		regionService.insert(regionBean);
 		model.addAttribute("regionList", regionService.selectByR_ci_id(r_ci_id));
 
-		return new ModelAndView("redirect:/admin/region/search");
+		return "redirect:/admin/region/search";
 	}
 
 	/**
@@ -94,14 +92,13 @@ public class RegionController {
 	 * @return /WEB-INF/views/admin/region/search.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id, RegionBean regionBean,
-			Model model) {
+	public String updateProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id, RegionBean regionBean, Model model) {
 
 		regionBean.setR_CityBean(cityService.selectByCi_id(r_ci_id));
 		regionService.update(regionBean);
 		model.addAttribute("regionList", regionService.selectByR_ci_id(r_ci_id));
 
-		return new ModelAndView("redirect:/admin/region/search");
+		return "redirect:/admin/region/search";
 	}
 
 	/**
@@ -112,11 +109,11 @@ public class RegionController {
 	 * @return /WEB-INF/views/admin/region/search.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
-	public ModelAndView deleteProcess(RegionBean regionBean, Model model) {
+	public String deleteProcess(RegionBean regionBean, Model model) {
 
 		regionService.delete(regionBean.getR_id());
 
-		return new ModelAndView("redirect:/admin/region/search");
+		return "redirect:/admin/region/search";
 	}
 
 	/**

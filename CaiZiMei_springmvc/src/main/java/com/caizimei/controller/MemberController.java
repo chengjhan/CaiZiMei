@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/4/5
+ * Date: 2017/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.MemberBean;
 import com.caizimei.model.service.MemberService;
@@ -83,7 +82,7 @@ public class MemberController {
 	 * @return /WEB-INF/views/member/sign-up.jsp
 	 */
 	@RequestMapping(path = "/member/sign-up.do", method = RequestMethod.POST)
-	public ModelAndView signUpProcess(MemberBean memberBean, @RequestParam(name = "m_username") String m_username,
+	public String signUpProcess(MemberBean memberBean, @RequestParam(name = "m_username") String m_username,
 			@RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_birth_year") String m_birth_year,
 			@RequestParam(name = "m_birth_month") String m_birth_month,
@@ -121,10 +120,10 @@ public class MemberController {
 			model.addAttribute("lastSignInIp", "第一次登入");
 			model.addAttribute("lastSignInTime", "第一次登入");
 
-			return new ModelAndView("redirect:/index");
+			return "redirect:/index";
 		} else {
 
-			return new ModelAndView("redirect:/member/sign-up");
+			return "redirect:/member/sign-up";
 		}
 	}
 
@@ -138,7 +137,7 @@ public class MemberController {
 	 * @return /WEB-INF/views/member/sign-in.jsp
 	 */
 	@RequestMapping(path = "/member/sign-in.do", method = RequestMethod.POST)
-	public ModelAndView signInProcess(@RequestParam(name = "m_username") String m_username,
+	public String signInProcess(@RequestParam(name = "m_username") String m_username,
 			@RequestParam(name = "m_password") String m_password, HttpServletRequest request, Model model) {
 
 		MemberBean memberBean = memberService.selectByM_username(m_username);
@@ -154,20 +153,20 @@ public class MemberController {
 				memberService.updateM_signin_time(memberBean.getM_id());
 				model.addAttribute("user", memberService.selectByM_username(m_username));
 
-				return new ModelAndView("redirect:/index");
+				return "redirect:/index";
 			} else {
 
 				// 密碼錯誤
 				model.addAttribute("error", "信箱或密碼錯誤");
 
-				return new ModelAndView("member/sign-in");
+				return "member/sign-in";
 			}
 		} else {
 
 			// 信箱錯誤
 			model.addAttribute("error", "信箱或密碼錯誤");
 
-			return new ModelAndView("member/sign-in");
+			return "member/sign-in";
 		}
 	}
 
@@ -177,7 +176,7 @@ public class MemberController {
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/member/sign-out.do", method = RequestMethod.GET)
-	public ModelAndView signOutProcess(HttpSession session, SessionStatus sessionStatus) {
+	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
 
 		// 清除 HttpSession
 		if (session.getAttribute("user") != null) {
@@ -188,7 +187,7 @@ public class MemberController {
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
 
-		return new ModelAndView("redirect:/index");
+		return "redirect:/index";
 	}
 
 	/**
@@ -199,12 +198,12 @@ public class MemberController {
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/member/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
+	public String updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
 
 		memberBean.setM_id(user.getM_id());
 		memberService.update(memberBean);
 
-		return new ModelAndView("redirect:/index");
+		return "redirect:/index";
 	}
 
 	/**
@@ -217,7 +216,7 @@ public class MemberController {
 	 * @return /WEB-INF/views/member/update-password.jsp
 	 */
 	@RequestMapping(path = "/member/update-password.do", method = RequestMethod.POST)
-	public ModelAndView updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
+	public String updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user) {
 
 		String oldHashedPassword = memberService.selectByM_id(user.getM_id()).getM_password();
@@ -227,9 +226,9 @@ public class MemberController {
 
 			memberService.updateM_password(user.getM_id(), m_password_new, user.getM_salt());
 
-			return new ModelAndView("redirect:/index");
+			return "redirect:/index";
 		} else {
-			return new ModelAndView("member/update-password");
+			return "member/update-password";
 		}
 	}
 
@@ -244,7 +243,7 @@ public class MemberController {
 	 * @return /WEB-INF/views/admin/back.jsp
 	 */
 	@RequestMapping(path = "/admin/member/admin-sign-up.do", method = RequestMethod.POST)
-	public ModelAndView adminSignUp(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
+	public String adminSignUp(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_telephone_front") String m_telephone_front,
 			@RequestParam(name = "m_telephone_back") String m_telephone_back, Model model) {
 
@@ -258,7 +257,7 @@ public class MemberController {
 		memberService.signIn(memberBean.getM_username(), m_password);
 		model.addAttribute("user", memberBean);
 
-		return new ModelAndView("redirect:/admin/back");
+		return "redirect:/admin/back";
 	}
 
 	/**
@@ -269,12 +268,12 @@ public class MemberController {
 	 * @return /WEB-INF/views/admin/member/search.jsp
 	 */
 	@RequestMapping(path = "/admin/member/select.do", method = RequestMethod.GET)
-	public ModelAndView selectByConditionsProcess(MemberBean memberBean, Model model) {
+	public String selectByConditionsProcess(MemberBean memberBean, Model model) {
 
 		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_username(),
 				memberBean.getM_lastname(), memberBean.getM_firstname(), memberBean.getM_localphone()));
 
-		return new ModelAndView("admin/member/search");
+		return "admin/member/search";
 	}
 
 	/**

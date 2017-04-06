@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/4/1
+ * Date: 2017/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.caizimei.model.entity.ClinicBean;
 import com.caizimei.model.service.ClinicService;
@@ -55,11 +54,11 @@ public class ClinicCintroller {
 	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public ModelAndView selectProcess(Model model) {
+	public String selectProcess(Model model) {
 
 		model.addAttribute("clinicList", clinicService.select());
 
-		return new ModelAndView("admin/clinic/list");
+		return "admin/clinic/list";
 	}
 
 	/**
@@ -70,12 +69,12 @@ public class ClinicCintroller {
 	 * @return /WEB-INF/views/admin/clinic/search.jsp
 	 */
 	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
-	public ModelAndView selectByConditionsProcess(ClinicBean clinicBean, Model model) {
+	public String selectByConditionsProcess(ClinicBean clinicBean, Model model) {
 
 		model.addAttribute("selectByConditions",
 				clinicService.selectByConditions(clinicBean.getC_name().trim(), clinicBean.getC_localphone().trim()));
 
-		return new ModelAndView("admin/clinic/search");
+		return "admin/clinic/search";
 	}
 
 	/**
@@ -89,7 +88,7 @@ public class ClinicCintroller {
 	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
 	@RequestMapping(path = "/insert.do", method = RequestMethod.POST)
-	public ModelAndView insertProcess(ClinicBean clinicBean,
+	public String insertProcess(ClinicBean clinicBean,
 			@RequestParam(name = "c_localphone_front") String c_localphone_front,
 			@RequestParam(name = "c_localphone_back") String c_localphone_back,
 			@RequestParam(name = "c_r_id") String c_r_id, Model model) {
@@ -115,7 +114,7 @@ public class ClinicCintroller {
 		clinicService.insert(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
 
-		return new ModelAndView("redirect:/admin/clinic/list");
+		return "redirect:/admin/clinic/list";
 	}
 
 	/**
@@ -127,8 +126,7 @@ public class ClinicCintroller {
 	 * @return /WEB-INF/views/admin/clinic/insert.jsp
 	 */
 	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProcess(ClinicBean clinicBean, @RequestParam(name = "c_r_id") String c_r_id,
-			Model model) {
+	public String updateProcess(ClinicBean clinicBean, @RequestParam(name = "c_r_id") String c_r_id, Model model) {
 
 		clinicBean.setC_RegionBean(regionService.selectByR_id(Integer.valueOf(c_r_id)));
 
@@ -149,7 +147,7 @@ public class ClinicCintroller {
 		clinicService.update(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
 
-		return new ModelAndView("redirect:/admin/clinic/list");
+		return "redirect:/admin/clinic/list";
 	}
 
 	/**
@@ -160,12 +158,12 @@ public class ClinicCintroller {
 	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
 	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
-	public ModelAndView deleteProcess(@RequestParam(name = "c_id") String c_id, Model model) {
+	public String deleteProcess(@RequestParam(name = "c_id") String c_id, Model model) {
 
 		clinicService.delete(Integer.parseInt(c_id));
 		model.addAttribute("clinicList", clinicService.select());
 
-		return new ModelAndView("redirect:/admin/clinic/list");
+		return "redirect:/admin/clinic/list";
 	}
 
 	/**

@@ -10,6 +10,10 @@
 <body>
 	<form action="<c:url value='/admin/member/select.do' />" method="get">
 		<div>
+			<label for="id-m-username">信箱</label>
+			<input type="text" id="id-m-username" name="m_username">
+		</div>
+		<div>
 			<label for="id-m-lastname">姓氏</label>
 			<input type="text" id="id-m-lastname" name="m_lastname">
 		</div>
@@ -20,10 +24,6 @@
 		<div>
 			<label for="id-m-mobilephone">手機</label>
 			<input type="text" id="id-m-mobilephone" name="m_mobilephone">
-		</div>
-		<div>
-			<label for="id-m-email">信箱</label>
-			<input type="text" id="id-m-email" name="m_email">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="搜尋">

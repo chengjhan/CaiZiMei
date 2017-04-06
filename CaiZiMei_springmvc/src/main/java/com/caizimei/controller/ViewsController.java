@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/4/5
+ * Date: 2017/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,7 +11,6 @@ package com.caizimei.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * views controller (視圖解析)
@@ -31,9 +30,20 @@ public class ViewsController {
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public ModelAndView index() {
+	public String index() {
 
-		return new ModelAndView("index");
+		return "index";
+	}
+
+	/**
+	 * member/forget-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/member/forget-password.jsp
+	 */
+	@RequestMapping(value = "/member/forget-password", method = RequestMethod.GET)
+	public String member_forgetPassword() {
+
+		return "member/forget-password";
 	}
 
 	/**
@@ -42,9 +52,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/member/profile.jsp
 	 */
 	@RequestMapping(value = "/member/profile", method = RequestMethod.GET)
-	public ModelAndView member_profile() {
+	public String member_profile() {
 
-		return new ModelAndView("member/profile");
+		return "member/profile";
 	}
 
 	/**
@@ -53,9 +63,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/member/sign-in.jsp
 	 */
 	@RequestMapping(value = "/member/sign-in", method = RequestMethod.GET)
-	public ModelAndView member_signIn() {
+	public String member_signIn() {
 
-		return new ModelAndView("member/sign-in");
+		return "member/sign-in";
 	}
 
 	/**
@@ -64,9 +74,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/member/sign-up.jsp
 	 */
 	@RequestMapping(value = "/member/sign-up", method = RequestMethod.GET)
-	public ModelAndView member_signUp() {
+	public String member_signUp() {
 
-		return new ModelAndView("member/sign-up");
+		return "member/sign-up";
 	}
 
 	/**
@@ -75,9 +85,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/member/update.jsp
 	 */
 	@RequestMapping(value = "/member/update", method = RequestMethod.GET)
-	public ModelAndView member_update() {
+	public String member_update() {
 
-		return new ModelAndView("member/update");
+		return "member/update";
 	}
 
 	/**
@@ -86,9 +96,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/member/update-password.jsp
 	 */
 	@RequestMapping(value = "/member/update-password", method = RequestMethod.GET)
-	public ModelAndView member_updatePassword() {
+	public String member_updatePassword() {
 
-		return new ModelAndView("member/update-password");
+		return "member/update-password";
 	}
 
 	/**
@@ -97,9 +107,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/purchase/order.jsp
 	 */
 	@RequestMapping(value = "/purchase/order", method = RequestMethod.GET)
-	public ModelAndView purchase_order() {
+	public String purchase_order() {
 
-		return new ModelAndView("purchase/order");
+		return "purchase/order";
 	}
 
 	/**
@@ -112,9 +122,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/back.jsp
 	 */
 	@RequestMapping(value = "/admin/back", method = RequestMethod.GET)
-	public ModelAndView admin_back() {
+	public String admin_back() {
 
-		return new ModelAndView("admin/back");
+		return "admin/back";
 	}
 
 	/**
@@ -123,9 +133,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/city/list.jsp
 	 */
 	@RequestMapping(value = "/admin/city/list", method = RequestMethod.GET)
-	public ModelAndView admin_city_list() {
+	public String admin_city_list() {
 
-		return new ModelAndView("admin/city/list");
+		return "admin/city/list";
 	}
 
 	/**
@@ -134,9 +144,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/city/update.jsp
 	 */
 	@RequestMapping(value = "/admin/city/update", method = RequestMethod.GET)
-	public ModelAndView admin_city_update() {
+	public String admin_city_update() {
 
-		return new ModelAndView("admin/city/update");
+		return "admin/city/update";
 	}
 
 	/**
@@ -145,9 +155,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/admin/clinic/list", method = RequestMethod.GET)
-	public ModelAndView admin_clinic_list() {
+	public String admin_clinic_list() {
 
-		return new ModelAndView("admin/clinic/list");
+		return "admin/clinic/list";
 	}
 
 	/**
@@ -156,9 +166,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/clinic/search.jsp
 	 */
 	@RequestMapping(value = "/admin/clinic/search", method = RequestMethod.GET)
-	public ModelAndView admin_clinic_search() {
+	public String admin_clinic_search() {
 
-		return new ModelAndView("admin/clinic/search");
+		return "admin/clinic/search";
 	}
 
 	/**
@@ -167,9 +177,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/clinic/update.jsp
 	 */
 	@RequestMapping(value = "/admin/clinic/update", method = RequestMethod.GET)
-	public ModelAndView admin_clinic_update() {
+	public String admin_clinic_update() {
 
-		return new ModelAndView("admin/clinic/update");
+		return "admin/clinic/update";
 	}
 
 	/**
@@ -178,9 +188,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/country/list.jsp
 	 */
 	@RequestMapping(value = "/admin/country/list", method = RequestMethod.GET)
-	public ModelAndView admin_country_list() {
+	public String admin_country_list() {
 
-		return new ModelAndView("admin/country/list");
+		return "admin/country/list";
 	}
 
 	/**
@@ -189,9 +199,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/country/update.jsp
 	 */
 	@RequestMapping(value = "/admin/country/update", method = RequestMethod.GET)
-	public ModelAndView admin_country_update() {
+	public String admin_country_update() {
 
-		return new ModelAndView("admin/country/update");
+		return "admin/country/update";
 	}
 
 	/**
@@ -200,9 +210,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/member/admin-sign-up.jsp
 	 */
 	@RequestMapping(value = "/admin/member/admin-sign-up", method = RequestMethod.GET)
-	public ModelAndView admin_member_adminSignUp() {
+	public String admin_member_adminSignUp() {
 
-		return new ModelAndView("admin/member/admin-sign-up");
+		return "admin/member/admin-sign-up";
 	}
 
 	/**
@@ -211,9 +221,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/member/search.jsp
 	 */
 	@RequestMapping(value = "/admin/member/search", method = RequestMethod.GET)
-	public ModelAndView admin_member_search() {
+	public String admin_member_search() {
 
-		return new ModelAndView("admin/member/search");
+		return "admin/member/search";
 	}
 
 	/**
@@ -222,9 +232,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/region/insert.jsp
 	 */
 	@RequestMapping(value = "/admin/region/insert", method = RequestMethod.GET)
-	public ModelAndView admin_region_insert() {
+	public String admin_region_insert() {
 
-		return new ModelAndView("admin/region/insert");
+		return "admin/region/insert";
 	}
 
 	/**
@@ -233,9 +243,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/region/search.jsp
 	 */
 	@RequestMapping(value = "/admin/region/search", method = RequestMethod.GET)
-	public ModelAndView admin_region_search() {
+	public String admin_region_search() {
 
-		return new ModelAndView("admin/region/search");
+		return "admin/region/search";
 	}
 
 	/**
@@ -244,9 +254,9 @@ public class ViewsController {
 	 * @return /WEB-INF/views/admin/region/update.jsp
 	 */
 	@RequestMapping(value = "/admin/region/update", method = RequestMethod.GET)
-	public ModelAndView admin_region_update() {
+	public String admin_region_update() {
 
-		return new ModelAndView("admin/region/update");
+		return "admin/region/update";
 	}
 
 }

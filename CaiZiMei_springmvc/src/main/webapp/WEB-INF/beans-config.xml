@@ -10,7 +10,9 @@
 		<property name="jndiName" value="java:comp/env/jdbc/project" />
 	</bean>
 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" destroy-method="destroy">
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		destroy-method="destroy">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">
 			<props>
@@ -34,12 +36,28 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="simpleDateFormat" class="java.text.SimpleDateFormat">
 		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="chengjhan@gmail.com" />
+		<property name="password" value="" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />

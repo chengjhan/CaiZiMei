@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/5
+ * Date: 2017/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +38,12 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Autowired
 	private MemberDAO memberDAO;
+
+	/**
+	 * 注入 MailSender
+	 */
+	@Autowired
+	private MailSender mailSender;
 
 	/**
 	 * 註冊
@@ -231,6 +239,27 @@ public class MemberServiceImpl implements MemberService {
 		UUID uuid = UUID.randomUUID();
 
 		return uuid.toString();
+	}
+
+	/**
+	 * 寄送 Email
+	 * 
+	 * @param to-->收件者
+	 * @param from-->寄件者
+	 * @param subject-->信件主旨
+	 * @param text-->信件內容
+	 */
+	@Override
+	public void sendEmail(String to, String from, String subject, String text) {
+
+		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+
+		simpleMailMessage.setTo(to);
+		simpleMailMessage.setFrom(from);
+		simpleMailMessage.setSubject(subject);
+		simpleMailMessage.setText(text);
+
+		mailSender.send(simpleMailMessage);
 	}
 
 }

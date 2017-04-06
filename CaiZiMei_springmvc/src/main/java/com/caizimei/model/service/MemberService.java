@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberService.java
  * Author: 詹晟
- * Date: 2017/4/5
+ * Date: 2017/4/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -42,5 +42,7 @@ public interface MemberService {
 	String getMD5(String str);
 
 	String getSalt();
+
+	void sendEmail(String to, String from, String subject, String text);
 
 }

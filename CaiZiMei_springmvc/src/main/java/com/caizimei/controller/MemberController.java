@@ -120,6 +120,12 @@ public class MemberController {
 			model.addAttribute("lastSignInIp", "第一次登入");
 			model.addAttribute("lastSignInTime", "第一次登入");
 
+			String to = memberBean.getM_username();
+			String from = "chengjhan@gmail.com";
+			String subject = "歡迎加入會員";
+			String text = memberBean.getM_firstname() + " 您好";
+			memberService.sendEmail(to, from, subject, text);
+
 			return "redirect:/index";
 		} else {
 

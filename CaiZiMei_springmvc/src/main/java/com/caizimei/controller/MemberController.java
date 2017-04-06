@@ -128,7 +128,6 @@ public class MemberController {
 
 			return "redirect:/index";
 		} else {
-
 			return "redirect:/member/sign-up";
 		}
 	}

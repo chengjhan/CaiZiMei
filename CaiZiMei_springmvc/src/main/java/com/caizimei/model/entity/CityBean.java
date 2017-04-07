@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityBean.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -39,7 +39,7 @@ public class CityBean {
 	private String ci_name;
 	private Integer ci_rank;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "r_CityBean")
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "r_CityBean")
 	private Set<RegionBean> ci_RegionBean;
 
 	public Integer getCi_id() {

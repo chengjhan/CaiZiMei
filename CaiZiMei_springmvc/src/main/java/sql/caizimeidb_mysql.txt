@@ -92,6 +92,7 @@ create table agent(
 	a_id					int auto_increment not null,
     a_name					nvarchar(20) not null,
     a_localphone			varchar(20),
+    a_signup_time			timestamp default current_timestamp not null,
     primary key (a_id)
 );
 

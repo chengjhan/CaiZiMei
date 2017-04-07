@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: RegionBean.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,7 +40,7 @@ public class RegionBean {
 	private String r_zipcode;
 	private Integer r_rank;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "c_RegionBean")
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "c_RegionBean")
 	private Set<ClinicBean> r_ClinicBean;
 
 	public Integer getR_id() {

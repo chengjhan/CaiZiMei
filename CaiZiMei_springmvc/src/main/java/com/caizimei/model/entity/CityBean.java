@@ -39,7 +39,7 @@ public class CityBean {
 	private String ci_name;
 	private Integer ci_rank;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "r_CityBean")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "r_CityBean")
 	private Set<RegionBean> ci_RegionBean;
 
 	public Integer getCi_id() {

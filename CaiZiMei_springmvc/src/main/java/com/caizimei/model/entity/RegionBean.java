@@ -40,7 +40,7 @@ public class RegionBean {
 	private String r_zipcode;
 	private Integer r_rank;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "c_RegionBean")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "c_RegionBean")
 	private Set<ClinicBean> r_ClinicBean;
 
 	public Integer getR_id() {

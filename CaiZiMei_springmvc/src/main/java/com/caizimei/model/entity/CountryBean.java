@@ -35,7 +35,7 @@ public class CountryBean {
 	private String co_eng_name;
 	private Integer co_rank;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "ci_CountryBean")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_CountryBean")
 	private Set<CityBean> co_CityBean;
 
 	public Integer getCo_id() {

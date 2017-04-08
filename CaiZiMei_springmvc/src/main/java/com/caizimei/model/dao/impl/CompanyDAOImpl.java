@@ -44,6 +44,17 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	/**
+	 * 代理商流水號搜尋
+	 * 
+	 * @return CompanyBean
+	 */
+	@Override
+	public CompanyBean selectByCom_id(Integer com_id) {
+		
+		return hibernateTemplate.get(CompanyBean.class, com_id);
+	}
+
+	/**
 	 * 新增代理商
 	 * 
 	 * @param companyBean-->CompanyBean

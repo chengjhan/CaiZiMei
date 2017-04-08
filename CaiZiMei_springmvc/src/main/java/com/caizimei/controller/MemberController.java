@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.caizimei.model.entity.MemberBean;
+import com.caizimei.model.service.CompanyService;
 import com.caizimei.model.service.MemberService;
 
 import misc.PrimitiveNumberEditor;
@@ -47,6 +48,12 @@ public class MemberController {
 	 */
 	@Autowired
 	private MemberService memberService;
+
+	/**
+	 * 注入 CompanyService
+	 */
+	@Autowired
+	private CompanyService companyService;
 
 	/**
 	 * 注入 SimpleDateFormat
@@ -234,6 +241,7 @@ public class MemberController {
 			memberBean.setM_signin_time(new java.util.Date());
 			memberBean.setM_update_pass_time(new java.util.Date());
 			memberBean.setM_update_info_time(new java.util.Date());
+			memberBean.setM_CompanyBean(companyService.selectByCom_id(1));
 			memberService.signUp(memberBean);
 
 			model.addAttribute("user", memberBean);

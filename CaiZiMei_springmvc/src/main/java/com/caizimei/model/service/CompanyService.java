@@ -21,6 +21,8 @@ public interface CompanyService {
 
 	List<CompanyBean> select();
 
+	CompanyBean selectByCom_id(Integer com_id);
+
 	CompanyBean insert(CompanyBean companyBean);
 
 }

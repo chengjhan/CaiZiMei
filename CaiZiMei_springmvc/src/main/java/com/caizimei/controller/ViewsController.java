@@ -128,14 +128,14 @@ public class ViewsController {
 	 */
 
 	/**
-	 * admin/back 視圖解析
+	 * admin/index 視圖解析
 	 * 
-	 * @return /WEB-INF/views/admin/back.jsp
+	 * @return /WEB-INF/views/admin/index.jsp
 	 */
-	@RequestMapping(value = "/admin/back", method = RequestMethod.GET)
-	public String admin_back() {
+	@RequestMapping(value = "/admin/index", method = RequestMethod.GET)
+	public String admin_index() {
 
-		return "admin/back";
+		return "admin/index";
 	}
 
 	/**

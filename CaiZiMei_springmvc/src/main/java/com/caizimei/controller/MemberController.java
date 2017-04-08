@@ -304,7 +304,7 @@ public class MemberController {
 	 * @param m_telephone_front-->管理者電話(前碼)
 	 * @param m_telephone_back-->管理者電話(後碼)
 	 * @param model-->Model
-	 * @return /WEB-INF/views/admin/back.jsp
+	 * @return /WEB-INF/views/admin/index.jsp
 	 */
 	@RequestMapping(path = "/admin/member/admin-sign-up.do", method = RequestMethod.POST)
 	public String adminSignUp(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
@@ -321,7 +321,7 @@ public class MemberController {
 		memberService.signIn(memberBean.getM_username(), m_password);
 		model.addAttribute("user", memberBean);
 
-		return "redirect:/admin/back";
+		return "redirect:/admin/index";
 	}
 
 	/**

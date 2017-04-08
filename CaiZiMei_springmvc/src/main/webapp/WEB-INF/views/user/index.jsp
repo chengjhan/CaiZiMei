@@ -29,10 +29,13 @@
 		<a href="${root}user/member/profile">個人資訊</a>
 	</p>
 	<p>
-		<a href="${root}user/member/update-password">修改會員密碼</a>
+		<a href="${root}user/member/update-password">修改密碼</a>
 	</p>
 	<p>
 		<a href="${root}user/purchase/order">訂購</a>
+	</p>
+	<p>
+		<a href="${root}agent/index">代理商系統</a>
 	</p>
 	<p>
 		<a href="${root}admin/index">後台管理系統</a>

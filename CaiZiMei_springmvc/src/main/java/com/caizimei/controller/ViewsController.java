@@ -124,6 +124,21 @@ public class ViewsController {
 	}
 
 	/**
+	 * agent
+	 */
+
+	/**
+	 * agent/index 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/index.jsp
+	 */
+	@RequestMapping(value = "/agent/index", method = RequestMethod.GET)
+	public String agent_index() {
+
+		return "agent/index";
+	}
+
+	/**
 	 * admin
 	 */
 

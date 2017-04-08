@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/member/sign-up.do' />" method="post">
+	<form action="<c:url value='/user/member/sign-up.do' />" method="post">
 		<div>
 			<label for="id-m-username">信箱</label>
 			<input type="text" id="id-m-username" name="m_username">
@@ -108,7 +108,7 @@
 			var m_username = $("#id-m-username").val();
 			var m_username_span = $("#id-m-username-span");
 			m_username_span.empty();
-			$.get("${root}member/select-username.ajax", { "m_username": m_username }, function(data){
+			$.get("${root}user/member/select-username.ajax", { "m_username": m_username }, function(data){
 				if(data == "1"){
 					m_username_span.text("已使用");					
 				}

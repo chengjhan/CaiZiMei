@@ -14,13 +14,13 @@
 	<p>上次登入IP: ${lastSignInIp}</p>
 	<p>上次登入時間: ${lastSignInTime}</p>
 	<p>
-		<a href="${root}user/member/sign-in">登入</a>
+		<a href="${root}user/secure/sign-in">登入</a>
 	</p>
 	<p>
-		<a href="${root}user/member/forget-password">忘記密碼</a>
+		<a href="${root}user/secure/forget-password">忘記密碼</a>
 	</p>
 	<p>
-		<a href="${root}user/member/sign-out.do">登出</a>
+		<a href="${root}user/secure/sign-out.do">登出</a>
 	</p>
 	<p>
 		<a href="${root}user/member/sign-up">註冊</a>

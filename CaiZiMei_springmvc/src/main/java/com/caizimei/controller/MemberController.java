@@ -65,6 +65,127 @@ public class MemberController {
 	}
 
 	/**
+	 * 登入
+	 * 
+	 * @param m_username-->會員信箱
+	 * @param m_password-->會員密碼(原碼)
+	 * @param model-->Model
+	 * @return /WEB-INF/views/user/index.jsp
+	 * @return /WEB-INF/views/user/secure/sign-in.jsp
+	 */
+	@RequestMapping(path = "/user/secure/sign-in.do", method = RequestMethod.POST)
+	public String signInProcess(@RequestParam(name = "m_username") String m_username,
+			@RequestParam(name = "m_password") String m_password, HttpServletRequest request, Model model) {
+
+		MemberBean memberBean = memberService.selectByM_username(m_username);
+
+		if (memberBean != null) {
+
+			model.addAttribute("lastSignInIp", memberBean.getM_signin_ip());
+			model.addAttribute("lastSignInTime", memberBean.getM_signin_time());
+
+			if (memberService.signIn(m_username, m_password)) {
+
+				memberService.updateM_signin_ip(memberBean.getM_id(), request.getRemoteAddr());
+				memberService.updateM_signin_time(memberBean.getM_id());
+				model.addAttribute("user", memberService.selectByM_username(m_username));
+
+				return "redirect:/user/index";
+			} else {
+
+				// 密碼錯誤
+				model.addAttribute("error", "信箱或密碼錯誤");
+
+				return "user/secure/sign-in";
+			}
+		} else {
+
+			// 信箱錯誤
+			model.addAttribute("error", "信箱或密碼錯誤");
+
+			return "user/secure/sign-in";
+		}
+	}
+
+	/**
+	 * 忘記密碼
+	 * 
+	 * @param m_username-->會員信箱
+	 * @param model-->Model
+	 * @return /WEB-INF/views/user/secure/set-password.jsp
+	 */
+	@RequestMapping(path = "/user/secure/forget-password.do", method = RequestMethod.POST)
+	public String forgetPasswordProcess(@RequestParam(name = "m_username") String m_username, Model model) {
+
+		int random = (int) (Math.random() * 1000000);
+		String m_password_random = String.valueOf(random);
+
+		MemberBean memberBean = memberService.selectByM_username(m_username);
+		memberService.updateM_password(memberBean.getM_id(), m_password_random, memberBean.getM_salt());
+
+		String to = m_username;
+		String from = "chengjhan@gmail.com";
+		String subject = "更改密碼";
+		String text = m_password_random;
+		memberService.sendEmail(to, from, subject, text);
+
+		model.addAttribute("user", memberBean);
+
+		return "redirect:/user/secure/set-password";
+	}
+
+	/**
+	 * 重設會員密碼
+	 * 
+	 * @param m_password-->驗證碼(原碼)
+	 * @param m_password_new-->新密碼(原碼)
+	 * @param user-->Session
+	 * @param sessionStatus-->SessionStatus
+	 * @return /WEB-INF/views/user/secure/sign-in.jsp
+	 * @return /WEB-INF/views/user/secure/set-password.jsp
+	 */
+	@RequestMapping(path = "/user/secure/set-password.do", method = RequestMethod.POST)
+	public String setPasswordProcess(@RequestParam(name = "m_password") String m_password,
+			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user,
+			SessionStatus sessionStatus) {
+
+		String oldHashedPassword = memberService.selectByM_id(user.getM_id()).getM_password();
+		String inputOldHashedPassword = memberService.getHashedPassword(m_password, user.getM_salt());
+
+		if (oldHashedPassword.equals(inputOldHashedPassword)) {
+
+			memberService.updateM_password(user.getM_id(), m_password_new, user.getM_salt());
+
+			// 清除 @SessionAttributes
+			sessionStatus.setComplete();
+
+			return "redirect:/user/secure/sign-in";
+		} else {
+			return "user/secure/set-password";
+		}
+	}
+
+	/**
+	 * 登出
+	 * 
+	 * @return /WEB-INF/views/user/secure/sign-in.jsp
+	 */
+	@RequestMapping(path = "/user/secure/sign-out.do", method = RequestMethod.GET)
+	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
+
+		// 清除 HttpSession
+		if (session.getAttribute("user") != null) {
+			session.removeAttribute("user"); // 清除特定 HttpSession
+		}
+		session.invalidate(); // 清除所有 HttpSession
+
+		// 清除 @SessionAttributes
+		sessionStatus.setComplete();
+
+		return "redirect:/user/index";
+	}
+
+	/**
 	 * 註冊
 	 * 
 	 * @param memberBean-->MemberBean
@@ -78,10 +199,10 @@ public class MemberController {
 	 * @param m_mobilephone_front-->會員手機(前碼)
 	 * @param m_mobilephone_back-->會員手機(後碼)
 	 * @param model-->Model
-	 * @return /WEB-INF/views/index.jsp
-	 * @return /WEB-INF/views/member/sign-up.jsp
+	 * @return /WEB-INF/views/user/index.jsp
+	 * @return /WEB-INF/views/user/member/sign-up.jsp
 	 */
-	@RequestMapping(path = "/member/sign-up.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/user/member/sign-up.do", method = RequestMethod.POST)
 	public String signUpProcess(MemberBean memberBean, @RequestParam(name = "m_username") String m_username,
 			@RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_birth_year") String m_birth_year,
@@ -125,73 +246,10 @@ public class MemberController {
 			String text = memberBean.getM_firstname() + " 您好";
 			memberService.sendEmail(to, from, subject, text);
 
-			return "redirect:/index";
+			return "redirect:/user/index";
 		} else {
-			return "redirect:/member/sign-up";
+			return "redirect:/user/member/sign-up";
 		}
-	}
-
-	/**
-	 * 登入
-	 * 
-	 * @param m_username-->會員信箱
-	 * @param m_password-->會員密碼(原碼)
-	 * @param model-->Model
-	 * @return /WEB-INF/views/index.jsp
-	 * @return /WEB-INF/views/member/sign-in.jsp
-	 */
-	@RequestMapping(path = "/member/sign-in.do", method = RequestMethod.POST)
-	public String signInProcess(@RequestParam(name = "m_username") String m_username,
-			@RequestParam(name = "m_password") String m_password, HttpServletRequest request, Model model) {
-
-		MemberBean memberBean = memberService.selectByM_username(m_username);
-
-		if (memberBean != null) {
-
-			model.addAttribute("lastSignInIp", memberBean.getM_signin_ip());
-			model.addAttribute("lastSignInTime", memberBean.getM_signin_time());
-
-			if (memberService.signIn(m_username, m_password)) {
-
-				memberService.updateM_signin_ip(memberBean.getM_id(), request.getRemoteAddr());
-				memberService.updateM_signin_time(memberBean.getM_id());
-				model.addAttribute("user", memberService.selectByM_username(m_username));
-
-				return "redirect:/index";
-			} else {
-
-				// 密碼錯誤
-				model.addAttribute("error", "信箱或密碼錯誤");
-
-				return "member/sign-in";
-			}
-		} else {
-
-			// 信箱錯誤
-			model.addAttribute("error", "信箱或密碼錯誤");
-
-			return "member/sign-in";
-		}
-	}
-
-	/**
-	 * 登出
-	 * 
-	 * @return /WEB-INF/views/index.jsp
-	 */
-	@RequestMapping(path = "/member/sign-out.do", method = RequestMethod.GET)
-	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
-
-		// 清除 HttpSession
-		if (session.getAttribute("user") != null) {
-			session.removeAttribute("user"); // 清除特定 HttpSession
-		}
-		session.invalidate(); // 清除所有 HttpSession
-
-		// 清除 @SessionAttributes
-		sessionStatus.setComplete();
-
-		return "redirect:/index";
 	}
 
 	/**
@@ -199,15 +257,15 @@ public class MemberController {
 	 * 
 	 * @param user-->Session
 	 * @param memberBean-->MemberBean
-	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/user/index.jsp
 	 */
-	@RequestMapping(path = "/member/update.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/user/member/update.do", method = RequestMethod.POST)
 	public String updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
 
 		memberBean.setM_id(user.getM_id());
 		memberService.update(memberBean);
 
-		return "redirect:/index";
+		return "redirect:/user/index";
 	}
 
 	/**
@@ -216,10 +274,10 @@ public class MemberController {
 	 * @param m_password-->舊密碼(原碼)
 	 * @param m_password_new-->新密碼(原碼)
 	 * @param user-->Session
-	 * @return /WEB-INF/views/index.jsp
-	 * @return /WEB-INF/views/member/update-password.jsp
+	 * @return /WEB-INF/views/user/index.jsp
+	 * @return /WEB-INF/views/user/member/update-password.jsp
 	 */
-	@RequestMapping(path = "/member/update-password.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/user/member/update-password.do", method = RequestMethod.POST)
 	public String updatePasswordProcess(@RequestParam(name = "m_password") String m_password,
 			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user) {
 
@@ -230,67 +288,9 @@ public class MemberController {
 
 			memberService.updateM_password(user.getM_id(), m_password_new, user.getM_salt());
 
-			return "redirect:/index";
+			return "redirect:/user/index";
 		} else {
-			return "member/update-password";
-		}
-	}
-
-	/**
-	 * 忘記密碼
-	 * 
-	 * @param m_username-->會員信箱
-	 * @param model-->Model
-	 * @return /WEB-INF/views/member/set-password.jsp
-	 */
-	@RequestMapping(path = "/member/forget-password.do", method = RequestMethod.POST)
-	public String forgetPasswordProcess(@RequestParam(name = "m_username") String m_username, Model model) {
-
-		int random = (int) (Math.random() * 1000000);
-		String m_password_random = String.valueOf(random);
-
-		MemberBean memberBean = memberService.selectByM_username(m_username);
-		memberService.updateM_password(memberBean.getM_id(), m_password_random, memberBean.getM_salt());
-
-		String to = m_username;
-		String from = "chengjhan@gmail.com";
-		String subject = "更改密碼";
-		String text = m_password_random;
-		memberService.sendEmail(to, from, subject, text);
-
-		model.addAttribute("user", memberBean);
-
-		return "redirect:/member/set-password";
-	}
-
-	/**
-	 * 重設會員密碼
-	 * 
-	 * @param m_password-->驗證碼(原碼)
-	 * @param m_password_new-->新密碼(原碼)
-	 * @param user-->Session
-	 * @param sessionStatus-->SessionStatus
-	 * @return /WEB-INF/views/member/sign-in.jsp
-	 * @return /WEB-INF/views/member/set-password.jsp
-	 */
-	@RequestMapping(path = "/member/set-password.do", method = RequestMethod.POST)
-	public String setPasswordProcess(@RequestParam(name = "m_password") String m_password,
-			@RequestParam(name = "m_password_new") String m_password_new, @ModelAttribute("user") MemberBean user,
-			SessionStatus sessionStatus) {
-
-		String oldHashedPassword = memberService.selectByM_id(user.getM_id()).getM_password();
-		String inputOldHashedPassword = memberService.getHashedPassword(m_password, user.getM_salt());
-
-		if (oldHashedPassword.equals(inputOldHashedPassword)) {
-
-			memberService.updateM_password(user.getM_id(), m_password_new, user.getM_salt());
-
-			// 清除 @SessionAttributes
-			sessionStatus.setComplete();
-
-			return "redirect:/member/sign-in";
-		} else {
-			return "member/set-password";
+			return "user/member/update-password";
 		}
 	}
 
@@ -345,7 +345,7 @@ public class MemberController {
 	 * @return 1-->已使用
 	 * @return 0-->未使用
 	 */
-	@RequestMapping(path = "/member/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(path = "/user/member/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String validateUsernameAjaxProcess(String m_username) {
 

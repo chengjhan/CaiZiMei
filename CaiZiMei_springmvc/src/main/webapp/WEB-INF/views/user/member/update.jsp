@@ -12,7 +12,7 @@
 <body>
 	<c:url value="/" var="root" />
 	<fmt:formatDate value="${user.m_birth}" var="m_birth_format" pattern="yyyy-MM-dd" />
-	<form action="<c:url value='/member/update.do' />" method="post">
+	<form action="<c:url value='/user/member/update.do' />" method="post">
 		<div>
 			<label for="id-m-lastname">姓氏</label>
 			<input type="text" id="id-m-lastname" name="m_lastname" value="${user.m_lastname}">

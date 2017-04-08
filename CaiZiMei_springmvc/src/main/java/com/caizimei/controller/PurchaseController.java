@@ -26,7 +26,7 @@ import com.caizimei.model.service.PurchaseService;
  * @author 詹晟
  */
 @Controller
-@RequestMapping("/purchase")
+@RequestMapping("/user/purchase")
 @SessionAttributes("user")
 public class PurchaseController {
 

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/purchase/order.do' />" method="post">
+	<form action="<c:url value='/user/purchase/order.do' />" method="post">
 		<div>
 			<label for="id-co-id">國家</label>
 			<select id="id-co-id">

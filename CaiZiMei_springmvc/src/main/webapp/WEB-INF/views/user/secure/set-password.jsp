@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/member/set-password.do' />" method="post">
+	<form action="<c:url value='/user/secure/set-password.do' />" method="post">
 		<div>
 			<label for="id-m-password">驗證碼</label>
 			<input type="password" id="id-m-password" name="m_password">

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/member/update-password.do' />" method="post">
+	<form action="<c:url value='/user/member/update-password.do' />" method="post">
 		<div>
 			<label for="id-m-password">舊密碼</label>
 			<input type="password" id="id-m-password" name="m_password">

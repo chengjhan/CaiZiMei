@@ -49,6 +49,42 @@ create table clinic(
     foreign key (c_r_id) references region (r_id)
 );
 
+create table manager(
+	ma_id					int auto_increment not null,
+    ma_username				varchar(50) not null,
+    ma_password				varchar(50) not null,
+    ma_salt					varchar(50) not null,
+    ma_lastname				nvarchar(20),
+    ma_firstname			nvarchar(20),
+    ma_eng_name				varchar(50),
+    ma_mobilephone			varchar(20),
+    ma_signup_time			datetime not null,
+    primary key (ma_id)
+);
+
+create table company(
+	com_id					int auto_increment not null,
+    com_name				nvarchar(20) not null,
+    com_localphone			varchar(20),
+    com_insert_time			datetime not null,
+    primary key (com_id)
+);
+
+create table employee(
+    e_id					int auto_increment not null,
+    e_username				varchar(50) not null,
+    e_password				varchar(50) not null,
+    e_salt					varchar(50) not null,
+    e_lastname				nvarchar(20),
+    e_firstname				nvarchar(20),
+    e_eng_name				varchar(50),
+    e_mobilephone			varchar(20),
+    e_signup_time			datetime not null,
+    e_com_id				int not null,
+    primary key (e_id),
+	foreign key (e_com_id) references company (com_id)    
+);
+
 create table member(
 	m_id					int auto_increment not null,
     m_username				varchar(50) not null,
@@ -67,15 +103,15 @@ create table member(
     m_city					nvarchar(10),
     m_region				nvarchar(10),
     m_address				nvarchar(50),
-    m_belong				tinyint not null,
-    m_limit					tinyint not null,
     m_signup_time			timestamp default current_timestamp not null,
     m_signin_number			int,
     m_signin_ip				varchar(20),
     m_signin_time			datetime,
     m_update_pass_time		datetime,
     m_update_info_time		datetime,
-    primary key (m_id)
+    m_com_id				int not null,
+    primary key (m_id),
+	foreign key (m_com_id) references company (com_id)
 );
 
 create table purchase(
@@ -86,14 +122,6 @@ create table purchase(
     primary key (p_id),
     foreign key (p_m_id) references member (m_id),
     foreign key (p_c_id) references clinic (c_id)
-);
-
-create table agent(
-	a_id					int auto_increment not null,
-    a_name					nvarchar(20) not null,
-    a_localphone			varchar(20),
-    a_insert_time			timestamp default current_timestamp not null,
-    primary key (a_id)
 );
 
 -- country
@@ -517,4 +545,4 @@ insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '莒光鄉',
 insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '東引鄉', '212', 4);
 
 -- clinic
-insert into clinic (c_name, c_eng_name, c_localphone, c_r_id, c_address, c_latitude, c_longitude, c_url, c_insert_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 12, '信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now());
+insert into clinic (c_name, c_eng_name, c_localphone, c_r_id, c_address, c_latitude, c_longitude, c_url, c_insert_time, c_update_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 12, '信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now());

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/4/8
+ * Date: 2017/4/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,102 +25,102 @@ public class ViewsController {
 	 */
 
 	/**
-	 * index 視圖解析
+	 * user/index 視圖解析
 	 * 
-	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/user/index.jsp
 	 */
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index() {
+	@RequestMapping(value = "/user/index", method = RequestMethod.GET)
+	public String user_index() {
 
-		return "index";
+		return "user/index";
 	}
 
 	/**
-	 * member/forget-password 視圖解析
+	 * user/member/profile 視圖解析
 	 * 
-	 * @return /WEB-INF/views/member/forget-password.jsp
+	 * @return /WEB-INF/views/user/member/profile.jsp
 	 */
-	@RequestMapping(value = "/member/forget-password", method = RequestMethod.GET)
-	public String member_forgetPassword() {
+	@RequestMapping(value = "/user/member/profile", method = RequestMethod.GET)
+	public String user_member_profile() {
 
-		return "member/forget-password";
+		return "user/member/profile";
 	}
 
 	/**
-	 * member/profile 視圖解析
+	 * user/member/sign-up 視圖解析
 	 * 
-	 * @return /WEB-INF/views/member/profile.jsp
+	 * @return /WEB-INF/views/user/member/sign-up.jsp
 	 */
-	@RequestMapping(value = "/member/profile", method = RequestMethod.GET)
-	public String member_profile() {
+	@RequestMapping(value = "/user/member/sign-up", method = RequestMethod.GET)
+	public String user_member_signUp() {
 
-		return "member/profile";
+		return "user/member/sign-up";
 	}
 
 	/**
-	 * member/set-password 視圖解析
+	 * user/member/update 視圖解析
 	 * 
-	 * @return /WEB-INF/views/member/set-password.jsp
+	 * @return /WEB-INF/views/user/member/update.jsp
 	 */
-	@RequestMapping(value = "/member/set-password", method = RequestMethod.GET)
-	public String member_setPassword() {
+	@RequestMapping(value = "/user/member/update", method = RequestMethod.GET)
+	public String user_member_update() {
 
-		return "member/set-password";
+		return "user/member/update";
 	}
 
 	/**
-	 * member/sign-in 視圖解析
+	 * user/member/update-password 視圖解析
 	 * 
-	 * @return /WEB-INF/views/member/sign-in.jsp
+	 * @return /WEB-INF/views/user/member/update-password.jsp
 	 */
-	@RequestMapping(value = "/member/sign-in", method = RequestMethod.GET)
-	public String member_signIn() {
+	@RequestMapping(value = "/user/member/update-password", method = RequestMethod.GET)
+	public String user_member_updatePassword() {
 
-		return "member/sign-in";
+		return "user/member/update-password";
 	}
 
 	/**
-	 * member/sign-up 視圖解析
+	 * user/purchase/order 視圖解析
 	 * 
-	 * @return /WEB-INF/views/member/sign-up.jsp
+	 * @return /WEB-INF/views/user/purchase/order.jsp
 	 */
-	@RequestMapping(value = "/member/sign-up", method = RequestMethod.GET)
-	public String member_signUp() {
+	@RequestMapping(value = "/user/purchase/order", method = RequestMethod.GET)
+	public String user_purchase_order() {
 
-		return "member/sign-up";
+		return "user/purchase/order";
 	}
 
 	/**
-	 * member/update 視圖解析
+	 * user/secure/forget-password 視圖解析
 	 * 
-	 * @return /WEB-INF/views/member/update.jsp
+	 * @return /WEB-INF/views/user/secure/forget-password.jsp
 	 */
-	@RequestMapping(value = "/member/update", method = RequestMethod.GET)
-	public String member_update() {
+	@RequestMapping(value = "/user/secure/forget-password", method = RequestMethod.GET)
+	public String user_secure_forgetPassword() {
 
-		return "member/update";
+		return "user/secure/forget-password";
 	}
 
 	/**
-	 * member/update-password 視圖解析
+	 * user/secure/set-password 視圖解析
 	 * 
-	 * @return /WEB-INF/views/member/update-password.jsp
+	 * @return /WEB-INF/views/user/secure/set-password.jsp
 	 */
-	@RequestMapping(value = "/member/update-password", method = RequestMethod.GET)
-	public String member_updatePassword() {
+	@RequestMapping(value = "/user/secure/set-password", method = RequestMethod.GET)
+	public String user_secure_setPassword() {
 
-		return "member/update-password";
+		return "user/secure/set-password";
 	}
 
 	/**
-	 * purchase/order 視圖解析
+	 * user/secure/sign-in 視圖解析
 	 * 
-	 * @return /WEB-INF/views/purchase/order.jsp
+	 * @return /WEB-INF/views/user/secure/sign-in.jsp
 	 */
-	@RequestMapping(value = "/purchase/order", method = RequestMethod.GET)
-	public String purchase_order() {
+	@RequestMapping(value = "/user/secure/sign-in", method = RequestMethod.GET)
+	public String user_secure_signIn() {
 
-		return "purchase/order";
+		return "user/secure/sign-in";
 	}
 
 	/**
@@ -136,17 +136,6 @@ public class ViewsController {
 	public String admin_index() {
 
 		return "admin/index";
-	}
-
-	/**
-	 * admin/agent/list 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/agent/list.jsp
-	 */
-	@RequestMapping(value = "/admin/agent/list", method = RequestMethod.GET)
-	public String admin_agent_list() {
-
-		return "admin/agent/list";
 	}
 
 	/**
@@ -202,6 +191,17 @@ public class ViewsController {
 	public String admin_clinic_update() {
 
 		return "admin/clinic/update";
+	}
+
+	/**
+	 * admin/company/list 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/company/list.jsp
+	 */
+	@RequestMapping(value = "/admin/company/list", method = RequestMethod.GET)
+	public String admin_company_list() {
+
+		return "admin/company/list";
 	}
 
 	/**

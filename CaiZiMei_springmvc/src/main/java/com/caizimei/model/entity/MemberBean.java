@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberBean.java
  * Author: 詹晟
- * Date: 2017/4/7
+ * Date: 2017/4/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -51,14 +52,15 @@ public class MemberBean {
 	private String m_city;
 	private String m_region;
 	private String m_address;
-	private Integer m_belong;
-	private Integer m_limit;
 	private java.util.Date m_signup_time;
 	private Integer m_signin_number;
 	private String m_signin_ip;
 	private java.util.Date m_signin_time;
 	private java.util.Date m_update_pass_time;
 	private java.util.Date m_update_info_time;
+	@ManyToOne
+	@JoinColumn(name = "m_com_id")
+	private CompanyBean m_CompanyBean;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "purchase", joinColumns = @JoinColumn(name = "p_m_id"), inverseJoinColumns = @JoinColumn(name = "p_c_id"))
@@ -200,22 +202,6 @@ public class MemberBean {
 		this.m_address = m_address;
 	}
 
-	public Integer getM_belong() {
-		return m_belong;
-	}
-
-	public void setM_belong(Integer m_belong) {
-		this.m_belong = m_belong;
-	}
-
-	public Integer getM_limit() {
-		return m_limit;
-	}
-
-	public void setM_limit(Integer m_limit) {
-		this.m_limit = m_limit;
-	}
-
 	public java.util.Date getM_signup_time() {
 		return m_signup_time;
 	}
@@ -262,6 +248,14 @@ public class MemberBean {
 
 	public void setM_update_info_time(java.util.Date m_update_info_time) {
 		this.m_update_info_time = m_update_info_time;
+	}
+
+	public CompanyBean getM_CompanyBean() {
+		return m_CompanyBean;
+	}
+
+	public void setM_CompanyBean(CompanyBean m_CompanyBean) {
+		this.m_CompanyBean = m_CompanyBean;
 	}
 
 	public Set<ClinicBean> getM_ClinicBean() {

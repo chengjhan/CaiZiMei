@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: AgentDAOImpl.java
+ * File: CompanyDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/8
+ * Date: 2017/4/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,16 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.caizimei.model.dao.AgentDAO;
-import com.caizimei.model.entity.AgentBean;
+import com.caizimei.model.dao.CompanyDAO;
+import com.caizimei.model.entity.CompanyBean;
 
 /**
- * agent DAO implement
+ * company DAO implement
  * 
  * @author 詹晟
  */
-@Repository(value = "agentDAO")
-public class AgentDAOImpl implements AgentDAO {
+@Repository(value = "companyDAO")
+public class CompanyDAOImpl implements CompanyDAO {
 
 	/**
 	 * 注入 HibernateTemplate
@@ -34,27 +34,27 @@ public class AgentDAOImpl implements AgentDAO {
 	/**
 	 * 搜尋全部代理商
 	 * 
-	 * @return List<AgentBean>
+	 * @return List<CompanyBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<AgentBean> select() {
+	public List<CompanyBean> select() {
 
-		return (List<AgentBean>) hibernateTemplate.find("from AgentBean");
+		return (List<CompanyBean>) hibernateTemplate.find("from CompanyBean");
 	}
 
 	/**
 	 * 新增代理商
 	 * 
-	 * @param agentBean-->AgentBean
-	 * @return agentBean-->AgentBean
+	 * @param companyBean-->CompanyBean
+	 * @return companyBean-->CompanyBean
 	 */
 	@Override
-	public AgentBean insert(AgentBean agentBean) {
+	public CompanyBean insert(CompanyBean companyBean) {
 
-		hibernateTemplate.save(agentBean);
+		hibernateTemplate.save(companyBean);
 
-		return agentBean;
+		return companyBean;
 	}
 
 }

@@ -303,34 +303,6 @@ public class MemberController {
 	}
 
 	/**
-	 * 管理者註冊
-	 * 
-	 * @param memberBean-->MemberBean
-	 * @param m_password-->管理者密碼(原碼)
-	 * @param m_telephone_front-->管理者電話(前碼)
-	 * @param m_telephone_back-->管理者電話(後碼)
-	 * @param model-->Model
-	 * @return /WEB-INF/views/admin/index.jsp
-	 */
-	@RequestMapping(path = "/admin/member/admin-sign-up.do", method = RequestMethod.POST)
-	public String adminSignUp(MemberBean memberBean, @RequestParam(name = "m_password") String m_password,
-			@RequestParam(name = "m_telephone_front") String m_telephone_front,
-			@RequestParam(name = "m_telephone_back") String m_telephone_back, Model model) {
-
-		String m_salt = memberService.getSalt();
-
-		memberBean.setM_salt(m_salt);
-		memberBean.setM_password(memberService.getHashedPassword(m_password, m_salt));
-		memberBean.setM_localphone(m_telephone_front + "-" + m_telephone_back);
-
-		memberService.signUp(memberBean);
-		memberService.signIn(memberBean.getM_username(), m_password);
-		model.addAttribute("user", memberBean);
-
-		return "redirect:/admin/index";
-	}
-
-	/**
 	 * 條件搜尋
 	 * 
 	 * @param memberBean-->MemberBean

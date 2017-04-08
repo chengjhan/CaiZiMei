@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AgentBean.java
  * Author: 詹晟
- * Date: 2017/4/7
+ * Date: 2017/4/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * agent entity
@@ -28,7 +30,8 @@ public class AgentBean {
 	private Integer a_id;
 	private String a_name;
 	private String a_localphone;
-	private java.util.Date a_signup_time;
+	@Temporal(TemporalType.TIMESTAMP)
+	private java.util.Date a_insert_time;
 
 	public Integer getA_id() {
 		return a_id;
@@ -54,12 +57,12 @@ public class AgentBean {
 		this.a_localphone = a_localphone;
 	}
 
-	public java.util.Date getA_signup_time() {
-		return a_signup_time;
+	public java.util.Date getA_insert_time() {
+		return a_insert_time;
 	}
 
-	public void setA_signup_time(java.util.Date a_signup_time) {
-		this.a_signup_time = a_signup_time;
+	public void setA_insert_time(java.util.Date a_insert_time) {
+		this.a_insert_time = a_insert_time;
 	}
 
 }

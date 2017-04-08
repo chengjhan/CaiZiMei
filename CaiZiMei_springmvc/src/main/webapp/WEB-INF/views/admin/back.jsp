@@ -25,6 +25,9 @@
 		<a href="${root}admin/clinic/search">診所搜尋</a>
 	</p>
 	<p>
+		<a href="${root}admin/agent/list.do">代理商</a>
+	</p>
+	<p>
 		<a href="${root}admin/member/search">會員搜尋</a>
 	</p>
 	<p>

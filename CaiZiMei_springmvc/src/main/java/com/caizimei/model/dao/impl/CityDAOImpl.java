@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,7 +40,7 @@ public class CityDAOImpl implements CityDAO {
 	@SuppressWarnings("unchecked")
 	public List<CityBean> select() {
 
-		return (List<CityBean>) hibernateTemplate.find("from CityBean");
+		return (List<CityBean>) hibernateTemplate.find("from CityBean order by ci_rank asc");
 	}
 
 	/**

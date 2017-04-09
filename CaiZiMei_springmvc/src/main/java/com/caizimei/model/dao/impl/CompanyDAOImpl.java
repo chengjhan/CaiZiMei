@@ -40,7 +40,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@SuppressWarnings("unchecked")
 	public List<CompanyBean> select() {
 
-		return (List<CompanyBean>) hibernateTemplate.find("from CompanyBean");
+		return (List<CompanyBean>) hibernateTemplate.find("from CompanyBean order by com_id asc");
 	}
 
 	/**

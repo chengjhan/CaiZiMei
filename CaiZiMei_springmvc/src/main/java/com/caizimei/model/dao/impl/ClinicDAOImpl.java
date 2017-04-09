@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -42,7 +42,7 @@ public class ClinicDAOImpl implements ClinicDAO {
 	@SuppressWarnings("unchecked")
 	public List<ClinicBean> select() {
 
-		return (List<ClinicBean>) hibernateTemplate.find("from ClinicBean");
+		return (List<ClinicBean>) hibernateTemplate.find("from ClinicBean order by c_id asc");
 	}
 
 	/**

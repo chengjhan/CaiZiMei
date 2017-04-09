@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/27
+ * Date: 2017/4/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,7 +40,7 @@ public class CountryDAOImpl implements CountryDAO {
 	@SuppressWarnings("unchecked")
 	public List<CountryBean> select() {
 
-		return (List<CountryBean>) hibernateTemplate.find("from CountryBean");
+		return (List<CountryBean>) hibernateTemplate.find("from CountryBean order by co_rank asc");
 	}
 
 	/**

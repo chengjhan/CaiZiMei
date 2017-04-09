@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/5
+ * Date: 2017/4/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,6 +11,7 @@ package com.caizimei.model.dao.impl;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -42,7 +43,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@SuppressWarnings("unchecked")
 	public List<MemberBean> select() {
 
-		return (List<MemberBean>) hibernateTemplate.find("from MemberBean");
+		return (List<MemberBean>) hibernateTemplate.find("from MemberBean order by m_id asc");
 	}
 
 	/**
@@ -106,6 +107,7 @@ public class MemberDAOImpl implements MemberDAO {
 		if (m_mobilephone != null && !m_mobilephone.trim().isEmpty()) {
 			criteria.add(Restrictions.eq("m_mobilephone", m_mobilephone));
 		}
+		criteria.addOrder(Order.asc("m_id"));
 
 		return (List<MemberBean>) hibernateTemplate.findByCriteria(criteria);
 	}

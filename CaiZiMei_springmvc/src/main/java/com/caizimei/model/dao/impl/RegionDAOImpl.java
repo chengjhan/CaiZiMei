@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: RegionDAOImpl.java
  * Author: 詹晟
- * Date: 2017/3/31
+ * Date: 2017/4/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,6 +11,7 @@ package com.caizimei.model.dao.impl;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -111,6 +112,7 @@ public class RegionDAOImpl implements RegionDAO {
 		if (r_zipcode != null && !r_zipcode.trim().isEmpty()) {
 			criteria.add(Restrictions.like("r_zipcode", "%" + r_zipcode + "%"));
 		}
+		criteria.addOrder(Order.asc("r_rank"));
 
 		return (List<RegionBean>) hibernateTemplate.findByCriteria(criteria);
 	}

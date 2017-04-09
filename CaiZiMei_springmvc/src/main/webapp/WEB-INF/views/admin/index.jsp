@@ -30,8 +30,5 @@
 	<p>
 		<a href="${root}admin/member/search">會員搜尋</a>
 	</p>
-	<p>
-		<a href="${root}admin/member/admin-sign-up">管理者註冊</a>
-	</p>
 </body>
 </html>

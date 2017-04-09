@@ -49,17 +49,17 @@ create table clinic(
     foreign key (c_r_id) references region (r_id)
 );
 
-create table manager(
-	ma_id					int auto_increment not null,
-    ma_username				varchar(50) not null,
-    ma_password				varchar(50) not null,
-    ma_salt					varchar(50) not null,
-    ma_lastname				nvarchar(20),
-    ma_firstname			nvarchar(20),
-    ma_eng_name				varchar(50),
-    ma_mobilephone			varchar(20),
-    ma_signup_time			datetime not null,
-    primary key (ma_id)
+create table administrator(
+	a_id					int auto_increment not null,
+    a_username				varchar(50) not null,
+    a_password				varchar(50) not null,
+    a_salt					varchar(50) not null,
+    a_lastname				nvarchar(20),
+    a_firstname				nvarchar(20),
+    a_eng_name				varchar(50),
+    a_mobilephone			varchar(20),
+    a_signup_time			datetime not null,
+    primary key (a_id)
 );
 
 create table company(
@@ -546,3 +546,6 @@ insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '東引鄉',
 
 -- clinic
 insert into clinic (c_name, c_eng_name, c_localphone, c_r_id, c_address, c_latitude, c_longitude, c_url, c_insert_time, c_update_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 12, '信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now());
+
+-- company
+insert into company (com_name, com_localphone, com_insert_time) values ('采姿美國際股份有限公司', '02-25167202', now());

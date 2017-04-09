@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAO.java
  * Author: 詹晟
- * Date: 2017/4/5
+ * Date: 2017/4/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -29,7 +29,7 @@ public interface MemberDAO {
 
 	MemberBean insert(MemberBean memberBean);
 
-	MemberBean update(MemberBean memberBean);
+	MemberBean update(MemberBean newMemberBean);
 
 	MemberBean updateM_password(Integer m_id, String m_password_new_hashed);
 

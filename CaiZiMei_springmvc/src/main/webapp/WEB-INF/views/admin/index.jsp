@@ -10,6 +10,15 @@
 <body>
 	<c:url value="/" var="root" />
 	<p>
+		<a href="${root}admin/secure/sign-in">登入</a>
+	</p>
+	<p>
+		<a href="${root}admin/secure/forget-password">忘記密碼</a>
+	</p>
+	<p>
+		<a href="${root}admin/secure/sign-out.do">登出</a>
+	</p>
+	<p>
 		<a href="${root}admin/country/list.do">國家</a>
 	</p>
 	<p>

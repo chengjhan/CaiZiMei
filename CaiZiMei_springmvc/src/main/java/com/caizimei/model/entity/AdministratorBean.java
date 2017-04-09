@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdministratorBean.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,8 +32,14 @@ public class AdministratorBean {
 	private String a_lastname;
 	private String a_firstname;
 	private String a_eng_name;
+	private String a_email;
 	private String a_mobilephone;
 	private java.util.Date a_signup_time;
+	private Integer a_signin_number;
+	private String a_signin_ip;
+	private java.util.Date a_signin_time;
+	private java.util.Date a_update_pass_time;
+	private java.util.Date a_update_info_time;
 
 	public Integer getA_id() {
 		return a_id;
@@ -91,6 +97,14 @@ public class AdministratorBean {
 		this.a_eng_name = a_eng_name;
 	}
 
+	public String getA_email() {
+		return a_email;
+	}
+
+	public void setA_email(String a_email) {
+		this.a_email = a_email;
+	}
+
 	public String getA_mobilephone() {
 		return a_mobilephone;
 	}
@@ -105,6 +119,46 @@ public class AdministratorBean {
 
 	public void setA_signup_time(java.util.Date a_signup_time) {
 		this.a_signup_time = a_signup_time;
+	}
+
+	public Integer getA_signin_number() {
+		return a_signin_number;
+	}
+
+	public void setA_signin_number(Integer a_signin_number) {
+		this.a_signin_number = a_signin_number;
+	}
+
+	public String getA_signin_ip() {
+		return a_signin_ip;
+	}
+
+	public void setA_signin_ip(String a_signin_ip) {
+		this.a_signin_ip = a_signin_ip;
+	}
+
+	public java.util.Date getA_signin_time() {
+		return a_signin_time;
+	}
+
+	public void setA_signin_time(java.util.Date a_signin_time) {
+		this.a_signin_time = a_signin_time;
+	}
+
+	public java.util.Date getA_update_pass_time() {
+		return a_update_pass_time;
+	}
+
+	public void setA_update_pass_time(java.util.Date a_update_pass_time) {
+		this.a_update_pass_time = a_update_pass_time;
+	}
+
+	public java.util.Date getA_update_info_time() {
+		return a_update_info_time;
+	}
+
+	public void setA_update_info_time(java.util.Date a_update_info_time) {
+		this.a_update_info_time = a_update_info_time;
 	}
 
 }

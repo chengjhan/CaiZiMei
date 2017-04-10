@@ -93,6 +93,7 @@ public class AdministratorController {
 				administratorService.updateA_signin_time(administratorBean.getA_id());
 				model.addAttribute("admin", administratorService.selectByA_username(a_username));
 
+				// 寫入日誌
 				AdministratorLogBean administratorLogBean = new AdministratorLogBean();
 				administratorLogBean.setAl_AdministratorBean(administratorBean);
 				administratorLogBean.setAl_operation("登入");
@@ -183,6 +184,7 @@ public class AdministratorController {
 	public String signOutProcess(@ModelAttribute("admin") AdministratorBean admin, HttpSession session,
 			SessionStatus sessionStatus) {
 
+		// 寫入日誌
 		AdministratorLogBean administratorLogBean = new AdministratorLogBean();
 		administratorLogBean.setAl_AdministratorBean(admin);
 		administratorLogBean.setAl_operation("登出");

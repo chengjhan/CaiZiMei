@@ -25,6 +25,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.caizimei.model.entity.AdministratorBean</value>
+				<value>com.caizimei.model.entity.AdministratorLogBean</value>
 				<value>com.caizimei.model.entity.CityBean</value>
 				<value>com.caizimei.model.entity.ClinicBean</value>
 				<value>com.caizimei.model.entity.CompanyBean</value>

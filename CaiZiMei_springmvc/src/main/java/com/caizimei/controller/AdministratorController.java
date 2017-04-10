@@ -76,6 +76,7 @@ public class AdministratorController {
 	 * @param a_username-->管理員帳號
 	 * @param a_password-->管理員密碼(原碼)
 	 * @param model-->Model
+	 * @param request-->HttpServletRequest
 	 * @return /WEB-INF/views/admin/index.jsp
 	 * @return /WEB-INF/views/admin/secure/sign-in.jsp
 	 */
@@ -178,6 +179,9 @@ public class AdministratorController {
 	/**
 	 * 登出
 	 * 
+	 * @param admin-->Session
+	 * @param session-->HttpSession
+	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/admin/secure/sign-in.jsp
 	 */
 	@RequestMapping(path = "/admin/secure/sign-out.do", method = RequestMethod.GET)
@@ -208,6 +212,7 @@ public class AdministratorController {
 	 * @param administratorBean-->AdministratorBean
 	 * @param a_username-->管理員帳號
 	 * @param a_password-->管理員密碼(原碼)
+	 * @param request-->HttpServletRequest
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/index.jsp
 	 * @return /WEB-INF/views/admin/administrator/sign-up.jsp

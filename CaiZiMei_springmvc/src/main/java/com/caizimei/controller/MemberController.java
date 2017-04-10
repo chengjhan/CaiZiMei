@@ -76,6 +76,7 @@ public class MemberController {
 	 * 
 	 * @param m_username-->會員信箱
 	 * @param m_password-->會員密碼(原碼)
+	 * @param request-->HttpServletRequest
 	 * @param model-->Model
 	 * @return /WEB-INF/views/user/index.jsp
 	 * @return /WEB-INF/views/user/secure/sign-in.jsp
@@ -175,6 +176,8 @@ public class MemberController {
 	/**
 	 * 登出
 	 * 
+	 * @param session-->HttpSession
+	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/user/secure/sign-in.jsp
 	 */
 	@RequestMapping(path = "/user/secure/sign-out.do", method = RequestMethod.GET)
@@ -205,6 +208,7 @@ public class MemberController {
 	 * @param m_localphone_back-->會員電話(後碼)
 	 * @param m_mobilephone_front-->會員手機(前碼)
 	 * @param m_mobilephone_back-->會員手機(後碼)
+	 * @param request-->HttpServletRequest
 	 * @param model-->Model
 	 * @return /WEB-INF/views/user/index.jsp
 	 * @return /WEB-INF/views/user/member/sign-up.jsp

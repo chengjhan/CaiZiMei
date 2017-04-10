@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.caizimei.model.dao.AdministratorDAO;
 import com.caizimei.model.entity.AdministratorBean;
@@ -21,6 +22,7 @@ import com.caizimei.model.entity.AdministratorBean;
  * 
  * @author 詹晟
  */
+@Repository(value = "administratorDAO")
 public class AdministratorDAOImpl implements AdministratorDAO {
 
 	/**

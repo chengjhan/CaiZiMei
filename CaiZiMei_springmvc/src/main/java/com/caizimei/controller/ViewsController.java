@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -143,6 +143,17 @@ public class ViewsController {
 	 */
 
 	/**
+	 * admin/administrator/sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/administrator/sign-up.jsp
+	 */
+	@RequestMapping(value = "/admin/administrator/sign-up", method = RequestMethod.GET)
+	public String admin_administrator_signUp() {
+
+		return "admin/administrator/sign-up";
+	}
+
+	/**
 	 * admin/index 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/index.jsp
@@ -242,17 +253,6 @@ public class ViewsController {
 	}
 
 	/**
-	 * admin/member/admin-sign-up 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/member/admin-sign-up.jsp
-	 */
-	@RequestMapping(value = "/admin/member/admin-sign-up", method = RequestMethod.GET)
-	public String admin_member_adminSignUp() {
-
-		return "admin/member/admin-sign-up";
-	}
-
-	/**
 	 * admin/member/search 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/member/search.jsp
@@ -294,6 +294,39 @@ public class ViewsController {
 	public String admin_region_update() {
 
 		return "admin/region/update";
+	}
+
+	/**
+	 * admin/secure/forget-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/secure/forget-password.jsp
+	 */
+	@RequestMapping(value = "/admin/secure/forget-password", method = RequestMethod.GET)
+	public String admin_secure_forgetPassword() {
+
+		return "admin/secure/forget-password";
+	}
+
+	/**
+	 * admin/secure/set-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/secure/set-password.jsp
+	 */
+	@RequestMapping(value = "/admin/secure/set-password", method = RequestMethod.GET)
+	public String admin_secure_setPassword() {
+
+		return "admin/secure/set-password";
+	}
+
+	/**
+	 * admin/secure/sign-in 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/secure/sign-in.jsp
+	 */
+	@RequestMapping(value = "/admin/secure/sign-in", method = RequestMethod.GET)
+	public String admin_secure_signIn() {
+
+		return "admin/secure/sign-in";
 	}
 
 }

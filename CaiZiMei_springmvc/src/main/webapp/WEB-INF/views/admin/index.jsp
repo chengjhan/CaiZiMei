@@ -19,6 +19,9 @@
 		<a href="${root}admin/secure/sign-out.do">登出</a>
 	</p>
 	<p>
+		<a href="${root}admin/administrator/sign-up">註冊</a>
+	</p>
+	<p>
 		<a href="${root}admin/country/list.do">國家</a>
 	</p>
 	<p>

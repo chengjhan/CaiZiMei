@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: PurchaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/3/28
+ * Date: 2017/4/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,7 +22,6 @@ import com.caizimei.model.service.PurchaseService;
  * @author 詹晟
  */
 @Service(value = "purchaseService")
-@Transactional
 public class PurchaseServiceImpl implements PurchaseService {
 
 	/**

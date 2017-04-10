@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CompanyServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -24,7 +24,6 @@ import com.caizimei.model.service.CompanyService;
  * @author 詹晟
  */
 @Service(value = "companyService")
-@Transactional
 public class CompanyServiceImpl implements CompanyService {
 
 	/**

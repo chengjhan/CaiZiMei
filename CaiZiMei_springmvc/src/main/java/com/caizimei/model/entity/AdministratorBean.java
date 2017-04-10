@@ -8,10 +8,15 @@
  */
 package com.caizimei.model.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -40,6 +45,9 @@ public class AdministratorBean {
 	private java.util.Date a_signin_time;
 	private java.util.Date a_update_pass_time;
 	private java.util.Date a_update_info_time;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "al_AdministratorBean")
+	private Set<AdministratorLogBean> a_AdministratorLogBean;
 
 	public Integer getA_id() {
 		return a_id;
@@ -159,6 +167,14 @@ public class AdministratorBean {
 
 	public void setA_update_info_time(java.util.Date a_update_info_time) {
 		this.a_update_info_time = a_update_info_time;
+	}
+
+	public Set<AdministratorLogBean> getA_AdministratorLogBean() {
+		return a_AdministratorLogBean;
+	}
+
+	public void setA_AdministratorLogBean(Set<AdministratorLogBean> a_AdministratorLogBean) {
+		this.a_AdministratorLogBean = a_AdministratorLogBean;
 	}
 
 }

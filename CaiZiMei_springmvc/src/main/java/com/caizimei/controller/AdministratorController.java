@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.caizimei.model.entity.AdministratorBean;
+import com.caizimei.model.entity.AdministratorLogBean;
+import com.caizimei.model.service.AdministratorLogService;
 import com.caizimei.model.service.AdministratorService;
 
 import misc.PrimitiveNumberEditor;
@@ -44,6 +46,12 @@ public class AdministratorController {
 	 */
 	@Autowired
 	private AdministratorService administratorService;
+
+	/**
+	 * 注入 AdministratorLogService
+	 */
+	@Autowired
+	private AdministratorLogService administratorLogService;
 
 	/**
 	 * 注入 SimpleDateFormat
@@ -83,6 +91,11 @@ public class AdministratorController {
 				administratorService.updateA_signin_ip(administratorBean.getA_id(), request.getRemoteAddr());
 				administratorService.updateA_signin_time(administratorBean.getA_id());
 				model.addAttribute("admin", administratorService.selectByA_username(a_username));
+
+				AdministratorLogBean administratorLogBean = new AdministratorLogBean();
+				administratorLogBean.setAl_AdministratorBean(administratorBean);
+				administratorLogBean.setAl_operation("登入");
+				administratorLogService.insert(administratorLogBean);
 
 				return "redirect:/admin/index";
 			} else {

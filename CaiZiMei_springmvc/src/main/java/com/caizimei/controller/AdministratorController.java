@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdministratorController.java
  * Author: 詹晟
- * Date: 2017/4/10
+ * Date: 2017/4/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,6 +11,7 @@ package com.caizimei.controller;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -171,6 +172,32 @@ public class AdministratorController {
 		} else {
 			return "admin/secure/set-password";
 		}
+	}
+
+	/**
+	 * 登出
+	 * 
+	 * @return /WEB-INF/views/admin/secure/sign-in.jsp
+	 */
+	@RequestMapping(path = "/admin/secure/sign-out.do", method = RequestMethod.GET)
+	public String signOutProcess(@ModelAttribute("admin") AdministratorBean admin, HttpSession session,
+			SessionStatus sessionStatus) {
+
+		AdministratorLogBean administratorLogBean = new AdministratorLogBean();
+		administratorLogBean.setAl_AdministratorBean(admin);
+		administratorLogBean.setAl_operation("登出");
+		administratorLogService.insert(administratorLogBean);
+
+		// 清除 HttpSession
+		if (session.getAttribute("user") != null) {
+			session.removeAttribute("user"); // 清除特定 HttpSession
+		}
+		session.invalidate(); // 清除所有 HttpSession
+
+		// 清除 @SessionAttributes
+		sessionStatus.setComplete();
+
+		return "redirect:/admin/index";
 	}
 
 	/**

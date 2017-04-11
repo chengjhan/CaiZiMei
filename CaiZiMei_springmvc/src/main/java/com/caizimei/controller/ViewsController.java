@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/4/11
+ * Date: 2017/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -136,6 +136,50 @@ public class ViewsController {
 	public String agent_index() {
 
 		return "agent/index";
+	}
+
+	/**
+	 * agent/employee/sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/employee/sign-up.jsp
+	 */
+	@RequestMapping(value = "/agent/employee/sign-up", method = RequestMethod.GET)
+	public String agent_employee_signUp() {
+
+		return "agent/employee/sign-up";
+	}
+
+	/**
+	 * agent/secure/forget-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/secure/forget-password.jsp
+	 */
+	@RequestMapping(value = "/agent/secure/forget-password", method = RequestMethod.GET)
+	public String agent_secure_forgetPassword() {
+
+		return "agent/secure/forget-password";
+	}
+
+	/**
+	 * agent/secure/set-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/secure/set-password.jsp
+	 */
+	@RequestMapping(value = "/agent/secure/set-password", method = RequestMethod.GET)
+	public String agent_secure_setPassword() {
+
+		return "agent/secure/set-password";
+	}
+
+	/**
+	 * agent/secure/sign-in 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/secure/sign-in.jsp
+	 */
+	@RequestMapping(value = "/agent/secure/sign-in", method = RequestMethod.GET)
+	public String agent_secure_signIn() {
+
+		return "agent/secure/sign-in";
 	}
 
 	/**

@@ -8,18 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:url value="/" var="root" />
-	<p>
-		<a href="${root}agent/secure/sign-in">登入</a>
-	</p>
-	<p>
-		<a href="${root}agent/secure/forget-password">忘記密碼</a>
-	</p>
-	<p>
-		<a href="${root}agent/secure/sign-out.do">登出</a>
-	</p>
-	<p>
-		<a href="${root}agent/employee/sign-up">註冊</a>
-	</p>
+	<form action="<c:url value='/agent/secure/forget-password.do' />" method="post">
+		<div>
+			<label for="id-e-email">信箱</label>
+			<input type="text" id="id-e-email" name="e_email">
+		</div>
+		<div>
+			<input type="submit" id="id-submit" value="寄信">
+		</div>
+	</form>
 </body>
 </html>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdministratorServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/10
+ * Date: 2017/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -244,4 +244,5 @@ public class AdministratorServiceImpl implements AdministratorService {
 
 		mailSender.send(simpleMailMessage);
 	}
+	
 }

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: EmployeeBean.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,8 +34,14 @@ public class EmployeeBean {
 	private String e_lastname;
 	private String e_firstname;
 	private String e_eng_name;
+	private String e_email;
 	private String e_mobilephone;
 	private java.util.Date e_signup_time;
+	private Integer e_signin_number;
+	private String e_signin_ip;
+	private java.util.Date e_signin_time;
+	private java.util.Date e_update_pass_time;
+	private java.util.Date e_update_info_time;
 	@ManyToOne
 	@JoinColumn(name = "e_com_id")
 	private CompanyBean e_CompanyBean;
@@ -96,6 +102,14 @@ public class EmployeeBean {
 		this.e_eng_name = e_eng_name;
 	}
 
+	public String getE_email() {
+		return e_email;
+	}
+
+	public void setE_email(String e_email) {
+		this.e_email = e_email;
+	}
+
 	public String getE_mobilephone() {
 		return e_mobilephone;
 	}
@@ -110,6 +124,46 @@ public class EmployeeBean {
 
 	public void setE_signup_time(java.util.Date e_signup_time) {
 		this.e_signup_time = e_signup_time;
+	}
+
+	public Integer getE_signin_number() {
+		return e_signin_number;
+	}
+
+	public void setE_signin_number(Integer e_signin_number) {
+		this.e_signin_number = e_signin_number;
+	}
+
+	public String getE_signin_ip() {
+		return e_signin_ip;
+	}
+
+	public void setE_signin_ip(String e_signin_ip) {
+		this.e_signin_ip = e_signin_ip;
+	}
+
+	public java.util.Date getE_signin_time() {
+		return e_signin_time;
+	}
+
+	public void setE_signin_time(java.util.Date e_signin_time) {
+		this.e_signin_time = e_signin_time;
+	}
+
+	public java.util.Date getE_update_pass_time() {
+		return e_update_pass_time;
+	}
+
+	public void setE_update_pass_time(java.util.Date e_update_pass_time) {
+		this.e_update_pass_time = e_update_pass_time;
+	}
+
+	public java.util.Date getE_update_info_time() {
+		return e_update_info_time;
+	}
+
+	public void setE_update_info_time(java.util.Date e_update_info_time) {
+		this.e_update_info_time = e_update_info_time;
 	}
 
 	public CompanyBean getE_CompanyBean() {

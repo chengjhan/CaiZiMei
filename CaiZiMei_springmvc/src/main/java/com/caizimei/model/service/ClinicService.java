@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicService.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -31,7 +31,7 @@ public interface ClinicService {
 
 	ClinicBean update(ClinicBean clinicBean);
 
-	Boolean delete(Integer c_id);
+	ClinicBean updateC_status(Integer c_id);
 
 	Double[] addressToLatLng(String address) throws Exception;
 

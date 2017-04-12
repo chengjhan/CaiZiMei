@@ -72,6 +72,8 @@
 				<td>網址</td>
 				<td>新增時間</td>
 				<td>更新時間</td>
+				<td>狀態</td>
+				<td>狀態更新時間</td>
 				<td>修改</td>
 				<td>刪除</td>
 			</tr>
@@ -80,6 +82,7 @@
 			<c:forEach var="bean" items="${clinicList}" varStatus="status">
 				<fmt:formatDate value="${bean.c_insert_time}" var="c_insert_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
 				<fmt:formatDate value="${bean.c_update_time}" var="c_update_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
+				<fmt:formatDate value="${bean.c_status_time}" var="c_status_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
 				<c:url value="/admin/clinic/update" var="path">
 					<c:param name="c_id" value="${bean.c_id}" />
 					<c:param name="c_name" value="${bean.c_name}" />
@@ -106,8 +109,10 @@
 					<td><a href="${bean.c_url}">${bean.c_url}</a></td>
 					<td>${c_insert_time_format}</td>
 					<td>${c_update_time_format}</td>
+					<td>${bean.c_status}</td>
+					<td>${c_status_time_format}</td>
 					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}admin/clinic/delete.do?c_id=${bean.c_id}">刪除</a></td>
+					<td><a href="${root}admin/clinic/update-status.do?c_id=${bean.c_id}">狀態</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

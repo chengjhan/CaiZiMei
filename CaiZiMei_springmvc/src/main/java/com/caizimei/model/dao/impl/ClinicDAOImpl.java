@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -145,17 +145,31 @@ public class ClinicDAOImpl implements ClinicDAO {
 	}
 
 	/**
-	 * 刪除診所
+	 * 切換診所顯示狀態
 	 * 
 	 * @param c_id-->診所流水號
-	 * @return true-->成功
+	 * @return clinicBean-->ClinicBean
 	 */
 	@Override
-	public Boolean delete(Integer c_id) {
+	public ClinicBean updateC_status(Integer c_id) {
 
-		hibernateTemplate.delete(hibernateTemplate.get(ClinicBean.class, c_id));
+		ClinicBean clinicBean = hibernateTemplate.get(ClinicBean.class, c_id);
 
-		return true;
+		if (clinicBean.getC_status() == 1) {
+
+			// 不顯示
+			clinicBean.setC_status(0);
+			clinicBean.setC_status_time(new java.util.Date());
+
+		} else {
+
+			// 顯示
+			clinicBean.setC_status(1);
+			clinicBean.setC_status_time(new java.util.Date());
+
+		}
+
+		return clinicBean;
 	}
 
 }

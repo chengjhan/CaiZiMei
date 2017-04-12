@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicBean.java
  * Author: 詹晟
- * Date: 2017/4/1
+ * Date: 2017/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -48,6 +48,8 @@ public class ClinicBean {
 	private java.util.Date c_insert_time;
 	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date c_update_time;
+	private Integer c_status;
+	private java.util.Date c_status_time;
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "m_ClinicBean")
 	private Set<MemberBean> c_MemberBean;
@@ -146,6 +148,22 @@ public class ClinicBean {
 
 	public void setC_MemberBean(Set<MemberBean> c_MemberBean) {
 		this.c_MemberBean = c_MemberBean;
+	}
+
+	public Integer getC_status() {
+		return c_status;
+	}
+
+	public void setC_status(Integer c_status) {
+		this.c_status = c_status;
+	}
+
+	public java.util.Date getC_status_time() {
+		return c_status_time;
+	}
+
+	public void setC_status_time(java.util.Date c_status_time) {
+		this.c_status_time = c_status_time;
 	}
 
 }

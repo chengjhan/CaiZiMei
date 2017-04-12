@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/10
+ * Date: 2017/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -128,16 +128,16 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	/**
-	 * 刪除診所
+	 * 切換診所顯示狀態
 	 * 
 	 * @param c_id-->診所流水號
-	 * @return true-->成功
+	 * @return ClinicBean
 	 */
 	@Override
 	@Transactional
-	public Boolean delete(Integer c_id) {
+	public ClinicBean updateC_status(Integer c_id) {
 
-		return clinicDAO.delete(c_id);
+		return clinicDAO.updateC_status(c_id);
 	}
 
 	/**

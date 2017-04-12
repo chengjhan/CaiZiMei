@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/4/6
+ * Date: 2017/4/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -110,6 +110,8 @@ public class ClinicCintroller {
 		clinicBean.setC_longitude(LatLng[1]);
 		clinicBean.setC_insert_time(new java.util.Date());
 		clinicBean.setC_update_time(new java.util.Date());
+		clinicBean.setC_status(1);
+		clinicBean.setC_status_time(new java.util.Date());
 
 		clinicService.insert(clinicBean);
 		model.addAttribute("clinicList", clinicService.select());
@@ -151,16 +153,16 @@ public class ClinicCintroller {
 	}
 
 	/**
-	 * 刪除診所
+	 * 切換診所顯示狀態
 	 * 
 	 * @param c_id-->診所流水號
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/clinic/list.jsp
 	 */
-	@RequestMapping(path = "/delete.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/update-status.do", method = RequestMethod.GET)
 	public String deleteProcess(@RequestParam(name = "c_id") String c_id, Model model) {
 
-		clinicService.delete(Integer.parseInt(c_id));
+		clinicService.updateC_status(Integer.valueOf(c_id));
 		model.addAttribute("clinicList", clinicService.select());
 
 		return "redirect:/admin/clinic/list";

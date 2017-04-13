@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/12
+ * Date: 2017/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -72,17 +72,17 @@ public class ClinicDAOImpl implements ClinicDAO {
 	}
 
 	/**
-	 * 城市流水號搜尋
+	 * 區域流水號搜尋可顯示的診所
 	 * 
-	 * @param c_ci_id-->城市流水號
+	 * @param c_r_id-->區域流水號
 	 * @return List<ClinicBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<ClinicBean> selectByC_r_id(Integer c_r_id) {
 
-		return (List<ClinicBean>) hibernateTemplate.findByNamedParam("from ClinicBean where c_r_id=:c_r_id", "c_r_id",
-				c_r_id);
+		return (List<ClinicBean>) hibernateTemplate
+				.findByNamedParam("from ClinicBean where c_r_id=:c_r_id and c_status=1", "c_r_id", c_r_id);
 	}
 
 	/**

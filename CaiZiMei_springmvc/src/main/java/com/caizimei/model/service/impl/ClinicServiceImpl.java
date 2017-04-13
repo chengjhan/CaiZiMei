@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/12
+ * Date: 2017/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -69,7 +69,7 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	/**
-	 * 區域流水號搜尋
+	 * 區域流水號搜尋可顯示的診所
 	 * 
 	 * @param c_r_id-->區域流水號
 	 * @return List<ClinicBean>

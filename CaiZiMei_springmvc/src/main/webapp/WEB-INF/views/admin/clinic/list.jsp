@@ -75,7 +75,7 @@
 				<td>狀態</td>
 				<td>狀態更新時間</td>
 				<td>修改</td>
-				<td>刪除</td>
+				<td>狀態</td>
 			</tr>
 		</thead>
 		<tbody>

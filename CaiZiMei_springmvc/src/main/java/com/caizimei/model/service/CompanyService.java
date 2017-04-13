@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CompanyService.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -23,6 +23,10 @@ public interface CompanyService {
 
 	CompanyBean selectByCom_id(Integer com_id);
 
+	List<CompanyBean> selectByCom_status();
+
 	CompanyBean insert(CompanyBean companyBean);
+
+	CompanyBean updateCom_status(Integer com_id);
 
 }

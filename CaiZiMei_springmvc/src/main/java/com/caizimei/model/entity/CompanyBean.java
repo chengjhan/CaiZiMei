@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CompanyBean.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -37,6 +37,8 @@ public class CompanyBean {
 	private String com_localphone;
 	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date com_insert_time;
+	private Integer com_status;
+	private java.util.Date com_status_time;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "e_CompanyBean")
 	private Set<EmployeeBean> com_EmployeeBean;
@@ -89,6 +91,22 @@ public class CompanyBean {
 
 	public void setCom_MemberBean(Set<MemberBean> com_MemberBean) {
 		this.com_MemberBean = com_MemberBean;
+	}
+
+	public Integer getCom_status() {
+		return com_status;
+	}
+
+	public void setCom_status(Integer com_status) {
+		this.com_status = com_status;
+	}
+
+	public java.util.Date getCom_status_time() {
+		return com_status_time;
+	}
+
+	public void setCom_status_time(java.util.Date com_status_time) {
+		this.com_status_time = com_status_time;
 	}
 
 }

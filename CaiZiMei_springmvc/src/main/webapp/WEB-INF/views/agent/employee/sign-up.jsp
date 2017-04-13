@@ -48,7 +48,7 @@
 	</form>
 	<script>
 		$(document).ready(function(){
-			$.getJSON("${root}admin/company/select.ajax", function(data){
+			$.getJSON("${root}admin/company/select-by-status.ajax", function(data){
 				$.each(data, function(index, company){
 					var company_option = $("<option value=" + company.com_id + "></option>").append(company.com_name);
 					$("#id-e-com-id").append(company_option);

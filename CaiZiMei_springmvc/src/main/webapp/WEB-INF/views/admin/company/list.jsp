@@ -12,7 +12,7 @@
 	<c:url value="/" var="root" />
 	<form action="<c:url value='/admin/company/insert.do' />" method="post">
 		<div>
-			<label for="id-com-name">代理商</label>
+			<label for="id-com-name">公司</label>
 			<input type="text" id="id-com-name" name="com_name">
 		</div>
 		<div>
@@ -31,13 +31,16 @@
 				<td>代理商</td>
 				<td>電話</td>
 				<td>新增時間</td>
+				<td>狀態</td>
+				<td>狀態更新時間</td>
 				<td>修改</td>
-				<td>刪除</td>
+				<td>狀態</td>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${companyList}" varStatus="status">
 				<fmt:formatDate value="${bean.com_insert_time}" var="com_insert_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
+				<fmt:formatDate value="${bean.com_status_time}" var="com_status_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
 				<c:url value="/admin/company/update" var="path">
 					<c:param name="com_id" value="${bean.com_id}" />
 					<c:param name="com_name" value="${bean.com_name}" />
@@ -49,8 +52,10 @@
 					<td>${bean.com_name}</td>
 					<td>${bean.com_localphone}</td>
 					<td>${com_insert_time_format}</td>
+					<td>${bean.com_status}</td>
+					<td>${com_status_time_format}</td>
 					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}admin/company/delete.do?com_id=${bean.com_id}">刪除</a></td>
+					<td><a href="${root}admin/company/update-status.do?com_id=${bean.com_id}">狀態</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

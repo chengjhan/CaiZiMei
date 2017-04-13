@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CompanyServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/10
+ * Date: 2017/4/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,7 @@ public class CompanyServiceImpl implements CompanyService {
 	private CompanyDAO companyDAO;
 
 	/**
-	 * 搜尋全部代理商
+	 * 搜尋全部公司
 	 * 
 	 * @return List<CompanyBean>
 	 */
@@ -45,7 +45,7 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	/**
-	 * 代理商流水號搜尋
+	 * 公司流水號搜尋
 	 * 
 	 * @return CompanyBean
 	 */
@@ -57,7 +57,19 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	/**
-	 * 新增代理商
+	 * 搜尋可顯示的公司
+	 * 
+	 * List<CompanyBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<CompanyBean> selectByCom_status() {
+
+		return companyDAO.selectByCom_status();
+	}
+
+	/**
+	 * 新增公司
 	 * 
 	 * @param companyBean-->CompanyBean
 	 * @return result-->CompanyBean
@@ -73,6 +85,19 @@ public class CompanyServiceImpl implements CompanyService {
 			result = companyDAO.insert(companyBean);
 		}
 		return result;
+	}
+
+	/**
+	 * 切換公司顯示狀態
+	 * 
+	 * @param com_id-->公司流水號
+	 * @return CompanyBean
+	 */
+	@Override
+	@Transactional
+	public CompanyBean updateCom_status(Integer com_id) {
+
+		return companyDAO.updateCom_status(com_id);
 	}
 
 }

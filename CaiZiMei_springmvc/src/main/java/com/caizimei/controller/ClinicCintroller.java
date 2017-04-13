@@ -169,7 +169,7 @@ public class ClinicCintroller {
 	}
 
 	/**
-	 * 搜尋區域中的所有診所 (ajax)
+	 * 搜尋區域中可顯示的診所 (ajax)
 	 * 
 	 * @param c_r_id-->區域流水號
 	 * @return 診所json

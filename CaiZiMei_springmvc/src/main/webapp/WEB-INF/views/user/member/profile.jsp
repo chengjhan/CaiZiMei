@@ -64,7 +64,7 @@
 		</tr>
 	</table>
 	<p>
-		<a href="${root}user/member/update">修改會員資料</a>
+		<a href="${root}user/member/update">修改個人資料</a>
 	</p>
 </body>
 </html>

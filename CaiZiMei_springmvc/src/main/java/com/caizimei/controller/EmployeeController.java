@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: EmployeeController.java
  * Author: 詹晟
- * Date: 2017/4/12
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -228,6 +228,22 @@ public class EmployeeController {
 		} else {
 			return "redirect:/agent/employee/sign-up";
 		}
+	}
+
+	/**
+	 * 修改員工資料
+	 * 
+	 * @param agent-->Session
+	 * @param employeeBean-->EmployeeBean
+	 * @return /WEB-INF/views/agent/index.jsp
+	 */
+	@RequestMapping(path = "/agent/employee/update.do", method = RequestMethod.POST)
+	public String updateProcess(@ModelAttribute("agent") EmployeeBean agent, EmployeeBean employeeBean) {
+
+		employeeBean.setE_id(agent.getE_id());
+		employeeService.update(employeeBean);
+
+		return "redirect:/agent/index";
 	}
 
 }

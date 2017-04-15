@@ -35,5 +35,8 @@
 			<td>${agent.e_signin_number}</td>
 		</tr>
 	</table>
+	<p>
+		<a href="${root}agent/employee/update">修改個人資料</a>
+	</p>
 </body>
 </html>

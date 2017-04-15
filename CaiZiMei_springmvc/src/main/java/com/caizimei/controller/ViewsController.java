@@ -161,6 +161,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * agent/employee/update 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/employee/update.jsp
+	 */
+	@RequestMapping(value = "/agent/employee/update", method = RequestMethod.GET)
+	public String agent_employee_update() {
+
+		return "agent/employee/update";
+	}
+
+	/**
 	 * agent/member/search 視圖解析
 	 * 
 	 * @return /WEB-INF/views/agent/member/search.jsp

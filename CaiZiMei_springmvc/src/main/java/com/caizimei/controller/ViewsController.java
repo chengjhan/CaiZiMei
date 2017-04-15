@@ -242,6 +242,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * admin/administrator/profile 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/administrator/profile.jsp
+	 */
+	@RequestMapping(value = "/admin/administrator/profile", method = RequestMethod.GET)
+	public String admin_administrator_profile() {
+
+		return "admin/administrator/profile";
+	}
+
+	/**
 	 * admin/administrator/sign-up 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/administrator/sign-up.jsp
@@ -250,6 +261,28 @@ public class ViewsController {
 	public String admin_administrator_signUp() {
 
 		return "admin/administrator/sign-up";
+	}
+
+	/**
+	 * admin/administrator/update 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/administrator/update.jsp
+	 */
+	@RequestMapping(value = "/admin/administrator/update", method = RequestMethod.GET)
+	public String admin_administrator_update() {
+
+		return "admin/administrator/update";
+	}
+
+	/**
+	 * admin/administrator/update-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/administrator/update-password.jsp
+	 */
+	@RequestMapping(value = "/admin/administrator/update-password", method = RequestMethod.GET)
+	public String admin_administrator_updatePassword() {
+
+		return "admin/administrator/update-password";
 	}
 
 	/**

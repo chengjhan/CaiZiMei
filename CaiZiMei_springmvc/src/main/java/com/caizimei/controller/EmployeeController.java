@@ -251,7 +251,7 @@ public class EmployeeController {
 	 * 
 	 * @param e_password-->舊密碼(原碼)
 	 * @param e_password_new-->新密碼(原碼)
-	 * @param user-->Session
+	 * @param agent-->Session
 	 * @return /WEB-INF/views/agent/index.jsp
 	 * @return /WEB-INF/views/agent/employee/update-password.jsp
 	 */

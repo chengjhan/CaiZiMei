@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdministratorController.java
  * Author: 詹晟
- * Date: 2017/4/11
+ * Date: 2017/4/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -240,6 +240,49 @@ public class AdministratorController {
 			return "redirect:/admin/index";
 		} else {
 			return "redirect:/admin/administrator/sign-up";
+		}
+	}
+
+	/**
+	 * 修改管理員資料
+	 * 
+	 * @param admin-->Session
+	 * @param administratorBean-->AdministratorBean
+	 * @return /WEB-INF/views/admin/index.jsp
+	 */
+	@RequestMapping(path = "/admin/administrator/update.do", method = RequestMethod.POST)
+	public String updateProcess(@ModelAttribute("admin") AdministratorBean admin, AdministratorBean administratorBean) {
+
+		administratorBean.setA_id(admin.getA_id());
+		administratorService.update(administratorBean);
+
+		return "redirect:/admin/index";
+	}
+
+	/**
+	 * 修改管理員密碼
+	 * 
+	 * @param a_password-->舊密碼(原碼)
+	 * @param a_password_new-->新密碼(原碼)
+	 * @param admin-->Session
+	 * @return /WEB-INF/views/admin/index.jsp
+	 * @return /WEB-INF/views/admin/administrator/update-password.jsp
+	 */
+	@RequestMapping(path = "/admin/administrator/updata-password.do", method = RequestMethod.POST)
+	public String updatePasswordProcess(@RequestParam(name = "a_password") String a_password,
+			@RequestParam(name = "a_password_new") String a_password_new,
+			@ModelAttribute("admin") AdministratorBean admin) {
+
+		String oldHashedPassword = administratorService.selectByA_id(admin.getA_id()).getA_password();
+		String inputOldHashedPassword = administratorService.getHashedPassword(a_password, admin.getA_salt());
+
+		if (oldHashedPassword.equals(inputOldHashedPassword)) {
+
+			administratorService.updateA_password(admin.getA_id(), a_password_new, admin.getA_salt());
+
+			return "redirect:/admin/index";
+		} else {
+			return "admin/administrator/update-password";
 		}
 	}
 

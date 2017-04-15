@@ -139,6 +139,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * agent/employee/profile 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/employee/profile.jsp
+	 */
+	@RequestMapping(value = "/agent/employee/profile", method = RequestMethod.GET)
+	public String agent_employee_profile() {
+
+		return "agent/employee/profile";
+	}
+
+	/**
 	 * agent/employee/sign-up 視圖解析
 	 * 
 	 * @return /WEB-INF/views/agent/employee/sign-up.jsp

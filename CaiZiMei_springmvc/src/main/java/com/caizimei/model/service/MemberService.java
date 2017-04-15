@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberService.java
  * Author: 詹晟
- * Date: 2017/4/6
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,7 +27,11 @@ public interface MemberService {
 
 	MemberBean selectByM_username(String m_username);
 
-	List<MemberBean> selectByConditions(String m_username, String m_lastname, String m_firstname, String m_mobilephone);
+	List<MemberBean> selectByMemberConditionsForAdmin(String m_username, String m_lastname, String m_firstname,
+			String m_mobilephone);
+
+	List<MemberBean> selectByMemberConditionsForAgent(String m_username, String m_lastname, String m_firstname,
+			String m_mobilephone, Integer com_id);
 
 	MemberBean update(MemberBean memberBean);
 

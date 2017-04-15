@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: RegionServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/10
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -113,9 +113,9 @@ public class RegionServiceImpl implements RegionService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<RegionBean> selectByConditions(Integer r_ci_id, String r_name, String r_zipcode) {
+	public List<RegionBean> selectByRegionConditions(Integer r_ci_id, String r_name, String r_zipcode) {
 
-		return regionDAO.selectByConditions(cityDAO.selectByCi_id(r_ci_id), r_name, r_zipcode);
+		return regionDAO.selectByRegionConditions(cityDAO.selectByCi_id(r_ci_id), r_name, r_zipcode);
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/10
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -117,7 +117,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/**
-	 * 條件搜尋
+	 * 條件搜尋 (admin)
 	 * 
 	 * @param m_username-->會員信箱
 	 * @param m_lastname-->會員姓
@@ -127,10 +127,28 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<MemberBean> selectByConditions(String m_username, String m_lastname, String m_firstname,
+	public List<MemberBean> selectByMemberConditionsForAdmin(String m_username, String m_lastname, String m_firstname,
 			String m_mobilephone) {
 
-		return memberDAO.selectByConditions(m_username, m_firstname, m_lastname, m_mobilephone);
+		return memberDAO.selectByMemberConditionsForAdmin(m_username, m_firstname, m_lastname, m_mobilephone);
+	}
+
+	/**
+	 * 條件搜尋 (agent)
+	 * 
+	 * @param m_username-->會員信箱
+	 * @param m_lastname-->會員姓
+	 * @param m_firstname-->會員名
+	 * @param m_mobilephone-->會員電話
+	 * @param com_id-->公司流水號
+	 * @return List<MemberBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<MemberBean> selectByMemberConditionsForAgent(String m_username, String m_lastname, String m_firstname,
+			String m_mobilephone, Integer com_id) {
+
+		return memberDAO.selectByMemberConditionsForAgent(m_username, m_firstname, m_lastname, m_mobilephone, com_id);
 	}
 
 	/**

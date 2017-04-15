@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: RegionDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -99,7 +99,7 @@ public class RegionDAOImpl implements RegionDAO {
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<RegionBean> selectByConditions(CityBean r_CityBean, String r_name, String r_zipcode) {
+	public List<RegionBean> selectByRegionConditions(CityBean r_CityBean, String r_name, String r_zipcode) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(RegionBean.class);
 

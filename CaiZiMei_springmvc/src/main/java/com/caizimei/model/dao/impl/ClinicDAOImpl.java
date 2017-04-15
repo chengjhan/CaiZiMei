@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/13
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -94,7 +94,7 @@ public class ClinicDAOImpl implements ClinicDAO {
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ClinicBean> selectByConditions(String c_name, String c_localphone) {
+	public List<ClinicBean> selectByClinicConditions(String c_name, String c_localphone) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(ClinicBean.class);
 

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/4/12
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -69,10 +69,10 @@ public class ClinicCintroller {
 	 * @return /WEB-INF/views/admin/clinic/search.jsp
 	 */
 	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
-	public String selectByConditionsProcess(ClinicBean clinicBean, Model model) {
+	public String selectByClinicConditionsProcess(ClinicBean clinicBean, Model model) {
 
-		model.addAttribute("selectByConditions",
-				clinicService.selectByConditions(clinicBean.getC_name().trim(), clinicBean.getC_localphone().trim()));
+		model.addAttribute("selectByClinicConditions",
+				clinicService.selectByClinicConditions(clinicBean.getC_name().trim(), clinicBean.getC_localphone().trim()));
 
 		return "admin/clinic/search";
 	}

@@ -21,5 +21,8 @@
 	<p>
 		<a href="${root}agent/employee/sign-up">註冊</a>
 	</p>
+	<p>
+		<a href="${root}agent/member/search">會員搜尋</a>
+	</p>
 </body>
 </html>

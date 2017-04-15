@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/4/12
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -147,6 +147,17 @@ public class ViewsController {
 	public String agent_employee_signUp() {
 
 		return "agent/employee/sign-up";
+	}
+
+	/**
+	 * agent/member/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/member/search.jsp
+	 */
+	@RequestMapping(value = "/agent/member/search", method = RequestMethod.GET)
+	public String agent_member_search() {
+
+		return "agent/member/search";
 	}
 
 	/**

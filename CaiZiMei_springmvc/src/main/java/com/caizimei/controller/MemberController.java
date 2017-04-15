@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.caizimei.model.entity.EmployeeBean;
 import com.caizimei.model.entity.MemberBean;
 import com.caizimei.model.service.CompanyService;
 import com.caizimei.model.service.MemberService;
@@ -40,7 +41,7 @@ import misc.PrimitiveNumberEditor;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = { "user", "lastSignInIp", "lastSignInTime" })
+@SessionAttributes(value = { "user", "agent", "lastSignInIp", "lastSignInTime" })
 public class MemberController {
 
 	/**
@@ -307,19 +308,40 @@ public class MemberController {
 	}
 
 	/**
-	 * 條件搜尋
+	 * 條件搜尋 (admin)
 	 * 
 	 * @param memberBean-->MemberBean
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/member/search.jsp
 	 */
 	@RequestMapping(path = "/admin/member/select.do", method = RequestMethod.GET)
-	public String selectByConditionsProcess(MemberBean memberBean, Model model) {
+	public String selectByMemberConditionsForAdminProcess(MemberBean memberBean, Model model) {
 
-		model.addAttribute("selectByConditions", memberService.selectByConditions(memberBean.getM_username(),
-				memberBean.getM_lastname(), memberBean.getM_firstname(), memberBean.getM_mobilephone()));
+		model.addAttribute("selectByMemberConditionsForAdmin",
+				memberService.selectByMemberConditionsForAdmin(memberBean.getM_username(), memberBean.getM_lastname(),
+						memberBean.getM_firstname(), memberBean.getM_mobilephone()));
 
 		return "admin/member/search";
+	}
+
+	/**
+	 * 條件搜尋 (agent)
+	 * 
+	 * @param memberBean-->MemberBean
+	 * @param agent-->Session
+	 * @param model-->Model
+	 * @return /WEB-INF/views/agent/member/search.jsp
+	 */
+	@RequestMapping(path = "/agent/member/select.do", method = RequestMethod.GET)
+	public String selectByMemberConditionsForAgentProcess(MemberBean memberBean,
+			@ModelAttribute("agent") EmployeeBean agent, Model model) {
+
+		model.addAttribute("selectByMemberConditionsForAgent",
+				memberService.selectByMemberConditionsForAgent(memberBean.getM_username(), memberBean.getM_lastname(),
+						memberBean.getM_firstname(), memberBean.getM_mobilephone(),
+						agent.getE_CompanyBean().getCom_id()));
+
+		return "agent/member/search";
 	}
 
 	/**

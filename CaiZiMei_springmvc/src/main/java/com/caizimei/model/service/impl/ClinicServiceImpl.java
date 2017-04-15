@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/13
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -90,9 +90,9 @@ public class ClinicServiceImpl implements ClinicService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<ClinicBean> selectByConditions(String c_name, String c_localphone) {
+	public List<ClinicBean> selectByClinicConditions(String c_name, String c_localphone) {
 
-		return clinicDAO.selectByConditions(c_name, c_localphone);
+		return clinicDAO.selectByClinicConditions(c_name, c_localphone);
 	}
 
 	/**

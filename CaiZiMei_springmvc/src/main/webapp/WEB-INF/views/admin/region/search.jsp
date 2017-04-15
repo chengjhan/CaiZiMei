@@ -53,7 +53,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${selectByConditions}" varStatus="status">
+			<c:forEach var="bean" items="${selectByRegionConditions}" varStatus="status">
 				<c:url value="/admin/region/update" var="path">
 					<c:param name="r_id" value="${bean.r_id}" />
 					<c:param name="co_id" value="${bean.r_CityBean.ci_CountryBean.co_id}" />

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/admin/member/select.do' />" method="get">
+	<form action="<c:url value='/agent/member/select.do' />" method="get">
 		<div>
 			<label for="id-m-username">信箱</label>
 			<input type="text" id="id-m-username" name="m_username">
@@ -49,12 +49,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${selectByMemberConditionsForAdmin}" varStatus="status">
+			<c:forEach var="bean" items="${selectByMemberConditionsForAgent}" varStatus="status">
 				<tr>
 					<td>${status.count}</td>
 					<td>${bean.m_id}</td>
 					<td>${bean.m_username}</td>
-					<td>${bean.m_lastname} ${bean.m_firstname}</td>
+					<td>${bean.m_lastname}${bean.m_firstname}</td>
 					<td>${bean.m_birth}</td>
 					<td>${bean.m_sex}</td>
 					<td>${bean.m_height}</td>

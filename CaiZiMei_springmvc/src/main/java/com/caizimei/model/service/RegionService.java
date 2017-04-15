@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: RegionService.java
  * Author: 詹晟
- * Date: 2017/3/30
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,7 +27,7 @@ public interface RegionService {
 
 	RegionBean selectByR_zipcode(String r_zipcode);
 
-	List<RegionBean> selectByConditions(Integer r_ci_id, String r_name, String r_zipcode);
+	List<RegionBean> selectByRegionConditions(Integer r_ci_id, String r_name, String r_zipcode);
 
 	RegionBean insert(RegionBean regionBean);
 

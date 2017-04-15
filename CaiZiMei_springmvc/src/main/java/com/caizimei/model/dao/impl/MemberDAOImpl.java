@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/9
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,6 +18,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.caizimei.model.dao.MemberDAO;
+import com.caizimei.model.entity.CompanyBean;
 import com.caizimei.model.entity.MemberBean;
 
 /**
@@ -80,7 +81,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	/**
-	 * 條件搜尋
+	 * 條件搜尋 (admin)
 	 * 
 	 * @param m_username-->會員信箱
 	 * @param m_lastname-->會員姓
@@ -90,7 +91,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<MemberBean> selectByConditions(String m_username, String m_lastname, String m_firstname,
+	public List<MemberBean> selectByMemberConditionsForAdmin(String m_username, String m_lastname, String m_firstname,
 			String m_mobilephone) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(MemberBean.class);
@@ -107,6 +108,41 @@ public class MemberDAOImpl implements MemberDAO {
 		if (m_mobilephone != null && !m_mobilephone.trim().isEmpty()) {
 			criteria.add(Restrictions.eq("m_mobilephone", m_mobilephone));
 		}
+		criteria.addOrder(Order.asc("m_id"));
+
+		return (List<MemberBean>) hibernateTemplate.findByCriteria(criteria);
+	}
+
+	/**
+	 * 條件搜尋 (agent)
+	 * 
+	 * @param m_username-->會員信箱
+	 * @param m_lastname-->會員姓
+	 * @param m_firstname-->會員名
+	 * @param m_mobilephone-->會員手機
+	 * @param com_id-->公司流水號
+	 * @return List<MemberBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<MemberBean> selectByMemberConditionsForAgent(String m_username, String m_lastname, String m_firstname,
+			String m_mobilephone, Integer com_id) {
+
+		DetachedCriteria criteria = DetachedCriteria.forClass(MemberBean.class);
+
+		if (m_username != null && !m_username.trim().isEmpty()) {
+			criteria.add(Restrictions.like("m_username", "%" + m_username + "%"));
+		}
+		if (m_lastname != null && !m_lastname.trim().isEmpty()) {
+			criteria.add(Restrictions.like("m_lastname", "%" + m_lastname + "%"));
+		}
+		if (m_firstname != null && !m_firstname.trim().isEmpty()) {
+			criteria.add(Restrictions.like("m_firstname", "%" + m_firstname + "%"));
+		}
+		if (m_mobilephone != null && !m_mobilephone.trim().isEmpty()) {
+			criteria.add(Restrictions.eq("m_mobilephone", m_mobilephone));
+		}
+		criteria.add(Restrictions.eq("m_CompanyBean", hibernateTemplate.get(CompanyBean.class, com_id)));
 		criteria.addOrder(Order.asc("m_id"));
 
 		return (List<MemberBean>) hibernateTemplate.findByCriteria(criteria);

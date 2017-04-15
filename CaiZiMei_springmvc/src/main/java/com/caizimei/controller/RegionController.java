@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: RegionController.java
  * Author: 詹晟
- * Date: 2017/4/6
+ * Date: 2017/4/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -56,11 +56,11 @@ public class RegionController {
 	 * @return /WEB-INF/views/admin/region/search.jsp
 	 */
 	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
-	public String selectByConditionsProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id, RegionBean regionBean,
-			Model model) {
+	public String selectByRegionConditionsProcess(@RequestParam(name = "r_ci_id") Integer r_ci_id,
+			RegionBean regionBean, Model model) {
 
-		model.addAttribute("selectByConditions",
-				regionService.selectByConditions(r_ci_id, regionBean.getR_name(), regionBean.getR_zipcode()));
+		model.addAttribute("selectByRegionConditions",
+				regionService.selectByRegionConditions(r_ci_id, regionBean.getR_name(), regionBean.getR_zipcode()));
 
 		return "admin/region/search";
 	}

@@ -43,7 +43,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${selectByConditions}" varStatus="status">
+			<c:forEach var="bean" items="${selectByClinicConditions}" varStatus="status">
 				<c:url value="/admin/clinic/update" var="path">
 					<c:param name="c_id" value="${bean.c_id}" />
 					<c:param name="c_name" value="${bean.c_name}" />

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/4/15
+ * Date: 2017/4/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -158,6 +158,17 @@ public class ViewsController {
 	public String agent_employee_signUp() {
 
 		return "agent/employee/sign-up";
+	}
+
+	/**
+	 * agent/employee/update-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/employee/update-password.jsp
+	 */
+	@RequestMapping(value = "/agent/employee/update-password", method = RequestMethod.GET)
+	public String agent_employee_updatePassword() {
+
+		return "agent/employee/update-password";
 	}
 
 	/**

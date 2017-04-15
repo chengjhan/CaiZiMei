@@ -20,8 +20,8 @@
 			<input type="text" id="id-e-firstname" name="e_firstname" value="${agent.e_firstname}">
 		</div>
 		<div>
-			<label for="id-e-lastname">姓氏</label>
-			<input type="text" id="id-e-lastname" name="e_lastname" value="${agent.e_lastname}">
+			<label for="id-e-eng-name">英文名</label>
+			<input type="text" id="id-e-eng-name" name="e_eng_name" value="${agent.e_eng_name}">
 		</div>
 		<div>
 			<label for="id-e-email">信箱</label>

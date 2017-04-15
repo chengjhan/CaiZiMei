@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: EmployeeController.java
  * Author: 詹晟
- * Date: 2017/4/15
+ * Date: 2017/4/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -244,6 +244,32 @@ public class EmployeeController {
 		employeeService.update(employeeBean);
 
 		return "redirect:/agent/index";
+	}
+	
+	/**
+	 * 修改員工密碼
+	 * 
+	 * @param e_password-->舊密碼(原碼)
+	 * @param e_password_new-->新密碼(原碼)
+	 * @param user-->Session
+	 * @return /WEB-INF/views/agent/index.jsp
+	 * @return /WEB-INF/views/agent/employee/update-password.jsp
+	 */
+	@RequestMapping(path = "/agent/employee/update-password.do", method = RequestMethod.POST)
+	public String updatePasswordProcess(@RequestParam(name = "e_password") String e_password,
+			@RequestParam(name = "e_password_new") String e_password_new, @ModelAttribute("agent") EmployeeBean agent) {
+
+		String oldHashedPassword = employeeService.selectByE_id(agent.getE_id()).getE_password();
+		String inputOldHashedPassword = employeeService.getHashedPassword(e_password, agent.getE_salt());
+
+		if (oldHashedPassword.equals(inputOldHashedPassword)) {
+
+			employeeService.updateE_password(agent.getE_id(), e_password_new, agent.getE_salt());
+
+			return "redirect:/agent/index";
+		} else {
+			return "agent/employee/update-password";
+		}
 	}
 
 }

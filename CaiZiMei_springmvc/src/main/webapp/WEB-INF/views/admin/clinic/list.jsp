@@ -80,9 +80,9 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${clinicList}" varStatus="status">
-				<fmt:formatDate value="${bean.c_insert_time}" var="c_insert_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
-				<fmt:formatDate value="${bean.c_update_time}" var="c_update_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
-				<fmt:formatDate value="${bean.c_status_time}" var="c_status_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
+				<fmt:formatDate value="${bean.c_insert_time}" var="c_insert_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.c_update_time}" var="c_update_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.c_status_time}" var="c_status_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
 				<c:url value="/admin/clinic/update" var="path">
 					<c:param name="c_id" value="${bean.c_id}" />
 					<c:param name="c_name" value="${bean.c_name}" />

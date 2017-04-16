@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/4/15
+ * Date: 2017/4/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -273,10 +273,10 @@ public class MemberController {
 	 * @return /WEB-INF/views/user/index.jsp
 	 */
 	@RequestMapping(path = "/user/member/update.do", method = RequestMethod.POST)
-	public String updateProcess(@ModelAttribute("user") MemberBean user, MemberBean memberBean) {
+	public String updateProcess(@ModelAttribute("user") MemberBean user, MemberBean newMemberBean) {
 
-		memberBean.setM_id(user.getM_id());
-		memberService.update(memberBean);
+		newMemberBean.setM_id(user.getM_id());
+		memberService.update(newMemberBean);
 
 		return "redirect:/user/index";
 	}

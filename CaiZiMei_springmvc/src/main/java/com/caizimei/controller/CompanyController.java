@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CompanyController.java
  * Author: 詹晟
- * Date: 2017/4/13
+ * Date: 2017/4/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,7 +41,7 @@ public class CompanyController {
 	private CompanyService companyService;
 
 	/**
-	 * 搜尋全部代理商
+	 * 搜尋全部公司
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/company/list.jsp
@@ -55,7 +55,7 @@ public class CompanyController {
 	}
 
 	/**
-	 * 新增代理商
+	 * 新增公司
 	 * 
 	 * @param companyBean-->CompanyBean
 	 * @param model-->Model
@@ -68,6 +68,22 @@ public class CompanyController {
 		companyBean.setCom_status(1);
 		companyBean.setCom_status_time(new java.util.Date());
 		companyService.insert(companyBean);
+		model.addAttribute("companyList", companyService.select());
+
+		return "redirect:/admin/company/list";
+	}
+
+	/**
+	 * 修改公司資訊
+	 * 
+	 * @param companyBean-->CompanyBean
+	 * @param model-->Model
+	 * @return /WEB-INF/views/admin/company/list.jsp
+	 */
+	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
+	public String updateProcess(CompanyBean newCompanyBean, Model model) {
+
+		companyService.update(newCompanyBean);
 		model.addAttribute("companyList", companyService.select());
 
 		return "redirect:/admin/company/list";

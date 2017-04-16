@@ -39,8 +39,8 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${companyList}" varStatus="status">
-				<fmt:formatDate value="${bean.com_insert_time}" var="com_insert_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
-				<fmt:formatDate value="${bean.com_status_time}" var="com_status_time_format" pattern="yyyy-MM-dd hh-mm-ss" />
+				<fmt:formatDate value="${bean.com_insert_time}" var="com_insert_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.com_status_time}" var="com_status_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
 				<c:url value="/admin/company/update" var="path">
 					<c:param name="com_id" value="${bean.com_id}" />
 					<c:param name="com_name" value="${bean.com_name}" />

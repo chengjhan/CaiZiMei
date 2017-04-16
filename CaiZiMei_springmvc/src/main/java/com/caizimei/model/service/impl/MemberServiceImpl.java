@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/15
+ * Date: 2017/4/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -159,9 +159,9 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	@Transactional
-	public MemberBean update(MemberBean memberBean) {
+	public MemberBean update(MemberBean newMemberBean) {
 
-		return memberDAO.update(memberBean);
+		return memberDAO.update(newMemberBean);
 	}
 
 	/**

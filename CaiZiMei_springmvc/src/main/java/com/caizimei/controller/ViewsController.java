@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/4/16
+ * Date: 2017/4/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -349,6 +349,17 @@ public class ViewsController {
 	public String admin_company_list() {
 
 		return "admin/company/list";
+	}
+
+	/**
+	 * admin/company/update 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/company/update.jsp
+	 */
+	@RequestMapping(value = "/admin/company/update", method = RequestMethod.GET)
+	public String admin_company_update() {
+
+		return "admin/company/update";
 	}
 
 	/**

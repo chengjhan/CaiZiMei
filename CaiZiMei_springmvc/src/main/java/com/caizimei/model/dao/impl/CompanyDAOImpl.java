@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CompanyDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/13
+ * Date: 2017/4/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -77,6 +77,23 @@ public class CompanyDAOImpl implements CompanyDAO {
 	public CompanyBean insert(CompanyBean companyBean) {
 
 		hibernateTemplate.save(companyBean);
+
+		return companyBean;
+	}
+
+	/**
+	 * 修改公司資料
+	 * 
+	 * @param newCompanyBean-->CompanyBean
+	 * @return companyBean-->CompanyBean
+	 */
+	@Override
+	public CompanyBean update(CompanyBean newCompanyBean) {
+
+		CompanyBean companyBean = hibernateTemplate.get(CompanyBean.class, newCompanyBean.getCom_id());
+
+		companyBean.setCom_name(newCompanyBean.getCom_name());
+		companyBean.setCom_localphone(newCompanyBean.getCom_localphone());
 
 		return companyBean;
 	}

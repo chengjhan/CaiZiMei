@@ -84,6 +84,7 @@ create table company(
     com_name				nvarchar(20) not null,
     com_localphone			varchar(20),
     com_insert_time			datetime not null,
+    com_update_time			datetime,
     com_status				tinyint,
     com_status_time			datetime,
     primary key (com_id)
@@ -573,4 +574,4 @@ insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '東引鄉',
 insert into clinic (c_name, c_eng_name, c_localphone, c_r_id, c_address, c_latitude, c_longitude, c_url, c_insert_time, c_update_time, c_status, c_status_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 12, '信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now(), '1', now());
 
 -- company
-insert into company (com_name, com_localphone, com_insert_time, com_status, com_status_time) values ('采姿美國際股份有限公司', '02-25167202', now(), 1, now());
+insert into company (com_name, com_localphone, com_insert_time, com_update_time, com_status, com_status_time) values ('采姿美國際股份有限公司', '02-25167202', now(), now(), 1, now());

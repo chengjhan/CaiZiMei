@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CompanyDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/17
+ * Date: 2017/4/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -94,6 +94,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 		companyBean.setCom_name(newCompanyBean.getCom_name());
 		companyBean.setCom_localphone(newCompanyBean.getCom_localphone());
+		companyBean.setCom_update_time(new java.util.Date());
 
 		return companyBean;
 	}

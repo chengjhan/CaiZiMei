@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CompanyController.java
  * Author: 詹晟
- * Date: 2017/4/17
+ * Date: 2017/4/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -65,6 +65,7 @@ public class CompanyController {
 	public String insertProcess(CompanyBean companyBean, Model model) {
 
 		companyBean.setCom_insert_time(new java.util.Date());
+		companyBean.setCom_update_time(new java.util.Date());
 		companyBean.setCom_status(1);
 		companyBean.setCom_status_time(new java.util.Date());
 		companyService.insert(companyBean);

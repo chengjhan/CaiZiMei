@@ -31,6 +31,7 @@
 				<td>代理商</td>
 				<td>電話</td>
 				<td>新增時間</td>
+				<td>更新時間</td>
 				<td>狀態</td>
 				<td>狀態更新時間</td>
 				<td>修改</td>
@@ -40,6 +41,7 @@
 		<tbody>
 			<c:forEach var="bean" items="${companyList}" varStatus="status">
 				<fmt:formatDate value="${bean.com_insert_time}" var="com_insert_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.com_update_time}" var="com_update_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
 				<fmt:formatDate value="${bean.com_status_time}" var="com_status_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
 				<c:url value="/admin/company/update" var="path">
 					<c:param name="com_id" value="${bean.com_id}" />
@@ -52,6 +54,7 @@
 					<td>${bean.com_name}</td>
 					<td>${bean.com_localphone}</td>
 					<td>${com_insert_time_format}</td>
+					<td>${com_update_time_format}</td>
 					<td>${bean.com_status}</td>
 					<td>${com_status_time_format}</td>
 					<td><a href="${path}">修改</a></td>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/4/17
+ * Date: 2017/4/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -88,6 +88,17 @@ public class ViewsController {
 	public String user_purchase_order() {
 
 		return "user/purchase/order";
+	}
+
+	/**
+	 * user/purchase/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/user/purchase/search.jsp
+	 */
+	@RequestMapping(value = "/user/purchase/search", method = RequestMethod.GET)
+	public String user_purchase_search() {
+
+		return "user/purchase/search";
 	}
 
 	/**

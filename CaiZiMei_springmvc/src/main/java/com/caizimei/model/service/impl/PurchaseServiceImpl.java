@@ -2,11 +2,13 @@
  * CaiZiMei
  * File: PurchaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/10
+ * Date: 2017/4/23
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.caizimei.model.service.impl;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,18 @@ public class PurchaseServiceImpl implements PurchaseService {
 	private PurchaseDAO purchaseDAO;
 
 	/**
+	 * 會員流水號搜尋
+	 * 
+	 * @param p_m_id-->會員流水號
+	 * @return List<PurchaseBean>
+	 */
+	@Override
+	public List<PurchaseBean> selectByP_m_id(Integer p_m_id) {
+
+		return purchaseDAO.selectByP_m_id(p_m_id);
+	}
+
+	/**
 	 * 訂購
 	 * 
 	 * @param purchaseBean-->PurchaseBean
@@ -38,7 +52,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	 */
 	@Override
 	@Transactional
-	public PurchaseBean order(PurchaseBean purchaseBean) {
+	public PurchaseBean insert(PurchaseBean purchaseBean) {
 
 		PurchaseBean result = null;
 

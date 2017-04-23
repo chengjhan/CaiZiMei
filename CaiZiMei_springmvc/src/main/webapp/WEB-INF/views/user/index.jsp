@@ -35,6 +35,9 @@
 		<a href="${root}user/purchase/order">訂購</a>
 	</p>
 	<p>
+		<a href="${root}user/purchase/select.do">訂購查詢</a>
+	</p>
+	<p>
 		<a href="${root}agent/index">代理商系統</a>
 	</p>
 	<p>

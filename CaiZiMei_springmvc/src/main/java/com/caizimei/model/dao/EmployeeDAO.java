@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: EmployeeDAO.java
  * Author: 詹晟
- * Date: 2017/4/12
+ * Date: 2017/4/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,9 +25,9 @@ public interface EmployeeDAO {
 
 	EmployeeBean selectByE_username(String e_username);
 
-	EmployeeBean insert(EmployeeBean administratorBean);
+	EmployeeBean insert(EmployeeBean employeeBean);
 
-	EmployeeBean update(EmployeeBean administratorBean);
+	EmployeeBean update(EmployeeBean employeeBean);
 
 	EmployeeBean updateE_password(Integer e_id, String e_password_new_hashed);
 

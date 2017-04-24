@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicBean.java
  * Author: 詹晟
- * Date: 2017/4/12
+ * Date: 2017/4/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -12,12 +12,14 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,6 +55,8 @@ public class ClinicBean {
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "m_ClinicBean")
 	private Set<MemberBean> c_MemberBean;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "s_ClinicBean")
+	private Set<SpecialistBean> c_SpecialistBean;
 
 	public Integer getC_id() {
 		return c_id;
@@ -164,6 +168,14 @@ public class ClinicBean {
 
 	public void setC_status_time(java.util.Date c_status_time) {
 		this.c_status_time = c_status_time;
+	}
+
+	public Set<SpecialistBean> getC_SpecialistBean() {
+		return c_SpecialistBean;
+	}
+
+	public void setC_SpecialistBean(Set<SpecialistBean> c_SpecialistBean) {
+		this.c_SpecialistBean = c_SpecialistBean;
 	}
 
 }

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: EmployeeService.java
  * Author: 詹晟
- * Date: 2017/4/6
+ * Date: 2017/4/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -17,7 +17,7 @@ import com.caizimei.model.entity.EmployeeBean;
  */
 public interface EmployeeService {
 	
-	EmployeeBean signUp(EmployeeBean administratorBean);
+	EmployeeBean signUp(EmployeeBean employeeBean);
 
 	Boolean signIn(String e_username, String e_password);
 
@@ -25,7 +25,7 @@ public interface EmployeeService {
 
 	EmployeeBean selectByE_username(String e_username);
 
-	EmployeeBean update(EmployeeBean administratorBean);
+	EmployeeBean update(EmployeeBean employeeBean);
 
 	EmployeeBean updateE_password(Integer e_id, String e_password_new, String e_salt);
 

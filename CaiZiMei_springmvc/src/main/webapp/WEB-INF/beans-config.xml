@@ -34,6 +34,7 @@
 				<value>com.caizimei.model.entity.MemberBean</value>
 				<value>com.caizimei.model.entity.PurchaseBean</value>
 				<value>com.caizimei.model.entity.RegionBean</value>
+				<value>com.caizimei.model.entity.SpecialistBean</value>
 			</list>
 		</property>
 	</bean>

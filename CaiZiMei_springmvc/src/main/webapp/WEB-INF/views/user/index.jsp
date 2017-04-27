@@ -38,6 +38,9 @@
 		<a href="${root}user/purchase/select.do">訂購查詢</a>
 	</p>
 	<p>
+		<a href="${root}service/index">診所系統</a>
+	</p>
+	<p>
 		<a href="${root}agent/index">代理商系統</a>
 	</p>
 	<p>

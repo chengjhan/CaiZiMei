@@ -46,5 +46,15 @@
 			<input type="submit" id="id-submit" value="註冊">
 		</div>
 	</form>
+	<script>
+		$(document).ready(function(){
+			$.getJSON("${root}admin/clinic/select.ajax", function(data){
+				$.each(data, function(index, clinic){
+					var clinic_option = $("<option value=" + clinic.c_id + "></option>").append(clinic.c_name);
+					$("#id-s-c-id").append(clinic_option);
+				});
+			});
+		});
+	</script>
 </body>
 </html>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/4/15
+ * Date: 2017/4/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -71,8 +71,8 @@ public class ClinicCintroller {
 	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
 	public String selectByClinicConditionsProcess(ClinicBean clinicBean, Model model) {
 
-		model.addAttribute("selectByClinicConditions",
-				clinicService.selectByClinicConditions(clinicBean.getC_name().trim(), clinicBean.getC_localphone().trim()));
+		model.addAttribute("selectByClinicConditions", clinicService
+				.selectByClinicConditions(clinicBean.getC_name().trim(), clinicBean.getC_localphone().trim()));
 
 		return "admin/clinic/search";
 	}
@@ -166,6 +166,30 @@ public class ClinicCintroller {
 		model.addAttribute("clinicList", clinicService.select());
 
 		return "redirect:/admin/clinic/list";
+	}
+
+	/**
+	 * 搜尋全部診所 (ajax)
+	 * 
+	 * @return 診所json
+	 */
+	@RequestMapping(path = "/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String selectByStatusAjaxProcess() {
+
+		List<ClinicBean> result = clinicService.select();
+
+		List<ClinicBean> jsonList = new ArrayList<ClinicBean>();
+		for (ClinicBean bean : result) {
+			ClinicBean jsonBean = new ClinicBean();
+			jsonBean.setC_id(bean.getC_id());
+			jsonBean.setC_name(bean.getC_name());
+			jsonList.add(jsonBean);
+		}
+		String json = new Gson().toJson(jsonList);
+		System.out.println("JSON = " + json);
+
+		return json;
 	}
 
 	/**

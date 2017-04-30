@@ -19,9 +19,6 @@
 		<a href="${root}agent/secure/sign-out.do">登出</a>
 	</p>
 	<p>
-		<a href="${root}agent/employee/sign-up">註冊</a>
-	</p>
-	<p>
 		<a href="${root}agent/employee/profile">個人資訊</a>
 	</p>
 	<p>

@@ -49,6 +49,9 @@
 		<a href="${root}admin/company/list.do">代理商</a>
 	</p>
 	<p>
+		<a href="${root}admin/employee/sign-up">代理商員工註冊</a>
+	</p>
+	<p>
 		<a href="${root}admin/member/search">會員搜尋</a>
 	</p>
 </body>

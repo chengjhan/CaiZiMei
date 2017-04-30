@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/service/specialist/sign-up.do' />" method="post">
+	<form action="<c:url value='/admin/specialist/sign-up.do' />" method="post">
 		<div>
 			<label for="id-s-username">帳號</label>
 			<input type="text" id="id-s-username" name="s_username">

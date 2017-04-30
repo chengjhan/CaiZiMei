@@ -19,9 +19,6 @@
 		<a href="${root}service/secure/sign-out.do">登出</a>
 	</p>
 	<p>
-		<a href="${root}service/specialist/sign-up">註冊</a>
-	</p>
-	<p>
 		<a href="${root}service/specialist/profile">個人資訊</a>
 	</p>
 	<p>

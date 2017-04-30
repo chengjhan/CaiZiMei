@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: EmployeeController.java
  * Author: 詹晟
- * Date: 2017/4/16
+ * Date: 2017/5/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -198,15 +198,12 @@ public class EmployeeController {
 	 * @param employeeBean-->EmployeeBean
 	 * @param e_username-->員工帳號
 	 * @param e_password-->員工密碼(原碼)
-	 * @param request-->HttpServletRequest
-	 * @param model-->Model
-	 * @return /WEB-INF/views/agent/index.jsp
-	 * @return /WEB-INF/views/agent/employee/sign-up.jsp
+	 * @return /WEB-INF/views/admin/index.jsp
+	 * @return /WEB-INF/views/admin/employee/sign-up.jsp
 	 */
 	@RequestMapping(path = "/agent/employee/sign-up.do", method = RequestMethod.POST)
 	public String signUpProcess(EmployeeBean employeeBean, @RequestParam(name = "e_username") String e_username,
-			@RequestParam(name = "e_password") String e_password, @RequestParam(name = "e_com_id") Integer e_com_id,
-			HttpServletRequest request, Model model) {
+			@RequestParam(name = "e_password") String e_password, @RequestParam(name = "e_com_id") Integer e_com_id) {
 
 		if (employeeService.selectByE_username(e_username) == null) {
 
@@ -214,19 +211,15 @@ public class EmployeeController {
 
 			employeeBean.setE_salt(e_salt);
 			employeeBean.setE_password(employeeService.getHashedPassword(e_password, e_salt));
-			employeeBean.setE_signin_number(1);
-			employeeBean.setE_signin_ip(request.getRemoteAddr());
-			employeeBean.setE_signin_time(new java.util.Date());
+			employeeBean.setE_signin_number(0);
 			employeeBean.setE_update_pass_time(new java.util.Date());
 			employeeBean.setE_update_info_time(new java.util.Date());
 			employeeBean.setE_CompanyBean(companyService.selectByCom_id(e_com_id));
 			employeeService.signUp(employeeBean);
 
-			model.addAttribute("agent", employeeBean);
-
-			return "redirect:/agent/index";
+			return "redirect:/admin/index";
 		} else {
-			return "redirect:/agent/employee/sign-up";
+			return "redirect:/admin/employee/sign-up";
 		}
 	}
 
@@ -245,7 +238,7 @@ public class EmployeeController {
 
 		return "redirect:/agent/index";
 	}
-	
+
 	/**
 	 * 修改員工密碼
 	 * 

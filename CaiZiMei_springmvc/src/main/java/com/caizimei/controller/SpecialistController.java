@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SpecialistController.java
  * Author: 詹晟
- * Date: 2017/4/30
+ * Date: 2017/5/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -198,15 +198,12 @@ public class SpecialistController {
 	 * @param specialistBean-->SpecialistBean
 	 * @param s_username-->專員帳號
 	 * @param s_password-->專員密碼(原碼)
-	 * @param request-->HttpServletRequest
-	 * @param model-->Model
-	 * @return /WEB-INF/views/service/index.jsp
-	 * @return /WEB-INF/views/service/specialist/sign-up.jsp
+	 * @return /WEB-INF/views/admin/index.jsp
+	 * @return /WEB-INF/views/admin/specialist/sign-up.jsp
 	 */
-	@RequestMapping(path = "/service/specialist/sign-up.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/admin/specialist/sign-up.do", method = RequestMethod.POST)
 	public String signUpProcess(SpecialistBean specialistBean, @RequestParam(name = "s_username") String s_username,
-			@RequestParam(name = "s_password") String s_password, @RequestParam(name = "s_c_id") Integer s_c_id,
-			HttpServletRequest request, Model model) {
+			@RequestParam(name = "s_password") String s_password, @RequestParam(name = "s_c_id") Integer s_c_id) {
 
 		if (specialistService.selectByS_username(s_username) == null) {
 
@@ -214,19 +211,15 @@ public class SpecialistController {
 
 			specialistBean.setS_salt(s_salt);
 			specialistBean.setS_password(specialistService.getHashedPassword(s_password, s_salt));
-			specialistBean.setS_signin_number(1);
-			specialistBean.setS_signin_ip(request.getRemoteAddr());
-			specialistBean.setS_signin_time(new java.util.Date());
+			specialistBean.setS_signin_number(0);
 			specialistBean.setS_update_pass_time(new java.util.Date());
 			specialistBean.setS_update_info_time(new java.util.Date());
 			specialistBean.setS_ClinicBean(clinicService.selectByC_id(s_c_id));
 			specialistService.signUp(specialistBean);
 
-			model.addAttribute("service", specialistBean);
-
-			return "redirect:/service/index";
+			return "redirect:/admin/index";
 		} else {
-			return "redirect:/service/specialist/sign-up";
+			return "redirect:/admin/specialist/sign-up";
 		}
 	}
 

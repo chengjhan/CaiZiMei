@@ -43,6 +43,9 @@
 		<a href="${root}admin/clinic/search">診所搜尋</a>
 	</p>
 	<p>
+		<a href="${root}admin/specialist/sign-up">診所專員註冊</a>
+	</p>
+	<p>
 		<a href="${root}admin/company/list.do">代理商</a>
 	</p>
 	<p>

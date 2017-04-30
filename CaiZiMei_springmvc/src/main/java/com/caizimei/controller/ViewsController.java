@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/4/24
+ * Date: 2017/5/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -179,6 +179,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * admin/employee/sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/employee/sign-up.jsp
+	 */
+	@RequestMapping(value = "/admin/employee/sign-up", method = RequestMethod.GET)
+	public String admin_employee_signUp() {
+
+		return "admin/employee/sign-up";
+	}
+
+	/**
 	 * admin/member/search 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/member/search.jsp
@@ -256,6 +267,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * admin/specialist/sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/specialist/sign-up.jsp
+	 */
+	@RequestMapping(value = "/admin/specialist/sign-up", method = RequestMethod.GET)
+	public String admin_specialist_signUp() {
+
+		return "admin/specialist/sign-up";
+	}
+
+	/**
 	 * agent
 	 */
 
@@ -279,17 +301,6 @@ public class ViewsController {
 	public String agent_employee_profile() {
 
 		return "agent/employee/profile";
-	}
-
-	/**
-	 * agent/employee/sign-up 視圖解析
-	 * 
-	 * @return /WEB-INF/views/agent/employee/sign-up.jsp
-	 */
-	@RequestMapping(value = "/agent/employee/sign-up", method = RequestMethod.GET)
-	public String agent_employee_signUp() {
-
-		return "agent/employee/sign-up";
 	}
 
 	/**
@@ -415,17 +426,6 @@ public class ViewsController {
 	public String service_specialist_profile() {
 
 		return "service/specialist/profile";
-	}
-
-	/**
-	 * service/specialist/sign-up 視圖解析
-	 * 
-	 * @return /WEB-INF/views/service/specialist/sign-up.jsp
-	 */
-	@RequestMapping(value = "/service/specialist/sign-up", method = RequestMethod.GET)
-	public String service_specialist_signUp() {
-
-		return "service/specialist/sign-up";
 	}
 
 	/**

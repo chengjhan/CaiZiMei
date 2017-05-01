@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicBean.java
  * Author: 詹晟
- * Date: 2017/4/24
+ * Date: 2017/5/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -55,8 +55,8 @@ public class ClinicBean {
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "m_ClinicBean")
 	private Set<MemberBean> c_MemberBean;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "s_ClinicBean")
-	private Set<SpecialistBean> c_SpecialistBean;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cu_ClinicBean")
+	private Set<ClinicUserBean> c_ClinicUserBean;
 
 	public Integer getC_id() {
 		return c_id;
@@ -170,12 +170,12 @@ public class ClinicBean {
 		this.c_status_time = c_status_time;
 	}
 
-	public Set<SpecialistBean> getC_SpecialistBean() {
-		return c_SpecialistBean;
+	public Set<ClinicUserBean> getC_ClinicUserBean() {
+		return c_ClinicUserBean;
 	}
 
-	public void setC_SpecialistBean(Set<SpecialistBean> c_SpecialistBean) {
-		this.c_SpecialistBean = c_SpecialistBean;
+	public void setC_ClinicUserBean(Set<ClinicUserBean> c_ClinicUserBean) {
+		this.c_ClinicUserBean = c_ClinicUserBean;
 	}
 
 }

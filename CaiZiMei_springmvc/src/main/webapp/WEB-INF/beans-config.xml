@@ -24,17 +24,18 @@
 		</property>
 		<property name="annotatedClasses">
 			<list>
-				<value>com.caizimei.model.entity.AdministratorBean</value>
-				<value>com.caizimei.model.entity.AdministratorLogBean</value>
+				<value>com.caizimei.model.entity.AdminBean</value>
+				<value>com.caizimei.model.entity.AdminUserBean</value>
+				<value>com.caizimei.model.entity.AdminUserLogBean</value>
+				<value>com.caizimei.model.entity.AgentBean</value>
+				<value>com.caizimei.model.entity.AgentUserBean</value>
 				<value>com.caizimei.model.entity.CityBean</value>
 				<value>com.caizimei.model.entity.ClinicBean</value>
-				<value>com.caizimei.model.entity.CompanyBean</value>
+				<value>com.caizimei.model.entity.ClinicUserBean</value>
 				<value>com.caizimei.model.entity.CountryBean</value>
-				<value>com.caizimei.model.entity.EmployeeBean</value>
 				<value>com.caizimei.model.entity.MemberBean</value>
 				<value>com.caizimei.model.entity.PurchaseBean</value>
 				<value>com.caizimei.model.entity.RegionBean</value>
-				<value>com.caizimei.model.entity.SpecialistBean</value>
 			</list>
 		</property>
 	</bean>

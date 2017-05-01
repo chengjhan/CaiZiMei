@@ -51,85 +51,98 @@ create table clinic (
     foreign key (c_r_id) references region (r_id)
 );
 
-create table specialist (
-    s_id					int auto_increment not null,
-    s_username				varchar(50) not null,
-    s_password				varchar(50) not null,
-    s_salt					varchar(50) not null,
-    s_lastname				nvarchar(20),
-    s_firstname				nvarchar(20),
-    s_eng_name				varchar(50),
-    s_email					varchar(50) not null,
-    s_mobilephone			varchar(20),
-	s_signup_time			timestamp default current_timestamp not null,
-    s_signin_number			int,
-    s_signin_ip				varchar(20),
-    s_signin_time			datetime,
-    s_update_pass_time		datetime,
-    s_update_info_time		datetime,
-    s_c_id					int not null,
-    primary key (s_id),
-	foreign key (s_c_id) references clinic (c_id)    
+create table clinic_user (
+    cu_id					int auto_increment not null,
+	cu_c_id					int not null,
+    cu_username				varchar(50) not null,
+    cu_password				varchar(50) not null,
+    cu_salt					varchar(50) not null,
+    cu_lastname				nvarchar(20),
+    cu_firstname			nvarchar(20),
+    cu_eng_name				varchar(50),
+    cu_email				varchar(50) not null,
+    cu_mobilephone			varchar(20),
+	cu_signup_time			timestamp default current_timestamp not null,
+    cu_signin_number		int,
+    cu_signin_ip			varchar(20),
+    cu_signin_time			datetime,
+    cu_update_pass_time		datetime,
+    cu_update_info_time		datetime,
+    primary key (cu_id),
+	foreign key (cu_c_id) references clinic (c_id)    
 );
 
-create table administrator (
+create table admin (
+	ad_id					int auto_increment not null,
+    ad_name					nvarchar(20) not null,
+    ad_localphone			varchar(20),
+    ad_insert_time			datetime not null,
+    ad_update_time			datetime,
+    ad_status				tinyint,
+    ad_status_time			datetime,
+    primary key (ad_id)
+);
+
+create table admin_user (
+	adu_id					int auto_increment not null,
+    adu_ad_id				int not null,
+    adu_username			varchar(50) not null,
+    adu_password			varchar(50) not null,
+    adu_salt				varchar(50) not null,
+    adu_lastname			nvarchar(20),
+    adu_firstname			nvarchar(20),
+    adu_eng_name			varchar(50),
+    adu_email				varchar(50) not null,
+    adu_mobilephone			varchar(20),
+    adu_signup_time			timestamp default current_timestamp not null,
+    adu_signin_number		int,
+    adu_signin_ip			varchar(20),
+    adu_signin_time			datetime,
+    adu_update_pass_time	datetime,
+    adu_update_info_time	datetime,
+    primary key (adu_id),
+	foreign key (adu_ad_id) references admin (ad_id)
+);
+
+create table admin_user_log (
+	adul_id					int auto_increment not null,
+    adul_insert_time		timestamp default current_timestamp not null,
+    adul_adu_id				int not null,
+    adul_operation			nvarchar(50),
+    primary key (adul_id),
+    foreign key (adul_adu_id) references admin_user (adu_id)
+);
+
+create table agent (
 	a_id					int auto_increment not null,
-    a_username				varchar(50) not null,
-    a_password				varchar(50) not null,
-    a_salt					varchar(50) not null,
-    a_lastname				nvarchar(20),
-    a_firstname				nvarchar(20),
-    a_eng_name				varchar(50),
-    a_email					varchar(50) not null,
-    a_mobilephone			varchar(20),
-    a_signup_time			timestamp default current_timestamp not null,
-    a_signin_number			int,
-    a_signin_ip				varchar(20),
-    a_signin_time			datetime,
-    a_update_pass_time		datetime,
-    a_update_info_time		datetime,
+    a_name					nvarchar(20) not null,
+    a_localphone			varchar(20),
+    a_insert_time			datetime not null,
+    a_update_time			datetime,
+    a_status				tinyint,
+    a_status_time			datetime,
     primary key (a_id)
 );
 
-create table administrator_log (
-	al_id					int auto_increment not null,
-    al_insert_time			timestamp default current_timestamp not null,
-    al_a_id					int not null,
-    al_operation			nvarchar(50),
-    primary key (al_id),
-    foreign key (al_a_id) references administrator (a_id)
-);
-
-create table company (
-	com_id					int auto_increment not null,
-    com_name				nvarchar(20) not null,
-    com_localphone			varchar(20),
-    com_insert_time			datetime not null,
-    com_update_time			datetime,
-    com_status				tinyint,
-    com_status_time			datetime,
-    primary key (com_id)
-);
-
-create table employee (
-    e_id					int auto_increment not null,
-    e_username				varchar(50) not null,
-    e_password				varchar(50) not null,
-    e_salt					varchar(50) not null,
-    e_lastname				nvarchar(20),
-    e_firstname				nvarchar(20),
-    e_eng_name				varchar(50),
-    e_email					varchar(50) not null,
-    e_mobilephone			varchar(20),
-	e_signup_time			timestamp default current_timestamp not null,
-    e_signin_number			int,
-    e_signin_ip				varchar(20),
-    e_signin_time			datetime,
-    e_update_pass_time		datetime,
-    e_update_info_time		datetime,
-    e_com_id				int not null,
-    primary key (e_id),
-	foreign key (e_com_id) references company (com_id)    
+create table agent_user (
+    au_id					int auto_increment not null,
+    au_a_id					int not null,
+    au_username				varchar(50) not null,
+    au_password				varchar(50) not null,
+    au_salt					varchar(50) not null,
+    au_lastname				nvarchar(20),
+    au_firstname			nvarchar(20),
+    au_eng_name				varchar(50),
+    au_email				varchar(50) not null,
+    au_mobilephone			varchar(20),
+	au_signup_time			timestamp default current_timestamp not null,
+    au_signin_number		int,
+    au_signin_ip			varchar(20),
+    au_signin_time			datetime,
+    au_update_pass_time		datetime,
+    au_update_info_time		datetime,
+    primary key (au_id),
+	foreign key (au_a_id) references agent (a_id)    
 );
 
 create table member (
@@ -156,9 +169,11 @@ create table member (
     m_signin_time			datetime,
     m_update_pass_time		datetime,
     m_update_info_time		datetime,
-    m_com_id				int not null,
+    m_ad_id					int,
+    m_a_id					int,
     primary key (m_id),
-	foreign key (m_com_id) references company (com_id)
+	foreign key (m_ad_id) references admin (ad_id),
+	foreign key (m_a_id) references agent (a_id)
 );
 
 create table purchase (
@@ -594,5 +609,5 @@ insert into region (r_ci_id, r_name, r_zipcode, r_rank) values (22, '東引鄉',
 -- clinic
 insert into clinic (c_name, c_eng_name, c_localphone, c_r_id, c_address, c_latitude, c_longitude, c_url, c_insert_time, c_update_time, c_status, c_status_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 12, '信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now(), '1', now());
 
--- company
-insert into company (com_name, com_localphone, com_insert_time, com_update_time, com_status, com_status_time) values ('采姿美國際股份有限公司', '02-25167202', now(), now(), 1, now());
+-- admin
+insert into admin (ad_name, ad_localphone, ad_insert_time, ad_update_time, ad_status, ad_status_time) values ('采姿美國際股份有限公司', '02-25167202', now(), now(), 1, now());

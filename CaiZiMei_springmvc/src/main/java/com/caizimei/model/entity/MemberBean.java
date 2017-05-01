@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberBean.java
  * Author: 詹晟
- * Date: 2017/4/15
+ * Date: 2017/5/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -59,8 +59,11 @@ public class MemberBean {
 	private java.util.Date m_update_pass_time;
 	private java.util.Date m_update_info_time;
 	@ManyToOne
-	@JoinColumn(name = "m_com_id")
-	private CompanyBean m_CompanyBean;
+	@JoinColumn(name = "m_ad_id")
+	private AdminBean m_AdminBean;
+	@ManyToOne
+	@JoinColumn(name = "m_a_id")
+	private AgentBean m_AgentBean;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "purchase", joinColumns = @JoinColumn(name = "p_m_id"), inverseJoinColumns = @JoinColumn(name = "p_c_id"))
@@ -250,12 +253,20 @@ public class MemberBean {
 		this.m_update_info_time = m_update_info_time;
 	}
 
-	public CompanyBean getM_CompanyBean() {
-		return m_CompanyBean;
+	public AdminBean getM_AdminBean() {
+		return m_AdminBean;
 	}
 
-	public void setM_CompanyBean(CompanyBean m_CompanyBean) {
-		this.m_CompanyBean = m_CompanyBean;
+	public void setM_AdminBean(AdminBean m_AdminBean) {
+		this.m_AdminBean = m_AdminBean;
+	}
+
+	public AgentBean getM_AgentBean() {
+		return m_AgentBean;
+	}
+
+	public void setM_AgentBean(AgentBean m_AgentBean) {
+		this.m_AgentBean = m_AgentBean;
 	}
 
 	public Set<ClinicBean> getM_ClinicBean() {

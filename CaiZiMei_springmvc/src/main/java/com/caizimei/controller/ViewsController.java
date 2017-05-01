@@ -47,6 +47,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * admin/administrator/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/administrator/search.jsp
+	 */
+	@RequestMapping(value = "/admin/administrator/search", method = RequestMethod.GET)
+	public String admin_administrator_search() {
+
+		return "admin/administrator/search";
+	}
+
+	/**
 	 * admin/administrator/sign-up 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/administrator/sign-up.jsp
@@ -179,6 +190,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * admin/employee/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/employee/search.jsp
+	 */
+	@RequestMapping(value = "/admin/employee/search", method = RequestMethod.GET)
+	public String admin_employee_search() {
+
+		return "admin/employee/search";
+	}
+
+	/**
 	 * admin/employee/sign-up 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/employee/sign-up.jsp
@@ -264,6 +286,17 @@ public class ViewsController {
 	public String admin_secure_signIn() {
 
 		return "admin/secure/sign-in";
+	}
+
+	/**
+	 * admin/specialist/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/specialist/search.jsp
+	 */
+	@RequestMapping(value = "/admin/specialist/search", method = RequestMethod.GET)
+	public String admin_specialist_search() {
+
+		return "admin/specialist/search";
 	}
 
 	/**
@@ -382,6 +415,28 @@ public class ViewsController {
 	public String service_index() {
 
 		return "service/index";
+	}
+
+	/**
+	 * service/member/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/service/member/search.jsp
+	 */
+	@RequestMapping(value = "/service/member/search", method = RequestMethod.GET)
+	public String service_member_search() {
+
+		return "service/member/search";
+	}
+
+	/**
+	 * service/purchase/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/service/purchase/search.jsp
+	 */
+	@RequestMapping(value = "/service/purchase/search", method = RequestMethod.GET)
+	public String service_purchase_search() {
+
+		return "service/purchase/search";
 	}
 
 	/**

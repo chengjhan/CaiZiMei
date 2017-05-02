@@ -28,8 +28,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.caizimei.model.entity.AdministratorBean;
 import com.caizimei.model.entity.AdministratorLogBean;
-import com.caizimei.model.service.AdministratorLogService;
-import com.caizimei.model.service.AdministratorService;
+import com.caizimei.model.service.AdminUserLogService;
+import com.caizimei.model.service.AdminUserService;
 
 import misc.PrimitiveNumberEditor;
 
@@ -46,13 +46,13 @@ public class AdministratorController {
 	 * 注入 AdministratorService
 	 */
 	@Autowired
-	private AdministratorService administratorService;
+	private AdminUserService administratorService;
 
 	/**
 	 * 注入 AdministratorLogService
 	 */
 	@Autowired
-	private AdministratorLogService administratorLogService;
+	private AdminUserLogService administratorLogService;
 
 	/**
 	 * 注入 SimpleDateFormat

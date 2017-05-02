@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.caizimei.model.dao.AgentUserDAO;
 import com.caizimei.model.entity.EmployeeBean;
-import com.caizimei.model.service.EmployeeService;
+import com.caizimei.model.service.AgentUserService;
 
 /**
  * employee service implement
@@ -29,7 +29,7 @@ import com.caizimei.model.service.EmployeeService;
  * @author 詹晟
  */
 @Service(value = "employeeService")
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements AgentUserService {
 
 	/**
 	 * 注入 EmployeeDAO

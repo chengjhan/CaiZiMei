@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.caizimei.model.dao.AgentDAO;
 import com.caizimei.model.entity.CompanyBean;
-import com.caizimei.model.service.CompanyService;
+import com.caizimei.model.service.AgentService;
 
 /**
  * company service implement
@@ -24,7 +24,7 @@ import com.caizimei.model.service.CompanyService;
  * @author 詹晟
  */
 @Service(value = "companyService")
-public class CompanyServiceImpl implements CompanyService {
+public class CompanyServiceImpl implements AgentService {
 
 	/**
 	 * 注入 CompanyDAO

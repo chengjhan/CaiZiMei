@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.caizimei.model.dao.AdminUserLogDAO;
 import com.caizimei.model.entity.AdministratorLogBean;
-import com.caizimei.model.service.AdministratorLogService;
+import com.caizimei.model.service.AdminUserLogService;
 
 /**
  * administrator_log service implement
@@ -24,7 +24,7 @@ import com.caizimei.model.service.AdministratorLogService;
  * @author 詹晟
  */
 @Service(value = "administratorLogService")
-public class AdministratorLogServiceImpl implements AdministratorLogService {
+public class AdministratorLogServiceImpl implements AdminUserLogService {
 
 	/**
 	 * 注入 AdministratorLogDAO

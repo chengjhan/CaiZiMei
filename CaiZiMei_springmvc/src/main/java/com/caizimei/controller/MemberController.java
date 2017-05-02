@@ -30,7 +30,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.caizimei.model.entity.EmployeeBean;
 import com.caizimei.model.entity.MemberBean;
-import com.caizimei.model.service.CompanyService;
+import com.caizimei.model.service.AgentService;
 import com.caizimei.model.service.MemberService;
 
 import misc.PrimitiveNumberEditor;
@@ -54,7 +54,7 @@ public class MemberController {
 	 * 注入 CompanyService
 	 */
 	@Autowired
-	private CompanyService companyService;
+	private AgentService companyService;
 
 	/**
 	 * 注入 SimpleDateFormat

@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.caizimei.model.dao.AdminUserDAO;
 import com.caizimei.model.entity.AdministratorBean;
-import com.caizimei.model.service.AdministratorService;
+import com.caizimei.model.service.AdminUserService;
 
 /**
  * administrator service implement
@@ -29,7 +29,7 @@ import com.caizimei.model.service.AdministratorService;
  * @author 詹晟
  */
 @Service(value = "administratorService")
-public class AdministratorServiceImpl implements AdministratorService {
+public class AdministratorServiceImpl implements AdminUserService {
 
 	/**
 	 * 注入 AdministratorDAO

@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.caizimei.model.entity.EmployeeBean;
-import com.caizimei.model.service.CompanyService;
-import com.caizimei.model.service.EmployeeService;
+import com.caizimei.model.service.AgentService;
+import com.caizimei.model.service.AgentUserService;
 
 import misc.PrimitiveNumberEditor;
 
@@ -45,13 +45,13 @@ public class EmployeeController {
 	 * 注入 EmployeeService
 	 */
 	@Autowired
-	private EmployeeService employeeService;
+	private AgentUserService employeeService;
 
 	/**
 	 * 注入 CompanyService
 	 */
 	@Autowired
-	private CompanyService companyService;
+	private AgentService companyService;
 
 	/**
 	 * 注入 SimpleDateFormat

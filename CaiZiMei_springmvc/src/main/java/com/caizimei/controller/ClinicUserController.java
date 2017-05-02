@@ -28,7 +28,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.caizimei.model.entity.SpecialistBean;
 import com.caizimei.model.service.ClinicService;
-import com.caizimei.model.service.SpecialistService;
+import com.caizimei.model.service.ClinicUserService;
 
 import misc.PrimitiveNumberEditor;
 
@@ -45,7 +45,7 @@ public class ClinicUserController {
 	 * 注入 SpecialistService
 	 */
 	@Autowired
-	private SpecialistService specialistService;
+	private ClinicUserService specialistService;
 
 	/**
 	 * 注入 ClinicService

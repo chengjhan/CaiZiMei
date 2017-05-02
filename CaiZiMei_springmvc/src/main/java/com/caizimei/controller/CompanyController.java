@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.caizimei.model.entity.CompanyBean;
-import com.caizimei.model.service.CompanyService;
+import com.caizimei.model.service.AgentService;
 import com.google.gson.Gson;
 
 /**
@@ -38,7 +38,7 @@ public class CompanyController {
 	 * 注入 CompanyService
 	 */
 	@Autowired
-	private CompanyService companyService;
+	private AgentService companyService;
 
 	/**
 	 * 搜尋全部公司

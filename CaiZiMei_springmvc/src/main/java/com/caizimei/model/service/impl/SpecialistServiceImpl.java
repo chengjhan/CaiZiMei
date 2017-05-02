@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.caizimei.model.dao.ClinicUserDAO;
 import com.caizimei.model.entity.SpecialistBean;
-import com.caizimei.model.service.SpecialistService;
+import com.caizimei.model.service.ClinicUserService;
 
 /**
  * specialist service implement
@@ -29,7 +29,7 @@ import com.caizimei.model.service.SpecialistService;
  * @author 詹晟
  */
 @Service(value = "specialistService")
-public class SpecialistServiceImpl implements SpecialistService {
+public class SpecialistServiceImpl implements ClinicUserService {
 
 	/**
 	 * 注入 SpecialistDAO

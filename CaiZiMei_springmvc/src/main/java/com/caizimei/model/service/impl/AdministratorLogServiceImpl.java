@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caizimei.model.dao.AdministratorLogDAO;
+import com.caizimei.model.dao.AdminUserLogDAO;
 import com.caizimei.model.entity.AdministratorLogBean;
 import com.caizimei.model.service.AdministratorLogService;
 
@@ -30,7 +30,7 @@ public class AdministratorLogServiceImpl implements AdministratorLogService {
 	 * 注入 AdministratorLogDAO
 	 */
 	@Autowired
-	private AdministratorLogDAO administratorLogDAO;
+	private AdminUserLogDAO administratorLogDAO;
 
 	/**
 	 * 搜尋全部管理員日誌

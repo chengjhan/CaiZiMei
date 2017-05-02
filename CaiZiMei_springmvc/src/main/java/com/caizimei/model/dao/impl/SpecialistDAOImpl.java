@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.caizimei.model.dao.SpecialistDAO;
+import com.caizimei.model.dao.ClinicUserDAO;
 import com.caizimei.model.entity.SpecialistBean;
 
 /**
@@ -23,7 +23,7 @@ import com.caizimei.model.entity.SpecialistBean;
  * @author 詹晟
  */
 @Repository(value = "specialistDAO")
-public class SpecialistDAOImpl implements SpecialistDAO {
+public class SpecialistDAOImpl implements ClinicUserDAO {
 
 	/**
 	 * 注入 HibernateTemplate

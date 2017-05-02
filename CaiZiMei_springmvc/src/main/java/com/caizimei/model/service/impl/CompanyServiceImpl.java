@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caizimei.model.dao.CompanyDAO;
+import com.caizimei.model.dao.AgentDAO;
 import com.caizimei.model.entity.CompanyBean;
 import com.caizimei.model.service.CompanyService;
 
@@ -30,7 +30,7 @@ public class CompanyServiceImpl implements CompanyService {
 	 * 注入 CompanyDAO
 	 */
 	@Autowired
-	private CompanyDAO companyDAO;
+	private AgentDAO companyDAO;
 
 	/**
 	 * 搜尋全部公司

@@ -19,7 +19,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caizimei.model.dao.EmployeeDAO;
+import com.caizimei.model.dao.AgentUserDAO;
 import com.caizimei.model.entity.EmployeeBean;
 import com.caizimei.model.service.EmployeeService;
 
@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * 注入 EmployeeDAO
 	 */
 	@Autowired
-	private EmployeeDAO employeeDAO;
+	private AgentUserDAO employeeDAO;
 
 	/**
 	 * 注入 MailSender

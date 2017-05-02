@@ -39,7 +39,7 @@ import misc.PrimitiveNumberEditor;
  */
 @Controller
 @SessionAttributes(value = "service")
-public class SpecialistController {
+public class ClinicUserController {
 
 	/**
 	 * 注入 SpecialistService

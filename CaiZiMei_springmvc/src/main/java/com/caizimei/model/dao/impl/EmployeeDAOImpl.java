@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.caizimei.model.dao.EmployeeDAO;
+import com.caizimei.model.dao.AgentUserDAO;
 import com.caizimei.model.entity.EmployeeBean;
 
 /**
@@ -23,7 +23,7 @@ import com.caizimei.model.entity.EmployeeBean;
  * @author 詹晟
  */
 @Repository(value = "employeeDAO")
-public class EmployeeDAOImpl implements EmployeeDAO {
+public class EmployeeDAOImpl implements AgentUserDAO {
 
 	/**
 	 * 注入 HibernateTemplate

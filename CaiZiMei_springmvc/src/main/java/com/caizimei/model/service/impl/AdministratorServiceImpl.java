@@ -19,7 +19,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caizimei.model.dao.AdministratorDAO;
+import com.caizimei.model.dao.AdminUserDAO;
 import com.caizimei.model.entity.AdministratorBean;
 import com.caizimei.model.service.AdministratorService;
 
@@ -35,7 +35,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 	 * 注入 AdministratorDAO
 	 */
 	@Autowired
-	private AdministratorDAO administratorDAO;
+	private AdminUserDAO administratorDAO;
 
 	/**
 	 * 注入 MailSender

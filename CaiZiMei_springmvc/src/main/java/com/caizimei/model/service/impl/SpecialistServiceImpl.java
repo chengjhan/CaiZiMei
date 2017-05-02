@@ -19,7 +19,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caizimei.model.dao.SpecialistDAO;
+import com.caizimei.model.dao.ClinicUserDAO;
 import com.caizimei.model.entity.SpecialistBean;
 import com.caizimei.model.service.SpecialistService;
 
@@ -35,7 +35,7 @@ public class SpecialistServiceImpl implements SpecialistService {
 	 * 注入 SpecialistDAO
 	 */
 	@Autowired
-	private SpecialistDAO specialistDAO;
+	private ClinicUserDAO specialistDAO;
 
 	/**
 	 * 注入 MailSender

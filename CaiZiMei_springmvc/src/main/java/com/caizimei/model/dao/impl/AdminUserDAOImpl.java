@@ -91,7 +91,7 @@ public class AdminUserDAOImpl implements AdminUserDAO {
 	}
 
 	/**
-	 * 修改管理員資料
+	 * 修改資料
 	 * 
 	 * @param newAdminUserBean-->AdminUserBean
 	 * @return adminUserBean-->AdminUserBean
@@ -112,7 +112,7 @@ public class AdminUserDAOImpl implements AdminUserDAO {
 	}
 
 	/**
-	 * 修改管理員密碼
+	 * 修改密碼
 	 * 
 	 * @param adu_id-->管理員流水號
 	 * @param adu_password_new_hashed-->新密碼(雜湊)

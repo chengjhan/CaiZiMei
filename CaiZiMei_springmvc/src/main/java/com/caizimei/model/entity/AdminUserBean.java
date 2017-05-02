@@ -20,6 +20,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * admin_user entity
@@ -44,6 +46,7 @@ public class AdminUserBean {
 	private String adu_eng_name;
 	private String adu_email;
 	private String adu_mobilephone;
+	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date adu_signup_time;
 	private Integer adu_signin_number;
 	private String adu_signin_ip;

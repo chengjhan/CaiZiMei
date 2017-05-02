@@ -10,16 +10,16 @@
 <body>
 	<form action="<c:url value='/admin/secure/set-password.do' />" method="post">
 		<div>
-			<label for="id-a-password">驗證碼</label>
-			<input type="password" id="id-a-password" name="a_password">
+			<label for="id-adu-password">驗證碼</label>
+			<input type="password" id="id-adu-password" name="adu_password">
 		</div>
 		<div>
-			<label for="id-a-password-new">新密碼</label>
-			<input type="password" id="id-a-password-new" name="a_password_new">
+			<label for="id-adu-password-new">新密碼</label>
+			<input type="password" id="id-adu-password-new" name="adu_password_new">
 		</div>
 		<div>
-			<label for="id-a-password-new-again">新密碼</label>
-			<input type="password" id="id-a-password-new-again" name="a_password_new_again">
+			<label for="id-adu-password-new-again">新密碼</label>
+			<input type="password" id="id-adu-password-new-again" name="adu_password_new_again">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="確定">

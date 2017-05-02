@@ -19,13 +19,13 @@
 		<a href="${root}admin/secure/sign-out.do">登出</a>
 	</p>
 	<p>
-		<a href="${root}admin/administrator/sign-up">註冊</a>
+		<a href="${root}admin/user/sign-up">註冊</a>
 	</p>
 	<p>
-		<a href="${root}admin/administrator/profile">個人資訊</a>
+		<a href="${root}admin/user/profile">個人資訊</a>
 	</p>
 	<p>
-		<a href="${root}admin/administrator/update-password">修改密碼</a>
+		<a href="${root}admin/user/update-password">修改密碼</a>
 	</p>
 	<p>
 		<a href="${root}admin/country/list.do">國家</a>

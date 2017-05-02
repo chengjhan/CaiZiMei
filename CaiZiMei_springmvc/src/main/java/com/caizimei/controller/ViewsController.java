@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/5/1
+ * Date: 2017/5/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,61 +33,6 @@ public class ViewsController {
 	public String admin_index() {
 
 		return "admin/index";
-	}
-
-	/**
-	 * admin/administrator/profile 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/administrator/profile.jsp
-	 */
-	@RequestMapping(value = "/admin/administrator/profile", method = RequestMethod.GET)
-	public String admin_administrator_profile() {
-
-		return "admin/administrator/profile";
-	}
-
-	/**
-	 * admin/administrator/search 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/administrator/search.jsp
-	 */
-	@RequestMapping(value = "/admin/administrator/search", method = RequestMethod.GET)
-	public String admin_administrator_search() {
-
-		return "admin/administrator/search";
-	}
-
-	/**
-	 * admin/administrator/sign-up 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/administrator/sign-up.jsp
-	 */
-	@RequestMapping(value = "/admin/administrator/sign-up", method = RequestMethod.GET)
-	public String admin_administrator_signUp() {
-
-		return "admin/administrator/sign-up";
-	}
-
-	/**
-	 * admin/administrator/update 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/administrator/update.jsp
-	 */
-	@RequestMapping(value = "/admin/administrator/update", method = RequestMethod.GET)
-	public String admin_administrator_update() {
-
-		return "admin/administrator/update";
-	}
-
-	/**
-	 * admin/administrator/update-password 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/administrator/update-password.jsp
-	 */
-	@RequestMapping(value = "/admin/administrator/update-password", method = RequestMethod.GET)
-	public String admin_administrator_updatePassword() {
-
-		return "admin/administrator/update-password";
 	}
 
 	/**
@@ -256,6 +201,28 @@ public class ViewsController {
 	}
 
 	/**
+	 * admin/specialist/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/specialist/search.jsp
+	 */
+	@RequestMapping(value = "/admin/specialist/search", method = RequestMethod.GET)
+	public String admin_specialist_search() {
+
+		return "admin/specialist/search";
+	}
+
+	/**
+	 * admin/specialist/sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/specialist/sign-up.jsp
+	 */
+	@RequestMapping(value = "/admin/specialist/sign-up", method = RequestMethod.GET)
+	public String admin_specialist_signUp() {
+
+		return "admin/specialist/sign-up";
+	}
+
+	/**
 	 * admin/secure/forget-password 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/secure/forget-password.jsp
@@ -289,25 +256,58 @@ public class ViewsController {
 	}
 
 	/**
-	 * admin/specialist/search 視圖解析
+	 * admin/user/profile 視圖解析
 	 * 
-	 * @return /WEB-INF/views/admin/specialist/search.jsp
+	 * @return /WEB-INF/views/admin/user/profile.jsp
 	 */
-	@RequestMapping(value = "/admin/specialist/search", method = RequestMethod.GET)
-	public String admin_specialist_search() {
+	@RequestMapping(value = "/admin/user/profile", method = RequestMethod.GET)
+	public String admin_user_profile() {
 
-		return "admin/specialist/search";
+		return "admin/user/profile";
 	}
 
 	/**
-	 * admin/specialist/sign-up 視圖解析
+	 * admin/user/search 視圖解析
 	 * 
-	 * @return /WEB-INF/views/admin/specialist/sign-up.jsp
+	 * @return /WEB-INF/views/admin/user/search.jsp
 	 */
-	@RequestMapping(value = "/admin/specialist/sign-up", method = RequestMethod.GET)
-	public String admin_specialist_signUp() {
+	@RequestMapping(value = "/admin/user/search", method = RequestMethod.GET)
+	public String admin_user_search() {
 
-		return "admin/specialist/sign-up";
+		return "admin/user/search";
+	}
+
+	/**
+	 * admin/user/sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/user/sign-up.jsp
+	 */
+	@RequestMapping(value = "/admin/user/sign-up", method = RequestMethod.GET)
+	public String admin_user_signUp() {
+
+		return "admin/user/sign-up";
+	}
+
+	/**
+	 * admin/user/update 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/user/update.jsp
+	 */
+	@RequestMapping(value = "/admin/user/update", method = RequestMethod.GET)
+	public String admin_user_update() {
+
+		return "admin/user/update";
+	}
+
+	/**
+	 * admin/user/update-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/user/update-password.jsp
+	 */
+	@RequestMapping(value = "/admin/user/update-password", method = RequestMethod.GET)
+	public String admin_user_updatePassword() {
+
+		return "admin/user/update-password";
 	}
 
 	/**

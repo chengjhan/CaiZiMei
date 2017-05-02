@@ -47,6 +47,7 @@ public class AdminUserLogServiceImpl implements AdminUserLogService {
 	/**
 	 * 管理員流水號搜尋
 	 * 
+	 * @param adul_adu_id-->管理員流水號
 	 * @return List<AdminUserLogBean>
 	 */
 	@Override
@@ -59,7 +60,8 @@ public class AdminUserLogServiceImpl implements AdminUserLogService {
 	/**
 	 * 新增管理員日誌
 	 * 
-	 * @return adminUserLogBean
+	 * @param adminUserLogBean-->AdminUserLogBean
+	 * @return result-->AdminUserLogBean
 	 */
 	@Override
 	@Transactional

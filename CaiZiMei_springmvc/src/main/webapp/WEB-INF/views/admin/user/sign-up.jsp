@@ -9,31 +9,31 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/admin/administrator/sign-up.do' />" method="post">
+	<form action="<c:url value='/admin/user/sign-up.do' />" method="post">
 		<div>
-			<label for="id-a-username">帳號</label>
-			<input type="text" id="id-a-username" name="a_username">
-			<span id="id-a-username-span" style="color: red"></span>
+			<label for="id-adu-username">帳號</label>
+			<input type="text" id="id-adu-username" name="adu_username">
+			<span id="id-adu-username-span" style="color: red"></span>
 		</div>
 		<div>
-			<label for="id-a-password">密碼</label>
-			<input type="password" id="id-a-password" name="a_password">
+			<label for="id-adu-password">密碼</label>
+			<input type="password" id="id-adu-password" name="adu_password">
 		</div>
 		<div>
-			<label for="id-a-password-again">確認密碼</label>
-			<input type="password" id="id-a-password-again">
+			<label for="id-adu-password-again">確認密碼</label>
+			<input type="password" id="id-adu-password-again">
 		</div>
 		<div>
-			<label for="id-a-lastname">姓氏</label>
-			<input type="text" id="id-a-lastname" name="a_lastname">
+			<label for="id-adu-lastname">姓氏</label>
+			<input type="text" id="id-adu-lastname" name="adu_lastname">
 		</div>
 		<div>
-			<label for="id-a-firstname">名字</label>
-			<input type="text" id="id-a-firstname" name="a_firstname">
+			<label for="id-adu-firstname">名字</label>
+			<input type="text" id="id-adu-firstname" name="adu_firstname">
 		</div>
 		<div>
-			<label for="id-a-email">信箱</label>
-			<input type="text" id="id-a-email" name="a_email">
+			<label for="id-adu-email">信箱</label>
+			<input type="text" id="id-adu-email" name="adu_email">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="註冊">

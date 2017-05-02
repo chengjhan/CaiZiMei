@@ -9,27 +9,27 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/admin/administrator/update.do' />"
+	<form action="<c:url value='/admin/user/update.do' />"
 		method="post">
 		<div>
-			<label for="id-a-lastname">姓氏</label>
-			<input type="text" id="id-a-lastname" name="a_lastname" value="${admin.a_lastname}">
+			<label for="id-adu-lastname">姓氏</label>
+			<input type="text" id="id-adu-lastname" name="adu_lastname" value="${admin.adu_lastname}">
 		</div>
 		<div>
-			<label for="id-a-firstname">名字</label>
-			<input type="text" id="id-a-firstname" name="a_firstname" value="${admin.a_firstname}">
+			<label for="id-adu-firstname">名字</label>
+			<input type="text" id="id-adu-firstname" name="adu_firstname" value="${admin.adu_firstname}">
 		</div>
 		<div>
-			<label for="id-a-eng-name">英文名</label>
-			<input type="text" id="id-a-eng-name" name="a_eng_name" value="${admin.a_eng_name}">
+			<label for="id-adu-eng-name">英文名</label>
+			<input type="text" id="id-adu-eng-name" name="adu_eng_name" value="${admin.adu_eng_name}">
 		</div>
 		<div>
-			<label for="id-a-email">信箱</label>
-			<input type="text" id="id-a-email" name="a_email" value="${admin.a_email}">
+			<label for="id-adu-email">信箱</label>
+			<input type="text" id="id-adu-email" name="adu_email" value="${admin.adu_email}">
 		</div>
 		<div>
-			<label for="id-a-mobilephone">手機</label>
-			<input type="text" id="id-a-mobilephone" name="a_mobilephone" value="${admin.a_mobilephone}">
+			<label for="id-adu-mobilephone">手機</label>
+			<input type="text" id="id-adu-mobilephone" name="adu_mobilephone" value="${admin.adu_mobilephone}">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="修改">

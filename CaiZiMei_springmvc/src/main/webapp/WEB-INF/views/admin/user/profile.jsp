@@ -12,31 +12,31 @@
 	<table border="1">
 		<tr>
 			<td>姓名</td>
-			<td>${admin.a_lastname} ${admin.a_firstname}</td>
+			<td>${admin.adu_lastname} ${admin.adu_firstname}</td>
 		</tr>
 		<tr>
 			<td>英文名</td>
-			<td>${admin.a_eng_name}</td>
+			<td>${admin.adu_eng_name}</td>
 		</tr>
 		<tr>
 			<td>信箱</td>
-			<td>${admin.a_username}</td>
+			<td>${admin.adu_username}</td>
 		</tr>
 		<tr>
 			<td>手機</td>
-			<td>${admin.a_mobilephone}</td>
+			<td>${admin.adu_mobilephone}</td>
 		</tr>
 		<tr>
 			<td>註冊時間</td>
-			<td>${admin.a_signup_time}</td>
+			<td>${admin.adu_signup_time}</td>
 		</tr>
 		<tr>
 			<td>登入次數</td>
-			<td>${admin.a_signin_number}</td>
+			<td>${admin.adu_signin_number}</td>
 		</tr>
 	</table>
 	<p>
-		<a href="${root}admin/administrator/update">修改個人資料</a>
+		<a href="${root}admin/user/update">修改個人資料</a>
 	</p>
 </body>
 </html>

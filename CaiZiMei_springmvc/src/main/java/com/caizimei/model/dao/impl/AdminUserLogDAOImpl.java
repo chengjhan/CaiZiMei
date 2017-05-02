@@ -46,6 +46,7 @@ public class AdminUserLogDAOImpl implements AdminUserLogDAO {
 	/**
 	 * 管理員流水號搜尋
 	 * 
+	 * @param adul_adu_id-->管理員流水號
 	 * @return List<AdminUserLogBean>
 	 */
 	@Override
@@ -59,7 +60,8 @@ public class AdminUserLogDAOImpl implements AdminUserLogDAO {
 	/**
 	 * 新增管理員日誌
 	 * 
-	 * @return adminUserLogBean
+	 * @param adminUserLogBean-->AdminUserLogBean
+	 * @return adminUserLogBean-->AdminUserLogBean
 	 */
 	@Override
 	public AdminUserLogBean insert(AdminUserLogBean adminUserLogBean) {

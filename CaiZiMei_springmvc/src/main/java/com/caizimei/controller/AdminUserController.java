@@ -73,26 +73,26 @@ public class AdminUserController {
 	/**
 	 * 登入
 	 * 
-	 * @param au_username-->管理員帳號
-	 * @param au_password-->管理員密碼(原碼)
-	 * @param model-->Model
+	 * @param adu_username-->管理員帳號
+	 * @param adu_password-->管理員密碼(原碼)
 	 * @param request-->HttpServletRequest
+	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/index.jsp
 	 * @return /WEB-INF/views/admin/secure/sign-in.jsp
 	 */
 	@RequestMapping(path = "/admin/secure/sign-in.do", method = RequestMethod.POST)
-	public String signInProcess(@RequestParam(name = "au_username") String au_username,
-			@RequestParam(name = "au_password") String au_password, HttpServletRequest request, Model model) {
+	public String signInProcess(@RequestParam(name = "adu_username") String adu_username,
+			@RequestParam(name = "adu_password") String adu_password, HttpServletRequest request, Model model) {
 
-		AdminUserBean adminUserBean = adminUserService.selectByAdu_username(au_username);
+		AdminUserBean adminUserBean = adminUserService.selectByAdu_username(adu_username);
 
 		if (adminUserBean != null) {
 
-			if (adminUserService.signIn(au_username, au_password)) {
+			if (adminUserService.signIn(adu_username, adu_password)) {
 
 				adminUserService.updateAdu_signin_ip(adminUserBean.getAdu_id(), request.getRemoteAddr());
 				adminUserService.updateAdu_signin_time(adminUserBean.getAdu_id());
-				model.addAttribute("admin", adminUserService.selectByAdu_username(au_username));
+				model.addAttribute("admin", adminUserService.selectByAdu_username(adu_username));
 
 				// 寫入日誌
 				AdminUserLogBean adminUserLogBean = new AdminUserLogBean();
@@ -120,23 +120,24 @@ public class AdminUserController {
 	/**
 	 * 忘記密碼
 	 * 
-	 * @param au_username-->管理員信箱
+	 * @param adu_username-->管理員信箱
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/secure/set-password.jsp
 	 */
 	@RequestMapping(path = "/admin/secure/forget-password.do", method = RequestMethod.POST)
-	public String forgetPasswordProcess(@RequestParam(name = "au_username") String au_username, Model model) {
+	public String forgetPasswordProcess(@RequestParam(name = "adu_username") String adu_username, Model model) {
 
 		int random = (int) (Math.random() * 1000000);
-		String au_password_random = String.valueOf(random);
+		String adu_password_random = String.valueOf(random);
 
-		AdminUserBean adminUserBean = adminUserService.selectByAdu_username(au_username);
-		adminUserService.updateAdu_password(adminUserBean.getAdu_id(), au_password_random, adminUserBean.getAdu_salt());
+		AdminUserBean adminUserBean = adminUserService.selectByAdu_username(adu_username);
+		adminUserService.updateAdu_password(adminUserBean.getAdu_id(), adu_password_random,
+				adminUserBean.getAdu_salt());
 
-		String to = au_username;
+		String to = adu_username;
 		String from = "chengjhan@gmail.com";
 		String subject = "更改密碼";
-		String text = au_password_random;
+		String text = adu_password_random;
 		adminUserService.sendEmail(to, from, subject, text);
 
 		model.addAttribute("admin", adminUserBean);
@@ -145,26 +146,26 @@ public class AdminUserController {
 	}
 
 	/**
-	 * 重設管理員密碼
+	 * 重設密碼
 	 * 
-	 * @param au_password-->驗證碼(原碼)
-	 * @param au_password_new-->新密碼(原碼)
+	 * @param adu_password-->驗證碼(原碼)
+	 * @param adu_password_new-->新密碼(原碼)
 	 * @param admin-->Session
 	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/admin/secure/sign-in.jsp
 	 * @return /WEB-INF/views/admin/secure/set-password.jsp
 	 */
 	@RequestMapping(path = "/admin/secure/set-password.do", method = RequestMethod.POST)
-	public String setPasswordProcess(@RequestParam(name = "au_password") String au_password,
-			@RequestParam(name = "au_password_new") String au_password_new,
+	public String setPasswordProcess(@RequestParam(name = "adu_password") String adu_password,
+			@RequestParam(name = "adu_password_new") String adu_password_new,
 			@ModelAttribute("admin") AdminUserBean admin, SessionStatus sessionStatus) {
 
 		String oldHashedPassword = adminUserService.selectByAdu_id(admin.getAdu_id()).getAdu_password();
-		String inputOldHashedPassword = adminUserService.getHashedPassword(au_password, admin.getAdu_salt());
+		String inputOldHashedPassword = adminUserService.getHashedPassword(adu_password, admin.getAdu_salt());
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 
-			adminUserService.updateAdu_password(admin.getAdu_id(), au_password_new, admin.getAdu_salt());
+			adminUserService.updateAdu_password(admin.getAdu_id(), adu_password_new, admin.getAdu_salt());
 
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();
@@ -181,7 +182,7 @@ public class AdminUserController {
 	 * @param admin-->Session
 	 * @param session-->HttpSession
 	 * @param sessionStatus-->SessionStatus
-	 * @return /WEB-INF/views/admin/secure/sign-in.jsp
+	 * @return /WEB-INF/views/admin/index.jsp
 	 */
 	@RequestMapping(path = "/admin/secure/sign-out.do", method = RequestMethod.GET)
 	public String signOutProcess(@ModelAttribute("admin") AdminUserBean admin, HttpSession session,
@@ -194,8 +195,8 @@ public class AdminUserController {
 		adminUserLogService.insert(adminUserLogBean);
 
 		// 清除 HttpSession
-		if (session.getAttribute("user") != null) {
-			session.removeAttribute("user"); // 清除特定 HttpSession
+		if (session.getAttribute("admin") != null) {
+			session.removeAttribute("admin"); // 清除特定 HttpSession
 		}
 		session.invalidate(); // 清除所有 HttpSession
 
@@ -209,23 +210,23 @@ public class AdminUserController {
 	 * 註冊
 	 * 
 	 * @param adminUserBean-->AdminUserBean
-	 * @param au_username-->管理員帳號
-	 * @param au_password-->管理員密碼(原碼)
+	 * @param adu_username-->管理員帳號
+	 * @param adu_password-->管理員密碼(原碼)
 	 * @param request-->HttpServletRequest
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/index.jsp
-	 * @return /WEB-INF/views/admin/adminUser/sign-up.jsp
+	 * @return /WEB-INF/views/admin/user/sign-up.jsp
 	 */
-	@RequestMapping(path = "/admin/adminUser/sign-up.do", method = RequestMethod.POST)
-	public String signUpProcess(AdminUserBean adminUserBean, @RequestParam(name = "au_username") String au_username,
-			@RequestParam(name = "au_password") String au_password, HttpServletRequest request, Model model) {
+	@RequestMapping(path = "/admin/user/sign-up.do", method = RequestMethod.POST)
+	public String signUpProcess(AdminUserBean adminUserBean, @RequestParam(name = "adu_username") String adu_username,
+			@RequestParam(name = "adu_password") String adu_password, HttpServletRequest request, Model model) {
 
-		if (adminUserService.selectByAdu_username(au_username) == null) {
+		if (adminUserService.selectByAdu_username(adu_username) == null) {
 
-			String au_salt = adminUserService.getSalt();
+			String adu_salt = adminUserService.getSalt();
 
-			adminUserBean.setAdu_salt(au_salt);
-			adminUserBean.setAdu_password(adminUserService.getHashedPassword(au_password, au_salt));
+			adminUserBean.setAdu_salt(adu_salt);
+			adminUserBean.setAdu_password(adminUserService.getHashedPassword(adu_password, adu_salt));
 			adminUserBean.setAdu_signin_number(1);
 			adminUserBean.setAdu_signin_ip(request.getRemoteAddr());
 			adminUserBean.setAdu_signin_time(new java.util.Date());
@@ -237,50 +238,50 @@ public class AdminUserController {
 
 			return "redirect:/admin/index";
 		} else {
-			return "redirect:/admin/adminUser/sign-up";
+			return "redirect:/admin/user/sign-up";
 		}
 	}
 
 	/**
-	 * 修改管理員資料
+	 * 修改資料
 	 * 
 	 * @param admin-->Session
 	 * @param adminUserBean-->AdminUserBean
-	 * @return /WEB-INF/views/admin/index.jsp
+	 * @return /WEB-INF/views/admin/user/profile.jsp
 	 */
-	@RequestMapping(path = "/admin/adminUser/update.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/admin/user/update.do", method = RequestMethod.POST)
 	public String updateProcess(@ModelAttribute("admin") AdminUserBean admin, AdminUserBean adminUserBean) {
 
 		adminUserBean.setAdu_id(admin.getAdu_id());
 		adminUserService.update(adminUserBean);
 
-		return "redirect:/admin/index";
+		return "redirect:/admin/user/profile";
 	}
 
 	/**
-	 * 修改管理員密碼
+	 * 修改密碼
 	 * 
-	 * @param au_password-->舊密碼(原碼)
-	 * @param au_password_new-->新密碼(原碼)
+	 * @param adu_password-->舊密碼(原碼)
+	 * @param adu_password_new-->新密碼(原碼)
 	 * @param admin-->Session
 	 * @return /WEB-INF/views/admin/index.jsp
-	 * @return /WEB-INF/views/admin/adminUser/update-password.jsp
+	 * @return /WEB-INF/views/admin/user/update-password.jsp
 	 */
-	@RequestMapping(path = "/admin/adminUser/updata-password.do", method = RequestMethod.POST)
-	public String updatePasswordProcess(@RequestParam(name = "au_password") String au_password,
-			@RequestParam(name = "au_password_new") String au_password_new,
+	@RequestMapping(path = "/admin/user/updata-password.do", method = RequestMethod.POST)
+	public String updatePasswordProcess(@RequestParam(name = "adu_password") String adu_password,
+			@RequestParam(name = "adu_password_new") String adu_password_new,
 			@ModelAttribute("admin") AdminUserBean admin) {
 
 		String oldHashedPassword = adminUserService.selectByAdu_id(admin.getAdu_id()).getAdu_password();
-		String inputOldHashedPassword = adminUserService.getHashedPassword(au_password, admin.getAdu_salt());
+		String inputOldHashedPassword = adminUserService.getHashedPassword(adu_password, admin.getAdu_salt());
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 
-			adminUserService.updateAdu_password(admin.getAdu_id(), au_password_new, admin.getAdu_salt());
+			adminUserService.updateAdu_password(admin.getAdu_id(), adu_password_new, admin.getAdu_salt());
 
 			return "redirect:/admin/index";
 		} else {
-			return "admin/adminUser/update-password";
+			return "admin/user/update-password";
 		}
 	}
 

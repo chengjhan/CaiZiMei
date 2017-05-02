@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberDAOImpl.java
  * Author: 詹晟
- * Date: 2017/4/15
+ * Date: 2017/5/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.caizimei.model.dao.MemberDAO;
-import com.caizimei.model.entity.CompanyBean;
+import com.caizimei.model.entity.AgentBean;
 import com.caizimei.model.entity.MemberBean;
 
 /**
@@ -142,7 +142,7 @@ public class MemberDAOImpl implements MemberDAO {
 		if (m_mobilephone != null && !m_mobilephone.trim().isEmpty()) {
 			criteria.add(Restrictions.eq("m_mobilephone", m_mobilephone));
 		}
-		criteria.add(Restrictions.eq("m_CompanyBean", hibernateTemplate.get(CompanyBean.class, com_id)));
+		criteria.add(Restrictions.eq("m_AgentBean", hibernateTemplate.get(AgentBean.class, com_id)));
 		criteria.addOrder(Order.asc("m_id"));
 
 		return (List<MemberBean>) hibernateTemplate.findByCriteria(criteria);

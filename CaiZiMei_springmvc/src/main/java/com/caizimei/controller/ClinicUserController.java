@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: SpecialistController.java
+ * File: ClinicUserController.java
  * Author: 詹晟
- * Date: 2017/5/1
+ * Date: 2017/5/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -26,26 +26,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.caizimei.model.entity.SpecialistBean;
+import com.caizimei.model.entity.ClinicUserBean;
 import com.caizimei.model.service.ClinicService;
 import com.caizimei.model.service.ClinicUserService;
 
 import misc.PrimitiveNumberEditor;
 
 /**
- * specialist controller
+ * clinic_user controller
  * 
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = "service")
+@SessionAttributes(value = "clinic")
 public class ClinicUserController {
 
 	/**
-	 * 注入 SpecialistService
+	 * 注入 ClinicUserService
 	 */
 	@Autowired
-	private ClinicUserService specialistService;
+	private ClinicUserService clinicUserService;
 
 	/**
 	 * 注入 ClinicService
@@ -72,26 +72,26 @@ public class ClinicUserController {
 	/**
 	 * 登入
 	 * 
-	 * @param s_username-->專員帳號
-	 * @param s_password-->專員密碼(原碼)
+	 * @param cu_username-->診所使用者帳號
+	 * @param cu_password-->診所使用者密碼(原碼)
 	 * @param model-->Model
 	 * @param request-->HttpServletRequest
 	 * @return /WEB-INF/views/service/index.jsp
 	 * @return /WEB-INF/views/service/secure/sign-in.jsp
 	 */
 	@RequestMapping(path = "/service/secure/sign-in.do", method = RequestMethod.POST)
-	public String signInProcess(@RequestParam(name = "s_username") String s_username,
-			@RequestParam(name = "s_password") String s_password, HttpServletRequest request, Model model) {
+	public String signInProcess(@RequestParam(name = "cu_username") String cu_username,
+			@RequestParam(name = "cu_password") String cu_password, HttpServletRequest request, Model model) {
 
-		SpecialistBean specialistBean = specialistService.selectByS_username(s_username);
+		ClinicUserBean clinicUserBean = clinicUserService.selectByCu_username(cu_username);
 
-		if (specialistBean != null) {
+		if (clinicUserBean != null) {
 
-			if (specialistService.signIn(s_username, s_password)) {
+			if (clinicUserService.signIn(cu_username, cu_password)) {
 
-				specialistService.updateS_signin_ip(specialistBean.getS_id(), request.getRemoteAddr());
-				specialistService.updateS_signin_time(specialistBean.getS_id());
-				model.addAttribute("service", specialistService.selectByS_username(s_username));
+				clinicUserService.updateCu_signin_ip(clinicUserBean.getCu_id(), request.getRemoteAddr());
+				clinicUserService.updateCu_signin_time(clinicUserBean.getCu_id());
+				model.addAttribute("clinic", clinicUserService.selectByCu_username(cu_username));
 
 				return "redirect:/service/index";
 			} else {
@@ -113,51 +113,51 @@ public class ClinicUserController {
 	/**
 	 * 忘記密碼
 	 * 
-	 * @param s_username-->專員信箱
+	 * @param cu_username-->診所使用者信箱
 	 * @param model-->Model
 	 * @return /WEB-INF/views/service/secure/set-password.jsp
 	 */
 	@RequestMapping(path = "/service/secure/forget-password.do", method = RequestMethod.POST)
-	public String forgetPasswordProcess(@RequestParam(name = "s_username") String s_username, Model model) {
+	public String forgetPasswordProcess(@RequestParam(name = "cu_username") String cu_username, Model model) {
 
 		int random = (int) (Math.random() * 1000000);
-		String s_password_random = String.valueOf(random);
+		String cu_password_random = String.valueOf(random);
 
-		SpecialistBean specialistBean = specialistService.selectByS_username(s_username);
-		specialistService.updateS_password(specialistBean.getS_id(), s_password_random, specialistBean.getS_salt());
+		ClinicUserBean clinicUserBean = clinicUserService.selectByCu_username(cu_username);
+		clinicUserService.updateCu_password(clinicUserBean.getCu_id(), cu_password_random, clinicUserBean.getCu_salt());
 
-		String to = s_username;
+		String to = cu_username;
 		String from = "chengjhan@gmail.com";
 		String subject = "更改密碼";
-		String text = s_password_random;
-		specialistService.sendEmail(to, from, subject, text);
+		String text = cu_password_random;
+		clinicUserService.sendEmail(to, from, subject, text);
 
-		model.addAttribute("service", specialistBean);
+		model.addAttribute("clinic", clinicUserBean);
 
 		return "redirect:/service/secure/set-password";
 	}
 
 	/**
-	 * 重設專員密碼
+	 * 重設診所使用者密碼
 	 * 
-	 * @param s_password-->驗證碼(原碼)
-	 * @param s_password_new-->新密碼(原碼)
+	 * @param cu_password-->驗證碼(原碼)
+	 * @param cu_password_new-->新密碼(原碼)
 	 * @param service-->Session
 	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/service/secure/sign-in.jsp
 	 * @return /WEB-INF/views/service/secure/set-password.jsp
 	 */
 	@RequestMapping(path = "/service/secure/set-password.do", method = RequestMethod.POST)
-	public String setPasswordProcess(@RequestParam(name = "s_password") String s_password,
-			@RequestParam(name = "s_password_new") String s_password_new,
-			@ModelAttribute("service") SpecialistBean service, SessionStatus sessionStatus) {
+	public String setPasswordProcess(@RequestParam(name = "cu_password") String cu_password,
+			@RequestParam(name = "cu_password_new") String cu_password_new,
+			@ModelAttribute("clinic") ClinicUserBean clinic, SessionStatus sessionStatus) {
 
-		String oldHashedPassword = specialistService.selectByS_id(service.getS_id()).getS_password();
-		String inputOldHashedPassword = specialistService.getHashedPassword(s_password, service.getS_salt());
+		String oldHashedPassword = clinicUserService.selectByCu_id(clinic.getCu_id()).getCu_password();
+		String inputOldHashedPassword = clinicUserService.getHashedPassword(cu_password, clinic.getCu_salt());
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 
-			specialistService.updateS_password(service.getS_id(), s_password_new, service.getS_salt());
+			clinicUserService.updateCu_password(clinic.getCu_id(), cu_password_new, clinic.getCu_salt());
 
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();
@@ -171,18 +171,16 @@ public class ClinicUserController {
 	/**
 	 * 登出
 	 * 
-	 * @param service-->Session
 	 * @param session-->HttpSession
 	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/service/secure/sign-in.jsp
 	 */
 	@RequestMapping(path = "/service/secure/sign-out.do", method = RequestMethod.GET)
-	public String signOutProcess(@ModelAttribute("service") SpecialistBean service, HttpSession session,
-			SessionStatus sessionStatus) {
+	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
 
 		// 清除 HttpSession
-		if (session.getAttribute("user") != null) {
-			session.removeAttribute("user"); // 清除特定 HttpSession
+		if (session.getAttribute("clinic") != null) {
+			session.removeAttribute("clinic"); // 清除特定 HttpSession
 		}
 		session.invalidate(); // 清除所有 HttpSession
 
@@ -195,74 +193,74 @@ public class ClinicUserController {
 	/**
 	 * 註冊
 	 * 
-	 * @param specialistBean-->SpecialistBean
-	 * @param s_username-->專員帳號
-	 * @param s_password-->專員密碼(原碼)
+	 * @param clinicUserBean-->ClinicUserBean
+	 * @param cu_username-->診所使用者帳號
+	 * @param cu_password-->診所使用者密碼(原碼)
 	 * @return /WEB-INF/views/admin/index.jsp
-	 * @return /WEB-INF/views/admin/specialist/sign-up.jsp
+	 * @return /WEB-INF/views/admin/clinicUser/sign-up.jsp
 	 */
-	@RequestMapping(path = "/admin/specialist/sign-up.do", method = RequestMethod.POST)
-	public String signUpProcess(SpecialistBean specialistBean, @RequestParam(name = "s_username") String s_username,
-			@RequestParam(name = "s_password") String s_password, @RequestParam(name = "s_c_id") Integer s_c_id) {
+	@RequestMapping(path = "/admin/clinicUser/sign-up.do", method = RequestMethod.POST)
+	public String signUpProcess(ClinicUserBean clinicUserBean, @RequestParam(name = "cu_username") String cu_username,
+			@RequestParam(name = "cu_password") String cu_password, @RequestParam(name = "cu_c_id") Integer cu_c_id) {
 
-		if (specialistService.selectByS_username(s_username) == null) {
+		if (clinicUserService.selectByCu_username(cu_username) == null) {
 
-			String s_salt = specialistService.getSalt();
+			String cu_salt = clinicUserService.getSalt();
 
-			specialistBean.setS_salt(s_salt);
-			specialistBean.setS_password(specialistService.getHashedPassword(s_password, s_salt));
-			specialistBean.setS_signin_number(0);
-			specialistBean.setS_update_pass_time(new java.util.Date());
-			specialistBean.setS_update_info_time(new java.util.Date());
-			specialistBean.setS_ClinicBean(clinicService.selectByC_id(s_c_id));
-			specialistService.signUp(specialistBean);
+			clinicUserBean.setCu_salt(cu_salt);
+			clinicUserBean.setCu_password(clinicUserService.getHashedPassword(cu_password, cu_salt));
+			clinicUserBean.setCu_signin_number(0);
+			clinicUserBean.setCu_update_pass_time(new java.util.Date());
+			clinicUserBean.setCu_update_info_time(new java.util.Date());
+			clinicUserBean.setCu_ClinicBean(clinicService.selectByC_id(cu_c_id));
+			clinicUserService.signUp(clinicUserBean);
 
 			return "redirect:/admin/index";
 		} else {
-			return "redirect:/admin/specialist/sign-up";
+			return "redirect:/admin/clinicUser/sign-up";
 		}
 	}
 
 	/**
-	 * 修改專員資料
+	 * 修改診所使用者資料
 	 * 
 	 * @param service-->Session
-	 * @param specialistBean-->SpecialistBean
+	 * @param clinicUserBean-->ClinicUserBean
 	 * @return /WEB-INF/views/service/index.jsp
 	 */
-	@RequestMapping(path = "/service/specialist/update.do", method = RequestMethod.POST)
-	public String updateProcess(@ModelAttribute("service") SpecialistBean service, SpecialistBean specialistBean) {
+	@RequestMapping(path = "/service/clinicUser/update.do", method = RequestMethod.POST)
+	public String updateProcess(@ModelAttribute("clinic") ClinicUserBean clinic, ClinicUserBean clinicUserBean) {
 
-		specialistBean.setS_id(service.getS_id());
-		specialistService.update(specialistBean);
+		clinicUserBean.setCu_id(clinic.getCu_id());
+		clinicUserService.update(clinicUserBean);
 
 		return "redirect:/service/index";
 	}
 
 	/**
-	 * 修改專員密碼
+	 * 修改診所使用者密碼
 	 * 
-	 * @param s_password-->舊密碼(原碼)
-	 * @param s_password_new-->新密碼(原碼)
+	 * @param cu_password-->舊密碼(原碼)
+	 * @param cu_password_new-->新密碼(原碼)
 	 * @param service-->Session
 	 * @return /WEB-INF/views/service/index.jsp
-	 * @return /WEB-INF/views/service/specialist/update-password.jsp
+	 * @return /WEB-INF/views/service/clinicUser/update-password.jsp
 	 */
-	@RequestMapping(path = "/service/specialist/update-password.do", method = RequestMethod.POST)
-	public String updatePasswordProcess(@RequestParam(name = "s_password") String s_password,
-			@RequestParam(name = "s_password_new") String s_password_new,
-			@ModelAttribute("service") SpecialistBean service) {
+	@RequestMapping(path = "/service/clinicUser/update-password.do", method = RequestMethod.POST)
+	public String updatePasswordProcess(@RequestParam(name = "cu_password") String cu_password,
+			@RequestParam(name = "cu_password_new") String cu_password_new,
+			@ModelAttribute("clinic") ClinicUserBean clinic) {
 
-		String oldHashedPassword = specialistService.selectByS_id(service.getS_id()).getS_password();
-		String inputOldHashedPassword = specialistService.getHashedPassword(s_password, service.getS_salt());
+		String oldHashedPassword = clinicUserService.selectByCu_id(clinic.getCu_id()).getCu_password();
+		String inputOldHashedPassword = clinicUserService.getHashedPassword(cu_password, clinic.getCu_salt());
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 
-			specialistService.updateS_password(service.getS_id(), s_password_new, service.getS_salt());
+			clinicUserService.updateCu_password(clinic.getCu_id(), cu_password_new, clinic.getCu_salt());
 
 			return "redirect:/service/index";
 		} else {
-			return "service/specialist/update-password";
+			return "service/clinicUser/update-password";
 		}
 	}
 

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: MemberController.java
  * Author: 詹晟
- * Date: 2017/4/17
+ * Date: 2017/5/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.caizimei.model.entity.EmployeeBean;
+import com.caizimei.model.entity.AgentUserBean;
 import com.caizimei.model.entity.MemberBean;
 import com.caizimei.model.service.AgentService;
 import com.caizimei.model.service.MemberService;
@@ -51,10 +51,10 @@ public class MemberController {
 	private MemberService memberService;
 
 	/**
-	 * 注入 CompanyService
+	 * 注入 AgentService
 	 */
 	@Autowired
-	private AgentService companyService;
+	private AgentService agentService;
 
 	/**
 	 * 注入 SimpleDateFormat
@@ -246,7 +246,7 @@ public class MemberController {
 			memberBean.setM_signin_time(new java.util.Date());
 			memberBean.setM_update_pass_time(new java.util.Date());
 			memberBean.setM_update_info_time(new java.util.Date());
-			memberBean.setM_CompanyBean(companyService.selectByCom_id(1));
+			memberBean.setM_AgentBean(agentService.selectByA_id(1));
 			memberService.signUp(memberBean);
 
 			model.addAttribute("user", memberBean);
@@ -334,12 +334,11 @@ public class MemberController {
 	 */
 	@RequestMapping(path = "/agent/member/select.do", method = RequestMethod.GET)
 	public String selectByMemberConditionsForAgentProcess(MemberBean memberBean,
-			@ModelAttribute("agent") EmployeeBean agent, Model model) {
+			@ModelAttribute("agent") AgentUserBean agent, Model model) {
 
 		model.addAttribute("selectByMemberConditionsForAgent",
 				memberService.selectByMemberConditionsForAgent(memberBean.getM_username(), memberBean.getM_lastname(),
-						memberBean.getM_firstname(), memberBean.getM_mobilephone(),
-						agent.getE_CompanyBean().getCom_id()));
+						memberBean.getM_firstname(), memberBean.getM_mobilephone(), agent.getAu_AgentBean().getA_id()));
 
 		return "agent/member/search";
 	}

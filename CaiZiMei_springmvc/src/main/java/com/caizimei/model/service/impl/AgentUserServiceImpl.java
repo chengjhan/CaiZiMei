@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: EmployeeServiceImpl.java
+ * File: AgentUserServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/12
+ * Date: 2017/5/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,22 +20,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.caizimei.model.dao.AgentUserDAO;
-import com.caizimei.model.entity.EmployeeBean;
+import com.caizimei.model.entity.AgentUserBean;
 import com.caizimei.model.service.AgentUserService;
 
 /**
- * employee service implement
+ * agent_user service implement
  * 
  * @author 詹晟
  */
-@Service(value = "employeeService")
-public class EmployeeServiceImpl implements AgentUserService {
+@Service(value = "agentUserService")
+public class AgentUserServiceImpl implements AgentUserService {
 
 	/**
-	 * 注入 EmployeeDAO
+	 * 注入 AgentUserDAO
 	 */
 	@Autowired
-	private AgentUserDAO employeeDAO;
+	private AgentUserDAO agentUserDAO;
 
 	/**
 	 * 注入 MailSender
@@ -46,18 +46,18 @@ public class EmployeeServiceImpl implements AgentUserService {
 	/**
 	 * 註冊
 	 * 
-	 * @param employeeBean-->EmployeeBean
-	 * @return result-->EmployeeBean
+	 * @param agentUserBean-->AgentUserBean
+	 * @return result-->AgentUserBean
 	 */
 	@Override
 	@Transactional
-	public EmployeeBean signUp(EmployeeBean employeeBean) {
+	public AgentUserBean signUp(AgentUserBean agentUserBean) {
 
-		EmployeeBean result = null;
+		AgentUserBean result = null;
 
-		if (employeeBean != null) {
+		if (agentUserBean != null) {
 
-			result = employeeDAO.insert(employeeBean);
+			result = agentUserDAO.insert(agentUserBean);
 		}
 
 		return result;
@@ -66,22 +66,22 @@ public class EmployeeServiceImpl implements AgentUserService {
 	/**
 	 * 登入
 	 * 
-	 * @param e_username-->員工信箱
-	 * @param e_password-->員工密碼(原碼)
+	 * @param au_username-->代理商使用者信箱
+	 * @param au_password-->代理商使用者密碼(原碼)
 	 * @return true-->登入成功
 	 * @return false-->登入失敗
 	 */
 	@Override
 	@Transactional
-	public Boolean signIn(String e_username, String e_password) {
+	public Boolean signIn(String au_username, String au_password) {
 
-		EmployeeBean employeeBean = employeeDAO.selectByE_username(e_username);
+		AgentUserBean agentUserBean = agentUserDAO.selectByAu_username(au_username);
 
-		String e_salt = employeeBean.getE_salt();
+		String au_salt = agentUserBean.getAu_salt();
 
-		if (getHashedPassword(e_password, e_salt).equals(employeeBean.getE_password())) {
+		if (getHashedPassword(au_password, au_salt).equals(agentUserBean.getAu_password())) {
 
-			employeeDAO.updateE_signin_number(employeeBean.getE_id());
+			agentUserDAO.updateAu_signin_number(agentUserBean.getAu_id());
 
 			return true;
 		} else {
@@ -90,97 +90,97 @@ public class EmployeeServiceImpl implements AgentUserService {
 	}
 
 	/**
-	 * 員工流水號搜尋
+	 * 代理商使用者流水號搜尋
 	 * 
-	 * @param e_id-->員工流水號
-	 * @return EmployeeBean
+	 * @param au_id-->代理商使用者流水號
+	 * @return AgentUserBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public EmployeeBean selectByE_id(Integer e_id) {
+	public AgentUserBean selectByAu_id(Integer au_id) {
 
-		return employeeDAO.selectByE_id(e_id);
+		return agentUserDAO.selectByAu_id(au_id);
 	}
 
 	/**
-	 * 員工帳號搜尋
+	 * 代理商使用者帳號搜尋
 	 * 
-	 * @param e_username-->員工帳號
-	 * @return EmployeeBean
+	 * @param au_username-->代理商使用者帳號
+	 * @return AgentUserBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public EmployeeBean selectByE_username(String e_username) {
+	public AgentUserBean selectByAu_username(String au_username) {
 
-		return employeeDAO.selectByE_username(e_username);
+		return agentUserDAO.selectByAu_username(au_username);
 	}
 
 	/**
-	 * 修改員工資料
+	 * 修改代理商使用者資料
 	 * 
-	 * @param employeeBean-->EmployeeBean
-	 * @return EmployeeBean
+	 * @param agentUserBean-->AgentUserBean
+	 * @return AgentUserBean
 	 */
 	@Override
 	@Transactional
-	public EmployeeBean update(EmployeeBean employeeBean) {
+	public AgentUserBean update(AgentUserBean agentUserBean) {
 
-		return employeeDAO.update(employeeBean);
+		return agentUserDAO.update(agentUserBean);
 	}
 
 	/**
-	 * 修改員工密碼
+	 * 修改代理商使用者密碼
 	 * 
-	 * @param e_id-->員工流水號
-	 * @param e_password_new-->新密碼(原碼)
-	 * @param e_salt-->塩
-	 * @return EmployeeBean
+	 * @param au_id-->代理商使用者流水號
+	 * @param au_password_new-->新密碼(原碼)
+	 * @param au_salt-->塩
+	 * @return AgentUserBean
 	 */
 	@Override
 	@Transactional
-	public EmployeeBean updateE_password(Integer e_id, String e_password_new, String e_salt) {
+	public AgentUserBean updateAu_password(Integer au_id, String au_password_new, String au_salt) {
 
-		return employeeDAO.updateE_password(e_id, getHashedPassword(e_password_new, e_salt));
+		return agentUserDAO.updateAu_password(au_id, getHashedPassword(au_password_new, au_salt));
 	}
 
 	/**
 	 * 更新登入IP
 	 * 
-	 * @param e_id-->員工流水號
-	 * @param e_signin_ip-->登入IP
-	 * @return EmployeeBean
+	 * @param au_id-->代理商使用者流水號
+	 * @param au_signin_ip-->登入IP
+	 * @return AgentUserBean
 	 */
 	@Override
 	@Transactional
-	public EmployeeBean updateE_signin_ip(Integer e_id, String e_signin_ip) {
+	public AgentUserBean updateAu_signin_ip(Integer au_id, String au_signin_ip) {
 
-		return employeeDAO.updateE_signin_ip(e_id, e_signin_ip);
+		return agentUserDAO.updateAu_signin_ip(au_id, au_signin_ip);
 	}
 
 	/**
 	 * 更新登入時間
 	 * 
-	 * @param e_id-->員工流水號
-	 * @return EmployeeBean
+	 * @param au_id-->代理商使用者流水號
+	 * @return AgentUserBean
 	 */
 	@Override
 	@Transactional
-	public EmployeeBean updateE_signin_time(Integer e_id) {
+	public AgentUserBean updateAu_signin_time(Integer au_id) {
 
-		return employeeDAO.updateE_signin_time(e_id);
+		return agentUserDAO.updateAu_signin_time(au_id);
 	}
 
 	/**
 	 * 製造雜湊密碼
 	 * 
-	 * @param e_password-->員工密碼(原碼)
-	 * @param e_salt-->塩
+	 * @param au_password-->代理商使用者密碼(原碼)
+	 * @param au_salt-->塩
 	 * @return MD5雜湊密碼
 	 */
 	@Override
-	public String getHashedPassword(String e_password, String e_salt) {
+	public String getHashedPassword(String au_password, String au_salt) {
 
-		return getMD5(e_salt.replaceAll("-", getMD5(e_password)));
+		return getMD5(au_salt.replaceAll("-", getMD5(au_password)));
 	}
 
 	/**

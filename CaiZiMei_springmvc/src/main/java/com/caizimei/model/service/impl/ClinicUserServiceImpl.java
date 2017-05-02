@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: SpecialistServiceImpl.java
+ * File: ClinicUserServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/27
+ * Date: 2017/5/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,22 +20,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.caizimei.model.dao.ClinicUserDAO;
-import com.caizimei.model.entity.SpecialistBean;
+import com.caizimei.model.entity.ClinicUserBean;
 import com.caizimei.model.service.ClinicUserService;
 
 /**
- * specialist service implement
+ * clinic_user service implement
  * 
  * @author 詹晟
  */
-@Service(value = "specialistService")
-public class SpecialistServiceImpl implements ClinicUserService {
+@Service(value = "clinicUserService")
+public class ClinicUserServiceImpl implements ClinicUserService {
 
 	/**
-	 * 注入 SpecialistDAO
+	 * 注入 ClinicUserDAO
 	 */
 	@Autowired
-	private ClinicUserDAO specialistDAO;
+	private ClinicUserDAO clinicUserDAO;
 
 	/**
 	 * 注入 MailSender
@@ -46,18 +46,18 @@ public class SpecialistServiceImpl implements ClinicUserService {
 	/**
 	 * 註冊
 	 * 
-	 * @param specialistBean-->SpecialistBean
-	 * @return result-->SpecialistBean
+	 * @param clinicUserBean-->ClinicUserBean
+	 * @return result-->ClinicUserBean
 	 */
 	@Override
 	@Transactional
-	public SpecialistBean signUp(SpecialistBean specialistBean) {
+	public ClinicUserBean signUp(ClinicUserBean clinicUserBean) {
 
-		SpecialistBean result = null;
+		ClinicUserBean result = null;
 
-		if (specialistBean != null) {
+		if (clinicUserBean != null) {
 
-			result = specialistDAO.insert(specialistBean);
+			result = clinicUserDAO.insert(clinicUserBean);
 		}
 
 		return result;
@@ -66,22 +66,22 @@ public class SpecialistServiceImpl implements ClinicUserService {
 	/**
 	 * 登入
 	 * 
-	 * @param s_username-->專員信箱
-	 * @param s_password-->專員密碼(原碼)
+	 * @param cu_username-->診所使用者信箱
+	 * @param cu_password-->診所使用者密碼(原碼)
 	 * @return true-->登入成功
 	 * @return false-->登入失敗
 	 */
 	@Override
 	@Transactional
-	public Boolean signIn(String s_username, String s_password) {
+	public Boolean signIn(String cu_username, String cu_password) {
 
-		SpecialistBean specialistBean = specialistDAO.selectByS_username(s_username);
+		ClinicUserBean clinicUserBean = clinicUserDAO.selectByCu_username(cu_username);
 
-		String s_salt = specialistBean.getS_salt();
+		String cu_salt = clinicUserBean.getCu_salt();
 
-		if (getHashedPassword(s_password, s_salt).equals(specialistBean.getS_password())) {
+		if (getHashedPassword(cu_password, cu_salt).equals(clinicUserBean.getCu_password())) {
 
-			specialistDAO.updateS_signin_number(specialistBean.getS_id());
+			clinicUserDAO.updateCu_signin_number(clinicUserBean.getCu_id());
 
 			return true;
 		} else {
@@ -90,97 +90,97 @@ public class SpecialistServiceImpl implements ClinicUserService {
 	}
 
 	/**
-	 * 專員流水號搜尋
+	 * 診所使用者流水號搜尋
 	 * 
-	 * @param s_id-->專員流水號
-	 * @return SpecialistBean
+	 * @param cu_id-->診所使用者流水號
+	 * @return ClinicUserBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public SpecialistBean selectByS_id(Integer s_id) {
+	public ClinicUserBean selectByCu_id(Integer cu_id) {
 
-		return specialistDAO.selectByS_id(s_id);
+		return clinicUserDAO.selectByCu_id(cu_id);
 	}
 
 	/**
-	 * 專員帳號搜尋
+	 * 診所使用者帳號搜尋
 	 * 
-	 * @param s_username-->專員帳號
-	 * @return SpecialistBean
+	 * @param cu_username-->診所使用者帳號
+	 * @return ClinicUserBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public SpecialistBean selectByS_username(String s_username) {
+	public ClinicUserBean selectByCu_username(String cu_username) {
 
-		return specialistDAO.selectByS_username(s_username);
+		return clinicUserDAO.selectByCu_username(cu_username);
 	}
 
 	/**
-	 * 修改專員資料
+	 * 修改診所使用者資料
 	 * 
-	 * @param specialistBean-->SpecialistBean
-	 * @return SpecialistBean
+	 * @param clinicUserBean-->ClinicUserBean
+	 * @return ClinicUserBean
 	 */
 	@Override
 	@Transactional
-	public SpecialistBean update(SpecialistBean specialistBean) {
+	public ClinicUserBean update(ClinicUserBean clinicUserBean) {
 
-		return specialistDAO.update(specialistBean);
+		return clinicUserDAO.update(clinicUserBean);
 	}
 
 	/**
-	 * 修改專員密碼
+	 * 修改診所使用者密碼
 	 * 
-	 * @param s_id-->專員流水號
-	 * @param s_password_new-->新密碼(原碼)
-	 * @param s_salt-->塩
-	 * @return SpecialistBean
+	 * @param cu_id-->診所使用者流水號
+	 * @param cu_password_new-->新密碼(原碼)
+	 * @param cu_salt-->塩
+	 * @return ClinicUserBean
 	 */
 	@Override
 	@Transactional
-	public SpecialistBean updateS_password(Integer s_id, String s_password_new, String s_salt) {
+	public ClinicUserBean updateCu_password(Integer cu_id, String cu_password_new, String cu_salt) {
 
-		return specialistDAO.updateS_password(s_id, getHashedPassword(s_password_new, s_salt));
+		return clinicUserDAO.updateCu_password(cu_id, getHashedPassword(cu_password_new, cu_salt));
 	}
 
 	/**
 	 * 更新登入IP
 	 * 
-	 * @param s_id-->專員流水號
-	 * @param s_signin_ip-->登入IP
-	 * @return SpecialistBean
+	 * @param cu_id-->診所使用者流水號
+	 * @param cu_signin_ip-->登入IP
+	 * @return ClinicUserBean
 	 */
 	@Override
 	@Transactional
-	public SpecialistBean updateS_signin_ip(Integer s_id, String s_signin_ip) {
+	public ClinicUserBean updateCu_signin_ip(Integer cu_id, String cu_signin_ip) {
 
-		return specialistDAO.updateS_signin_ip(s_id, s_signin_ip);
+		return clinicUserDAO.updateCu_signin_ip(cu_id, cu_signin_ip);
 	}
 
 	/**
 	 * 更新登入時間
 	 * 
-	 * @param s_id-->專員流水號
-	 * @return SpecialistBean
+	 * @param cu_id-->診所使用者流水號
+	 * @return ClinicUserBean
 	 */
 	@Override
 	@Transactional
-	public SpecialistBean updateS_signin_time(Integer s_id) {
+	public ClinicUserBean updateCu_signin_time(Integer cu_id) {
 
-		return specialistDAO.updateS_signin_time(s_id);
+		return clinicUserDAO.updateCu_signin_time(cu_id);
 	}
 
 	/**
 	 * 製造雜湊密碼
 	 * 
-	 * @param s_password-->專員密碼(原碼)
-	 * @param s_salt-->塩
+	 * @param cu_password-->診所使用者密碼(原碼)
+	 * @param cu_salt-->塩
 	 * @return MD5雜湊密碼
 	 */
 	@Override
-	public String getHashedPassword(String s_password, String s_salt) {
+	public String getHashedPassword(String cu_password, String cu_salt) {
 
-		return getMD5(s_salt.replaceAll("-", getMD5(s_password)));
+		return getMD5(cu_salt.replaceAll("-", getMD5(cu_password)));
 	}
 
 	/**

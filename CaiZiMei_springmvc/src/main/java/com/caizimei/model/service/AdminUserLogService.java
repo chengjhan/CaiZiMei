@@ -21,7 +21,7 @@ public interface AdminUserLogService {
 
 	List<AdminUserLogBean> select();
 
-	List<AdminUserLogBean> selectByAdul_a_id(Integer adul_adu_id);
+	List<AdminUserLogBean> selectByAdul_adu_id(Integer adul_adu_id);
 
 	AdminUserLogBean insert(AdminUserLogBean adminUserLogBean);
 

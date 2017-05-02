@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: AdministratorServiceImpl.java
+ * File: AdminUserServiceImpl.java
  * Author: 詹晟
- * Date: 2017/4/12
+ * Date: 2017/5/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,22 +20,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.caizimei.model.dao.AdminUserDAO;
-import com.caizimei.model.entity.AdministratorBean;
+import com.caizimei.model.entity.AdminUserBean;
 import com.caizimei.model.service.AdminUserService;
 
 /**
- * administrator service implement
+ * admin_user service implement
  * 
  * @author 詹晟
  */
-@Service(value = "administratorService")
-public class AdministratorServiceImpl implements AdminUserService {
+@Service(value = "adminUserService")
+public class AdminUserServiceImpl implements AdminUserService {
 
 	/**
-	 * 注入 AdministratorDAO
+	 * 注入 AdminUserDAO
 	 */
 	@Autowired
-	private AdminUserDAO administratorDAO;
+	private AdminUserDAO adminUserDAO;
 
 	/**
 	 * 注入 MailSender
@@ -46,18 +46,18 @@ public class AdministratorServiceImpl implements AdminUserService {
 	/**
 	 * 註冊
 	 * 
-	 * @param administratorBean-->AdministratorBean
-	 * @return result-->AdministratorBean
+	 * @param adminUserBean-->AdminUserBean
+	 * @return result-->AdminUserBean
 	 */
 	@Override
 	@Transactional
-	public AdministratorBean signUp(AdministratorBean administratorBean) {
+	public AdminUserBean signUp(AdminUserBean adminUserBean) {
 
-		AdministratorBean result = null;
+		AdminUserBean result = null;
 
-		if (administratorBean != null) {
+		if (adminUserBean != null) {
 
-			result = administratorDAO.insert(administratorBean);
+			result = adminUserDAO.insert(adminUserBean);
 		}
 
 		return result;
@@ -66,22 +66,22 @@ public class AdministratorServiceImpl implements AdminUserService {
 	/**
 	 * 登入
 	 * 
-	 * @param a_username-->管理員信箱
-	 * @param a_password-->管理員密碼(原碼)
+	 * @param adu_username-->管理員信箱
+	 * @param adu_password-->管理員密碼(原碼)
 	 * @return true-->登入成功
 	 * @return false-->登入失敗
 	 */
 	@Override
 	@Transactional
-	public Boolean signIn(String a_username, String a_password) {
+	public Boolean signIn(String adu_username, String adu_password) {
 
-		AdministratorBean administratorBean = administratorDAO.selectByA_username(a_username);
+		AdminUserBean adminUserBean = adminUserDAO.selectByAdu_username(adu_username);
 
-		String a_salt = administratorBean.getA_salt();
+		String adu_salt = adminUserBean.getAdu_salt();
 
-		if (getHashedPassword(a_password, a_salt).equals(administratorBean.getA_password())) {
+		if (getHashedPassword(adu_password, adu_salt).equals(adminUserBean.getAdu_password())) {
 
-			administratorDAO.updateA_signin_number(administratorBean.getA_id());
+			adminUserDAO.updateAdu_signin_number(adminUserBean.getAdu_id());
 
 			return true;
 		} else {
@@ -92,95 +92,95 @@ public class AdministratorServiceImpl implements AdminUserService {
 	/**
 	 * 管理員流水號搜尋
 	 * 
-	 * @param a_id-->管理員流水號
-	 * @return AdministratorBean
+	 * @param adu_id-->管理員流水號
+	 * @return AdminUserBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public AdministratorBean selectByA_id(Integer a_id) {
+	public AdminUserBean selectByAdu_id(Integer adu_id) {
 
-		return administratorDAO.selectByA_id(a_id);
+		return adminUserDAO.selectByAdu_id(adu_id);
 	}
 
 	/**
 	 * 管理員帳號搜尋
 	 * 
-	 * @param a_username-->管理員帳號
-	 * @return AdministratorBean
+	 * @param adu_username-->管理員帳號
+	 * @return AdminUserBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public AdministratorBean selectByA_username(String a_username) {
+	public AdminUserBean selectByAdu_username(String adu_username) {
 
-		return administratorDAO.selectByA_username(a_username);
+		return adminUserDAO.selectByAdu_username(adu_username);
 	}
 
 	/**
 	 * 修改管理員資料
 	 * 
-	 * @param administratorBean-->AdministratorBean
-	 * @return AdministratorBean
+	 * @param adminUserBean-->AdminUserBean
+	 * @return AdminUserBean
 	 */
 	@Override
 	@Transactional
-	public AdministratorBean update(AdministratorBean administratorBean) {
+	public AdminUserBean update(AdminUserBean adminUserBean) {
 
-		return administratorDAO.update(administratorBean);
+		return adminUserDAO.update(adminUserBean);
 	}
 
 	/**
 	 * 修改管理員密碼
 	 * 
-	 * @param a_id-->管理員流水號
-	 * @param a_password_new-->新密碼(原碼)
-	 * @param a_salt-->塩
-	 * @return AdministratorBean
+	 * @param adu_id-->管理員流水號
+	 * @param adu_password_new-->新密碼(原碼)
+	 * @param adu_salt-->塩
+	 * @return AdminUserBean
 	 */
 	@Override
 	@Transactional
-	public AdministratorBean updateA_password(Integer a_id, String a_password_new, String a_salt) {
+	public AdminUserBean updateAdu_password(Integer adu_id, String adu_password_new, String adu_salt) {
 
-		return administratorDAO.updateA_password(a_id, getHashedPassword(a_password_new, a_salt));
+		return adminUserDAO.updateAdu_password(adu_id, getHashedPassword(adu_password_new, adu_salt));
 	}
 
 	/**
 	 * 更新登入IP
 	 * 
-	 * @param a_id-->管理員流水號
-	 * @param a_signin_ip-->登入IP
-	 * @return AdministratorBean
+	 * @param adu_id-->管理員流水號
+	 * @param adu_signin_ip-->登入IP
+	 * @return AdminUserBean
 	 */
 	@Override
 	@Transactional
-	public AdministratorBean updateA_signin_ip(Integer a_id, String a_signin_ip) {
+	public AdminUserBean updateAdu_signin_ip(Integer adu_id, String adu_signin_ip) {
 
-		return administratorDAO.updateA_signin_ip(a_id, a_signin_ip);
+		return adminUserDAO.updateAdu_signin_ip(adu_id, adu_signin_ip);
 	}
 
 	/**
 	 * 更新登入時間
 	 * 
-	 * @param a_id-->管理員流水號
-	 * @return AdministratorBean
+	 * @param adu_id-->管理員流水號
+	 * @return AdminUserBean
 	 */
 	@Override
 	@Transactional
-	public AdministratorBean updateA_signin_time(Integer a_id) {
+	public AdminUserBean updateAdu_signin_time(Integer adu_id) {
 
-		return administratorDAO.updateA_signin_time(a_id);
+		return adminUserDAO.updateAdu_signin_time(adu_id);
 	}
 
 	/**
 	 * 製造雜湊密碼
 	 * 
-	 * @param a_password-->管理員密碼(原碼)
-	 * @param a_salt-->塩
+	 * @param adu_password-->管理員密碼(原碼)
+	 * @param adu_salt-->塩
 	 * @return MD5雜湊密碼
 	 */
 	@Override
-	public String getHashedPassword(String a_password, String a_salt) {
+	public String getHashedPassword(String adu_password, String adu_salt) {
 
-		return getMD5(a_salt.replaceAll("-", getMD5(a_password)));
+		return getMD5(adu_salt.replaceAll("-", getMD5(adu_password)));
 	}
 
 	/**
@@ -244,5 +244,5 @@ public class AdministratorServiceImpl implements AdminUserService {
 
 		mailSender.send(simpleMailMessage);
 	}
-	
+
 }

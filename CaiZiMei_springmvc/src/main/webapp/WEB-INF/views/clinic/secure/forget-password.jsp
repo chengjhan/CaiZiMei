@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/service/secure/forget-password.do' />" method="post">
+	<form action="<c:url value='/clinic/secure/forget-password.do' />" method="post">
 		<div>
-			<label for="id-s-email">信箱</label>
-			<input type="text" id="id-s-email" name="s_email">
+			<label for="id-cu-email">信箱</label>
+			<input type="text" id="id-cu-email" name="cu_email">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="寄信">

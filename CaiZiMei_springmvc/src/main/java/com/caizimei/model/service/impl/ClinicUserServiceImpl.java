@@ -116,6 +116,19 @@ public class ClinicUserServiceImpl implements ClinicUserService {
 	}
 
 	/**
+	 * 診所使用者信箱搜尋
+	 * 
+	 * @param cu_email-->診所使用者信箱
+	 * @return ClinicUserBean
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public ClinicUserBean selectByCu_email(String cu_email) {
+
+		return clinicUserDAO.selectByCu_email(cu_email);
+	}
+
+	/**
 	 * 修改資料
 	 * 
 	 * @param clinicUserBean-->ClinicUserBean

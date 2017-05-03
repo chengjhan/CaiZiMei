@@ -135,6 +135,28 @@ public class ViewsController {
 	}
 
 	/**
+	 * admin/clinic-user/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/clinic-user/search.jsp
+	 */
+	@RequestMapping(value = "/admin/clinic-user/search", method = RequestMethod.GET)
+	public String admin_clinicUser_search() {
+
+		return "admin/clinic-user/search";
+	}
+
+	/**
+	 * admin/clinic-user/sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/clinic-user/sign-up.jsp
+	 */
+	@RequestMapping(value = "/admin/clinic-user/sign-up", method = RequestMethod.GET)
+	public String admin_clinicUser_signUp() {
+
+		return "admin/clinic-user/sign-up";
+	}
+
+	/**
 	 * admin/country/list 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/country/list.jsp
@@ -198,28 +220,6 @@ public class ViewsController {
 	public String admin_region_update() {
 
 		return "admin/region/update";
-	}
-
-	/**
-	 * admin/specialist/search 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/specialist/search.jsp
-	 */
-	@RequestMapping(value = "/admin/specialist/search", method = RequestMethod.GET)
-	public String admin_specialist_search() {
-
-		return "admin/specialist/search";
-	}
-
-	/**
-	 * admin/specialist/sign-up 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/specialist/sign-up.jsp
-	 */
-	@RequestMapping(value = "/admin/specialist/sign-up", method = RequestMethod.GET)
-	public String admin_specialist_signUp() {
-
-		return "admin/specialist/sign-up";
 	}
 
 	/**
@@ -403,106 +403,106 @@ public class ViewsController {
 	}
 
 	/**
-	 * service
+	 * clinic
 	 */
 
 	/**
-	 * service/index 視圖解析
+	 * clinic/index 視圖解析
 	 * 
-	 * @return /WEB-INF/views/service/index.jsp
+	 * @return /WEB-INF/views/clinic/index.jsp
 	 */
-	@RequestMapping(value = "/service/index", method = RequestMethod.GET)
-	public String service_index() {
+	@RequestMapping(value = "/clinic/index", method = RequestMethod.GET)
+	public String clinic_index() {
 
-		return "service/index";
+		return "clinic/index";
 	}
 
 	/**
-	 * service/member/search 視圖解析
+	 * clinic/member/search 視圖解析
 	 * 
-	 * @return /WEB-INF/views/service/member/search.jsp
+	 * @return /WEB-INF/views/clinic/member/search.jsp
 	 */
-	@RequestMapping(value = "/service/member/search", method = RequestMethod.GET)
-	public String service_member_search() {
+	@RequestMapping(value = "/clinic/member/search", method = RequestMethod.GET)
+	public String clinic_member_search() {
 
-		return "service/member/search";
+		return "clinic/member/search";
 	}
 
 	/**
-	 * service/purchase/search 視圖解析
+	 * clinic/purchase/search 視圖解析
 	 * 
-	 * @return /WEB-INF/views/service/purchase/search.jsp
+	 * @return /WEB-INF/views/clinic/purchase/search.jsp
 	 */
-	@RequestMapping(value = "/service/purchase/search", method = RequestMethod.GET)
-	public String service_purchase_search() {
+	@RequestMapping(value = "/clinic/purchase/search", method = RequestMethod.GET)
+	public String clinic_purchase_search() {
 
-		return "service/purchase/search";
+		return "clinic/purchase/search";
 	}
 
 	/**
-	 * service/secure/forget-password 視圖解析
+	 * clinic/secure/forget-password 視圖解析
 	 * 
-	 * @return /WEB-INF/views/service/secure/forget-password.jsp
+	 * @return /WEB-INF/views/clinic/secure/forget-password.jsp
 	 */
-	@RequestMapping(value = "/service/secure/forget-password", method = RequestMethod.GET)
-	public String service_secure_forgetPassword() {
+	@RequestMapping(value = "/clinic/secure/forget-password", method = RequestMethod.GET)
+	public String clinic_secure_forgetPassword() {
 
-		return "service/secure/forget-password";
+		return "clinic/secure/forget-password";
 	}
 
 	/**
-	 * service/secure/set-password 視圖解析
+	 * clinic/secure/set-password 視圖解析
 	 * 
-	 * @return /WEB-INF/views/service/secure/set-password.jsp
+	 * @return /WEB-INF/views/clinic/secure/set-password.jsp
 	 */
-	@RequestMapping(value = "/service/secure/set-password", method = RequestMethod.GET)
-	public String service_secure_setPassword() {
+	@RequestMapping(value = "/clinic/secure/set-password", method = RequestMethod.GET)
+	public String clinic_secure_setPassword() {
 
-		return "service/secure/set-password";
+		return "clinic/secure/set-password";
 	}
 
 	/**
-	 * service/secure/sign-in 視圖解析
+	 * clinic/secure/sign-in 視圖解析
 	 * 
-	 * @return /WEB-INF/views/service/secure/sign-in.jsp
+	 * @return /WEB-INF/views/clinic/secure/sign-in.jsp
 	 */
-	@RequestMapping(value = "/service/secure/sign-in", method = RequestMethod.GET)
-	public String service_secure_signIn() {
+	@RequestMapping(value = "/clinic/secure/sign-in", method = RequestMethod.GET)
+	public String clinic_secure_signIn() {
 
-		return "service/secure/sign-in";
+		return "clinic/secure/sign-in";
 	}
 
 	/**
-	 * service/specialist/profile 視圖解析
+	 * clinic/user/profile 視圖解析
 	 * 
-	 * @return /WEB-INF/views/service/specialist/profile.jsp
+	 * @return /WEB-INF/views/clinic/user/profile.jsp
 	 */
-	@RequestMapping(value = "/service/specialist/profile", method = RequestMethod.GET)
-	public String service_specialist_profile() {
+	@RequestMapping(value = "/clinic/user/profile", method = RequestMethod.GET)
+	public String clinic_user_profile() {
 
-		return "service/specialist/profile";
+		return "clinic/user/profile";
 	}
 
 	/**
-	 * service/specialist/update 視圖解析
+	 * clinic/user/update 視圖解析
 	 * 
-	 * @return /WEB-INF/views/service/specialist/update.jsp
+	 * @return /WEB-INF/views/clinic/user/update.jsp
 	 */
-	@RequestMapping(value = "/service/specialist/update", method = RequestMethod.GET)
-	public String service_specialist_update() {
+	@RequestMapping(value = "/clinic/user/update", method = RequestMethod.GET)
+	public String clinic_user_update() {
 
-		return "service/specialist/update";
+		return "clinic/user/update";
 	}
 
 	/**
-	 * service/specialist/update-password 視圖解析
+	 * clinic/user/update-password 視圖解析
 	 * 
-	 * @return /WEB-INF/views/service/specialist/update-password.jsp
+	 * @return /WEB-INF/views/clinic/user/update-password.jsp
 	 */
-	@RequestMapping(value = "/service/specialist/update-password", method = RequestMethod.GET)
-	public String service_specialist_updatePassword() {
+	@RequestMapping(value = "/clinic/user/update-password", method = RequestMethod.GET)
+	public String clinic_user_updatePassword() {
 
-		return "service/specialist/update-password";
+		return "clinic/user/update-password";
 	}
 
 	/**

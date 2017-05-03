@@ -9,14 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/service/secure/sign-in.do' />" method="post">
+	<form action="<c:url value='/clinic/secure/sign-in.do' />" method="post">
 		<div>
-			<label for="id-s-username">帳號</label>
-			<input type="text" id="id-s-username" name="s_username">
+			<label for="id-cu-username">帳號</label>
+			<input type="text" id="id-cu-username" name="cu_username">
 		</div>
 		<div>
-			<label for="id-s-password">密碼</label>
-			<input type="password" id="id-s-password" name="s_password">
+			<label for="id-cu-password">密碼</label>
+			<input type="password" id="id-cu-password" name="cu_password">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="登入">

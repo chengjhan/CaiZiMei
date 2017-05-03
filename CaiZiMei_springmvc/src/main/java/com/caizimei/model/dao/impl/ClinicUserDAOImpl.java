@@ -77,6 +77,27 @@ public class ClinicUserDAOImpl implements ClinicUserDAO {
 	}
 
 	/**
+	 * 診所使用者信箱搜尋
+	 * 
+	 * @param cu_email-->診所使用者信箱
+	 * @return ClinicUserBean
+	 * @return null
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public ClinicUserBean selectByCu_email(String cu_email) {
+
+		List<ClinicUserBean> list = (List<ClinicUserBean>) hibernateTemplate
+				.findByNamedParam("from ClinicUserBean where cu_email=:cu_email", "cu_email", cu_email);
+
+		if (!list.isEmpty()) {
+
+			return list.get(0);
+		}
+		return null;
+	}
+
+	/**
 	 * 新增診所使用者
 	 * 
 	 * @param clinicUserBean-->ClinicUserBean

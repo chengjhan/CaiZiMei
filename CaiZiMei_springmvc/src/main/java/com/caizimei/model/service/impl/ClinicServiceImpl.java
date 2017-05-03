@@ -128,7 +128,7 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	/**
-	 * 切換診所顯示狀態
+	 * 切換顯示狀態
 	 * 
 	 * @param c_id-->診所流水號
 	 * @return ClinicBean

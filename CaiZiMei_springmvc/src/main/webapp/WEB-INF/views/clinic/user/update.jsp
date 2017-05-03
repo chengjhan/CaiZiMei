@@ -9,26 +9,26 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/service/specialist/update.do' />" method="post">
+	<form action="<c:url value='/clinic/user/update.do' />" method="post">
 		<div>
-			<label for="id-s-lastname">姓氏</label>
-			<input type="text" id="id-s-lastname" name="s_lastname" value="${service.s_lastname}">
+			<label for="id-cu-lastname">姓氏</label>
+			<input type="text" id="id-cu-lastname" name="cu_lastname" value="${clinic.cu_lastname}">
 		</div>
 		<div>
-			<label for="id-s-firstname">名字</label>
-			<input type="text" id="id-s-firstname" name="s_firstname" value="${service.s_firstname}">
+			<label for="id-cu-firstname">名字</label>
+			<input type="text" id="id-cu-firstname" name="cu_firstname" value="${clinic.cu_firstname}">
 		</div>
 		<div>
-			<label for="id-s-eng-name">英文名</label>
-			<input type="text" id="id-s-eng-name" name="s_eng_name" value="${service.s_eng_name}">
+			<label for="id-cu-eng-name">英文名</label>
+			<input type="text" id="id-cu-eng-name" name="cu_eng_name" value="${clinic.cu_eng_name}">
 		</div>
 		<div>
-			<label for="id-s-email">信箱</label>
-			<input type="text" id="id-s-email" name="s_email" value="${service.s_email}">
+			<label for="id-cu-email">信箱</label>
+			<input type="text" id="id-cu-email" name="cu_email" value="${clinic.cu_email}">
 		</div>
 		<div>
-			<label for="id-s-mobilephone">手機</label>
-			<input type="text" id="id-s-mobilephone" name="s_mobilephone" value="${service.s_mobilephone}">
+			<label for="id-cu-mobilephone">手機</label>
+			<input type="text" id="id-cu-mobilephone" name="cu_mobilephone" value="${clinic.cu_mobilephone}">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="修改">

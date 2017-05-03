@@ -10,35 +10,35 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/admin/specialist/sign-up.do' />" method="post">
+	<form action="<c:url value='/admin/clinic-user/sign-up.do' />" method="post">
 		<div>
-			<label for="id-s-username">帳號</label>
-			<input type="text" id="id-s-username" name="s_username">
-			<span id="id-s-usernams-span" style="color: red"></span>
+			<label for="id-cu-username">帳號</label>
+			<input type="text" id="id-cu-username" name="cu_username">
+			<span id="id-cu-usernams-span" style="color: red"></span>
 		</div>
 		<div>
-			<label for="id-s-password">密碼</label>
-			<input type="password" id="id-s-password" name="s_password">
+			<label for="id-cu-password">密碼</label>
+			<input type="password" id="id-cu-password" name="cu_password">
 		</div>
 		<div>
-			<label for="id-s-password-again">確認密碼</label>
-			<input type="password" id="id-s-password-again">
+			<label for="id-cu-password-again">確認密碼</label>
+			<input type="password" id="id-cu-password-again">
 		</div>
 		<div>
-			<label for="id-s-lastname">姓氏</label>
-			<input type="text" id="id-s-lastname" name="s_lastname">
+			<label for="id-cu-lastname">姓氏</label>
+			<input type="text" id="id-cu-lastname" name="cu_lastname">
 		</div>
 		<div>
-			<label for="id-s-firstname">名字</label>
-			<input type="text" id="id-s-firstname" name="s_firstname">
+			<label for="id-cu-firstname">名字</label>
+			<input type="text" id="id-cu-firstname" name="cu_firstname">
 		</div>
 		<div>
-			<label for="id-s-email">信箱</label>
-			<input type="text" id="id-s-email" name="s_email">
+			<label for="id-cu-email">信箱</label>
+			<input type="text" id="id-cu-email" name="cu_email">
 		</div>
 		<div>
-			<label for="id-s-c-id">診所</label>
-			<select id="id-s-c-id" name="s_c_id">
+			<label for="id-cu-c-id">診所</label>
+			<select id="id-cu-c-id" name="cu_c_id">
 				<option value="0">請選擇診所</option>
 			</select>
 		</div>
@@ -51,7 +51,7 @@
 			$.getJSON("${root}admin/clinic/select.ajax", function(data){
 				$.each(data, function(index, clinic){
 					var clinic_option = $("<option value=" + clinic.c_id + "></option>").append(clinic.c_name);
-					$("#id-s-c-id").append(clinic_option);
+					$("#id-cu-c-id").append(clinic_option);
 				});
 			});
 		});

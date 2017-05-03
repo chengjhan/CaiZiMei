@@ -12,31 +12,31 @@
 	<table border="1">
 		<tr>
 			<td>姓名</td>
-			<td>${service.s_lastname} ${service.s_firstname}</td>
+			<td>${clinic.cu_lastname} ${clinic.cu_firstname}</td>
 		</tr>
 		<tr>
 			<td>英文名</td>
-			<td>${service.s_eng_name}</td>
+			<td>${clinic.cu_eng_name}</td>
 		</tr>
 		<tr>
 			<td>信箱</td>
-			<td>${service.s_username}</td>
+			<td>${clinic.cu_username}</td>
 		</tr>
 		<tr>
 			<td>手機</td>
-			<td>${service.s_mobilephone}</td>
+			<td>${clinic.cu_mobilephone}</td>
 		</tr>
 		<tr>
 			<td>註冊時間</td>
-			<td>${service.s_signup_time}</td>
+			<td>${clinic.cu_signup_time}</td>
 		</tr>
 		<tr>
 			<td>登入次數</td>
-			<td>${service.s_signin_number}</td>
+			<td>${clinic.cu_signin_number}</td>
 		</tr>
 	</table>
 	<p>
-		<a href="${root}service/specialist/update">修改個人資料</a>
+		<a href="${root}clinic/user/update">修改個人資料</a>
 	</p>
 </body>
 </html>

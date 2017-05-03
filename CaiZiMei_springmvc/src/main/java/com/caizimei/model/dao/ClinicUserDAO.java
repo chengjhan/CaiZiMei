@@ -24,6 +24,8 @@ public interface ClinicUserDAO {
 	ClinicUserBean selectByCu_id(Integer cu_id);
 
 	ClinicUserBean selectByCu_username(String cu_username);
+	
+	ClinicUserBean selectByCu_email(String cu_email);
 
 	ClinicUserBean insert(ClinicUserBean clinicUserBean);
 

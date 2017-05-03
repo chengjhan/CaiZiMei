@@ -25,6 +25,8 @@ public interface ClinicUserService {
 
 	ClinicUserBean selectByCu_username(String cu_username);
 
+	ClinicUserBean selectByCu_email(String cu_email);
+
 	ClinicUserBean update(ClinicUserBean clinicUserBean);
 
 	ClinicUserBean updateCu_password(Integer cu_id, String cu_password_new, String cu_salt);

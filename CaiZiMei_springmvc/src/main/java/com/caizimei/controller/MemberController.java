@@ -179,7 +179,7 @@ public class MemberController {
 	 * 
 	 * @param session-->HttpSession
 	 * @param sessionStatus-->SessionStatus
-	 * @return /WEB-INF/views/user/secure/sign-in.jsp
+	 * @return /WEB-INF/views/user/index.jsp
 	 */
 	@RequestMapping(path = "/user/secure/sign-out.do", method = RequestMethod.GET)
 	public String signOutProcess(HttpSession session, SessionStatus sessionStatus) {
@@ -314,7 +314,7 @@ public class MemberController {
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/member/search.jsp
 	 */
-	@RequestMapping(path = "/admin/member/select.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/admin/member/search.do", method = RequestMethod.GET)
 	public String selectByMemberConditionsForAdminProcess(MemberBean memberBean, Model model) {
 
 		model.addAttribute("selectByMemberConditionsForAdmin",
@@ -332,7 +332,7 @@ public class MemberController {
 	 * @param model-->Model
 	 * @return /WEB-INF/views/agent/member/search.jsp
 	 */
-	@RequestMapping(path = "/agent/member/select.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/agent/member/search.do", method = RequestMethod.GET)
 	public String selectByMemberConditionsForAgentProcess(MemberBean memberBean,
 			@ModelAttribute("agent") AgentUserBean agent, Model model) {
 
@@ -350,7 +350,7 @@ public class MemberController {
 	 * @return 1-->已使用
 	 * @return 0-->未使用
 	 */
-	@RequestMapping(path = "/user/member/select-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(path = "/user/member/select-by-username.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String validateUsernameAjaxProcess(String m_username) {
 

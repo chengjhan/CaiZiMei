@@ -326,39 +326,6 @@ public class ViewsController {
 	}
 
 	/**
-	 * agent/employee/profile 視圖解析
-	 * 
-	 * @return /WEB-INF/views/agent/employee/profile.jsp
-	 */
-	@RequestMapping(value = "/agent/employee/profile", method = RequestMethod.GET)
-	public String agent_employee_profile() {
-
-		return "agent/employee/profile";
-	}
-
-	/**
-	 * agent/employee/update 視圖解析
-	 * 
-	 * @return /WEB-INF/views/agent/employee/update.jsp
-	 */
-	@RequestMapping(value = "/agent/employee/update", method = RequestMethod.GET)
-	public String agent_employee_update() {
-
-		return "agent/employee/update";
-	}
-
-	/**
-	 * agent/employee/update-password 視圖解析
-	 * 
-	 * @return /WEB-INF/views/agent/employee/update-password.jsp
-	 */
-	@RequestMapping(value = "/agent/employee/update-password", method = RequestMethod.GET)
-	public String agent_employee_updatePassword() {
-
-		return "agent/employee/update-password";
-	}
-
-	/**
 	 * agent/member/search 視圖解析
 	 * 
 	 * @return /WEB-INF/views/agent/member/search.jsp
@@ -400,6 +367,39 @@ public class ViewsController {
 	public String agent_secure_signIn() {
 
 		return "agent/secure/sign-in";
+	}
+
+	/**
+	 * agent/user/profile 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/user/profile.jsp
+	 */
+	@RequestMapping(value = "/agent/user/profile", method = RequestMethod.GET)
+	public String agent_user_profile() {
+
+		return "agent/user/profile";
+	}
+
+	/**
+	 * agent/user/update 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/user/update.jsp
+	 */
+	@RequestMapping(value = "/agent/user/update", method = RequestMethod.GET)
+	public String agent_user_update() {
+
+		return "agent/user/update";
+	}
+
+	/**
+	 * agent/user/update-password 視圖解析
+	 * 
+	 * @return /WEB-INF/views/agent/user/update-password.jsp
+	 */
+	@RequestMapping(value = "/agent/user/update-password", method = RequestMethod.GET)
+	public String agent_user_updatePassword() {
+
+		return "agent/user/update-password";
 	}
 
 	/**

@@ -19,10 +19,10 @@
 		<a href="${root}agent/secure/sign-out.do">登出</a>
 	</p>
 	<p>
-		<a href="${root}agent/employee/profile">個人資訊</a>
+		<a href="${root}agent/user/profile">個人資訊</a>
 	</p>
 	<p>
-		<a href="${root}agent/employee/update-password">修改密碼</a>
+		<a href="${root}agent/user/update-password">修改密碼</a>
 	</p>
 	<p>
 		<a href="${root}agent/member/search">會員搜尋</a>

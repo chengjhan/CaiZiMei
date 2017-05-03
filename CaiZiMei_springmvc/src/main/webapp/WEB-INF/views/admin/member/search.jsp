@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/admin/member/select.do' />" method="get">
+	<form action="<c:url value='/admin/member/search.do' />" method="get">
 		<div>
 			<label for="id-m-username">信箱</label>
 			<input type="text" id="id-m-username" name="m_username">

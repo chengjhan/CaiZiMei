@@ -44,7 +44,7 @@ public class PurchaseController {
 	 * @param model-->Model
 	 * @return /WEB-INF/views/user/purchase/search.jsp
 	 */
-	@RequestMapping(path = "/select.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/search.do", method = RequestMethod.GET)
 	public String selectProcess(@ModelAttribute("user") MemberBean user, Model model) {
 
 		model.addAttribute("purchaseList", purchaseService.selectByP_m_id(user.getM_id()));

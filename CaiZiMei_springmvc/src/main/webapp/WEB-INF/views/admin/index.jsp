@@ -43,13 +43,13 @@
 		<a href="${root}admin/clinic/search">診所搜尋</a>
 	</p>
 	<p>
-		<a href="${root}admin/specialist/sign-up">診所專員註冊</a>
+		<a href="${root}admin/clinic-user/sign-up">診所使用者註冊</a>
 	</p>
 	<p>
 		<a href="${root}admin/company/list.do">代理商</a>
 	</p>
 	<p>
-		<a href="${root}admin/employee/sign-up">代理商員工註冊</a>
+		<a href="${root}admin/agent-user/sign-up">代理商使用者註冊</a>
 	</p>
 	<p>
 		<a href="${root}admin/member/search">會員搜尋</a>

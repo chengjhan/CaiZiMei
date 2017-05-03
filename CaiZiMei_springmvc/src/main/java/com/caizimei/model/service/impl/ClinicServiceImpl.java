@@ -115,7 +115,7 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	/**
-	 * 修改診所資料
+	 * 修改資料
 	 * 
 	 * @param clinicBean-->ClinicBean
 	 * @return ClinicBean

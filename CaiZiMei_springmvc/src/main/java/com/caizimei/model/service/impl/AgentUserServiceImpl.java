@@ -116,7 +116,20 @@ public class AgentUserServiceImpl implements AgentUserService {
 	}
 
 	/**
-	 * 修改代理商使用者資料
+	 * 代理商使用者信箱搜尋
+	 * 
+	 * @param au_email-->代理商使用者信箱
+	 * @return AgentUserBean
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public AgentUserBean selectByAu_email(String au_email) {
+
+		return agentUserDAO.selectByAu_email(au_email);
+	}
+
+	/**
+	 * 修改資料
 	 * 
 	 * @param agentUserBean-->AgentUserBean
 	 * @return AgentUserBean
@@ -129,7 +142,7 @@ public class AgentUserServiceImpl implements AgentUserService {
 	}
 
 	/**
-	 * 修改代理商使用者密碼
+	 * 修改密碼
 	 * 
 	 * @param au_id-->代理商使用者流水號
 	 * @param au_password_new-->新密碼(原碼)

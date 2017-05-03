@@ -91,7 +91,7 @@ public class ClinicUserDAOImpl implements ClinicUserDAO {
 	}
 
 	/**
-	 * 修改診所使用者資料
+	 * 修改資料
 	 * 
 	 * @param newClinicUserBean-->ClinicUserBean
 	 * @return clinicUserBean-->ClinicUserBean
@@ -112,7 +112,7 @@ public class ClinicUserDAOImpl implements ClinicUserDAO {
 	}
 
 	/**
-	 * 修改診所使用者密碼
+	 * 修改密碼
 	 * 
 	 * @param cu_id-->診所使用者流水號
 	 * @param cu_password_new_hashed-->新密碼(雜湊)

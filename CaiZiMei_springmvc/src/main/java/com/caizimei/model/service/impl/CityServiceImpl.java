@@ -135,7 +135,7 @@ public class CityServiceImpl implements CityService {
 	}
 
 	/**
-	 * 修改城市資料
+	 * 修改資料
 	 * 
 	 * @param cityBean-->CityBean
 	 * @return CityBean

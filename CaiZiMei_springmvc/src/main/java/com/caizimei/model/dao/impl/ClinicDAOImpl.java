@@ -123,7 +123,7 @@ public class ClinicDAOImpl implements ClinicDAO {
 	}
 
 	/**
-	 * 修改診所資料
+	 * 修改資料
 	 * 
 	 * @param newClinicBean-->ClinicBean
 	 * @return clinicBean-->ClinicBean

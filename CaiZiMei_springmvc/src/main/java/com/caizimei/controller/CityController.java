@@ -80,7 +80,7 @@ public class CityController {
 	}
 
 	/**
-	 * 修改城市資訊
+	 * 修改資料
 	 * 
 	 * @param ci_co_id-->國家流水號
 	 * @param cityBean-->CityBean

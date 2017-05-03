@@ -102,7 +102,7 @@ public class CountryServiceImpl implements CountryService {
 	}
 
 	/**
-	 * 修改國家資料
+	 * 修改資料
 	 * 
 	 * @param countryBean-->CountryBean
 	 * @return CountryBean

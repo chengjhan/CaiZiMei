@@ -222,7 +222,7 @@ public class ClinicUserController {
 	}
 
 	/**
-	 * 修改診所使用者資料
+	 * 修改資料
 	 * 
 	 * @param service-->Session
 	 * @param clinicUserBean-->ClinicUserBean
@@ -238,7 +238,7 @@ public class ClinicUserController {
 	}
 
 	/**
-	 * 修改診所使用者密碼
+	 * 修改密碼
 	 * 
 	 * @param cu_password-->舊密碼(原碼)
 	 * @param cu_password_new-->新密碼(原碼)

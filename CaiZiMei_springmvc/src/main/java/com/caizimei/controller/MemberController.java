@@ -266,7 +266,7 @@ public class MemberController {
 	}
 
 	/**
-	 * 修改會員資料
+	 * 修改資料
 	 * 
 	 * @param user-->Session
 	 * @param memberBean-->MemberBean
@@ -282,7 +282,7 @@ public class MemberController {
 	}
 
 	/**
-	 * 修改會員密碼
+	 * 修改密碼
 	 * 
 	 * @param m_password-->舊密碼(原碼)
 	 * @param m_password_new-->新密碼(原碼)

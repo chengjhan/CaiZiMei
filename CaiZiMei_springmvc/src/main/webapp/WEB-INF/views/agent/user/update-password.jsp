@@ -8,18 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<c:url value='/agent/employee/update-password.do' />" method="post">
+	<form action="<c:url value='/agent/user/update-password.do' />" method="post">
 		<div>
-			<label for="id-e-password">舊密碼</label>
-			<input type="password" id="id-e-password" name="e_password">
+			<label for="id-au-password">舊密碼</label>
+			<input type="password" id="id-au-password" name="au_password">
 		</div>
 		<div>
-			<label for="id-e-password-new">新密碼</label>
-			<input type="password" id="id-e-password-new" name="e_password_new">
+			<label for="id-au-password-new">新密碼</label>
+			<input type="password" id="id-au-password-new" name="au_password_new">
 		</div>
 		<div>
-			<label for="id-e-password-new-again">新密碼</label>
-			<input type="password" id="id-e-password-new-again" name="e_password_new_again">
+			<label for="id-au-password-new-again">新密碼</label>
+			<input type="password" id="id-au-password-new-again" name="au_password_new_again">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="確定">

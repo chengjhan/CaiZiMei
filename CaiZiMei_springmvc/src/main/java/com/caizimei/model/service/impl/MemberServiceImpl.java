@@ -152,7 +152,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/**
-	 * 修改會員資料
+	 * 修改資料
 	 * 
 	 * @param memberBean-->MemberBean
 	 * @return MemberBean
@@ -165,7 +165,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/**
-	 * 修改會員密碼
+	 * 修改密碼
 	 * 
 	 * @param m_id-->會員流水號
 	 * @param m_password_new-->新密碼(原碼)

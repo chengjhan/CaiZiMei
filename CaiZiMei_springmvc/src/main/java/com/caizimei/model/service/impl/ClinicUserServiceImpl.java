@@ -116,7 +116,7 @@ public class ClinicUserServiceImpl implements ClinicUserService {
 	}
 
 	/**
-	 * 修改診所使用者資料
+	 * 修改資料
 	 * 
 	 * @param clinicUserBean-->ClinicUserBean
 	 * @return ClinicUserBean
@@ -129,7 +129,7 @@ public class ClinicUserServiceImpl implements ClinicUserService {
 	}
 
 	/**
-	 * 修改診所使用者密碼
+	 * 修改密碼
 	 * 
 	 * @param cu_id-->診所使用者流水號
 	 * @param cu_password_new-->新密碼(原碼)

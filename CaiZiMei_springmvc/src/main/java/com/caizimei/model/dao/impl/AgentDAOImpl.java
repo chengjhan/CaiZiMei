@@ -82,7 +82,7 @@ public class AgentDAOImpl implements AgentDAO {
 	}
 
 	/**
-	 * 修改代理商資料
+	 * 修改資料
 	 * 
 	 * @param newAgentBean-->AgentBean
 	 * @return agentBean-->AgentBean
@@ -100,7 +100,7 @@ public class AgentDAOImpl implements AgentDAO {
 	}
 
 	/**
-	 * 切換代理商顯示狀態
+	 * 切換顯示狀態
 	 * 
 	 * @param a_id-->代理商流水號
 	 * @return agentBean-->AgentBean

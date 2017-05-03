@@ -9,26 +9,26 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/agent/employee/update.do' />" method="post">
+	<form action="<c:url value='/agent/user/update.do' />" method="post">
 		<div>
-			<label for="id-e-lastname">姓氏</label>
-			<input type="text" id="id-e-lastname" name="e_lastname" value="${agent.e_lastname}">
+			<label for="id-au-lastname">姓氏</label>
+			<input type="text" id="id-au-lastname" name="au_lastname" value="${agent.au_lastname}">
 		</div>
 		<div>
-			<label for="id-e-firstname">名字</label>
-			<input type="text" id="id-e-firstname" name="e_firstname" value="${agent.e_firstname}">
+			<label for="id-au-firstname">名字</label>
+			<input type="text" id="id-au-firstname" name="au_firstname" value="${agent.au_firstname}">
 		</div>
 		<div>
-			<label for="id-e-eng-name">英文名</label>
-			<input type="text" id="id-e-eng-name" name="e_eng_name" value="${agent.e_eng_name}">
+			<label for="id-au-eng-name">英文名</label>
+			<input type="text" id="id-au-eng-name" name="au_eng_name" value="${agent.au_eng_name}">
 		</div>
 		<div>
-			<label for="id-e-email">信箱</label>
-			<input type="text" id="id-e-email" name="e_email" value="${agent.e_email}">
+			<label for="id-au-email">信箱</label>
+			<input type="text" id="id-au-email" name="au_email" value="${agent.au_email}">
 		</div>
 		<div>
-			<label for="id-e-mobilephone">手機</label>
-			<input type="text" id="id-e-mobilephone" name="e_mobilephone" value="${agent.e_mobilephone}">
+			<label for="id-au-mobilephone">手機</label>
+			<input type="text" id="id-au-mobilephone" name="au_mobilephone" value="${agent.au_mobilephone}">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="修改">

@@ -84,7 +84,7 @@ public class RegionController {
 	}
 
 	/**
-	 * 修改城市資訊
+	 * 修改資料
 	 * 
 	 * @param r_ci_id-->城市流水號
 	 * @param regionBean-->RegionBean

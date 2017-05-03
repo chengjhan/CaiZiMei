@@ -98,7 +98,7 @@ public class CityDAOImpl implements CityDAO {
 	}
 
 	/**
-	 * 修改城市資料
+	 * 修改資料
 	 * 
 	 * @param cityBean-->CityBean
 	 * @return cityBean-->CityBean

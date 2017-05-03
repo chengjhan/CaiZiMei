@@ -163,7 +163,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	/**
-	 * 修改會員資料
+	 * 修改資料
 	 * 
 	 * @param newMemberBean-->MemberBean
 	 * @return memberBean-->MemberBean
@@ -192,7 +192,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	/**
-	 * 修改會員密碼
+	 * 修改密碼
 	 * 
 	 * @param m_id-->會員流水號
 	 * @param m_password_new_hashed-->新密碼(雜湊)

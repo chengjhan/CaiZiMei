@@ -71,7 +71,7 @@ public class CountryController {
 	}
 
 	/**
-	 * 修改國家資訊
+	 * 修改資料
 	 * 
 	 * @param countryBean-->CountryBean
 	 * @param redirectAttributes-->RedirectAttributes

@@ -12,31 +12,31 @@
 	<table border="1">
 		<tr>
 			<td>姓名</td>
-			<td>${agent.e_lastname} ${agent.e_firstname}</td>
+			<td>${agent.au_lastname} ${agent.au_firstname}</td>
 		</tr>
 		<tr>
 			<td>英文名</td>
-			<td>${agent.e_eng_name}</td>
+			<td>${agent.au_eng_name}</td>
 		</tr>
 		<tr>
 			<td>信箱</td>
-			<td>${agent.e_username}</td>
+			<td>${agent.au_username}</td>
 		</tr>
 		<tr>
 			<td>手機</td>
-			<td>${agent.e_mobilephone}</td>
+			<td>${agent.au_mobilephone}</td>
 		</tr>
 		<tr>
 			<td>註冊時間</td>
-			<td>${agent.e_signup_time}</td>
+			<td>${agent.au_signup_time}</td>
 		</tr>
 		<tr>
 			<td>登入次數</td>
-			<td>${agent.e_signin_number}</td>
+			<td>${agent.au_signin_number}</td>
 		</tr>
 	</table>
 	<p>
-		<a href="${root}agent/employee/update">修改個人資料</a>
+		<a href="${root}agent/user/update">修改個人資料</a>
 	</p>
 </body>
 </html>

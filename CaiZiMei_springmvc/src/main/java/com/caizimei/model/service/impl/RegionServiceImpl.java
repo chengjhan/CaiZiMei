@@ -138,7 +138,7 @@ public class RegionServiceImpl implements RegionService {
 	}
 
 	/**
-	 * 修改區域資料
+	 * 修改資料
 	 * 
 	 * @param regionBean-->RegionBean
 	 * @return regionBean-->RegionBean

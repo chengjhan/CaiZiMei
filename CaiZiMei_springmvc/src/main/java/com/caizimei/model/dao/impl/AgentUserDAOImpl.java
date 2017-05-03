@@ -77,6 +77,27 @@ public class AgentUserDAOImpl implements AgentUserDAO {
 	}
 
 	/**
+	 * 代理商使用者信箱搜尋
+	 * 
+	 * @param au_email-->代理商使用者信箱
+	 * @return AgentUserBean
+	 * @return null
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public AgentUserBean selectByAu_email(String au_email) {
+
+		List<AgentUserBean> list = (List<AgentUserBean>) hibernateTemplate
+				.findByNamedParam("from AgentUserBean where au_email=:au_email", "au_email", au_email);
+
+		if (!list.isEmpty()) {
+
+			return list.get(0);
+		}
+		return null;
+	}
+
+	/**
 	 * 新增代理商使用者
 	 * 
 	 * @param agentUserBean-->AgentUserBean
@@ -91,7 +112,7 @@ public class AgentUserDAOImpl implements AgentUserDAO {
 	}
 
 	/**
-	 * 修改代理商使用者資料
+	 * 修改資料
 	 * 
 	 * @param newAgentUserBean-->AgentUserBean
 	 * @return agentUserBean-->AgentUserBean
@@ -112,7 +133,7 @@ public class AgentUserDAOImpl implements AgentUserDAO {
 	}
 
 	/**
-	 * 修改代理商使用者密碼
+	 * 修改密碼
 	 * 
 	 * @param au_id-->代理商使用者流水號
 	 * @param au_password_new_hashed-->新密碼(雜湊)

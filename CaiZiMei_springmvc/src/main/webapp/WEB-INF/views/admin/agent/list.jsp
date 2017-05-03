@@ -10,14 +10,14 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/admin/company/insert.do' />" method="post">
+	<form action="<c:url value='/admin/agent/insert.do' />" method="post">
 		<div>
-			<label for="id-com-name">公司</label>
-			<input type="text" id="id-com-name" name="com_name">
+			<label for="id-a-name">代理商</label>
+			<input type="text" id="id-a-name" name="a_name">
 		</div>
 		<div>
-			<label for="id-com-localphone">電話</label>
-			<input type="text" id="id-com-localphone" name="com_localphone">
+			<label for="id-a-localphone">電話</label>
+			<input type="text" id="id-a-localphone" name="a_localphone">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="新增">
@@ -39,26 +39,26 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${companyList}" varStatus="status">
-				<fmt:formatDate value="${bean.com_insert_time}" var="com_insert_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
-				<fmt:formatDate value="${bean.com_update_time}" var="com_update_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
-				<fmt:formatDate value="${bean.com_status_time}" var="com_status_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
-				<c:url value="/admin/company/update" var="path">
-					<c:param name="com_id" value="${bean.com_id}" />
-					<c:param name="com_name" value="${bean.com_name}" />
-					<c:param name="com_localphone" value="${bean.com_localphone}" />
+			<c:forEach var="bean" items="${agentList}" varStatus="status">
+				<fmt:formatDate value="${bean.a_insert_time}" var="a_insert_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.a_update_time}" var="a_update_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.a_status_time}" var="a_status_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
+				<c:url value="/admin/agent/update" var="path">
+					<c:param name="a_id" value="${bean.a_id}" />
+					<c:param name="a_name" value="${bean.a_name}" />
+					<c:param name="a_localphone" value="${bean.a_localphone}" />
 				</c:url>
 				<tr>
 					<td>${status.count}</td>
-					<td>${bean.com_id}</td>
-					<td>${bean.com_name}</td>
-					<td>${bean.com_localphone}</td>
-					<td>${com_insert_time_format}</td>
-					<td>${com_update_time_format}</td>
-					<td>${bean.com_status}</td>
-					<td>${com_status_time_format}</td>
+					<td>${bean.a_id}</td>
+					<td>${bean.a_name}</td>
+					<td>${bean.a_localphone}</td>
+					<td>${a_insert_time_format}</td>
+					<td>${a_update_time_format}</td>
+					<td>${bean.a_status}</td>
+					<td>${a_status_time_format}</td>
 					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}admin/company/update-status.do?com_id=${bean.com_id}">狀態</a></td>
+					<td><a href="${root}admin/agent/update-status.do?a_id=${bean.a_id}">狀態</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

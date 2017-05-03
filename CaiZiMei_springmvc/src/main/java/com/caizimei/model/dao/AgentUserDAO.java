@@ -25,6 +25,8 @@ public interface AgentUserDAO {
 
 	AgentUserBean selectByAu_username(String au_username);
 
+	AgentUserBean selectByAu_email(String au_email);
+
 	AgentUserBean insert(AgentUserBean agentUserBean);
 
 	AgentUserBean update(AgentUserBean agentUserBean);

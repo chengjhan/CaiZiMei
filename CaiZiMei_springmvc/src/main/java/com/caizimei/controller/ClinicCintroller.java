@@ -120,7 +120,7 @@ public class ClinicCintroller {
 	}
 
 	/**
-	 * 修改診所資訊
+	 * 修改資料
 	 * 
 	 * @param clinicBean-->ClinicBean
 	 * @param c_r_id-->區域流水號

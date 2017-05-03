@@ -84,7 +84,7 @@ public class CountryDAOImpl implements CountryDAO {
 	}
 
 	/**
-	 * 修改國家資料
+	 * 修改資料
 	 * 
 	 * @param countryBean-->CountryBean
 	 * @return countryBean-->CountryBean

@@ -9,17 +9,17 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/admin/company/update.do' />" method="post">
+	<form action="<c:url value='/admin/agent/update.do' />" method="post">
 		<div style="display: none">
-			<input type="text" id="id-com-id" name="com_id" value="${param.com_id}">
+			<input type="text" id="id-a-id" name="a_id" value="${param.a_id}">
 		</div>
 		<div>
-			<label for="id-com-name">公司</label>
-			<input type="text" id="id-com-name" name="com_name" value="${param.com_name}">
+			<label for="id-a-name">代理商</label>
+			<input type="text" id="id-a-name" name="a_name" value="${param.a_name}">
 		</div>
 		<div>
-			<label for="id-com-localphone">電話</label>
-			<input type="text" id="id-com-localphone" name="com_localphone" value="${param.com_localphone}">
+			<label for="id-a-localphone">電話</label>
+			<input type="text" id="id-a-localphone" name="a_localphone" value="${param.a_localphone}">
 		</div>
 		<div>
 			<input type="submit" id="id-submit" value="修改">

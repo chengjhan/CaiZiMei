@@ -25,6 +25,8 @@ public interface AgentUserService {
 
 	AgentUserBean selectByAu_username(String au_username);
 
+	AgentUserBean selectByAu_email(String au_email);
+
 	AgentUserBean update(AgentUserBean agentUserBean);
 
 	AgentUserBean updateAu_password(Integer au_id, String au_password_new, String au_salt);

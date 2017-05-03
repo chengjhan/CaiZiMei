@@ -36,6 +36,50 @@ public class ViewsController {
 	}
 
 	/**
+	 * admin/agent/list 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/agent/list.jsp
+	 */
+	@RequestMapping(value = "/admin/agent/list", method = RequestMethod.GET)
+	public String admin_agent_list() {
+
+		return "admin/agent/list";
+	}
+
+	/**
+	 * admin/agent/update 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/agent/update.jsp
+	 */
+	@RequestMapping(value = "/admin/agent/update", method = RequestMethod.GET)
+	public String admin_agent_update() {
+
+		return "admin/agent/update";
+	}
+
+	/**
+	 * admin/agent-user/search 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/agent-user/search.jsp
+	 */
+	@RequestMapping(value = "/admin/agent-user/search", method = RequestMethod.GET)
+	public String admin_agentUser_search() {
+
+		return "admin/agent-user/search";
+	}
+
+	/**
+	 * admin/agent-user/sign-up 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/agent-user/sign-up.jsp
+	 */
+	@RequestMapping(value = "/admin/agent-user/sign-up", method = RequestMethod.GET)
+	public String admin_agentUser_signUp() {
+
+		return "admin/agent-user/sign-up";
+	}
+
+	/**
 	 * admin/city/list 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/city/list.jsp
@@ -91,28 +135,6 @@ public class ViewsController {
 	}
 
 	/**
-	 * admin/company/list 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/company/list.jsp
-	 */
-	@RequestMapping(value = "/admin/company/list", method = RequestMethod.GET)
-	public String admin_company_list() {
-
-		return "admin/company/list";
-	}
-
-	/**
-	 * admin/company/update 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/company/update.jsp
-	 */
-	@RequestMapping(value = "/admin/company/update", method = RequestMethod.GET)
-	public String admin_company_update() {
-
-		return "admin/company/update";
-	}
-
-	/**
 	 * admin/country/list 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/country/list.jsp
@@ -132,28 +154,6 @@ public class ViewsController {
 	public String admin_country_update() {
 
 		return "admin/country/update";
-	}
-
-	/**
-	 * admin/employee/search 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/employee/search.jsp
-	 */
-	@RequestMapping(value = "/admin/employee/search", method = RequestMethod.GET)
-	public String admin_employee_search() {
-
-		return "admin/employee/search";
-	}
-
-	/**
-	 * admin/employee/sign-up 視圖解析
-	 * 
-	 * @return /WEB-INF/views/admin/employee/sign-up.jsp
-	 */
-	@RequestMapping(value = "/admin/employee/sign-up", method = RequestMethod.GET)
-	public String admin_employee_signUp() {
-
-		return "admin/employee/sign-up";
 	}
 
 	/**

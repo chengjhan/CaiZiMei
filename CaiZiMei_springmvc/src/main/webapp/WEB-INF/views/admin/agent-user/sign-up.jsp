@@ -10,35 +10,35 @@
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/admin/employee/sign-up.do' />" method="post">
+	<form action="<c:url value='/admin/agent-user/sign-up.do' />" method="post">
 		<div>
-			<label for="id-e-username">帳號</label>
-			<input type="text" id="id-e-username" name="e_username">
-			<span id="id-e-username-span" style="color: red"></span>
+			<label for="id-au-username">帳號</label>
+			<input type="text" id="id-au-username" name="au_username">
+			<span id="id-au-username-span" style="color: red"></span>
 		</div>
 		<div>
-			<label for="id-e-password">密碼</label>
-			<input type="password" id="id-e-password" name="e_password">
+			<label for="id-au-password">密碼</label>
+			<input type="password" id="id-au-password" name="au_password">
 		</div>
 		<div>
-			<label for="id-e-password-again">確認密碼</label>
-			<input type="password" id="id-e-password-again">
+			<label for="id-au-password-again">確認密碼</label>
+			<input type="password" id="id-au-password-again">
 		</div>
 		<div>
-			<label for="id-e-lastname">姓氏</label>
-			<input type="text" id="id-e-lastname" name="e_lastname">
+			<label for="id-au-lastname">姓氏</label>
+			<input type="text" id="id-au-lastname" name="au_lastname">
 		</div>
 		<div>
-			<label for="id-e-firstname">名字</label>
-			<input type="text" id="id-e-firstname" name="e_firstname">
+			<label for="id-au-firstname">名字</label>
+			<input type="text" id="id-au-firstname" name="au_firstname">
 		</div>
 		<div>
-			<label for="id-e-email">信箱</label>
-			<input type="text" id="id-e-email" name="e_email">
+			<label for="id-au-email">信箱</label>
+			<input type="text" id="id-au-email" name="au_email">
 		</div>
 		<div>
-			<label for="id-e-com-id">公司</label>
-			<select id="id-e-com-id" name="e_com_id">
+			<label for="id-au-a-id">代理商</label>
+			<select id="id-au-a-id" name="au_a_id">
 				<option value="0">請選擇公司</option>
 			</select>
 		</div>
@@ -48,10 +48,10 @@
 	</form>
 	<script>
 		$(document).ready(function(){
-			$.getJSON("${root}admin/company/select-by-status.ajax", function(data){
-				$.each(data, function(index, company){
-					var company_option = $("<option value=" + company.com_id + "></option>").append(company.com_name);
-					$("#id-e-com-id").append(company_option);
+			$.getJSON("${root}admin/agent/select-by-status.ajax", function(data){
+				$.each(data, function(index, agent){
+					var agent_option = $("<option value=" + agent.a_id + "></option>").append(agent.a_name);
+					$("#id-au-a-id").append(agent_option);
 				});
 			});
 		});

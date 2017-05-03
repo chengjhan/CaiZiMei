@@ -132,7 +132,7 @@ public class RegionDAOImpl implements RegionDAO {
 	}
 
 	/**
-	 * 修改區域資料
+	 * 修改資料
 	 * 
 	 * @param regionBean-->RegionBean
 	 * @return regionBean-->RegionBean

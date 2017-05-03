@@ -38,13 +38,13 @@
 		<a href="${root}user/purchase/search.do">訂購查詢</a>
 	</p>
 	<p>
-		<a href="${root}service/index">診所系統</a>
+		<a href="${root}clinic/index">診所系統</a>
 	</p>
 	<p>
 		<a href="${root}agent/index">代理商系統</a>
 	</p>
 	<p>
-		<a href="${root}admin/index">後台管理系統</a>
+		<a href="${root}admin/index">管理系統</a>
 	</p>
 </body>
 </html>

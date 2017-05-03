@@ -36,6 +36,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * admin/admin/list 視圖解析
+	 * 
+	 * @return /WEB-INF/views/admin/admin/list.jsp
+	 */
+	@RequestMapping(value = "/admin/admin/list", method = RequestMethod.GET)
+	public String admin_admin_list() {
+
+		return "admin/admin/list";
+	}
+
+	/**
 	 * admin/agent/list 視圖解析
 	 * 
 	 * @return /WEB-INF/views/admin/agent/list.jsp

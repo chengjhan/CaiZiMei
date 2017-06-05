@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/5/3
+ * Date: 2017/6/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -519,6 +519,17 @@ public class ViewsController {
 	/**
 	 * user
 	 */
+
+	/**
+	 * user/home 視圖解析
+	 * 
+	 * @return /WEB-INF/views/user/home.jsp
+	 */
+	@RequestMapping(value = "/user/home", method = RequestMethod.GET)
+	public String user_home() {
+
+		return "user/home";
+	}
 
 	/**
 	 * user/index 視圖解析

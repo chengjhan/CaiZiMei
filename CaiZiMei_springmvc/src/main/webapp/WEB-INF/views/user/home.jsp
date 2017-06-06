@@ -11,13 +11,13 @@ html, body {
 }
 
 #div-header {
-	width: 80%;
-	height: 64px;
+	width: 75%;
+	height: 54px;
+	margin: 0 auto;
 }
 
 #img-logo {
-	width: 50px;
-	geight: 50px;
+	height: 40px;
 	padding: 7px;
 }
 

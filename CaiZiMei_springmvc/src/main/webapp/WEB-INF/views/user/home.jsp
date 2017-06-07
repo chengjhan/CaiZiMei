@@ -10,52 +10,77 @@ html, body {
 	margin: 0;
 }
 
-#div-header {
+#header {
 	width: 75%;
 	height: 80px;
 	padding-bottom: 10px;
 	margin: 0 auto;
 }
 
-#img-logo {
+#div-logo {
 	height: 50px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	float: left;
+}
+
+#img-logo {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#div-title {
+	height: 25px;
+	margin-top: 27.5px;
+	margin-bottom: 27.5px;
+	margin-left: 7px;
 	float: left;
 }
 
 #img-title {
-	height: 25px;
-	padding-top: 27.5px;
-	padding-bottom: 27.5px;
-	padding-left: 5px;
+	max-width: 100%;
+	max-height: 100%;
 }
 
-#div-menu {
+#menu {
 	width: 100%;
-	height: 40px;
+	height: 35px;
 	background-color: #AA0000;
 }
 
-#div-menu-content {
+#div-menu {
 	width: 75%;
 	margin: 0 auto;
+	line-height: 35px;
+	text-align: center;
+}
+
+.menu-content {
+	color: white;
+	margin-right: 10px;
+	float: left;
+	display: inline-block;
 }
 </style>
 </head>
 <body>
-	<div id="div-header">
+	<div id="header">
 		<div id="div-logo">
-			<a><img id="img-logo" src="images/logo_101x100.png"></a>
+			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img id="img-logo" src="images/logo_101x100.png"></a>
 		</div>
 		<div id="div-title">
-			<img id="img-title" src="images/title_168x50.png">
+			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img id="img-title" src="images/title_168x50.png"></a>
 		</div>
 	</div>
-	<div id="div-menu">
-		<div id="div-menu-content">
-			<span>經營理念</span>|<span>公司願景</span>|<span>公司使命</span>|<span>事業版圖</span>
+	<div id="menu">
+		<div id="div-menu">
+			<a class="menu-content">經營理念</a>
+			<a class="menu-content">公司願景</a>
+			<a class="menu-content">公司使命</a>
+			<a class="menu-content">事業版圖</a>
 		</div>
 	</div>
+	<div id="page"></div>
+	<div id="footer"></div>
 </body>
 </html>

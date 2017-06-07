@@ -103,12 +103,8 @@ html, body {
 	</div>
 	<div id="page"></div>
 	<div id="footer">
-		<div id="div-footer-top">
-			
-		</div>
-		<div id="div-footer-bottom">
-		
-		</div>
+		<div id="div-footer-top"></div>
+		<div id="div-footer-bottom"></div>
 	</div>
 </body>
 </html>

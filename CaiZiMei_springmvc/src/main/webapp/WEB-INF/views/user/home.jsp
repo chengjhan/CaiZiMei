@@ -61,6 +61,27 @@ html, body {
 	float: left;
 	display: inline-block;
 }
+
+#page {
+	height: 500px;
+}
+
+#footer {
+	width: 100%;
+	height: 400px;
+}
+
+#div-footer-top {
+	width: 100%;
+	height: 35px;
+	background-color: #AA0000;
+	margin: 0 auto;
+}
+
+#div-footer-bottom {
+	height: 365px;
+	background-color: #AA0000;
+}
 </style>
 </head>
 <body>
@@ -81,6 +102,13 @@ html, body {
 		</div>
 	</div>
 	<div id="page"></div>
-	<div id="footer"></div>
+	<div id="footer">
+		<div id="div-footer-top">
+			
+		</div>
+		<div id="div-footer-bottom">
+		
+		</div>
+	</div>
 </body>
 </html>

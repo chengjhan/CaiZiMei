@@ -74,32 +74,39 @@ html, body {
 
 #div-footer-middle {
 	width: 100%;
-	height: 365px;
+	height: 150px;
 	background-color: #AA0000;
 }
 
 #div-footer-middle-content {
 	width: 75%;
-	height: 365px;
+	height: 150px;
 	margin: 0 auto;
 }
 
+#div-footer-middle-content-info {
+	float: right;
+}
+
 #div-footer-middle-content-mail {
-	margin-right: 100px;
-	float: left;
+	height: 40px;
+	margin-bottom: 5px;
 }
 
 #div-footer-middle-content-phone {
-	float: left;
+	height: 40px;
+	margin-bottom: 5px;
 }
 
 #div-footer-middle-content-location {
-	float: right;
+	height: 40px;
+	margin-bottom: 5px;
 }
 
 .div-icon {
 	width: 35px;
-	margin-right: 5px;
+	margin-top: 2.5px;
+	margin-right: 7.5px;
 	float: left;
 }
 
@@ -153,30 +160,48 @@ html, body {
 		<div id="div-footer-top"></div>
 		<div id="div-footer-middle">
 			<div id="div-footer-middle-content">
-				<div id="div-footer-middle-content-mail">
-					<div id="div-mail" class="div-icon">
-						<img class="img-icon" src="images/icon_mail_35x35.png">
-					</div>
-					<div class="div-text">
-						<p class="p-text">czmgoldvip@gmail.com</p>
-						<p class="p-text">czmgoldvip@qq.com</p>
-					</div>
+				<div id="div-footer-middle-content-menu">
+<!-- 					<div> -->
+<!-- 						<p>首頁</p> -->
+<!-- 					</div> -->
+<!-- 					<div> -->
+<!-- 						<p>經營理念</p> -->
+<!-- 						<p>公司願景</p> -->
+<!-- 						<p>公司使命</p> -->
+<!-- 						<p>事業版圖</p> -->
+<!-- 					</div> -->
 				</div>
-				<div id="div-footer-middle-content-phone">
-					<div id="div-phone" class="div-icon">
-						<img class="img-icon" src="images/icon_phone_35x35.png">
-					</div>
-					<div class="div-text">
-						<p class="p-text">+886-2-27562282</p>
-					</div>
+				<div id="div-footer-middle-content-sns">
+<!-- 					<div> -->
+<!-- 						<p>社群</p> -->
+<!-- 					</div> -->
 				</div>
-				<div id="div-footer-middle-content-location">
-					<div id="div-location" class="div-icon">
-						<img class="img-icon" src="images/icon_location_35x35.png">
+				<div id="div-footer-middle-content-info">
+					<div id="div-footer-middle-content-mail">
+						<div id="div-mail" class="div-icon">
+							<img class="img-icon" src="images/icon_mail_35x35.png">
+						</div>
+						<div class="div-text">
+							<p class="p-text">czmgoldvip@gmail.com</p>
+							<p class="p-text">czmgoldvip@qq.com</p>
+						</div>
 					</div>
-					<div class="div-text">
-						<p class="p-text">台北辦事處：台北市松山區南京東路五段223號13樓</p>
-						<p class="p-text">大陸總管理處：廣東省珠海市香洲區拱北情侶南路仁恒濱海中心1棟2單元1101</p>
+					<div id="div-footer-middle-content-phone">
+						<div id="div-phone" class="div-icon">
+							<img class="img-icon" src="images/icon_phone_35x35.png">
+						</div>
+						<div class="div-text">
+							<p class="p-text">+886-2-27562282</p>
+						</div>
+					</div>
+					<div id="div-footer-middle-content-location">
+						<div id="div-location" class="div-icon">
+							<img class="img-icon" src="images/icon_location_35x35.png">
+						</div>
+						<div class="div-text">
+							<p class="p-text">台北辦事處：台北市松山區南京東路五段223號13樓</p>
+							<p class="p-text">大陸總管理處：廣東省珠海市香洲區拱北情侶南路仁恒濱海中心1棟2單元1101</p>
+						</div>
 					</div>
 				</div>
 			</div>

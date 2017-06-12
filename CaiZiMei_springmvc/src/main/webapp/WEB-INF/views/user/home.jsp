@@ -66,21 +66,68 @@ html, body {
 	height: 500px;
 }
 
-#footer {
-	width: 100%;
-	height: 400px;
-}
-
 #div-footer-top {
 	width: 100%;
 	height: 35px;
 	background-color: #AA0000;
+}
+
+#div-footer-middle {
+	width: 100%;
+	height: 365px;
+	background-color: #AA0000;
+}
+
+#div-footer-middle-content {
+	width: 75%;
+	height: 365px;
 	margin: 0 auto;
 }
 
+#div-footer-middle-content-mail {
+	margin-right: 100px;
+	float: left;
+}
+
+#div-footer-middle-content-phone {
+	float: left;
+}
+
+#div-footer-middle-content-location {
+	float: right;
+}
+
+.div-icon {
+	width: 35px;
+	margin-right: 5px;
+	float: left;
+}
+
+.img-icon {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.div-text {
+	float: left;
+}
+
+.p-text {
+	color: white;
+	font-size: 14px;
+	margin: 0;
+}
+
 #div-footer-bottom {
-	height: 365px;
+	width: 100%;
+	height: 40px;
 	background-color: #AA0000;
+}
+
+#div-footer-bottom-content {
+	width: 75%;
+	border-top: gray 1px solid;
+	margin: 0 auto;
 }
 </style>
 </head>
@@ -104,7 +151,39 @@ html, body {
 	<div id="page"></div>
 	<div id="footer">
 		<div id="div-footer-top"></div>
-		<div id="div-footer-bottom"></div>
+		<div id="div-footer-middle">
+			<div id="div-footer-middle-content">
+				<div id="div-footer-middle-content-mail">
+					<div id="div-mail" class="div-icon">
+						<img class="img-icon" src="images/icon_mail_35x35.png">
+					</div>
+					<div class="div-text">
+						<p class="p-text">czmgoldvip@gmail.com</p>
+						<p class="p-text">czmgoldvip@qq.com</p>
+					</div>
+				</div>
+				<div id="div-footer-middle-content-phone">
+					<div id="div-phone" class="div-icon">
+						<img class="img-icon" src="images/icon_phone_35x35.png">
+					</div>
+					<div class="div-text">
+						<p class="p-text">+886-2-27562282</p>
+					</div>
+				</div>
+				<div id="div-footer-middle-content-location">
+					<div id="div-location" class="div-icon">
+						<img class="img-icon" src="images/icon_location_35x35.png">
+					</div>
+					<div class="div-text">
+						<p class="p-text">台北辦事處：台北市松山區南京東路五段223號13樓</p>
+						<p class="p-text">大陸總管理處：廣東省珠海市香洲區拱北情侶南路仁恒濱海中心1棟2單元1101</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="div-footer-bottom">
+			<div id="div-footer-bottom-content"></div>
+		</div>
 	</div>
 </body>
 </html>

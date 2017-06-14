@@ -64,17 +64,25 @@ html, body {
 
 #page {
 	height: 500px;
+	background-color: #DDDDDD;
+}
+
+#id-div-page-content {
+	width: 75%;
+	height: 500px;
+	background-color: white;
+	margin: 0 auto;
 }
 
 #id-div-footer-top {
 	width: 100%;
-	height: 35px;
+	height: 100px;
 	background-color: #AA0000;
 }
 
 #id-div-footer-middle {
 	width: 100%;
-	height: 150px;
+	height: 135px;
 	background-color: #AA0000;
 }
 
@@ -85,7 +93,16 @@ html, body {
 }
 
 #id-div-footer-middle-content-menu {
+	margin-right: 100px;
 	float: left;
+}
+
+#id-div-footer-middle-content-menu-title {
+	padding-bottom: 10px;
+}
+
+#id-div-footer-middle-content-sns-title {
+	padding-bottom: 10px;
 }
 
 #id-div-footer-middle-content-sns {
@@ -97,15 +114,15 @@ html, body {
 }
 
 #id-div-footer-middle-content-info-mail {
-	height: 45px;
+	height: 42.5px;
 }
 
 #id-div-footer-middle-content-info-phone {
-	height: 45px;
+	height: 42.5px;
 }
 
 #id-div-footer-middle-content-info-location {
-	height: 45px;
+	height: 42.5px;
 }
 
 .div-icon {
@@ -121,6 +138,18 @@ html, body {
 
 .div-text {
 	float: left;
+}
+
+.p-title {
+	color: white;
+	font-size: 16px;
+	margin: 0;
+}
+
+.p-sub {
+	color: white;
+	font-size: 14px;
+	margin:0;
 }
 
 .p-text {
@@ -139,6 +168,17 @@ html, body {
 	width: 75%;
 	border-top: gray 1px solid;
 	margin: 0 auto;
+}
+
+#id-div-footer-bottom-content-copyright {
+	margin-top: 12px;
+	display: inline;
+}
+
+.p-copyright {
+	color: white;
+	font-size: 12px;
+	display: inline;
 }
 </style>
 </head>
@@ -159,32 +199,36 @@ html, body {
 			<a class="menu-content">事業版圖</a>
 		</div>
 	</div>
-	<div id="page"></div>
+	<div id="page">
+		<div id="id-div-page-content">
+			
+		</div>
+	</div>
 	<div id="footer">
 		<div id="id-div-footer-top"></div>
 		<div id="id-div-footer-middle">
 			<div id="id-div-footer-middle-content">
 				<div id="id-div-footer-middle-content-menu">
-					<div>
-						<p>首頁</p>
+					<div id="id-div-footer-middle-content-menu-title">
+						<p class="p-title">首頁</p>
 					</div>
-					<div>
-						<p>經營理念</p>
-						<p>公司願景</p>
-						<p>公司使命</p>
-						<p>事業版圖</p>
+					<div id="id-div-footer-middle-content-menu-sub">
+						<p class="p-sub">經營理念</p>
+						<p class="p-sub">公司願景</p>
+						<p class="p-sub">公司使命</p>
+						<p class="p-sub">事業版圖</p>
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-sns">
-					<div>
-						<p>社群</p>
+					<div id="id-div-footer-middle-content-sns-title">
+						<p class="p-title">社群</p>
 					</div>
 					<div>
-						<div>
-							<img>
+						<div id="id-div-facebook" class="div-icon">
+							<img class="img-icon" src="images/icon_facebook_35x35.png">
 						</div>
-						<div>
-							<img>
+						<div id="id-div-line" class="div-icon">
+							<img class="img-icon" src="images/icon_line_35x35.png">
 						</div>
 					</div>
 				</div>
@@ -219,7 +263,11 @@ html, body {
 			</div>
 		</div>
 		<div id="id-div-footer-bottom">
-			<div id="id-div-footer-bottom-content"></div>
+			<div id="id-div-footer-bottom-content">
+				<div id="id-div-footer-bottom-content-copyright">
+					<p class="p-copyright">© 2017 FUNUV All rights reserved.</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

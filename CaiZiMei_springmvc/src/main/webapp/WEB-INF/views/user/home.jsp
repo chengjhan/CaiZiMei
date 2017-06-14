@@ -17,19 +17,19 @@ html, body {
 	margin: 0 auto;
 }
 
-#div-logo {
+#id-div-logo {
 	height: 50px;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	float: left;
 }
 
-#img-logo {
+#id-img-logo {
 	max-width: 100%;
 	max-height: 100%;
 }
 
-#div-title {
+#id-div-title {
 	height: 25px;
 	margin-top: 27.5px;
 	margin-bottom: 27.5px;
@@ -37,7 +37,7 @@ html, body {
 	float: left;
 }
 
-#img-title {
+#id-img-title {
 	max-width: 100%;
 	max-height: 100%;
 }
@@ -48,7 +48,7 @@ html, body {
 	background-color: #AA0000;
 }
 
-#div-menu {
+#id-div-menu {
 	width: 75%;
 	margin: 0 auto;
 	line-height: 35px;
@@ -66,46 +66,50 @@ html, body {
 	height: 500px;
 }
 
-#div-footer-top {
+#id-div-footer-top {
 	width: 100%;
 	height: 35px;
 	background-color: #AA0000;
 }
 
-#div-footer-middle {
+#id-div-footer-middle {
 	width: 100%;
 	height: 150px;
 	background-color: #AA0000;
 }
 
-#div-footer-middle-content {
+#id-div-footer-middle-content {
 	width: 75%;
 	height: 150px;
 	margin: 0 auto;
 }
 
-#div-footer-middle-content-info {
+#id-div-footer-middle-content-menu {
+	float: left;
+}
+
+#id-div-footer-middle-content-sns {
+	float: left;
+}
+
+#id-div-footer-middle-content-info {
 	float: right;
 }
 
-#div-footer-middle-content-mail {
-	height: 40px;
-	margin-bottom: 5px;
+#id-div-footer-middle-content-info-mail {
+	height: 45px;
 }
 
-#div-footer-middle-content-phone {
-	height: 40px;
-	margin-bottom: 5px;
+#id-div-footer-middle-content-info-phone {
+	height: 45px;
 }
 
-#div-footer-middle-content-location {
-	height: 40px;
-	margin-bottom: 5px;
+#id-div-footer-middle-content-info-location {
+	height: 45px;
 }
 
 .div-icon {
 	width: 35px;
-	margin-top: 2.5px;
 	margin-right: 7.5px;
 	float: left;
 }
@@ -121,17 +125,17 @@ html, body {
 
 .p-text {
 	color: white;
-	font-size: 14px;
+	font-size: 12px;
 	margin: 0;
 }
 
-#div-footer-bottom {
+#id-div-footer-bottom {
 	width: 100%;
 	height: 40px;
 	background-color: #AA0000;
 }
 
-#div-footer-bottom-content {
+#id-div-footer-bottom-content {
 	width: 75%;
 	border-top: gray 1px solid;
 	margin: 0 auto;
@@ -140,15 +144,15 @@ html, body {
 </head>
 <body>
 	<div id="header">
-		<div id="div-logo">
-			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img id="img-logo" src="images/logo_101x100.png"></a>
+		<div id="id-div-logo">
+			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img id="id-img-logo" src="images/logo_101x100.png"></a>
 		</div>
-		<div id="div-title">
-			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img id="img-title" src="images/title_168x50.png"></a>
+		<div id="id-div-title">
+			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img id="id-img-title" src="images/title_168x50.png"></a>
 		</div>
 	</div>
 	<div id="menu">
-		<div id="div-menu">
+		<div id="id-div-menu">
 			<a class="menu-content">經營理念</a>
 			<a class="menu-content">公司願景</a>
 			<a class="menu-content">公司使命</a>
@@ -157,28 +161,36 @@ html, body {
 	</div>
 	<div id="page"></div>
 	<div id="footer">
-		<div id="div-footer-top"></div>
-		<div id="div-footer-middle">
-			<div id="div-footer-middle-content">
-				<div id="div-footer-middle-content-menu">
-<!-- 					<div> -->
-<!-- 						<p>首頁</p> -->
-<!-- 					</div> -->
-<!-- 					<div> -->
-<!-- 						<p>經營理念</p> -->
-<!-- 						<p>公司願景</p> -->
-<!-- 						<p>公司使命</p> -->
-<!-- 						<p>事業版圖</p> -->
-<!-- 					</div> -->
+		<div id="id-div-footer-top"></div>
+		<div id="id-div-footer-middle">
+			<div id="id-div-footer-middle-content">
+				<div id="id-div-footer-middle-content-menu">
+					<div>
+						<p>首頁</p>
+					</div>
+					<div>
+						<p>經營理念</p>
+						<p>公司願景</p>
+						<p>公司使命</p>
+						<p>事業版圖</p>
+					</div>
 				</div>
-				<div id="div-footer-middle-content-sns">
-<!-- 					<div> -->
-<!-- 						<p>社群</p> -->
-<!-- 					</div> -->
+				<div id="id-div-footer-middle-content-sns">
+					<div>
+						<p>社群</p>
+					</div>
+					<div>
+						<div>
+							<img>
+						</div>
+						<div>
+							<img>
+						</div>
+					</div>
 				</div>
-				<div id="div-footer-middle-content-info">
-					<div id="div-footer-middle-content-mail">
-						<div id="div-mail" class="div-icon">
+				<div id="id-div-footer-middle-content-info">
+					<div id="id-div-footer-middle-content-info-mail">
+						<div id="id-div-mail" class="div-icon">
 							<img class="img-icon" src="images/icon_mail_35x35.png">
 						</div>
 						<div class="div-text">
@@ -186,16 +198,16 @@ html, body {
 							<p class="p-text">czmgoldvip@qq.com</p>
 						</div>
 					</div>
-					<div id="div-footer-middle-content-phone">
-						<div id="div-phone" class="div-icon">
+					<div id="id-div-footer-middle-content-info-phone">
+						<div id="id-div-phone" class="div-icon">
 							<img class="img-icon" src="images/icon_phone_35x35.png">
 						</div>
 						<div class="div-text">
 							<p class="p-text">+886-2-27562282</p>
 						</div>
 					</div>
-					<div id="div-footer-middle-content-location">
-						<div id="div-location" class="div-icon">
+					<div id="id-div-footer-middle-content-info-location">
+						<div id="id-div-location" class="div-icon">
 							<img class="img-icon" src="images/icon_location_35x35.png">
 						</div>
 						<div class="div-text">
@@ -206,8 +218,8 @@ html, body {
 				</div>
 			</div>
 		</div>
-		<div id="div-footer-bottom">
-			<div id="div-footer-bottom-content"></div>
+		<div id="id-div-footer-bottom">
+			<div id="id-div-footer-bottom-content"></div>
 		</div>
 	</div>
 </body>

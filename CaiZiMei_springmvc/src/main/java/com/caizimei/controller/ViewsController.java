@@ -585,6 +585,17 @@ public class ViewsController {
 
 		return "user/member/update-password";
 	}
+	
+	/**
+	 * user/menu/idea 視圖解析
+	 * 
+	 * @return /WEB-INF/views/user/menu/idea.jsp
+	 */
+	@RequestMapping(value = "/user/menu/idea", method = RequestMethod.GET)
+	public String user_menu_idea() {
+
+		return "user/menu/idea";
+	}
 
 	/**
 	 * user/purchase/order 視圖解析

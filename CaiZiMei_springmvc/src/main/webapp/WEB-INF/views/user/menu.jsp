@@ -10,7 +10,7 @@
 <body>
 	<div id="menu">
 		<div id="id-div-menu">
-			<a class="menu-content">經營理念</a>
+			<a href="http://localhost:8080/CaiZiMei_springmvc/user/menu/idea" class="menu-content">經營理念</a>
 			<a class="menu-content">公司願景</a>
 			<a class="menu-content">公司使命</a>
 			<a class="menu-content">事業版圖</a>

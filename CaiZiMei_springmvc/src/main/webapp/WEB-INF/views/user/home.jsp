@@ -4,193 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/home.css">
 <title>采姿美</title>
-<style>
-html, body {
-	margin: 0;
-}
-
-#header {
-	width: 75%;
-	height: 80px;
-	padding-bottom: 10px;
-	margin: 0 auto;
-}
-
-#id-div-logo {
-	height: 50px;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	float: left;
-}
-
-#id-img-logo {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-#id-div-title {
-	height: 25px;
-	margin-top: 27.5px;
-	margin-bottom: 27.5px;
-	margin-left: 7px;
-	float: left;
-}
-
-#id-img-title {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-#menu {
-	width: 100%;
-	height: 35px;
-	background-color: #AA0000;
-}
-
-#id-div-menu {
-	width: 75%;
-	margin: 0 auto;
-	line-height: 35px;
-	text-align: center;
-}
-
-.menu-content {
-	color: white;
-	margin-right: 10px;
-	float: left;
-	display: inline-block;
-}
-
-#page {
-	height: 500px;
-	background-color: #DDDDDD;
-}
-
-#id-div-page-content {
-	width: 75%;
-	height: 500px;
-	background-color: white;
-	margin: 0 auto;
-}
-
-#id-div-footer-top {
-	width: 100%;
-	height: 100px;
-	background-color: #AA0000;
-}
-
-#id-div-footer-middle {
-	width: 100%;
-	height: 135px;
-	background-color: #AA0000;
-}
-
-#id-div-footer-middle-content {
-	width: 75%;
-	height: 150px;
-	margin: 0 auto;
-}
-
-#id-div-footer-middle-content-menu {
-	margin-right: 100px;
-	float: left;
-}
-
-#id-div-footer-middle-content-menu-title {
-	padding-bottom: 10px;
-}
-
-#id-div-footer-middle-content-sns-title {
-	padding-bottom: 10px;
-}
-
-#id-div-footer-middle-content-sns {
-	float: left;
-}
-
-#id-div-footer-middle-content-info {
-	float: right;
-}
-
-#id-div-footer-middle-content-info-mail {
-	height: 42.5px;
-}
-
-#id-div-footer-middle-content-info-phone {
-	height: 42.5px;
-}
-
-#id-div-footer-middle-content-info-location {
-	height: 42.5px;
-}
-
-.div-icon {
-	width: 35px;
-	margin-right: 7.5px;
-	float: left;
-}
-
-.img-icon {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-.div-text {
-	float: left;
-}
-
-.p-title {
-	color: white;
-	font-size: 16px;
-	margin: 0;
-}
-
-.p-sub {
-	color: white;
-	font-size: 14px;
-	margin:0;
-}
-
-.p-text {
-	color: white;
-	font-size: 12px;
-	margin: 0;
-}
-
-#id-div-footer-bottom {
-	width: 100%;
-	height: 40px;
-	background-color: #AA0000;
-}
-
-#id-div-footer-bottom-content {
-	width: 75%;
-	border-top: gray 1px solid;
-	margin: 0 auto;
-}
-
-#id-div-footer-bottom-content-copyright {
-	margin-top: 12px;
-	display: inline;
-}
-
-.p-copyright {
-	color: white;
-	font-size: 12px;
-	display: inline;
-}
-</style>
 </head>
 <body>
+<!-- header -->
 	<div id="header">
 		<div id="id-div-logo">
-			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img id="id-img-logo" src="images/logo_101x100.png"></a>
+			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img class="img-icon" src="images/logo_101x100.png"></a>
 		</div>
 		<div id="id-div-title">
-			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img id="id-img-title" src="images/title_168x50.png"></a>
+			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img class="img-icon" src="images/title_168x50.png"></a>
 		</div>
 	</div>
+	
+<!-- menu -->
 	<div id="menu">
 		<div id="id-div-menu">
 			<a class="menu-content">經營理念</a>
@@ -199,17 +27,23 @@ html, body {
 			<a class="menu-content">事業版圖</a>
 		</div>
 	</div>
+	
+<!-- page -->
 	<div id="page">
 		<div id="id-div-page-content">
 			
 		</div>
 	</div>
+	
+<!-- footer -->
 	<div id="footer">
-		<div id="id-div-footer-top"></div>
+		<div id="id-div-footer-top">
+		
+		</div>
 		<div id="id-div-footer-middle">
 			<div id="id-div-footer-middle-content">
 				<div id="id-div-footer-middle-content-menu">
-					<div id="id-div-footer-middle-content-menu-title">
+					<div id="id-div-footer-middle-content-menu-title" class="div-footer-title">
 						<p class="p-title">首頁</p>
 					</div>
 					<div id="id-div-footer-middle-content-menu-sub">
@@ -220,7 +54,7 @@ html, body {
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-sns">
-					<div id="id-div-footer-middle-content-sns-title">
+					<div id="id-div-footer-middle-content-sns-title" class="div-footer-title">
 						<p class="p-title">社群</p>
 					</div>
 					<div>
@@ -233,7 +67,10 @@ html, body {
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-info">
-					<div id="id-div-footer-middle-content-info-mail">
+					<div id="id-div-footer-middle-content-info-title" class="div-footer-title">
+						<p class="p-title">資訊</p>
+					</div>
+					<div id="id-div-footer-middle-content-info-mail" class="div-info">
 						<div id="id-div-mail" class="div-icon">
 							<img class="img-icon" src="images/icon_mail_35x35.png">
 						</div>
@@ -242,7 +79,7 @@ html, body {
 							<p class="p-text">czmgoldvip@qq.com</p>
 						</div>
 					</div>
-					<div id="id-div-footer-middle-content-info-phone">
+					<div id="id-div-footer-middle-content-info-phone" class="div-info">
 						<div id="id-div-phone" class="div-icon">
 							<img class="img-icon" src="images/icon_phone_35x35.png">
 						</div>
@@ -250,7 +87,7 @@ html, body {
 							<p class="p-text">+886-2-27562282</p>
 						</div>
 					</div>
-					<div id="id-div-footer-middle-content-info-location">
+					<div id="id-div-footer-middle-content-info-location" class="div-info">
 						<div id="id-div-location" class="div-icon">
 							<img class="img-icon" src="images/icon_location_35x35.png">
 						</div>

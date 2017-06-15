@@ -1,0 +1,23 @@
+#header {
+	width: 75%;
+	height: 80px;
+	padding-bottom: 10px;
+	margin: 0 auto;
+}
+
+#id-div-logo {
+	height: 50px;
+	margin: 15px 0px 15px 0px;
+	float: left;
+}
+
+#id-div-title {
+	height: 25px;
+	margin: 27.5px 0px 27.5px 7px;
+	float: left;
+}
+
+.img-icon {
+	max-width: 100%;
+	max-height: 100%;
+}

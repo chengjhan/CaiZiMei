@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/footer.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/footer.css">
 <title>footer</title>
 </head>
 <body>
@@ -29,10 +29,10 @@
 					</div>
 					<div>
 						<div id="id-div-facebook" class="div-icon">
-							<img class="img-icon" src="images/icon_facebook_35x35.png">
+							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_facebook_35x35.png">
 						</div>
 						<div id="id-div-line" class="div-icon">
-							<img class="img-icon" src="images/icon_line_35x35.png">
+							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_line_35x35.png">
 						</div>
 					</div>
 				</div>
@@ -42,7 +42,7 @@
 					</div>
 					<div id="id-div-footer-middle-content-info-mail" class="div-info">
 						<div id="id-div-mail" class="div-icon">
-							<img class="img-icon" src="images/icon_mail_35x35.png">
+							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_mail_35x35.png">
 						</div>
 						<div class="div-text">
 							<p class="p-text">czmgoldvip@gmail.com</p>
@@ -51,7 +51,7 @@
 					</div>
 					<div id="id-div-footer-middle-content-info-phone" class="div-info">
 						<div id="id-div-phone" class="div-icon">
-							<img class="img-icon" src="images/icon_phone_35x35.png">
+							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_phone_35x35.png">
 						</div>
 						<div class="div-text">
 							<p class="p-text">+886-2-27562282</p>
@@ -59,7 +59,7 @@
 					</div>
 					<div id="id-div-footer-middle-content-info-location" class="div-info">
 						<div id="id-div-location" class="div-icon">
-							<img class="img-icon" src="images/icon_location_35x35.png">
+							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_location_35x35.png">
 						</div>
 						<div class="div-text">
 							<p class="p-text">台北辦事處：台北市松山區南京東路五段223號13樓</p>

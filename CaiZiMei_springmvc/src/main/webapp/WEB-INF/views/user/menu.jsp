@@ -4,16 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/menu.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/menu.css">
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="menu">
 		<div id="id-div-menu">
-			<a href="http://localhost:8080/CaiZiMei_springmvc/user/menu/idea" class="menu-content">經營理念</a>
-			<a class="menu-content">公司願景</a>
-			<a class="menu-content">公司使命</a>
-			<a class="menu-content">事業版圖</a>
+			<a href="<%=request.getContextPath()%>/user/menu/idea" class="menu-content">經營理念</a>
+			<a href="<%=request.getContextPath()%>/user/menu/vision" class="menu-content">公司願景</a>
+			<a href="<%=request.getContextPath()%>/user/menu/mission" class="menu-content">公司使命</a>
+			<a href="<%=request.getContextPath()%>/user/menu/territory" class="menu-content">事業版圖</a>
 		</div>
 	</div>
 </body>

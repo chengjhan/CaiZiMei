@@ -5,17 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/header.css">
 <title>header</title>
 </head>
 <body>
-	<c:url value="/" var="root" />
 	<div id="header">
 		<div id="id-div-logo">
-			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img class="img-icon" src="${root}images/logo_101x100.png"></a>
+			<a href="<%=request.getContextPath()%>/"><img class="img-icon" src="<%=request.getContextPath()%>/images/logo_101x100.png"></a>
 		</div>
 		<div id="id-div-title">
-			<a href="http://localhost:8080/CaiZiMei_springmvc/"><img class="img-icon" src="${root}images/title_168x50.png"></a>
+			<a href="<%=request.getContextPath()%>/"><img class="img-icon" src="<%=request.getContextPath()%>/images/title_168x50.png"></a>
 		</div>
 	</div>
 </body>

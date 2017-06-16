@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/6/5
+ * Date: 2017/6/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -595,6 +595,39 @@ public class ViewsController {
 	public String user_menu_idea() {
 
 		return "user/menu/idea";
+	}
+	
+	/**
+	 * user/menu/vision 視圖解析
+	 * 
+	 * @return /WEB-INF/views/user/menu/vision.jsp
+	 */
+	@RequestMapping(value = "/user/menu/vision", method = RequestMethod.GET)
+	public String user_menu_vision() {
+
+		return "user/menu/vision";
+	}
+	
+	/**
+	 * user/menu/mission 視圖解析
+	 * 
+	 * @return /WEB-INF/views/user/menu/mission.jsp
+	 */
+	@RequestMapping(value = "/user/menu/mission", method = RequestMethod.GET)
+	public String user_menu_mission() {
+
+		return "user/menu/mission";
+	}
+	
+	/**
+	 * user/menu/territory 視圖解析
+	 * 
+	 * @return /WEB-INF/views/user/menu/territory.jsp
+	 */
+	@RequestMapping(value = "/user/menu/territory", method = RequestMethod.GET)
+	public String user_menu_territory() {
+
+		return "user/menu/territory";
 	}
 
 	/**

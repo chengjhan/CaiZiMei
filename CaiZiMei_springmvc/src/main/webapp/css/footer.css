@@ -78,8 +78,25 @@
 
 .p-sub {
 	font-size: 14px;
-	color: white;
 	margin: 0px 0px 5px 0px;
+}
+
+.a-sub:link {
+	color: white;
+	text-decoration: none;
+}
+
+.a-sub:visited {
+	color: white;
+}
+
+.a-sub:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.a-sub:active {
+	color: white;
 }
 
 .p-text {

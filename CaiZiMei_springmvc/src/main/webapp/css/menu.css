@@ -11,9 +11,27 @@
 	text-align: center;
 }
 
-.menu-content {
-	color: white;
+.a-menu {
+	color:white;
 	margin-right: 10px;
 	display: inline-block;
 	float: left;
+}
+
+.a-menu:link {
+	color: white;
+	text-decoration: none;
+}
+
+.a-menu:visited {
+	color: white;
+}
+
+.a-menu:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.a-menu:active {
+	color: white;
 }

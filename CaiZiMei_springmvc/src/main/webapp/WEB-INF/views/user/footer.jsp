@@ -17,10 +17,10 @@
 						<p class="p-title">首頁</p>
 					</div>
 					<div id="id-div-footer-middle-content-menu-sub">
-						<p class="p-sub">經營理念</p>
-						<p class="p-sub">公司願景</p>
-						<p class="p-sub">公司使命</p>
-						<p class="p-sub">事業版圖</p>
+						<p class="p-sub"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-sub">經營理念</a></p>
+						<p class="p-sub"><a href="<%=request.getContextPath()%>/user/menu/vision" class="a-sub">公司願景</a></p>
+						<p class="p-sub"><a href="<%=request.getContextPath()%>/user/menu/mission" class="a-sub">公司使命</a></p>
+						<p class="p-sub"><a href="<%=request.getContextPath()%>/user/menu/territory" class="a-sub">事業版圖</a></p>
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-sns">

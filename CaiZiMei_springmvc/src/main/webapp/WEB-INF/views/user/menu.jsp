@@ -10,10 +10,10 @@
 <body>
 	<div id="menu">
 		<div id="id-div-menu">
-			<a href="<%=request.getContextPath()%>/user/menu/idea" class="menu-content">經營理念</a>
-			<a href="<%=request.getContextPath()%>/user/menu/vision" class="menu-content">公司願景</a>
-			<a href="<%=request.getContextPath()%>/user/menu/mission" class="menu-content">公司使命</a>
-			<a href="<%=request.getContextPath()%>/user/menu/territory" class="menu-content">事業版圖</a>
+			<a href="<%=request.getContextPath()%>/user/menu/idea" class="a-menu">經營理念</a>
+			<a href="<%=request.getContextPath()%>/user/menu/vision" class="a-menu">公司願景</a>
+			<a href="<%=request.getContextPath()%>/user/menu/mission" class="a-menu">公司使命</a>
+			<a href="<%=request.getContextPath()%>/user/menu/territory" class="a-menu">事業版圖</a>
 		</div>
 	</div>
 </body>

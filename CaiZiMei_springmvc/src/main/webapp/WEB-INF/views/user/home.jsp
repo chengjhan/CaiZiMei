@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/all.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/home.css">
-<title>采姿美</title>
+<title>采姿美 - 首頁</title>
 </head>
 <body>
 <!-- header -->

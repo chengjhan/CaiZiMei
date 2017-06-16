@@ -81,6 +81,24 @@
 	margin: 0px 0px 5px 0px;
 }
 
+.a-title:link {
+	color: white;
+	text-decoration: none;
+}
+
+.a-title:visited {
+	color: white;
+}
+
+.a-title:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.a-title:active {
+	color: white;
+}
+
 .a-sub:link {
 	color: white;
 	text-decoration: none;

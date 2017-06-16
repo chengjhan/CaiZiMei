@@ -14,7 +14,7 @@
 			<div id="id-div-footer-middle-content">
 				<div id="id-div-footer-middle-content-menu">
 					<div id="id-div-footer-middle-content-menu-title" class="div-footer-title">
-						<p class="p-title">首頁</p>
+						<p class="p-title"><a href="<%=request.getContextPath()%>/" class="a-title">首頁</a></p>
 					</div>
 					<div id="id-div-footer-middle-content-menu-sub">
 						<p class="p-sub"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-sub">經營理念</a></p>

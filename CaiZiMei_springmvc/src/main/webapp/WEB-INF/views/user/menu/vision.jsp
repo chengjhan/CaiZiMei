@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/all.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/vision.css">
 <title>Insert title here</title>
 </head>

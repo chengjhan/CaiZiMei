@@ -15,7 +15,7 @@
 	<jsp:include page="header.jsp" />
 	
 <!-- menu -->
-	<c:import url="menu.jsp"/>
+	<c:import url="menu.jsp" />
 	
 <!-- page -->
 	<div id="page">
@@ -25,6 +25,6 @@
 	</div>
 	
 <!-- footer -->
-	<c:import url="footer.jsp"/>
+	<c:import url="footer.jsp" />
 </body>
 </html>

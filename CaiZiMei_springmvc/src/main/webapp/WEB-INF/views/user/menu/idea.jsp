@@ -16,6 +16,13 @@
 	
 <!-- menu -->
 	<c:import url="../menu.jsp" />
+	
+<!-- page -->
+	<div id="page">
+		<div id="id-div-page-content">
+			<p class="p-content">采姿美會員平台是以互聯網的架構而成立，提共給會員方便、快速、正確及優良的抗老及醫療常識。集結了優質的診所，讓會員隨時隨地都可傭有優質的諮詢通路，同時公司也創造出優良的產品，以滿足會員抗老及健康的需求。</p>
+		</div>
+	</div>
 
 <!-- footer -->
 	<c:import url="../footer.jsp" />

@@ -16,6 +16,13 @@
 	
 <!-- menu -->
 	<c:import url="../menu.jsp" />
+	
+<!-- page -->
+	<div id="page">
+		<div id="id-div-page-content">
+			
+		</div>
+	</div>
 
 <!-- footer -->
 	<c:import url="../footer.jsp" />

@@ -16,6 +16,13 @@
 	
 <!-- menu -->
 	<c:import url="../menu.jsp" />
+	
+<!-- page -->
+	<div id="page">
+		<div id="id-div-page-content">
+			<p class="p-content">創造優良獨特的產品及模式，以滿足會員抗老及健康的需求。</p>
+		</div>
+	</div>
 
 <!-- footer -->
 	<c:import url="../footer.jsp" />

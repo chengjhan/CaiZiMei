@@ -38,7 +38,7 @@
 				</div>
 				<div id="id-div-footer-middle-content-info">
 					<div id="id-div-footer-middle-content-info-title" class="div-footer-title">
-						<p class="p-title">資訊</p>
+						<p class="p-title">聯絡我們</p>
 					</div>
 					<div id="id-div-footer-middle-content-info-mail" class="div-info">
 						<div id="id-div-mail" class="div-icon">

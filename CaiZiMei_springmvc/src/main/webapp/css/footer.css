@@ -14,6 +14,7 @@
 	width: 75%;
 	padding: 10px 0px 10px 0px;
 	border-top: gray 1px solid;
+	border-bottom: gray 1px solid;
 	margin: 0 auto;
 	overflow: hidden; /* 符合子元素高度 */
 }
@@ -24,6 +25,11 @@
 }
 
 #id-div-footer-middle-content-sns {
+	margin-right: 90px;
+	float: left;
+}
+
+#id-div-footer-middle-content-clinic {
 	float: left;
 }
 
@@ -39,8 +45,7 @@
 
 #id-div-footer-bottom-content {
 	width: 75%;
-	height: 39px;
-	border-top: gray 1px solid;
+	height: 40px;
 	margin: 0 auto;
 }
 
@@ -51,11 +56,22 @@
 
 .div-info {
 	height: 43px;
+/* 	text-align: center; */
+	
 }
-
+/*
+.div-info::before {
+	content: "";
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+*/
 .div-icon {
 	width: 35px;
 	margin-right: 7.5px;
+	position: relative; /* 垂直置中 */
+	top: calc(50% - 17.5px); /* 垂直置中 */
 	float: left;
 }
 
@@ -66,6 +82,9 @@
 
 .div-text {
 	float: left;
+/* 	display: inline-block; */
+/* 	vertical-align: middle; */
+	line-height: 43px;
 }
 
 .div-footer-title {
@@ -79,7 +98,7 @@
 }
 
 .p-sub {
-	font-size: 15px;
+	font-size: 14px;
 	margin: 0px 0px 5px 0px;
 }
 

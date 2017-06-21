@@ -36,6 +36,20 @@
 						</div>
 					</div>
 				</div>
+				<div id="id-div-footer-middle-content-clinic">
+					<div id="id-div-footer-middle-content-menu-title" class="div-footer-title">
+						<p class="p-title"><a href="<%=request.getContextPath()%>/" class="a-title">診所</a></p>
+					</div>
+					<div id="id-div-footer-middle-content-menu-sub">
+						<p class="p-sub"><a href="" class="a-sub">好萊塢診所</a></p>
+						<p class="p-sub"><a href="" class="a-sub">何彬彬牙醫診所</a></p>
+						<p class="p-sub"><a href="" class="a-sub">法泊時尚診所</a></p>
+						<p class="p-sub"><a href="" class="a-sub">曼星醫美診所</a></p>
+						<p class="p-sub"><a href="" class="a-sub">喬雅時尚診所</a></p>
+						<p class="p-sub"><a href="" class="a-sub">晶鑽時尚診所</a></p>
+						<p class="p-sub"><a href="" class="a-sub">璀燦精品牙醫診所</a></p>		
+					</div>
+				</div>
 				<div id="id-div-footer-middle-content-info">
 					<div id="id-div-footer-middle-content-info-title" class="div-footer-title">
 						<p class="p-title">聯絡我們</p>
@@ -46,7 +60,7 @@
 						</div>
 						<div class="div-text">
 							<p class="p-text">czmgoldvip@gmail.com</p>
-							<p class="p-text">czmgoldvip@qq.com</p>
+<!-- 							<p class="p-text">czmgoldvip@qq.com</p> -->
 						</div>
 					</div>
 					<div id="id-div-footer-middle-content-info-phone" class="div-info">
@@ -63,7 +77,7 @@
 						</div>
 						<div class="div-text">
 							<p class="p-text">台北辦事處：台北市松山區南京東路五段223號13樓</p>
-							<p class="p-text">大陸總管理處：廣東省珠海市香洲區拱北情侶南路仁恒濱海中心1棟2單元1101</p>
+<!-- 							<p class="p-text">大陸總管理處：廣東省珠海市香洲區拱北情侶南路仁恒濱海中心1棟2單元1101</p> -->
 						</div>
 					</div>
 				</div>

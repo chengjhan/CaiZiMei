@@ -41,13 +41,13 @@
 						<p class="p-title"><a href="<%=request.getContextPath()%>/" class="a-title">診所</a></p>
 					</div>
 					<div id="id-div-footer-middle-content-menu-sub">
-						<p class="p-sub"><a href="" class="a-sub">好萊塢診所</a></p>
-						<p class="p-sub"><a href="" class="a-sub">何彬彬牙醫診所</a></p>
-						<p class="p-sub"><a href="" class="a-sub">法泊時尚診所</a></p>
-						<p class="p-sub"><a href="" class="a-sub">曼星醫美診所</a></p>
-						<p class="p-sub"><a href="" class="a-sub">喬雅時尚診所</a></p>
-						<p class="p-sub"><a href="" class="a-sub">晶鑽時尚診所</a></p>
-						<p class="p-sub"><a href="" class="a-sub">璀燦精品牙醫診所</a></p>		
+						<p class="p-sub"><a href="http://hollywood.tw" target="_blank" class="a-sub">好萊塢診所</a></p>
+						<p class="p-sub"><a href="http://1637.tw/07-2270748/" target="_blank" class="a-sub">何彬彬牙醫診所</a></p>
+						<p class="p-sub"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-sub">法泊時尚診所</a></p>
+						<p class="p-sub"><a href="http://www.twinkle-clinic.tw" target="_blank" class="a-sub">曼星醫美診所</a></p>
+						<p class="p-sub"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-sub">喬雅時尚診所</a></p>
+						<p class="p-sub"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-sub">晶鑽時尚診所</a></p>
+						<p class="p-sub"><a href="http://www.dazzlingdental.com.tw" target="_blank" class="a-sub">璀燦精品牙醫診所</a></p>		
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-info">

@@ -6,16 +6,22 @@
 
 #id-div-menu {
 	width: 75%;
+	height: 100%;
 	line-height: 40px;
 	margin: 0 auto;
 	text-align: center;
 }
 
-.a-menu {
-	font-size: 16px;
-	color:white;
-	margin-right: 30px;
-	display: inline-block;
+.ul-menu {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.li-menu {
+	margin-right: 50px;
+	display: inline;
 	float: left;
 }
 
@@ -34,5 +40,10 @@
 }
 
 .a-menu:active {
+	color: white;
+}
+
+.span-menu {
+	font-size: 16px;
 	color: white;
 }

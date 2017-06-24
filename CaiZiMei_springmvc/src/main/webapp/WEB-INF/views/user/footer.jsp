@@ -9,7 +9,11 @@
 </head>
 <body>
 	<div id="footer">
-		<div id="id-div-footer-top"></div>
+		<div id="id-div-footer-top">
+			<div id="id-div-footer-top-content">
+				<span class="span-breadcrumb">采姿美國際股份有限公司</span>
+			</div>
+		</div>
 		<div id="id-div-footer-middle">
 			<div id="id-div-footer-middle-content">
 				<div id="id-div-footer-middle-content-menu">
@@ -17,10 +21,20 @@
 						<p class="p-title"><a href="<%=request.getContextPath()%>/" class="a-title">首頁</a></p>
 					</div>
 					<div id="id-div-footer-middle-content-menu-sub">
-						<p class="p-sub"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-sub">經營理念</a></p>
-						<p class="p-sub"><a href="<%=request.getContextPath()%>/user/menu/vision" class="a-sub">公司願景</a></p>
-						<p class="p-sub"><a href="<%=request.getContextPath()%>/user/menu/mission" class="a-sub">公司使命</a></p>
-						<p class="p-sub"><a href="<%=request.getContextPath()%>/user/menu/territory" class="a-sub">事業版圖</a></p>
+						<ul class="ul-sub">
+							<li class="li-sub">
+								<a href="<%=request.getContextPath()%>/user/menu/idea" class="a-sub"><span class="span-sub">經營理念</span></a>
+							</li>
+							<li class="li-sub">
+								<a href="<%=request.getContextPath()%>/user/menu/vision" class="a-sub"><span class="span-sub">公司願景</span></a>
+							</li>
+							<li class="li-sub">
+								<a href="<%=request.getContextPath()%>/user/menu/mission" class="a-sub"><span class="span-sub">公司使命</span></a>
+							</li>
+							<li class="li-sub">
+								<a href="<%=request.getContextPath()%>/user/menu/territory" class="a-sub"><span class="span-sub">事業版圖</span></a>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-sns">
@@ -41,13 +55,29 @@
 						<p class="p-title"><a href="<%=request.getContextPath()%>/" class="a-title">診所</a></p>
 					</div>
 					<div id="id-div-footer-middle-content-menu-sub">
-						<p class="p-sub"><a href="http://hollywood.tw" target="_blank" class="a-sub">好萊塢診所</a></p>
-						<p class="p-sub"><a href="http://1637.tw/07-2270748/" target="_blank" class="a-sub">何彬彬牙醫診所</a></p>
-						<p class="p-sub"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-sub">法泊時尚診所</a></p>
-						<p class="p-sub"><a href="http://www.twinkle-clinic.tw" target="_blank" class="a-sub">曼星醫美診所</a></p>
-						<p class="p-sub"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-sub">喬雅時尚診所</a></p>
-						<p class="p-sub"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-sub">晶鑽時尚診所</a></p>
-						<p class="p-sub"><a href="http://www.dazzlingdental.com.tw" target="_blank" class="a-sub">璀燦精品牙醫診所</a></p>		
+						<ul class="ul-sub">
+							<li class="li-sub">
+								<a href="http://hollywood.tw" target="_blank" class="a-sub"><span class="span-sub">好萊塢診所</span></a>
+							</li>
+							<li class="li-sub">
+								<a href="http://1637.tw/07-2270748/" target="_blank" class="a-sub"><span class="span-sub">何彬彬牙醫診所</span></a>
+							</li>
+							<li class="li-sub">
+								<a href="http://www.fabulous-clinic.com" target="_blank" class="a-sub"><span class="span-sub">法泊時尚診所</span></a>
+							</li>
+							<li class="li-sub">
+								<a href="http://www.twinkle-clinic.tw" target="_blank" class="a-sub"><span class="span-sub">曼星醫美診所</span></a>
+							</li>
+							<li class="li-sub">
+								<a href="http://www.joya-beauty.com.tw" target="_blank" class="a-sub"><span class="span-sub">喬雅時尚診所</span></a>
+							</li>
+							<li class="li-sub">
+								<a href="http://diamondcosmetic.com.tw" target="_blank" class="a-sub"><span class="span-sub">晶鑽時尚診所</span></a>
+							</li>
+							<li class="li-sub">
+								<a href="http://www.dazzlingdental.com.tw" target="_blank" class="a-sub"><span class="span-sub">璀燦精品牙醫診所</span></a>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-info">

@@ -8,31 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="menu">
+	<nav>
 		<div id="id-div-menu">
 			<ul class="ul-menu">
-				<li class="li-menu">
-					<a href="<%=request.getContextPath()%>/user/menu/idea" class="a-menu">
-						<span class="span-menu">經營理念</span>
-					</a>
-				</li>
-				<li class="li-menu">
-					<a href="<%=request.getContextPath()%>/user/menu/vision" class="a-menu">
-						<span class="span-menu">公司願景</span>
-					</a>
-				</li>
-				<li class="li-menu">
-					<a href="<%=request.getContextPath()%>/user/menu/mission" class="a-menu">
-						<span class="span-menu">公司使命</span>
-					</a>
-				</li>
-				<li class="li-menu">
-					<a href="<%=request.getContextPath()%>/user/menu/territory" class="a-menu">
-						<span class="span-menu">事業版圖</span>
-					</a>
-				</li>
+				<li class="li-menu"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-menu"><span class="span-menu">經營理念</span></a></li>
+				<li class="li-menu"><a href="<%=request.getContextPath()%>/user/menu/vision" class="a-menu"><span class="span-menu">公司願景</span></a></li>
+				<li class="li-menu"><a href="<%=request.getContextPath()%>/user/menu/mission" class="a-menu"><span class="span-menu">公司使命</span></a></li>
+				<li class="li-menu"><a href="<%=request.getContextPath()%>/user/menu/territory" class="a-menu"><span class="span-menu">事業版圖</span></a></li>
 			</ul>
 		</div>
-	</div>
+	</nav>
 </body>
 </html>

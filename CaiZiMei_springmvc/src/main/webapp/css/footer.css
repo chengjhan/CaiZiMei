@@ -10,9 +10,16 @@ footer {
 
 #id-div-footer-top-content {
 	width: 75%;
-	height: 100px;
+	height: 100%;
 	line-height: 60px;
 	margin: 0 auto;
+}
+
+#id-div-footer-top-content-logo {
+	height: 32px;
+	margin-top: 14px;
+	margin-right: 5px;
+	float: left;
 }
 
 #id-div-footer-middle {
@@ -27,20 +34,6 @@ footer {
 	border-bottom: gray 1px solid;
 	margin: 0 auto;
 	overflow: hidden; /* 符合子元素高度 */
-}
-
-#id-div-footer-middle-content-menu {
-	margin-right: 100px;
-	float: left;
-}
-
-#id-div-footer-middle-content-sns {
-	margin-right: 90px;
-	float: left;
-}
-
-#id-div-footer-middle-content-clinic {
-	float: left;
 }
 
 #id-div-footer-middle-content-info {
@@ -66,6 +59,11 @@ footer {
 .span-breadcrumb {
 	font-size: 16px;
 	color: white;
+}
+
+.div-footer-content-middle-left {
+	width: 125px;
+	float: left;
 }
 
 .div-info {

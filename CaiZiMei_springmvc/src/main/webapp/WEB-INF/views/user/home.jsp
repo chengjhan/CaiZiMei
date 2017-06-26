@@ -20,9 +20,7 @@
 <!-- main -->
 	<div id="main">
 		<section id="section-1">
-			<img src="https://www.apple.com/ac/globalnav/3/zh_TW/images/globalnav/apple/image_large.svg">
-			<img src="<%=request.getContextPath()%>/images/logo_132x131.svg">
-			<img src="<%=request.getContextPath()%>/images/logo_white_132x131.svg">
+
 		</section>
 		<section id="section-2">
 			

@@ -11,12 +11,15 @@
 	<footer>
 		<div id="id-div-footer-top">
 			<div id="id-div-footer-top-content">
+				<div id="id-div-footer-top-content-logo">
+					<img class="img-icon" src="<%=request.getContextPath()%>/images/logo_white_132x131.svg">
+				</div>
 				<span class="span-breadcrumb">采姿美國際股份有限公司</span>
 			</div>
 		</div>
 		<div id="id-div-footer-middle">
 			<div id="id-div-footer-middle-content">
-				<div id="id-div-footer-middle-content-menu">
+				<div id="id-div-footer-middle-content-menu" class="div-footer-content-middle-left">
 					<div id="id-div-footer-middle-content-menu-title" class="div-footer-title">
 						<p class="p-title"><a href="<%=request.getContextPath()%>/" class="a-title">首頁</a></p>
 					</div>
@@ -29,20 +32,17 @@
 						</ul>
 					</div>
 				</div>
-				<div id="id-div-footer-middle-content-sns">
+				<div id="id-div-footer-middle-content-sns" class="div-footer-content-middle-left">
 					<div id="id-div-footer-middle-content-sns-title" class="div-footer-title">
 						<p class="p-title">社群</p>
 					</div>
 					<div>
 						<div id="id-div-facebook" class="div-icon">
-							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_facebook_35x35.png">
-						</div>
-						<div id="id-div-line" class="div-icon">
-							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_line_35x35.png">
+							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_facebook_512x512.svg">
 						</div>
 					</div>
 				</div>
-				<div id="id-div-footer-middle-content-clinic">
+				<div id="id-div-footer-middle-content-clinic" class="div-footer-content-middle-left">
 					<div id="id-div-footer-middle-content-menu-title" class="div-footer-title">
 						<p class="p-title">診所</p>
 					</div>
@@ -64,7 +64,7 @@
 					</div>
 					<div id="id-div-footer-middle-content-info-mail" class="div-info">
 						<div id="id-div-mail" class="div-icon">
-							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_mail_35x35.png">
+							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_mail_white_512x512.svg">
 						</div>
 						<div class="div-text">
 							<p class="p-text">czmgoldvip@gmail.com</p>
@@ -73,7 +73,7 @@
 					</div>
 					<div id="id-div-footer-middle-content-info-phone" class="div-info">
 						<div id="id-div-phone" class="div-icon">
-							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_phone_35x35.png">
+							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_phone_white_512x512.svg">
 						</div>
 						<div class="div-text">
 							<p class="p-text">+886-2-27562282</p>
@@ -81,7 +81,7 @@
 					</div>
 					<div id="id-div-footer-middle-content-info-location" class="div-info">
 						<div id="id-div-location" class="div-icon">
-							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_location_35x35.png">
+							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_location_white_512x512.svg">
 						</div>
 						<div class="div-text">
 							<p class="p-text">台北辦事處：台北市松山區南京東路五段223號13樓</p>

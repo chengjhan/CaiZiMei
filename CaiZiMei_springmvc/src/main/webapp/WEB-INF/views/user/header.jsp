@@ -12,7 +12,7 @@
 	<header>
 		<div id="id-div-header">
 			<div id="id-div-logo">
-				<a href="<%=request.getContextPath()%>/"><img class="img-icon" src="<%=request.getContextPath()%>/images/logo_all_700x150.png"></a>
+				<a href="<%=request.getContextPath()%>/"><img class="img-icon" src="<%=request.getContextPath()%>/images/logo_132x131.svg"></a>
 			</div>
 		</div>
 	</header>

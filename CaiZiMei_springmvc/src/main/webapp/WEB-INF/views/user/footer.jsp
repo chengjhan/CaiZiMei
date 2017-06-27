@@ -14,9 +14,11 @@
 		<div id="id-div-footer-top">
 			<div id="id-div-footer-top-content">
 				<div id="id-div-footer-top-content-logo">
-					<img class="img-icon" src="<%=request.getContextPath()%>/images/logo_white_132x131.svg">
+					<a href="<%=request.getContextPath()%>/"><img class="img-icon" src="<%=request.getContextPath()%>/images/logo_white_132x131.svg"></a>
 				</div>
-				<span class="span-breadcrumb">采姿美國際股份有限公司</span>
+				<div>
+					<a class="a-sub" href="<%=request.getContextPath()%>/"><span class="span-breadcrumb">采姿美國際股份有限公司</span></a>
+				</div>
 			</div>
 		</div>
 		<div id="id-div-footer-middle">

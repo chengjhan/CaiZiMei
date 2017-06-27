@@ -11,17 +11,43 @@ header {
 
 #id-div-logo {
 	height: 60px;
-	margin: 15px 0px 15px 0px;
 	float: left;
+	position: relative; /* 垂直置中 */
+	top: calc(50% - 30px); /* 垂直置中 */
 }
 
 #id-div-title {
-	height: 25px;
-	margin: 27.5px 0px 27.5px 7px;
+	margin-left: 5px;
 	float: left;
+	position: relative; /* 垂直置中 */
+	top: calc(50% - 20px); /* 垂直置中 */
 }
 
 .img-icon {
 	max-width: 100%;
 	max-height: 100%;
+}
+
+.span-title {
+	font-size: 26px;
+	font-weight: 800;
+	color: black;
+}
+
+.a-title:active {
+	color: black;
+}
+
+.a-title:link {
+	color: black;
+	text-decoration: none;
+}
+
+.a-title:visited {
+	color: black;
+}
+
+.a-title:hover {
+	color: black;
+	text-decoration: none;
 }

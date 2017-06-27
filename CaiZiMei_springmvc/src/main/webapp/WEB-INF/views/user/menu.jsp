@@ -6,15 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/menu.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/menu.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<nav>
 		<div id="id-div-menu">
 			<ul class="ul-menu">
-				<li class="li-menu"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-menu"><span class="span-menu">經營理念</span></a></li>
-				<li class="li-menu"><a href="<%=request.getContextPath()%>/user/menu/vision" class="a-menu"><span class="span-menu">公司願景</span></a></li>
-				<li class="li-menu"><a href="<%=request.getContextPath()%>/user/menu/mission" class="a-menu"><span class="span-menu">公司使命</span></a></li>
-				<li class="li-menu"><a href="<%=request.getContextPath()%>/user/menu/territory" class="a-menu"><span class="span-menu">事業版圖</span></a></li>
+				<li class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-menu"><span class="span-menu">經營理念</span></a></li>
+				<li class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/vision" class="a-menu"><span class="span-menu">公司願景</span></a></li>
+				<li class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/mission" class="a-menu"><span class="span-menu">公司使命</span></a></li>
+				<li class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/territory" class="a-menu"><span class="span-menu">事業版圖</span></a></li>
+				<li class="li-menu li-menu-right"><a href="<%=request.getContextPath()%>/user/secure/sign-in" class="a-menu"><span class="span-menu">登入</span></a></li>
+				<li class="li-menu li-menu-right"><a href="<%=request.getContextPath()%>/user/member/sign-up" class="a-menu"><span class="span-menu">註冊</span></a></li>
 			</ul>
 		</div>
 	</nav>

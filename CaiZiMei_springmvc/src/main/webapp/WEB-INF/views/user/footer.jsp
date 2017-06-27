@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/footer.css">
 <title>footer</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/footer.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/footer.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<footer>
@@ -38,7 +40,7 @@
 					</div>
 					<div>
 						<div id="id-div-facebook" class="div-icon">
-							<img class="img-icon" src="<%=request.getContextPath()%>/images/icon_facebook_512x512.svg">
+							<img id="id-img-facebook" class="img-icon" src="<%=request.getContextPath()%>/images/icon_facebook_512x512.svg">
 						</div>
 					</div>
 				</div>

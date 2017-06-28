@@ -24,7 +24,7 @@
 		<div id="id-div-footer-middle">
 			<div id="id-div-footer-middle-content">
 				<div id="id-div-footer-middle-content-menu" class="div-footer-content-middle-left">
-					<div id="id-div-footer-middle-content-menu-title" class="div-footer-title">
+					<div id="id-div-footer-middle-content-menu-title" class="div-catalog">
 						<a href="<%=request.getContextPath()%>/" class="a-catalog"><span class="span-catalog">首頁</span></a>
 					</div>
 					<div id="id-div-footer-middle-content-menu-sub">
@@ -37,13 +37,13 @@
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-sns" class="div-footer-content-middle-left">
-					<div id="id-div-footer-middle-content-sns-title" class="div-footer-title">
+					<div id="id-div-footer-middle-content-sns-title" class="div-catalog">
 						<span class="span-catalog">社群</span>
 					</div>
 					<div>
 						<div id="id-div-facebook">
-							<!-- facebook icon -->
-							<a href="https://www.facebook.com/" target="_blank">							
+							<a href="https://www.facebook.com/" target="_blank">
+								<!-- facebook icon svg -->							
 								<svg id="id-svg-facebook" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
 									<g>
 										<path d="M612,306C612,137.004,474.995,0,306,0C137.004,0,0,137.004,0,306c0,168.995,137.004,306,306,306    C474.995,612,612,474.995,612,306z M27.818,306C27.818,152.36,152.36,27.818,306,27.818S584.182,152.36,584.182,306    S459.64,584.182,306,584.182S27.818,459.64,27.818,306z" fill="#CCCCCC"/>
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-clinic" class="div-footer-content-middle-left">
-					<div id="id-div-footer-middle-content-menu-title" class="div-footer-title">
+					<div id="id-div-footer-middle-content-menu-title" class="div-catalog">
 						<span class="span-catalog">診所</span>
 					</div>
 					<div id="id-div-footer-middle-content-menu-sub">
@@ -71,7 +71,7 @@
 					</div>
 				</div>
 				<div id="id-div-footer-middle-content-info">
-					<div id="id-div-footer-middle-content-info-title" class="div-footer-title">
+					<div id="id-div-footer-middle-content-info-title" class="div-catalog">
 						<span class="span-catalog">聯絡我們</span>
 					</div>
 					<div id="id-div-footer-middle-content-info-mail" class="div-info">

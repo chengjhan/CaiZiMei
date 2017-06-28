@@ -11,16 +11,16 @@ header {
 
 #id-div-logo {
 	height: 60px;
-	float: left;
 	position: relative; /* 垂直置中 */
 	top: calc(50% - 30px); /* 垂直置中 */
+	float: left;
 }
 
 #id-div-title {
 	margin-left: 5px;
-	float: left;
 	position: relative; /* 垂直置中 */
 	top: calc(50% - 20px); /* 垂直置中 */
+	float: left;
 }
 
 .img-icon {
@@ -30,7 +30,7 @@ header {
 
 .span-title {
 	font-size: 26px;
-	font-weight: 800;
+	font-weight: 800; /* 粗細 */
 	color: black;
 }
 

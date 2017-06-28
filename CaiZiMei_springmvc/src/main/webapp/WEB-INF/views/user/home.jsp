@@ -9,6 +9,9 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/all.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/home.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJznZ1ht-uJFa-tBJBpYYtzQ2609ba2Eg&callback=initMap" async defer></script>
+<script src="<%=request.getContextPath()%>/js/home.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <!-- header -->
@@ -23,7 +26,7 @@
 
 		</section>
 		<section id="section-2">
-			
+			<div id="id-map"></div>
 		</section>
 		<section id="section-3">
 			

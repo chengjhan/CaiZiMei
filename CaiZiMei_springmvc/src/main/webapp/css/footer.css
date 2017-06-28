@@ -29,7 +29,7 @@ footer {
 
 #id-div-footer-middle-content {
 	width: 75%;
-	padding: 10px 0px 10px 0px;
+	padding: 20px 0px 20px 0px;
 	border-top: gray 1px solid;
 	border-bottom: gray 1px solid;
 	margin: 0 auto;
@@ -56,20 +56,15 @@ footer {
 	display: inline;
 }
 
-.span-breadcrumb {
-	font-size: 16px;
-	color: white;
-}
-
 .div-footer-content-middle-left {
 	width: 125px;
 	float: left;
 }
 
 .div-info {
-	height: 43px;
-/* 	text-align: center; */
-	
+	margin-bottom: 5px;
+	overflow: hidden;
+	/* 	text-align: center; */
 }
 /*
 .div-info::before {
@@ -80,33 +75,25 @@ footer {
 }
 */
 .div-icon {
-	width: 35px;
+	width: 24px;
 	margin-right: 7.5px;
-	position: relative; /* 垂直置中 */
-	top: calc(50% - 17.5px); /* 垂直置中 */
 	float: left;
-}
-
-.img-icon {
-	max-width: 100%;
-	max-height: 100%;
 }
 
 .div-text {
 	float: left;
-/* 	display: inline-block; */
-/* 	vertical-align: middle; */
-	line-height: 43px;
+	/* 	display: inline-block; */
+	/* 	vertical-align: middle; */
+	line-height: 24px;
 }
 
 .div-footer-title {
 	padding-bottom: 15px;
 }
 
-.p-title {
-	font-size: 16px;
-	color: white;
-	margin: 0;
+.img-icon {
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .ul-sub {
@@ -120,56 +107,64 @@ footer {
 	margin-bottom: 2px;
 }
 
-.a-title:link {
+.a-catalog:link {
 	color: white;
 	text-decoration: none;
 }
 
-.a-title:visited {
+.a-catalog:visited {
 	color: white;
 }
 
-.a-title:hover {
+.a-catalog:hover {
 	color: white;
 	text-decoration: none;
 }
 
-.a-title:active {
+.a-catalog:active {
 	color: white;
 }
 
-.a-sub:link {
+.a-sub:link { /* 設定還沒瀏覽過的連結樣式 */
+	color: #CCCCCC;
+	text-decoration: none;
+}
+
+.a-sub:visited { /* 設定已經瀏覽過的連結樣式 */
+	color: #CCCCCC;
+}
+
+.a-sub:hover { /* 設定滑鼠移到連結上的樣式 */
 	color: white;
 	text-decoration: none;
 }
 
-.a-sub:visited {
+.a-sub:active { /* 設定正在被點選的連結樣式 */
 	color: white;
 }
 
-.a-sub:hover {
-	color: white;
-	text-decoration: none;
+.span-breadcrumb {
+	font-size: 16px;
 }
 
-.a-sub:active {
+.span-catalog {
+	font-size: 16px;
 	color: white;
+	margin: 0;
 }
 
 .span-sub {
 	font-size: 14px;
-	color: white;
 	margin: 0;
 }
 
-.p-text {
+.span-text {
 	font-size: 13px;
-	color: white;
 	margin: 0;
 }
 
-.p-copyright {
+.span-copyright {
 	font-size: 12px;
-	color: white;
+	color: #CCCCCC;
 	display: inline;
 }

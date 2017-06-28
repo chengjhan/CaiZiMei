@@ -1,10 +1,10 @@
 $(document).ready(function(){
 		
 	// facebook icon mouseover
-	$("#id-img-facebook").hover(function(){
-		$(this).removeAttr("src").attr("src", "images/icon_facebook_white_512x512.svg");
+	$("#id-svg-facebook").hover(function(){
+		$("#id-svg-facebook g path").attr("fill", "#FFFFFF");
 	}, function(){
-		$(this).removeAttr("src").attr("src", "images/icon_facebook_512x512.svg");
+		$("#id-svg-facebook g path").attr("fill", "#CCCCCC");
 	});
-		
+	
 });

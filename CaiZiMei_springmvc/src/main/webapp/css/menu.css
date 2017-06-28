@@ -16,21 +16,29 @@ nav {
 	height: 100%;
 	padding: 0;
 	margin: 0;
-	list-style-type: none;
+	list-style-type: none; /* 去項目符號 */
 }
 
 .li-menu {
 	display: inline;
 }
 
+.li-menu-mouseover {
+	background-color: white;
+}
+
 .li-menu-left {
-	margin-right: 50px;
 	float: left;
 }
 
 .li-menu-right {
-	margin-left: 50px;
 	float: right;
+}
+
+.a-menu {
+	padding-left: 15px;
+	padding-right: 15px;
+	display: block; /* 填滿符合父元素 */
 }
 
 .a-menu:link {
@@ -43,19 +51,14 @@ nav {
 }
 
 .a-menu:hover {
-	color: white;
+	color: #AA0000;
 	text-decoration: none;
 }
 
 .a-menu:active {
-	color: white;
+	color: #AA0000;
 }
 
 .span-menu {
 	font-size: 16px;
-	color: white;
-}
-
-.span-menu-mouseover {
-	color: #CCCCCC;
 }

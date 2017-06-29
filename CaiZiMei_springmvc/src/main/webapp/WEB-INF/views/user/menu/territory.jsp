@@ -17,11 +17,13 @@
 <!-- menu -->
 	<c:import url="../menu.jsp" />
 	
-<!-- page -->
-	<div id="page">
-		<div id="id-div-page-content">
-			
-		</div>
+<!-- main -->
+	<div id="main">
+		<section id="section-1">
+			<div id="id-div-section-1">
+				<img src="<%=request.getContextPath()%>/images/territory_1002x382.jpg" class="img-territory">
+			</div>
+		</section>
 	</div>
 
 <!-- footer -->

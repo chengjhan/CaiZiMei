@@ -51,3 +51,8 @@ function initMap(){
 		}
 	});
 };
+
+//$(document).ready(function(){
+//	// slick
+//	$(".slider").slick();
+//});

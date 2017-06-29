@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>footer</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/footer.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/footer.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -14,7 +14,7 @@
 		<div id="id-div-footer-top">
 			<div id="id-div-footer-top-content">
 				<div id="id-div-footer-top-content-logo">
-					<a href="<%=request.getContextPath()%>/"><img class="img-icon" src="<%=request.getContextPath()%>/images/logo_white_132x131.svg"></a>
+					<a href="<%=request.getContextPath()%>/"><img class="img-icon" src="<%=request.getContextPath()%>/images/caizimei_logo_white_132x131.svg"></a>
 				</div>
 				<div>
 					<a href="<%=request.getContextPath()%>/" class="a-catalog"><span class="span-breadcrumb">采姿美國際股份有限公司</span></a>

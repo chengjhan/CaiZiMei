@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_32x32.ico" type="image/x-icon" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/all.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/territory.css">
 <title>采姿美 - 事業版圖</title>
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/territory.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <!-- header -->
@@ -21,7 +21,7 @@
 	<div id="main">
 		<section id="section-1">
 			<div id="id-div-section-1-content">
-				<img src="<%=request.getContextPath()%>/images/territory_1002x382.jpg" class="img-territory">
+				<img src="<%=request.getContextPath()%>/images/caizimei_territory_1002x382.jpg" class="img-territory">
 			</div>
 		</section>
 	</div>

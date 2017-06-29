@@ -1,5 +1,6 @@
 var map;
-var aClinic = ["曼星整形醫美珍所", "Twinkle Clinic", "02-27079333", "台北市大安區信義路四段58號3F-2", 25.033073, 121.545438, "http://twinkle-clinic.tw"];
+var clinicArray = [];
+var markerArray = [];
 
 function initMap(){
 	
@@ -14,19 +15,39 @@ function initMap(){
 		scrollwheel: false // 禁用滾輪縮放
 	});
 	
-	var clinicLatLng = new google.maps.LatLng(aClinic[4], aClinic[5]);
+	$.getJSON("json/clinic.json", function(data){
+		
+		$.each(data, function(index, clinic){
+			// 加入診所陣列
+			var aClinic = [clinic.c_id, clinic.c_name, clinic.c_eng_name, clinic.c_localphone, clinic.c_r_id, clinic.c_address, clinic.c_latitude, clinic.c_longitude, clinic.c_url];
+			clinicArray.push(aClinic);
+		});
 	
-	// 建立標記
-	var marker = new google.maps.Marker({
-		title: aClinic[0],
-		position: clinicLatLng,
-		url: aClinic[6],
-		map: map
+		// 取出診所陣列
+		for(var i = 0; i < clinicArray.length; i++){
+			
+			var name = clinicArray[i][1];
+			var lat = clinicArray[i][6];
+			var lng = clinicArray[i][7];
+			var url = clinicArray[i][8];
+			
+			var clinicLatLng = new google.maps.LatLng(lat, lng);
+			
+			// 建立標記
+			var marker = new google.maps.Marker({
+				title: name,
+				position: clinicLatLng,
+				url: url,
+				map: map
+			});
+			
+			// 建立標記超連結
+			google.maps.event.addListener(marker, 'click', function(){
+				window.open(this.url, '_blank');
+			});
+			
+			// 加入標記陣列
+			markerArray.push(marker);
+		}
 	});
-	
-	// 標記超連結
-	google.maps.event.addListener(marker, 'click', function(){
-	    window.location.href = this.url;
-	});
-	
 };

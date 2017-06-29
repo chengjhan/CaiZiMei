@@ -1,0 +1,24 @@
+[
+	{
+		"c_id": 1,
+		"c_name": "曼星整形醫美診所",
+		"c_eng_name": "Twinkle Clinic",
+		"c_localphone": "02-27079333",
+		"c_r_id": 12,
+		"c_address": "信義路四段58號3F-2",
+		"c_latitude": 25.033072,
+		"c_longitude": 121.545437,
+		"c_url": "http://twinkle-clinic.tw/"
+	},
+	{
+		"c_id": 2,
+		"c_name": "采姿美國際股份有限公司",
+		"c_eng_name": "CaiZiMei",
+		"c_localphone": "02-27562282",
+		"c_r_id": 12,
+		"c_address": "松山區南京東路五段223號13樓",
+		"c_latitude": 25.051626,
+		"c_longitude": 121.562267,
+		"c_url": "http://localhost:8080/CaiZiMei_springmvc/"
+	}
+]

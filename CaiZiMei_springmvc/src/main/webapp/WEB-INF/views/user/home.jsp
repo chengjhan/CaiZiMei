@@ -26,10 +26,10 @@
 
 		</section>
 		<section id="section-2">
-			<div id="id-map"></div>
+		
 		</section>
 		<section id="section-3">
-			
+			<div id="id-map"></div>
 		</section>
 	</div>
 	

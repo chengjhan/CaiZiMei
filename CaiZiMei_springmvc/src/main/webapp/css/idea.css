@@ -1,13 +1,18 @@
-#page {
+#main {
 	height: 300px;
-	background-color: #DDDDDD;
+	background-color: #EEEEEE;
 }
 
-#id-div-page-content {
+#section-1 {
 	width: 75%;
 	height: 100%;
 	background-color: white;
 	margin: 0 auto;
+}
+
+#id-div-section-1-content {
+	width: 100%;
+	height: 100%;
 }
 
 .p-content {

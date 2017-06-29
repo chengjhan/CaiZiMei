@@ -17,11 +17,13 @@
 <!-- menu -->
 	<c:import url="../menu.jsp" />
 	
-<!-- page -->
-	<div id="page">
-		<div id="id-div-page-content">
-			<p class="p-content">成為藥妝及醫療系統的領導者，提高會員的保養及醫療常識。</p>
-		</div>
+<!-- main -->
+	<div id="main">
+		<section id="section-1">
+			<div id="id-div-section-1-content">
+				<p class="p-content">成為藥妝及醫療系統的領導者，提高會員的保養及醫療常識。</p>
+			</div>
+		</section>
 	</div>
 
 <!-- footer -->

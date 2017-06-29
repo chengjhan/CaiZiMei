@@ -17,11 +17,13 @@
 <!-- menu -->
 	<c:import url="../menu.jsp" />
 	
-<!-- page -->
-	<div id="page">
-		<div id="id-div-page-content">
-			<p class="p-content">創造優良獨特的產品及模式，以滿足會員抗老及健康的需求。</p>
-		</div>
+<!-- main -->
+	<div id="main">
+		<section id="section-1">
+			<div id="id-div-section-1-content">
+				<p class="p-content">創造優良獨特的產品及模式，以滿足會員抗老及健康的需求。</p>
+			</div>
+		</section>
 	</div>
 
 <!-- footer -->

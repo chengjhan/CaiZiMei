@@ -52,7 +52,9 @@ function initMap(){
 	});
 };
 
-//$(document).ready(function(){
-//	// slick
-//	$(".slider").slick();
-//});
+$(document).ready(function(){
+	// slick
+	$(".slider").slick({
+		dots: true
+	});
+});

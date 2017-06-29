@@ -7,32 +7,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>采姿美 - 首頁</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_32x32.ico" type="image/x-icon" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css" type="text/css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/slick/slick.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/slick/slick-theme.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/home.css" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJznZ1ht-uJFa-tBJBpYYtzQ2609ba2Eg&callback=initMap" async defer></script>
-<script src="<%=request.getContextPath()%>/js/home.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-<!-- header -->
+	<!-- header -->
 	<jsp:include page="header.jsp" />
 	
-<!-- menu -->
+	<!-- menu -->
 	<c:import url="menu.jsp" />
 	
-<!-- main -->
+	<!-- main -->
 	<div id="main">
 		<section id="section-1">
-<!-- 			<div class="slider"> -->
-<%-- 				<div><img src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png"></div> --%>
-<%-- 				<div><img src="<%=request.getContextPath()%>/images/clinic_hollywood_1000x380.jpg"></div> --%>
-<%-- 				<div><img src="<%=request.getContextPath()%>/images/clinic_diamondcosmetic_1000x380.jpg"></div> --%>
-<%-- 				<div><img src="<%=request.getContextPath()%>/images/clinic_twinkle_clinic_1000x380.jpg"></div> --%>
-<%-- 				<div><img src="<%=request.getContextPath()%>/images/clinic_fabulous_clinic_1000x380.png"></div> --%>
-<%-- 				<div><img src="<%=request.getContextPath()%>/images/clinic_1637_1000x380.jpg"></div> --%>
-<!-- 			</div> -->
+			<div class="slider">
+				<div><img src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png"></div>
+				<div><img src="<%=request.getContextPath()%>/images/clinic_hollywood_1000x380.jpg"></div>
+				<div><img src="<%=request.getContextPath()%>/images/clinic_diamondcosmetic_1000x380.jpg"></div>
+				<div><img src="<%=request.getContextPath()%>/images/clinic_twinkle_clinic_1000x380.jpg"></div>
+				<div><img src="<%=request.getContextPath()%>/images/clinic_fabulous_clinic_1000x380.png"></div>
+				<div><img src="<%=request.getContextPath()%>/images/clinic_1637_1000x380.jpg"></div>
+			</div>
 		</section>
 		<section id="section-2">
 		
@@ -42,7 +38,13 @@
 		</section>
 	</div>
 	
-<!-- footer -->
+	<!-- footer -->
 	<c:import url="footer.jsp" />
+	
+	<!-- import -->
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/slick/slick.js"></script>
+	<script src="<%=request.getContextPath()%>/js/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJznZ1ht-uJFa-tBJBpYYtzQ2609ba2Eg&callback=initMap" async defer></script>
 </body>
 </html>

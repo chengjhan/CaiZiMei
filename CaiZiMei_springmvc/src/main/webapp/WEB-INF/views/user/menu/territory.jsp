@@ -25,6 +25,7 @@
 				<img src="<%=request.getContextPath()%>/images/caizimei_territory_1002x382.jpg" class="img-territory">
 			</div>
 		</section>
+		<section id="section-99"></section>
 	</div>
 
 <!-- footer -->

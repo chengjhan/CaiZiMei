@@ -33,7 +33,13 @@
 		</section>
 		<section id="section-2">
 			<div class="video">
-				<iframe src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/zrNZARN_wXI" frameborder="0" allowfullscreen></iframe>
+			</div>
+			<div class="video">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/RiDrdTmFzJs" frameborder="0" allowfullscreen></iframe>
+			</div>
+			<div class="video">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/XnHGRpli9gA" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</section>
 		<section id="section-3">

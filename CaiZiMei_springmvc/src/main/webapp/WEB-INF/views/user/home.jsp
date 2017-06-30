@@ -20,18 +20,21 @@
 	
 	<!-- main -->
 	<div id="main">
+		<section id="section-0"></section>
 		<section id="section-1">
 			<div class="slider">
-				<div><img src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png"></div>
-				<div><img src="<%=request.getContextPath()%>/images/clinic_hollywood_1000x380.jpg"></div>
-				<div><img src="<%=request.getContextPath()%>/images/clinic_diamondcosmetic_1000x380.jpg"></div>
-				<div><img src="<%=request.getContextPath()%>/images/clinic_twinkle_clinic_1000x380.jpg"></div>
-				<div><img src="<%=request.getContextPath()%>/images/clinic_fabulous_clinic_1000x380.png"></div>
-				<div><img src="<%=request.getContextPath()%>/images/clinic_1637_1000x380.jpg"></div>
+				<div><a href="http://www.joya-beauty.com.tw" target="_blank"><img src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png" class="img-slider"></a></div>
+				<div><a href="http://hollywood.tw" target="_blank"><img src="<%=request.getContextPath()%>/images/clinic_hollywood_1000x380.jpg" class="img-slider"></a></div>
+				<div><a href="http://diamondcosmetic.com.tw" target="_blank"><img src="<%=request.getContextPath()%>/images/clinic_diamondcosmetic_1000x380.jpg" class="img-slider"></a></div>
+				<div><a href="http://www.twinkle-clinic.tw" target="_blank"><img src="<%=request.getContextPath()%>/images/clinic_twinkle_clinic_1000x380.jpg" class="img-slider"></a></div>
+				<div><a href="http://www.fabulous-clinic.com" target="_blank"><img src="<%=request.getContextPath()%>/images/clinic_fabulous_clinic_1000x380.png" class="img-slider"></a></div>
+				<div><a href="http://1637.tw/07-2270748/" target="_blank"><img src="<%=request.getContextPath()%>/images/clinic_1637_1000x380.jpg" class="img-slider"></a></div>
 			</div>
 		</section>
 		<section id="section-2">
-		
+			<div class="video">
+				<iframe src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			</div>
 		</section>
 		<section id="section-3">
 			<div id="id-map"></div>

@@ -2,16 +2,21 @@
 	background-color: #EEEEEE;
 }
 
+#section-0 {
+	width: 75%;
+	height: 40px;
+}
+
 #section-1 {
 	width: 75%;
-	padding-top: 30px;
+	padding-bottom: 20px;
 	margin: 0 auto;
-	background-color: #EEEEEE;
+	background-color: white;
 }
 
 #section-2 {
 	width: 75%;
-	height: 200px;
+	height: 500px;
 	margin: 0 auto;
 	background-color: white;
 }
@@ -29,6 +34,20 @@
 }
 
 .slider {
-	width: 1000px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.img-slider {
+	width: 100%;
+}
+
+.video {
+	width: 95%;
+	height: 95%;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	border-top: #CCCCCC 1px solid;
+	border-bottom: #CCCCCC 1px solid;
 	margin: 0 auto;
 }

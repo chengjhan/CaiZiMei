@@ -19,6 +19,7 @@
 	
 <!-- main -->
 	<div id="main">
+		<section id="section-0"></section>
 		<section id="section-1">
 			<div id="id-div-section-1-content">
 				<p class="p-content">創造優良獨特的產品及模式，以滿足會員抗老及健康的需求。</p>

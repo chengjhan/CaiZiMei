@@ -20,10 +20,17 @@ nav {
 }
 
 .li-menu {
+	color: white;
 	display: inline;
 }
 
 .li-menu-mouseover {
+	color: #AA0000;
+	background-color: white;
+}
+
+.li-menu-active {
+	color: #AA0000;
 	background-color: white;
 }
 
@@ -36,27 +43,24 @@ nav {
 }
 
 .a-menu {
+	color: white;
 	padding-left: 15px;
 	padding-right: 15px;
 	display: block; /* 填滿符合父元素 */
 }
 
 .a-menu:link {
-	color: white;
 	text-decoration: none;
 }
 
 .a-menu:visited {
-	color: white;
 }
 
 .a-menu:hover {
-	color: #AA0000;
 	text-decoration: none;
 }
 
 .a-menu:active {
-	color: #AA0000;
 }
 
 .span-menu {

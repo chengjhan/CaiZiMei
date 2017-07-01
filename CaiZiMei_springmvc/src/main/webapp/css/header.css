@@ -2,6 +2,7 @@ header {
 	width: 100%;
 	height: 90px;
 	border-top: #AA0000 3px solid;
+	background-color: white;
 }
 
 #id-div-header {

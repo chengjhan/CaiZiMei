@@ -4,10 +4,10 @@ var hrefArray = [];
 var pageName;
 
 function getPageName(hrefSplit){
-    for (var i = 0; i < hrefSplit.length; i++) {
-    	hrefArray.push(hrefSplit.slice(i, i + 1));
-    }
-    pageName = hrefArray[hrefSplit.length - 1];
+	for (var i = 0; i < hrefSplit.length; i++) {
+		hrefArray.push(hrefSplit.slice(i, i + 1));
+	}
+	pageName = hrefArray[hrefSplit.length - 1];
 };
 
 getPageName(hrefSplit);

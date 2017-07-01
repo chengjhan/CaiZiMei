@@ -22,6 +22,8 @@ $(document).ready(function(){
 	});
 	
 	// list active
-	var id = "#id-li-" + pageName;
-	$(id).addClass("li-menu-active");
+	var id_li = "#id-li-" + pageName;
+	var id_li_a_span = "#id-li-" + pageName + " span";
+	$(id_li).addClass("li-menu-active");
+	$(id_li_a_span).attr("style", "color:#AA0000");
 });

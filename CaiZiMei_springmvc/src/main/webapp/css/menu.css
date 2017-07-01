@@ -57,6 +57,7 @@ nav {
 }
 
 .a-menu:hover {
+	color: #AA0000;
 	text-decoration: none;
 }
 

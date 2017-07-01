@@ -3,6 +3,7 @@ var hrefSplit = href.split("/");
 var hrefArray = [];
 var pageName;
 
+// 取得當前頁面
 function getPageName(hrefSplit){
 	for (var i = 0; i < hrefSplit.length; i++) {
 		hrefArray.push(hrefSplit.slice(i, i + 1));
@@ -15,7 +16,7 @@ getPageName(hrefSplit);
 $(document).ready(function(){
 		
 	// list mouseover
-	$(".li-menu").hover(function(){
+	$(".li-menu-left").hover(function(){
 		$(this).addClass("li-menu-mouseover");
 	}, function(){
 		$(this).removeClass("li-menu-mouseover");

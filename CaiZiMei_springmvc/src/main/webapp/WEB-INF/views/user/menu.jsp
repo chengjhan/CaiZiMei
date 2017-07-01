@@ -13,12 +13,12 @@
 	<nav>
 		<div id="id-div-menu">
 			<ul class="ul-menu">
-				<li id="id-li-idea" class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-menu"><span class="span-menu">經營理念</span></a></li>
-				<li id="id-li-vision" class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/vision" class="a-menu"><span class="span-menu">公司願景</span></a></li>
-				<li id="id-li-mission" class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/mission" class="a-menu"><span class="span-menu">公司使命</span></a></li>
-				<li id="id-li-territory" class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/territory" class="a-menu"><span class="span-menu">事業版圖</span></a></li>
-				<li class="li-menu li-menu-right"><a href="<%=request.getContextPath()%>/user/secure/sign-in" class="a-menu"><span class="span-menu">登入</span></a></li>
-				<li class="li-menu li-menu-right"><a href="<%=request.getContextPath()%>/user/member/sign-up" class="a-menu"><span class="span-menu">註冊</span></a></li>
+				<li id="id-li-idea" class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-menu-left"><span class="span-menu">經營理念</span></a></li>
+				<li id="id-li-vision" class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/vision" class="a-menu-left"><span class="span-menu">公司願景</span></a></li>
+				<li id="id-li-mission" class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/mission" class="a-menu-left"><span class="span-menu">公司使命</span></a></li>
+				<li id="id-li-territory" class="li-menu li-menu-left"><a href="<%=request.getContextPath()%>/user/menu/territory" class="a-menu-left"><span class="span-menu">事業版圖</span></a></li>
+				<li class="li-menu li-menu-right"><a href="<%=request.getContextPath()%>/user/secure/sign-in" class="a-menu-right"><span class="span-menu">登入</span></a></li>
+				<li class="li-menu li-menu-right"><a href="<%=request.getContextPath()%>/user/member/sign-up" class="a-menu-right"><span class="span-menu">註冊</span></a></li>
 			</ul>
 		</div>
 	</nav>

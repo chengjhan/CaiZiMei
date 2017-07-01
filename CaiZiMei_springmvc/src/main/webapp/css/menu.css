@@ -20,17 +20,14 @@ nav {
 }
 
 .li-menu {
-	color: white;
 	display: inline;
 }
 
 .li-menu-mouseover {
-	color: #AA0000;
 	background-color: white;
 }
 
 .li-menu-active {
-	color: #AA0000;
 	background-color: white;
 }
 
@@ -42,26 +39,51 @@ nav {
 	float: right;
 }
 
-.a-menu {
+.a-menu-left {
 	color: white;
 	padding-left: 15px;
 	padding-right: 15px;
 	display: block; /* 填滿符合父元素 */
 }
 
-.a-menu:link {
+.a-menu-left:link {
 	text-decoration: none;
 }
 
-.a-menu:visited {
+.a-menu-left:visited {
 }
 
-.a-menu:hover {
+.a-menu-left:hover {
 	color: #AA0000;
 	text-decoration: none;
 }
 
-.a-menu:active {
+.a-menu-left:active {
+}
+
+.a-menu-right {
+	color: white;
+	padding-left: 15px;
+	padding-right: 15px;
+	display: block; /* 填滿符合父元素 */
+}
+
+.a-menu-right:link {
+	color: white;
+	text-decoration: none;
+}
+
+.a-menu-right:visited {
+	color: white;
+}
+
+.a-menu-right:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+.a-menu-right:active {
+	color: white;
 }
 
 .span-menu {

@@ -66,15 +66,6 @@ footer {
 	padding-bottom: 15px;
 }
 
-.div-icon-sns {
-	margin-bottom: 5px;
-}
-
-.div-info {
-	margin-bottom: 5px;
-	overflow: hidden;
-	/* 	text-align: center; */
-}
 /*
 .div-info::before {
 	content: "";
@@ -83,17 +74,11 @@ footer {
 	vertical-align: middle;
 }
 */
+
 .div-icon {
 	width: 24px;
-	margin-right: 7.5px;
+	margin-right: 5px;
 	float: left;
-}
-
-.div-text {
-	line-height: 24px;
-	float: left;
-	/* 	display: inline-block; */
-	/* 	vertical-align: middle; */
 }
 
 .img-icon {
@@ -110,6 +95,11 @@ footer {
 
 .li-sub {
 	margin-bottom: 2px;
+}
+
+.li-sub-info {
+	overflow: hidden;
+	/* 	text-align: center; */
 }
 
 .a-catalog:link {
@@ -146,6 +136,13 @@ footer {
 
 .a-sub:active { /* 設定正在被點選的連結樣式 */
 	color: white;
+}
+
+.a-sub-info-text {
+	line-height: 24px;
+	float: left;
+	/* 	display: inline-block; */
+	/* 	vertical-align: middle; */
 }
 
 .span-breadcrumb {

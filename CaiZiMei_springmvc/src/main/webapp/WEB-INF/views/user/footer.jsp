@@ -27,23 +27,21 @@
 					<div id="id-div-footer-middle-content-menu-title" class="div-catalog">
 						<a href="<%=request.getContextPath()%>/" class="a-catalog"><span class="span-catalog">首頁</span></a>
 					</div>
-					<div id="id-div-footer-middle-content-menu-sub">
-						<ul class="ul-sub">
-							<li class="li-sub"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-sub"><span class="span-sub">經營理念</span></a></li>
-							<li class="li-sub"><a href="<%=request.getContextPath()%>/user/menu/vision" class="a-sub"><span class="span-sub">公司願景</span></a></li>
-							<li class="li-sub"><a href="<%=request.getContextPath()%>/user/menu/mission" class="a-sub"><span class="span-sub">公司使命</span></a></li>
-							<li class="li-sub"><a href="<%=request.getContextPath()%>/user/menu/territory" class="a-sub"><span class="span-sub">事業版圖</span></a></li>
-						</ul>
-					</div>
+					<ul class="ul-sub">
+						<li class="li-sub"><a href="<%=request.getContextPath()%>/user/menu/idea" class="a-sub"><span class="span-sub">經營理念</span></a></li>
+						<li class="li-sub"><a href="<%=request.getContextPath()%>/user/menu/vision" class="a-sub"><span class="span-sub">公司願景</span></a></li>
+						<li class="li-sub"><a href="<%=request.getContextPath()%>/user/menu/mission" class="a-sub"><span class="span-sub">公司使命</span></a></li>
+						<li class="li-sub"><a href="<%=request.getContextPath()%>/user/menu/territory" class="a-sub"><span class="span-sub">事業版圖</span></a></li>
+					</ul>
 				</div>
 				<div id="id-div-footer-middle-content-sns" class="div-footer-content-middle-left">
 					<div id="id-div-footer-middle-content-sns-title" class="div-catalog">
 						<span class="span-catalog">社群</span>
 					</div>
-					<div>
-						<div class="div-icon-sns">
+					<ul class="ul-sub">
+						<li class="li-sub">
 							<a href="https://www.facebook.com/" target="_blank">
-								<!-- facebook icon svg -->							
+								<!-- facebook icon svg -->
 								<svg id="id-svg-facebook" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="34px" height="34px" viewBox="0 0 57.8 57.7" enable-background="new 0 0 57.8 57.7" xml:space="preserve">
 									<g>
 										<circle fill="none" stroke="#CCCCCC" stroke-width="3.5" cx="28.9" cy="28.8" r="27.3"/>
@@ -51,8 +49,8 @@
 									</g>
 								</svg>
 							</a>
-						</div>
-						<div class="div-icon-sns">
+						</li>
+						<li class="li-sub">
 							<a href="https://www.youtube.com/channel/UCKcgCX6ljOxWAnWzW89M5ag" target="_blank">
 								<!-- youtube icon svg -->				
 								<svg id="id-svg-youtube" height="34px" version="1.1" viewBox="0 0 50 50" width="34px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><defs/>
@@ -63,53 +61,32 @@
 									</g>
 								</svg>
 							</a>
-						</div>
-					</div>
+						</li>
+					</ul>
 				</div>
 				<div id="id-div-footer-middle-content-clinic" class="div-footer-content-middle-left">
 					<div id="id-div-footer-middle-content-menu-title" class="div-catalog">
 						<span class="span-catalog">診所</span>
 					</div>
-					<div id="id-div-footer-middle-content-menu-sub">
-						<ul class="ul-sub">
-							<li class="li-sub"><a href="http://hollywood.tw" target="_blank" class="a-sub"><span class="span-sub">好萊塢診所</span></a></li>
-							<li class="li-sub"><a href="http://1637.tw/07-2270748/" target="_blank" class="a-sub"><span class="span-sub">何彬彬牙醫診所</span></a></li>
-							<li class="li-sub"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-sub"><span class="span-sub">法泊時尚診所</span></a></li>
-							<li class="li-sub"><a href="http://www.twinkle-clinic.tw" target="_blank" class="a-sub"><span class="span-sub">曼星醫美診所</span></a></li>
-							<li class="li-sub"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-sub"><span class="span-sub">喬雅時尚診所</span></a></li>
-							<li class="li-sub"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-sub"><span class="span-sub">晶鑽時尚診所</span></a></li>
-							<li class="li-sub"><a href="http://www.dazzlingdental.com.tw" target="_blank" class="a-sub"><span class="span-sub">璀燦精品牙醫診所</span></a></li>
-						</ul>
-					</div>
+					<ul class="ul-sub">
+						<li class="li-sub"><a href="http://hollywood.tw" target="_blank" class="a-sub"><span class="span-sub">好萊塢診所</span></a></li>
+						<li class="li-sub"><a href="http://1637.tw/07-2270748/" target="_blank" class="a-sub"><span class="span-sub">何彬彬牙醫診所</span></a></li>
+						<li class="li-sub"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-sub"><span class="span-sub">法泊時尚診所</span></a></li>
+						<li class="li-sub"><a href="http://www.twinkle-clinic.tw" target="_blank" class="a-sub"><span class="span-sub">曼星醫美診所</span></a></li>
+						<li class="li-sub"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-sub"><span class="span-sub">喬雅時尚診所</span></a></li>
+						<li class="li-sub"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-sub"><span class="span-sub">晶鑽時尚診所</span></a></li>
+						<li class="li-sub"><a href="http://www.dazzlingdental.com.tw" target="_blank" class="a-sub"><span class="span-sub">璀燦精品牙醫診所</span></a></li>
+					</ul>
 				</div>
 				<div id="id-div-footer-middle-content-info">
 					<div id="id-div-footer-middle-content-info-title" class="div-catalog">
 						<span class="span-catalog">聯絡我們</span>
 					</div>
-					<div id="id-div-footer-middle-content-info-mail" class="div-info">
-						<div id="id-div-mail" class="div-icon">
-							<img src="<%=request.getContextPath()%>/images/icon_mail_filled_512x512.svg" class="img-icon" >
-						</div>
-						<div class="div-text">
-							<a href="mailto:czmgoldvip@gmail.com" target="_blank" class="a-sub"><span class="span-text">czmgoldvip@gmail.com</span></a>
-						</div>
-					</div>
-					<div id="id-div-footer-middle-content-info-phone" class="div-info">
-						<div id="id-div-phone" class="div-icon">
-							<img src="<%=request.getContextPath()%>/images/icon_phone_filled_512x512.svg" class="img-icon" >
-						</div>
-						<div class="div-text">
-							<a href="tel:+886-2-27562282" target="_blank" class="a-sub"><span class="span-text">+886-2-27562282</span></a>
-						</div>
-					</div>
-					<div id="id-div-footer-middle-content-info-location" class="div-info">
-						<div id="id-div-location" class="div-icon">
-							<img src="<%=request.getContextPath()%>/images/icon_location_filled_512x512.svg" class="img-icon" >
-						</div>
-						<div class="div-text">
-							<a href="https://www.google.com.tw/maps/place/105%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9D%BE%E5%B1%B1%E5%8D%80%E5%8D%97%E4%BA%AC%E6%9D%B1%E8%B7%AF%E4%BA%94%E6%AE%B5223%E8%99%9F/" target="_blank" class="a-sub"><span class="span-text">台北辦事處：台北市松山區南京東路五段223號13樓</span></a>
-						</div>
-					</div>
+					<ul class="ul-sub">
+						<li class="li-sub li-sub-info"><div class="div-icon"><img src="<%=request.getContextPath()%>/images/icon_mail_filled_512x512.svg" class="img-icon"></div><a href="mailto:czmgoldvip@gmail.com" target="_blank" class="a-sub a-sub-info-text"><span class="span-text">czmgoldvip@gmail.com</span></a></li>
+						<li class="li-sub li-sub-info"><div class="div-icon"><img src="<%=request.getContextPath()%>/images/icon_phone_filled_512x512.svg"" class="img-icon"></div><a href="tel:+886-2-27562282" target="_blank" class="a-sub a-sub-info-text"><span class="span-text">+886-2-27562282</span></a></li>
+						<li class="li-sub li-sub-info"><div class="div-icon"><img src="<%=request.getContextPath()%>/images/icon_location_filled_512x512.svg" class="img-icon"></div><a href="https://www.google.com.tw/maps/place/105%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9D%BE%E5%B1%B1%E5%8D%80%E5%8D%97%E4%BA%AC%E6%9D%B1%E8%B7%AF%E4%BA%94%E6%AE%B5223%E8%99%9F/" target="_blank" class="a-sub a-sub-info-text"><span class="span-text">台北辦事處：台北市松山區南京東路五段223號13樓</span></a></li>
+					</ul>
 				</div>
 			</div>
 		</div>

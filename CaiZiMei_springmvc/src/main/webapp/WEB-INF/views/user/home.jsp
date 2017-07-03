@@ -19,7 +19,7 @@
 	<c:import url="menu.jsp" />
 	
 	<!-- main -->
-	<div id="main">
+	<main>
 		<section id="section-0"></section>
 		<section id="section-1">
 			<div class="slider">
@@ -45,7 +45,7 @@
 		<section id="section-3">
 			<div id="id-map"></div>
 		</section>
-	</div>
+	</main>
 	
 	<!-- footer -->
 	<c:import url="footer.jsp" />

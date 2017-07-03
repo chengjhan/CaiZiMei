@@ -18,7 +18,7 @@
 	<c:import url="../menu.jsp" />
 	
 <!-- main -->
-	<div id="main">
+	<main>
 		<section id="section-0"></section>
 		<section id="section-1">
 			<div id="id-div-section-1-content">
@@ -26,7 +26,7 @@
 			</div>
 		</section>
 		<section id="section-99"></section>
-	</div>
+	</main>
 
 <!-- footer -->
 	<c:import url="../footer.jsp" />

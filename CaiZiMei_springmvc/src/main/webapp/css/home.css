@@ -9,7 +9,7 @@ main {
 
 #section-1 {
 	width: 75%;
-	padding-bottom: 20px;
+	padding-bottom: 35px;
 	margin: 0 auto;
 	background-color: white;
 }
@@ -32,9 +32,49 @@ main {
 	height: 100%;
 }
 
-.slider {
+.swiper-container {
 	width: 100%;
-	margin: 0 auto;
+}
+
+.swiper-wrapper {
+	width: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-button-next {
+	
+}
+
+.swiper-button-prev {
+	
+}
+
+.swiper-pagination-bullet-active {
+	background-color: #AA0000;
+	border-radius: 100%;
+	border-color: white;
+}
+
+.a-silder {
+	width: 100%;
 }
 
 .img-slider {

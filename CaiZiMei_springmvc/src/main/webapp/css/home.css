@@ -8,16 +8,18 @@ main {
 }
 
 #section-1 {
-	width: 75%;
-	padding-bottom: 35px;
+	width: 80%;
 	margin: 0 auto;
+	margin-bottom: 35px;
 	background-color: white;
 }
 
 #section-2 {
-	width: 75%;
+	width: 80%;
 	margin: 0 auto;
-	background-color: white;
+	margin-bottom: 35px;
+	background-color: #EEEEEE;
+	overflow : auto; /* 撐開 */
 }
 
 #section-3 {
@@ -32,8 +34,12 @@ main {
 	height: 100%;
 }
 
-.swiper-container {
+#section-1 .swiper-container {
 	width: 100%;
+}
+
+#section-2 .swiper-container {
+	width: 47.5%;
 }
 
 .swiper-wrapper {
@@ -79,13 +85,4 @@ main {
 
 .img-slider {
 	width: 100%;
-}
-
-.video {
-	width: 95%;
-	height: 95%;
-	padding-top: 35px;
-	padding-bottom: 35px;
-	border-top: #CCCCCC 1px solid;
-	margin: 0 auto;
 }

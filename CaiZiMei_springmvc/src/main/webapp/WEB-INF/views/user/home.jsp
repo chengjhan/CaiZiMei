@@ -19,7 +19,7 @@
 	
 	<!-- main -->
 	<main>
-		<section id="section-0"></section>
+<!-- 		<section id="section-0"></section> -->
 		<section id="section-1">
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
@@ -38,9 +38,30 @@
 			</div>
 		</section>
 		<section id="section-2">
-			<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/zrNZARN_wXI" frameborder="0" allowfullscreen></iframe></div>
-			<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/RiDrdTmFzJs" frameborder="0" allowfullscreen></iframe></div>
-			<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/XnHGRpli9gA" frameborder="0" allowfullscreen></iframe></div>
+			<div class="swiper-container" style="float:left">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/zrNZARN_wXI" frameborder="0" allowfullscreen></iframe></div>
+					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/RiDrdTmFzJs" frameborder="0" allowfullscreen></iframe></div>
+					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/XnHGRpli9gA" frameborder="0" allowfullscreen></iframe></div>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Arrows -->
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+			<div class="swiper-container" style="float:right">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/zrNZARN_wXI" frameborder="0" allowfullscreen></iframe></div>
+					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/RiDrdTmFzJs" frameborder="0" allowfullscreen></iframe></div>
+					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/XnHGRpli9gA" frameborder="0" allowfullscreen></iframe></div>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Arrows -->
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
 		</section>
 		<section id="section-3">
 			<div id="id-map"></div>

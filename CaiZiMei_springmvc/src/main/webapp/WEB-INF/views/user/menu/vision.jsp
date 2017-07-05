@@ -11,13 +11,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<!-- header -->
+	<!-- header -->
 	<c:import url="../header.jsp" />
 	
-<!-- menu -->
+	<!-- menu -->
 	<c:import url="../menu.jsp" />
 	
-<!-- main -->
+	<!-- main -->
 	<main>
 		<section id="section-0"></section>
 		<section id="section-1">
@@ -27,7 +27,7 @@
 		</section>
 	</main>
 
-<!-- footer -->
+	<!-- footer -->
 	<c:import url="../footer.jsp" />
 </body>
 </html>

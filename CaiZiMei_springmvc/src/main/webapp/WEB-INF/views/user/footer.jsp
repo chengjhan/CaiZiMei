@@ -14,7 +14,7 @@
 		<div id="id-div-footer-top">
 			<div id="id-div-footer-top-content">
 				<div id="id-div-footer-top-content-logo">
-					<a href="<%=request.getContextPath()%>/"><img class="img-icon" src="<%=request.getContextPath()%>/images/caizimei_logo_white_132x131.svg"></a>
+					<a href="<%=request.getContextPath()%>/"><img class="img-icon" src="<%=request.getContextPath()%>/images/caizimei_logo_white.svg"></a>
 				</div>
 				<div>
 					<a href="<%=request.getContextPath()%>/" class="a-catalog"><span class="span-breadcrumb">采姿美國際股份有限公司</span></a>
@@ -83,9 +83,9 @@
 						<span class="span-catalog">聯絡我們</span>
 					</div>
 					<ul class="ul-sub">
-						<li class="li-sub li-sub-info"><div class="div-icon"><img src="<%=request.getContextPath()%>/images/icon_mail_filled_512x512.svg" class="img-icon"></div><a href="mailto:czmgoldvip@gmail.com" target="_blank" class="a-sub a-sub-info-text"><span class="span-text">czmgoldvip@gmail.com</span></a></li>
-						<li class="li-sub li-sub-info"><div class="div-icon"><img src="<%=request.getContextPath()%>/images/icon_phone_filled_512x512.svg"" class="img-icon"></div><a href="tel:+886-2-27562282" target="_blank" class="a-sub a-sub-info-text"><span class="span-text">+886-2-27562282</span></a></li>
-						<li class="li-sub li-sub-info"><div class="div-icon"><img src="<%=request.getContextPath()%>/images/icon_location_filled_512x512.svg" class="img-icon"></div><a href="https://www.google.com.tw/maps/place/105%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9D%BE%E5%B1%B1%E5%8D%80%E5%8D%97%E4%BA%AC%E6%9D%B1%E8%B7%AF%E4%BA%94%E6%AE%B5223%E8%99%9F/" target="_blank" class="a-sub a-sub-info-text"><span class="span-text">台北辦事處：台北市松山區南京東路五段223號13樓</span></a></li>
+						<li class="li-sub li-sub-info"><div class="div-icon"><img src="<%=request.getContextPath()%>/images/icon_mail.svg" class="img-icon"></div><a href="mailto:czmgoldvip@gmail.com" target="_blank" class="a-sub a-sub-info-text"><span class="span-text">czmgoldvip@gmail.com</span></a></li>
+						<li class="li-sub li-sub-info"><div class="div-icon"><img src="<%=request.getContextPath()%>/images/icon_phone.svg"" class="img-icon"></div><a href="tel:+886-2-27562282" target="_blank" class="a-sub a-sub-info-text"><span class="span-text">+886-2-27562282</span></a></li>
+						<li class="li-sub li-sub-info"><div class="div-icon"><img src="<%=request.getContextPath()%>/images/icon_location.svg" class="img-icon"></div><a href="https://www.google.com.tw/maps/place/105%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9D%BE%E5%B1%B1%E5%8D%80%E5%8D%97%E4%BA%AC%E6%9D%B1%E8%B7%AF%E4%BA%94%E6%AE%B5223%E8%99%9F/" target="_blank" class="a-sub a-sub-info-text"><span class="span-text">台北辦事處：台北市松山區南京東路五段223號13樓</span></a></li>
 					</ul>
 				</div>
 			</div>

@@ -13,10 +13,10 @@
 	<header>
 		<div id="id-div-header">
 			<div id="id-div-logo">
-				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/caizimei_logo_132x131.svg" class="img-icon"></a>
+				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/caizimei_logo.svg" class="img-icon"></a>
 			</div>
 			<div id="id-div-title">
-				<a class="a-title" href="<%=request.getContextPath()%>/"><span class="span-title">采姿美國際股份有限公司</span></a>
+				<a href="<%=request.getContextPath()%>/" class="a-title"><span class="span-title">采姿美國際股份有限公司</span></a>
 			</div>
 		</div>
 	</header>

@@ -39,7 +39,7 @@
 		</section>
 		<section id="section-2">
 			<div class="swiper-container" style="float:left">
-			<h3>相關影音</h3>
+				<h3>相關影音</h3>
 				<div class="swiper-wrapper">
 					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/zrNZARN_wXI" frameborder="0" allowfullscreen></iframe></div>
 					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/RiDrdTmFzJs" frameborder="0" allowfullscreen></iframe></div>
@@ -52,7 +52,7 @@
 				<div class="swiper-button-prev"></div>
 			</div>
 			<div class="swiper-container" style="float:right">
-			<h3>加盟店資訊</h3>
+				<h3>加盟店資訊</h3>
 				<div class="swiper-wrapper">
 					<div class="swiper-slide" style="height:342px">Slide 1</div>
 					<div class="swiper-slide" style="height:342px">Slide 2</div>
@@ -67,7 +67,7 @@
 		</section>
 		<section id="section-3">
 			<div class="swiper-container" style="float:left">
-			<h3>近期活動</h3>
+				<h3>近期活動</h3>
 				<div class="swiper-wrapper">
 					<div class="swiper-slide" style="height:342px">Slide 1</div>
 					<div class="swiper-slide" style="height:342px">Slide 2</div>
@@ -80,7 +80,7 @@
 				<div class="swiper-button-prev"></div>
 			</div>
 			<div class="swiper-container" style="float:right">
-			<h3>優惠活動</h3>
+				<h3>優惠活動</h3>
 				<div class="swiper-wrapper">
 					<div class="swiper-slide" style="height:342px">Slide 1</div>
 					<div class="swiper-slide" style="height:342px">Slide 2</div>
@@ -95,7 +95,7 @@
 		</section>
 		<section id="section-4">
 			<div class="swiper-container" style="float:left">
-			<h3>醫療新知</h3>
+				<h3>醫療新知</h3>
 				<div class="swiper-wrapper">
 					<div class="swiper-slide" style="height:342px">Slide 1</div>
 					<div class="swiper-slide" style="height:342px">Slide 2</div>
@@ -108,7 +108,7 @@
 				<div class="swiper-button-prev"></div>
 			</div>
 			<div class="swiper-container" style="float:right">
-			<h3>醫療團隊</h3>
+				<h3>醫療團隊</h3>
 				<div class="swiper-wrapper">
 					<div class="swiper-slide" style="height:342px">Slide 1</div>
 					<div class="swiper-slide" style="height:342px">Slide 2</div>

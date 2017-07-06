@@ -57,13 +57,9 @@ footer {
 	display: inline;
 }
 
-.div-footer-content-middle-left {
+.div-footer-middle-content-left {
 	width: 125px;
 	float: left;
-}
-
-.div-catalog {
-	padding-bottom: 15px;
 }
 
 /*
@@ -84,6 +80,13 @@ footer {
 .img-icon {
 	max-width: 100%;
 	max-height: 100%;
+}
+
+.h3-catalog {
+	font-size: 16px;
+	color: white;
+	margin: 0;
+	margin-bottom: 15px;
 }
 
 .ul-sub {
@@ -147,12 +150,6 @@ footer {
 
 .span-breadcrumb {
 	font-size: 16px;
-}
-
-.span-catalog {
-	font-size: 16px;
-	color: white;
-	margin: 0;
 }
 
 .span-sub {

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicCintroller.java
  * Author: 詹晟
- * Date: 2017/4/30
+ * Date: 2017/7/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -184,6 +184,9 @@ public class ClinicCintroller {
 			ClinicBean jsonBean = new ClinicBean();
 			jsonBean.setC_id(bean.getC_id());
 			jsonBean.setC_name(bean.getC_name());
+			jsonBean.setC_latitude(bean.getC_latitude());
+			jsonBean.setC_longitude(bean.getC_longitude());
+			jsonBean.setC_url(bean.getC_url());
 			jsonList.add(jsonBean);
 		}
 		String json = new Gson().toJson(jsonList);

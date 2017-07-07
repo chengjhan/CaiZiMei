@@ -23,11 +23,11 @@
 		<section id="section-1">
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png" class="img-slider"></a></div>
-					<div class="swiper-slide"><a href="http://hollywood.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_hollywood_1000x380.jpg" class="img-slider"></a></div>
-					<div class="swiper-slide"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_diamondcosmetic_1000x380.jpg" class="img-slider"></a></div>
 					<div class="swiper-slide"><a href="http://www.twinkle-clinic.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_twinkle_clinic_1000x380.jpg" class="img-slider"></a></div>
+					<div class="swiper-slide"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_diamondcosmetic_1000x380.jpg" class="img-slider"></a></div>
 					<div class="swiper-slide"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_fabulous_clinic_1000x380.png" class="img-slider"></a></div>
+					<div class="swiper-slide"><a href="http://hollywood.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_hollywood_1000x380.jpg" class="img-slider"></a></div>
+					<div class="swiper-slide"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png" class="img-slider"></a></div>
 					<div class="swiper-slide"><a href="http://1637.tw/07-2270748/" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_1637_1000x380.jpg" class="img-slider"></a></div>
 				</div>
 				<!-- Add Pagination -->

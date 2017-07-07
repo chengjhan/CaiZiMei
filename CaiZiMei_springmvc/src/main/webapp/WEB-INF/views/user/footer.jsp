@@ -63,13 +63,13 @@
 				<div id="id-div-footer-middle-content-clinic" class="div-footer-middle-content-left">
 					<h3 class="h3-catalog">診所</h3>
 					<ul class="ul-sub">
-						<li class="li-sub"><a href="http://hollywood.tw" target="_blank" class="a-sub"><span class="span-sub">好萊塢診所</span></a></li>
-						<li class="li-sub"><a href="http://1637.tw/07-2270748/" target="_blank" class="a-sub"><span class="span-sub">何彬彬牙醫診所</span></a></li>
-						<li class="li-sub"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-sub"><span class="span-sub">法泊時尚診所</span></a></li>
 						<li class="li-sub"><a href="http://www.twinkle-clinic.tw" target="_blank" class="a-sub"><span class="span-sub">曼星醫美診所</span></a></li>
-						<li class="li-sub"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-sub"><span class="span-sub">喬雅時尚診所</span></a></li>
 						<li class="li-sub"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-sub"><span class="span-sub">晶鑽時尚診所</span></a></li>
+						<li class="li-sub"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-sub"><span class="span-sub">法泊時尚診所</span></a></li>
+						<li class="li-sub"><a href="http://hollywood.tw" target="_blank" class="a-sub"><span class="span-sub">好萊塢診所</span></a></li>
+						<li class="li-sub"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-sub"><span class="span-sub">喬雅時尚診所</span></a></li>
 						<li class="li-sub"><a href="http://www.dazzlingdental.com.tw" target="_blank" class="a-sub"><span class="span-sub">璀燦精品牙醫診所</span></a></li>
+						<li class="li-sub"><a href="http://1637.tw/07-2270748/" target="_blank" class="a-sub"><span class="span-sub">何彬彬牙醫診所</span></a></li>
 					</ul>
 				</div>
 				<div id="id-div-footer-middle-content-info">

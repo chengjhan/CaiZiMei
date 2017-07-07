@@ -2,6 +2,13 @@ main {
 	background-color: #EEEEEE;
 }
 
+h3 {
+	margin: 0;
+	color: white;
+	padding: 10px;
+	background-color: #AA0000;
+}
+
 #section-0 {
 	width: 75%;
 	height: 40px;
@@ -17,7 +24,7 @@ main {
 #section-2, #section-3, #section-4 {
 	width: 80%;
 	margin: 0 auto;
-	margin-bottom: 35px;
+	margin-bottom: 40px;
 	background-color: #EEEEEE;
 	overflow : auto; /* 撐開 */
 }
@@ -39,7 +46,7 @@ main {
 }
 
 #section-2 .swiper-container, #section-3 .swiper-container, #section-4 .swiper-container {
-	width: 47.5%;
+	width: 48%;
 }
 
 .swiper-wrapper {

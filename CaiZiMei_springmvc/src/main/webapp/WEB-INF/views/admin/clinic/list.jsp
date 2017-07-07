@@ -10,9 +10,8 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
-	<c:url value="/" var="root" />
-	<a href="${root}admin/clinic/add">新增</a>
-	<table border="1" style="font-size:12px">
+	<a href="<%=request.getContextPath()%>/admin/clinic/add">新增</a>
+	<table border="1" style="font-size:13px">
 		<thead>
 			<tr>
 				<td>編號</td>
@@ -69,7 +68,7 @@
 					<td>${bean.c_status}</td>
 					<td>${c_status_time_format}</td>
 					<td><a href="${path}">修改</a></td>
-					<td><a href="${root}admin/clinic/update-status.do?c_id=${bean.c_id}">狀態</a></td>
+					<td><a href="<%=request.getContextPath()%>/admin/clinic/update-status.do?c_id=${bean.c_id}">狀態</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

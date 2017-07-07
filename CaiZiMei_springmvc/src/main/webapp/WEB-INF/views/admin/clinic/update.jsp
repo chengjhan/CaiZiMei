@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<title>編輯診所 - 采姿美管理系統</title>
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
 	<c:url value="/" var="root" />
@@ -50,6 +50,9 @@
 			<input type="submit" id="id-submit" value="修改">
 		</div>
 	</form>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function(){
 			

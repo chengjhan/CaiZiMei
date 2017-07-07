@@ -6,56 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<title>診所一覽 - 采姿美管理系統</title>
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
 	<c:url value="/" var="root" />
-	<form action="<c:url value='/admin/clinic/insert.do' />" method="post">
-		<div>
-			<label for="id-c-name">診所</label>
-			<input type="text" id="id-c-name" name="c_name">
-		</div>
-		<div>
-			<label for="id-c-eng-name">診所英文</label>
-			<input type="text" id="id-c-eng-name" name="c_eng_name">
-		</div>
-		<div>
-			<label for="id-c-localphone">電話</label>
-			<input type="text" id="id-c-localphone" name="c_localphone_front">
-			<input type="text" id="id-c-localphone" name="c_localphone_back">
-		</div>
-		<div>
-			<label for="id-co-id">國家</label>
-			<select id="id-co-id" style="width:150px">
-				<option value="0">請選擇國家</option>
-			</select>
-		</div>
-		<div>
-			<label for="id-ci-id">城市</label>
-			<select id="id-ci-id" style="width:150px">
-				<option value="0">請選擇城市</option>
-			</select>
-		</div>
-		<div>
-			<label for="id-c-r-id">區域</label>
-			<select id="id-c-r-id" name="c_r_id" style="width:150px">
-				<option value="0">請選擇區域</option>
-			</select>
-		</div>
-		<div>
-			<label for="id-c-address">地址</label>
-			<input type="text" id="id-c-address" name="c_address">
-		</div>
-		<div>
-			<label for="id-c-url">網址</label>
-			<input type="text" id="id-c-url" name="c_url">
-		</div>
-		<div>
-			<input type="submit" id="id-submit" value="新增">
-		</div>
-	</form>
-	<table border="1">
+	<a href="${root}admin/clinic/add">新增</a>
+	<table border="1" style="font-size:12px">
 		<thead>
 			<tr>
 				<td>編號</td>
@@ -117,49 +74,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<script>
-		$(document).ready(function(){
-			$.getJSON("${root}admin/country/select.ajax", function(data){
-				$.each(data, function(index, country){
-					var country_option = $("<option value=" + country.co_id + "></option>").append(country.co_name);
-					$("#id-co-id").append(country_option);
-				});
-			});
-		});
-	
-		$("#id-co-id").change(function(){
-			var co_id = $("#id-co-id").val();
-			$.ajax({
-				url: '${root}admin/city/select-by-country.ajax?ci_co_id=' + co_id,
-				type: 'get',
-				dataType: 'json',
-				success: function(data){
-					var city_select = $("#id-ci-id");
-					city_select.empty();
-					city_select.append("<option value='0'>請選擇城市</option>");
-					var region_select = $("#id-c-r-id");
-					region_select.empty();
-					region_select.append("<option value='0'>請選擇區域</option>");
-					$.each(data, function(index, city){
-						var city_option = $("<option value=" + city.ci_id + "></option>").append(city.ci_name);
-						city_select.append(city_option);
-					});
-				}
-			});
-		});
-		
-		$("#id-ci-id").change(function(){
-			var ci_id = $("#id-ci-id").val();
-			$.getJSON("${root}admin/region/select-by-city.ajax", {"r_ci_id": ci_id}, function(data){
-				var region_select = $("#id-c-r-id");
-				region_select.empty();
-				region_select.append("<option value='0'>請選擇區域</option>");
-				$.each(data, function(index, region){
-					var region_option = $("<option value=" + region.r_id + "></option>").append(region.r_name);
-					region_select.append(region_option);
-				});
-			});
-		});
-	</script>
 </body>
 </html>

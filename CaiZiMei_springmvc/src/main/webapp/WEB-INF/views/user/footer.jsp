@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>footer</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/footer.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/footer.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/user/footer.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<footer>

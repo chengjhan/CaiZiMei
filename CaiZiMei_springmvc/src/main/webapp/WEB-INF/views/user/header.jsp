@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>header</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/header.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>

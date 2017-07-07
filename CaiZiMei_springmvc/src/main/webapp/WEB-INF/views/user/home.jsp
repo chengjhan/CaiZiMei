@@ -8,7 +8,7 @@
 <title>采姿美 - 首頁</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/home.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/home.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -132,9 +132,9 @@
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/home.js" type="text/javascript" charset="utf-8"></script>
-	<script src="<%=request.getContextPath()%>/js/home-slider.js" type="text/javascript" charset="utf-8"></script>
-	<script src="<%=request.getContextPath()%>/js/home-map.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/user/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/user/home-slider.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/user/home-map.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJznZ1ht-uJFa-tBJBpYYtzQ2609ba2Eg&callback=initMap" async defer></script>
 </body>
 </html>

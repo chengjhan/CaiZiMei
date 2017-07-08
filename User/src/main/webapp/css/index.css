@@ -1,0 +1,95 @@
+main {
+	background-color: #EEEEEE;
+}
+
+h3 {
+	margin: 0;
+	color: white;
+	padding: 10px;
+	background-color: #AA0000;
+}
+
+#section-0 {
+	width: 75%;
+	height: 40px;
+}
+
+#section-1 {
+	width: 80%;
+	margin: 0 auto;
+	margin-bottom: 35px;
+	background-color: white;
+}
+
+#section-2, #section-3, #section-4 {
+	width: 80%;
+	margin: 0 auto;
+	margin-bottom: 40px;
+	background-color: #EEEEEE;
+	overflow : auto; /* 撐開 */
+}
+
+#section-5 {
+	width: 100%;
+	height: 500px;
+	margin: 0 auto;
+	background-color: white;
+}
+
+#id-map {
+	width: 100%;
+	height: 100%;
+}
+
+#section-1 .swiper-container {
+	width: 100%;
+}
+
+#section-2 .swiper-container, #section-3 .swiper-container, #section-4 .swiper-container {
+	width: 48%;
+}
+
+.swiper-wrapper {
+	width: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-button-prev {
+	background-image: url("http://localhost:8080/CaiZiMei_springmvc/images/slider_arrow_left.svg");
+}
+
+.swiper-button-next {
+	background-image: url("http://localhost:8080/CaiZiMei_springmvc/images/slider_arrow_right.svg");
+}
+
+.swiper-pagination-bullet-active {
+	background-color: #AA0000;
+	border-radius: 100%;
+	border-color: white;
+}
+
+.a-silder {
+	width: 100%;
+}
+
+.img-slider {
+	width: 100%;
+}

@@ -155,8 +155,8 @@ public class AdminController {
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
-	@RequestMapping(path = "/secure/set-password.do", method = RequestMethod.POST)
-	public String setPasswordProcess(@RequestParam(name = "a_password") String a_password,
+	@RequestMapping(path = "/secure/reset-password.do", method = RequestMethod.POST)
+	public String resetPasswordProcess(@RequestParam(name = "a_password") String a_password,
 			@RequestParam(name = "a_password_new") String a_password_new, @ModelAttribute("admin") AdminBean admin,
 			SessionStatus sessionStatus) {
 

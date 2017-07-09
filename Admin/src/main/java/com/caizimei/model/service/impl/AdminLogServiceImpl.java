@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogServiceImpl.java
  * Author: 詹晟
- * Date: 2017/5/3
+ * Date: 2017/7/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,7 +19,7 @@ import com.caizimei.model.entity.AdminLogBean;
 import com.caizimei.model.service.AdminLogService;
 
 /**
- * admin_user_log service implement
+ * admin_log service implement
  * 
  * @author 詹晟
  */

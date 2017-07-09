@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/7/9
+ * Date: 2017/7/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -103,7 +103,7 @@ public class ViewsController {
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
-	public String secure_signIp() {
+	public String secure_signIn() {
 
 		return "secure/sign-in";
 	}

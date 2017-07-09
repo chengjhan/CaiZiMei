@@ -9,12 +9,8 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
-	<c:url value="/" var="root" />
 	<p>
 		<a href="<%=request.getContextPath()%>/secure/sign-in">登入</a>
-	</p>
-	<p>
-		<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼</a>
 	</p>
 	<p>
 		<a href="<%=request.getContextPath()%>/secure/sign-out.do">登出</a>
@@ -26,22 +22,7 @@
 		<a href="<%=request.getContextPath()%>/admin/profile">個人資訊</a>
 	</p>
 	<p>
-		<a href="<%=request.getContextPath()%>/admin/change-password">修改密碼</a>
-	</p>
-	<p>
-		<a href="${root}admin/country/list.do">國家</a>
-	</p>
-	<p>
-		<a href="${root}admin/city/list.do">城市</a>
-	</p>
-	<p>
-		<a href="${root}admin/region/search">區域搜尋</a>
-	</p>
-	<p>
-		<a href="${root}admin/clinic/list.do">診所</a>
-	</p>
-	<p>
-		<a href="${root}admin/clinic/search">診所搜尋</a>
+		<a href="<%=request.getContextPath()%>/admin/change-password">變更密碼</a>
 	</p>
 </body>
 </html>

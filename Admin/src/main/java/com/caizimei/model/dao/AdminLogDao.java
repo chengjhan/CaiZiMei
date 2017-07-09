@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: AdminLogDAO.java
+ * File: AdminLogDao.java
  * Author: 詹晟
- * Date: 2017/7/8
+ * Date: 2017/7/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,7 +13,7 @@ import java.util.List;
 import com.caizimei.model.entity.AdminLogBean;
 
 /**
- * admin_log DAO interface
+ * admin_log Dao interface
  *
  * @author 詹晟
  */

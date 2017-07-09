@@ -23,5 +23,8 @@
 		</div>
 		<div style="color:red">${error}</div>
 	</form>
+	<p>
+		<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼</a>
+	</p>
 </body>
 </html>

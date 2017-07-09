@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/8
+ * Date: 2017/7/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import com.caizimei.model.dao.AdminDao;
 import com.caizimei.model.entity.AdminBean;
 
 /**
- * admin DAO implement
+ * admin Dao implement
  * 
  * @author 詹晟
  */

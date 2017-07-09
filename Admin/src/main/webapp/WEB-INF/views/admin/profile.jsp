@@ -32,7 +32,7 @@
 		</tr>
 	</table>
 	<p>
-		<a href="<%=request.getContextPath()%>/admin/edit">編輯個人資料</a>
+		<a href="<%=request.getContextPath()%>/admin/edit">編輯個人資訊</a>
 	</p>
 </body>
 </html>

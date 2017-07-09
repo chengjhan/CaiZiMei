@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/9
+ * Date: 2017/7/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,7 @@ import com.caizimei.model.service.AdminService;
 import misc.PrimitiveNumberEditor;
 
 /**
- * admin_user controller
+ * admin controller
  * 
  * @author 詹晟
  */
@@ -121,7 +121,7 @@ public class AdminController {
 	 * 
 	 * @param a_username-->管理員信箱
 	 * @param model-->Model
-	 * @return /WEB-INF/views/secure/set-password.jsp
+	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
 	@RequestMapping(path = "/secure/forget-password.do", method = RequestMethod.POST)
 	public String forgetPasswordProcess(@RequestParam(name = "a_username") String a_username, Model model) {
@@ -134,7 +134,7 @@ public class AdminController {
 
 		String to = a_username;
 		String from = "chengjhan@gmail.com";
-		String subject = "更改密碼";
+		String subject = "變更密碼";
 		String text = a_password_random;
 		adminService.sendEmail(to, from, subject, text);
 

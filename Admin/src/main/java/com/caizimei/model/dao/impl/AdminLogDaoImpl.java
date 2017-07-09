@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/8
+ * Date: 2017/7/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,11 +18,11 @@ import com.caizimei.model.dao.AdminLogDao;
 import com.caizimei.model.entity.AdminLogBean;
 
 /**
- * admin_user_log DAO implement
+ * admin_log Dao implement
  * 
  * @author 詹晟
  */
-@Repository(value = "adminLogDAO")
+@Repository(value = "adminLogDao")
 public class AdminLogDaoImpl implements AdminLogDao {
 
 	/**

@@ -5,27 +5,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>首頁 - 采姿美管理系統</title>
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
 	<c:url value="/" var="root" />
 	<p>
-		<a href="${root}admin/secure/sign-in">登入</a>
+		<a href="<%=request.getContextPath()%>/secure/sign-in">登入</a>
 	</p>
 	<p>
-		<a href="${root}admin/secure/forget-password">忘記密碼</a>
+		<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼</a>
 	</p>
 	<p>
-		<a href="${root}admin/secure/sign-out.do">登出</a>
+		<a href="<%=request.getContextPath()%>/secure/sign-out.do">登出</a>
 	</p>
 	<p>
-		<a href="${root}admin/sign-up">註冊</a>
+		<a href="<%=request.getContextPath()%>/admin/sign-up">註冊</a>
 	</p>
 	<p>
-		<a href="${root}admin/user/profile">個人資訊</a>
+		<a href="<%=request.getContextPath()%>/admin/profile">個人資訊</a>
 	</p>
 	<p>
-		<a href="${root}admin/user/update-password">修改密碼</a>
+		<a href="<%=request.getContextPath()%>/admin/change-password">修改密碼</a>
 	</p>
 	<p>
 		<a href="${root}admin/country/list.do">國家</a>
@@ -41,21 +42,6 @@
 	</p>
 	<p>
 		<a href="${root}admin/clinic/search">診所搜尋</a>
-	</p>
-	<p>
-		<a href="${root}admin/clinic-user/sign-up">診所使用者註冊</a>
-	</p>
-	<p>
-		<a href="${root}admin/agent/list.do">代理商</a>
-	</p>
-	<p>
-		<a href="${root}admin/agent-user/sign-up">代理商使用者註冊</a>
-	</p>
-	<p>
-		<a href="${root}admin/admin/list.do">總公司</a>
-	</p>
-	<p>
-		<a href="${root}admin/member/search">會員搜尋</a>
 	</p>
 </body>
 </html>

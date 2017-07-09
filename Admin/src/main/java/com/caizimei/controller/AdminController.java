@@ -75,8 +75,9 @@ public class AdminController {
 	 * @param a_password-->管理員密碼(原碼)
 	 * @param request-->HttpServletRequest
 	 * @param model-->Model
-	 * @return /WEB-INF/views/admin/index.jsp
-	 * @return /WEB-INF/views/admin/secure/sign-in.jsp
+	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/secure/sign-in.jsp
+	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(path = "/secure/sign-in.do", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam(name = "a_username") String a_username,
@@ -98,20 +99,20 @@ public class AdminController {
 				adminLogBean.setAl_operation("登入");
 				adminLogService.insert(adminLogBean);
 
-				return "redirect:/admin/index";
+				return "redirect:/index";
 			} else {
 
 				// 密碼錯誤
 				model.addAttribute("error", "帳號或密碼錯誤");
 
-				return "admin/secure/sign-in";
+				return "secure/sign-in";
 			}
 		} else {
 
 			// 帳號錯誤
 			model.addAttribute("error", "帳號或密碼錯誤");
 
-			return "admin/secure/sign-in";
+			return "secure/sign-in";
 		}
 	}
 
@@ -120,7 +121,7 @@ public class AdminController {
 	 * 
 	 * @param a_username-->管理員信箱
 	 * @param model-->Model
-	 * @return /WEB-INF/views/admin/secure/set-password.jsp
+	 * @return /WEB-INF/views/secure/set-password.jsp
 	 */
 	@RequestMapping(path = "/secure/forget-password.do", method = RequestMethod.POST)
 	public String forgetPasswordProcess(@RequestParam(name = "a_username") String a_username, Model model) {
@@ -139,7 +140,7 @@ public class AdminController {
 
 		model.addAttribute("admin", adminBean);
 
-		return "redirect:/admin/secure/set-password";
+		return "redirect:/secure/reset-password";
 	}
 
 	/**
@@ -149,8 +150,8 @@ public class AdminController {
 	 * @param a_password_new-->新密碼(原碼)
 	 * @param admin-->Session
 	 * @param sessionStatus-->SessionStatus
-	 * @return /WEB-INF/views/admin/secure/sign-in.jsp
-	 * @return /WEB-INF/views/admin/secure/set-password.jsp
+	 * @return /WEB-INF/views/secure/sign-in.jsp
+	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
 	@RequestMapping(path = "/secure/set-password.do", method = RequestMethod.POST)
 	public String setPasswordProcess(@RequestParam(name = "a_password") String a_password,
@@ -167,9 +168,9 @@ public class AdminController {
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();
 
-			return "redirect:/admin/secure/sign-in";
+			return "redirect:/secure/sign-in";
 		} else {
-			return "admin/secure/set-password";
+			return "secure/reset-password";
 		}
 	}
 
@@ -179,7 +180,7 @@ public class AdminController {
 	 * @param admin-->Session
 	 * @param session-->HttpSession
 	 * @param sessionStatus-->SessionStatus
-	 * @return /WEB-INF/views/admin/index.jsp
+	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/secure/sign-out.do", method = RequestMethod.GET)
 	public String signOutProcess(@ModelAttribute("admin") AdminBean admin, HttpSession session,
@@ -200,7 +201,7 @@ public class AdminController {
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
 
-		return "redirect:/admin/index";
+		return "redirect:/index";
 	}
 
 	/**
@@ -240,31 +241,31 @@ public class AdminController {
 	}
 
 	/**
-	 * 修改資料
+	 * 編輯個人資料
 	 * 
 	 * @param admin-->Session
 	 * @param adminBean-->AdminBean
-	 * @return /WEB-INF/views/admin/user/profile.jsp
+	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
-	@RequestMapping(path = "/admin/update.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/admin/edit.do", method = RequestMethod.POST)
 	public String updateProcess(@ModelAttribute("admin") AdminBean admin, AdminBean adminBean) {
 
 		adminBean.setA_id(admin.getA_id());
 		adminService.update(adminBean);
 
-		return "redirect:/admin/user/profile";
+		return "redirect:/admin/profile";
 	}
 
 	/**
-	 * 修改密碼
+	 * 變更密碼
 	 * 
 	 * @param a_password-->舊密碼(原碼)
 	 * @param a_password_new-->新密碼(原碼)
 	 * @param admin-->Session
-	 * @return /WEB-INF/views/admin/index.jsp
-	 * @return /WEB-INF/views/admin/user/update-password.jsp
+	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
-	@RequestMapping(path = "/admin/updata-password.do", method = RequestMethod.POST)
+	@RequestMapping(path = "/admin/change-password.do", method = RequestMethod.POST)
 	public String updatePasswordProcess(@RequestParam(name = "a_password") String a_password,
 			@RequestParam(name = "a_password_new") String a_password_new, @ModelAttribute("admin") AdminBean admin) {
 
@@ -275,9 +276,9 @@ public class AdminController {
 
 			adminService.updateA_password(admin.getA_id(), a_password_new, admin.getA_salt());
 
-			return "redirect:/admin/index";
+			return "redirect:/index";
 		} else {
-			return "admin/user/update-password";
+			return "admin/change-password";
 		}
 	}
 

@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: AdminDAO.java
+ * File: AdminDao.java
  * Author: 詹晟
- * Date: 2017/7/8
+ * Date: 2017/7/9
  * Version: 1.0
  * Since: JDK 1.8
  */

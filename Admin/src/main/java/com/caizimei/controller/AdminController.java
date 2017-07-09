@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.caizimei.model.entity.AdminBean;
@@ -38,6 +39,7 @@ import misc.PrimitiveNumberEditor;
  * @author 詹晟
  */
 @Controller
+@SessionAttributes(value = "admin")
 public class AdminController {
 
 	/**

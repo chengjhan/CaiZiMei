@@ -99,6 +99,7 @@ public class AdminController {
 				AdminLogBean adminLogBean = new AdminLogBean();
 				adminLogBean.setAl_AdminBean(adminBean);
 				adminLogBean.setAl_operation("登入");
+				adminLogBean.setAl_ip(request.getRemoteAddr());
 				adminLogService.insert(adminLogBean);
 
 				return "redirect:/index";
@@ -180,18 +181,20 @@ public class AdminController {
 	 * 登出
 	 * 
 	 * @param admin-->Session
+	 * @param request-->HttpServletRequest
 	 * @param session-->HttpSession
 	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/secure/sign-out.do", method = RequestMethod.GET)
-	public String signOutProcess(@ModelAttribute("admin") AdminBean admin, HttpSession session,
-			SessionStatus sessionStatus) {
+	public String signOutProcess(@ModelAttribute("admin") AdminBean admin, HttpServletRequest request,
+			HttpSession session, SessionStatus sessionStatus) {
 
 		// 寫入日誌
 		AdminLogBean adminLogBean = new AdminLogBean();
 		adminLogBean.setAl_AdminBean(admin);
 		adminLogBean.setAl_operation("登出");
+		adminLogBean.setAl_ip(request.getRemoteAddr());
 		adminLogService.insert(adminLogBean);
 
 		// 清除 HttpSession
@@ -230,7 +233,7 @@ public class AdminController {
 			adminBean.setA_signin_number(1);
 			adminBean.setA_signin_ip(request.getRemoteAddr());
 			adminBean.setA_signin_time(new java.util.Date());
-			adminBean.setA_update_pass_time(new java.util.Date());
+			adminBean.setA_update_pwd_time(new java.util.Date());
 			adminBean.setA_update_info_time(new java.util.Date());
 			adminService.signUp(adminBean);
 
@@ -250,7 +253,7 @@ public class AdminController {
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
 	@RequestMapping(path = "/admin/edit.do", method = RequestMethod.POST)
-	public String updateProcess(@ModelAttribute("admin") AdminBean admin, AdminBean adminBean) {
+	public String editProcess(@ModelAttribute("admin") AdminBean admin, AdminBean adminBean) {
 
 		adminBean.setA_id(admin.getA_id());
 		adminService.update(adminBean);
@@ -268,7 +271,7 @@ public class AdminController {
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
 	@RequestMapping(path = "/admin/change-password.do", method = RequestMethod.POST)
-	public String updatePasswordProcess(@RequestParam(name = "a_password") String a_password,
+	public String changePasswordProcess(@RequestParam(name = "a_password") String a_password,
 			@RequestParam(name = "a_password_new") String a_password_new, @ModelAttribute("admin") AdminBean admin) {
 
 		String oldHashedPassword = adminService.selectByA_id(admin.getA_id()).getA_password();

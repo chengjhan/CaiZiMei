@@ -13,7 +13,7 @@ import java.util.List;
 import com.caizimei.model.entity.AdminBean;
 
 /**
- * admin Dao interface
+ * admin dao interface
  *
  * @author 詹晟
  */
@@ -36,5 +36,7 @@ public interface AdminDao {
 	AdminBean updateA_signin_ip(Integer a_id, String a_signin_ip);
 
 	AdminBean updateA_signin_time(Integer a_id);
+
+	AdminBean updateA_status(Integer a_id);
 
 }

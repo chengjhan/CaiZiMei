@@ -13,7 +13,7 @@ import java.util.List;
 import com.caizimei.model.entity.AdminLogBean;
 
 /**
- * admin_log Dao interface
+ * admin_log dao interface
  *
  * @author 詹晟
  */

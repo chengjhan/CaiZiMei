@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/7/8
+ * Date: 2017/7/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,6 +32,8 @@ public interface AdminService {
 	AdminBean updateA_signin_ip(Integer a_id, String a_signin_ip);
 
 	AdminBean updateA_signin_time(Integer a_id);
+
+	AdminBean updateA_status(Integer a_id);
 
 	String getHashedPassword(String a_password, String a_salt);
 

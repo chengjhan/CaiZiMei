@@ -18,7 +18,7 @@ import com.caizimei.model.dao.AdminDao;
 import com.caizimei.model.entity.AdminBean;
 
 /**
- * admin Dao implement
+ * admin dao implement
  * 
  * @author 詹晟
  */
@@ -104,7 +104,6 @@ public class AdminDaoImpl implements AdminDao {
 		adminBean.setA_lastname(newAdminBean.getA_lastname());
 		adminBean.setA_firstname(newAdminBean.getA_firstname());
 		adminBean.setA_email(newAdminBean.getA_email());
-		adminBean.setA_mobilephone(newAdminBean.getA_mobilephone());
 		adminBean.setA_update_info_time(new java.util.Date());
 
 		return adminBean;
@@ -122,7 +121,7 @@ public class AdminDaoImpl implements AdminDao {
 
 		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, a_id);
 		adminBean.setA_password(a_password_new_hashed);
-		adminBean.setA_update_pass_time(new java.util.Date());
+		adminBean.setA_update_pwd_time(new java.util.Date());
 
 		return adminBean;
 	}
@@ -170,6 +169,32 @@ public class AdminDaoImpl implements AdminDao {
 
 		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, a_id);
 		adminBean.setA_signin_time(new java.util.Date());
+
+		return adminBean;
+	}
+
+	/**
+	 * 切換狀態
+	 * 
+	 * @param a_id-->管理員流水號
+	 * @return adminBean-->AdminBean
+	 */
+	@Override
+	public AdminBean updateA_status(Integer a_id) {
+
+		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, a_id);
+
+		if (adminBean.getA_status() == 1) {
+
+			// 關閉帳號
+			adminBean.setA_status(0);
+			adminBean.setA_status_time(new java.util.Date());
+		} else {
+
+			// 開啟帳號
+			adminBean.setA_status(1);
+			adminBean.setA_status_time(new java.util.Date());
+		}
 
 		return adminBean;
 	}

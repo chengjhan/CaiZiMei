@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/8
+ * Date: 2017/7/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -168,6 +168,19 @@ public class AdminServiceImpl implements AdminService {
 	public AdminBean updateA_signin_time(Integer a_id) {
 
 		return adminDao.updateA_signin_time(a_id);
+	}
+
+	/**
+	 * 切換狀態
+	 * 
+	 * @param a_id-->管理員流水號
+	 * @return AdminBean
+	 */
+	@Override
+	@Transactional
+	public AdminBean updateA_status(Integer a_id) {
+
+		return adminDao.updateA_status(a_id);
 	}
 
 	/**

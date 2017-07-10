@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminBean.java
  * Author: 詹晟
- * Date: 2017/7/8
+ * Date: 2017/7/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -39,14 +39,15 @@ public class AdminBean {
 	private String a_lastname;
 	private String a_firstname;
 	private String a_email;
-	private String a_mobilephone;
 	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date a_signup_time;
 	private Integer a_signin_number;
 	private String a_signin_ip;
 	private java.util.Date a_signin_time;
-	private java.util.Date a_update_pass_time;
+	private java.util.Date a_update_pwd_time;
 	private java.util.Date a_update_info_time;
+	private Integer a_status;
+	private java.util.Date a_status_time;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "al_AdminBean")
 	private Set<AdminLogBean> a_AdminLogBean;
@@ -107,14 +108,6 @@ public class AdminBean {
 		this.a_email = a_email;
 	}
 
-	public String getA_mobilephone() {
-		return a_mobilephone;
-	}
-
-	public void setA_mobilephone(String a_mobilephone) {
-		this.a_mobilephone = a_mobilephone;
-	}
-
 	public java.util.Date getA_signup_time() {
 		return a_signup_time;
 	}
@@ -147,12 +140,12 @@ public class AdminBean {
 		this.a_signin_time = a_signin_time;
 	}
 
-	public java.util.Date getA_update_pass_time() {
-		return a_update_pass_time;
+	public java.util.Date getA_update_pwd_time() {
+		return a_update_pwd_time;
 	}
 
-	public void setA_update_pass_time(java.util.Date a_update_pass_time) {
-		this.a_update_pass_time = a_update_pass_time;
+	public void setA_update_pwd_time(java.util.Date a_update_pwd_time) {
+		this.a_update_pwd_time = a_update_pwd_time;
 	}
 
 	public java.util.Date getA_update_info_time() {
@@ -161,6 +154,30 @@ public class AdminBean {
 
 	public void setA_update_info_time(java.util.Date a_update_info_time) {
 		this.a_update_info_time = a_update_info_time;
+	}
+
+	public Integer getA_status() {
+		return a_status;
+	}
+
+	public void setA_status(Integer a_status) {
+		this.a_status = a_status;
+	}
+
+	public java.util.Date getA_status_time() {
+		return a_status_time;
+	}
+
+	public void setA_status_time(java.util.Date a_status_time) {
+		this.a_status_time = a_status_time;
+	}
+
+	public Set<AdminLogBean> getA_AdminLogBean() {
+		return a_AdminLogBean;
+	}
+
+	public void setA_AdminLogBean(Set<AdminLogBean> a_AdminLogBean) {
+		this.a_AdminLogBean = a_AdminLogBean;
 	}
 
 }

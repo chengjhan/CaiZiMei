@@ -18,7 +18,7 @@ import com.caizimei.model.dao.AdminLogDao;
 import com.caizimei.model.entity.AdminLogBean;
 
 /**
- * admin_log Dao implement
+ * admin_log dao implement
  * 
  * @author 詹晟
  */

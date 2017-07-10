@@ -23,10 +23,6 @@
 			<input type="text" id="id-input-a-email" name="a_email" value="${admin.a_email}">
 		</div>
 		<div>
-			<label for="id-input-a-mobilephone">手機</label>
-			<input type="text" id="id-input-a-mobilephone" name="a_mobilephone" value="${admin.a_mobilephone}">
-		</div>
-		<div>
 			<input type="submit" id="id-input-submit" value="修改">
 		</div>
 	</form>

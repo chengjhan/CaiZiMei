@@ -25,6 +25,8 @@ public interface AdminDao {
 
 	AdminBean selectByA_username(String a_username);
 
+	AdminBean selectByA_email(String a_email);
+
 	AdminBean insert(AdminBean adminBean);
 
 	AdminBean update(AdminBean adminBean);

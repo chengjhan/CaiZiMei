@@ -19,10 +19,6 @@
 			<td>${admin.a_email}</td>
 		</tr>
 		<tr>
-			<td>手機</td>
-			<td>${admin.a_mobilephone}</td>
-		</tr>
-		<tr>
 			<td>註冊時間</td>
 			<td>${admin.a_signup_time}</td>
 		</tr>

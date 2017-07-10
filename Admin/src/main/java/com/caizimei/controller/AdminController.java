@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -122,28 +122,33 @@ public class AdminController {
 	/**
 	 * 忘記密碼
 	 * 
-	 * @param a_username-->管理員信箱
+	 * @param a_email-->管理員信箱
 	 * @param model-->Model
 	 * @return /WEB-INF/views/secure/reset-password.jsp
+	 * @return /WEB-INF/views/secure/forget-password.jsp
 	 */
 	@RequestMapping(path = "/secure/forget-password.do", method = RequestMethod.POST)
-	public String forgetPasswordProcess(@RequestParam(name = "a_username") String a_username, Model model) {
+	public String forgetPasswordProcess(@RequestParam(name = "a_email") String a_email, Model model) {
 
-		int random = (int) (Math.random() * 1000000);
-		String a_password_random = String.valueOf(random);
+		AdminBean adminBean = adminService.selectByA_email(a_email);
 
-		AdminBean adminBean = adminService.selectByA_username(a_username);
-		adminService.updateA_password(adminBean.getA_id(), a_password_random, adminBean.getA_salt());
+		if (adminBean != null) {
+			
+			int random = (int) (Math.random() * 1000000);
+			String a_password_random = String.valueOf(random);
 
-		String to = a_username;
-		String from = "chengjhan@gmail.com";
-		String subject = "變更密碼";
-		String text = a_password_random;
-		adminService.sendEmail(to, from, subject, text);
+			adminService.updateA_password(adminBean.getA_id(), a_password_random, adminBean.getA_salt());
 
-		model.addAttribute("admin", adminBean);
+			String to = adminBean.getA_email();
+			String from = "chengjhan@gmail.com";
+			String subject = "變更密碼";
+			String text = a_password_random;
+			adminService.sendEmail(to, from, subject, text);
+			
+			return "redirect:/secure/reset-password";
+		}
 
-		return "redirect:/secure/reset-password";
+		return "secure/forget-password";
 	}
 
 	/**

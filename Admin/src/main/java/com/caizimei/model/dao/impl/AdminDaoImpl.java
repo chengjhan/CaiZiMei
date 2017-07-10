@@ -77,6 +77,27 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	/**
+	 * 管理員信箱搜尋
+	 * 
+	 * @param a_email-->管理員信箱
+	 * @return AdminBean
+	 * @return null
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public AdminBean selectByA_email(String a_email) {
+
+		List<AdminBean> list = (List<AdminBean>) hibernateTemplate
+				.findByNamedParam("from AdminBean where a_email=:a_email", "a_email", a_email);
+
+		if (!list.isEmpty()) {
+
+			return list.get(0);
+		}
+		return null;
+	}
+
+	/**
 	 * 新增管理員
 	 * 
 	 * @param adminBean-->AdminBean

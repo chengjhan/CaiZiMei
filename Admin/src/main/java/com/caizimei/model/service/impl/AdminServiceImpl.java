@@ -116,6 +116,19 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	/**
+	 * 管理員信箱搜尋
+	 * 
+	 * @param a_email-->管理員帳號
+	 * @return AdminBean
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public AdminBean selectByA_email(String a_email) {
+
+		return adminDao.selectByA_email(a_email);
+	}
+
+	/**
 	 * 修改資料
 	 * 
 	 * @param adminBean-->AdminBean

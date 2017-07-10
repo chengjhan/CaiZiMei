@@ -25,6 +25,8 @@ public interface AdminService {
 
 	AdminBean selectByA_username(String a_username);
 
+	AdminBean selectByA_email(String a_email);
+
 	AdminBean update(AdminBean adminBean);
 
 	AdminBean updateA_password(Integer a_id, String a_password_new, String a_salt);

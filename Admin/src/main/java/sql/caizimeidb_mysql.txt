@@ -15,13 +15,13 @@ create table admin (
     a_firstname				nvarchar(20),
     a_email					varchar(50) not null,
     a_signup_time			datetime not null,
-    a_signin_number			int,
-    a_signin_ip				varchar(20),
-    a_signin_time			datetime,
-    a_update_pwd_time		datetime,
-    a_update_info_time		datetime,
-    a_status				tinyint,
-    a_status_time			datetime,
+    a_signin_number			int not null,
+    a_signin_ip				varchar(20) not null,
+    a_signin_time			datetime not null,
+    a_update_info_time		datetime not null,
+    a_update_pwd_time		datetime not null,
+    a_status				tinyint not null,
+    a_status_time			datetime not null,
     primary key (a_id)
 );
 

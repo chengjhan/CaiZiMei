@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminBean.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,8 +18,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * admin entity
@@ -39,13 +37,12 @@ public class AdminBean {
 	private String a_lastname;
 	private String a_firstname;
 	private String a_email;
-	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date a_signup_time;
 	private Integer a_signin_number;
 	private String a_signin_ip;
 	private java.util.Date a_signin_time;
-	private java.util.Date a_update_pwd_time;
 	private java.util.Date a_update_info_time;
+	private java.util.Date a_update_pwd_time;
 	private Integer a_status;
 	private java.util.Date a_status_time;
 
@@ -140,20 +137,20 @@ public class AdminBean {
 		this.a_signin_time = a_signin_time;
 	}
 
-	public java.util.Date getA_update_pwd_time() {
-		return a_update_pwd_time;
-	}
-
-	public void setA_update_pwd_time(java.util.Date a_update_pwd_time) {
-		this.a_update_pwd_time = a_update_pwd_time;
-	}
-
 	public java.util.Date getA_update_info_time() {
 		return a_update_info_time;
 	}
 
 	public void setA_update_info_time(java.util.Date a_update_info_time) {
 		this.a_update_info_time = a_update_info_time;
+	}
+
+	public java.util.Date getA_update_pwd_time() {
+		return a_update_pwd_time;
+	}
+
+	public void setA_update_pwd_time(java.util.Date a_update_pwd_time) {
+		this.a_update_pwd_time = a_update_pwd_time;
 	}
 
 	public Integer getA_status() {

@@ -11,7 +11,6 @@ package com.caizimei.controller;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -164,7 +163,7 @@ public class AdminController {
 	 * 
 	 * @param a_password-->驗證碼(原碼)
 	 * @param a_password_new-->新密碼(原碼)
-	 * @param admin-->Session
+	 * @param a_email-->Session
 	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
@@ -200,13 +199,12 @@ public class AdminController {
 	 * 
 	 * @param admin-->Session
 	 * @param request-->HttpServletRequest
-	 * @param session-->HttpSession
 	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(path = "/secure/sign-out.do", method = RequestMethod.GET)
 	public String signOutProcess(@ModelAttribute("admin") AdminBean admin, HttpServletRequest request,
-			HttpSession session, SessionStatus sessionStatus) {
+			SessionStatus sessionStatus) {
 
 		// 寫入日誌
 		AdminLogBean adminLogBean = new AdminLogBean();
@@ -214,12 +212,6 @@ public class AdminController {
 		adminLogBean.setAl_operation("登出");
 		adminLogBean.setAl_ip(request.getRemoteAddr());
 		adminLogService.insert(adminLogBean);
-
-		// 清除 HttpSession
-		if (session.getAttribute("admin") != null) {
-			session.removeAttribute("admin"); // 清除特定 HttpSession
-		}
-		session.invalidate(); // 清除所有 HttpSession
 
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();

@@ -1,23 +1,23 @@
 /*
  * CaiZiMei
- * File: AdminLogDao.java
+ * File: AdminLogService.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/8
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.model.dao;
+package com.czmbeauty.model.service;
 
 import java.util.List;
 
-import com.caizimei.model.entity.AdminLogBean;
+import com.czmbeauty.model.entity.AdminLogBean;
 
 /**
- * admin_log dao interface
- *
+ * admin_log service interface
+ * 
  * @author 詹晟
  */
-public interface AdminLogDao {
+public interface AdminLogService {
 
 	List<AdminLogBean> selectAll();
 

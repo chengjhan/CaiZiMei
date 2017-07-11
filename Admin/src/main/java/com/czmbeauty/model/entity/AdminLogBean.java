@@ -6,7 +6,7 @@
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.model.entity;
+package com.czmbeauty.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

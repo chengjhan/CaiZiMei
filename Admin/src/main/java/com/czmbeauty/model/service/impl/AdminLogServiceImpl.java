@@ -6,7 +6,7 @@
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.model.service.impl;
+package com.czmbeauty.model.service.impl;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caizimei.model.dao.AdminLogDao;
-import com.caizimei.model.entity.AdminLogBean;
-import com.caizimei.model.service.AdminLogService;
+import com.czmbeauty.model.dao.AdminLogDao;
+import com.czmbeauty.model.entity.AdminLogBean;
+import com.czmbeauty.model.service.AdminLogService;
 
 /**
  * admin_log service implement

@@ -6,7 +6,7 @@
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.model.dao.impl;
+package com.czmbeauty.model.dao.impl;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.caizimei.model.dao.AdminLogDao;
-import com.caizimei.model.entity.AdminLogBean;
+import com.czmbeauty.model.dao.AdminLogDao;
+import com.czmbeauty.model.entity.AdminLogBean;
 
 /**
  * admin_log dao implement

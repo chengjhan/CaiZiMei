@@ -1,10 +1,10 @@
 -- MySQL
 
-drop database if exists caizimeidb01;
+drop database if exists czmbeautydb;
 
-create database if not exists caizimeidb01;
+create database if not exists czmbeautydb;
 
-use caizimeidb01;
+use czmbeautydb;
 
 create table admin (
 	a_id					int auto_increment not null,

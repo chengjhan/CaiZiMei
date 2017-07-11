@@ -6,7 +6,7 @@
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.model.dao.impl;
+package com.czmbeauty.model.dao.impl;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.caizimei.model.dao.AdminDao;
-import com.caizimei.model.entity.AdminBean;
+import com.czmbeauty.model.dao.AdminDao;
+import com.czmbeauty.model.entity.AdminBean;
 
 /**
  * admin dao implement

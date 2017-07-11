@@ -6,7 +6,7 @@
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.controller;
+package com.czmbeauty.controller;
 
 import java.text.SimpleDateFormat;
 
@@ -25,10 +25,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.caizimei.model.entity.AdminBean;
-import com.caizimei.model.entity.AdminLogBean;
-import com.caizimei.model.service.AdminLogService;
-import com.caizimei.model.service.AdminService;
+import com.czmbeauty.model.entity.AdminBean;
+import com.czmbeauty.model.entity.AdminLogBean;
+import com.czmbeauty.model.service.AdminLogService;
+import com.czmbeauty.model.service.AdminService;
 
 import misc.PrimitiveNumberEditor;
 

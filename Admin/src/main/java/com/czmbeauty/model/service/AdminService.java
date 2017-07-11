@@ -6,11 +6,11 @@
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.model.service;
+package com.czmbeauty.model.service;
 
 import java.util.List;
 
-import com.caizimei.model.entity.AdminBean;
+import com.czmbeauty.model.entity.AdminBean;
 
 /**
  * admin service interface

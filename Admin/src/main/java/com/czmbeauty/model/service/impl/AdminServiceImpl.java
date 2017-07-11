@@ -6,7 +6,7 @@
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.model.service.impl;
+package com.czmbeauty.model.service.impl;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -20,9 +20,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caizimei.model.dao.AdminDao;
-import com.caizimei.model.entity.AdminBean;
-import com.caizimei.model.service.AdminService;
+import com.czmbeauty.model.dao.AdminDao;
+import com.czmbeauty.model.entity.AdminBean;
+import com.czmbeauty.model.service.AdminService;
 
 /**
  * admin service implement

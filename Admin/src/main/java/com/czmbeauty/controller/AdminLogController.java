@@ -6,7 +6,7 @@
  * Version: 1.0
  * Since: JDK 1.8
  */
-package com.caizimei.controller;
+package com.czmbeauty.controller;
 
 import org.springframework.stereotype.Controller;
 

@@ -36,6 +36,10 @@
 			<input type="text" id="id-input-a-email" name="a_email">
 		</div>
 		<div>
+			<label for="">最高權限</label>
+			<input type="checkbox" id="id-input-a-master" name="a_master">
+		</div>
+		<div>
 			<input type="submit" id="id-input-submit" value="註冊">
 		</div>
 	</form>

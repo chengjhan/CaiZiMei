@@ -39,7 +39,7 @@ import misc.PrimitiveNumberEditor;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = "admin")
+@SessionAttributes(value = { "admin", "a_email" })
 public class AdminController {
 
 	/**
@@ -145,13 +145,17 @@ public class AdminController {
 
 			String to = adminBean.getA_email();
 			String from = "chengjhan@gmail.com";
-			String subject = "變更密碼";
-			String text = a_password_random;
+			String subject = "采姿美管理系統";
+			String text = "您的驗證碼為：" + a_password_random + "。";
 			adminService.sendEmail(to, from, subject, text);
 
+			model.addAttribute("a_email", to);
+
+			// 發送成功
 			return "redirect:/secure/reset-password";
 		}
 
+		// 信箱輸入錯誤
 		return "secure/forget-password";
 	}
 
@@ -167,21 +171,26 @@ public class AdminController {
 	 */
 	@RequestMapping(path = "/secure/reset-password.do", method = RequestMethod.POST)
 	public String resetPasswordProcess(@RequestParam(name = "a_password") String a_password,
-			@RequestParam(name = "a_password_new") String a_password_new, @ModelAttribute("admin") AdminBean admin,
+			@RequestParam(name = "a_password_new") String a_password_new, @ModelAttribute("a_email") String a_email,
 			SessionStatus sessionStatus) {
 
-		String oldHashedPassword = adminService.selectByA_id(admin.getA_id()).getA_password();
-		String inputOldHashedPassword = adminService.getHashedPassword(a_password, admin.getA_salt());
+		AdminBean adminBean = adminService.selectByA_email(a_email);
+
+		String oldHashedPassword = adminService.selectByA_id(adminBean.getA_id()).getA_password();
+		String inputOldHashedPassword = adminService.getHashedPassword(a_password, adminBean.getA_salt());
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 
-			adminService.updateA_password(admin.getA_id(), a_password_new, admin.getA_salt());
+			adminService.updateA_password(adminBean.getA_id(), a_password_new, adminBean.getA_salt());
 
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();
 
+			// 重設成功
 			return "redirect:/secure/sign-in";
 		} else {
+
+			// 驗證碼輸入錯誤
 			return "secure/reset-password";
 		}
 	}
@@ -250,11 +259,11 @@ public class AdminController {
 			adminService.signUp(adminBean);
 
 			model.addAttribute("admin", adminBean);
-			
+
 			// 註冊成功
 			return "redirect:/index";
 		} else {
-			
+
 			// 帳號重複
 			return "redirect:/admin/sign-up";
 		}
@@ -299,7 +308,7 @@ public class AdminController {
 			// 變更成功
 			return "redirect:/index";
 		} else {
-			
+
 			// 密碼輸入錯誤
 			return "admin/change-password";
 		}

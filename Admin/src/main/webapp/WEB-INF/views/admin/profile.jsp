@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,8 +20,9 @@
 			<td>${admin.a_email}</td>
 		</tr>
 		<tr>
+			<fmt:formatDate value="${admin.a_signup_time}" var="a_signup_time" pattern="yyyy-MM-dd hh:mm:ss" />
 			<td>註冊時間</td>
-			<td>${admin.a_signup_time}</td>
+			<td>${a_signup_time}</td>
 		</tr>
 		<tr>
 			<td>登入次數</td>
@@ -29,6 +31,9 @@
 	</table>
 	<p>
 		<a href="<%=request.getContextPath()%>/admin/edit">編輯個人資訊</a>
+	</p>
+	<p>
+		<a href="<%=request.getContextPath()%>/">首頁</a>
 	</p>
 </body>
 </html>

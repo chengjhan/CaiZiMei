@@ -14,7 +14,7 @@ create table admin (
     a_lastname				nvarchar(20),
     a_firstname				nvarchar(20),
     a_email					varchar(50) not null,
-    a_signup_time			timestamp default current_timestamp not null,
+    a_signup_time			datetime not null,
     a_signin_number			int,
     a_signin_ip				varchar(20),
     a_signin_time			datetime,

@@ -133,7 +133,7 @@ public class AdminController {
 		AdminBean adminBean = adminService.selectByA_email(a_email);
 
 		if (adminBean != null) {
-			
+
 			int random = (int) (Math.random() * 1000000);
 			String a_password_random = String.valueOf(random);
 
@@ -144,7 +144,7 @@ public class AdminController {
 			String subject = "變更密碼";
 			String text = a_password_random;
 			adminService.sendEmail(to, from, subject, text);
-			
+
 			return "redirect:/secure/reset-password";
 		}
 
@@ -235,6 +235,7 @@ public class AdminController {
 
 			adminBean.setA_salt(a_salt);
 			adminBean.setA_password(adminService.getHashedPassword(a_password, a_salt));
+			adminBean.setA_signup_time(new java.util.Date());
 			adminBean.setA_signin_number(1);
 			adminBean.setA_signin_ip(request.getRemoteAddr());
 			adminBean.setA_signin_time(new java.util.Date());

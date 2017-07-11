@@ -24,5 +24,8 @@
 	<p>
 		<a href="<%=request.getContextPath()%>/admin/change-password">變更密碼</a>
 	</p>
+	<p>
+		<a href="<%=request.getContextPath()%>/admin/list.do">管理者一覽</a>
+	</p>
 </body>
 </html>

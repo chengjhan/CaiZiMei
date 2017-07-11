@@ -38,7 +38,7 @@ import misc.PrimitiveNumberEditor;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = { "admin", "a_email" })
+@SessionAttributes(value = { "admin", "a_email", "adminList" })
 public class AdminController {
 
 	/**
@@ -304,6 +304,20 @@ public class AdminController {
 			// 密碼輸入錯誤
 			return "admin/change-password";
 		}
+	}
+
+	/**
+	 * 搜尋全部管理員
+	 * 
+	 * @param model-->Model
+	 * @return /WEB-INF/views/admin/list.jsp
+	 */
+	@RequestMapping(value = "/admin/list.do", method = RequestMethod.GET)
+	public String selectAllProcess(Model model) {
+
+		model.addAttribute("adminList", adminService.selectAll());
+
+		return "admin/list";
 	}
 
 }

@@ -11,6 +11,7 @@ package com.caizimei.model.service.impl;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,18 @@ public class AdminServiceImpl implements AdminService {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * 搜尋全部管理員
+	 * 
+	 * @return List<AdminBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<AdminBean> selectAll() {
+
+		return adminDao.selectAll();
 	}
 
 	/**

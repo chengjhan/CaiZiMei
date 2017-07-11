@@ -2,11 +2,13 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/11
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.caizimei.model.service;
+
+import java.util.List;
 
 import com.caizimei.model.entity.AdminBean;
 
@@ -20,6 +22,8 @@ public interface AdminService {
 	AdminBean signUp(AdminBean adminBean);
 
 	Boolean signIn(String a_username, String a_password);
+
+	List<AdminBean> selectAll();
 
 	AdminBean selectByA_id(Integer a_id);
 

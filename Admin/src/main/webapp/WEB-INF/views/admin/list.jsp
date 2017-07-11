@@ -44,7 +44,7 @@
 					<td>${a_signin_time}</td>
 					<td>${bean.a_status}</td>
 					<td>${a_status_time}</td>
-					<td><a href="<%=request.getContextPath()%>/admin/update-status.do?a_id=${bean.a_id}">變更</a></td>
+					<td><a href="<%=request.getContextPath()%>/admin/switch.do?a_id=${bean.a_id}">變更</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -313,11 +313,27 @@ public class AdminController {
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */
 	@RequestMapping(value = "/admin/list.do", method = RequestMethod.GET)
-	public String selectAllProcess(Model model) {
+	public String listProcess(Model model) {
 
 		model.addAttribute("adminList", adminService.selectAll());
 
 		return "admin/list";
+	}
+
+	/**
+	 * 帳戶開關
+	 * 
+	 * @param a_id-->管理員流水號
+	 * @param model-->Model
+	 * @return /WEB-INF/views/admin/list.jsp
+	 */
+	@RequestMapping(path = "/admin/switch.do", method = RequestMethod.GET)
+	public String switchProcess(@RequestParam(name = "a_id") String a_id, Model model) {
+
+		adminService.updateA_status(Integer.valueOf(a_id));
+		model.addAttribute("adminList", adminService.selectAll());
+
+		return "redirect:/admin/list";
 	}
 
 }

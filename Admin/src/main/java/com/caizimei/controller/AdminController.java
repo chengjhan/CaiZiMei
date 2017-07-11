@@ -91,6 +91,7 @@ public class AdminController {
 
 			if (adminService.signIn(a_username, a_password)) {
 
+				// 更新登入資訊
 				adminService.updateA_signin_ip(adminBean.getA_id(), request.getRemoteAddr());
 				adminService.updateA_signin_time(adminBean.getA_id());
 				model.addAttribute("admin", adminService.selectByA_username(a_username));
@@ -102,12 +103,14 @@ public class AdminController {
 				adminLogBean.setAl_ip(request.getRemoteAddr());
 				adminLogService.insert(adminLogBean);
 
+				// 登入成功
 				return "redirect:/index";
 			} else {
 
 				// 密碼錯誤
 				model.addAttribute("error", "帳號或密碼錯誤");
 
+				// 登入失敗
 				return "secure/sign-in";
 			}
 		} else {
@@ -115,6 +118,7 @@ public class AdminController {
 			// 帳號錯誤
 			model.addAttribute("error", "帳號或密碼錯誤");
 
+			// 登入失敗
 			return "secure/sign-in";
 		}
 	}
@@ -241,18 +245,23 @@ public class AdminController {
 			adminBean.setA_signin_time(new java.util.Date());
 			adminBean.setA_update_pwd_time(new java.util.Date());
 			adminBean.setA_update_info_time(new java.util.Date());
+			adminBean.setA_status(1);
+			adminBean.setA_status_time(new java.util.Date());
 			adminService.signUp(adminBean);
 
 			model.addAttribute("admin", adminBean);
-
+			
+			// 註冊成功
 			return "redirect:/index";
 		} else {
+			
+			// 帳號重複
 			return "redirect:/admin/sign-up";
 		}
 	}
 
 	/**
-	 * 編輯個人資料
+	 * 編輯個人資訊
 	 * 
 	 * @param admin-->Session
 	 * @param adminBean-->AdminBean
@@ -287,8 +296,11 @@ public class AdminController {
 
 			adminService.updateA_password(admin.getA_id(), a_password_new, admin.getA_salt());
 
+			// 變更成功
 			return "redirect:/index";
 		} else {
+			
+			// 密碼輸入錯誤
 			return "admin/change-password";
 		}
 	}

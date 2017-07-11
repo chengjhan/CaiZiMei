@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -66,7 +66,7 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 登入
 	 * 
-	 * @param a_username-->管理員信箱
+	 * @param a_username-->管理員帳號
 	 * @param a_password-->管理員密碼(原碼)
 	 * @return true-->登入成功
 	 * @return false-->登入失敗

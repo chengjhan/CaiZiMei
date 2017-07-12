@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/11
+ * Date: 2017/7/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -307,7 +307,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 搜尋全部管理員
+	 * 管理員一覽
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/list.jsp

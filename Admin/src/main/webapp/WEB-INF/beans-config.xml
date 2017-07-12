@@ -26,6 +26,7 @@
 			<list>
 				<value>com.czmbeauty.model.entity.AdminBean</value>
 				<value>com.czmbeauty.model.entity.AdminLogBean</value>
+				<value>com.czmbeauty.model.entity.CountryBean</value>
 			</list>
 		</property>
 	</bean>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/7/11
+ * Date: 2017/7/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,6 +11,9 @@ package com.czmbeauty.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.czmbeauty.model.entity.CountryBean;
 
 /**
  * views controller (視圖解析)
@@ -84,6 +87,17 @@ public class ViewsController {
 	public String admin_signUp() {
 
 		return "admin/sign-up";
+	}
+
+	/**
+	 * 新增國家 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/country/add.jsp
+	 */
+	@RequestMapping(value = "/country/add", method = RequestMethod.GET)
+	public ModelAndView country_add() {
+
+		return new ModelAndView("country/add", "countryBean", new CountryBean());
 	}
 
 	/**

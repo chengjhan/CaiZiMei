@@ -104,6 +104,17 @@ public class ViewsController {
 	}
 
 	/**
+	 * 國家一覽 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/country/list.jsp
+	 */
+	@RequestMapping(value = "/country/list", method = RequestMethod.GET)
+	public String country_list() {
+
+		return "country/list";
+	}
+
+	/**
 	 * 忘記密碼 - 采姿美管理系統
 	 * 
 	 * @return /WEB-INF/views/secure/forget-password.jsp

@@ -28,7 +28,7 @@
 		<a href="<%=request.getContextPath()%>/admin/list.do">管理者一覽</a>
 	</p>
 	<p>
-		<a href="<%=request.getContextPath()%>/country/add">新增國家</a>
+		<a href="<%=request.getContextPath()%>/country/list.do">國家一覽</a>
 	</p>
 </body>
 </html>

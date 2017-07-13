@@ -65,13 +65,13 @@ public class CountryController {
 		countryService.insert(countryBean);
 		model.addAttribute("countryList", countryService.selectAll());
 
-		return "redirect:/index";
+		return "redirect:/country/list";
 	}
 
 	/**
 	 * 編輯資料
 	 * 
-	 * @param countryBean-->CountryBean
+	 * @param countryBean-->form-backing-object
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
@@ -87,7 +87,7 @@ public class CountryController {
 	/**
 	 * 刪除國家
 	 * 
-	 * @param countryBean-->CountryBean
+	 * @param countryBean-->form-backing-object
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */

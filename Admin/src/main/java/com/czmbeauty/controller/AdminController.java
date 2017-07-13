@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/12
+ * Date: 2017/7/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -222,7 +222,7 @@ public class AdminController {
 	/**
 	 * 註冊
 	 * 
-	 * @param adminBean-->AdminBean
+	 * @param adminBean-->form-backing-object
 	 * @param a_username-->管理員帳號
 	 * @param a_password-->管理員密碼(原碼)
 	 * @param request-->HttpServletRequest
@@ -265,7 +265,7 @@ public class AdminController {
 	 * 編輯個人資訊
 	 * 
 	 * @param admin-->Session
-	 * @param adminBean-->AdminBean
+	 * @param adminBean-->form-backing-object
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
 	@RequestMapping(path = "/admin/edit.do", method = RequestMethod.POST)

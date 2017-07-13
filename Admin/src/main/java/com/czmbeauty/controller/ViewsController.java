@@ -9,9 +9,9 @@
 package com.czmbeauty.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.model.entity.CountryBean;
 
@@ -95,9 +95,12 @@ public class ViewsController {
 	 * @return /WEB-INF/views/country/add.jsp
 	 */
 	@RequestMapping(value = "/country/add", method = RequestMethod.GET)
-	public ModelAndView country_add() {
+	public String country_add(Model model) {
 
-		return new ModelAndView("country/add", "countryBean", new CountryBean());
+		CountryBean countryBean = new CountryBean();
+		model.addAttribute("countryBean", countryBean);
+
+		return "country/add";
 	}
 
 	/**

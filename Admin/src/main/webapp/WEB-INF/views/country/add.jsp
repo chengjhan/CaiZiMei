@@ -10,7 +10,7 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
-	<form:form action="/country/add.do" method="post" modelAttribute="countryBean">
+	<form:form action="/Admin/country/add.do" method="post" modelAttribute="countryBean">
 		<table border="1">
 			<tr>
 				<td>代碼</td>

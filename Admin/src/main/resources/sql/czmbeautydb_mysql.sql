@@ -37,8 +37,9 @@ create table admin_log (
 
 create table country (
 	co_id					int auto_increment not null,
+    co_iso					varchar(2),
     co_name					nvarchar(10) not null,
-    co_eng_name				varchar(50),
+    co_phonecode			varchar(5),
     co_rank					tinyint,
     primary key (co_id)
 );

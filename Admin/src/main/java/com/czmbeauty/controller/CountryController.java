@@ -14,7 +14,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,17 +55,17 @@ public class CountryController {
 	/**
 	 * 新增國家
 	 * 
-	 * @param countryBean-->CountryBean
+	 * @param countryBean-->form-backing-object
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
-	@RequestMapping(value = "/country/add.do", method = RequestMethod.POST)
-	public String addProcess(@ModelAttribute("countryBean") CountryBean countryBean, Model model) {
+	@RequestMapping(path = "/country/add.do", method = RequestMethod.POST)
+	public String addProcess(CountryBean countryBean, Model model) {
 
 		countryService.insert(countryBean);
 		model.addAttribute("countryList", countryService.selectAll());
 
-		return "redirect:/";
+		return "redirect:/index";
 	}
 
 	/**

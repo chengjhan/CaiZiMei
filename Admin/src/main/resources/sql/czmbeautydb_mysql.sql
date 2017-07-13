@@ -38,10 +38,28 @@ create table admin_log (
 create table country (
 	co_id					int auto_increment not null,
 	co_iso					varchar(2),
-	co_name					nvarchar(10) not null,
+	co_name					nvarchar(50) not null,
 	co_phonecode			varchar(5),
 	co_rank					tinyint,
 	primary key (co_id)
+);
+
+create table state (
+	s_id					int auto_increment not null,
+	s_co_id					int not null,
+	s_name					nvarchar(50) not null,
+	s_rank					tinyint,
+	primary key (s_id),
+	foreign key (s_co_id) references country (co_id)
+);
+
+create table city (
+	ci_id					int auto_increment not null,
+	ci_s_id					int not null,
+	ci_name					nvarchar(50) not null,
+	ci_rank					tinyint,
+	primary key (ci_id),
+	foreign key (ci_s_id) references state (s_id)
 );
 
 insert into admin (a_id, a_username, a_password, a_salt, a_lastname, a_firstname, a_email, a_signup_time, a_signin_number, a_signin_ip, a_signin_time, a_update_info_time, a_update_pwd_time, a_status, a_status_time) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', null, null, 'admin@czmbeauty.com', now(), null, null, null, now(), now(), 1, now());

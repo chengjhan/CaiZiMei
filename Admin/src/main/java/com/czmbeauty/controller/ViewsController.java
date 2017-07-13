@@ -2,11 +2,14 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/7/13
+ * Date: 2017/7/14
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.czmbeauty.model.entity.CountryBean;
+import com.czmbeauty.model.entity.StateBean;
 import com.czmbeauty.model.service.CountryService;
 
 /**
@@ -100,11 +104,13 @@ public class ViewsController {
 	/**
 	 * 新增國家 - 采姿美管理系統
 	 * 
+	 * @param model-->Model
 	 * @return /WEB-INF/views/country/add.jsp
 	 */
 	@RequestMapping(value = "/country/add", method = RequestMethod.GET)
 	public String country_add(Model model) {
 
+		// 新增 form backing object
 		CountryBean countryBean = new CountryBean();
 		model.addAttribute("countryBean", countryBean);
 
@@ -114,11 +120,14 @@ public class ViewsController {
 	/**
 	 * 編輯國家資訊 - 采姿美管理系統
 	 * 
+	 * @param countryBean-->form-backing-object
+	 * @param model-->Model
 	 * @return /WEB-INF/views/country/edit.jsp
 	 */
 	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
 	public String country_edit(CountryBean countryBean, Model model) {
 
+		// 取得選定 id 的 CountryBean
 		model.addAttribute("countryBean", countryService.selectByCo_id(countryBean.getCo_id()));
 
 		return "country/edit";
@@ -166,6 +175,40 @@ public class ViewsController {
 	public String secure_signIn() {
 
 		return "secure/sign-in";
+	}
+
+	/**
+	 * 新增區域 - 采姿美管理系統
+	 * 
+	 * @param model-->Model
+	 * @return /WEB-INF/views/state/add.jsp
+	 */
+	@RequestMapping(value = "/state/add", method = RequestMethod.GET)
+	public String state_add(Model model) {
+
+		// 取得所有國家 List 並製作 Map
+		Map<Integer, String> countryMap = new LinkedHashMap<Integer, String>();
+		for (CountryBean bean : countryService.selectAll()) {
+			countryMap.put(bean.getCo_id(), bean.getCo_name());
+		}
+		model.addAttribute("countryMap", countryMap);
+
+		// 新增 form backing object
+		StateBean stateBean = new StateBean();
+		model.addAttribute("stateBean", stateBean);
+
+		return "state/add";
+	}
+
+	/**
+	 * 區域一覽 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/state/list.jsp
+	 */
+	@RequestMapping(value = "/state/list", method = RequestMethod.GET)
+	public String state_list() {
+
+		return "state/list";
 	}
 
 }

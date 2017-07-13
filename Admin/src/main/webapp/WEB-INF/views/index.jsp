@@ -30,5 +30,8 @@
 	<p>
 		<a href="<%=request.getContextPath()%>/country/list.do">國家一覽</a>
 	</p>
+	<p>
+		<a href="<%=request.getContextPath()%>/state/list.do">區域一覽</a>
+	</p>
 </body>
 </html>

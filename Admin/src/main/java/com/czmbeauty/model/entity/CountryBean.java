@@ -2,16 +2,21 @@
  * CaiZiMei
  * File: CountryBean.java
  * Author: 詹晟
- * Date: 2017/7/12
+ * Date: 2017/7/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -30,6 +35,9 @@ public class CountryBean {
 	private String co_name;
 	private String co_phonecode;
 	private Integer co_rank;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "s_CountryBean")
+	private Set<StateBean> co_StateBean;
 
 	public Integer getCo_id() {
 		return co_id;
@@ -69,6 +77,14 @@ public class CountryBean {
 
 	public void setCo_rank(Integer co_rank) {
 		this.co_rank = co_rank;
+	}
+
+	public Set<StateBean> getCo_StateBean() {
+		return co_StateBean;
+	}
+
+	public void setCo_StateBean(Set<StateBean> co_StateBean) {
+		this.co_StateBean = co_StateBean;
 	}
 
 }

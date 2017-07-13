@@ -69,7 +69,7 @@ public class CountryController {
 	}
 
 	/**
-	 * 編輯資料
+	 * 編輯國家資訊
 	 * 
 	 * @param countryBean-->form-backing-object
 	 * @param model-->Model

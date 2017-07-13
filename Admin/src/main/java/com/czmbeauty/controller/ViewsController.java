@@ -8,12 +8,14 @@
  */
 package com.czmbeauty.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.czmbeauty.model.entity.CountryBean;
+import com.czmbeauty.model.service.CountryService;
 
 /**
  * views controller (視圖解析)
@@ -22,6 +24,12 @@ import com.czmbeauty.model.entity.CountryBean;
  */
 @Controller
 public class ViewsController {
+
+	/**
+	 * 注入 CountryService
+	 */
+	@Autowired
+	private CountryService countryService;
 
 	/**
 	 * 首頁 - 采姿美管理系統
@@ -101,6 +109,19 @@ public class ViewsController {
 		model.addAttribute("countryBean", countryBean);
 
 		return "country/add";
+	}
+
+	/**
+	 * 編輯國家資訊 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/country/edit.jsp
+	 */
+	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
+	public String country_edit(CountryBean countryBean, Model model) {
+
+		model.addAttribute("countryBean", countryService.selectByCo_id(countryBean.getCo_id()));
+
+		return "country/edit";
 	}
 
 	/**

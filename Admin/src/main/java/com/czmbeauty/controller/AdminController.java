@@ -70,13 +70,24 @@ public class AdminController {
 	}
 
 	/**
-	 * 登入
+	 * 登入 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/secure/sign-in.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
+	public String signInView() {
+
+		return "secure/sign-in";
+	}
+
+	/**
+	 * 登入 - submit
 	 * 
 	 * @param a_username-->管理員帳號
 	 * @param a_password-->管理員密碼(原碼)
 	 * @param request-->HttpServletRequest
 	 * @param model-->Model
-	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/.jsp
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
@@ -103,7 +114,7 @@ public class AdminController {
 				adminLogService.insert(adminLogBean);
 
 				// 登入成功
-				return "redirect:/index";
+				return "redirect:/";
 			} else {
 
 				// 密碼錯誤
@@ -123,7 +134,18 @@ public class AdminController {
 	}
 
 	/**
-	 * 忘記密碼
+	 * 忘記密碼 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/secure/forget-password.jsp
+	 */
+	@RequestMapping(value = "/secure/forget-password", method = RequestMethod.GET)
+	public String forgetPasswordView() {
+
+		return "secure/forget-password";
+	}
+
+	/**
+	 * 忘記密碼 - submit
 	 * 
 	 * @param a_email-->管理員信箱
 	 * @param model-->Model
@@ -159,7 +181,18 @@ public class AdminController {
 	}
 
 	/**
-	 * 重設密碼
+	 * 重設密碼 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/secure/reset-password.jsp
+	 */
+	@RequestMapping(value = "/secure/reset-password", method = RequestMethod.GET)
+	public String resetPasswordView() {
+
+		return "secure/reset-password";
+	}
+
+	/**
+	 * 重設密碼 - submit
 	 * 
 	 * @param a_password-->驗證碼(原碼)
 	 * @param a_password_new-->新密碼(原碼)
@@ -200,9 +233,9 @@ public class AdminController {
 	 * @param admin-->Session
 	 * @param request-->HttpServletRequest
 	 * @param sessionStatus-->SessionStatus
-	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/.jsp
 	 */
-	@RequestMapping(path = "/secure/sign-out.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/secure/sign-out", method = RequestMethod.GET)
 	public String signOutProcess(@ModelAttribute("admin") AdminBean admin, HttpServletRequest request,
 			SessionStatus sessionStatus) {
 
@@ -216,7 +249,7 @@ public class AdminController {
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
 
-		return "redirect:/index";
+		return "redirect:/";
 	}
 
 	/**
@@ -239,7 +272,7 @@ public class AdminController {
 	 * @param adminBean-->form-backing-object
 	 * @param request-->HttpServletRequest
 	 * @param model-->Model
-	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/.jsp
 	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 */
 	@RequestMapping(value = "/admin/sign-up.do", method = RequestMethod.POST)
@@ -265,7 +298,7 @@ public class AdminController {
 			model.addAttribute("admin", adminBean);
 
 			// 註冊成功
-			return "redirect:/index";
+			return "redirect:/";
 		} else {
 
 			// 帳號重複
@@ -331,7 +364,7 @@ public class AdminController {
 	 * @param a_password-->舊密碼(原碼)
 	 * @param a_password_new-->新密碼(原碼)
 	 * @param admin-->Session
-	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
 	@RequestMapping(path = "/admin/change-password.do", method = RequestMethod.POST)
@@ -346,7 +379,7 @@ public class AdminController {
 			adminService.updateA_password(admin.getA_id(), a_password_new, admin.getA_salt());
 
 			// 變更成功
-			return "redirect:/index";
+			return "redirect:/";
 		} else {
 
 			// 密碼輸入錯誤

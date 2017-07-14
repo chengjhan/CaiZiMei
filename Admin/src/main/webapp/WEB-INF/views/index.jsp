@@ -13,7 +13,7 @@
 		<a href="<%=request.getContextPath()%>/secure/sign-in">登入</a>
 	</p>
 	<p>
-		<a href="<%=request.getContextPath()%>/secure/sign-out.do">登出</a>
+		<a href="<%=request.getContextPath()%>/secure/sign-out">登出</a>
 	</p>
 	<p>
 		<a href="<%=request.getContextPath()%>/admin/sign-up">註冊</a>
@@ -25,7 +25,7 @@
 		<a href="<%=request.getContextPath()%>/admin/change-password">變更密碼</a>
 	</p>
 	<p>
-		<a href="<%=request.getContextPath()%>/admin/list.do">管理者一覽</a>
+		<a href="<%=request.getContextPath()%>/admin/list">管理者一覽</a>
 	</p>
 	<p>
 		<a href="<%=request.getContextPath()%>/country/list">國家一覽</a>

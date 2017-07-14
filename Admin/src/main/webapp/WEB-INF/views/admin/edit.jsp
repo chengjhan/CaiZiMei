@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,22 +10,22 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
-	<form action="<c:url value='/admin/edit.do' />" method="post">
+	<form:form action="/Admin/admin/edit.do" method="post" modelAttribute="admin">
 		<div>
-			<label for="id-input-a-lastname">姓氏</label>
-			<input type="text" id="id-input-a-lastname" name="a_lastname" value="${admin.a_lastname}">
+			<form:label path="a_lastname">姓氏</form:label>
+			<form:input id="id-input-a-lastname" path="a_lastname" />
 		</div>
 		<div>
-			<label for="id-input-a-firstname">名字</label>
-			<input type="text" id="id-input-a-firstname" name="a_firstname" value="${admin.a_firstname}">
+			<form:label path="a_firstname">名字</form:label>
+			<form:input id="id-input-a-firstname" path="a_firstname" />
 		</div>
 		<div>
-			<label for="id-input-a-email">信箱</label>
-			<input type="text" id="id-input-a-email" name="a_email" value="${admin.a_email}">
+			<form:label path="a_email">信箱</form:label>
+			<form:input id="id-input-a-email" path="a_email" />
 		</div>
 		<div>
-			<input type="submit" id="id-input-submit" value="修改">
+			<input type="submit" id="id-input-submit" value="確定">
 		</div>
-	</form>
+	</form:form>
 </body>
 </html>

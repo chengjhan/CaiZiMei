@@ -32,50 +32,6 @@ public class ViewsController {
 	}
 
 	/**
-	 * 變更密碼 - 采姿美管理系統
-	 * 
-	 * @return /WEB-INF/views/admin/change-password.jsp
-	 */
-	@RequestMapping(value = "/admin/change-password", method = RequestMethod.GET)
-	public String admin_changePassword() {
-
-		return "admin/change-password";
-	}
-
-	/**
-	 * 編輯個人資訊 - 采姿美管理系統
-	 * 
-	 * @return /WEB-INF/views/admin/edit.jsp
-	 */
-	@RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
-	public String admin_edit() {
-
-		return "admin/edit";
-	}
-
-	/**
-	 * 管理員一覽 - 采姿美管理系統
-	 * 
-	 * @return /WEB-INF/views/admin/list.jsp
-	 */
-	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
-	public String admin_list() {
-
-		return "admin/list";
-	}
-
-	/**
-	 * 個人資訊 - 采姿美管理系統
-	 * 
-	 * @return /WEB-INF/views/admin/profile.jsp
-	 */
-	@RequestMapping(value = "/admin/profile", method = RequestMethod.GET)
-	public String admin_profile() {
-
-		return "admin/profile";
-	}
-
-	/**
 	 * 忘記密碼 - 采姿美管理系統
 	 * 
 	 * @return /WEB-INF/views/secure/forget-password.jsp

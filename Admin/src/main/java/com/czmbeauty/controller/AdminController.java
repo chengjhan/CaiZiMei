@@ -242,7 +242,7 @@ public class AdminController {
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 */
-	@RequestMapping(path = "/admin/sign-up.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/sign-up.do", method = RequestMethod.POST)
 	public String signUpProcess(AdminBean adminBean, HttpServletRequest request, Model model) {
 
 		if (adminService.selectByA_username(adminBean.getA_username()) == null) {
@@ -261,6 +261,7 @@ public class AdminController {
 			adminBean.setA_status_time(new java.util.Date());
 			adminService.signUp(adminBean);
 
+			// 放入 session
 			model.addAttribute("admin", adminBean);
 
 			// 註冊成功
@@ -273,13 +274,38 @@ public class AdminController {
 	}
 
 	/**
-	 * 編輯個人資訊
+	 * 個人資訊 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/admin/profile.jsp
+	 */
+	@RequestMapping(value = "/admin/profile", method = RequestMethod.GET)
+	public String profileView() {
+
+		return "admin/profile";
+	}
+
+	/**
+	 * 編輯個人資訊 - 采姿美管理系統
+	 * 
+	 * @param model-->Model
+	 * @return /WEB-INF/views/admin/edit.jsp
+	 */
+	@RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
+	public String editView(Model model) {
+
+		model.addAttribute("admin");
+
+		return "admin/edit";
+	}
+
+	/**
+	 * 編輯個人資訊 - submit
 	 * 
 	 * @param admin-->Session
 	 * @param adminBean-->form-backing-object
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
-	@RequestMapping(path = "/admin/edit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/edit.do", method = RequestMethod.POST)
 	public String editProcess(@ModelAttribute("admin") AdminBean admin, AdminBean adminBean) {
 
 		adminBean.setA_id(admin.getA_id());
@@ -289,7 +315,18 @@ public class AdminController {
 	}
 
 	/**
-	 * 變更密碼
+	 * 變更密碼 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/admin/change-password.jsp
+	 */
+	@RequestMapping(value = "/admin/change-password", method = RequestMethod.GET)
+	public String changePasswordView() {
+
+		return "admin/change-password";
+	}
+
+	/**
+	 * 變更密碼 - submit
 	 * 
 	 * @param a_password-->舊密碼(原碼)
 	 * @param a_password_new-->新密碼(原碼)
@@ -318,13 +355,13 @@ public class AdminController {
 	}
 
 	/**
-	 * 管理員一覽
+	 * 管理員一覽 - 采姿美管理系統
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */
-	@RequestMapping(value = "/admin/list.do", method = RequestMethod.GET)
-	public String listProcess(Model model) {
+	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
+	public String listView(Model model) {
 
 		model.addAttribute("adminList", adminService.selectAll());
 
@@ -332,17 +369,16 @@ public class AdminController {
 	}
 
 	/**
-	 * 帳戶開關
+	 * 帳戶開關 - submit
 	 * 
-	 * @param a_id-->管理員流水號
+	 * @param adminBean-->form-backing-object
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */
-	@RequestMapping(path = "/admin/switch.do", method = RequestMethod.GET)
-	public String switchProcess(@RequestParam(name = "a_id") String a_id, Model model) {
+	@RequestMapping(value = "/admin/switch", method = RequestMethod.GET)
+	public String switchProcess(AdminBean adminBean, Model model) {
 
-		adminService.updateA_status(Integer.valueOf(a_id));
-		model.addAttribute("adminList", adminService.selectAll());
+		adminService.updateA_status(adminBean.getA_id());
 
 		return "redirect:/admin/list";
 	}

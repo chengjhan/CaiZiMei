@@ -29,8 +29,8 @@
 					<td>${bean.s_CountryBean.co_name}</td>
 					<td>${bean.s_name}</td>
 					<td>${bean.s_rank}</td>
-					<td><a href="<%=request.getContextPath()%>/state/edit?co_id=${bean.s_id}">修改</a></td>
-					<td><a href="<%=request.getContextPath()%>/state/delete.do?co_id=${bean.s_id}">刪除</a></td>
+					<td><a href="<%=request.getContextPath()%>/state/edit?s_id=${bean.s_id}">修改</a></td>
+					<td><a href="<%=request.getContextPath()%>/state/delete?s_id=${bean.s_id}">刪除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

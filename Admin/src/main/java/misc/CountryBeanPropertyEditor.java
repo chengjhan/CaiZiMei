@@ -8,9 +8,11 @@ public class CountryBeanPropertyEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) {
-		CountryBean countryBean = new CountryBean();
-		countryBean.setCo_id(Integer.parseInt(text));
-		setValue(countryBean);
+		if (!"0".equals(text)) {
+			CountryBean countryBean = new CountryBean();
+			countryBean.setCo_id(Integer.parseInt(text));
+			setValue(countryBean);
+		}
 	}
 
 }

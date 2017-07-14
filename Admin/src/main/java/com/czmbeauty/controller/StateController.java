@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/7/14
+ * Date: 2017/7/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -97,8 +97,54 @@ public class StateController {
 	@RequestMapping(value = "/state/add.do", method = RequestMethod.POST)
 	public String addProcess(StateBean stateBean) {
 
-		stateBean.setS_CountryBean(countryService.selectByCo_id(stateBean.getS_CountryBean().getCo_id()));
 		stateService.insert(stateBean);
+
+		return "redirect:/state/list";
+	}
+
+	/**
+	 * 編輯區域資訊 - 采姿美管理系統
+	 * 
+	 * @param StateBean-->form-backing-object
+	 * @param model-->Model
+	 * @return /WEB-INF/views/state/edit.jsp
+	 */
+	@RequestMapping(value = "/state/edit", method = RequestMethod.GET)
+	public String editView(StateBean stateBean, Model model) {
+
+		// 取得所有國家 List
+		model.addAttribute("countryList", countryService.selectAll());
+
+		// 取得選定 id 的 StateBean
+		model.addAttribute("stateBean", stateService.selectByS_id(stateBean.getS_id()));
+
+		return "state/edit";
+	}
+
+	/**
+	 * 編輯區域資訊 - submit
+	 * 
+	 * @param stateBean-->form-backing-object
+	 * @return /WEB-INF/views/state/list.jsp
+	 */
+	@RequestMapping(value = "/state/edit.do", method = RequestMethod.POST)
+	public String editProcess(StateBean stateBean) {
+
+		stateService.update(stateBean);
+
+		return "redirect:/state/list";
+	}
+
+	/**
+	 * 刪除區域 - submit
+	 * 
+	 * @param stateBean-->form-backing-object
+	 * @return /WEB-INF/views/state/list.jsp
+	 */
+	@RequestMapping(value = "/state/delete", method = RequestMethod.GET)
+	public String deleteProcess(StateBean stateBean) {
+
+		stateService.delete(stateBean.getS_id());
 
 		return "redirect:/state/list";
 	}

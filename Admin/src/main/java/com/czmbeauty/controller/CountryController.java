@@ -72,11 +72,10 @@ public class CountryController {
 	 * 新增國家 - submit
 	 * 
 	 * @param countryBean-->form-backing-object
-	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/add.do", method = RequestMethod.POST)
-	public String addProcess(CountryBean countryBean, Model model) {
+	public String addProcess(CountryBean countryBean) {
 
 		countryService.insert(countryBean);
 
@@ -103,11 +102,10 @@ public class CountryController {
 	 * 編輯國家資訊 - submit
 	 * 
 	 * @param countryBean-->form-backing-object
-	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/edit.do", method = RequestMethod.POST)
-	public String editProcess(CountryBean countryBean, Model model) {
+	public String editProcess(CountryBean countryBean) {
 
 		countryService.update(countryBean);
 
@@ -118,11 +116,10 @@ public class CountryController {
 	 * 刪除國家 - submit
 	 * 
 	 * @param countryBean-->form-backing-object
-	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/delete", method = RequestMethod.GET)
-	public String deleteProcess(CountryBean countryBean, Model model) {
+	public String deleteProcess(CountryBean countryBean) {
 
 		countryService.delete(countryBean.getCo_id());
 

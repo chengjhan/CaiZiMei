@@ -26,7 +26,7 @@
 				<tr>
 					<td>${status.count}</td>
 					<td>${bean.s_id}</td>
-					<td>${bean.s_co_id}</td>
+					<td>${bean.s_CountryBean.co_name}</td>
 					<td>${bean.s_name}</td>
 					<td>${bean.s_rank}</td>
 					<td><a href="<%=request.getContextPath()%>/state/edit?co_id=${bean.s_id}">修改</a></td>

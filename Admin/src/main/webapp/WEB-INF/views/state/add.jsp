@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>新增國家 - 采姿美管理系統</title>
+<title>新增區域 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
@@ -16,8 +16,8 @@
 				<td>國家</td>
 				<td>
 					<form:select path="s_CountryBean">
-						<form:option value="-" label="-----" />
-						<form:options items="${countryMap}" />
+						<form:option value="0" label="請選擇國家" />
+						<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 					</form:select>
 				</td>
 			</tr>

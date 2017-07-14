@@ -2,18 +2,23 @@
  * CaiZiMei
  * File: StateBean.java
  * Author: 詹晟
- * Date: 2017/7/14
+ * Date: 2017/7/15
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,6 +38,9 @@ public class StateBean {
 	private CountryBean s_CountryBean;
 	private String s_name;
 	private Integer s_rank;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_StateBean")
+	private Set<CityBean> s_CityBean;
 
 	public Integer getS_id() {
 		return s_id;
@@ -64,6 +72,14 @@ public class StateBean {
 
 	public void setS_rank(Integer s_rank) {
 		this.s_rank = s_rank;
+	}
+
+	public Set<CityBean> getS_CityBean() {
+		return s_CityBean;
+	}
+
+	public void setS_CityBean(Set<CityBean> s_CityBean) {
+		this.s_CityBean = s_CityBean;
 	}
 
 }

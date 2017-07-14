@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/14
+ * Date: 2017/7/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -67,20 +67,6 @@ public class StateDaoImpl implements StateDao {
 
 		return (List<StateBean>) hibernateTemplate.findByNamedParam("from StateBean where s_co_id=:s_co_id", "s_co_id",
 				s_co_id);
-	}
-
-	/**
-	 * 區域名搜尋
-	 * 
-	 * @param s_name-->區域名
-	 * @return List<StateBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<StateBean> selectByS_name(String s_name) {
-
-		return (List<StateBean>) hibernateTemplate.findByNamedParam("from StateBean where s_name=:s_name", "s_name",
-				s_name);
 	}
 
 	/**

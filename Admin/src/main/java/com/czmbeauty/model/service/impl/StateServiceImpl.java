@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/14
+ * Date: 2017/7/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -74,25 +74,6 @@ public class StateServiceImpl implements StateService {
 	public List<StateBean> selectByS_co_id(Integer s_co_id) {
 
 		return stateDao.selectByS_co_id(s_co_id);
-	}
-
-	/**
-	 * 區域名搜尋
-	 * 
-	 * @param s_name-->區域名
-	 * @return result-->StateBean
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public StateBean selectByS_name(String s_name) {
-
-		StateBean result = null;
-
-		if (s_name != null) {
-
-			result = stateDao.selectByS_name(s_name).get(0);
-		}
-		return result;
 	}
 
 	/**

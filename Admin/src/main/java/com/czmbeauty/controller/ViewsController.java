@@ -102,49 +102,6 @@ public class ViewsController {
 	}
 
 	/**
-	 * 新增國家 - 采姿美管理系統
-	 * 
-	 * @param model-->Model
-	 * @return /WEB-INF/views/country/add.jsp
-	 */
-	@RequestMapping(value = "/country/add", method = RequestMethod.GET)
-	public String country_add(Model model) {
-
-		// 新增 form backing object
-		CountryBean countryBean = new CountryBean();
-		model.addAttribute("countryBean", countryBean);
-
-		return "country/add";
-	}
-
-	/**
-	 * 編輯國家資訊 - 采姿美管理系統
-	 * 
-	 * @param countryBean-->form-backing-object
-	 * @param model-->Model
-	 * @return /WEB-INF/views/country/edit.jsp
-	 */
-	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
-	public String country_edit(CountryBean countryBean, Model model) {
-
-		// 取得選定 id 的 CountryBean
-		model.addAttribute("countryBean", countryService.selectByCo_id(countryBean.getCo_id()));
-
-		return "country/edit";
-	}
-
-	/**
-	 * 國家一覽 - 采姿美管理系統
-	 * 
-	 * @return /WEB-INF/views/country/list.jsp
-	 */
-	@RequestMapping(value = "/country/list", method = RequestMethod.GET)
-	public String country_list() {
-
-		return "country/list";
-	}
-
-	/**
 	 * 忘記密碼 - 采姿美管理系統
 	 * 
 	 * @return /WEB-INF/views/secure/forget-password.jsp

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/7/13
+ * Date: 2017/7/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -39,13 +39,13 @@ public class CountryController {
 	private CountryService countryService;
 
 	/**
-	 * 國家一覽
+	 * 國家一覽 - 采姿美管理系統
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
-	@RequestMapping(value = "/country/list.do", method = RequestMethod.GET)
-	public String listProcess(Model model) {
+	@RequestMapping(value = "/country/list", method = RequestMethod.GET)
+	public String listView(Model model) {
 
 		model.addAttribute("countryList", countryService.selectAll());
 
@@ -53,49 +53,78 @@ public class CountryController {
 	}
 
 	/**
-	 * 新增國家
+	 * 新增國家 - 采姿美管理系統
+	 * 
+	 * @param model-->Model
+	 * @return /WEB-INF/views/country/add.jsp
+	 */
+	@RequestMapping(value = "/country/add", method = RequestMethod.GET)
+	public String addView(Model model) {
+
+		// 新增 form backing object
+		CountryBean countryBean = new CountryBean();
+		model.addAttribute("countryBean", countryBean);
+
+		return "country/add";
+	}
+
+	/**
+	 * 新增國家 - submit
 	 * 
 	 * @param countryBean-->form-backing-object
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
-	@RequestMapping(path = "/country/add.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/country/add.do", method = RequestMethod.POST)
 	public String addProcess(CountryBean countryBean, Model model) {
 
 		countryService.insert(countryBean);
-		model.addAttribute("countryList", countryService.selectAll());
 
 		return "redirect:/country/list";
 	}
 
 	/**
-	 * 編輯國家資訊
+	 * 編輯國家資訊 - 采姿美管理系統
+	 * 
+	 * @param countryBean-->form-backing-object
+	 * @param model-->Model
+	 * @return /WEB-INF/views/country/edit.jsp
+	 */
+	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
+	public String editView(CountryBean countryBean, Model model) {
+
+		// 取得選定 id 的 CountryBean
+		model.addAttribute("countryBean", countryService.selectByCo_id(countryBean.getCo_id()));
+
+		return "country/edit";
+	}
+
+	/**
+	 * 編輯國家資訊 - submit
 	 * 
 	 * @param countryBean-->form-backing-object
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
-	@RequestMapping(path = "/country/edit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/country/edit.do", method = RequestMethod.POST)
 	public String editProcess(CountryBean countryBean, Model model) {
 
 		countryService.update(countryBean);
-		model.addAttribute("countryList", countryService.selectAll());
 
 		return "redirect:/country/list";
 	}
 
 	/**
-	 * 刪除國家
+	 * 刪除國家 - submit
 	 * 
 	 * @param countryBean-->form-backing-object
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
-	@RequestMapping(path = "/country/delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/country/delete", method = RequestMethod.GET)
 	public String deleteProcess(CountryBean countryBean, Model model) {
 
 		countryService.delete(countryBean.getCo_id());
-		model.addAttribute("countryList", countryService.selectAll());
 
 		return "redirect:/country/list";
 	}

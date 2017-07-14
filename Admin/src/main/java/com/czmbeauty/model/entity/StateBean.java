@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateBean.java
  * Author: 詹晟
- * Date: 2017/7/13
+ * Date: 2017/7/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -29,7 +29,7 @@ public class StateBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer s_id;
 	@ManyToOne
-	@JoinColumn(name = "ci_co_id")
+	@JoinColumn(name = "s_co_id")
 	private CountryBean s_CountryBean;
 	private String s_name;
 	private Integer s_rank;

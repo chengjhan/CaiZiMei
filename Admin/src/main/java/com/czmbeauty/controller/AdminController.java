@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/13
+ * Date: 2017/7/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -220,26 +220,37 @@ public class AdminController {
 	}
 
 	/**
-	 * 註冊
+	 * 註冊 - 采姿美管理系統
+	 * 
+	 * @return /WEB-INF/views/admin/sign-up.jsp
+	 */
+	@RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
+	public String signUpView(Model model) {
+
+		// 新增 form backing object
+		model.addAttribute("adminBean", new AdminBean());
+
+		return "admin/sign-up";
+	}
+
+	/**
+	 * 註冊 - submit
 	 * 
 	 * @param adminBean-->form-backing-object
-	 * @param a_username-->管理員帳號
-	 * @param a_password-->管理員密碼(原碼)
 	 * @param request-->HttpServletRequest
 	 * @param model-->Model
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 */
 	@RequestMapping(path = "/admin/sign-up.do", method = RequestMethod.POST)
-	public String signUpProcess(AdminBean adminBean, @RequestParam(name = "a_username") String a_username,
-			@RequestParam(name = "a_password") String a_password, HttpServletRequest request, Model model) {
+	public String signUpProcess(AdminBean adminBean, HttpServletRequest request, Model model) {
 
-		if (adminService.selectByA_username(a_username) == null) {
+		if (adminService.selectByA_username(adminBean.getA_username()) == null) {
 
 			String a_salt = adminService.getSalt();
 
 			adminBean.setA_salt(a_salt);
-			adminBean.setA_password(adminService.getHashedPassword(a_password, a_salt));
+			adminBean.setA_password(adminService.getHashedPassword(adminBean.getA_password(), a_salt));
 			adminBean.setA_signup_time(new java.util.Date());
 			adminBean.setA_signin_number(1);
 			adminBean.setA_signin_ip(request.getRemoteAddr());

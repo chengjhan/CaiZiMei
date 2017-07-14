@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ViewsController.java
  * Author: 詹晟
- * Date: 2017/7/14
+ * Date: 2017/7/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -73,17 +73,6 @@ public class ViewsController {
 	public String admin_profile() {
 
 		return "admin/profile";
-	}
-
-	/**
-	 * 註冊 - 采姿美管理系統
-	 * 
-	 * @return /WEB-INF/views/admin/sign-up.jsp
-	 */
-	@RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
-	public String admin_signUp() {
-
-		return "admin/sign-up";
 	}
 
 	/**

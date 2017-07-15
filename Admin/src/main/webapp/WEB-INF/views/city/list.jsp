@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,18 +32,7 @@
 				<td>刪除</td>
 			</tr>
 		</thead>
-		<tbody>
-			<c:forEach var="bean" items="${cityList}" varStatus="status">
-				<tr>
-					<td>${status.count}</td>
-					<td>${bean.ci_id}</td>
-					<td>${bean.ci_name}</td>
-					<td>${bean.ci_rank}</td>
-					<td><a href="<%=request.getContextPath()%>/city/edit?s_id=${bean.ci_id}">修改</a></td>
-					<td><a href="<%=request.getContextPath()%>/city/delete?s_id=${bean.ci_id}">刪除</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
+		<tbody></tbody>
 	</table>
 	<p>
 		<a href="<%=request.getContextPath()%>/city/add">新增</a>

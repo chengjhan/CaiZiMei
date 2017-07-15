@@ -55,10 +55,12 @@ create table state (
 
 create table city (
 	ci_id					int auto_increment not null,
+	ci_co_id				int not null,
 	ci_s_id					int not null,
 	ci_name					nvarchar(50) not null,
 	ci_rank					tinyint,
 	primary key (ci_id),
+	foreign key (ci_co_id) references country (co_id),
 	foreign key (ci_s_id) references state (s_id)
 );
 

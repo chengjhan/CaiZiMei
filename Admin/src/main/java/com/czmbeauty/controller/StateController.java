@@ -8,6 +8,9 @@
  */
 package com.czmbeauty.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +18,14 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.entity.StateBean;
 import com.czmbeauty.model.service.CountryService;
 import com.czmbeauty.model.service.StateService;
+import com.google.gson.Gson;
 
 import misc.CountryBeanPropertyEditor;
 import misc.PrimitiveNumberEditor;
@@ -35,16 +40,16 @@ import misc.PrimitiveNumberEditor;
 public class StateController {
 
 	/**
-	 * 注入 StateService
-	 */
-	@Autowired
-	private StateService stateService;
-
-	/**
 	 * 注入 CountryService
 	 */
 	@Autowired
 	private CountryService countryService;
+
+	/**
+	 * 注入 StateService
+	 */
+	@Autowired
+	private StateService stateService;
 
 	/**
 	 * 提供 form backing object 資料轉換
@@ -147,6 +152,31 @@ public class StateController {
 		stateService.delete(stateBean.getS_id());
 
 		return "redirect:/state/list";
+	}
+
+	/**
+	 * 搜尋選定國家中所有區域 (ajax)
+	 * 
+	 * @param s_co_id-->國家流水號
+	 * @return state json
+	 */
+	@RequestMapping(value = "/state/select-by-country.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String selectByCountryAjaxProcess(Integer s_co_id) {
+
+		List<StateBean> result = stateService.selectByS_co_id(s_co_id);
+
+		List<StateBean> jsonList = new ArrayList<StateBean>();
+		for (StateBean bean : result) {
+			StateBean jsonBean = new StateBean();
+			jsonBean.setS_id(bean.getS_id());
+			jsonBean.setS_name(bean.getS_name());
+			jsonList.add(jsonBean);
+		}
+		String json = new Gson().toJson(jsonList);
+		System.out.println("JSON = " + json);
+
+		return json;
 	}
 
 }

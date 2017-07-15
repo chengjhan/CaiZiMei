@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/7/14
+ * Date: 2017/7/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -127,13 +127,13 @@ public class CountryController {
 	}
 
 	/**
-	 * 搜尋全部國家 (ajax)
+	 * 搜尋所有國家 (ajax)
 	 * 
 	 * @return country json
 	 */
-	@RequestMapping(path = "/select.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/country/select-all.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String selectAjaxProcess() {
+	public String selectAllAjaxProcess() {
 
 		List<CountryBean> result = countryService.selectAll();
 

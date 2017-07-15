@@ -29,6 +29,9 @@ public class CityBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ci_id;
 	@ManyToOne
+	@JoinColumn(name = "ci_co_id")
+	private CountryBean ci_CountryBean;
+	@ManyToOne
 	@JoinColumn(name = "ci_s_id")
 	private StateBean ci_StateBean;
 	private String ci_name;
@@ -40,6 +43,14 @@ public class CityBean {
 
 	public void setCi_id(Integer ci_id) {
 		this.ci_id = ci_id;
+	}
+
+	public CountryBean getCi_CountryBean() {
+		return ci_CountryBean;
+	}
+
+	public void setCi_CountryBean(CountryBean ci_CountryBean) {
+		this.ci_CountryBean = ci_CountryBean;
 	}
 
 	public StateBean getCi_StateBean() {

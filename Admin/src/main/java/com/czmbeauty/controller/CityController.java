@@ -109,6 +109,25 @@ public class CityController {
 	}
 
 	/**
+	 * 編輯城市資訊 - 采姿美管理系統
+	 * 
+	 * @param StateBean-->form-backing-object
+	 * @param model-->Model
+	 * @return /WEB-INF/views/city/edit.jsp
+	 */
+	@RequestMapping(value = "/city/edit", method = RequestMethod.GET)
+	public String editView(CityBean cityBean, Model model) {
+
+		// 取得所有國家 List
+		model.addAttribute("countryList", countryService.selectAll());
+
+		// 取得選定 id 的 StateBean
+		model.addAttribute("cityBean", cityService.selectByCi_id(cityBean.getCi_id()));
+
+		return "city/edit";
+	}
+
+	/**
 	 * 搜尋選定區域中所有城市 (ajax)
 	 * 
 	 * @param ci_s_id-->區域流水號

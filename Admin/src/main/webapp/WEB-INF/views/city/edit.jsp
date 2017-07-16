@@ -5,12 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>新增城市 - 采姿美管理系統</title>
+<title>編輯城市資訊 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
 	<form:form action="/Admin/city/edit.do" method="post" modelAttribute="cityBean">
 		<table border="1">
+			<tr style="display:none">
+				<td>流水號</td>
+				<td><form:hidden path="ci_id" /></td>
+			</tr>
 			<tr>
 				<td>國家</td>
 				<td>
@@ -38,9 +42,13 @@
 				<td><form:input path="ci_rank" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="新增" /></td>
+				<td><input type="submit" value="變更" /></td>
 			</tr>
 		</table>
 	</form:form>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/js/city/edit.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

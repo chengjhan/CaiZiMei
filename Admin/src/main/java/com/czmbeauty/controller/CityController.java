@@ -139,6 +139,20 @@ public class CityController {
 	}
 
 	/**
+	 * 編輯城市資訊 - submit
+	 * 
+	 * @param cityBean-->form-backing-object
+	 * @return /WEB-INF/views/city/list.jsp
+	 */
+	@RequestMapping(value = "/city/edit.do", method = RequestMethod.POST)
+	public String editProcess(CityBean cityBean) {
+
+		cityService.update(cityBean);
+
+		return "redirect:/city/list";
+	}
+
+	/**
 	 * 刪除城市 - submit
 	 * 
 	 * @param cityBean-->form-backing-object

@@ -40,5 +40,8 @@
 	<p>
 		<a href="<%=request.getContextPath()%>/country/add">新增</a>
 	</p>
+	<p>
+		<a href="<%=request.getContextPath()%>/">首頁</a>
+	</p>
 </body>
 </html>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/7/16
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -171,6 +171,7 @@ public class StateController {
 			StateBean jsonBean = new StateBean();
 			jsonBean.setS_id(bean.getS_id());
 			jsonBean.setS_name(bean.getS_name());
+			jsonBean.setS_rank(bean.getS_rank());
 			jsonList.add(jsonBean);
 		}
 		String json = new Gson().toJson(jsonList);

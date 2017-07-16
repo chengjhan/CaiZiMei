@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/7/16
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -182,8 +182,6 @@ public class CityController {
 		for (CityBean bean : result) {
 			CityBean jsonBean = new CityBean();
 			jsonBean.setCi_id(bean.getCi_id());
-			// jsonBean.setCi_CountryBean(bean.getCi_CountryBean());
-			// jsonBean.setCi_StateBean(bean.getCi_StateBean());
 			jsonBean.setCi_name(bean.getCi_name());
 			jsonBean.setCi_rank(bean.getCi_rank());
 			jsonList.add(jsonBean);

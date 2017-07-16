@@ -53,6 +53,8 @@ create table state (
 	foreign key (s_co_id) references country (co_id)
 );
 
+alter table state auto_increment = 11;
+
 create table city (
 	ci_id					int auto_increment not null,
 	ci_co_id				int not null,
@@ -63,5 +65,7 @@ create table city (
 	foreign key (ci_co_id) references country (co_id),
 	foreign key (ci_s_id) references state (s_id)
 );
+
+alter table city auto_increment = 101;
 
 insert into admin (a_id, a_username, a_password, a_salt, a_lastname, a_firstname, a_email, a_signup_time, a_signin_number, a_signin_ip, a_signin_time, a_update_info_time, a_update_pwd_time, a_status, a_status_time) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', null, null, 'admin@czmbeauty.com', now(), null, null, null, now(), now(), 1, now());

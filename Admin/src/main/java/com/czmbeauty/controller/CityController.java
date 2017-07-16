@@ -128,6 +128,20 @@ public class CityController {
 	}
 
 	/**
+	 * 刪除城市 - submit
+	 * 
+	 * @param cityBean-->form-backing-object
+	 * @return /WEB-INF/views/city/list.jsp
+	 */
+	@RequestMapping(value = "/city/delete", method = RequestMethod.GET)
+	public String deleteProcess(CityBean cityBean) {
+
+		cityService.delete(cityBean.getCi_id());
+
+		return "redirect:/city/list";
+	}
+
+	/**
 	 * 搜尋選定區域中所有城市 (ajax)
 	 * 
 	 * @param ci_s_id-->區域流水號

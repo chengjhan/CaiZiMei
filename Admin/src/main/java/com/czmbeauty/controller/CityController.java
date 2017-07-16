@@ -26,6 +26,7 @@ import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.entity.StateBean;
 import com.czmbeauty.model.service.CityService;
 import com.czmbeauty.model.service.CountryService;
+import com.czmbeauty.model.service.StateService;
 import com.google.gson.Gson;
 
 import misc.CountryBeanPropertyEditor;
@@ -46,6 +47,12 @@ public class CityController {
 	 */
 	@Autowired
 	private CountryService countryService;
+
+	/**
+	 * 注入 StateService
+	 */
+	@Autowired
+	private StateService stateService;
 
 	/**
 	 * 注入 CityService
@@ -121,7 +128,11 @@ public class CityController {
 		// 取得所有國家 List
 		model.addAttribute("countryList", countryService.selectAll());
 
-		// 取得選定 id 的 StateBean
+		// 取得選定國家中的所有區域 List
+		model.addAttribute("stateList", stateService
+				.selectByS_co_id(cityService.selectByCi_id(cityBean.getCi_id()).getCi_CountryBean().getCo_id()));
+
+		// 取得選定城市 id 的 cityBean
 		model.addAttribute("cityBean", cityService.selectByCi_id(cityBean.getCi_id()));
 
 		return "city/edit";
@@ -142,7 +153,7 @@ public class CityController {
 	}
 
 	/**
-	 * 搜尋選定區域中所有城市 (ajax)
+	 * 搜尋選定區域中的所有城市 (ajax)
 	 * 
 	 * @param ci_s_id-->區域流水號
 	 * @return city json

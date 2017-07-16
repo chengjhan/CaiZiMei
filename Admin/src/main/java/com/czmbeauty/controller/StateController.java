@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -155,7 +155,7 @@ public class StateController {
 	}
 
 	/**
-	 * 搜尋選定國家中所有區域 (ajax)
+	 * 搜尋選定國家中的所有區域 (ajax)
 	 * 
 	 * @param s_co_id-->國家流水號
 	 * @return state json

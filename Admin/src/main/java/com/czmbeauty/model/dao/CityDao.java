@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDao.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,7 +13,7 @@ import java.util.List;
 import com.czmbeauty.model.entity.CityBean;
 
 /**
- * city dao interface
+ * city DAO interface
  * 
  * @author 詹晟
  */

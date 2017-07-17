@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import com.czmbeauty.model.dao.CityDao;
 import com.czmbeauty.model.entity.CityBean;
 
 /**
- * city dao implement
+ * city DAO implement
  * 
  * @author 詹晟
  */
@@ -32,7 +32,7 @@ public class CityDaoImpl implements CityDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋全部城市
+	 * 搜尋所有城市
 	 * 
 	 * @return List<CityBean>
 	 */

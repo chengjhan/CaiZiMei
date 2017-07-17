@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/12
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import com.czmbeauty.model.dao.CountryDao;
 import com.czmbeauty.model.entity.CountryBean;
 
 /**
- * country dao implement
+ * country DAO implement
  * 
  * @author 詹晟
  */
@@ -32,7 +32,7 @@ public class CountryDaoImpl implements CountryDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋全部國家
+	 * 搜尋所有國家
 	 * 
 	 * @return List<CountryBean>
 	 */
@@ -56,9 +56,9 @@ public class CountryDaoImpl implements CountryDao {
 	}
 
 	/**
-	 * 國家名搜尋
+	 * 國家名稱搜尋
 	 * 
-	 * @param co_name-->國家名
+	 * @param co_name-->國家名稱
 	 * @return List<CountryBean>
 	 */
 	@Override

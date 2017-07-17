@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import com.czmbeauty.model.dao.StateDao;
 import com.czmbeauty.model.entity.StateBean;
 
 /**
- * state dao implement
+ * state DAO implement
  * 
  * @author 詹晟
  */
@@ -32,7 +32,7 @@ public class StateDaoImpl implements StateDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋全部區域
+	 * 搜尋所有區域
 	 * 
 	 * @return List<StateBean>
 	 */

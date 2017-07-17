@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,7 @@ public class CityServiceImpl implements CityService {
 	private CityDao cityDao;
 
 	/**
-	 * 搜尋全部城市
+	 * 搜尋所有城市
 	 * 
 	 * @return List<CityBean>
 	 */

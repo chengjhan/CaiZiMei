@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,7 @@ public class StateServiceImpl implements StateService {
 	private StateDao stateDao;
 
 	/**
-	 * 搜尋全部區域
+	 * 搜尋所有區域
 	 * 
 	 * @return List<StateBean>
 	 */

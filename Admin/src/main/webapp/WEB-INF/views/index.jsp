@@ -36,5 +36,8 @@
 	<p>
 		<a href="<%=request.getContextPath()%>/city/list">城市一覽</a>
 	</p>
+	<p>
+		<a href="<%=request.getContextPath()%>/clinic/list">診所一覽</a>
+	</p>
 </body>
 </html>

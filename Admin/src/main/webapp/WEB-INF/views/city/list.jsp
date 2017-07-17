@@ -27,7 +27,7 @@
 				<td>流水號</td>
 				<td>名稱</td>
 				<td>排序</td>
-				<td>修改</td>
+				<td>編輯</td>
 				<td>刪除</td>
 			</tr>
 		</thead>

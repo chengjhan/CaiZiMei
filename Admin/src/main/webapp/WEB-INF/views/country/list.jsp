@@ -18,7 +18,7 @@
 				<td>名稱</td>
 				<td>電話碼</td>
 				<td>排序</td>
-				<td>修改</td>
+				<td>編輯</td>
 				<td>刪除</td>
 			</tr>
 		</thead>
@@ -31,7 +31,7 @@
 					<td>${bean.co_name}</td>
 					<td>${bean.co_phonecode}</td>
 					<td>${bean.co_rank}</td>
-					<td><a href="<%=request.getContextPath()%>/country/edit?co_id=${bean.co_id}">修改</a></td>
+					<td><a href="<%=request.getContextPath()%>/country/edit?co_id=${bean.co_id}">編輯</a></td>
 					<td><a href="<%=request.getContextPath()%>/country/delete?co_id=${bean.co_id}">刪除</a></td>
 				</tr>
 			</c:forEach>

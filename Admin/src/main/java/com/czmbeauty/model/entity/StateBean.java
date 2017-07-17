@@ -41,6 +41,8 @@ public class StateBean {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_StateBean")
 	private Set<CityBean> st_CityBean;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cl_StateBean")
+	private Set<ClinicBean> st_ClinicBean;
 
 	public Integer getSt_id() {
 		return st_id;
@@ -80,6 +82,14 @@ public class StateBean {
 
 	public void setSt_CityBean(Set<CityBean> st_CityBean) {
 		this.st_CityBean = st_CityBean;
+	}
+
+	public Set<ClinicBean> getSt_ClinicBean() {
+		return st_ClinicBean;
+	}
+
+	public void setSt_ClinicBean(Set<ClinicBean> st_ClinicBean) {
+		this.st_ClinicBean = st_ClinicBean;
 	}
 
 }

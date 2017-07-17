@@ -8,12 +8,17 @@
  */
 package com.czmbeauty.model.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -36,6 +41,9 @@ public class CityBean {
 	private StateBean ci_StateBean;
 	private String ci_name;
 	private Integer ci_rank;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cl_CityBean")
+	private Set<ClinicBean> ci_ClinicBean;
 
 	public Integer getCi_id() {
 		return ci_id;
@@ -75,6 +83,14 @@ public class CityBean {
 
 	public void setCi_rank(Integer ci_rank) {
 		this.ci_rank = ci_rank;
+	}
+
+	public Set<ClinicBean> getCi_ClinicBean() {
+		return ci_ClinicBean;
+	}
+
+	public void setCi_ClinicBean(Set<ClinicBean> ci_ClinicBean) {
+		this.ci_ClinicBean = ci_ClinicBean;
 	}
 
 }

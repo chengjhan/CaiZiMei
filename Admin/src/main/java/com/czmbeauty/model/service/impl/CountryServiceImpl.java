@@ -64,25 +64,6 @@ public class CountryServiceImpl implements CountryService {
 	}
 
 	/**
-	 * 國家名稱搜尋
-	 * 
-	 * @param co_name-->國家名稱
-	 * @return result-->CountryBean
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public CountryBean selectByCo_name(String co_name) {
-
-		CountryBean result = null;
-
-		if (co_name != null) {
-
-			result = countryDao.selectByCo_name(co_name).get(0);
-		}
-		return result;
-	}
-
-	/**
 	 * 新增國家
 	 * 
 	 * @param countryBean-->CountryBean

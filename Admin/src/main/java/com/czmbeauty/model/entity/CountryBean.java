@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryBean.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,6 +40,8 @@ public class CountryBean {
 	private Set<StateBean> co_StateBean;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_CountryBean")
 	private Set<CityBean> co_CityBean;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cl_CountryBean")
+	private Set<ClinicBean> co_ClinicBean;
 
 	public Integer getCo_id() {
 		return co_id;
@@ -95,6 +97,14 @@ public class CountryBean {
 
 	public void setCo_CityBean(Set<CityBean> co_CityBean) {
 		this.co_CityBean = co_CityBean;
+	}
+
+	public Set<ClinicBean> getCo_ClinicBean() {
+		return co_ClinicBean;
+	}
+
+	public void setCo_ClinicBean(Set<ClinicBean> co_ClinicBean) {
+		this.co_ClinicBean = co_ClinicBean;
 	}
 
 }

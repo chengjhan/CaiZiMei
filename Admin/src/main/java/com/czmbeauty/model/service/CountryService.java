@@ -23,8 +23,6 @@ public interface CountryService {
 
 	CountryBean selectByCo_id(Integer co_id);
 
-	CountryBean selectByCo_name(String co_name);
-
 	CountryBean insert(CountryBean countryBean);
 
 	CountryBean update(CountryBean countryBean);

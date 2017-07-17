@@ -56,20 +56,6 @@ public class CountryDaoImpl implements CountryDao {
 	}
 
 	/**
-	 * 國家名稱搜尋
-	 * 
-	 * @param co_name-->國家名稱
-	 * @return List<CountryBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<CountryBean> selectByCo_name(String co_name) {
-
-		return (List<CountryBean>) hibernateTemplate.findByNamedParam("from CountryBean where co_name=:co_name",
-				"co_name", co_name);
-	}
-
-	/**
 	 * 新增國家
 	 * 
 	 * @param countryBean-->CountryBean

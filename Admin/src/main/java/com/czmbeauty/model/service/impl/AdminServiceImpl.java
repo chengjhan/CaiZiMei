@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/11
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -86,12 +86,13 @@ public class AdminServiceImpl implements AdminService {
 
 			return true;
 		} else {
+
 			return false;
 		}
 	}
 
 	/**
-	 * 搜尋全部管理員
+	 * 搜尋所有管理員
 	 * 
 	 * @return List<AdminBean>
 	 */

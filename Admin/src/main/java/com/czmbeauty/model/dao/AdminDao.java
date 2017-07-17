@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDao.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,7 +13,7 @@ import java.util.List;
 import com.czmbeauty.model.entity.AdminBean;
 
 /**
- * admin dao interface
+ * admin DAO interface
  *
  * @author 詹晟
  */

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import com.czmbeauty.model.dao.AdminDao;
 import com.czmbeauty.model.entity.AdminBean;
 
 /**
- * admin dao implement
+ * admin DAO implement
  * 
  * @author 詹晟
  */
@@ -32,7 +32,7 @@ public class AdminDaoImpl implements AdminDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋全部管理員
+	 * 搜尋所有管理員
 	 * 
 	 * @return List<AdminBean>
 	 */

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -309,10 +309,11 @@ public class AdminController {
 
 			// 發送成功
 			return "redirect:/secure/reset-password";
-		}
+		} else {
 
-		// 信箱輸入錯誤
-		return "secure/forget-password";
+			// 信箱輸入錯誤
+			return "secure/forget-password";
+		}
 	}
 
 	/**

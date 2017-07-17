@@ -23,7 +23,7 @@
 			<input type="password" id="id-input-a-password-new-again" name="a_password_new_again">
 		</div>
 		<div>
-			<input type="submit" id="id-input-submit" value="確定">
+			<input type="submit" id="id-input-submit" value="變更">
 		</div>
 	</form>
 </body>

@@ -29,7 +29,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>城市</td>
+				<td>名稱</td>
 				<td><form:input path="ci_name" /></td>
 			</tr>
 			<tr>

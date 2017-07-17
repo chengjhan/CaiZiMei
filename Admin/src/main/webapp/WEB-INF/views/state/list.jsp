@@ -19,7 +19,7 @@
 			<tr>
 				<td>編號</td>
 				<td>流水號</td>
-				<td>區域</td>
+				<td>名稱</td>
 				<td>排序</td>
 				<td>修改</td>
 				<td>刪除</td>

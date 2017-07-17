@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -92,7 +92,7 @@ public class CountryController {
 	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
 	public String editView(CountryBean countryBean, Model model) {
 
-		// 取得選定 id 的 CountryBean
+		// 取得選定國家 id 的 CountryBean
 		model.addAttribute("countryBean", countryService.selectByCo_id(countryBean.getCo_id()));
 
 		return "country/edit";
@@ -127,7 +127,7 @@ public class CountryController {
 	}
 
 	/**
-	 * 搜尋所有國家 (ajax)
+	 * 搜尋所有國家 (AJAX)
 	 * 
 	 * @return country json
 	 */

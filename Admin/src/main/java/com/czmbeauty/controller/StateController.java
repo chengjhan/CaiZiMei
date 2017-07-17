@@ -110,7 +110,7 @@ public class StateController {
 	/**
 	 * 編輯區域資訊 - 采姿美管理系統
 	 * 
-	 * @param StateBean-->form-backing-object
+	 * @param stateBean-->form-backing-object
 	 * @param model-->Model
 	 * @return /WEB-INF/views/state/edit.jsp
 	 */
@@ -120,7 +120,7 @@ public class StateController {
 		// 取得所有國家 List
 		model.addAttribute("countryList", countryService.selectAll());
 
-		// 取得選定 id 的 StateBean
+		// 取得選定區域 id 的 StateBean
 		model.addAttribute("stateBean", stateService.selectByS_id(stateBean.getS_id()));
 
 		return "state/edit";
@@ -155,7 +155,7 @@ public class StateController {
 	}
 
 	/**
-	 * 搜尋選定國家中的所有區域 (ajax)
+	 * 搜尋選定國家中的所有區域 (AJAX)
 	 * 
 	 * @param s_co_id-->國家流水號
 	 * @return state json

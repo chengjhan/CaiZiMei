@@ -118,7 +118,7 @@ public class CityController {
 	/**
 	 * 編輯城市資訊 - 采姿美管理系統
 	 * 
-	 * @param StateBean-->form-backing-object
+	 * @param cityBean-->form-backing-object
 	 * @param model-->Model
 	 * @return /WEB-INF/views/city/edit.jsp
 	 */
@@ -132,7 +132,7 @@ public class CityController {
 		model.addAttribute("stateList", stateService
 				.selectByS_co_id(cityService.selectByCi_id(cityBean.getCi_id()).getCi_CountryBean().getCo_id()));
 
-		// 取得選定城市 id 的 cityBean
+		// 取得選定城市 id 的 CityBean
 		model.addAttribute("cityBean", cityService.selectByCi_id(cityBean.getCi_id()));
 
 		return "city/edit";
@@ -167,7 +167,7 @@ public class CityController {
 	}
 
 	/**
-	 * 搜尋選定區域中的所有城市 (ajax)
+	 * 搜尋選定區域中的所有城市 (AJAX)
 	 * 
 	 * @param ci_s_id-->區域流水號
 	 * @return city json

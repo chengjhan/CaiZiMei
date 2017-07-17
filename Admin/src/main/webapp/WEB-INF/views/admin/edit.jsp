@@ -11,16 +11,16 @@
 <body>
 	<form:form action="/Admin/admin/edit.do" method="post" modelAttribute="admin">
 		<div>
-			<form:label path="a_lastname">姓氏</form:label>
-			<form:input id="id-input-a-lastname" path="a_lastname" />
+			<form:label path="ad_lastname">姓氏</form:label>
+			<form:input id="id-input-ad-lastname" path="ad_lastname" />
 		</div>
 		<div>
-			<form:label path="a_firstname">名字</form:label>
-			<form:input id="id-input-a-firstname" path="a_firstname" />
+			<form:label path="ad_firstname">名字</form:label>
+			<form:input id="id-input-ad-firstname" path="ad_firstname" />
 		</div>
 		<div>
-			<form:label path="a_email">信箱</form:label>
-			<form:input id="id-input-a-email" path="a_email" />
+			<form:label path="ad_email">信箱</form:label>
+			<form:input id="id-input-ad-email" path="ad_email" />
 		</div>
 		<div>
 			<input type="submit" id="id-input-submit" value="變更">

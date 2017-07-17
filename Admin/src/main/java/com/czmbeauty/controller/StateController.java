@@ -121,7 +121,7 @@ public class StateController {
 		model.addAttribute("countryList", countryService.selectAll());
 
 		// 取得選定區域 id 的 StateBean
-		model.addAttribute("stateBean", stateService.selectByS_id(stateBean.getS_id()));
+		model.addAttribute("stateBean", stateService.selectBySt_id(stateBean.getSt_id()));
 
 		return "state/edit";
 	}
@@ -149,7 +149,7 @@ public class StateController {
 	@RequestMapping(value = "/state/delete", method = RequestMethod.GET)
 	public String deleteProcess(StateBean stateBean) {
 
-		stateService.delete(stateBean.getS_id());
+		stateService.delete(stateBean.getSt_id());
 
 		return "redirect:/state/list";
 	}
@@ -157,21 +157,21 @@ public class StateController {
 	/**
 	 * 搜尋選定國家中的所有區域 (AJAX)
 	 * 
-	 * @param s_co_id-->國家流水號
+	 * @param st_co_id-->國家流水號
 	 * @return state json
 	 */
 	@RequestMapping(value = "/state/select-by-country.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String selectByCountryAjaxProcess(Integer s_co_id) {
+	public String selectByCountryAjaxProcess(Integer st_co_id) {
 
-		List<StateBean> result = stateService.selectByS_co_id(s_co_id);
+		List<StateBean> result = stateService.selectBySt_co_id(st_co_id);
 
 		List<StateBean> jsonList = new ArrayList<StateBean>();
 		for (StateBean bean : result) {
 			StateBean jsonBean = new StateBean();
-			jsonBean.setS_id(bean.getS_id());
-			jsonBean.setS_name(bean.getS_name());
-			jsonBean.setS_rank(bean.getS_rank());
+			jsonBean.setSt_id(bean.getSt_id());
+			jsonBean.setSt_name(bean.getSt_name());
+			jsonBean.setSt_rank(bean.getSt_rank());
 			jsonList.add(jsonBean);
 		}
 		String json = new Gson().toJson(jsonList);

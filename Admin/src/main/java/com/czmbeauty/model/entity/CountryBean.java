@@ -36,7 +36,7 @@ public class CountryBean {
 	private String co_phonecode;
 	private Integer co_rank;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "s_CountryBean")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "st_CountryBean")
 	private Set<StateBean> co_StateBean;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_CountryBean")
 	private Set<CityBean> co_CityBean;

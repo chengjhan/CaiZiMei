@@ -14,7 +14,7 @@
 			<tr>
 				<td>國家</td>
 				<td>
-					<form:select path="s_CountryBean">
+					<form:select path="st_CountryBean">
 						<form:option value="0" label="請選擇國家" />
 						<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 					</form:select>
@@ -22,11 +22,11 @@
 			</tr>
 			<tr>
 				<td>名稱</td>
-				<td><form:input path="s_name" /></td>
+				<td><form:input path="st_name" /></td>
 			</tr>
 			<tr>
 				<td>排序</td>
-				<td><form:input path="s_rank" /></td>
+				<td><form:input path="st_rank" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="新增" /></td>

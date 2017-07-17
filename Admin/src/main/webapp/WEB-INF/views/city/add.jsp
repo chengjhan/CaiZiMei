@@ -23,7 +23,7 @@
 			<tr>
 				<td>區域</td>
 				<td>
-					<form:select id="id-input-ci-s-id" path="ci_StateBean">
+					<form:select id="id-input-ci-st-id" path="ci_StateBean">
 						<form:option value="0" label="請選擇區域" />
 					</form:select>
 				</td>

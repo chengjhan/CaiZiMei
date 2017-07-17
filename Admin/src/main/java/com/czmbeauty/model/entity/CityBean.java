@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityBean.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,7 +32,7 @@ public class CityBean {
 	@JoinColumn(name = "ci_co_id")
 	private CountryBean ci_CountryBean;
 	@ManyToOne
-	@JoinColumn(name = "ci_s_id")
+	@JoinColumn(name = "ci_st_id")
 	private StateBean ci_StateBean;
 	private String ci_name;
 	private Integer ci_rank;

@@ -11,8 +11,8 @@
 <body>
 	<form action="<c:url value='/secure/forget-password.do' />" method="post">
 		<div>
-			<label for="id-input-a-email">信箱</label>
-			<input type="text" id="id-input-a-email" name="a_email">
+			<label for="id-input-ad-email">信箱</label>
+			<input type="text" id="id-input-ad-email" name="ad_email">
 		</div>
 		<div>
 			<input type="submit" id="id-input-submit" value="寄信">

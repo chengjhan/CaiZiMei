@@ -11,29 +11,29 @@
 <body>
 	<form:form action="/Admin/admin/sign-up.do" method="post" modelAttribute="adminBean">
 		<div>
-			<form:label path="a_username">帳號</form:label>
-			<form:input id="id-input-a-username" path="a_username" />
-			<span id="id-span-a-username" style="color: red"></span>
+			<form:label path="ad_username">帳號</form:label>
+			<form:input id="id-input-ad-username" path="ad_username" />
+			<span id="id-span-ad-username" style="color: red"></span>
 		</div>
 		<div>
-			<form:label path="a_password">密碼</form:label>
-			<form:password id="id-input-a-password" path="a_password" />
+			<form:label path="ad_password">密碼</form:label>
+			<form:password id="id-input-ad-password" path="ad_password" />
 		</div>
 		<div>
-			<label for="id-input-a-password-again">確認密碼</label>
-			<input type="password" id="id-input-a-password-again">
+			<label for="id-input-ad-password-again">確認密碼</label>
+			<input type="password" id="id-input-ad-password-again">
 		</div>
 		<div>
-			<form:label path="a_lastname">姓氏</form:label>
-			<form:input id="id-input-a-lastname" path="a_lastname" />
+			<form:label path="ad_lastname">姓氏</form:label>
+			<form:input id="id-input-ad-lastname" path="ad_lastname" />
 		</div>
 		<div>
-			<form:label path="a_firstname">名字</form:label>
-			<form:input id="id-input-a-firstname" path="a_firstname" />
+			<form:label path="ad_firstname">名字</form:label>
+			<form:input id="id-input-ad-firstname" path="ad_firstname" />
 		</div>
 		<div>
-			<form:label path="a_email">信箱</form:label>
-			<form:input id="id-input-a-email" path="a_email" />
+			<form:label path="ad_email">信箱</form:label>
+			<form:input id="id-input-ad-email" path="ad_email" />
 		</div>
 		<div>
 			<input type="submit" id="id-input-submit" value="註冊">

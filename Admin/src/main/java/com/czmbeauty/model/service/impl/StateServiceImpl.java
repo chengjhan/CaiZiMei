@@ -47,18 +47,18 @@ public class StateServiceImpl implements StateService {
 	/**
 	 * 區域流水號搜尋
 	 * 
-	 * @param s_id-->區域流水號
+	 * @param st_id-->區域流水號
 	 * @return result-->StateBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public StateBean selectByS_id(Integer s_id) {
+	public StateBean selectBySt_id(Integer st_id) {
 
 		StateBean result = null;
 
-		if (s_id != 0) {
+		if (st_id != 0) {
 
-			result = stateDao.selectByS_id(s_id);
+			result = stateDao.selectBySt_id(st_id);
 		}
 		return result;
 	}
@@ -66,14 +66,14 @@ public class StateServiceImpl implements StateService {
 	/**
 	 * 國家流水號搜尋
 	 * 
-	 * @param s_co_id-->國家流水號
+	 * @param st_co_id-->國家流水號
 	 * @return List<StateBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<StateBean> selectByS_co_id(Integer s_co_id) {
+	public List<StateBean> selectBySt_co_id(Integer st_co_id) {
 
-		return stateDao.selectByS_co_id(s_co_id);
+		return stateDao.selectBySt_co_id(st_co_id);
 	}
 
 	/**
@@ -111,14 +111,14 @@ public class StateServiceImpl implements StateService {
 	/**
 	 * 刪除區域
 	 * 
-	 * @param s_id-->城市流水號
+	 * @param st_id-->城市流水號
 	 * @return true-->成功
 	 */
 	@Override
 	@Transactional
-	public Boolean delete(Integer s_id) {
+	public Boolean delete(Integer st_id) {
 
-		return stateDao.delete(s_id);
+		return stateDao.delete(st_id);
 	}
 
 }

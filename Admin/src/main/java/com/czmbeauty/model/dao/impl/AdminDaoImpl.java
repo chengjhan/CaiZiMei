@@ -40,34 +40,34 @@ public class AdminDaoImpl implements AdminDao {
 	@SuppressWarnings("unchecked")
 	public List<AdminBean> selectAll() {
 
-		return (List<AdminBean>) hibernateTemplate.find("from AdminBean order by a_id asc");
+		return (List<AdminBean>) hibernateTemplate.find("from AdminBean order by ad_id asc");
 	}
 
 	/**
 	 * 管理員流水號搜尋
 	 * 
-	 * @param a_id-->管理員流水號
+	 * @param ad_id-->管理員流水號
 	 * @return AdminBean
 	 */
 	@Override
-	public AdminBean selectByA_id(Integer a_id) {
+	public AdminBean selectByAd_id(Integer ad_id) {
 
-		return hibernateTemplate.get(AdminBean.class, a_id);
+		return hibernateTemplate.get(AdminBean.class, ad_id);
 	}
 
 	/**
 	 * 管理員帳號搜尋
 	 * 
-	 * @param a_username-->管理員帳號
+	 * @param ad_username-->管理員帳號
 	 * @return AdminBean
 	 * @return null
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public AdminBean selectByA_username(String a_username) {
+	public AdminBean selectByAd_username(String ad_username) {
 
 		List<AdminBean> list = (List<AdminBean>) hibernateTemplate
-				.findByNamedParam("from AdminBean where a_username=:a_username", "a_username", a_username);
+				.findByNamedParam("from AdminBean where ad_username=:ad_username", "ad_username", ad_username);
 
 		if (!list.isEmpty()) {
 
@@ -79,16 +79,16 @@ public class AdminDaoImpl implements AdminDao {
 	/**
 	 * 管理員信箱搜尋
 	 * 
-	 * @param a_email-->管理員信箱
+	 * @param ad_email-->管理員信箱
 	 * @return AdminBean
 	 * @return null
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public AdminBean selectByA_email(String a_email) {
+	public AdminBean selectByAd_email(String ad_email) {
 
 		List<AdminBean> list = (List<AdminBean>) hibernateTemplate
-				.findByNamedParam("from AdminBean where a_email=:a_email", "a_email", a_email);
+				.findByNamedParam("from AdminBean where ad_email=:ad_email", "ad_email", ad_email);
 
 		if (!list.isEmpty()) {
 
@@ -120,12 +120,12 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public AdminBean update(AdminBean newAdminBean) {
 
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, newAdminBean.getA_id());
+		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, newAdminBean.getAd_id());
 
-		adminBean.setA_lastname(newAdminBean.getA_lastname());
-		adminBean.setA_firstname(newAdminBean.getA_firstname());
-		adminBean.setA_email(newAdminBean.getA_email());
-		adminBean.setA_update_info_time(new java.util.Date());
+		adminBean.setAd_lastname(newAdminBean.getAd_lastname());
+		adminBean.setAd_firstname(newAdminBean.getAd_firstname());
+		adminBean.setAd_email(newAdminBean.getAd_email());
+		adminBean.setAd_update_info_time(new java.util.Date());
 
 		return adminBean;
 	}
@@ -133,16 +133,16 @@ public class AdminDaoImpl implements AdminDao {
 	/**
 	 * 修改密碼
 	 * 
-	 * @param a_id-->管理員流水號
-	 * @param a_password_new_hashed-->新密碼(雜湊)
+	 * @param ad_id-->管理員流水號
+	 * @param ad_password_new_hashed-->新密碼(雜湊)
 	 * @return adminBean-->AdminBean
 	 */
 	@Override
-	public AdminBean updateA_password(Integer a_id, String a_password_new_hashed) {
+	public AdminBean updateAd_password(Integer ad_id, String ad_password_new_hashed) {
 
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, a_id);
-		adminBean.setA_password(a_password_new_hashed);
-		adminBean.setA_update_pwd_time(new java.util.Date());
+		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
+		adminBean.setAd_password(ad_password_new_hashed);
+		adminBean.setAd_update_pwd_time(new java.util.Date());
 
 		return adminBean;
 	}
@@ -150,15 +150,15 @@ public class AdminDaoImpl implements AdminDao {
 	/**
 	 * 更新登入次數
 	 * 
-	 * @param a_id-->管理員流水號
+	 * @param ad_id-->管理員流水號
 	 * @return adminBean-->AdminBean
 	 */
 	@Override
-	public AdminBean updateA_signin_number(Integer a_id) {
+	public AdminBean updateAd_signin_number(Integer ad_id) {
 
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, a_id);
-		Integer a_signin_number = hibernateTemplate.get(AdminBean.class, a_id).getA_signin_number();
-		adminBean.setA_signin_number(a_signin_number + 1);
+		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
+		Integer ad_signin_number = hibernateTemplate.get(AdminBean.class, ad_id).getAd_signin_number();
+		adminBean.setAd_signin_number(ad_signin_number + 1);
 
 		return adminBean;
 	}
@@ -166,15 +166,15 @@ public class AdminDaoImpl implements AdminDao {
 	/**
 	 * 更新登入IP
 	 * 
-	 * @param a_id-->管理員流水號
-	 * @param a_signin_ip-->登入IP
+	 * @param ad_id-->管理員流水號
+	 * @param ad_signin_ip-->登入IP
 	 * @return adminBean-->AdminBean
 	 */
 	@Override
-	public AdminBean updateA_signin_ip(Integer a_id, String a_signin_ip) {
+	public AdminBean updateAd_signin_ip(Integer ad_id, String ad_signin_ip) {
 
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, a_id);
-		adminBean.setA_signin_ip(a_signin_ip);
+		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
+		adminBean.setAd_signin_ip(ad_signin_ip);
 
 		return adminBean;
 	}
@@ -182,14 +182,14 @@ public class AdminDaoImpl implements AdminDao {
 	/**
 	 * 更新登入時間
 	 * 
-	 * @param a_id-->管理員流水號
+	 * @param ad_id-->管理員流水號
 	 * @return adminBean-->AdminBean
 	 */
 	@Override
-	public AdminBean updateA_signin_time(Integer a_id) {
+	public AdminBean updateAd_signin_time(Integer ad_id) {
 
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, a_id);
-		adminBean.setA_signin_time(new java.util.Date());
+		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
+		adminBean.setAd_signin_time(new java.util.Date());
 
 		return adminBean;
 	}
@@ -197,24 +197,24 @@ public class AdminDaoImpl implements AdminDao {
 	/**
 	 * 切換狀態
 	 * 
-	 * @param a_id-->管理員流水號
+	 * @param ad_id-->管理員流水號
 	 * @return adminBean-->AdminBean
 	 */
 	@Override
-	public AdminBean updateA_status(Integer a_id) {
+	public AdminBean updateAd_status(Integer ad_id) {
 
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, a_id);
+		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
 
-		if (adminBean.getA_status() == 1) {
+		if (adminBean.getAd_status() == 1) {
 
 			// 關閉帳號
-			adminBean.setA_status(0);
-			adminBean.setA_status_time(new java.util.Date());
+			adminBean.setAd_status(0);
+			adminBean.setAd_status_time(new java.util.Date());
 		} else {
 
 			// 開啟帳號
-			adminBean.setA_status(1);
-			adminBean.setA_status_time(new java.util.Date());
+			adminBean.setAd_status(1);
+			adminBean.setAd_status_time(new java.util.Date());
 		}
 
 		return adminBean;

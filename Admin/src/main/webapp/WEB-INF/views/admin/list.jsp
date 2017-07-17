@@ -29,25 +29,28 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${adminList}" varStatus="status">
-				<fmt:formatDate value="${bean.a_signup_time}" var="a_signup_time" pattern="yyyy-MM-dd hh:mm:ss" />
-				<fmt:formatDate value="${bean.a_signin_time}" var="a_signin_time" pattern="yyyy-MM-dd hh:mm:ss" />
-				<fmt:formatDate value="${bean.a_status_time}" var="a_status_time" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.ad_signup_time}" var="ad_signup_time" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.ad_signin_time}" var="ad_signin_time" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.ad_status_time}" var="ad_status_time" pattern="yyyy-MM-dd hh:mm:ss" />
 				<tr>
 					<td>${status.count}</td>
-					<td>${bean.a_id}</td>
-					<td>${bean.a_username}</td>
-					<td>${bean.a_lastname} ${bean.a_firstname}</td>
-					<td>${bean.a_email}</td>
-					<td>${a_signup_time}</td>
-					<td>${bean.a_signin_number}</td>
-					<td>${bean.a_signin_ip}</td>
-					<td>${a_signin_time}</td>
-					<td>${bean.a_status}</td>
-					<td>${a_status_time}</td>
-					<td><a href="<%=request.getContextPath()%>/admin/switch?a_id=${bean.a_id}">變更</a></td>
+					<td>${bean.ad_id}</td>
+					<td>${bean.ad_username}</td>
+					<td>${bean.ad_lastname} ${bean.ad_firstname}</td>
+					<td>${bean.ad_email}</td>
+					<td>${ad_signup_time}</td>
+					<td>${bean.ad_signin_number}</td>
+					<td>${bean.ad_signin_ip}</td>
+					<td>${ad_signin_time}</td>
+					<td>${bean.ad_status}</td>
+					<td>${ad_status_time}</td>
+					<td><a href="<%=request.getContextPath()%>/admin/switch?ad_id=${bean.ad_id}">變更</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<p>
+		<a href="<%=request.getContextPath()%>/">首頁</a>
+	</p>
 </body>
 </html>

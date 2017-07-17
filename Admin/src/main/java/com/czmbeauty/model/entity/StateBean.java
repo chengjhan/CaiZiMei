@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateBean.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,54 +32,54 @@ public class StateBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer s_id;
+	private Integer st_id;
 	@ManyToOne
-	@JoinColumn(name = "s_co_id")
-	private CountryBean s_CountryBean;
-	private String s_name;
-	private Integer s_rank;
+	@JoinColumn(name = "st_co_id")
+	private CountryBean st_CountryBean;
+	private String st_name;
+	private Integer st_rank;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_StateBean")
-	private Set<CityBean> s_CityBean;
+	private Set<CityBean> st_CityBean;
 
-	public Integer getS_id() {
-		return s_id;
+	public Integer getSt_id() {
+		return st_id;
 	}
 
-	public void setS_id(Integer s_id) {
-		this.s_id = s_id;
+	public void setSt_id(Integer st_id) {
+		this.st_id = st_id;
 	}
 
-	public CountryBean getS_CountryBean() {
-		return s_CountryBean;
+	public CountryBean getSt_CountryBean() {
+		return st_CountryBean;
 	}
 
-	public void setS_CountryBean(CountryBean s_CountryBean) {
-		this.s_CountryBean = s_CountryBean;
+	public void setSt_CountryBean(CountryBean st_CountryBean) {
+		this.st_CountryBean = st_CountryBean;
 	}
 
-	public String getS_name() {
-		return s_name;
+	public String getSt_name() {
+		return st_name;
 	}
 
-	public void setS_name(String s_name) {
-		this.s_name = s_name;
+	public void setSt_name(String st_name) {
+		this.st_name = st_name;
 	}
 
-	public Integer getS_rank() {
-		return s_rank;
+	public Integer getSt_rank() {
+		return st_rank;
 	}
 
-	public void setS_rank(Integer s_rank) {
-		this.s_rank = s_rank;
+	public void setSt_rank(Integer st_rank) {
+		this.st_rank = st_rank;
 	}
 
-	public Set<CityBean> getS_CityBean() {
-		return s_CityBean;
+	public Set<CityBean> getSt_CityBean() {
+		return st_CityBean;
 	}
 
-	public void setS_CityBean(Set<CityBean> s_CityBean) {
-		this.s_CityBean = s_CityBean;
+	public void setSt_CityBean(Set<CityBean> st_CityBean) {
+		this.st_CityBean = st_CityBean;
 	}
 
 }

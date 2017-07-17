@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityService.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -23,7 +23,7 @@ public interface CityService {
 
 	CityBean selectByCi_id(Integer ci_id);
 
-	List<CityBean> selectByCi_s_id(Integer ci_s_id);
+	List<CityBean> selectByCi_st_id(Integer ci_st_id);
 
 	CityBean insert(CityBean cityBean);
 

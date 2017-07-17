@@ -9,8 +9,8 @@
 </head>
 <body>
 	<div>
-		<label for="id-input-s-co-id">國家</label>
-		<select id="id-input-s-co-id" style="width:150px">
+		<label for="id-input-st-co-id">國家</label>
+		<select id="id-input-st-co-id" style="width:150px">
 			<option value="0">請選擇國家</option>
 		</select>
 	</div>

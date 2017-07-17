@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateService.java
  * Author: 詹晟
- * Date: 2017/7/15
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,14 +21,14 @@ public interface StateService {
 
 	List<StateBean> selectAll();
 
-	StateBean selectByS_id(Integer s_id);
+	StateBean selectBySt_id(Integer st_id);
 
-	List<StateBean> selectByS_co_id(Integer s_co_id);
+	List<StateBean> selectBySt_co_id(Integer st_co_id);
 
 	StateBean insert(StateBean stateBean);
 
 	StateBean update(StateBean stateBean);
 
-	Boolean delete(Integer s_id);
+	Boolean delete(Integer st_id);
 
 }

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import com.czmbeauty.model.dao.AdminLogDao;
 import com.czmbeauty.model.entity.AdminLogBean;
 
 /**
- * admin_log dao implement
+ * admin_log DAO implement
  * 
  * @author 詹晟
  */
@@ -32,7 +32,7 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋全部管理員日誌
+	 * 搜尋所有管理員日誌
 	 * 
 	 * @return List<AdminLogBean>
 	 */
@@ -46,15 +46,15 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	/**
 	 * 管理員流水號搜尋
 	 * 
-	 * @param al_a_id-->管理員流水號
+	 * @param al_ad_id-->管理員流水號
 	 * @return List<AdminLogBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<AdminLogBean> selectByAl_a_id(Integer al_a_id) {
+	public List<AdminLogBean> selectByAl_ad_id(Integer al_ad_id) {
 
-		return (List<AdminLogBean>) hibernateTemplate.findByNamedParam("from AdminLogBean where al_a_id=:al_a_id",
-				"al_a_id", al_a_id);
+		return (List<AdminLogBean>) hibernateTemplate.findByNamedParam("from AdminLogBean where al_ad_id=:al_ad_id",
+				"al_ad_id", al_ad_id);
 	}
 
 	/**

@@ -67,22 +67,22 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 登入
 	 * 
-	 * @param a_username-->管理員帳號
-	 * @param a_password-->管理員密碼(原碼)
+	 * @param ad_username-->管理員帳號
+	 * @param ad_password-->管理員密碼(原碼)
 	 * @return true-->登入成功
 	 * @return false-->登入失敗
 	 */
 	@Override
 	@Transactional
-	public Boolean signIn(String a_username, String a_password) {
+	public Boolean signIn(String ad_username, String ad_password) {
 
-		AdminBean adminBean = adminDao.selectByA_username(a_username);
+		AdminBean adminBean = adminDao.selectByAd_username(ad_username);
 
-		String a_salt = adminBean.getA_salt();
+		String ad_salt = adminBean.getAd_salt();
 
-		if (getHashedPassword(a_password, a_salt).equals(adminBean.getA_password())) {
+		if (getHashedPassword(ad_password, ad_salt).equals(adminBean.getAd_password())) {
 
-			adminDao.updateA_signin_number(adminBean.getA_id());
+			adminDao.updateAd_signin_number(adminBean.getAd_id());
 
 			return true;
 		} else {
@@ -106,40 +106,40 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 管理員流水號搜尋
 	 * 
-	 * @param a_id-->管理員流水號
+	 * @param ad_id-->管理員流水號
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public AdminBean selectByA_id(Integer a_id) {
+	public AdminBean selectByAd_id(Integer ad_id) {
 
-		return adminDao.selectByA_id(a_id);
+		return adminDao.selectByAd_id(ad_id);
 	}
 
 	/**
 	 * 管理員帳號搜尋
 	 * 
-	 * @param a_username-->管理員帳號
+	 * @param ad_username-->管理員帳號
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public AdminBean selectByA_username(String a_username) {
+	public AdminBean selectByAd_username(String ad_username) {
 
-		return adminDao.selectByA_username(a_username);
+		return adminDao.selectByAd_username(ad_username);
 	}
 
 	/**
 	 * 管理員信箱搜尋
 	 * 
-	 * @param a_email-->管理員帳號
+	 * @param ad_email-->管理員帳號
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public AdminBean selectByA_email(String a_email) {
+	public AdminBean selectByAd_email(String ad_email) {
 
-		return adminDao.selectByA_email(a_email);
+		return adminDao.selectByAd_email(ad_email);
 	}
 
 	/**
@@ -158,69 +158,69 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 修改密碼
 	 * 
-	 * @param a_id-->管理員流水號
-	 * @param a_password_new-->新密碼(原碼)
-	 * @param a_salt-->塩
+	 * @param ad_id-->管理員流水號
+	 * @param ad_password_new-->新密碼(原碼)
+	 * @param ad_salt-->塩
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateA_password(Integer a_id, String a_password_new, String a_salt) {
+	public AdminBean updateAd_password(Integer ad_id, String ad_password_new, String ad_salt) {
 
-		return adminDao.updateA_password(a_id, getHashedPassword(a_password_new, a_salt));
+		return adminDao.updateAd_password(ad_id, getHashedPassword(ad_password_new, ad_salt));
 	}
 
 	/**
 	 * 更新登入IP
 	 * 
-	 * @param a_id-->管理員流水號
-	 * @param a_signin_ip-->登入IP
+	 * @param ad_id-->管理員流水號
+	 * @param ad_signin_ip-->登入IP
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateA_signin_ip(Integer a_id, String a_signin_ip) {
+	public AdminBean updateAd_signin_ip(Integer ad_id, String ad_signin_ip) {
 
-		return adminDao.updateA_signin_ip(a_id, a_signin_ip);
+		return adminDao.updateAd_signin_ip(ad_id, ad_signin_ip);
 	}
 
 	/**
 	 * 更新登入時間
 	 * 
-	 * @param a_id-->管理員流水號
+	 * @param ad_id-->管理員流水號
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateA_signin_time(Integer a_id) {
+	public AdminBean updateAd_signin_time(Integer ad_id) {
 
-		return adminDao.updateA_signin_time(a_id);
+		return adminDao.updateAd_signin_time(ad_id);
 	}
 
 	/**
 	 * 切換狀態
 	 * 
-	 * @param a_id-->管理員流水號
+	 * @param ad_id-->管理員流水號
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateA_status(Integer a_id) {
+	public AdminBean updateAd_status(Integer ad_id) {
 
-		return adminDao.updateA_status(a_id);
+		return adminDao.updateAd_status(ad_id);
 	}
 
 	/**
 	 * 製造雜湊密碼
 	 * 
-	 * @param a_password-->管理員密碼(原碼)
-	 * @param a_salt-->塩
+	 * @param ad_password-->管理員密碼(原碼)
+	 * @param ad_salt-->塩
 	 * @return MD5雜湊密碼
 	 */
 	@Override
-	public String getHashedPassword(String a_password, String a_salt) {
+	public String getHashedPassword(String ad_password, String ad_salt) {
 
-		return getMD5(a_salt.replaceAll("-", getMD5(a_password)));
+		return getMD5(ad_salt.replaceAll("-", getMD5(ad_password)));
 	}
 
 	/**

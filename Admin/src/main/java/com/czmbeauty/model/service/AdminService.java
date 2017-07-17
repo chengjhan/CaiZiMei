@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/7/11
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,27 +21,27 @@ public interface AdminService {
 
 	AdminBean signUp(AdminBean adminBean);
 
-	Boolean signIn(String a_username, String a_password);
+	Boolean signIn(String ad_username, String ad_password);
 
 	List<AdminBean> selectAll();
 
-	AdminBean selectByA_id(Integer a_id);
+	AdminBean selectByAd_id(Integer ad_id);
 
-	AdminBean selectByA_username(String a_username);
+	AdminBean selectByAd_username(String ad_username);
 
-	AdminBean selectByA_email(String a_email);
+	AdminBean selectByAd_email(String ad_email);
 
 	AdminBean update(AdminBean adminBean);
 
-	AdminBean updateA_password(Integer a_id, String a_password_new, String a_salt);
+	AdminBean updateAd_password(Integer ad_id, String ad_password_new, String ad_salt);
 
-	AdminBean updateA_signin_ip(Integer a_id, String a_signin_ip);
+	AdminBean updateAd_signin_ip(Integer ad_id, String ad_signin_ip);
 
-	AdminBean updateA_signin_time(Integer a_id);
+	AdminBean updateAd_signin_time(Integer ad_id);
 
-	AdminBean updateA_status(Integer a_id);
+	AdminBean updateAd_status(Integer ad_id);
 
-	String getHashedPassword(String a_password, String a_salt);
+	String getHashedPassword(String ad_password, String ad_salt);
 
 	String getMD5(String str);
 

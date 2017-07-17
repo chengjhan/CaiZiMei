@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogDao.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,7 +13,7 @@ import java.util.List;
 import com.czmbeauty.model.entity.AdminLogBean;
 
 /**
- * admin_log dao interface
+ * admin_log DAO interface
  *
  * @author 詹晟
  */
@@ -21,7 +21,7 @@ public interface AdminLogDao {
 
 	List<AdminLogBean> selectAll();
 
-	List<AdminLogBean> selectByAl_a_id(Integer al_a_id);
+	List<AdminLogBean> selectByAl_ad_id(Integer al_ad_id);
 
 	AdminLogBean insert(AdminLogBean adminLogBean);
 

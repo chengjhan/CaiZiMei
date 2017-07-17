@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,7 @@ public class AdminLogServiceImpl implements AdminLogService {
 	private AdminLogDao adminLogDao;
 
 	/**
-	 * 搜尋全部管理員日誌
+	 * 搜尋所有管理員日誌
 	 * 
 	 * @return List<AdminLogBean>
 	 */
@@ -47,14 +47,14 @@ public class AdminLogServiceImpl implements AdminLogService {
 	/**
 	 * 管理員流水號搜尋
 	 * 
-	 * @param al_a_id-->管理員流水號
+	 * @param al_ad_id-->管理員流水號
 	 * @return List<AdminLogBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<AdminLogBean> selectByAl_a_id(Integer al_a_id) {
+	public List<AdminLogBean> selectByAl_ad_id(Integer al_ad_id) {
 
-		return adminLogDao.selectByAl_a_id(al_a_id);
+		return adminLogDao.selectByAl_ad_id(al_ad_id);
 	}
 
 	/**

@@ -13,12 +13,12 @@
 		<table border="1">
 			<tr style="display:none">
 				<td>流水號</td>
-				<td><form:hidden path="s_id" /></td>
+				<td><form:hidden path="st_id" /></td>
 			</tr>
 			<tr>
 				<td>國家</td>
 				<td>
-					<form:select path="s_CountryBean">
+					<form:select path="st_CountryBean">
 						<form:option value="0" label="請選擇國家" />
 						<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 					</form:select>
@@ -26,11 +26,11 @@
 			</tr>
 			<tr>
 				<td>名稱</td>
-				<td><form:input path="s_name" /></td>
+				<td><form:input path="st_name" /></td>
 			</tr>
 			<tr>
 				<td>排序</td>
-				<td><form:input path="s_rank" /></td>
+				<td><form:input path="st_rank" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="變更" /></td>

@@ -130,7 +130,7 @@ public class CityController {
 
 		// 取得選定國家中的所有區域 List
 		model.addAttribute("stateList", stateService
-				.selectByS_co_id(cityService.selectByCi_id(cityBean.getCi_id()).getCi_CountryBean().getCo_id()));
+				.selectBySt_co_id(cityService.selectByCi_id(cityBean.getCi_id()).getCi_CountryBean().getCo_id()));
 
 		// 取得選定城市 id 的 CityBean
 		model.addAttribute("cityBean", cityService.selectByCi_id(cityBean.getCi_id()));
@@ -169,14 +169,14 @@ public class CityController {
 	/**
 	 * 搜尋選定區域中的所有城市 (AJAX)
 	 * 
-	 * @param ci_s_id-->區域流水號
+	 * @param ci_st_id-->區域流水號
 	 * @return city json
 	 */
 	@RequestMapping(value = "/city/select-by-state.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String selectByStateAjaxProcess(Integer ci_s_id) {
+	public String selectByStateAjaxProcess(Integer ci_st_id) {
 
-		List<CityBean> result = cityService.selectByCi_s_id(ci_s_id);
+		List<CityBean> result = cityService.selectByCi_st_id(ci_st_id);
 
 		List<CityBean> jsonList = new ArrayList<CityBean>();
 		for (CityBean bean : result) {

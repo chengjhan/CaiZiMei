@@ -11,26 +11,26 @@ $(document).ready(function(){
 
 // 區域 select
 $("#id-input-ci-co-id").change(function(){
-	var stateList_select = $("#id-input-ci-s-id");
+	var stateList_select = $("#id-input-ci-st-id");
 	stateList_select.empty();
 	stateList_select.append("<option value='0'>請選擇區域</option>");
 	var cityList_tbody = $("table tbody");
 	cityList_tbody.empty();
-	var s_co_id = $("#id-input-ci-co-id").val();
-	$.getJSON("../state/select-by-country.ajax", {"s_co_id": s_co_id}, function(data){
+	var st_co_id = $("#id-input-ci-co-id").val();
+	$.getJSON("../state/select-by-country.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
-			var stateList_option = $("<option value=" + stateBean.s_id + "></option>").append(stateBean.s_name);
+			var stateList_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
 			stateList_select.append(stateList_option);
 		});
 	});
 });
 
 // 城市 table
-$("#id-input-ci-s-id").change(function(){
+$("#id-input-ci-st-id").change(function(){
 	var cityList_tbody = $("table tbody");
 	cityList_tbody.empty();
-	var ci_s_id = $("#id-input-ci-s-id").val();
-	$.getJSON("../city/select-by-state.ajax", {"ci_s_id": ci_s_id}, function(data){
+	var ci_st_id = $("#id-input-ci-st-id").val();
+	$.getJSON("../city/select-by-state.ajax", {"ci_st_id": ci_st_id}, function(data){
 		$.each(data, function(index, cityBean){
 			index = index + 1;
 			var count_td = $("<td></td>").append(index);

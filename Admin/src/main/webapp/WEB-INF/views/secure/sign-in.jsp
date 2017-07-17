@@ -11,12 +11,12 @@
 <body>
 	<form action="<c:url value='/secure/sign-in.do' />" method="post">
 		<div>
-			<label for="id-input-a-username">帳號</label>
-			<input type="text" id="id-input-a-username" name="a_username">
+			<label for="id-input-ad-username">帳號</label>
+			<input type="text" id="id-input-ad-username" name="ad_username">
 		</div>
 		<div>
-			<label for="id-input-a-password">密碼</label>
-			<input type="password" id="id-input-a-password" name="a_password">
+			<label for="id-input-ad-password">密碼</label>
+			<input type="password" id="id-input-ad-password" name="ad_password">
 		</div>
 		<div>
 			<input type="submit" id="id-input-submit" value="登入">

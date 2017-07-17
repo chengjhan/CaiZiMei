@@ -11,16 +11,16 @@
 <body>
 	<form action="<c:url value='/secure/reset-password.do' />" method="post">
 		<div>
-			<label for="id-input-a-password">驗證碼</label>
-			<input type="password" id="id-input-a-password" name="a_password">
+			<label for="id-input-ad-password">驗證碼</label>
+			<input type="password" id="id-input-ad-password" name="ad_password">
 		</div>
 		<div>
-			<label for="id-input-a-password-new">新密碼</label>
-			<input type="password" id="id-input-a-password-new" name="a_password_new">
+			<label for="id-input-ad-password-new">新密碼</label>
+			<input type="password" id="id-input-ad-password-new" name="ad_password_new">
 		</div>
 		<div>
-			<label for="id-input-a-password-new-again">新密碼</label>
-			<input type="password" id="id-input-a-password-new-again" name="a_password_new_again">
+			<label for="id-input-ad-password-new-again">新密碼</label>
+			<input type="password" id="id-input-ad-password-new-again" name="ad_password_new_again">
 		</div>
 		<div>
 			<input type="submit" id="id-input-submit" value="變更">

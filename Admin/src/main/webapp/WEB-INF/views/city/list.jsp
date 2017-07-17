@@ -15,8 +15,8 @@
 		</select>
 	</div>
 	<div>
-		<label for="id-input-ci-s-id">區域</label>
-		<select id="id-input-ci-s-id" style="width:150px">
+		<label for="id-input-ci-st-id">區域</label>
+		<select id="id-input-ci-st-id" style="width:150px">
 			<option value="0">請選擇區域</option>
 		</select>
 	</div>

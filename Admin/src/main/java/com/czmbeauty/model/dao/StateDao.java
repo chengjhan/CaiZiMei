@@ -21,14 +21,14 @@ public interface StateDao {
 
 	List<StateBean> selectAll();
 
-	StateBean selectByS_id(Integer s_id);
+	StateBean selectBySt_id(Integer st_id);
 
-	List<StateBean> selectByS_co_id(Integer s_co_id);
+	List<StateBean> selectBySt_co_id(Integer st_co_id);
 
 	StateBean insert(StateBean stateBean);
 
 	StateBean update(StateBean stateBean);
 
-	Boolean delete(Integer s_id);
+	Boolean delete(Integer st_id);
 
 }

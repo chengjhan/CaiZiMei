@@ -27,9 +27,9 @@
 			<tr>
 				<td>區域</td>
 				<td>
-					<form:select id="id-input-ci-s-id" path="ci_StateBean">
+					<form:select id="id-input-ci-st-id" path="ci_StateBean">
 						<form:option value="0" label="請選擇區域" />
-						<form:options items="${stateList}" itemValue="s_id" itemLabel="s_name" />
+						<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
 					</form:select>
 				</td>
 			</tr>

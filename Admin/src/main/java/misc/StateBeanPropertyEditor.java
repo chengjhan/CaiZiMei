@@ -10,7 +10,7 @@ public class StateBeanPropertyEditor extends PropertyEditorSupport {
 	public void setAsText(String text) {
 		if (!"0".equals(text)) {
 			StateBean stateBean = new StateBean();
-			stateBean.setS_id(Integer.parseInt(text));
+			stateBean.setSt_id(Integer.parseInt(text));
 			setValue(stateBean);
 		}
 	}

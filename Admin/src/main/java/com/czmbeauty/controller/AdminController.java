@@ -38,7 +38,7 @@ import misc.PrimitiveNumberEditor;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = { "admin", "a_email", "adminList" })
+@SessionAttributes(value = { "admin", "ad_email", "adminList" })
 public class AdminController {
 
 	/**
@@ -95,20 +95,20 @@ public class AdminController {
 	@RequestMapping(value = "/admin/sign-up.do", method = RequestMethod.POST)
 	public String signUpProcess(AdminBean adminBean, HttpServletRequest request, Model model) {
 
-		if (adminService.selectByA_username(adminBean.getA_username()) == null) {
+		if (adminService.selectByAd_username(adminBean.getAd_username()) == null) {
 
-			String a_salt = adminService.getSalt();
+			String ad_salt = adminService.getSalt();
 
-			adminBean.setA_salt(a_salt);
-			adminBean.setA_password(adminService.getHashedPassword(adminBean.getA_password(), a_salt));
-			adminBean.setA_signup_time(new java.util.Date());
-			adminBean.setA_signin_number(1);
-			adminBean.setA_signin_ip(request.getRemoteAddr());
-			adminBean.setA_signin_time(new java.util.Date());
-			adminBean.setA_update_pwd_time(new java.util.Date());
-			adminBean.setA_update_info_time(new java.util.Date());
-			adminBean.setA_status(1);
-			adminBean.setA_status_time(new java.util.Date());
+			adminBean.setAd_salt(ad_salt);
+			adminBean.setAd_password(adminService.getHashedPassword(adminBean.getAd_password(), ad_salt));
+			adminBean.setAd_signup_time(new java.util.Date());
+			adminBean.setAd_signin_number(1);
+			adminBean.setAd_signin_ip(request.getRemoteAddr());
+			adminBean.setAd_signin_time(new java.util.Date());
+			adminBean.setAd_update_pwd_time(new java.util.Date());
+			adminBean.setAd_update_info_time(new java.util.Date());
+			adminBean.setAd_status(1);
+			adminBean.setAd_status_time(new java.util.Date());
 			adminService.signUp(adminBean);
 
 			// 放入 Session
@@ -158,7 +158,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/edit.do", method = RequestMethod.POST)
 	public String editProcess(@ModelAttribute("admin") AdminBean admin, AdminBean adminBean) {
 
-		adminBean.setA_id(admin.getA_id());
+		adminBean.setAd_id(admin.getAd_id());
 		adminService.update(adminBean);
 
 		return "redirect:/admin/profile";
@@ -178,22 +178,22 @@ public class AdminController {
 	/**
 	 * 變更密碼 - submit
 	 * 
-	 * @param a_password-->舊密碼(原碼)
-	 * @param a_password_new-->新密碼(原碼)
+	 * @param ad_password-->舊密碼(原碼)
+	 * @param ad_password_new-->新密碼(原碼)
 	 * @param admin-->Session
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
 	@RequestMapping(value = "/admin/change-password.do", method = RequestMethod.POST)
-	public String changePasswordProcess(@RequestParam(name = "a_password") String a_password,
-			@RequestParam(name = "a_password_new") String a_password_new, @ModelAttribute("admin") AdminBean admin) {
+	public String changePasswordProcess(@RequestParam(name = "ad_password") String ad_password,
+			@RequestParam(name = "ad_password_new") String ad_password_new, @ModelAttribute("admin") AdminBean admin) {
 
-		String oldHashedPassword = adminService.selectByA_id(admin.getA_id()).getA_password();
-		String inputOldHashedPassword = adminService.getHashedPassword(a_password, admin.getA_salt());
+		String oldHashedPassword = adminService.selectByAd_id(admin.getAd_id()).getAd_password();
+		String inputOldHashedPassword = adminService.getHashedPassword(ad_password, admin.getAd_salt());
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 
-			adminService.updateA_password(admin.getA_id(), a_password_new, admin.getA_salt());
+			adminService.updateAd_password(admin.getAd_id(), ad_password_new, admin.getAd_salt());
 
 			// 變更成功
 			return "redirect:/";
@@ -218,8 +218,8 @@ public class AdminController {
 	/**
 	 * 登入 - submit
 	 * 
-	 * @param a_username-->管理員帳號
-	 * @param a_password-->管理員密碼(原碼)
+	 * @param ad_username-->管理員帳號
+	 * @param ad_password-->管理員密碼(原碼)
 	 * @param request-->HttpServletRequest
 	 * @param model-->Model
 	 * @return /WEB-INF/views/index.jsp
@@ -227,19 +227,19 @@ public class AdminController {
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
-	public String signInProcess(@RequestParam(name = "a_username") String a_username,
-			@RequestParam(name = "a_password") String a_password, HttpServletRequest request, Model model) {
+	public String signInProcess(@RequestParam(name = "ad_username") String ad_username,
+			@RequestParam(name = "ad_password") String ad_password, HttpServletRequest request, Model model) {
 
-		AdminBean adminBean = adminService.selectByA_username(a_username);
+		AdminBean adminBean = adminService.selectByAd_username(ad_username);
 
 		if (adminBean != null) {
 
-			if (adminService.signIn(a_username, a_password)) {
+			if (adminService.signIn(ad_username, ad_password)) {
 
 				// 更新登入資訊
-				adminService.updateA_signin_ip(adminBean.getA_id(), request.getRemoteAddr());
-				adminService.updateA_signin_time(adminBean.getA_id());
-				model.addAttribute("admin", adminService.selectByA_username(a_username));
+				adminService.updateAd_signin_ip(adminBean.getAd_id(), request.getRemoteAddr());
+				adminService.updateAd_signin_time(adminBean.getAd_id());
+				model.addAttribute("admin", adminService.selectByAd_username(ad_username));
 
 				// 寫入日誌
 				AdminLogBean adminLogBean = new AdminLogBean();
@@ -282,30 +282,30 @@ public class AdminController {
 	/**
 	 * 忘記密碼 - submit
 	 * 
-	 * @param a_email-->管理員信箱
+	 * @param ad_email-->管理員信箱
 	 * @param model-->Model
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 * @return /WEB-INF/views/secure/forget-password.jsp
 	 */
 	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
-	public String forgetPasswordProcess(@RequestParam(name = "a_email") String a_email, Model model) {
+	public String forgetPasswordProcess(@RequestParam(name = "ad_email") String ad_email, Model model) {
 
-		AdminBean adminBean = adminService.selectByA_email(a_email);
+		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
 		if (adminBean != null) {
 
 			int random = (int) (Math.random() * 1000000);
-			String a_password_random = String.valueOf(random);
+			String ad_password_random = String.valueOf(random);
 
-			adminService.updateA_password(adminBean.getA_id(), a_password_random, adminBean.getA_salt());
+			adminService.updateAd_password(adminBean.getAd_id(), ad_password_random, adminBean.getAd_salt());
 
-			String to = adminBean.getA_email();
+			String to = adminBean.getAd_email();
 			String from = "chengjhan@gmail.com";
 			String subject = "采姿美管理系統";
-			String text = "您的驗證碼為：" + a_password_random + "。";
+			String text = "您的驗證碼為：" + ad_password_random + "。";
 			adminService.sendEmail(to, from, subject, text);
 
-			model.addAttribute("a_email", to);
+			model.addAttribute("ad_email", to);
 
 			// 發送成功
 			return "redirect:/secure/reset-password";
@@ -330,26 +330,26 @@ public class AdminController {
 	/**
 	 * 重設密碼 - submit
 	 * 
-	 * @param a_password-->驗證碼(原碼)
-	 * @param a_password_new-->新密碼(原碼)
-	 * @param a_email-->Session
+	 * @param ad_password-->驗證碼(原碼)
+	 * @param ad_password_new-->新密碼(原碼)
+	 * @param ad_email-->Session
 	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
-	public String resetPasswordProcess(@RequestParam(name = "a_password") String a_password,
-			@RequestParam(name = "a_password_new") String a_password_new, @ModelAttribute("a_email") String a_email,
+	public String resetPasswordProcess(@RequestParam(name = "ad_password") String ad_password,
+			@RequestParam(name = "ad_password_new") String ad_password_new, @ModelAttribute("ad_email") String ad_email,
 			SessionStatus sessionStatus) {
 
-		AdminBean adminBean = adminService.selectByA_email(a_email);
+		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
-		String oldHashedPassword = adminService.selectByA_id(adminBean.getA_id()).getA_password();
-		String inputOldHashedPassword = adminService.getHashedPassword(a_password, adminBean.getA_salt());
+		String oldHashedPassword = adminService.selectByAd_id(adminBean.getAd_id()).getAd_password();
+		String inputOldHashedPassword = adminService.getHashedPassword(ad_password, adminBean.getAd_salt());
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 
-			adminService.updateA_password(adminBean.getA_id(), a_password_new, adminBean.getA_salt());
+			adminService.updateAd_password(adminBean.getAd_id(), ad_password_new, adminBean.getAd_salt());
 
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();
@@ -422,7 +422,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/switch", method = RequestMethod.GET)
 	public String switchProcess(AdminBean adminBean, Model model) {
 
-		adminService.updateA_status(adminBean.getA_id());
+		adminService.updateAd_status(adminBean.getAd_id());
 
 		return "redirect:/admin/list";
 	}

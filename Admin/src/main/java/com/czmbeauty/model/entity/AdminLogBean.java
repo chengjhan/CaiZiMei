@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogBean.java
  * Author: 詹晟
- * Date: 2017/7/10
+ * Date: 2017/7/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -30,7 +30,7 @@ public class AdminLogBean {
 	private Integer al_id;
 	private java.util.Date al_insert_time;
 	@ManyToOne
-	@JoinColumn(name = "al_a_id")
+	@JoinColumn(name = "al_ad_id")
 	private AdminBean al_AdminBean;
 	private String al_operation;
 	private String al_ip;

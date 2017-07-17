@@ -12,20 +12,20 @@
 	<table border="1">
 		<tr>
 			<td>姓名</td>
-			<td>${admin.a_lastname} ${admin.a_firstname}</td>
+			<td>${admin.ad_lastname} ${admin.ad_firstname}</td>
 		</tr>
 		<tr>
 			<td>信箱</td>
-			<td>${admin.a_email}</td>
+			<td>${admin.ad_email}</td>
 		</tr>
 		<tr>
-			<fmt:formatDate value="${admin.a_signup_time}" var="a_signup_time" pattern="yyyy-MM-dd hh:mm:ss" />
+			<fmt:formatDate value="${admin.ad_signup_time}" var="ad_signup_time" pattern="yyyy-MM-dd hh:mm:ss" />
 			<td>註冊時間</td>
-			<td>${a_signup_time}</td>
+			<td>${ad_signup_time}</td>
 		</tr>
 		<tr>
 			<td>登入次數</td>
-			<td>${admin.a_signin_number}</td>
+			<td>${admin.ad_signin_number}</td>
 		</tr>
 	</table>
 	<p>

@@ -58,15 +58,15 @@ public class CityDaoImpl implements CityDao {
 	/**
 	 * 區域流水號搜尋
 	 * 
-	 * @param ci_s_id-->區域流水號
+	 * @param ci_st_id-->區域流水號
 	 * @return List<CityBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<CityBean> selectByCi_s_id(Integer ci_s_id) {
+	public List<CityBean> selectByCi_st_id(Integer ci_st_id) {
 
-		return (List<CityBean>) hibernateTemplate.findByNamedParam("from CityBean where ci_s_id=:ci_s_id", "ci_s_id",
-				ci_s_id);
+		return (List<CityBean>) hibernateTemplate.findByNamedParam("from CityBean where ci_st_id=:ci_st_id", "ci_st_id",
+				ci_st_id);
 	}
 
 	/**

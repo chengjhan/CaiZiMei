@@ -66,14 +66,14 @@ public class CityServiceImpl implements CityService {
 	/**
 	 * 區域流水號搜尋
 	 * 
-	 * @param ci_s_id-->區域流水號
+	 * @param ci_st_id-->區域流水號
 	 * @return List<CityBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<CityBean> selectByCi_s_id(Integer ci_s_id) {
+	public List<CityBean> selectByCi_st_id(Integer ci_st_id) {
 
-		return cityDao.selectByCi_s_id(ci_s_id);
+		return cityDao.selectByCi_st_id(ci_st_id);
 	}
 
 	/**

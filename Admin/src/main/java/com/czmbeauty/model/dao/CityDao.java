@@ -23,7 +23,7 @@ public interface CityDao {
 
 	CityBean selectByCi_id(Integer ci_id);
 
-	List<CityBean> selectByCi_s_id(Integer ci_s_id);
+	List<CityBean> selectByCi_st_id(Integer ci_st_id);
 
 	CityBean insert(CityBean cityBean);
 

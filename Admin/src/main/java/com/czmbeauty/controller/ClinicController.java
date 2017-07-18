@@ -195,4 +195,19 @@ public class ClinicController {
 		return "redirect:/clinic/list";
 	}
 
+	/**
+	 * 診所開關 - submit
+	 * 
+	 * @param clinicBean-->form-backing-object-->GET-->cl_id
+	 * @param model-->Model
+	 * @return /WEB-INF/views/clinic/list.jsp
+	 */
+	@RequestMapping(value = "/clinic/switch", method = RequestMethod.GET)
+	public String switchProcess(ClinicBean clinicBean, Model model) {
+
+		clinicService.updateCl_status(clinicBean.getCl_id());
+
+		return "redirect:/clinic/list";
+	}
+
 }

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -415,7 +415,7 @@ public class AdminController {
 	/**
 	 * 帳戶開關 - submit
 	 * 
-	 * @param adminBean-->form-backing-object
+	 * @param adminBean-->form-backing-object-->GET-->ad_id
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */

@@ -16,11 +16,11 @@
 				<td><form:hidden path="cl_id" /></td>
 			</tr>
 			<tr>
-				<td>診所</td>
+				<td>名稱</td>
 				<td><form:input path="cl_name" /></td>
 			</tr>
 			<tr>
-				<td>診所英文</td>
+				<td>英文名稱</td>
 				<td><form:input path="cl_eng_name" /></td>
 			</tr>
 			<tr>
@@ -29,15 +29,30 @@
 			</tr>
 			<tr>
 				<td>國家</td>
-				<td><form:input path="cl_CountryBean" /></td>
+				<td>
+					<form:select id="id-input-cl-co-id" path="cl_CountryBean">
+						<form:option value="0" label="請選擇國家" />
+						<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
+					</form:select>
+				</td>
 			</tr>
 			<tr>
 				<td>區域</td>
-				<td><form:input path="cl_StateBean" /></td>
+				<td>
+					<form:select id="id-input-cl-st-id" path="cl_StateBean">
+						<form:option value="0" label="請選擇區域" />
+						<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
+					</form:select>
+				</td>
 			</tr>
 			<tr>
 				<td>城市</td>
-				<td><form:input path="cl_CityBean" /></td>
+				<td>
+					<form:select id="id-input-cl-ci-id" path="cl_CityBean">
+						<form:option value="0" label="請選擇城市" />
+						<form:options items="${cityList}" itemValue="ci_id" itemLabel="ci_name" />
+					</form:select>
+				</td>
 			</tr>
 			<tr>
 				<td>地址</td>
@@ -52,5 +67,9 @@
 			</tr>
 		</table>
 	</form:form>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/js/clinic/edit.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

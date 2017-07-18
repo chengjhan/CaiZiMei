@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -85,15 +85,15 @@ public class CountryController {
 	/**
 	 * 編輯國家資訊 - 采姿美管理系統
 	 * 
-	 * @param countryBean-->form-backing-object
+	 * @param countryBean_co_id-->form-backing-object-->GET-->co_id
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/edit.jsp
 	 */
 	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
-	public String editView(CountryBean countryBean, Model model) {
+	public String editView(CountryBean countryBean_co_id, Model model) {
 
-		// 取得選定國家 id 的 CountryBean
-		model.addAttribute("countryBean", countryService.selectByCo_id(countryBean.getCo_id()));
+		// 取得選定國家 id 的 CountryBean，並回傳 CountryBean 內所有資料
+		model.addAttribute("countryBean", countryService.selectByCo_id(countryBean_co_id.getCo_id()));
 
 		return "country/edit";
 	}

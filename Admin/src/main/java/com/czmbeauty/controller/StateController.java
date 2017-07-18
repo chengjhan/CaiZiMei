@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -110,18 +110,18 @@ public class StateController {
 	/**
 	 * 編輯區域資訊 - 采姿美管理系統
 	 * 
-	 * @param stateBean-->form-backing-object
+	 * @param stateBean_st_id-->form-backing-object-->GET-->st_id
 	 * @param model-->Model
 	 * @return /WEB-INF/views/state/edit.jsp
 	 */
 	@RequestMapping(value = "/state/edit", method = RequestMethod.GET)
-	public String editView(StateBean stateBean, Model model) {
+	public String editView(StateBean stateBean_st_id, Model model) {
 
 		// 取得所有國家 List
 		model.addAttribute("countryList", countryService.selectAll());
 
-		// 取得選定區域 id 的 StateBean
-		model.addAttribute("stateBean", stateService.selectBySt_id(stateBean.getSt_id()));
+		// 取得選定區域 id 的 StateBean，並回傳 StateBean 內所有資料
+		model.addAttribute("stateBean", stateService.selectBySt_id(stateBean_st_id.getSt_id()));
 
 		return "state/edit";
 	}

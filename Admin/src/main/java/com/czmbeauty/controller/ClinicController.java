@@ -24,6 +24,7 @@ import com.czmbeauty.model.entity.StateBean;
 import com.czmbeauty.model.service.CityService;
 import com.czmbeauty.model.service.ClinicService;
 import com.czmbeauty.model.service.CountryService;
+import com.czmbeauty.model.service.StateService;
 
 import misc.CityBeanPropertyEditor;
 import misc.CountryBeanPropertyEditor;
@@ -44,6 +45,12 @@ public class ClinicController {
 	 */
 	@Autowired
 	private CountryService countryService;
+
+	/**
+	 * 注入 StateService
+	 */
+	@Autowired
+	private StateService stateService;
 
 	/**
 	 * 注入 CityService
@@ -135,15 +142,27 @@ public class ClinicController {
 	/**
 	 * 編輯診所資訊 - 采姿美管理系統
 	 * 
-	 * @param clinicBean-->form-backing-object
+	 * @param clinicBean_cl_id-->form-backing-object-->GET-->cl_id
 	 * @param model-->Model
 	 * @return /WEB-INF/views/clinic/edit.jsp
 	 */
 	@RequestMapping(value = "/clinic/edit", method = RequestMethod.GET)
-	public String editView(ClinicBean clinicBean, Model model) {
+	public String editView(ClinicBean clinicBean_cl_id, Model model) {
 
 		// 取得選定診所 id 的 ClinicBean
-		model.addAttribute("clinicBean", clinicService.selectByCl_id(clinicBean.getCl_id()));
+		ClinicBean clinicBean = clinicService.selectByCl_id(clinicBean_cl_id.getCl_id());
+
+		// 取得所有國家 List
+		model.addAttribute("countryList", countryService.selectAll());
+
+		// 取得診所所在國家中的所有區域 List
+		model.addAttribute("stateList", stateService.selectBySt_co_id(clinicBean.getCl_CountryBean().getCo_id()));
+
+		// 取得診所所在區域中的所有城市 List
+		model.addAttribute("cityList", cityService.selectByCi_st_id(clinicBean.getCl_StateBean().getSt_id()));
+
+		// 回傳 ClinicBean 內所有資料
+		model.addAttribute("clinicBean", clinicBean);
 
 		return "clinic/edit";
 	}

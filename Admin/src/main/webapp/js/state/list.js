@@ -1,19 +1,21 @@
+var country_select = $("#id-input-st-co-id");
+
 $(document).ready(function(){
 	
 	// 國家 select
 	$.getJSON("../country/select-all.ajax", function(data){
 		$.each(data, function(index, countryBean){
-			var countryList_option = $("<option value=" + countryBean.co_id + "></option>").append(countryBean.co_name);
-			$("#id-input-st-co-id").append(countryList_option);
+			var country_option = $("<option value=" + countryBean.co_id + "></option>").append(countryBean.co_name);
+			country_select.append(country_option);
 		});
 	});
 });
 
 // 區域 table
-$("#id-input-st-co-id").change(function(){
+country_select.change(function(){
 	var stateList_tbody = $("table tbody");
 	stateList_tbody.empty();
-	var st_co_id = $("#id-input-st-co-id").val();
+	var st_co_id = country_select.val();
 	$.getJSON("../state/select-by-country.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			index = index + 1;

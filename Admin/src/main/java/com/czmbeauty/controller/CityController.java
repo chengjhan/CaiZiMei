@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -118,22 +118,24 @@ public class CityController {
 	/**
 	 * 編輯城市資訊 - 采姿美管理系統
 	 * 
-	 * @param cityBean-->form-backing-object
+	 * @param cityBean_ci_id-->form-backing-object-->GET-->ci_id
 	 * @param model-->Model
 	 * @return /WEB-INF/views/city/edit.jsp
 	 */
 	@RequestMapping(value = "/city/edit", method = RequestMethod.GET)
-	public String editView(CityBean cityBean, Model model) {
+	public String editView(CityBean cityBean_ci_id, Model model) {
+
+		// 取得選定城市 id 的 CityBean
+		CityBean cityBean = cityService.selectByCi_id(cityBean_ci_id.getCi_id());
 
 		// 取得所有國家 List
 		model.addAttribute("countryList", countryService.selectAll());
 
-		// 取得選定國家中的所有區域 List
-		model.addAttribute("stateList", stateService
-				.selectBySt_co_id(cityService.selectByCi_id(cityBean.getCi_id()).getCi_CountryBean().getCo_id()));
+		// 取得城市所在國家中的所有區域 List
+		model.addAttribute("stateList", stateService.selectBySt_co_id(cityBean.getCi_CountryBean().getCo_id()));
 
-		// 取得選定城市 id 的 CityBean
-		model.addAttribute("cityBean", cityService.selectByCi_id(cityBean.getCi_id()));
+		// 回傳 CityBean 內所有資料
+		model.addAttribute("cityBean", cityBean);
 
 		return "city/edit";
 	}

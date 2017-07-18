@@ -158,7 +158,7 @@ public class StateController {
 	 * 搜尋選定國家中的所有區域 (AJAX)
 	 * 
 	 * @param st_co_id-->國家流水號
-	 * @return state json
+	 * @return state JSON
 	 */
 	@RequestMapping(value = "/state/select-by-country.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -167,6 +167,7 @@ public class StateController {
 		List<StateBean> result = stateService.selectBySt_co_id(st_co_id);
 
 		List<StateBean> jsonList = new ArrayList<StateBean>();
+
 		for (StateBean bean : result) {
 			StateBean jsonBean = new StateBean();
 			jsonBean.setSt_id(bean.getSt_id());
@@ -174,6 +175,7 @@ public class StateController {
 			jsonBean.setSt_rank(bean.getSt_rank());
 			jsonList.add(jsonBean);
 		}
+
 		String json = new Gson().toJson(jsonList);
 		System.out.println("JSON = " + json);
 

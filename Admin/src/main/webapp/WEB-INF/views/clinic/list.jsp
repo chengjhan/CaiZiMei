@@ -10,6 +10,9 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
+	<div>
+		<input type="checkbox" id="id-input-switch" />
+	</div>
 	<table border="1" style="font-size:13px">
 		<thead>
 			<tr>
@@ -67,5 +70,9 @@
 	<p>
 		<a href="<%=request.getContextPath()%>/">首頁</a>
 	</p>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/js/clinic/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

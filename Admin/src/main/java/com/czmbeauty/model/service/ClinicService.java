@@ -23,6 +23,8 @@ public interface ClinicService {
 
 	ClinicBean selectByCl_id(Integer cl_id);
 
+	List<ClinicBean> selectByCl_status();
+
 	ClinicBean insert(ClinicBean clinicBean);
 
 	ClinicBean update(ClinicBean clinicBean);

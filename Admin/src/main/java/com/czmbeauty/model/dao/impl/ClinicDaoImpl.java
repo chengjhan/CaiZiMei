@@ -47,12 +47,24 @@ public class ClinicDaoImpl implements ClinicDao {
 	 * 診所流水號搜尋
 	 * 
 	 * @param cl_id-->診所流水號
-	 * @return List<ClinicBean>
+	 * @return ClinicBean
 	 */
 	@Override
 	public ClinicBean selectByCl_id(Integer cl_id) {
 
 		return hibernateTemplate.get(ClinicBean.class, cl_id);
+	}
+
+	/**
+	 * 狀態搜尋
+	 * 
+	 * @return List<ClinicBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<ClinicBean> selectByCl_status() {
+
+		return (List<ClinicBean>) hibernateTemplate.find("from ClinicBean where cl_status=1 order by cl_id asc");
 	}
 
 	/**

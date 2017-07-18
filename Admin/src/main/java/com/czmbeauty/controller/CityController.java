@@ -172,7 +172,7 @@ public class CityController {
 	 * 搜尋選定區域中的所有城市 (AJAX)
 	 * 
 	 * @param ci_st_id-->區域流水號
-	 * @return city json
+	 * @return city JSON
 	 */
 	@RequestMapping(value = "/city/select-by-state.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -181,6 +181,7 @@ public class CityController {
 		List<CityBean> result = cityService.selectByCi_st_id(ci_st_id);
 
 		List<CityBean> jsonList = new ArrayList<CityBean>();
+
 		for (CityBean bean : result) {
 			CityBean jsonBean = new CityBean();
 			jsonBean.setCi_id(bean.getCi_id());
@@ -188,6 +189,7 @@ public class CityController {
 			jsonBean.setCi_rank(bean.getCi_rank());
 			jsonList.add(jsonBean);
 		}
+
 		String json = new Gson().toJson(jsonList);
 		System.out.println("JSON = " + json);
 

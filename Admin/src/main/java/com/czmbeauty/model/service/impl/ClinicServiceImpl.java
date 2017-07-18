@@ -69,6 +69,18 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	/**
+	 * 狀態搜尋
+	 * 
+	 * @return List<ClinicBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<ClinicBean> selectByCl_status() {
+
+		return clinicDao.selectByCl_status();
+	}
+
+	/**
 	 * 新增診所
 	 * 
 	 * @param clinicBean-->ClinicBean

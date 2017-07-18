@@ -8,6 +8,8 @@
  */
 package com.czmbeauty.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.czmbeauty.model.entity.CityBean;
@@ -25,6 +28,8 @@ import com.czmbeauty.model.service.CityService;
 import com.czmbeauty.model.service.ClinicService;
 import com.czmbeauty.model.service.CountryService;
 import com.czmbeauty.model.service.StateService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import misc.CityBeanPropertyEditor;
 import misc.CountryBeanPropertyEditor;
@@ -208,6 +213,27 @@ public class ClinicController {
 		clinicService.updateCl_status(clinicBean.getCl_id());
 
 		return "redirect:/clinic/list";
+	}
+
+	/**
+	 * 搜尋開啟的診所 (AJAX)
+	 * 
+	 * @return clinic JSON
+	 */
+	@RequestMapping(value = "/clinic/open.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openProcess() {
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+
+		List<ClinicBean> result = clinicService.selectByCl_status();
+
+		String json = gson.toJson(result);
+		System.out.println("JSON = " + json);
+
+		return json;
 	}
 
 }

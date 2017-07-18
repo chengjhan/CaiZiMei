@@ -129,7 +129,7 @@ public class CountryController {
 	/**
 	 * 搜尋所有國家 (AJAX)
 	 * 
-	 * @return country json
+	 * @return country JSON
 	 */
 	@RequestMapping(value = "/country/select-all.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -138,12 +138,14 @@ public class CountryController {
 		List<CountryBean> result = countryService.selectAll();
 
 		List<CountryBean> jsonList = new ArrayList<CountryBean>();
+
 		for (CountryBean bean : result) {
 			CountryBean jsonBean = new CountryBean();
 			jsonBean.setCo_id(bean.getCo_id());
 			jsonBean.setCo_name(bean.getCo_name());
 			jsonList.add(jsonBean);
 		}
+
 		String json = new Gson().toJson(jsonList);
 		System.out.println("JSON = " + json);
 

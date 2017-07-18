@@ -11,6 +11,7 @@
 </head>
 <body>
 	<div>
+		<label for="id-input-switch">顯示開啟的診所</label>
 		<input type="checkbox" id="id-input-switch" />
 	</div>
 	<table border="1" style="font-size:13px">
@@ -59,7 +60,7 @@
 					<td>${bean.cl_status}</td>
 					<td>${cl_status_time_format}</td>
 					<td><a href="<%=request.getContextPath()%>/clinic/edit?cl_id=${bean.cl_id}">編輯</a></td>
-					<td><a href="<%=request.getContextPath()%>/clinic/switch?cl_id=${bean.cl_id}">狀態</a></td>
+					<td><a href="<%=request.getContextPath()%>/clinic/switch?cl_id=${bean.cl_id}">變更</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

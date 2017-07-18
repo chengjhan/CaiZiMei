@@ -9,7 +9,7 @@ country_select.change(function(){
 	city_select.empty();
 	city_select.append("<option value='0'>請選擇城市</option>");
 	var st_co_id = country_select.val();
-	$.getJSON("../state/select-by-country.ajax", {"st_co_id": st_co_id}, function(data){
+	$.getJSON("../state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			var state_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
 			state_select.append(state_option);
@@ -23,7 +23,7 @@ state_select.change(function(){
 	city_select.empty();
 	city_select.append("<option value='0'>請選擇城市</option>");
 	var ci_st_id = state_select.val();
-	$.getJSON("../city/select-by-state.ajax", {"ci_st_id": ci_st_id}, function(data){
+	$.getJSON("../city/choice-state-city-list.ajax", {"ci_st_id": ci_st_id}, function(data){
 		$.each(data, function(index, cityBean){
 			var city_option = $("<option value=" + cityBean.ci_id + "></option>").append(cityBean.ci_name);
 			city_select.append(city_option);

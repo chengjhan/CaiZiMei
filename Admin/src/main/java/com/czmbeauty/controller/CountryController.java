@@ -127,13 +127,13 @@ public class CountryController {
 	}
 
 	/**
-	 * 搜尋所有國家 (AJAX)
+	 * 所有國家列表 (AJAX)
 	 * 
 	 * @return country JSON
 	 */
-	@RequestMapping(value = "/country/select-all.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/country/all-country-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String selectAllAjaxProcess() {
+	public String allCountryListAjaxProcess() {
 
 		List<CountryBean> result = countryService.selectAll();
 

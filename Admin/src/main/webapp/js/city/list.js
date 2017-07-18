@@ -4,7 +4,7 @@ var state_select = $("#id-input-ci-st-id");
 $(document).ready(function(){
 	
 	// 國家 select
-	$.getJSON("../country/select-all.ajax", function(data){
+	$.getJSON("../country/all-country-list.ajax", function(data){
 		$.each(data, function(index, countryBean){
 			var country_option = $("<option value=" + countryBean.co_id + "></option>").append(countryBean.co_name);
 			country_select.append(country_option);
@@ -19,7 +19,7 @@ country_select.change(function(){
 	var cityList_tbody = $("table tbody");
 	cityList_tbody.empty();
 	var st_co_id = country_select.val();
-	$.getJSON("../state/select-by-country.ajax", {"st_co_id": st_co_id}, function(data){
+	$.getJSON("../state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			var state_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
 			state_select.append(state_option);
@@ -32,7 +32,7 @@ state_select.change(function(){
 	var cityList_tbody = $("table tbody");
 	cityList_tbody.empty();
 	var ci_st_id = state_select.val();
-	$.getJSON("../city/select-by-state.ajax", {"ci_st_id": ci_st_id}, function(data){
+	$.getJSON("../city/choice-state-city-list.ajax", {"ci_st_id": ci_st_id}, function(data){
 		$.each(data, function(index, cityBean){
 			index = index + 1;
 			var count_td = $("<td></td>").append(index);

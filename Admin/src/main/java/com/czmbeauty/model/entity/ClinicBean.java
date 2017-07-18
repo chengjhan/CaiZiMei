@@ -63,7 +63,9 @@ public class ClinicBean {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Expose
 	private java.util.Date cl_update_time;
+	@Expose
 	private Integer cl_status;
+	@Expose
 	private java.util.Date cl_status_time;
 
 	public Integer getCl_id() {

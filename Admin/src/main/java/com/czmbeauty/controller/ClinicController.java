@@ -216,13 +216,34 @@ public class ClinicController {
 	}
 
 	/**
-	 * 搜尋開啟的診所 (AJAX)
+	 * 所有診所列表 (AJAX)
 	 * 
 	 * @return clinic JSON
 	 */
-	@RequestMapping(value = "/clinic/open.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/clinic/all-clinic-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openProcess() {
+	public String allClinicListAjaxProcess() {
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+
+		List<ClinicBean> result = clinicService.selectAll();
+
+		String json = gson.toJson(result);
+		System.out.println("JSON = " + json);
+
+		return json;
+	}
+
+	/**
+	 * 開啟的診所列表 (AJAX)
+	 * 
+	 * @return clinic JSON
+	 */
+	@RequestMapping(value = "/clinic/open-clinic-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openClinicListAjaxProcess() {
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();

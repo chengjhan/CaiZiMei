@@ -169,14 +169,14 @@ public class CityController {
 	}
 
 	/**
-	 * 搜尋選定區域中的所有城市 (AJAX)
+	 * 選定區域中的所有城市列表 (AJAX)
 	 * 
 	 * @param ci_st_id-->區域流水號
 	 * @return city JSON
 	 */
-	@RequestMapping(value = "/city/select-by-state.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/city/choice-state-city-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String selectByStateAjaxProcess(Integer ci_st_id) {
+	public String choiceStateCityListAjaxProcess(Integer ci_st_id) {
 
 		List<CityBean> result = cityService.selectByCi_st_id(ci_st_id);
 

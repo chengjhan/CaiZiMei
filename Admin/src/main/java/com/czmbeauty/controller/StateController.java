@@ -155,14 +155,14 @@ public class StateController {
 	}
 
 	/**
-	 * 搜尋選定國家中的所有區域 (AJAX)
+	 * 選定國家中的所有區域列表 (AJAX)
 	 * 
 	 * @param st_co_id-->國家流水號
 	 * @return state JSON
 	 */
-	@RequestMapping(value = "/state/select-by-country.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/state/choice-country-state-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String selectByCountryAjaxProcess(Integer st_co_id) {
+	public String choiceCountryStateListAjaxProcess(Integer st_co_id) {
 
 		List<StateBean> result = stateService.selectBySt_co_id(st_co_id);
 

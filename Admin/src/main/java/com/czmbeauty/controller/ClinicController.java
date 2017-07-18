@@ -177,7 +177,7 @@ public class ClinicController {
 	public String editProcess(ClinicBean clinicBean) {
 
 		// 取得經緯度
-		String ci_name = clinicBean.getCl_CityBean().getCi_name();
+		String ci_name = cityService.selectByCi_id(clinicBean.getCl_CityBean().getCi_id()).getCi_name();
 		String cl_address = clinicBean.getCl_address();
 		Double[] LatLng = new Double[2];
 		try {

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -101,6 +101,8 @@ public class ClinicDaoImpl implements ClinicDao {
 		clinicBean.setCl_StateBean(newClinicBean.getCl_StateBean());
 		clinicBean.setCl_CityBean(newClinicBean.getCl_CityBean());
 		clinicBean.setCl_address(newClinicBean.getCl_address());
+		clinicBean.setCl_latitude(newClinicBean.getCl_latitude());
+		clinicBean.setCl_longitude(newClinicBean.getCl_longitude());
 		clinicBean.setCl_url(newClinicBean.getCl_url());
 		clinicBean.setCl_update_time(new java.util.Date());
 

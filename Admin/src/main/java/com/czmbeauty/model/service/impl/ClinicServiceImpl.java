@@ -135,10 +135,11 @@ public class ClinicServiceImpl implements ClinicService {
 	 */
 	@Override
 	public Double[] addressToLatLng(String address) throws Exception {
+		System.out.println("Address: " + address);
 		int responseCode = 0;
 		String api = "http://maps.googleapis.com/maps/api/geocode/xml?address=" + URLEncoder.encode(address, "UTF-8")
 				+ "&sensor=true";
-		System.out.println("URL : " + api);
+		System.out.println("URL: " + api);
 		URL url = new URL(api);
 		HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
 		httpConnection.connect();
@@ -171,6 +172,7 @@ public class ClinicServiceImpl implements ClinicService {
 						e.printStackTrace();
 					}
 				}
+				System.out.println("Latitude: " + latitude + " and Longitude: " + longitude);
 				return new Double[] { latitude, longitude };
 			} else {
 				throw new Exception("Error from the API - response status: " + status);

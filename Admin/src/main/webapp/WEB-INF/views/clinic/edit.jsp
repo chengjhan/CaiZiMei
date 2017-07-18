@@ -63,7 +63,7 @@
 				<td><form:input path="cl_url" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="新增" /></td>
+				<td><input type="submit" value="變更" /></td>
 			</tr>
 		</table>
 	</form:form>

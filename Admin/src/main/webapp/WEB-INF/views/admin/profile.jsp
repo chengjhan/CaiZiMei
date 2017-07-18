@@ -19,7 +19,7 @@
 			<td>${admin.ad_email}</td>
 		</tr>
 		<tr>
-			<fmt:formatDate value="${admin.ad_signup_time}" var="ad_signup_time" pattern="yyyy-MM-dd hh:mm:ss" />
+			<fmt:formatDate value="${admin.ad_signup_time}" var="ad_signup_time" pattern="yyyy-MM-dd HH:mm:ss" />
 			<td>註冊時間</td>
 			<td>${ad_signup_time}</td>
 		</tr>

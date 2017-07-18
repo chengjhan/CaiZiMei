@@ -39,9 +39,9 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${clinicList}" varStatus="status">
-				<fmt:formatDate value="${bean.cl_insert_time}" var="cl_insert_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
-				<fmt:formatDate value="${bean.cl_update_time}" var="cl_update_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
-				<fmt:formatDate value="${bean.cl_status_time}" var="cl_status_time_format" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.cl_insert_time}" var="cl_insert_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
+				<fmt:formatDate value="${bean.cl_update_time}" var="cl_update_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
+				<fmt:formatDate value="${bean.cl_status_time}" var="cl_status_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 				<tr>
 					<td>${status.count}</td>
 					<td>${bean.cl_id}</td>

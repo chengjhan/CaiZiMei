@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicController.java
  * Author: 詹晟
- * Date: 2017/7/18
+ * Date: 2017/7/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -226,6 +226,7 @@ public class ClinicController {
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
+		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		Gson gson = builder.create();
 
 		List<ClinicBean> result = clinicService.selectAll();
@@ -247,6 +248,7 @@ public class ClinicController {
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
+		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		Gson gson = builder.create();
 
 		List<ClinicBean> result = clinicService.selectByCl_status();

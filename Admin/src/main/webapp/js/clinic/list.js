@@ -5,7 +5,7 @@ $("#id-input-switch").change(function(){
 	
 	if(this.checked){
 		
-		// 開啟的診所
+		// 開啟的診所列表
 		clinicList_tbody.empty();
 		$.getJSON("../clinic/open-clinic-list.ajax", function(data){
 			$.each(data, function(index, clinicBean){
@@ -21,7 +21,8 @@ $("#id-input-switch").change(function(){
 				var	cl_address_td = $("<td></td>").append(clinicBean.cl_address);
 				var	cl_latitude_td = $("<td></td>").append(clinicBean.cl_latitude);
 				var	cl_longitude_td = $("<td></td>").append(clinicBean.cl_longitude);
-				var	cl_url_td = $("<td></td>").append(clinicBean.cl_url);
+				var cl_url_a = $("<a href='" + clinicBean.cl_url + "'></a>").append(clinicBean.cl_url);
+				var	cl_url_td = $("<td></td>").append(cl_url_a);
 				var	cl_insert_time_td = $("<td></td>").append(clinicBean.cl_insert_time);
 				var	cl_update_time_td = $("<td></td>").append(clinicBean.cl_update_time);
 				var	cl_status_td = $("<td></td>").append(clinicBean.cl_status);
@@ -36,7 +37,7 @@ $("#id-input-switch").change(function(){
 		});
 	}else{
 	
-		// 所有診所
+		// 所有診所列表
 		clinicList_tbody.empty();
 		$.getJSON("../clinic/all-clinic-list.ajax", function(data){
 			$.each(data, function(index, clinicBean){
@@ -52,7 +53,8 @@ $("#id-input-switch").change(function(){
 				var	cl_address_td = $("<td></td>").append(clinicBean.cl_address);
 				var	cl_latitude_td = $("<td></td>").append(clinicBean.cl_latitude);
 				var	cl_longitude_td = $("<td></td>").append(clinicBean.cl_longitude);
-				var	cl_url_td = $("<td></td>").append(clinicBean.cl_url);
+				var cl_url_a = $("<a href='" + clinicBean.cl_url + "'></a>").append(clinicBean.cl_url);
+				var	cl_url_td = $("<td></td>").append(cl_url_a);	
 				var	cl_insert_time_td = $("<td></td>").append(clinicBean.cl_insert_time);
 				var	cl_update_time_td = $("<td></td>").append(clinicBean.cl_update_time);
 				var	cl_status_td = $("<td></td>").append(clinicBean.cl_status);

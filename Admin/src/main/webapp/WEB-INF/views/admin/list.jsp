@@ -29,9 +29,9 @@
 		</thead>
 		<tbody>
 			<c:forEach var="bean" items="${adminList}" varStatus="status">
-				<fmt:formatDate value="${bean.ad_signup_time}" var="ad_signup_time" pattern="yyyy-MM-dd hh:mm:ss" />
-				<fmt:formatDate value="${bean.ad_signin_time}" var="ad_signin_time" pattern="yyyy-MM-dd hh:mm:ss" />
-				<fmt:formatDate value="${bean.ad_status_time}" var="ad_status_time" pattern="yyyy-MM-dd hh:mm:ss" />
+				<fmt:formatDate value="${bean.ad_signup_time}" var="ad_signup_time" pattern="yyyy-MM-dd HH:mm:ss" />
+				<fmt:formatDate value="${bean.ad_signin_time}" var="ad_signin_time" pattern="yyyy-MM-dd HH:mm:ss" />
+				<fmt:formatDate value="${bean.ad_status_time}" var="ad_status_time" pattern="yyyy-MM-dd HH:mm:ss" />
 				<tr>
 					<td>${status.count}</td>
 					<td>${bean.ad_id}</td>

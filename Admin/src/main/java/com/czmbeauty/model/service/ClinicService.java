@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicService.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,8 +22,6 @@ public interface ClinicService {
 	List<ClinicBean> selectAll();
 
 	ClinicBean selectByCl_id(Integer cl_id);
-
-	List<ClinicBean> selectByCl_ci_id(Integer cl_ci_id);
 
 	ClinicBean insert(ClinicBean clinicBean);
 

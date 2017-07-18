@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -66,19 +66,6 @@ public class ClinicServiceImpl implements ClinicService {
 	public ClinicBean selectByCl_id(Integer cl_id) {
 
 		return clinicDao.selectByCl_id(cl_id);
-	}
-
-	/**
-	 * 城市流水號搜尋可顯示的診所
-	 * 
-	 * @param cl_ci_id-->城市流水號
-	 * @return List<ClinicBean>
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<ClinicBean> selectByCl_ci_id(Integer cl_ci_id) {
-
-		return clinicDao.selectByCl_ci_id(cl_ci_id);
 	}
 
 	/**

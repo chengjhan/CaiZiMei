@@ -56,20 +56,6 @@ public class ClinicDaoImpl implements ClinicDao {
 	}
 
 	/**
-	 * 城市流水號搜尋可顯示的診所
-	 * 
-	 * @param cl_ci_id-->城市流水號
-	 * @return List<ClinicBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<ClinicBean> selectByCl_ci_id(Integer cl_ci_id) {
-
-		return (List<ClinicBean>) hibernateTemplate
-				.findByNamedParam("from ClinicBean where cl_ci_id=:cl_ci_id and cl_status=1", "cl_ci_id", cl_ci_id);
-	}
-
-	/**
 	 * 新增診所
 	 * 
 	 * @param clinicBean-->ClinicBean

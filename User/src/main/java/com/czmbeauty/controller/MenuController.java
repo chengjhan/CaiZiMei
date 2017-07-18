@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: ViewsController.java
+ * File: MenuController.java
  * Author: 詹晟
- * Date: 2017/7/9
+ * Date: 2017/7/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,64 +13,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * views controller (視圖解析)
+ * menu controller
  * 
  * @author 詹晟
  */
 @Controller
-public class ViewsController {
+public class MenuController {
 
 	/**
-	 * index 視圖解析
-	 * 
-	 * @return /WEB-INF/views/index.jsp
-	 */
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index() {
-
-		return "index";
-	}
-
-	/**
-	 * menu/idea 視圖解析
+	 * 采姿美 - 經營理念
 	 * 
 	 * @return /WEB-INF/views/menu/idea.jsp
 	 */
 	@RequestMapping(value = "/menu/idea", method = RequestMethod.GET)
-	public String menu_idea() {
+	public String ideaView() {
 
 		return "menu/idea";
 	}
 
 	/**
-	 * menu/vision 視圖解析
+	 * 采姿美 - 公司願景
 	 * 
 	 * @return /WEB-INF/views/menu/vision.jsp
 	 */
 	@RequestMapping(value = "/menu/vision", method = RequestMethod.GET)
-	public String menu_vision() {
+	public String visionView() {
 
 		return "menu/vision";
 	}
 
 	/**
-	 * menu/mission 視圖解析
+	 * 采姿美 - 公司使命
 	 * 
 	 * @return /WEB-INF/views/menu/mission.jsp
 	 */
 	@RequestMapping(value = "/menu/mission", method = RequestMethod.GET)
-	public String menu_mission() {
+	public String missionView() {
 
 		return "menu/mission";
 	}
 
 	/**
-	 * menu/territory 視圖解析
+	 * 采姿美 - 事業版圖
 	 * 
 	 * @return /WEB-INF/views/menu/territory.jsp
 	 */
 	@RequestMapping(value = "/menu/territory", method = RequestMethod.GET)
-	public String menu_territory() {
+	public String territoryView() {
 
 		return "menu/territory";
 	}

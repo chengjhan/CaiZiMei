@@ -90,4 +90,26 @@ create table clinic (
 	foreign key (cl_ci_id) references city (ci_id)
 );
 
+create table franchisee (
+	fr_id					int auto_increment not null,
+	fr_name					nvarchar(20) not null,
+	fr_eng_name				varchar(50),
+	fr_localphone			varchar(20),
+	fr_co_id				int not null,
+	fr_st_id				int not null,
+	fr_ci_id				int not null,
+	fr_address				nvarchar(50) not null,
+	fr_latitude				decimal(10,6),
+	fr_longitude			decimal(10,6),
+	fr_url					varchar(100),
+	fr_insert_time			datetime not null,
+	fr_update_time			datetime,
+	fr_status				tinyint,
+	fr_status_time			datetime,
+	primary key (fr_id),
+	foreign key (fr_co_id) references country (co_id),
+	foreign key (fr_st_id) references state (st_id),
+	foreign key (fr_ci_id) references city (ci_id)
+);
+
 insert into admin (ad_id, ad_username, ad_password, ad_salt, ad_lastname, ad_firstname, ad_email, ad_signup_time, ad_signin_number, ad_signin_ip, ad_signin_time, ad_update_info_time, ad_update_pwd_time, ad_status, ad_status_time) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', null, null, 'admin@czmbeauty.com', now(), null, null, null, now(), now(), 1, now());

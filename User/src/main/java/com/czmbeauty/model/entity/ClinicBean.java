@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicBean.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * clinic entity
  * 
@@ -29,9 +31,13 @@ public class ClinicBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose
 	private Integer cl_id;
+	@Expose
 	private String cl_name;
+	@Expose
 	private String cl_eng_name;
+	@Expose
 	private String cl_localphone;
 	@ManyToOne
 	@JoinColumn(name = "cl_co_id")
@@ -41,16 +47,25 @@ public class ClinicBean {
 	private StateBean cl_StateBean;
 	@ManyToOne
 	@JoinColumn(name = "cl_ci_id")
+	@Expose
 	private CityBean cl_CityBean;
+	@Expose
 	private String cl_address;
+	@Expose
 	private Double cl_latitude;
+	@Expose
 	private Double cl_longitude;
+	@Expose
 	private String cl_url;
 	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
 	private java.util.Date cl_insert_time;
 	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
 	private java.util.Date cl_update_time;
+	@Expose
 	private Integer cl_status;
+	@Expose
 	private java.util.Date cl_status_time;
 
 	public Integer getCl_id() {

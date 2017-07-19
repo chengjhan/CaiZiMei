@@ -15,21 +15,14 @@ function initMap(){
 		scrollwheel: false // 禁用滾輪縮放
 	});
 	
-	// file 接口
-//	$.getJSON("json/clinic.json", function(data){
-	
 	// database 接口
-	$.getJSON("admin/clinic/select.ajax", function(data){
+	$.getJSON("clinic/open-clinic-list.ajax", function(data){
 		
-		$.each(data, function(index, clinic){
+		$.each(data, function(index, clinicBean){
+			
 			// 加入診所陣列
-			
-			// file 接口
-//			var aClinic = [clinic.c_id, clinic.c_name, clinic.c_eng_name, clinic.c_localphone, clinic.c_r_id, clinic.c_address, clinic.c_latitude, clinic.c_longitude, clinic.c_url];
-			
-			// database 接口
-			var aClinic = [clinic.c_id, clinic.c_name, clinic.c_latitude, clinic.c_longitude, clinic.c_url];
-			clinicArray.push(aClinic);
+			var aClinicBean = [clinicBean.cl_id, clinicBean.cl_name, clinicBean.cl_latitude, clinicBean.cl_longitude, clinicBean.cl_url];
+			clinicArray.push(aClinicBean);
 		});
 	
 		// 取出診所陣列

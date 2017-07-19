@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/7/19
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.czmbeauty.common.misc.CountryBeanPropertyEditor;
-import com.czmbeauty.common.misc.PrimitiveNumberEditor;
+import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
+import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.entity.StateBean;
 import com.czmbeauty.model.service.CountryService;

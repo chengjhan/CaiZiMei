@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/19
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,8 +11,6 @@ package com.czmbeauty.model.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,12 +32,6 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Autowired
 	private AdminDao adminDao;
-
-	/**
-	 * 注入 MailSender
-	 */
-	@Autowired
-	private MailSender mailSender;
 
 	/**
 	 * 註冊
@@ -205,27 +197,6 @@ public class AdminServiceImpl implements AdminService {
 	public AdminBean updateAd_status(Integer ad_id) {
 
 		return adminDao.updateAd_status(ad_id);
-	}
-
-	/**
-	 * 寄送 Email
-	 * 
-	 * @param to-->收件者
-	 * @param from-->寄件者
-	 * @param subject-->信件主旨
-	 * @param text-->信件內容
-	 */
-	@Override
-	public void sendEmail(String to, String from, String subject, String text) {
-
-		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-
-		simpleMailMessage.setTo(to);
-		simpleMailMessage.setFrom(from);
-		simpleMailMessage.setSubject(subject);
-		simpleMailMessage.setText(text);
-
-		mailSender.send(simpleMailMessage);
 	}
 
 }

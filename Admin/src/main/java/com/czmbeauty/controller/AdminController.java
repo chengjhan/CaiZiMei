@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/19
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,7 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.czmbeauty.common.misc.PrimitiveNumberEditor;
+import com.czmbeauty.common.editor.PrimitiveNumberEditor;
+import com.czmbeauty.common.mail.SendMail;
 import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
@@ -58,6 +59,12 @@ public class AdminController {
 	 */
 	@Autowired
 	private SimpleDateFormat simpleDateFormat;
+
+	/**
+	 * 注入 SendMail
+	 */
+	@Autowired
+	private SendMail sendMail;
 
 	/**
 	 * 提供 form backing object 資料轉換
@@ -303,7 +310,7 @@ public class AdminController {
 			String from = "chengjhan@gmail.com";
 			String subject = "采姿美管理系統";
 			String text = "您的驗證碼為：" + ad_password_random + "。";
-			adminService.sendEmail(to, from, subject, text);
+			sendMail.sendMail(to, from, subject, text);
 
 			model.addAttribute("ad_email", to);
 
@@ -396,7 +403,6 @@ public class AdminController {
 			// 未登入狀態
 			return "redirect:/";
 		}
-
 	}
 
 	/**

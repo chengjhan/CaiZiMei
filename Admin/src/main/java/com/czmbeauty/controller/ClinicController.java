@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicController.java
  * Author: 詹晟
- * Date: 2017/7/19
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.czmbeauty.common.misc.CityBeanPropertyEditor;
-import com.czmbeauty.common.misc.CountryBeanPropertyEditor;
-import com.czmbeauty.common.misc.PrimitiveNumberEditor;
-import com.czmbeauty.common.misc.StateBeanPropertyEditor;
+import com.czmbeauty.common.editor.CityBeanPropertyEditor;
+import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
+import com.czmbeauty.common.editor.PrimitiveNumberEditor;
+import com.czmbeauty.common.editor.StateBeanPropertyEditor;
 import com.czmbeauty.model.entity.CityBean;
 import com.czmbeauty.model.entity.ClinicBean;
 import com.czmbeauty.model.entity.CountryBean;

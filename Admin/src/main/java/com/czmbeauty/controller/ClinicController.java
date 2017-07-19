@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.czmbeauty.common.misc.CityBeanPropertyEditor;
+import com.czmbeauty.common.misc.CountryBeanPropertyEditor;
+import com.czmbeauty.common.misc.PrimitiveNumberEditor;
+import com.czmbeauty.common.misc.StateBeanPropertyEditor;
 import com.czmbeauty.model.entity.CityBean;
 import com.czmbeauty.model.entity.ClinicBean;
 import com.czmbeauty.model.entity.CountryBean;
@@ -30,11 +34,6 @@ import com.czmbeauty.model.service.CountryService;
 import com.czmbeauty.model.service.StateService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import misc.CityBeanPropertyEditor;
-import misc.CountryBeanPropertyEditor;
-import misc.PrimitiveNumberEditor;
-import misc.StateBeanPropertyEditor;
 
 /**
  * clinic controller

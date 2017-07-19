@@ -1,4 +1,4 @@
-package misc;
+package com.czmbeauty.common.misc;
 
 import java.beans.PropertyEditorSupport;
 

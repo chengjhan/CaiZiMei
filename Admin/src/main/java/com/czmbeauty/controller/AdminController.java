@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/18
+ * Date: 2017/7/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,12 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.czmbeauty.common.misc.PrimitiveNumberEditor;
+import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
 import com.czmbeauty.model.service.AdminLogService;
 import com.czmbeauty.model.service.AdminService;
-
-import misc.PrimitiveNumberEditor;
 
 /**
  * admin controller
@@ -97,10 +97,10 @@ public class AdminController {
 
 		if (adminService.selectByAd_username(adminBean.getAd_username()) == null) {
 
-			String ad_salt = adminService.getSalt();
+			String ad_salt = CryptographicHashFunction.getSalt();
 
 			adminBean.setAd_salt(ad_salt);
-			adminBean.setAd_password(adminService.getHashedPassword(adminBean.getAd_password(), ad_salt));
+			adminBean.setAd_password(CryptographicHashFunction.getHashedPassword(adminBean.getAd_password(), ad_salt));
 			adminBean.setAd_signup_time(new java.util.Date());
 			adminBean.setAd_signin_number(1);
 			adminBean.setAd_signin_ip(request.getRemoteAddr());
@@ -189,7 +189,7 @@ public class AdminController {
 			@RequestParam(name = "ad_password_new") String ad_password_new, @ModelAttribute("admin") AdminBean admin) {
 
 		String oldHashedPassword = adminService.selectByAd_id(admin.getAd_id()).getAd_password();
-		String inputOldHashedPassword = adminService.getHashedPassword(ad_password, admin.getAd_salt());
+		String inputOldHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password, admin.getAd_salt());
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 
@@ -345,7 +345,8 @@ public class AdminController {
 		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
 		String oldHashedPassword = adminService.selectByAd_id(adminBean.getAd_id()).getAd_password();
-		String inputOldHashedPassword = adminService.getHashedPassword(ad_password, adminBean.getAd_salt());
+		String inputOldHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password,
+				adminBean.getAd_salt());
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 

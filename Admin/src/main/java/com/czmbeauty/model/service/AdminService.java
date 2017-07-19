@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,12 +40,6 @@ public interface AdminService {
 	AdminBean updateAd_signin_time(Integer ad_id);
 
 	AdminBean updateAd_status(Integer ad_id);
-
-	String getHashedPassword(String ad_password, String ad_salt);
-
-	String getMD5(String str);
-
-	String getSalt();
 
 	void sendEmail(String to, String from, String subject, String text);
 

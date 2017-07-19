@@ -2,17 +2,13 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/19
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service.impl;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -20,6 +16,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.model.dao.AdminDao;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.service.AdminService;
@@ -80,7 +77,7 @@ public class AdminServiceImpl implements AdminService {
 
 		String ad_salt = adminBean.getAd_salt();
 
-		if (getHashedPassword(ad_password, ad_salt).equals(adminBean.getAd_password())) {
+		if (CryptographicHashFunction.getHashedPassword(ad_password, ad_salt).equals(adminBean.getAd_password())) {
 
 			adminDao.updateAd_signin_number(adminBean.getAd_id());
 
@@ -167,7 +164,7 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public AdminBean updateAd_password(Integer ad_id, String ad_password_new, String ad_salt) {
 
-		return adminDao.updateAd_password(ad_id, getHashedPassword(ad_password_new, ad_salt));
+		return adminDao.updateAd_password(ad_id, CryptographicHashFunction.getHashedPassword(ad_password_new, ad_salt));
 	}
 
 	/**
@@ -208,60 +205,6 @@ public class AdminServiceImpl implements AdminService {
 	public AdminBean updateAd_status(Integer ad_id) {
 
 		return adminDao.updateAd_status(ad_id);
-	}
-
-	/**
-	 * 製造雜湊密碼
-	 * 
-	 * @param ad_password-->管理員密碼(原碼)
-	 * @param ad_salt-->塩
-	 * @return MD5雜湊密碼
-	 */
-	@Override
-	public String getHashedPassword(String ad_password, String ad_salt) {
-
-		return getMD5(ad_salt.replaceAll("-", getMD5(ad_password)));
-	}
-
-	/**
-	 * 轉換為 MD5
-	 * 
-	 * @param str-->原始字串
-	 * @return str_MD5-->MD5字串
-	 */
-	@Override
-	public String getMD5(String str) {
-
-		String str_MD5 = null;
-
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			byte[] str_bytes = str.getBytes();
-			md.update(str_bytes);
-			byte[] digestBytes = md.digest();
-			BigInteger digestInt = new BigInteger(1, digestBytes);
-			str_MD5 = digestInt.toString(16);
-			while (str_MD5.length() < 32) {
-				str_MD5 = "0" + str_MD5;
-			}
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-
-		return str_MD5;
-	}
-
-	/**
-	 * 產生 salt
-	 * 
-	 * @return 隨機UUID字串
-	 */
-	@Override
-	public String getSalt() {
-
-		UUID uuid = UUID.randomUUID();
-
-		return uuid.toString();
 	}
 
 	/**

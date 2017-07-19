@@ -24,6 +24,7 @@ import com.czmbeauty.common.editor.CityBeanPropertyEditor;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
+import com.czmbeauty.common.util.Geocoder;
 import com.czmbeauty.model.entity.CityBean;
 import com.czmbeauty.model.entity.ClinicBean;
 import com.czmbeauty.model.entity.CountryBean;
@@ -120,13 +121,12 @@ public class ClinicController {
 	@RequestMapping(value = "/clinic/add.do", method = RequestMethod.POST)
 	public String addProcess(ClinicBean clinicBean) {
 
-		// 取得經緯度
+		// 地址轉換經緯度
 		String ci_name = cityService.selectByCi_id(clinicBean.getCl_CityBean().getCi_id()).getCi_name();
 		String cl_address = clinicBean.getCl_address();
-		System.out.println(cl_address);
 		Double[] LatLng = new Double[2];
 		try {
-			LatLng = clinicService.addressToLatLng(ci_name + cl_address);
+			LatLng = Geocoder.addressToLatLng(ci_name + cl_address);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -180,12 +180,12 @@ public class ClinicController {
 	@RequestMapping(value = "/clinic/edit.do", method = RequestMethod.POST)
 	public String editProcess(ClinicBean clinicBean) {
 
-		// 取得經緯度
+		// 地址轉換經緯度
 		String ci_name = cityService.selectByCi_id(clinicBean.getCl_CityBean().getCi_id()).getCi_name();
 		String cl_address = clinicBean.getCl_address();
 		Double[] LatLng = new Double[2];
 		try {
-			LatLng = clinicService.addressToLatLng(ci_name + cl_address);
+			LatLng = Geocoder.addressToLatLng(ci_name + cl_address);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

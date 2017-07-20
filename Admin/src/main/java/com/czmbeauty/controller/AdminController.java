@@ -8,6 +8,12 @@
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.MailConstants.FORGET_PASSWORD_MAIL_FORM;
+import static com.czmbeauty.common.constants.MailConstants.FORGET_PASSWORD_MAIL_SUBJECT;
+import static com.czmbeauty.common.constants.SessionConstants.ADMIN;
+import static com.czmbeauty.common.constants.SessionConstants.ADMIN_EMAIL;
+import static com.czmbeauty.common.constants.SessionConstants.ADMIN_LIST;
+
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +45,7 @@ import com.czmbeauty.model.service.AdminService;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = { "admin", "ad_email", "adminList" })
+@SessionAttributes(value = { ADMIN, ADMIN_EMAIL, ADMIN_LIST })
 public class AdminController {
 
 	/**
@@ -119,7 +125,7 @@ public class AdminController {
 			adminService.signUp(adminBean);
 
 			// 放入 Session
-			model.addAttribute("admin", adminBean);
+			model.addAttribute(ADMIN, adminBean);
 
 			// 註冊成功
 			return "redirect:/";
@@ -150,7 +156,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
 	public String editView(Model model) {
 
-		model.addAttribute("admin");
+		model.addAttribute(ADMIN);
 
 		return "admin/edit";
 	}
@@ -163,7 +169,7 @@ public class AdminController {
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
 	@RequestMapping(value = "/admin/edit.do", method = RequestMethod.POST)
-	public String editProcess(@ModelAttribute("admin") AdminBean admin, AdminBean adminBean) {
+	public String editProcess(@ModelAttribute(ADMIN) AdminBean admin, AdminBean adminBean) {
 
 		adminBean.setAd_id(admin.getAd_id());
 		adminService.update(adminBean);
@@ -193,7 +199,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/change-password.do", method = RequestMethod.POST)
 	public String changePasswordProcess(@RequestParam(name = "ad_password") String ad_password,
-			@RequestParam(name = "ad_password_new") String ad_password_new, @ModelAttribute("admin") AdminBean admin) {
+			@RequestParam(name = "ad_password_new") String ad_password_new, @ModelAttribute(ADMIN) AdminBean admin) {
 
 		String oldHashedPassword = adminService.selectByAd_id(admin.getAd_id()).getAd_password();
 		String inputOldHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password, admin.getAd_salt());
@@ -246,7 +252,7 @@ public class AdminController {
 				// 更新登入資訊
 				adminService.updateAd_signin_ip(adminBean.getAd_id(), request.getRemoteAddr());
 				adminService.updateAd_signin_time(adminBean.getAd_id());
-				model.addAttribute("admin", adminService.selectByAd_username(ad_username));
+				model.addAttribute(ADMIN, adminService.selectByAd_username(ad_username));
 
 				// 寫入日誌
 				AdminLogBean adminLogBean = new AdminLogBean();
@@ -295,7 +301,7 @@ public class AdminController {
 	 * @return /WEB-INF/views/secure/forget-password.jsp
 	 */
 	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
-	public String forgetPasswordProcess(@RequestParam(name = "ad_email") String ad_email, Model model) {
+	public String forgetPasswordProcess(@RequestParam(name = ADMIN_EMAIL) String ad_email, Model model) {
 
 		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
@@ -307,12 +313,12 @@ public class AdminController {
 			adminService.updateAd_password(adminBean.getAd_id(), ad_password_random, adminBean.getAd_salt());
 
 			String to = adminBean.getAd_email();
-			String from = "chengjhan@gmail.com";
-			String subject = "采姿美管理系統";
+			String from = FORGET_PASSWORD_MAIL_FORM;
+			String subject = FORGET_PASSWORD_MAIL_SUBJECT;
 			String text = "您的驗證碼為：" + ad_password_random + "。";
 			sendMail.sendMail(to, from, subject, text);
 
-			model.addAttribute("ad_email", to);
+			model.addAttribute(ADMIN_EMAIL, to);
 
 			// 發送成功
 			return "redirect:/secure/reset-password";
@@ -346,8 +352,8 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
 	public String resetPasswordProcess(@RequestParam(name = "ad_password") String ad_password,
-			@RequestParam(name = "ad_password_new") String ad_password_new, @ModelAttribute("ad_email") String ad_email,
-			SessionStatus sessionStatus) {
+			@RequestParam(name = "ad_password_new") String ad_password_new,
+			@ModelAttribute(ADMIN_EMAIL) String ad_email, SessionStatus sessionStatus) {
 
 		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
@@ -381,7 +387,7 @@ public class AdminController {
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-out", method = RequestMethod.GET)
-	public String signOutProcess(@ModelAttribute("admin") AdminBean admin, HttpServletRequest request,
+	public String signOutProcess(@ModelAttribute(ADMIN) AdminBean admin, HttpServletRequest request,
 			SessionStatus sessionStatus) {
 
 		if (admin != null) {
@@ -414,7 +420,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
-		model.addAttribute("adminList", adminService.selectAll());
+		model.addAttribute(ADMIN_LIST, adminService.selectAll());
 
 		return "admin/list";
 	}

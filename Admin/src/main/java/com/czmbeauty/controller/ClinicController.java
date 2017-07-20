@@ -13,6 +13,10 @@ import static com.czmbeauty.common.constants.ModelAttributeConstants.CLINIC_BEAN
 import static com.czmbeauty.common.constants.ModelAttributeConstants.CLINIC_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
+import static com.czmbeauty.common.constants.PageNameConstants.CLINIC_ADD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.CLINIC_EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.CLINIC_LIST_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import java.util.List;
 
@@ -95,7 +99,7 @@ public class ClinicController {
 
 		model.addAttribute(CLINIC_LIST, clinicService.selectAll());
 
-		return "clinic/list";
+		return CLINIC_LIST_PAGE;
 	}
 
 	/**
@@ -113,7 +117,7 @@ public class ClinicController {
 		// 新增 form backing object
 		model.addAttribute(CLINIC_BEAN, new ClinicBean());
 
-		return "clinic/add";
+		return CLINIC_ADD_PAGE;
 	}
 
 	/**
@@ -144,7 +148,7 @@ public class ClinicController {
 
 		clinicService.insert(clinicBean);
 
-		return "redirect:/clinic/list";
+		return REDIRECT + CLINIC_LIST_PAGE;
 	}
 
 	/**
@@ -172,7 +176,7 @@ public class ClinicController {
 		// 回傳 ClinicBean 內所有資料
 		model.addAttribute(CLINIC_BEAN, clinicBean);
 
-		return "clinic/edit";
+		return CLINIC_EDIT_PAGE;
 	}
 
 	/**
@@ -200,7 +204,7 @@ public class ClinicController {
 
 		clinicService.update(clinicBean);
 
-		return "redirect:/clinic/list";
+		return REDIRECT + CLINIC_LIST_PAGE;
 	}
 
 	/**
@@ -215,7 +219,7 @@ public class ClinicController {
 
 		clinicService.updateCl_status(clinicBean.getCl_id());
 
-		return "redirect:/clinic/list";
+		return REDIRECT + CLINIC_LIST_PAGE;
 	}
 
 	/**

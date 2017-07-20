@@ -26,4 +26,6 @@ public interface ModelAttributeConstants {
 
 	public static final String CLINIC_LIST = "clinicList";
 
+	public static final String ERROR = "error";
+
 }

@@ -11,6 +11,10 @@ package com.czmbeauty.controller;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
+import static com.czmbeauty.common.constants.PageNameConstants.CITY_ADD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.CITY_EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.CITY_LIST_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +84,7 @@ public class CityController {
 	@RequestMapping(value = "/city/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
-		return "city/list";
+		return CITY_LIST_PAGE;
 	}
 
 	/**
@@ -98,7 +102,7 @@ public class CityController {
 		// 新增 form backing object
 		model.addAttribute(CITY_BEAN, new CityBean());
 
-		return "city/add";
+		return CITY_ADD_PAGE;
 	}
 
 	/**
@@ -112,7 +116,7 @@ public class CityController {
 
 		cityService.insert(cityBean);
 
-		return "redirect:/city/list";
+		return REDIRECT + CITY_LIST_PAGE;
 	}
 
 	/**
@@ -137,7 +141,7 @@ public class CityController {
 		// 回傳 CityBean 內所有資料
 		model.addAttribute(CITY_BEAN, cityBean);
 
-		return "city/edit";
+		return CITY_EDIT_PAGE;
 	}
 
 	/**
@@ -151,7 +155,7 @@ public class CityController {
 
 		cityService.update(cityBean);
 
-		return "redirect:/city/list";
+		return REDIRECT + CITY_LIST_PAGE;
 	}
 
 	/**
@@ -165,7 +169,7 @@ public class CityController {
 
 		cityService.delete(cityBean.getCi_id());
 
-		return "redirect:/city/list";
+		return REDIRECT + CITY_LIST_PAGE;
 	}
 
 	/**

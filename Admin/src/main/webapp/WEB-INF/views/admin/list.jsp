@@ -23,8 +23,8 @@
 				<td>最後登入IP</td>
 				<td>最後登入時間</td>
 				<td>狀態</td>
-				<td>變更狀態時間</td>
-				<td>變更狀態</td>
+				<td>狀態變更時間</td>
+				<td>變更</td>
 			</tr>
 		</thead>
 		<tbody>

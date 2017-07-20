@@ -14,6 +14,17 @@ import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_LIST;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ERROR;
+import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_CHANGE_PASSWORD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_FORGET_PASSWORD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_LIST_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_PROFILE_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_RESET_PASSWORD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_IN_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_UP_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.INDEX_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import java.text.SimpleDateFormat;
 
@@ -94,7 +105,7 @@ public class AdminController {
 		// 新增 form backing object
 		model.addAttribute(ADMIN_BEAN, new AdminBean());
 
-		return "admin/sign-up";
+		return ADMIN_SIGN_UP_PAGE;
 	}
 
 	/**
@@ -129,11 +140,11 @@ public class AdminController {
 			model.addAttribute(ADMIN, adminBean);
 
 			// 註冊成功
-			return "redirect:/";
+			return INDEX_PAGE;
 		} else {
 
 			// 帳號重複
-			return "redirect:/admin/sign-up";
+			return REDIRECT + ADMIN_SIGN_UP_PAGE;
 		}
 	}
 
@@ -145,7 +156,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/profile", method = RequestMethod.GET)
 	public String profileView() {
 
-		return "admin/profile";
+		return ADMIN_PROFILE_PAGE;
 	}
 
 	/**
@@ -159,7 +170,7 @@ public class AdminController {
 
 		model.addAttribute(ADMIN);
 
-		return "admin/edit";
+		return ADMIN_EDIT_PAGE;
 	}
 
 	/**
@@ -175,7 +186,7 @@ public class AdminController {
 		adminBean.setAd_id(admin.getAd_id());
 		adminService.update(adminBean);
 
-		return "redirect:/admin/profile";
+		return REDIRECT + ADMIN_PROFILE_PAGE;
 	}
 
 	/**
@@ -186,7 +197,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/change-password", method = RequestMethod.GET)
 	public String changePasswordView() {
 
-		return "admin/change-password";
+		return ADMIN_CHANGE_PASSWORD_PAGE;
 	}
 
 	/**
@@ -210,11 +221,11 @@ public class AdminController {
 			adminService.updateAd_password(admin.getAd_id(), ad_password_new, admin.getAd_salt());
 
 			// 變更成功
-			return "redirect:/";
+			return INDEX_PAGE;
 		} else {
 
 			// 密碼輸入錯誤
-			return "admin/change-password";
+			return ADMIN_CHANGE_PASSWORD_PAGE;
 		}
 	}
 
@@ -226,7 +237,7 @@ public class AdminController {
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
 	public String signInView() {
 
-		return "secure/sign-in";
+		return ADMIN_SIGN_IN_PAGE;
 	}
 
 	/**
@@ -263,22 +274,22 @@ public class AdminController {
 				adminLogService.insert(adminLogBean);
 
 				// 登入成功
-				return "redirect:/";
+				return INDEX_PAGE;
 			} else {
 
 				// 密碼錯誤
-				model.addAttribute("error", "帳號或密碼錯誤");
+				model.addAttribute(ERROR, "帳號或密碼錯誤");
 
 				// 登入失敗
-				return "secure/sign-in";
+				return ADMIN_SIGN_IN_PAGE;
 			}
 		} else {
 
 			// 帳號錯誤
-			model.addAttribute("error", "帳號或密碼錯誤");
+			model.addAttribute(ERROR, "帳號或密碼錯誤");
 
 			// 登入失敗
-			return "secure/sign-in";
+			return ADMIN_SIGN_IN_PAGE;
 		}
 	}
 
@@ -290,7 +301,7 @@ public class AdminController {
 	@RequestMapping(value = "/secure/forget-password", method = RequestMethod.GET)
 	public String forgetPasswordView() {
 
-		return "secure/forget-password";
+		return ADMIN_FORGET_PASSWORD_PAGE;
 	}
 
 	/**
@@ -322,11 +333,11 @@ public class AdminController {
 			model.addAttribute(ADMIN_EMAIL, to);
 
 			// 發送成功
-			return "redirect:/secure/reset-password";
+			return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
 		} else {
 
 			// 信箱輸入錯誤
-			return "secure/forget-password";
+			return ADMIN_FORGET_PASSWORD_PAGE;
 		}
 	}
 
@@ -338,7 +349,7 @@ public class AdminController {
 	@RequestMapping(value = "/secure/reset-password", method = RequestMethod.GET)
 	public String resetPasswordView() {
 
-		return "secure/reset-password";
+		return ADMIN_RESET_PASSWORD_PAGE;
 	}
 
 	/**
@@ -370,11 +381,11 @@ public class AdminController {
 			sessionStatus.setComplete();
 
 			// 重設成功
-			return "redirect:/secure/sign-in";
+			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 		} else {
 
 			// 驗證碼輸入錯誤
-			return "secure/reset-password";
+			return ADMIN_RESET_PASSWORD_PAGE;
 		}
 	}
 
@@ -404,11 +415,11 @@ public class AdminController {
 			sessionStatus.setComplete();
 
 			// 有登入狀態
-			return "redirect:/";
+			return INDEX_PAGE;
 		} else {
 
 			// 未登入狀態
-			return "redirect:/";
+			return INDEX_PAGE;
 		}
 	}
 
@@ -423,7 +434,7 @@ public class AdminController {
 
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());
 
-		return "admin/list";
+		return ADMIN_LIST_PAGE;
 	}
 
 	/**
@@ -438,7 +449,7 @@ public class AdminController {
 
 		adminService.updateAd_status(adminBean.getAd_id());
 
-		return "redirect:/admin/list";
+		return REDIRECT + ADMIN_LIST_PAGE;
 	}
 
 }

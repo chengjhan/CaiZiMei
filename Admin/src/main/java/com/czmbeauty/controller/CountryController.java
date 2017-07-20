@@ -10,6 +10,10 @@ package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
+import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_ADD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_LIST_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +54,7 @@ public class CountryController {
 
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-		return "country/list";
+		return COUNTRY_LIST_PAGE;
 	}
 
 	/**
@@ -65,7 +69,7 @@ public class CountryController {
 		// 新增 form backing object
 		model.addAttribute(COUNTRY_BEAN, new CountryBean());
 
-		return "country/add";
+		return COUNTRY_ADD_PAGE;
 	}
 
 	/**
@@ -79,7 +83,7 @@ public class CountryController {
 
 		countryService.insert(countryBean);
 
-		return "redirect:/country/list";
+		return REDIRECT + COUNTRY_LIST_PAGE;
 	}
 
 	/**
@@ -95,7 +99,7 @@ public class CountryController {
 		// 取得選定國家 id 的 CountryBean，並回傳 CountryBean 內所有資料
 		model.addAttribute(COUNTRY_BEAN, countryService.selectByCo_id(countryBean_co_id.getCo_id()));
 
-		return "country/edit";
+		return COUNTRY_EDIT_PAGE;
 	}
 
 	/**
@@ -109,7 +113,7 @@ public class CountryController {
 
 		countryService.update(countryBean);
 
-		return "redirect:/country/list";
+		return REDIRECT + COUNTRY_LIST_PAGE;
 	}
 
 	/**
@@ -123,7 +127,7 @@ public class CountryController {
 
 		countryService.delete(countryBean.getCo_id());
 
-		return "redirect:/country/list";
+		return REDIRECT + COUNTRY_LIST_PAGE;
 	}
 
 	/**

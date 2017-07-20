@@ -10,6 +10,10 @@ package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_BEAN;
+import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
+import static com.czmbeauty.common.constants.PageNameConstants.STATE_ADD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.STATE_EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.STATE_LIST_PAGE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +73,7 @@ public class StateController {
 	@RequestMapping(value = "/state/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
-		return "state/list";
+		return STATE_LIST_PAGE;
 	}
 
 	/**
@@ -87,7 +91,7 @@ public class StateController {
 		// 新增 form backing object
 		model.addAttribute(STATE_BEAN, new StateBean());
 
-		return "state/add";
+		return STATE_ADD_PAGE;
 	}
 
 	/**
@@ -101,7 +105,7 @@ public class StateController {
 
 		stateService.insert(stateBean);
 
-		return "redirect:/state/list";
+		return REDIRECT + STATE_LIST_PAGE;
 	}
 
 	/**
@@ -120,7 +124,7 @@ public class StateController {
 		// 取得選定區域 id 的 StateBean，並回傳 StateBean 內所有資料
 		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean_st_id.getSt_id()));
 
-		return "state/edit";
+		return STATE_EDIT_PAGE;
 	}
 
 	/**
@@ -134,7 +138,7 @@ public class StateController {
 
 		stateService.update(stateBean);
 
-		return "redirect:/state/list";
+		return REDIRECT + STATE_LIST_PAGE;
 	}
 
 	/**
@@ -148,7 +152,7 @@ public class StateController {
 
 		stateService.delete(stateBean.getSt_id());
 
-		return "redirect:/state/list";
+		return REDIRECT + STATE_LIST_PAGE;
 	}
 
 	/**

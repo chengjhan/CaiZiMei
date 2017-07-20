@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDao.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,8 +18,6 @@ import com.czmbeauty.model.entity.CityBean;
  * @author 詹晟
  */
 public interface CityDao {
-
-	List<CityBean> selectAll();
 
 	CityBean selectByCi_id(Integer ci_id);
 

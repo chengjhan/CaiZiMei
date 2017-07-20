@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -31,18 +31,6 @@ public class StateServiceImpl implements StateService {
 	 */
 	@Autowired
 	private StateDao stateDao;
-
-	/**
-	 * 搜尋所有區域
-	 * 
-	 * @return List<StateBean>
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<StateBean> selectAll() {
-
-		return stateDao.selectAll();
-	}
 
 	/**
 	 * 區域流水號搜尋

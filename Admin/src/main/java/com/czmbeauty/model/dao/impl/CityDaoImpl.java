@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -30,18 +30,6 @@ public class CityDaoImpl implements CityDao {
 	 */
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
-
-	/**
-	 * 搜尋所有城市
-	 * 
-	 * @return List<CityBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<CityBean> selectAll() {
-
-		return (List<CityBean>) hibernateTemplate.find("from CityBean order by ci_rank asc");
-	}
 
 	/**
 	 * 城市流水號搜尋

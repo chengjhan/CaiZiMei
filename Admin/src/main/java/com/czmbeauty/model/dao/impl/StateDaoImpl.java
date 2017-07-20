@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,18 +32,6 @@ public class StateDaoImpl implements StateDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋所有區域
-	 * 
-	 * @return List<StateBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<StateBean> selectAll() {
-
-		return (List<StateBean>) hibernateTemplate.find("from StateBean order by st_rank asc");
-	}
-
-	/**
 	 * 區域流水號搜尋
 	 * 
 	 * @param st_id-->區域流水號
@@ -65,8 +53,8 @@ public class StateDaoImpl implements StateDao {
 	@SuppressWarnings("unchecked")
 	public List<StateBean> selectBySt_co_id(Integer st_co_id) {
 
-		return (List<StateBean>) hibernateTemplate.findByNamedParam("from StateBean where st_co_id=:st_co_id", "st_co_id",
-				st_co_id);
+		return (List<StateBean>) hibernateTemplate.findByNamedParam("from StateBean where st_co_id=:st_co_id",
+				"st_co_id", st_co_id);
 	}
 
 	/**

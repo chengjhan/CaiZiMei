@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateService.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,8 +18,6 @@ import com.czmbeauty.model.entity.StateBean;
  * @author 詹晟
  */
 public interface StateService {
-
-	List<StateBean> selectAll();
 
 	StateBean selectBySt_id(Integer st_id);
 

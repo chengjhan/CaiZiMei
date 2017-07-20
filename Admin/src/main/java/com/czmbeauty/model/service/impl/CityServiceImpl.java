@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -31,18 +31,6 @@ public class CityServiceImpl implements CityService {
 	 */
 	@Autowired
 	private CityDao cityDao;
-
-	/**
-	 * 搜尋所有城市
-	 * 
-	 * @return List<CityBean>
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<CityBean> selectAll() {
-
-		return cityDao.selectAll();
-	}
 
 	/**
 	 * 城市流水號搜尋

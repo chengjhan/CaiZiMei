@@ -61,10 +61,6 @@
 			</props>
 		</property>
 	</bean>
-	
-<!-- 	<bean id="sendMail" class="com.czmbeauty.common.mail.SendMail"> -->
-<!-- 		<property name="mailSender" ref="mailSender" /> -->
-<!-- 	</bean> -->
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 

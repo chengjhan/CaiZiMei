@@ -8,12 +8,11 @@ import org.springframework.stereotype.Component;
 @Component(value = "sendMail")
 public class SendMail {
 
+	/**
+	 * 注入 MailSender
+	 */
 	@Autowired
 	private MailSender mailSender;
-
-//	public void setMailSender(MailSender mailSender) {
-//		this.mailSender = mailSender;
-//	}
 
 	/**
 	 * 寄送 Email

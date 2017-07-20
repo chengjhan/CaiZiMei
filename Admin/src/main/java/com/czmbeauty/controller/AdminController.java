@@ -10,9 +10,10 @@ package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.MailConstants.FORGET_PASSWORD_MAIL_FORM;
 import static com.czmbeauty.common.constants.MailConstants.FORGET_PASSWORD_MAIL_SUBJECT;
-import static com.czmbeauty.common.constants.SessionConstants.ADMIN;
-import static com.czmbeauty.common.constants.SessionConstants.ADMIN_EMAIL;
-import static com.czmbeauty.common.constants.SessionConstants.ADMIN_LIST;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_BEAN;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_LIST;
 
 import java.text.SimpleDateFormat;
 
@@ -45,7 +46,7 @@ import com.czmbeauty.model.service.AdminService;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = { ADMIN, ADMIN_EMAIL, ADMIN_LIST })
+@SessionAttributes(value = { ADMIN, ADMIN_EMAIL })
 public class AdminController {
 
 	/**
@@ -91,7 +92,7 @@ public class AdminController {
 	public String signUpView(Model model) {
 
 		// 新增 form backing object
-		model.addAttribute("adminBean", new AdminBean());
+		model.addAttribute(ADMIN_BEAN, new AdminBean());
 
 		return "admin/sign-up";
 	}

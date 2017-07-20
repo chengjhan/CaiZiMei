@@ -8,6 +8,10 @@
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_BEAN;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +23,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
@@ -38,7 +41,6 @@ import com.google.gson.Gson;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes("cityList")
 public class CityController {
 
 	/**
@@ -91,11 +93,10 @@ public class CityController {
 	public String addView(Model model) {
 
 		// 取得所有國家 List
-		model.addAttribute("countryList", countryService.selectAll());
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 新增 form backing object
-		CityBean cityBean = new CityBean();
-		model.addAttribute("cityBean", cityBean);
+		model.addAttribute(CITY_BEAN, new CityBean());
 
 		return "city/add";
 	}
@@ -128,13 +129,13 @@ public class CityController {
 		CityBean cityBean = cityService.selectByCi_id(cityBean_ci_id.getCi_id());
 
 		// 取得所有國家 List
-		model.addAttribute("countryList", countryService.selectAll());
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 取得城市所在國家中的所有區域 List
-		model.addAttribute("stateList", stateService.selectBySt_co_id(cityBean.getCi_CountryBean().getCo_id()));
+		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(cityBean.getCi_CountryBean().getCo_id()));
 
 		// 回傳 CityBean 內所有資料
-		model.addAttribute("cityBean", cityBean);
+		model.addAttribute(CITY_BEAN, cityBean);
 
 		return "city/edit";
 	}

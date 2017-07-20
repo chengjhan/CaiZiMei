@@ -8,6 +8,9 @@
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_BEAN;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +22,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
@@ -35,7 +37,6 @@ import com.google.gson.Gson;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes("stateList")
 public class StateController {
 
 	/**
@@ -68,8 +69,6 @@ public class StateController {
 	@RequestMapping(value = "/state/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
-		model.addAttribute("stateList", stateService.selectAll());
-
 		return "state/list";
 	}
 
@@ -83,11 +82,10 @@ public class StateController {
 	public String addView(Model model) {
 
 		// 取得所有國家 List
-		model.addAttribute("countryList", countryService.selectAll());
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 新增 form backing object
-		StateBean stateBean = new StateBean();
-		model.addAttribute("stateBean", stateBean);
+		model.addAttribute(STATE_BEAN, new StateBean());
 
 		return "state/add";
 	}
@@ -117,10 +115,10 @@ public class StateController {
 	public String editView(StateBean stateBean_st_id, Model model) {
 
 		// 取得所有國家 List
-		model.addAttribute("countryList", countryService.selectAll());
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 取得選定區域 id 的 StateBean，並回傳 StateBean 內所有資料
-		model.addAttribute("stateBean", stateService.selectBySt_id(stateBean_st_id.getSt_id()));
+		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean_st_id.getSt_id()));
 
 		return "state/edit";
 	}

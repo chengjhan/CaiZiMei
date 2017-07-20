@@ -8,6 +8,12 @@
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_LIST;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.CLINIC_BEAN;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.CLINIC_LIST;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +24,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.czmbeauty.common.editor.CityBeanPropertyEditor;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
@@ -42,7 +47,6 @@ import com.google.gson.GsonBuilder;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes("clinicList")
 public class ClinicController {
 
 	/**
@@ -89,7 +93,7 @@ public class ClinicController {
 	@RequestMapping(value = "/clinic/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
-		model.addAttribute("clinicList", clinicService.selectAll());
+		model.addAttribute(CLINIC_LIST, clinicService.selectAll());
 
 		return "clinic/list";
 	}
@@ -104,10 +108,10 @@ public class ClinicController {
 	public String addView(Model model) {
 
 		// 取得所有國家 List
-		model.addAttribute("countryList", countryService.selectAll());
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 新增 form backing object
-		model.addAttribute("clinicBean", new ClinicBean());
+		model.addAttribute(CLINIC_BEAN, new ClinicBean());
 
 		return "clinic/add";
 	}
@@ -157,16 +161,16 @@ public class ClinicController {
 		ClinicBean clinicBean = clinicService.selectByCl_id(clinicBean_cl_id.getCl_id());
 
 		// 取得所有國家 List
-		model.addAttribute("countryList", countryService.selectAll());
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 取得診所所在國家中的所有區域 List
-		model.addAttribute("stateList", stateService.selectBySt_co_id(clinicBean.getCl_CountryBean().getCo_id()));
+		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(clinicBean.getCl_CountryBean().getCo_id()));
 
 		// 取得診所所在區域中的所有城市 List
-		model.addAttribute("cityList", cityService.selectByCi_st_id(clinicBean.getCl_StateBean().getSt_id()));
+		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(clinicBean.getCl_StateBean().getSt_id()));
 
 		// 回傳 ClinicBean 內所有資料
-		model.addAttribute("clinicBean", clinicBean);
+		model.addAttribute(CLINIC_BEAN, clinicBean);
 
 		return "clinic/edit";
 	}

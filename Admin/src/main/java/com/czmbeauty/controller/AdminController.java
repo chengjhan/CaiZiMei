@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/7/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -97,6 +97,7 @@ public class AdminController {
 	/**
 	 * 註冊 - 采姿美管理系統
 	 * 
+	 * @model-->Model
 	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 */
 	@RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
@@ -117,8 +118,10 @@ public class AdminController {
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 */
+	// 得到 <form:form modelAttribute="adminBean"> 表單新增的資料
 	@RequestMapping(value = "/admin/sign-up.do", method = RequestMethod.POST)
-	public String signUpProcess(AdminBean adminBean, HttpServletRequest request, Model model) {
+	public String signUpProcess(@ModelAttribute(ADMIN_BEAN) AdminBean adminBean, HttpServletRequest request,
+			Model model) {
 
 		if (adminService.selectByAd_username(adminBean.getAd_username()) == null) {
 
@@ -162,13 +165,11 @@ public class AdminController {
 	/**
 	 * 編輯個人資訊 - 采姿美管理系統
 	 * 
-	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/edit.jsp
 	 */
+	// <form:form modelAttribute="admin"> 表單得到 Session 的資料，自動回填
 	@RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
-	public String editView(Model model) {
-
-		model.addAttribute(ADMIN);
+	public String editView() {
 
 		return ADMIN_EDIT_PAGE;
 	}
@@ -176,15 +177,15 @@ public class AdminController {
 	/**
 	 * 編輯個人資訊 - submit
 	 * 
-	 * @param admin-->Session
-	 * @param adminBean-->form-backing-object
+	 * @param admin-->form-backing-object
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
+	// 得到 <form:form modelAttribute="admin"> 表單更新的資料
 	@RequestMapping(value = "/admin/edit.do", method = RequestMethod.POST)
-	public String editProcess(@ModelAttribute(ADMIN) AdminBean admin, AdminBean adminBean) {
+	public String editProcess(@ModelAttribute(ADMIN) AdminBean admin) {
 
-		adminBean.setAd_id(admin.getAd_id());
-		adminService.update(adminBean);
+		admin.setAd_update_info_time(new java.util.Date());
+		adminService.update(admin);
 
 		return REDIRECT + ADMIN_PROFILE_PAGE;
 	}
@@ -262,9 +263,11 @@ public class AdminController {
 			if (adminService.signIn(ad_username, ad_password)) {
 
 				// 更新登入資訊
-				adminService.updateAd_signin_ip(adminBean.getAd_id(), request.getRemoteAddr());
-				adminService.updateAd_signin_time(adminBean.getAd_id());
-				model.addAttribute(ADMIN, adminService.selectByAd_username(ad_username));
+				adminBean.setAd_signin_number(adminBean.getAd_signin_number() + 1);
+				adminBean.setAd_signin_ip(request.getRemoteAddr());
+				adminBean.setAd_signin_time(new java.util.Date());
+				adminService.update(adminBean);
+				model.addAttribute(ADMIN, adminBean);
 
 				// 寫入日誌
 				AdminLogBean adminLogBean = new AdminLogBean();

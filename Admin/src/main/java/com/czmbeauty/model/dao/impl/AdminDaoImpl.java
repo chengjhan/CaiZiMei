@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -114,18 +114,13 @@ public class AdminDaoImpl implements AdminDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param newAdminBean-->AdminBean
+	 * @param adminBean-->AdminBean
 	 * @return adminBean-->AdminBean
 	 */
 	@Override
-	public AdminBean update(AdminBean newAdminBean) {
+	public AdminBean update(AdminBean adminBean) {
 
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, newAdminBean.getAd_id());
-
-		adminBean.setAd_lastname(newAdminBean.getAd_lastname());
-		adminBean.setAd_firstname(newAdminBean.getAd_firstname());
-		adminBean.setAd_email(newAdminBean.getAd_email());
-		adminBean.setAd_update_info_time(new java.util.Date());
+		hibernateTemplate.update(adminBean);
 
 		return adminBean;
 	}
@@ -141,55 +136,9 @@ public class AdminDaoImpl implements AdminDao {
 	public AdminBean updateAd_password(Integer ad_id, String ad_password_new_hashed) {
 
 		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
+
 		adminBean.setAd_password(ad_password_new_hashed);
 		adminBean.setAd_update_pwd_time(new java.util.Date());
-
-		return adminBean;
-	}
-
-	/**
-	 * 更新登入次數
-	 * 
-	 * @param ad_id-->管理員流水號
-	 * @return adminBean-->AdminBean
-	 */
-	@Override
-	public AdminBean updateAd_signin_number(Integer ad_id) {
-
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
-		Integer ad_signin_number = hibernateTemplate.get(AdminBean.class, ad_id).getAd_signin_number();
-		adminBean.setAd_signin_number(ad_signin_number + 1);
-
-		return adminBean;
-	}
-
-	/**
-	 * 更新登入IP
-	 * 
-	 * @param ad_id-->管理員流水號
-	 * @param ad_signin_ip-->登入IP
-	 * @return adminBean-->AdminBean
-	 */
-	@Override
-	public AdminBean updateAd_signin_ip(Integer ad_id, String ad_signin_ip) {
-
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
-		adminBean.setAd_signin_ip(ad_signin_ip);
-
-		return adminBean;
-	}
-
-	/**
-	 * 更新登入時間
-	 * 
-	 * @param ad_id-->管理員流水號
-	 * @return adminBean-->AdminBean
-	 */
-	@Override
-	public AdminBean updateAd_signin_time(Integer ad_id) {
-
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
-		adminBean.setAd_signin_time(new java.util.Date());
 
 		return adminBean;
 	}

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/7/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,10 +34,6 @@ public interface AdminService {
 	AdminBean update(AdminBean adminBean);
 
 	AdminBean updateAd_password(Integer ad_id, String ad_password_new, String ad_salt);
-
-	AdminBean updateAd_signin_ip(Integer ad_id, String ad_signin_ip);
-
-	AdminBean updateAd_signin_time(Integer ad_id);
 
 	AdminBean updateAd_status(Integer ad_id);
 

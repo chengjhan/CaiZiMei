@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/7/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -70,8 +70,6 @@ public class AdminServiceImpl implements AdminService {
 		String ad_salt = adminBean.getAd_salt();
 
 		if (CryptographicHashFunction.getHashedPassword(ad_password, ad_salt).equals(adminBean.getAd_password())) {
-
-			adminDao.updateAd_signin_number(adminBean.getAd_id());
 
 			return true;
 		} else {
@@ -157,33 +155,6 @@ public class AdminServiceImpl implements AdminService {
 	public AdminBean updateAd_password(Integer ad_id, String ad_password_new, String ad_salt) {
 
 		return adminDao.updateAd_password(ad_id, CryptographicHashFunction.getHashedPassword(ad_password_new, ad_salt));
-	}
-
-	/**
-	 * 更新登入IP
-	 * 
-	 * @param ad_id-->管理員流水號
-	 * @param ad_signin_ip-->登入IP
-	 * @return AdminBean
-	 */
-	@Override
-	@Transactional
-	public AdminBean updateAd_signin_ip(Integer ad_id, String ad_signin_ip) {
-
-		return adminDao.updateAd_signin_ip(ad_id, ad_signin_ip);
-	}
-
-	/**
-	 * 更新登入時間
-	 * 
-	 * @param ad_id-->管理員流水號
-	 * @return AdminBean
-	 */
-	@Override
-	@Transactional
-	public AdminBean updateAd_signin_time(Integer ad_id) {
-
-		return adminDao.updateAd_signin_time(ad_id);
 	}
 
 	/**

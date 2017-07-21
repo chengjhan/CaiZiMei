@@ -31,8 +31,4 @@ public interface AdminDao {
 
 	AdminBean update(AdminBean adminBean);
 
-	AdminBean updateAd_password(Integer ad_id, String ad_password_new_hashed);
-
-	AdminBean updateAd_status(Integer ad_id);
-
 }

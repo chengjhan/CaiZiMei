@@ -58,24 +58,35 @@ public class AdminServiceImpl implements AdminService {
 	 * 
 	 * @param ad_username-->管理員帳號
 	 * @param ad_password-->管理員密碼(原碼)
-	 * @return true-->登入成功
-	 * @return false-->登入失敗
+	 * @return adminBean-->AdminBean
+	 * @return null
+	 * @return null
 	 */
 	@Override
 	@Transactional
-	public Boolean signIn(String ad_username, String ad_password) {
+	public AdminBean signIn(String ad_username, String ad_password) {
 
 		AdminBean adminBean = adminDao.selectByAd_username(ad_username);
 
-		String ad_salt = adminBean.getAd_salt();
+		if (adminBean != null) {
 
-		if (CryptographicHashFunction.getHashedPassword(ad_password, ad_salt).equals(adminBean.getAd_password())) {
+			String ad_salt = adminBean.getAd_salt();
 
-			return true;
+			if (CryptographicHashFunction.getHashedPassword(ad_password, ad_salt).equals(adminBean.getAd_password())) {
+
+				// 帳號及密碼正確
+				return adminBean;
+			} else {
+
+				// 密碼錯誤
+				return null;
+			}
 		} else {
 
-			return false;
+			// 帳號錯誤
+			return null;
 		}
+
 	}
 
 	/**
@@ -145,29 +156,79 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 修改密碼
 	 * 
-	 * @param ad_id-->管理員流水號
+	 * @param adminBean-->AdminBean
+	 * @param ad_password-->舊密碼(原碼)
 	 * @param ad_password_new-->新密碼(原碼)
-	 * @param ad_salt-->塩
+	 * @return AdminBean
+	 * @return null
+	 */
+	@Override
+	@Transactional
+	public AdminBean updateAd_password(AdminBean adminBean, String ad_password, String ad_password_new) {
+
+		String oldHashedPassword = adminDao.selectByAd_id(adminBean.getAd_id()).getAd_password();
+		String inputOldHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password,
+				adminBean.getAd_salt());
+
+		if (oldHashedPassword.equals(inputOldHashedPassword)) {
+
+			String newHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_new,
+					adminBean.getAd_salt());
+
+			adminBean.setAd_password(newHashedPassword);
+			adminBean.setAd_update_pwd_time(new java.util.Date());
+
+			// 變更成功
+			return adminDao.update(adminBean);
+		} else {
+
+			// 變更失敗
+			return null;
+		}
+	}
+
+	/**
+	 * 重設密碼
+	 * 
+	 * @param adminBean-->AdminBean
+	 * @param ad_password_new-->新密碼(原碼)
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateAd_password(Integer ad_id, String ad_password_new, String ad_salt) {
+	public AdminBean updateAd_password(AdminBean adminBean, String ad_password_new) {
 
-		return adminDao.updateAd_password(ad_id, CryptographicHashFunction.getHashedPassword(ad_password_new, ad_salt));
+		String newHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_new, adminBean.getAd_salt());
+
+		adminBean.setAd_password(newHashedPassword);
+		adminBean.setAd_update_pwd_time(new java.util.Date());
+
+		return adminDao.update(adminBean);
 	}
 
 	/**
 	 * 切換狀態
 	 * 
-	 * @param ad_id-->管理員流水號
+	 * @param adminBean-->AdminBean
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateAd_status(Integer ad_id) {
+	public AdminBean updateAd_status(AdminBean adminBean) {
 
-		return adminDao.updateAd_status(ad_id);
+		if (adminBean.getAd_status() == 1) {
+
+			// 關閉帳號
+			adminBean.setAd_status(0);
+			adminBean.setAd_status_time(new java.util.Date());
+		} else {
+
+			// 開啟帳號
+			adminBean.setAd_status(1);
+			adminBean.setAd_status_time(new java.util.Date());
+		}
+
+		return adminDao.update(adminBean);
 	}
 
 }

@@ -21,7 +21,7 @@ public interface AdminService {
 
 	AdminBean signUp(AdminBean adminBean);
 
-	Boolean signIn(String ad_username, String ad_password);
+	AdminBean signIn(String ad_username, String ad_password);
 
 	List<AdminBean> selectAll();
 
@@ -33,8 +33,10 @@ public interface AdminService {
 
 	AdminBean update(AdminBean adminBean);
 
-	AdminBean updateAd_password(Integer ad_id, String ad_password_new, String ad_salt);
+	AdminBean updateAd_password(AdminBean adminBean, String ad_password, String ad_password_new);
 
-	AdminBean updateAd_status(Integer ad_id);
+	AdminBean updateAd_password(AdminBean adminBean, String ad_password_new);
+
+	AdminBean updateAd_status(AdminBean adminBean);
 
 }

@@ -120,51 +120,8 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public AdminBean update(AdminBean adminBean) {
 
+		hibernateTemplate.clear();
 		hibernateTemplate.update(adminBean);
-
-		return adminBean;
-	}
-
-	/**
-	 * 修改密碼
-	 * 
-	 * @param ad_id-->管理員流水號
-	 * @param ad_password_new_hashed-->新密碼(雜湊)
-	 * @return adminBean-->AdminBean
-	 */
-	@Override
-	public AdminBean updateAd_password(Integer ad_id, String ad_password_new_hashed) {
-
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
-
-		adminBean.setAd_password(ad_password_new_hashed);
-		adminBean.setAd_update_pwd_time(new java.util.Date());
-
-		return adminBean;
-	}
-
-	/**
-	 * 切換狀態
-	 * 
-	 * @param ad_id-->管理員流水號
-	 * @return adminBean-->AdminBean
-	 */
-	@Override
-	public AdminBean updateAd_status(Integer ad_id) {
-
-		AdminBean adminBean = hibernateTemplate.get(AdminBean.class, ad_id);
-
-		if (adminBean.getAd_status() == 1) {
-
-			// 關閉帳號
-			adminBean.setAd_status(0);
-			adminBean.setAd_status_time(new java.util.Date());
-		} else {
-
-			// 開啟帳號
-			adminBean.setAd_status(1);
-			adminBean.setAd_status_time(new java.util.Date());
-		}
 
 		return adminBean;
 	}

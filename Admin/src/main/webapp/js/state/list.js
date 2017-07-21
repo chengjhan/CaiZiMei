@@ -1,16 +1,5 @@
 var country_select = $("#id-input-st-co-id");
 
-$(document).ready(function(){
-	
-	// 國家 select
-	$.getJSON("../country/all-country-list.ajax", function(data){
-		$.each(data, function(index, countryBean){
-			var country_option = $("<option value=" + countryBean.co_id + "></option>").append(countryBean.co_name);
-			country_select.append(country_option);
-		});
-	});
-});
-
 // 區域 table
 country_select.change(function(){
 	var stateList_tbody = $("table tbody");

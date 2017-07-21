@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,12 +10,13 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
-	<div>
-		<label for="id-input-st-co-id">國家</label>
-		<select id="id-input-st-co-id" style="width:150px">
-			<option value="0">請選擇國家</option>
-		</select>
-	</div>
+	<form:form modelAttribute="stateBean">
+		<form:label path="st_CountryBean">國家</form:label>
+		<form:select id="id-input-st-co-id" path="st_CountryBean">
+			<form:option value="0" label="請選擇國家" />
+			<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
+		</form:select>
+	</form:form>
 	<table border="1">
 		<thead>
 			<tr>
@@ -25,7 +28,18 @@
 				<td>刪除</td>
 			</tr>
 		</thead>
-		<tbody></tbody>
+		<tbody>
+			<c:forEach var="bean" items="${stateList}" varStatus="status">
+				<tr>
+					<td>${status.count}</td>
+					<td>${bean.st_id}</td>
+					<td>${bean.st_name}</td>
+					<td>${bean.st_rank}</td>
+					<td><a href="<%=request.getContextPath()%>/state/edit?st_id=${bean.st_id}">編輯</a></td>
+					<td><a href="<%=request.getContextPath()%>/state/delete?st_id=${bean.st_id}">刪除</a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 	<p>
 		<a href="<%=request.getContextPath()%>/state/add">新增</a>

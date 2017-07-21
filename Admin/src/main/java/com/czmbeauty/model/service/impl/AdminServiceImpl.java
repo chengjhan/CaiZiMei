@@ -210,7 +210,7 @@ public class AdminServiceImpl implements AdminService {
 	 * 切換狀態
 	 * 
 	 * @param adminBean-->AdminBean
-	 * @return AdminBean
+	 * @return adminBean-->AdminBean
 	 */
 	@Override
 	@Transactional
@@ -228,7 +228,7 @@ public class AdminServiceImpl implements AdminService {
 			adminBean.setAd_status_time(new java.util.Date());
 		}
 
-		return adminDao.update(adminBean);
+		return adminBean;
 	}
 
 }

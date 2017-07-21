@@ -412,14 +412,15 @@ public class AdminController {
 	/**
 	 * 帳戶開關 - submit
 	 * 
-	 * @param adminBean-->form-backing-object-->GET-->ad_id
+	 * @param adminBean_ad_id-->form-backing-object-->GET-->ad_id
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */
 	@RequestMapping(value = "/admin/switch", method = RequestMethod.GET)
-	public String switchProcess(AdminBean adminBean, Model model) {
+	public String switchProcess(AdminBean adminBean_ad_id, Model model) {
 
-		adminService.updateAd_status(adminService.selectByAd_id(adminBean.getAd_id()));
+		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
+		adminService.updateAd_status(adminService.selectByAd_id(adminBean_ad_id.getAd_id()));
 
 		return REDIRECT + ADMIN_LIST_PAGE;
 	}

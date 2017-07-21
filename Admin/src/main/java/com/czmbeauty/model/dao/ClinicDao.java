@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDao.java
  * Author: 詹晟
- * Date: 2017/7/18
+ * Date: 2017/7/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -28,7 +28,5 @@ public interface ClinicDao {
 	ClinicBean insert(ClinicBean clinicBean);
 
 	ClinicBean update(ClinicBean clinicBean);
-
-	ClinicBean updateCl_status(Integer cl_id);
 
 }

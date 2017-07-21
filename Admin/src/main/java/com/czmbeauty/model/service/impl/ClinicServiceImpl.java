@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/7/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -104,14 +104,26 @@ public class ClinicServiceImpl implements ClinicService {
 	/**
 	 * 切換狀態
 	 * 
-	 * @param cl_id-->診所流水號
-	 * @return ClinicBean
+	 * @param clinicBean-->ClinicBean
+	 * @return clinicBean-->ClinicBean
 	 */
 	@Override
 	@Transactional
-	public ClinicBean updateCl_status(Integer cl_id) {
+	public ClinicBean updateCl_status(ClinicBean clinicBean) {
 
-		return clinicDao.updateCl_status(cl_id);
+		if (clinicBean.getCl_status() == 1) {
+
+			// 不顯示
+			clinicBean.setCl_status(0);
+			clinicBean.setCl_status_time(new java.util.Date());
+		} else {
+
+			// 顯示
+			clinicBean.setCl_status(1);
+			clinicBean.setCl_status_time(new java.util.Date());
+		}
+
+		return clinicBean;
 	}
 
 }

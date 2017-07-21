@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/18
+ * Date: 2017/7/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -102,33 +102,7 @@ public class ClinicDaoImpl implements ClinicDao {
 		clinicBean.setCl_latitude(newClinicBean.getCl_latitude());
 		clinicBean.setCl_longitude(newClinicBean.getCl_longitude());
 		clinicBean.setCl_url(newClinicBean.getCl_url());
-		clinicBean.setCl_update_time(new java.util.Date());
-
-		return clinicBean;
-	}
-
-	/**
-	 * 切換狀態
-	 * 
-	 * @param cl_id-->診所流水號
-	 * @return clinicBean-->ClinicBean
-	 */
-	@Override
-	public ClinicBean updateCl_status(Integer cl_id) {
-
-		ClinicBean clinicBean = hibernateTemplate.get(ClinicBean.class, cl_id);
-
-		if (clinicBean.getCl_status() == 1) {
-
-			// 不顯示
-			clinicBean.setCl_status(0);
-			clinicBean.setCl_status_time(new java.util.Date());
-		} else {
-
-			// 顯示
-			clinicBean.setCl_status(1);
-			clinicBean.setCl_status_time(new java.util.Date());
-		}
+		clinicBean.setCl_update_time(newClinicBean.getCl_update_time());
 
 		return clinicBean;
 	}

@@ -22,6 +22,10 @@ public interface ModelAttributeConstants {
 
 	public static final String CITY_LIST = "cityList";
 
+	public static final String FRANCHISEE_BEAN = "franchiseeBean";
+
+	public static final String FRANCHISEE_LIST = "franchiseeList";
+
 	public static final String CLINIC_BEAN = "clinicBean";
 
 	public static final String CLINIC_LIST = "clinicList";

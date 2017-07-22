@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/7/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -44,7 +44,7 @@ public class CountryController {
 	private CountryService countryService;
 
 	/**
-	 * 國家一覽 - 采姿美管理系統
+	 * 國家一覽 - 初期處理
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/list.jsp
@@ -52,13 +52,14 @@ public class CountryController {
 	@RequestMapping(value = "/country/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
+		// 取得所有國家 List，放入 table
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		return COUNTRY_LIST_PAGE;
 	}
 
 	/**
-	 * 新增國家 - 采姿美管理系統
+	 * 新增國家 - 初期處理
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/country/add.jsp
@@ -87,7 +88,7 @@ public class CountryController {
 	}
 
 	/**
-	 * 編輯國家資訊 - 采姿美管理系統
+	 * 編輯國家資訊 - 初期處理
 	 * 
 	 * @param countryBean_co_id-->form-backing-object-->GET-->co_id
 	 * @param model-->Model
@@ -96,7 +97,7 @@ public class CountryController {
 	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
 	public String editView(CountryBean countryBean_co_id, Model model) {
 
-		// 取得選定國家 id 的 CountryBean，並回傳 CountryBean 內所有資料
+		// 取得選定國家 id 的 CountryBean，使表單回填 CountryBean 內所有資料
 		model.addAttribute(COUNTRY_BEAN, countryService.selectByCo_id(countryBean_co_id.getCo_id()));
 
 		return COUNTRY_EDIT_PAGE;
@@ -131,7 +132,7 @@ public class CountryController {
 	}
 
 	/**
-	 * 所有國家列表 (AJAX)
+	 * 所有國家 JSON (AJAX)
 	 * 
 	 * @return country JSON
 	 */

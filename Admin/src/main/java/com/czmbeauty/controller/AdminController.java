@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/21
+ * Date: 2017/7/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -84,7 +84,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 註冊 - 采姿美管理系統
+	 * 註冊 - 初期處理
 	 * 
 	 * @model-->Model
 	 * @return /WEB-INF/views/admin/sign-up.jsp
@@ -141,7 +141,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 個人資訊 - 采姿美管理系統
+	 * 個人資訊 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
@@ -152,7 +152,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 編輯個人資訊 - 采姿美管理系統
+	 * 編輯個人資訊 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/admin/edit.jsp
 	 */
@@ -180,7 +180,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 變更密碼 - 采姿美管理系統
+	 * 變更密碼 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
@@ -216,7 +216,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 登入 - 采姿美管理系統
+	 * 登入 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
@@ -251,6 +251,7 @@ public class AdminController {
 			adminBean.setAd_signin_time(new java.util.Date());
 			adminService.update(adminBean);
 
+			// 放入 Session
 			model.addAttribute(ADMIN, adminBean);
 
 			// 寫入日誌
@@ -272,7 +273,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 忘記密碼 - 采姿美管理系統
+	 * 忘記密碼 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/secure/forget-password.jsp
 	 */
@@ -308,6 +309,7 @@ public class AdminController {
 			String text = "您的驗證碼為：" + ad_password_random + "。";
 			sendMail.sendMail(to, from, subject, text);
 
+			// 將管理員 email 放入 Session
 			model.addAttribute(ADMIN_EMAIL, to);
 
 			// 發送成功
@@ -320,7 +322,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 重設密碼 - 采姿美管理系統
+	 * 重設密碼 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
@@ -396,7 +398,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 管理員一覽 - 采姿美管理系統
+	 * 管理員一覽 - 初期處理
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/list.jsp
@@ -404,6 +406,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
+		// 取得所有管理員 List，放入 table
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());
 
 		return ADMIN_LIST_PAGE;

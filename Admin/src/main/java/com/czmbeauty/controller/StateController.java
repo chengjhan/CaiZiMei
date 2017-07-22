@@ -68,7 +68,7 @@ public class StateController {
 	}
 
 	/**
-	 * 區域一覽 - 采姿美管理系統
+	 * 區域一覽 - 初期處理
 	 * 
 	 * @param stateBean-->Session
 	 * @param model-->Model
@@ -77,7 +77,7 @@ public class StateController {
 	@RequestMapping(value = "/state/list", method = RequestMethod.GET)
 	public String listView(StateBean stateBean, Model model) {
 
-		// 取得所有國家 List
+		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 如果 Session 不為空
@@ -87,19 +87,21 @@ public class StateController {
 
 			if (persistentStateBean != null) {
 
-				// 若為編輯，取得編輯的 StateBean，放入 Session
+				// 若為編輯，取得編輯的 StateBean，放入 Session，使 select 回填國家
 				model.addAttribute(STATE_BEAN, persistentStateBean);
 			} else {
 
-				// 若為刪除，取得刪除的 StateBean 中的 CountryBean，放入空 StateBean，放入 Session
+				// 若為刪除，取得刪除的 StateBean 中的 CountryBean，放入空 StateBean
 				CountryBean deletedSt_CountryBean = new CountryBean();
 				StateBean deletedStateBean = new StateBean();
 				deletedSt_CountryBean = countryService.selectByCo_id(stateBean.getSt_CountryBean().getCo_id());
 				deletedStateBean.setSt_CountryBean(deletedSt_CountryBean);
+
+				// 放入 Session，使 select 回填國家
 				model.addAttribute(STATE_BEAN, deletedStateBean);
 			}
 
-			// 取得編輯或刪除的 StateBean 的國家，及取得此國家中的所有區域 List
+			// 取得編輯或刪除的 StateBean 的國家，並取得此國家中的所有區域 List，放入 table
 			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(stateBean.getSt_CountryBean().getCo_id()));
 		}
 
@@ -107,7 +109,7 @@ public class StateController {
 	}
 
 	/**
-	 * 新增區域 - 采姿美管理系統
+	 * 新增區域 - 初期處理
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/state/add.jsp
@@ -115,7 +117,7 @@ public class StateController {
 	@RequestMapping(value = "/state/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
-		// 取得所有國家 List
+		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 新增 form backing object
@@ -136,14 +138,14 @@ public class StateController {
 
 		stateService.insert(stateBean);
 
-		// 將新增的 StateBean 放入 Session
+		// 將新增的 StateBean 放入 Session，使 select 回填國家
 		model.addAttribute(STATE_BEAN, stateBean);
 
 		return REDIRECT + STATE_LIST_PAGE;
 	}
 
 	/**
-	 * 編輯區域資訊 - 采姿美管理系統
+	 * 編輯區域資訊 - 初期處理
 	 * 
 	 * @param stateBean_st_id-->form-backing-object-->GET-->st_id
 	 * @param model-->Model
@@ -152,10 +154,10 @@ public class StateController {
 	@RequestMapping(value = "/state/edit", method = RequestMethod.GET)
 	public String editView(StateBean stateBean_st_id, Model model) {
 
-		// 取得所有國家 List
+		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-		// 取得選定區域 id 的 StateBean，放入 Session，使表單回傳 StateBean 內所有資料
+		// 取得選定區域 id 的 StateBean，放入 Session，使表單回填 StateBean 內所有資料
 		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean_st_id.getSt_id()));
 
 		return STATE_EDIT_PAGE;
@@ -173,7 +175,7 @@ public class StateController {
 
 		stateService.update(stateBean);
 
-		// 將編輯的 StateBean 放入 Session
+		// 將編輯的 StateBean 放入 Session，使 select 回填國家
 		model.addAttribute(STATE_BEAN, stateBean);
 
 		return REDIRECT + STATE_LIST_PAGE;
@@ -189,7 +191,7 @@ public class StateController {
 	@RequestMapping(value = "/state/delete", method = RequestMethod.GET)
 	public String deleteProcess(StateBean stateBean, Model model) {
 
-		// 將刪除的 StateBean 放入 Session
+		// 將刪除的 StateBean 放入 Session，使 select 回填國家
 		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean.getSt_id()));
 
 		stateService.delete(stateBean.getSt_id());
@@ -198,7 +200,7 @@ public class StateController {
 	}
 
 	/**
-	 * 選定國家中的所有區域列表 (AJAX)
+	 * 選定國家中的所有區域 JSON (AJAX)
 	 * 
 	 * @param st_co_id-->國家流水號
 	 * @return state JSON

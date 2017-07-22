@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicController.java
  * Author: 詹晟
- * Date: 2017/7/21
+ * Date: 2017/7/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -89,7 +89,7 @@ public class ClinicController {
 	}
 
 	/**
-	 * 診所一覽 - 采姿美管理系統
+	 * 診所一覽 - 初期處理
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/clinic/list.jsp
@@ -97,13 +97,14 @@ public class ClinicController {
 	@RequestMapping(value = "/clinic/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
+		// 取得所有診所 List，放入 table
 		model.addAttribute(CLINIC_LIST, clinicService.selectAll());
 
 		return CLINIC_LIST_PAGE;
 	}
 
 	/**
-	 * 新增診所 - 采姿美管理系統
+	 * 新增診所 - 初期處理
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/clinic/add.jsp
@@ -111,7 +112,7 @@ public class ClinicController {
 	@RequestMapping(value = "/clinic/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
-		// 取得所有國家 List
+		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 新增 form backing object
@@ -152,7 +153,7 @@ public class ClinicController {
 	}
 
 	/**
-	 * 編輯診所資訊 - 采姿美管理系統
+	 * 編輯診所資訊 - 初期處理
 	 * 
 	 * @param clinicBean_cl_id-->form-backing-object-->GET-->cl_id
 	 * @param model-->Model
@@ -164,16 +165,16 @@ public class ClinicController {
 		// 取得選定診所 id 的 ClinicBean
 		ClinicBean clinicBean = clinicService.selectByCl_id(clinicBean_cl_id.getCl_id());
 
-		// 取得所有國家 List
+		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-		// 取得診所所在國家中的所有區域 List
+		// 取得診所所在國家中的所有區域 List，放入 select
 		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(clinicBean.getCl_CountryBean().getCo_id()));
 
-		// 取得診所所在區域中的所有城市 List
+		// 取得診所所在區域中的所有城市 List，放入 select
 		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(clinicBean.getCl_StateBean().getSt_id()));
 
-		// 回傳 ClinicBean 內所有資料
+		// 使表單回填 ClinicBean 內所有資料
 		model.addAttribute(CLINIC_BEAN, clinicBean);
 
 		return CLINIC_EDIT_PAGE;
@@ -224,7 +225,7 @@ public class ClinicController {
 	}
 
 	/**
-	 * 所有診所列表 (AJAX)
+	 * 所有診所 JSON (AJAX)
 	 * 
 	 * @return clinic JSON
 	 */
@@ -246,7 +247,7 @@ public class ClinicController {
 	}
 
 	/**
-	 * 開啟的診所列表 (AJAX)
+	 * 開啟的診所 JSON (AJAX)
 	 * 
 	 * @return clinic JSON
 	 */

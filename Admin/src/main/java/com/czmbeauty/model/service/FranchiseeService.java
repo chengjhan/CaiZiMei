@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeService.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/7/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -29,6 +29,6 @@ public interface FranchiseeService {
 
 	FranchiseeBean update(FranchiseeBean franchiseeBean);
 
-	FranchiseeBean updateFr_status(Integer fr_id);
+	FranchiseeBean updateFr_status(FranchiseeBean franchiseeBean);
 
 }

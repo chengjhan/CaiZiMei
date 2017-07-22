@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeDao.java
  * Author: 詹晟
- * Date: 2017/7/19
+ * Date: 2017/7/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -28,7 +28,5 @@ public interface FranchiseeDao {
 	FranchiseeBean insert(FranchiseeBean franchiseeBean);
 
 	FranchiseeBean update(FranchiseeBean franchiseeBean);
-
-	FranchiseeBean updateFr_status(Integer fr_id);
 
 }

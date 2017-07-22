@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeBean.java
  * Author: 詹晟
- * Date: 2017/7/19
+ * Date: 2017/7/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.google.gson.annotations.Expose;
 
@@ -57,10 +55,8 @@ public class FranchiseeBean {
 	private Double fr_longitude;
 	@Expose
 	private String fr_url;
-	@Temporal(TemporalType.TIMESTAMP)
 	@Expose
 	private java.util.Date fr_insert_time;
-	@Temporal(TemporalType.TIMESTAMP)
 	@Expose
 	private java.util.Date fr_update_time;
 	@Expose

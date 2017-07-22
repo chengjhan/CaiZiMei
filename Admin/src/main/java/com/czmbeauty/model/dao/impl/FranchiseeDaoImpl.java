@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/19
+ * Date: 2017/7/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -103,33 +103,7 @@ public class FranchiseeDaoImpl implements FranchiseeDao {
 		franchiseeBean.setFr_latitude(newFranchiseeBean.getFr_latitude());
 		franchiseeBean.setFr_longitude(newFranchiseeBean.getFr_longitude());
 		franchiseeBean.setFr_url(newFranchiseeBean.getFr_url());
-		franchiseeBean.setFr_update_time(new java.util.Date());
-
-		return franchiseeBean;
-	}
-
-	/**
-	 * 切換狀態
-	 * 
-	 * @param fr_id-->加盟店流水號
-	 * @return franchiseeBean-->FranchiseeBean
-	 */
-	@Override
-	public FranchiseeBean updateFr_status(Integer fr_id) {
-
-		FranchiseeBean franchiseeBean = hibernateTemplate.get(FranchiseeBean.class, fr_id);
-
-		if (franchiseeBean.getFr_status() == 1) {
-
-			// 不顯示
-			franchiseeBean.setFr_status(0);
-			franchiseeBean.setFr_status_time(new java.util.Date());
-		} else {
-
-			// 顯示
-			franchiseeBean.setFr_status(1);
-			franchiseeBean.setFr_status_time(new java.util.Date());
-		}
+		franchiseeBean.setFr_update_time(newFranchiseeBean.getFr_update_time());
 
 		return franchiseeBean;
 	}

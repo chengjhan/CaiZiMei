@@ -2,13 +2,14 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/7/22
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_BEAN;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
 import static com.czmbeauty.common.constants.PageNameConstants.CITY_ADD_PAGE;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
@@ -45,6 +47,7 @@ import com.google.gson.Gson;
  * @author 詹晟
  */
 @Controller
+@SessionAttributes(value = CITY_BEAN)
 public class CityController {
 
 	/**
@@ -76,19 +79,54 @@ public class CityController {
 	}
 
 	/**
-	 * 城市一覽 - 采姿美管理系統
+	 * 城市一覽 - 初期處理
 	 * 
+	 * @param cityBean-->Session
 	 * @param model-->Model
 	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(value = "/city/list", method = RequestMethod.GET)
-	public String listView(Model model) {
+	public String listView(CityBean cityBean, Model model) {
+
+		// 取得所有國家 List，放入 select
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
+		// 如果 Session 不為空
+		if (cityBean.getCi_id() != null) {
+
+			// 取得城市所在國家中的所有區域 List，放入 select
+			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(cityBean.getCi_CountryBean().getCo_id()));
+
+			CityBean persistentCityBean = cityService.selectByCi_id(cityBean.getCi_id());
+
+			if (persistentCityBean != null) {
+
+				// 若為編輯，取得編輯的 CityBean，放入 Session，使 select 回填國家及區域
+				model.addAttribute(CITY_BEAN, persistentCityBean);
+			} else {
+
+				// 若為刪除，取得刪除的 CityBean 中的 CountryBean 及 StateBean，放入空 CityBean
+				CountryBean deletedCi_CountryBean = new CountryBean();
+				StateBean deletedCi_StateBean = new StateBean();
+				CityBean deletedCityBean = new CityBean();
+				deletedCi_CountryBean = countryService.selectByCo_id(cityBean.getCi_CountryBean().getCo_id());
+				deletedCi_StateBean = stateService.selectBySt_id(cityBean.getCi_StateBean().getSt_id());
+				deletedCityBean.setCi_CountryBean(deletedCi_CountryBean);
+				deletedCityBean.setCi_StateBean(deletedCi_StateBean);
+
+				// 放入 Session，使 select 回填國家及區域
+				model.addAttribute(CITY_BEAN, deletedCityBean);
+			}
+
+			// 取得編輯或刪除的 CityBean 的區域，並取得此區域中的所有城市 List，放入 table
+			model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(cityBean.getCi_StateBean().getSt_id()));
+		}
 
 		return CITY_LIST_PAGE;
 	}
 
 	/**
-	 * 新增城市 - 采姿美管理系統
+	 * 新增城市 - 初期處理
 	 * 
 	 * @param model-->Model
 	 * @return /WEB-INF/views/city/add.jsp
@@ -96,7 +134,7 @@ public class CityController {
 	@RequestMapping(value = "/city/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
-		// 取得所有國家 List
+		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 新增 form backing object
@@ -109,18 +147,22 @@ public class CityController {
 	 * 新增城市 - submit
 	 * 
 	 * @param cityBean-->form-backing-object
+	 * @param model-->Model
 	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(value = "/city/add.do", method = RequestMethod.POST)
-	public String addProcess(CityBean cityBean) {
+	public String addProcess(CityBean cityBean, Model model) {
 
 		cityService.insert(cityBean);
+
+		// 將新增的 CityBean 放入 Session，使 select 回填國家及區域
+		model.addAttribute(CITY_BEAN, cityBean);
 
 		return REDIRECT + CITY_LIST_PAGE;
 	}
 
 	/**
-	 * 編輯城市資訊 - 采姿美管理系統
+	 * 編輯城市資訊 - 初期處理
 	 * 
 	 * @param cityBean_ci_id-->form-backing-object-->GET-->ci_id
 	 * @param model-->Model
@@ -132,13 +174,13 @@ public class CityController {
 		// 取得選定城市 id 的 CityBean
 		CityBean cityBean = cityService.selectByCi_id(cityBean_ci_id.getCi_id());
 
-		// 取得所有國家 List
+		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-		// 取得城市所在國家中的所有區域 List
+		// 取得城市所在國家中的所有區域 List，放入 select
 		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(cityBean.getCi_CountryBean().getCo_id()));
 
-		// 回傳 CityBean 內所有資料
+		// 放入 Session，使表單回填 CityBean 內所有資料
 		model.addAttribute(CITY_BEAN, cityBean);
 
 		return CITY_EDIT_PAGE;
@@ -148,12 +190,16 @@ public class CityController {
 	 * 編輯城市資訊 - submit
 	 * 
 	 * @param cityBean-->form-backing-object
+	 * @param model-->Model
 	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(value = "/city/edit.do", method = RequestMethod.POST)
-	public String editProcess(CityBean cityBean) {
+	public String editProcess(CityBean cityBean, Model model) {
 
 		cityService.update(cityBean);
+
+		// 將編輯的 CityBean 放入 Session，使 select 回填國家及區域
+		model.addAttribute(CITY_BEAN, cityBean);
 
 		return REDIRECT + CITY_LIST_PAGE;
 	}
@@ -162,10 +208,14 @@ public class CityController {
 	 * 刪除城市 - submit
 	 * 
 	 * @param cityBean-->form-backing-object
+	 * @param model-->Model
 	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(value = "/city/delete", method = RequestMethod.GET)
-	public String deleteProcess(CityBean cityBean) {
+	public String deleteProcess(CityBean cityBean, Model model) {
+
+		// 將刪除的 CityBean 放入 Session，使 select 回填國家及區域
+		model.addAttribute(CITY_BEAN, cityService.selectByCi_id(cityBean.getCi_id()));
 
 		cityService.delete(cityBean.getCi_id());
 
@@ -173,7 +223,7 @@ public class CityController {
 	}
 
 	/**
-	 * 選定區域中的所有城市列表 (AJAX)
+	 * 選定區域中的所有城市 JSON (AJAX)
 	 * 
 	 * @param ci_st_id-->區域流水號
 	 * @return city JSON

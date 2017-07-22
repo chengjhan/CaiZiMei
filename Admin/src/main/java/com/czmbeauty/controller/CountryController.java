@@ -15,19 +15,14 @@ import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_EDIT_PAGE
 import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.service.CountryService;
-import com.google.gson.Gson;
 
 /**
  * country controller
@@ -129,32 +124,6 @@ public class CountryController {
 		countryService.delete(countryBean.getCo_id());
 
 		return REDIRECT + COUNTRY_LIST_PAGE;
-	}
-
-	/**
-	 * 所有國家 JSON (AJAX)
-	 * 
-	 * @return country JSON
-	 */
-	@RequestMapping(value = "/country/all-country-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String allCountryListAjaxProcess() {
-
-		List<CountryBean> result = countryService.selectAll();
-
-		List<CountryBean> jsonList = new ArrayList<CountryBean>();
-
-		for (CountryBean bean : result) {
-			CountryBean jsonBean = new CountryBean();
-			jsonBean.setCo_id(bean.getCo_id());
-			jsonBean.setCo_name(bean.getCo_name());
-			jsonList.add(jsonBean);
-		}
-
-		String json = new Gson().toJson(jsonList);
-		System.out.println("JSON = " + json);
-
-		return json;
 	}
 
 }

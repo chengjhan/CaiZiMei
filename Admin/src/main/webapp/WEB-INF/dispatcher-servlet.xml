@@ -24,5 +24,15 @@
 	<mvc:annotation-driven />
 
 	<context:component-scan base-package="com.czmbeauty.controller" />
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/secure/forget-password" />
+			<mvc:exclude-mapping path="/secure/reset-password" />
+			<mvc:exclude-mapping path="/secure/sign-in" />
+			<bean class="com.czmbeauty.common.interceptor.SigninInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>

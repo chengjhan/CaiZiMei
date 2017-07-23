@@ -27,8 +27,6 @@ import static com.czmbeauty.common.constants.PageNameConstants.INDEX_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.NEXT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -222,20 +220,17 @@ public class AdminController {
 	/**
 	 * 登入 - 初期處理
 	 * 
-	 * @param next-->SigninInterceptor-->next
+	 * @param next-->SigninInterceptor-->GET-->next
 	 * @param request-->HttpServletRequest
 	 * @param model-->Model
 	 * 
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
-	public String signInView(Optional<String> next, HttpServletRequest request, Model model) {
-
-		HttpSession session = request.getSession();
-		String nextPageName = (String) session.getAttribute(NEXT_PAGE);
+	public String signInView(String next, HttpServletRequest request, Model model) {
 
 		// 若經過 SigninInterceptor
-		if (nextPageName != null) {
+		if (next != null) {
 
 			// 放入 Session
 			model.addAttribute(NEXT_PAGE, next);
@@ -251,15 +246,13 @@ public class AdminController {
 	 * @param ad_password-->管理員密碼(原碼)
 	 * @param request-->HttpServletRequest
 	 * @param model-->Model
-	 * @param next-->Session
+	 * @return /WEB-INF/views/next
 	 * @return /WEB-INF/views/index.jsp
-	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam(name = "ad_username") String ad_username,
-			@RequestParam(name = "ad_password") String ad_password, HttpServletRequest request, Model model,
-			Optional<String> next) {
+			@RequestParam(name = "ad_password") String ad_password, HttpServletRequest request, Model model) {
 
 		AdminBean adminBean = adminService.signIn(ad_username, ad_password);
 
@@ -281,8 +274,21 @@ public class AdminController {
 			adminLogBean.setAl_ip(request.getRemoteAddr());
 			adminLogService.insert(adminLogBean);
 
-			// 登入成功
-			return REDIRECT.concat(next.orElse(""));
+			HttpSession session = request.getSession();
+			String next = (String) session.getAttribute(NEXT_PAGE);
+
+			// 若經過 SigninInterceptor
+			if (next != null) {
+
+				System.out.println("原請求畫面" + next);
+
+				// 登入成功，導向原請求畫面
+				return REDIRECT.concat(next);
+			} else {
+
+				// 登入成功
+				return REDIRECT;
+			}
 		} else {
 
 			model.addAttribute(ERROR, "帳號或密碼錯誤");

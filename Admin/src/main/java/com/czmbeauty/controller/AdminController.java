@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/22
+ * Date: 2017/7/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -24,9 +24,13 @@ import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_RESET_PASSW
 import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_IN_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_UP_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.INDEX_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.NEXT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,7 +58,7 @@ import com.czmbeauty.model.service.AdminService;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = { ADMIN, ADMIN_EMAIL })
+@SessionAttributes(value = { ADMIN, ADMIN_EMAIL, NEXT_PAGE })
 public class AdminController {
 
 	/**
@@ -218,10 +222,24 @@ public class AdminController {
 	/**
 	 * 登入 - 初期處理
 	 * 
+	 * @param next-->SigninInterceptor-->next
+	 * @param request-->HttpServletRequest
+	 * @param model-->Model
+	 * 
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
-	public String signInView() {
+	public String signInView(Optional<String> next, HttpServletRequest request, Model model) {
+
+		HttpSession session = request.getSession();
+		String nextPageName = (String) session.getAttribute(NEXT_PAGE);
+
+		// 若經過 SigninInterceptor
+		if (nextPageName != null) {
+
+			// 放入 Session
+			model.addAttribute(NEXT_PAGE, next);
+		}
 
 		return ADMIN_SIGN_IN_PAGE;
 	}
@@ -233,13 +251,15 @@ public class AdminController {
 	 * @param ad_password-->管理員密碼(原碼)
 	 * @param request-->HttpServletRequest
 	 * @param model-->Model
+	 * @param next-->Session
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam(name = "ad_username") String ad_username,
-			@RequestParam(name = "ad_password") String ad_password, HttpServletRequest request, Model model) {
+			@RequestParam(name = "ad_password") String ad_password, HttpServletRequest request, Model model,
+			Optional<String> next) {
 
 		AdminBean adminBean = adminService.signIn(ad_username, ad_password);
 
@@ -262,7 +282,7 @@ public class AdminController {
 			adminLogService.insert(adminLogBean);
 
 			// 登入成功
-			return INDEX_PAGE;
+			return REDIRECT.concat(next.orElse(""));
 		} else {
 
 			model.addAttribute(ERROR, "帳號或密碼錯誤");

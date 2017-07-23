@@ -29,8 +29,11 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/secure/forget-password" />
+			<mvc:exclude-mapping path="/secure/forget-password.do" />
 			<mvc:exclude-mapping path="/secure/reset-password" />
+			<mvc:exclude-mapping path="/secure/reset-password.do" />
 			<mvc:exclude-mapping path="/secure/sign-in" />
+			<mvc:exclude-mapping path="/secure/sign-in.do" />
 			<bean class="com.czmbeauty.common.interceptor.SigninInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

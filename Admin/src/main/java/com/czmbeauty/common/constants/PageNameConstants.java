@@ -6,6 +6,8 @@ public interface PageNameConstants {
 
 	public static final String INDEX_PAGE = "redirect:/";
 
+	public static final String NEXT_PAGE = "next";
+
 	public static final String ADMIN_SIGN_UP_PAGE = "admin/sign-up";
 
 	public static final String ADMIN_PROFILE_PAGE = "admin/profile";

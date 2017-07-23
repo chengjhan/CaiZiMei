@@ -26,7 +26,9 @@ public class SigninInterceptor implements HandlerInterceptor {
 			System.out.println("未登入攔截");
 
 			String contextPath = request.getContextPath();
-			response.sendRedirect(contextPath + "/" + ADMIN_SIGN_IN_PAGE);
+			String pageName = request.getRequestURI().replace(contextPath + "/", "");
+
+			response.sendRedirect(contextPath + "/" + ADMIN_SIGN_IN_PAGE + "?next=".concat(pageName));
 
 			return false;
 		} else {

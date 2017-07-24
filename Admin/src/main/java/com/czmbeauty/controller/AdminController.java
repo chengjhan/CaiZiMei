@@ -87,7 +87,7 @@ public class AdminController {
 	/**
 	 * 註冊 - 初期處理
 	 * 
-	 * @model-->Model
+	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 */
 	@RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
@@ -202,7 +202,6 @@ public class AdminController {
 	 * 
 	 * @param next-->SigninInterceptor-->GET-->next
 	 * @param model-->Model
-	 * 
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)

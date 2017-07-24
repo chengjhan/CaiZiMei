@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/23
+ * Date: 2017/7/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -44,7 +44,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.mail.SendMail;
-import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
 import com.czmbeauty.model.service.AdminLogService;
@@ -104,34 +103,16 @@ public class AdminController {
 	 * 註冊 - submit
 	 * 
 	 * @param adminBean-->form-backing-object
-	 * @param request-->HttpServletRequest
-	 * @param model-->Model
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 */
 	// 得到 <form:form modelAttribute="adminBean"> 表單新增的資料
 	@RequestMapping(value = "/admin/sign-up.do", method = RequestMethod.POST)
-	public String signUpProcess(@ModelAttribute(ADMIN_BEAN) AdminBean adminBean, HttpServletRequest request,
-			Model model) {
+	public String signUpProcess(AdminBean adminBean) {
 
 		if (adminService.selectByAd_username(adminBean.getAd_username()) == null) {
 
-			String ad_salt = CryptographicHashFunction.getSalt();
-
-			adminBean.setAd_salt(ad_salt);
-			adminBean.setAd_password(CryptographicHashFunction.getHashedPassword(adminBean.getAd_password(), ad_salt));
-			adminBean.setAd_signup_time(new java.util.Date());
-			adminBean.setAd_signin_number(1);
-			adminBean.setAd_signin_ip(request.getRemoteAddr());
-			adminBean.setAd_signin_time(new java.util.Date());
-			adminBean.setAd_update_pwd_time(new java.util.Date());
-			adminBean.setAd_update_info_time(new java.util.Date());
-			adminBean.setAd_status(1);
-			adminBean.setAd_status_time(new java.util.Date());
 			adminService.signUp(adminBean);
-
-			// 放入 Session
-			model.addAttribute(ADMIN, adminBean);
 
 			// 註冊成功
 			return INDEX_PAGE;

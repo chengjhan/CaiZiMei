@@ -170,23 +170,22 @@ public class AdminServiceImpl implements AdminService {
 	 * 修改密碼
 	 * 
 	 * @param adminBean-->AdminBean
-	 * @param ad_password-->舊密碼(原碼)
+	 * @param ad_password_old-->舊密碼(原碼)
 	 * @param ad_password_new-->新密碼(原碼)
 	 * @return AdminBean
 	 * @return null
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateAd_password(AdminBean adminBean, String ad_password, String ad_password_new) {
+	public AdminBean updateAd_password(AdminBean adminBean, String ad_password_old, String ad_password_new) {
 
-		String oldHashedPassword = adminDao.selectByAd_id(adminBean.getAd_id()).getAd_password();
-		String inputOldHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password,
-				adminBean.getAd_salt());
+		String ad_salt = adminBean.getAd_salt();
+		String oldHashedPassword = adminBean.getAd_password();
+		String inputOldHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_old, ad_salt);
 
 		if (oldHashedPassword.equals(inputOldHashedPassword)) {
 
-			String newHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_new,
-					adminBean.getAd_salt());
+			String newHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_new, ad_salt);
 
 			adminBean.setAd_password(newHashedPassword);
 			adminBean.setAd_update_pwd_time(new java.util.Date());
@@ -204,14 +203,15 @@ public class AdminServiceImpl implements AdminService {
 	 * 忘記密碼
 	 * 
 	 * @param adminBean-->AdminBean
-	 * @param ad_password_new-->新密碼(原碼)
+	 * @param ad_password_random-->驗證碼(原碼)
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateAd_password(AdminBean adminBean, String ad_password_new) {
+	public AdminBean updateAd_password(AdminBean adminBean, String ad_password_random) {
 
-		String newHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_new, adminBean.getAd_salt());
+		String ad_salt = adminBean.getAd_salt();
+		String newHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_random, ad_salt);
 
 		adminBean.setAd_password(newHashedPassword);
 		adminBean.setAd_update_pwd_time(new java.util.Date());

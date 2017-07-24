@@ -12,7 +12,7 @@
 	<form action="<c:url value='/secure/reset-password.do' />" method="post">
 		<div>
 			<label for="id-input-ad-password">驗證碼</label>
-			<input type="password" id="id-input-ad-password" name="ad_password">
+			<input type="password" id="id-input-ad-password-random" name="ad_password_random">
 		</div>
 		<div>
 			<label for="id-input-ad-password-new">新密碼</label>

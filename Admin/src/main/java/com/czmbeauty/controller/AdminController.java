@@ -33,8 +33,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,7 +40,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.mail.SendMail;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
@@ -75,14 +72,6 @@ public class AdminController {
 	 */
 	@Autowired
 	private SendMail sendMail;
-
-	/**
-	 * 提供 form backing object 資料轉換
-	 */
-	@InitBinder
-	public void initBinder(WebDataBinder webDataBinder) {
-		webDataBinder.registerCustomEditor(Integer.class, new PrimitiveNumberEditor(Integer.class, true));
-	}
 
 	/**
 	 * 註冊 - 初期處理
@@ -176,17 +165,17 @@ public class AdminController {
 	 * 變更密碼 - submit
 	 * 
 	 * @param admin-->Session
-	 * @param ad_password-->舊密碼(原碼)
+	 * @param ad_password_old-->舊密碼(原碼)
 	 * @param ad_password_new-->新密碼(原碼)
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
 	@RequestMapping(value = "/admin/change-password.do", method = RequestMethod.POST)
 	public String changePasswordProcess(@ModelAttribute(ADMIN) AdminBean admin,
-			@RequestParam(name = "ad_password") String ad_password,
+			@RequestParam(name = "ad_password_old") String ad_password_old,
 			@RequestParam(name = "ad_password_new") String ad_password_new) {
 
-		if (adminService.updateAd_password(admin, ad_password, ad_password_new) != null) {
+		if (adminService.updateAd_password(admin, ad_password_old, ad_password_new) != null) {
 
 			// 變更成功
 			return INDEX_PAGE;
@@ -289,7 +278,7 @@ public class AdminController {
 	/**
 	 * 忘記密碼 - submit
 	 * 
-	 * @param ad_email-->管理員信箱
+	 * @param ad_email-->Session
 	 * @param model-->Model
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 * @return /WEB-INF/views/secure/forget-password.jsp
@@ -302,7 +291,7 @@ public class AdminController {
 		if (adminBean != null) {
 
 			int random = (int) (Math.random() * 1000000);
-			String ad_password_random = String.valueOf(random);
+			String ad_password_random = String.format("%06d", random);
 
 			adminService.updateAd_password(adminBean, ad_password_random);
 
@@ -339,7 +328,7 @@ public class AdminController {
 	 * 重設密碼 - submit
 	 * 
 	 * @param ad_email-->Session
-	 * @param ad_password-->驗證碼(原碼)
+	 * @param ad_password_random-->驗證碼(原碼)
 	 * @param ad_password_new-->新密碼(原碼)
 	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/secure/sign-in.jsp
@@ -347,12 +336,12 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
 	public String resetPasswordProcess(@ModelAttribute(ADMIN_EMAIL) String ad_email,
-			@RequestParam(name = "ad_password") String ad_password,
+			@RequestParam(name = "ad_password_random") String ad_password_random,
 			@RequestParam(name = "ad_password_new") String ad_password_new, SessionStatus sessionStatus) {
 
 		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
-		if (adminService.updateAd_password(adminBean, ad_password, ad_password_new) != null) {
+		if (adminService.updateAd_password(adminBean, ad_password_random, ad_password_new) != null) {
 
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();
@@ -373,31 +362,22 @@ public class AdminController {
 	 * @param request-->HttpServletRequest
 	 * @param sessionStatus-->SessionStatus
 	 * @return /WEB-INF/views/index.jsp
-	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-out", method = RequestMethod.GET)
 	public String signOutProcess(@ModelAttribute(ADMIN) AdminBean admin, HttpServletRequest request,
 			SessionStatus sessionStatus) {
 
-		if (admin != null) {
+		// 寫入日誌
+		AdminLogBean adminLogBean = new AdminLogBean();
+		adminLogBean.setAl_AdminBean(admin);
+		adminLogBean.setAl_operation("登出");
+		adminLogBean.setAl_ip(request.getRemoteAddr());
+		adminLogService.insert(adminLogBean);
 
-			// 寫入日誌
-			AdminLogBean adminLogBean = new AdminLogBean();
-			adminLogBean.setAl_AdminBean(admin);
-			adminLogBean.setAl_operation("登出");
-			adminLogBean.setAl_ip(request.getRemoteAddr());
-			adminLogService.insert(adminLogBean);
+		// 清除 @SessionAttributes
+		sessionStatus.setComplete();
 
-			// 清除 @SessionAttributes
-			sessionStatus.setComplete();
-
-			// 有登入狀態
-			return INDEX_PAGE;
-		} else {
-
-			// 未登入狀態
-			return INDEX_PAGE;
-		}
+		return INDEX_PAGE;
 	}
 
 	/**

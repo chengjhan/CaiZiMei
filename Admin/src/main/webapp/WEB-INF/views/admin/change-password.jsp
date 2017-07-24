@@ -12,7 +12,7 @@
 	<form action="<c:url value='/admin/change-password.do' />" method="post">
 		<div>
 			<label for="id-input-ad-password">舊密碼</label>
-			<input type="password" id="id-input-ad-password" name="ad_password">
+			<input type="password" id="id-input-ad-password-old" name="ad_password_old">
 		</div>
 		<div>
 			<label for="id-input-ad-password-new">新密碼</label>

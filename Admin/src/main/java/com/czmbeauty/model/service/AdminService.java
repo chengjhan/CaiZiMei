@@ -33,9 +33,9 @@ public interface AdminService {
 
 	AdminBean update(AdminBean adminBean);
 
-	AdminBean updateAd_password(AdminBean adminBean, String ad_password, String ad_password_new);
+	AdminBean updateAd_password(AdminBean adminBean, String ad_password_old, String ad_password_new);
 
-	AdminBean updateAd_password(AdminBean adminBean, String ad_password_new);
+	AdminBean updateAd_password(AdminBean adminBean, String ad_password_random);
 
 	AdminBean updateAd_status(AdminBean adminBean_ad_id);
 

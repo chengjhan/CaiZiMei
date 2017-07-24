@@ -141,7 +141,7 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 管理員信箱搜尋
 	 * 
-	 * @param ad_email-->管理員帳號
+	 * @param ad_email-->管理員信箱
 	 * @return AdminBean
 	 */
 	@Override

@@ -25,7 +25,7 @@
 		<a href="<%=request.getContextPath()%>/admin/change-password">變更密碼</a>
 	</p>
 	<p>
-		<a href="<%=request.getContextPath()%>/admin/list">管理者一覽</a>
+		<a href="<%=request.getContextPath()%>/admin/list">管理員一覽</a>
 	</p>
 	<p>
 		<a href="<%=request.getContextPath()%>/country/list">國家一覽</a>

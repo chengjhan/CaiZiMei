@@ -110,7 +110,6 @@ public class ClinicServiceImpl implements ClinicService {
 
 			result = clinicDao.insert(clinicBean);
 		}
-
 		return result;
 	}
 
@@ -165,7 +164,6 @@ public class ClinicServiceImpl implements ClinicService {
 			clinicBean.setCl_status(1);
 			clinicBean.setCl_status_time(new java.util.Date());
 		}
-
 		return clinicBean;
 	}
 

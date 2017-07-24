@@ -110,7 +110,6 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 
 			result = franchiseeDao.insert(franchiseeBean);
 		}
-
 		return result;
 	}
 
@@ -165,7 +164,6 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 			franchiseeBean.setFr_status(1);
 			franchiseeBean.setFr_status_time(new java.util.Date());
 		}
-
 		return franchiseeBean;
 	}
 

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/24
+ * Date: 2017/7/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -30,6 +30,7 @@ import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +55,8 @@ import com.czmbeauty.model.service.AdminService;
 @Controller
 @SessionAttributes(value = { ADMIN, ADMIN_EMAIL, NEXT_PAGE })
 public class AdminController {
+
+	private static final Logger logger = Logger.getLogger(AdminController.class);
 
 	/**
 	 * 注入 AdminService
@@ -196,13 +199,14 @@ public class AdminController {
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
 	public String signInView(String next, Model model) {
 
+		logger.info("登入畫面");
+
 		// 若經過 SigninInterceptor
 		if (next != null) {
 
 			// 放入 Session
 			model.addAttribute(NEXT_PAGE, next);
 		}
-
 		return ADMIN_SIGN_IN_PAGE;
 	}
 
@@ -248,9 +252,13 @@ public class AdminController {
 
 				System.out.println("原請求畫面: " + next);
 
+				logger.info("登入成功");
+
 				// 登入成功，導向原請求畫面
 				return REDIRECT.concat(next);
 			} else {
+
+				logger.info("登入成功");
 
 				// 登入成功
 				return REDIRECT;
@@ -258,6 +266,8 @@ public class AdminController {
 		} else {
 
 			model.addAttribute(ERROR, "帳號或密碼錯誤");
+
+			logger.error("登入失敗");
 
 			// 登入失敗
 			return ADMIN_SIGN_IN_PAGE;

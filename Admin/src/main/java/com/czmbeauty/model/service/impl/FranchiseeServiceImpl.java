@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/22
+ * Date: 2017/7/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.util.Geocoder;
+import com.czmbeauty.model.dao.CityDao;
 import com.czmbeauty.model.dao.FranchiseeDao;
 import com.czmbeauty.model.entity.FranchiseeBean;
 import com.czmbeauty.model.service.FranchiseeService;
@@ -25,6 +27,12 @@ import com.czmbeauty.model.service.FranchiseeService;
  */
 @Service(value = "franchiseeService")
 public class FranchiseeServiceImpl implements FranchiseeService {
+
+	/**
+	 * 注入 CityDao
+	 */
+	@Autowired
+	private CityDao cityDao;
 
 	/**
 	 * 注入 FranchiseeDao
@@ -83,8 +91,26 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 
 		if (franchiseeBean != null) {
 
+			// 地址轉換經緯度
+			String ci_name = cityDao.selectByCi_id(franchiseeBean.getFr_CityBean().getCi_id()).getCi_name();
+			String fr_address = franchiseeBean.getFr_address();
+			Double[] LatLng = new Double[2];
+			try {
+				LatLng = Geocoder.addressToLatLng(ci_name + fr_address);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			franchiseeBean.setFr_latitude(LatLng[0]);
+			franchiseeBean.setFr_longitude(LatLng[1]);
+			franchiseeBean.setFr_insert_time(new java.util.Date());
+			franchiseeBean.setFr_update_time(new java.util.Date());
+			franchiseeBean.setFr_status(1);
+			franchiseeBean.setFr_status_time(new java.util.Date());
+
 			result = franchiseeDao.insert(franchiseeBean);
 		}
+
 		return result;
 	}
 
@@ -97,6 +123,20 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 	@Override
 	@Transactional
 	public FranchiseeBean update(FranchiseeBean franchiseeBean) {
+
+		// 地址轉換經緯度
+		String ci_name = cityDao.selectByCi_id(franchiseeBean.getFr_CityBean().getCi_id()).getCi_name();
+		String fr_address = franchiseeBean.getFr_address();
+		Double[] LatLng = new Double[2];
+		try {
+			LatLng = Geocoder.addressToLatLng(ci_name + fr_address);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		franchiseeBean.setFr_latitude(LatLng[0]);
+		franchiseeBean.setFr_longitude(LatLng[1]);
+		franchiseeBean.setFr_update_time(new java.util.Date());
 
 		return franchiseeDao.update(franchiseeBean);
 	}

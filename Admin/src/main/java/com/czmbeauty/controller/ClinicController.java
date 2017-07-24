@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicController.java
  * Author: 詹晟
- * Date: 2017/7/22
+ * Date: 2017/7/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,6 @@ import com.czmbeauty.common.editor.CityBeanPropertyEditor;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
-import com.czmbeauty.common.util.Geocoder;
 import com.czmbeauty.model.entity.CityBean;
 import com.czmbeauty.model.entity.ClinicBean;
 import com.czmbeauty.model.entity.CountryBean;
@@ -130,23 +129,6 @@ public class ClinicController {
 	@RequestMapping(value = "/clinic/add.do", method = RequestMethod.POST)
 	public String addProcess(ClinicBean clinicBean) {
 
-		// 地址轉換經緯度
-		String ci_name = cityService.selectByCi_id(clinicBean.getCl_CityBean().getCi_id()).getCi_name();
-		String cl_address = clinicBean.getCl_address();
-		Double[] LatLng = new Double[2];
-		try {
-			LatLng = Geocoder.addressToLatLng(ci_name + cl_address);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		clinicBean.setCl_latitude(LatLng[0]);
-		clinicBean.setCl_longitude(LatLng[1]);
-		clinicBean.setCl_insert_time(new java.util.Date());
-		clinicBean.setCl_update_time(new java.util.Date());
-		clinicBean.setCl_status(1);
-		clinicBean.setCl_status_time(new java.util.Date());
-
 		clinicService.insert(clinicBean);
 
 		return REDIRECT + CLINIC_LIST_PAGE;
@@ -188,20 +170,6 @@ public class ClinicController {
 	 */
 	@RequestMapping(value = "/clinic/edit.do", method = RequestMethod.POST)
 	public String editProcess(ClinicBean clinicBean) {
-
-		// 地址轉換經緯度
-		String ci_name = cityService.selectByCi_id(clinicBean.getCl_CityBean().getCi_id()).getCi_name();
-		String cl_address = clinicBean.getCl_address();
-		Double[] LatLng = new Double[2];
-		try {
-			LatLng = Geocoder.addressToLatLng(ci_name + cl_address);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		clinicBean.setCl_latitude(LatLng[0]);
-		clinicBean.setCl_longitude(LatLng[1]);
-		clinicBean.setCl_update_time(new java.util.Date());
 
 		clinicService.update(clinicBean);
 

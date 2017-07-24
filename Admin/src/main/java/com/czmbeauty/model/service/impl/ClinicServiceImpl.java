@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/21
+ * Date: 2017/7/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.util.Geocoder;
+import com.czmbeauty.model.dao.CityDao;
 import com.czmbeauty.model.dao.ClinicDao;
 import com.czmbeauty.model.entity.ClinicBean;
 import com.czmbeauty.model.service.ClinicService;
@@ -25,6 +27,12 @@ import com.czmbeauty.model.service.ClinicService;
  */
 @Service(value = "clinicService")
 public class ClinicServiceImpl implements ClinicService {
+
+	/**
+	 * 注入 CityDao
+	 */
+	@Autowired
+	private CityDao cityDao;
 
 	/**
 	 * 注入 ClinicDao
@@ -83,8 +91,26 @@ public class ClinicServiceImpl implements ClinicService {
 
 		if (clinicBean != null) {
 
+			// 地址轉換經緯度
+			String ci_name = cityDao.selectByCi_id(clinicBean.getCl_CityBean().getCi_id()).getCi_name();
+			String cl_address = clinicBean.getCl_address();
+			Double[] LatLng = new Double[2];
+			try {
+				LatLng = Geocoder.addressToLatLng(ci_name + cl_address);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			clinicBean.setCl_latitude(LatLng[0]);
+			clinicBean.setCl_longitude(LatLng[1]);
+			clinicBean.setCl_insert_time(new java.util.Date());
+			clinicBean.setCl_update_time(new java.util.Date());
+			clinicBean.setCl_status(1);
+			clinicBean.setCl_status_time(new java.util.Date());
+
 			result = clinicDao.insert(clinicBean);
 		}
+
 		return result;
 	}
 
@@ -97,6 +123,20 @@ public class ClinicServiceImpl implements ClinicService {
 	@Override
 	@Transactional
 	public ClinicBean update(ClinicBean clinicBean) {
+
+		// 地址轉換經緯度
+		String ci_name = cityDao.selectByCi_id(clinicBean.getCl_CityBean().getCi_id()).getCi_name();
+		String cl_address = clinicBean.getCl_address();
+		Double[] LatLng = new Double[2];
+		try {
+			LatLng = Geocoder.addressToLatLng(ci_name + cl_address);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		clinicBean.setCl_latitude(LatLng[0]);
+		clinicBean.setCl_longitude(LatLng[1]);
+		clinicBean.setCl_update_time(new java.util.Date());
 
 		return clinicDao.update(clinicBean);
 	}

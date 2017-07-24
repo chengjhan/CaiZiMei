@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeController.java
  * Author: 詹晟
- * Date: 2017/7/23
+ * Date: 2017/7/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,7 +33,6 @@ import com.czmbeauty.common.editor.CityBeanPropertyEditor;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
-import com.czmbeauty.common.util.Geocoder;
 import com.czmbeauty.model.entity.CityBean;
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.entity.FranchiseeBean;
@@ -130,23 +129,6 @@ public class FranchiseeController {
 	@RequestMapping(value = "/franchisee/add.do", method = RequestMethod.POST)
 	public String addProcess(FranchiseeBean franchiseeBean) {
 
-		// 地址轉換經緯度
-		String ci_name = cityService.selectByCi_id(franchiseeBean.getFr_CityBean().getCi_id()).getCi_name();
-		String fr_address = franchiseeBean.getFr_address();
-		Double[] LatLng = new Double[2];
-		try {
-			LatLng = Geocoder.addressToLatLng(ci_name + fr_address);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		franchiseeBean.setFr_latitude(LatLng[0]);
-		franchiseeBean.setFr_longitude(LatLng[1]);
-		franchiseeBean.setFr_insert_time(new java.util.Date());
-		franchiseeBean.setFr_update_time(new java.util.Date());
-		franchiseeBean.setFr_status(1);
-		franchiseeBean.setFr_status_time(new java.util.Date());
-
 		franchiseeService.insert(franchiseeBean);
 
 		return REDIRECT + FRANCHISEE_LIST_PAGE;
@@ -188,20 +170,6 @@ public class FranchiseeController {
 	 */
 	@RequestMapping(value = "/franchisee/edit.do", method = RequestMethod.POST)
 	public String editProcess(FranchiseeBean franchiseeBean) {
-
-		// 地址轉換經緯度
-		String ci_name = cityService.selectByCi_id(franchiseeBean.getFr_CityBean().getCi_id()).getCi_name();
-		String fr_address = franchiseeBean.getFr_address();
-		Double[] LatLng = new Double[2];
-		try {
-			LatLng = Geocoder.addressToLatLng(ci_name + fr_address);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		franchiseeBean.setFr_latitude(LatLng[0]);
-		franchiseeBean.setFr_longitude(LatLng[1]);
-		franchiseeBean.setFr_update_time(new java.util.Date());
 
 		franchiseeService.update(franchiseeBean);
 

@@ -186,8 +186,7 @@ public class FranchiseeController {
 	@RequestMapping(value = "/franchisee/switch", method = RequestMethod.GET)
 	public String switchProcess(FranchiseeBean franchiseeBean_fr_id, Model model) {
 
-		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
-		franchiseeService.updateFr_status(franchiseeService.selectByFr_id(franchiseeBean_fr_id.getFr_id()));
+		franchiseeService.updateFr_status(franchiseeBean_fr_id);
 
 		return REDIRECT + FRANCHISEE_LIST_PAGE;
 	}

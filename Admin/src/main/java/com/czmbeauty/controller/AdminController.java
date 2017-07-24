@@ -156,7 +156,6 @@ public class AdminController {
 	@RequestMapping(value = "/admin/edit.do", method = RequestMethod.POST)
 	public String editProcess(@ModelAttribute(ADMIN) AdminBean admin) {
 
-		admin.setAd_update_info_time(new java.util.Date());
 		adminService.update(admin);
 
 		return REDIRECT + ADMIN_PROFILE_PAGE;
@@ -202,13 +201,12 @@ public class AdminController {
 	 * 登入 - 初期處理
 	 * 
 	 * @param next-->SigninInterceptor-->GET-->next
-	 * @param request-->HttpServletRequest
 	 * @param model-->Model
 	 * 
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
-	public String signInView(String next, HttpServletRequest request, Model model) {
+	public String signInView(String next, Model model) {
 
 		// 若經過 SigninInterceptor
 		if (next != null) {
@@ -243,7 +241,6 @@ public class AdminController {
 			adminBean.setAd_signin_number(adminBean.getAd_signin_number() + 1);
 			adminBean.setAd_signin_ip(request.getRemoteAddr());
 			adminBean.setAd_signin_time(new java.util.Date());
-			adminService.update(adminBean);
 
 			// 放入 Session
 			model.addAttribute(ADMIN, adminBean);
@@ -423,14 +420,12 @@ public class AdminController {
 	 * 帳戶開關 - submit
 	 * 
 	 * @param adminBean_ad_id-->form-backing-object-->GET-->ad_id
-	 * @param model-->Model
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */
 	@RequestMapping(value = "/admin/switch", method = RequestMethod.GET)
-	public String switchProcess(AdminBean adminBean_ad_id, Model model) {
+	public String switchProcess(AdminBean adminBean_ad_id) {
 
-		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
-		adminService.updateAd_status(adminService.selectByAd_id(adminBean_ad_id.getAd_id()));
+		adminService.updateAd_status(adminBean_ad_id);
 
 		return REDIRECT + ADMIN_LIST_PAGE;
 	}

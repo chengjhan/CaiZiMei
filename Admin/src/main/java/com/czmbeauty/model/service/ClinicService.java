@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicService.java
  * Author: 詹晟
- * Date: 2017/7/21
+ * Date: 2017/7/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -29,6 +29,6 @@ public interface ClinicService {
 
 	ClinicBean update(ClinicBean clinicBean);
 
-	ClinicBean updateCl_status(ClinicBean clinicBean);
+	ClinicBean updateCl_status(ClinicBean clinicBean_cl_id);
 
 }

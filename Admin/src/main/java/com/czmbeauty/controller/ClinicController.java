@@ -186,8 +186,7 @@ public class ClinicController {
 	@RequestMapping(value = "/clinic/switch", method = RequestMethod.GET)
 	public String switchProcess(ClinicBean clinicBean_cl_id, Model model) {
 
-		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
-		clinicService.updateCl_status(clinicService.selectByCl_id(clinicBean_cl_id.getCl_id()));
+		clinicService.updateCl_status(clinicBean_cl_id);
 
 		return REDIRECT + CLINIC_LIST_PAGE;
 	}

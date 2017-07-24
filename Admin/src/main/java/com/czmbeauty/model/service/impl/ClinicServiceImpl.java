@@ -144,12 +144,15 @@ public class ClinicServiceImpl implements ClinicService {
 	/**
 	 * 切換狀態
 	 * 
-	 * @param clinicBean-->ClinicBean
+	 * @param clinicBean_cl_id-->ClinicBean-->cl_id
 	 * @return clinicBean-->ClinicBean
 	 */
 	@Override
 	@Transactional
-	public ClinicBean updateCl_status(ClinicBean clinicBean) {
+	public ClinicBean updateCl_status(ClinicBean clinicBean_cl_id) {
+
+		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
+		ClinicBean clinicBean = clinicDao.selectByCl_id(clinicBean_cl_id.getCl_id());
 
 		if (clinicBean.getCl_status() == 1) {
 

@@ -161,6 +161,8 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public AdminBean update(AdminBean adminBean) {
 
+		adminBean.setAd_update_info_time(new java.util.Date());
+
 		return adminDao.update(adminBean);
 	}
 
@@ -199,7 +201,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	/**
-	 * 重設密碼
+	 * 忘記密碼
 	 * 
 	 * @param adminBean-->AdminBean
 	 * @param ad_password_new-->新密碼(原碼)
@@ -214,18 +216,21 @@ public class AdminServiceImpl implements AdminService {
 		adminBean.setAd_password(newHashedPassword);
 		adminBean.setAd_update_pwd_time(new java.util.Date());
 
-		return adminDao.update(adminBean);
+		return adminBean;
 	}
 
 	/**
 	 * 切換狀態
 	 * 
-	 * @param adminBean-->AdminBean
+	 * @param adminBean_ad_id-->AdminBean-->ad_id
 	 * @return adminBean-->AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateAd_status(AdminBean adminBean) {
+	public AdminBean updateAd_status(AdminBean adminBean_ad_id) {
+
+		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
+		AdminBean adminBean = adminDao.selectByAd_id(adminBean_ad_id.getAd_id());
 
 		if (adminBean.getAd_status() == 1) {
 

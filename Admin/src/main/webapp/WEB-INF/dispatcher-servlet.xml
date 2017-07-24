@@ -19,7 +19,6 @@
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/images/**" location="/images/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
-	<mvc:resources mapping="/json/**" location="/json/" />
 
 	<mvc:annotation-driven />
 
@@ -34,6 +33,9 @@
 			<mvc:exclude-mapping path="/secure/reset-password.do" />
 			<mvc:exclude-mapping path="/secure/sign-in" />
 			<mvc:exclude-mapping path="/secure/sign-in.do" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/images/**" />
+			<mvc:exclude-mapping path="/js/**" />
 			<bean class="com.czmbeauty.common.interceptor.SigninInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

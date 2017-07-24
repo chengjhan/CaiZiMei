@@ -21,19 +21,19 @@ public class SigninInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
 
+		String contextPath = request.getContextPath();
+		String pageName = request.getRequestURI().replace(contextPath + "/", "");
+
 		if (adminBean == null) {
 
-			System.out.println("未登入攔截");
-
-			String contextPath = request.getContextPath();
-			String pageName = request.getRequestURI().replace(contextPath + "/", "");
+			System.out.println("未登入，攔截: " + pageName);
 
 			response.sendRedirect(contextPath + "/" + ADMIN_SIGN_IN_PAGE + "?next=".concat(pageName));
 
 			return false;
 		} else {
 
-			System.out.println("已登入放行");
+			System.out.println("已登入，放行: " + pageName);
 
 			return true;
 		}

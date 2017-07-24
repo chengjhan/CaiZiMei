@@ -280,7 +280,7 @@ public class AdminController {
 			// 若經過 SigninInterceptor
 			if (next != null) {
 
-				System.out.println("原請求畫面" + next);
+				System.out.println("原請求畫面: " + next);
 
 				// 登入成功，導向原請求畫面
 				return REDIRECT.concat(next);

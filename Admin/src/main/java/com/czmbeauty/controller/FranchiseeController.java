@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeController.java
  * Author: 詹晟
- * Date: 2017/7/24
+ * Date: 2017/7/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,6 +20,7 @@ import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,6 +52,8 @@ import com.google.gson.GsonBuilder;
  */
 @Controller
 public class FranchiseeController {
+
+	private static final Logger logger = Logger.getLogger(FranchiseeController.class);
 
 	/**
 	 * 注入 CountryService
@@ -208,7 +211,8 @@ public class FranchiseeController {
 		List<FranchiseeBean> result = franchiseeService.selectAll();
 
 		String json = gson.toJson(result);
-		System.out.println("JSON = " + json);
+
+		logger.info("JSON = " + json);
 
 		return json;
 	}
@@ -230,7 +234,8 @@ public class FranchiseeController {
 		List<FranchiseeBean> result = franchiseeService.selectByFr_status();
 
 		String json = gson.toJson(result);
-		System.out.println("JSON = " + json);
+
+		logger.info("JSON = " + json);
 
 		return json;
 	}

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/7/22
+ * Date: 2017/7/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,6 +19,7 @@ import static com.czmbeauty.common.constants.PageNameConstants.STATE_LIST_PAGE;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +46,8 @@ import com.google.gson.Gson;
 @Controller
 @SessionAttributes(value = STATE_BEAN)
 public class StateController {
+
+	private static final Logger logger = Logger.getLogger(StateController.class);
 
 	/**
 	 * 注入 CountryService
@@ -222,7 +225,8 @@ public class StateController {
 		}
 
 		String json = new Gson().toJson(jsonList);
-		System.out.println("JSON = " + json);
+
+		logger.info("JSON = " + json);
 
 		return json;
 	}

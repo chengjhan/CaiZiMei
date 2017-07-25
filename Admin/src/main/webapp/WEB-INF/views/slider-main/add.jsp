@@ -9,23 +9,23 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
-	<form:form>
+	<form:form action="/Admin/slider-main/add.do" method="post" modelAttribute="sliderMainBean" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>名稱</td>
-				<td><input type="text" name="sm_name" /></td>
+				<td><form:input path="sm_name" /></td>
 			</tr>
 			<tr>
 				<td>選擇</td>
-				<td><input type="file" name="sw_file" /></td>
+				<td><input type="file" name="file" /></td>
 			</tr>
 			<tr>
 				<td>連結</td>
-				<td><input type="text" name="sm_url" /></td>
+				<td><form:input path="sm_url" /></td>
 			</tr>
 			<tr>
 				<td>排序</td>
-				<td><input type="text" name="sm_rank" /></td>
+				<td><form:input path="sm_rank" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="新增" /></td>

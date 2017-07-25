@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainController.java
  * Author: 詹晟
- * Date: 2017/7/25
+ * Date: 2017/7/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,11 +15,18 @@ import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_ADD_P
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_LIST_PAGE;
 
+import java.io.File;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.czmbeauty.model.entity.SliderMainBean;
 import com.czmbeauty.model.service.SliderMainService;
@@ -71,14 +78,39 @@ public class SliderMainController {
 	/**
 	 * 新增圖片 - submit
 	 * 
+	 * @param file-->MultipartFile
 	 * @param sliderMainBean-->form-backing-object
+	 * @param request-->HttpServletRequest
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider-main/add.do", method = RequestMethod.POST)
-	public String addProcess(SliderMainBean sliderMainBean) {
+	public String addProcess(@RequestParam("file") MultipartFile file, SliderMainBean sliderMainBean,
+			HttpServletRequest request) {
 
-		sliderMainService.insert(sliderMainBean);
+		if (!file.isEmpty()) {
 
+			String sm_path = request.getServletContext().getRealPath("/images/slider-main/");
+			String sm_name = sliderMainBean.getSm_name();
+			String originalFilename = file.getOriginalFilename();
+			String extension = FilenameUtils.getExtension(originalFilename);
+			String sm_filename = sm_name + "." + extension;
+
+			try {
+				file.transferTo(new File(sm_path + sm_filename));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			sliderMainBean.setSm_path(sm_path);
+			sliderMainBean.setSm_filename(sm_filename);
+
+			sliderMainService.insert(sliderMainBean);
+
+			// 新增成功
+			return REDIRECT + SLIDER_MAIN_LIST_PAGE;
+		}
+
+		// 新增失敗
 		return REDIRECT + SLIDER_MAIN_LIST_PAGE;
 	}
 

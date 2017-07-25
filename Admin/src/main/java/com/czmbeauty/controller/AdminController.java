@@ -199,10 +199,12 @@ public class AdminController {
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
 	public String signInView(String next, Model model) {
 
-		logger.info("登入畫面");
+		logger.info("進入登入畫面: " + ADMIN_SIGN_IN_PAGE);
 
 		// 若經過 SigninInterceptor
 		if (next != null) {
+
+			logger.info("原請求畫面: " + next);
 
 			// 放入 Session
 			model.addAttribute(NEXT_PAGE, next);
@@ -250,24 +252,22 @@ public class AdminController {
 			// 若經過 SigninInterceptor
 			if (next != null) {
 
-				System.out.println("原請求畫面: " + next);
-
-				logger.info("登入成功");
+				logger.info("登入成功，導向原請求畫面: " + next);
 
 				// 登入成功，導向原請求畫面
 				return REDIRECT.concat(next);
 			} else {
 
-				logger.info("登入成功");
+				logger.info("登入成功，導向畫面: index");
 
 				// 登入成功
-				return REDIRECT;
+				return INDEX_PAGE;
 			}
 		} else {
 
 			model.addAttribute(ERROR, "帳號或密碼錯誤");
 
-			logger.error("登入失敗");
+			logger.error("登入失敗，導向畫面: " + ADMIN_SIGN_IN_PAGE);
 
 			// 登入失敗
 			return ADMIN_SIGN_IN_PAGE;

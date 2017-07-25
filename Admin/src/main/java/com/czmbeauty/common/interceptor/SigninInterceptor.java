@@ -7,12 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.model.entity.AdminBean;
 
 public class SigninInterceptor implements HandlerInterceptor {
+
+	private static final Logger logger = Logger.getLogger(SigninInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -26,17 +29,18 @@ public class SigninInterceptor implements HandlerInterceptor {
 
 		if (adminBean == null) {
 
-			System.out.println("未登入，攔截: " + pageName);
+			logger.info("未登入，攔截: " + pageName);
 
 			response.sendRedirect(contextPath + "/" + ADMIN_SIGN_IN_PAGE + "?next=".concat(pageName));
 
 			return false;
 		} else {
 
-			System.out.println("已登入，放行: " + pageName);
+			logger.info("已登入，放行: " + pageName);
 
 			return true;
 		}
+
 	}
 
 	@Override

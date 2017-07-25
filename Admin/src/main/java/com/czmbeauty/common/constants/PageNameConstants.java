@@ -54,4 +54,10 @@ public interface PageNameConstants {
 
 	public static final String CLINIC_EDIT_PAGE = "clinic/edit";
 
+	public static final String SLIDER_MAIN_LIST_PAGE = "slider-main/list";
+
+	public static final String SLIDER_MAIN_ADD_PAGE = "slider-main/add";
+
+	public static final String SLIDER_MAIN_EDIT_PAGE = "slider-main/edit";
+
 }

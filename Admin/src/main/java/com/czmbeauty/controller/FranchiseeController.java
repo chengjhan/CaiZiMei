@@ -183,11 +183,10 @@ public class FranchiseeController {
 	 * 加盟店開關 - submit
 	 * 
 	 * @param franchiseeBean_fr_id-->form-backing-object-->GET-->fr_id
-	 * @param model-->Model
 	 * @return /WEB-INF/views/franchisee/list.jsp
 	 */
 	@RequestMapping(value = "/franchisee/switch", method = RequestMethod.GET)
-	public String switchProcess(FranchiseeBean franchiseeBean_fr_id, Model model) {
+	public String switchProcess(FranchiseeBean franchiseeBean_fr_id) {
 
 		franchiseeService.updateFr_status(franchiseeBean_fr_id);
 

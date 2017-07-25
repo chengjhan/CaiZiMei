@@ -112,6 +112,17 @@ create table franchisee (
 	foreign key (fr_ci_id) references city (ci_id)
 );
 
+create table slider_main (
+	sm_id					int auto_increment not null,
+	sm_name					nvarchar(20) not null,
+	sm_path					varchar(100) not null,
+	sm_filename				varchar(50) not null,
+	sm_url					varchar(100),
+	sm_rank					tinyint not null,
+	sm_status				tinyint not null,
+	primary key (sm_id)
+);
+
 -- admin
 insert into admin (ad_id, ad_username, ad_password, ad_salt, ad_lastname, ad_firstname, ad_email, ad_signup_time, ad_signin_number, ad_signin_ip, ad_signin_time, ad_update_info_time, ad_update_pwd_time, ad_status, ad_status_time) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', 'czmbeauty', 'admin', 'admin@czmbeauty.com', now(), 0, null, null, now(), now(), 1, now());
 

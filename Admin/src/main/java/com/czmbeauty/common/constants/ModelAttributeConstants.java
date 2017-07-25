@@ -2,6 +2,8 @@ package com.czmbeauty.common.constants;
 
 public interface ModelAttributeConstants {
 
+	public static final String ERROR = "error";
+
 	public static final String ADMIN = "admin";
 
 	public static final String ADMIN_BEAN = "adminBean";
@@ -30,6 +32,8 @@ public interface ModelAttributeConstants {
 
 	public static final String CLINIC_LIST = "clinicList";
 
-	public static final String ERROR = "error";
+	public static final String SLIDER_MAIN_BEAN = "sliderMainBean";
+
+	public static final String SLIDER_MAIN_LIST = "sliderMainList";
 
 }

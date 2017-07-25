@@ -183,11 +183,10 @@ public class ClinicController {
 	 * 診所開關 - submit
 	 * 
 	 * @param clinicBean_cl_id-->form-backing-object-->GET-->cl_id
-	 * @param model-->Model
 	 * @return /WEB-INF/views/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/clinic/switch", method = RequestMethod.GET)
-	public String switchProcess(ClinicBean clinicBean_cl_id, Model model) {
+	public String switchProcess(ClinicBean clinicBean_cl_id) {
 
 		clinicService.updateCl_status(clinicBean_cl_id);
 

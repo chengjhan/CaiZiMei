@@ -13,11 +13,11 @@
 		<c:forEach var="bean" items="${sliderMainList}" varStatus="status">
 			<tbody>
 					<tr>
-						<td rowspan="8">${status.count}</td>
-						<td rowspan="8"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
+						<td rowspan="7">${status.count}</td>
+						<td rowspan="7" style="width:300px"><img style="width:100%" src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
 						<td>流水號</td>
-						<td>${bean.sm_id}</td>
-						<td rowspan="8">
+						<td style="width:300px">${bean.sm_id}</td>
+						<td rowspan="7">
 							<a href="<%=request.getContextPath()%>/slider-main/edit?sm_id=${bean.sm_id}">編輯</a><br />
 							<a href="<%=request.getContextPath()%>/slider-main/switch?sm_id=${bean.sm_id}">變更</a>
 						</td>
@@ -25,10 +25,6 @@
 					<tr>
 						<td>名稱</td>
 						<td>${bean.sm_name}</td>
-					</tr>
-					<tr>
-						<td>路徑</td>
-						<td>${bean.sm_path}</td>
 					</tr>
 					<tr>
 						<td>檔名</td>

@@ -45,5 +45,8 @@
 	<p>
 		<a href="<%=request.getContextPath()%>/clinic/list">診所一覽</a>
 	</p>
+	<p>
+		<a href="<%=request.getContextPath()%>/slider-main/list">主輪播圖片一覽</a>
+	</p>
 </body>
 </html>

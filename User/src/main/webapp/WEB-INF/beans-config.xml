@@ -27,6 +27,7 @@
 				<value>com.czmbeauty.model.entity.CityBean</value>
 				<value>com.czmbeauty.model.entity.ClinicBean</value>
 				<value>com.czmbeauty.model.entity.CountryBean</value>
+				<value>com.czmbeauty.model.entity.SliderMainBean</value>
 				<value>com.czmbeauty.model.entity.StateBean</value>
 			</list>
 		</property>

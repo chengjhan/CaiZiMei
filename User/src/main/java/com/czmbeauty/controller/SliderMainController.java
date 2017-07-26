@@ -1,6 +1,6 @@
 /*
  * CaiZiMei/User
- * File: ClinicController.java
+ * File: SliderMainController.java
  * Author: 詹晟
  * Date: 2017/7/27
  * Version: 1.0
@@ -15,34 +15,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.czmbeauty.model.entity.ClinicBean;
-import com.czmbeauty.model.service.ClinicService;
+import com.czmbeauty.model.entity.SliderMainBean;
+import com.czmbeauty.model.service.SliderMainService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * clinic controller
+ * slider_main controller
  * 
  * @author 詹晟
  */
 @Controller
-@SessionAttributes("clinicList")
-public class ClinicController {
+public class SliderMainController {
 
 	/**
-	 * 注入 ClinicService
+	 * 注入 SliderMainService
 	 */
 	@Autowired
-	private ClinicService clinicService;
+	private SliderMainService sliderMainService;
 
 	/**
-	 * 開啟的診所 JSON (AJAX)
+	 * 開啟的圖片 JSON (AJAX)
 	 * 
 	 * @return clinic JSON
 	 */
-	@RequestMapping(value = "/clinic/open-clinic-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/slider-main/open-slide-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String openClinicListAjaxProcess() {
 
@@ -51,7 +49,7 @@ public class ClinicController {
 		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		Gson gson = builder.create();
 
-		List<ClinicBean> result = clinicService.selectByCl_status();
+		List<SliderMainBean> result = sliderMainService.selectBySm_status();
 
 		String json = gson.toJson(result);
 		System.out.println("JSON = " + json);

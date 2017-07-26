@@ -22,7 +22,6 @@ import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_LIST_
 import java.io.File;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
@@ -152,21 +151,26 @@ public class SliderMainController {
 	/**
 	 * 編輯圖片資訊 - submit
 	 * 
+	 * @param file-->MultipartFile
 	 * @param sliderMainBean-->form-backing-object
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider-main/edit.do", method = RequestMethod.POST)
-	public String editProcess(@RequestParam(FILE) MultipartFile file, SliderMainBean sliderMainBean,
-			HttpServletRequest request) {
+	public String editProcess(@RequestParam(FILE) MultipartFile file, SliderMainBean sliderMainBean) {
+
+		SliderMainBean oldSliderMainBean = sliderMainService.selectBySm_id(sliderMainBean.getSm_id());
+		
+		String sm_path;
+		String sm_filename;
 
 		if (!file.isEmpty()) {
 
 			String root = context.getRealPath("");
-			String sm_path = root + IMAGES + File.separator + SLIDER_MAIN + File.separator;
+			sm_path = root + IMAGES + File.separator + SLIDER_MAIN + File.separator;
 
 			String time = String.valueOf(new java.util.Date().getTime());
 			String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-			String sm_filename = time + DOT + extension;
+			sm_filename = time + DOT + extension;
 
 			try {
 				file.transferTo(new File(sm_path + sm_filename));
@@ -174,12 +178,16 @@ public class SliderMainController {
 				e.printStackTrace();
 			}
 
-			sliderMainBean.setSm_path(sm_path);
-			sliderMainBean.setSm_filename(sm_filename);
-
 			logger.info("圖片上傳成功，位置: " + sm_path + sm_filename);
+		} else {
+
+			sm_path = oldSliderMainBean.getSm_path();
+			sm_filename = oldSliderMainBean.getSm_filename();
 		}
 
+		sliderMainBean.setSm_path(sm_path);
+		sliderMainBean.setSm_filename(sm_filename);
+		sliderMainBean.setSm_status(oldSliderMainBean.getSm_status());
 		sliderMainBean.setSm_update_time(new java.util.Date());
 
 		sliderMainService.update(sliderMainBean);

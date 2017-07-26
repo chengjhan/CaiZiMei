@@ -10,20 +10,17 @@
 </head>
 <body>
 	<table border="1">
-		<tbody>
-			<c:forEach var="bean" items="${sliderMainList}" varStatus="status">
+		<c:forEach var="bean" items="${sliderMainList}" varStatus="status">
+			<tbody>
 					<tr>
-						<td rowspan="9"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
-						<td>編號</td>
-						<td>${status.count}</td>
-						<td rowspan="9">
+						<td rowspan="8">${status.count}</td>
+						<td rowspan="8"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
+						<td>流水號</td>
+						<td>${bean.sm_id}</td>
+						<td rowspan="8">
 							<a href="<%=request.getContextPath()%>/slider-main/edit?sm_id=${bean.sm_id}">編輯</a><br />
 							<a href="<%=request.getContextPath()%>/slider-main/switch?sm_id=${bean.sm_id}">變更</a>
 						</td>
-					</tr>
-					<tr>
-						<td>流水號</td>
-						<td>${bean.sm_id}</td>
 					</tr>
 					<tr>
 						<td>名稱</td>
@@ -53,8 +50,8 @@
 						<td>最後更新時間</td>
 						<td>${bean.sm_update_time}</td>
 					</tr>
-			</c:forEach>
-		</tbody>
+			</tbody>
+		</c:forEach>
 	</table>
 	<p>
 		<a href="<%=request.getContextPath()%>/slider-main/add">新增</a>

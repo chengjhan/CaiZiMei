@@ -115,11 +115,12 @@ create table franchisee (
 create table slider_main (
 	sm_id					int auto_increment not null,
 	sm_name					nvarchar(20) not null,
-	sm_path					varchar(100) not null,
-	sm_filename				varchar(50) not null,
+	sm_path					varchar(500) not null,
+	sm_filename				varchar(20) not null,
 	sm_url					varchar(100),
 	sm_rank					tinyint not null,
 	sm_status				tinyint not null,
+	sm_update_time			datetime not null,
 	primary key (sm_id)
 );
 

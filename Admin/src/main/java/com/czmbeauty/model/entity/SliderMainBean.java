@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainBean.java
  * Author: 詹晟
- * Date: 2017/7/25
+ * Date: 2017/7/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,6 +32,7 @@ public class SliderMainBean {
 	private String sm_url;
 	private Integer sm_rank;
 	private Integer sm_status;
+	private java.util.Date sm_update_time;
 
 	public Integer getSm_id() {
 		return sm_id;
@@ -87,6 +88,14 @@ public class SliderMainBean {
 
 	public void setSm_status(Integer sm_status) {
 		this.sm_status = sm_status;
+	}
+
+	public java.util.Date getSm_update_time() {
+		return sm_update_time;
+	}
+
+	public void setSm_update_time(java.util.Date sm_update_time) {
+		this.sm_update_time = sm_update_time;
 	}
 
 }

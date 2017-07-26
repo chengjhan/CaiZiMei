@@ -78,8 +78,14 @@ public class SliderMainServiceImpl implements SliderMainService {
 	@Override
 	@Transactional
 	public SliderMainBean insert(SliderMainBean sliderMainBean) {
-		// TODO Auto-generated method stub
-		return null;
+
+		SliderMainBean result = null;
+
+		if (sliderMainBean != null) {
+
+			result = sliderMainDao.insert(sliderMainBean);
+		}
+		return result;
 	}
 
 	/**
@@ -91,8 +97,8 @@ public class SliderMainServiceImpl implements SliderMainService {
 	@Override
 	@Transactional
 	public SliderMainBean update(SliderMainBean sliderMainBean) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return sliderMainDao.update(sliderMainBean);
 	}
 
 	/**

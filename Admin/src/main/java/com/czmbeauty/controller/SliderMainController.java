@@ -8,6 +8,10 @@
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.CommonConstants.DOT;
+import static com.czmbeauty.common.constants.DirectoryConstants.IMAGES;
+import static com.czmbeauty.common.constants.DirectoryConstants.SLIDER_MAIN;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.FILE;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.SLIDER_MAIN_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.SLIDER_MAIN_LIST;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
@@ -17,9 +21,11 @@ import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_LIST_
 
 import java.io.File;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,11 +45,19 @@ import com.czmbeauty.model.service.SliderMainService;
 @Controller
 public class SliderMainController {
 
+	private static final Logger logger = Logger.getLogger(SliderMainController.class);
+
 	/**
 	 * 注入 SliderMainService
 	 */
 	@Autowired
 	private SliderMainService sliderMainService;
+
+	/**
+	 * 注入 ServletContext
+	 */
+	@Autowired
+	private ServletContext context;
 
 	/**
 	 * 圖片一覽 - 初期處理
@@ -80,20 +94,19 @@ public class SliderMainController {
 	 * 
 	 * @param file-->MultipartFile
 	 * @param sliderMainBean-->form-backing-object
-	 * @param request-->HttpServletRequest
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider-main/add.do", method = RequestMethod.POST)
-	public String addProcess(@RequestParam("file") MultipartFile file, SliderMainBean sliderMainBean,
-			HttpServletRequest request) {
+	public String addProcess(@RequestParam(FILE) MultipartFile file, SliderMainBean sliderMainBean) {
 
 		if (!file.isEmpty()) {
 
-			String sm_path = request.getServletContext().getRealPath("/images/slider-main/");
-			String sm_name = sliderMainBean.getSm_name();
-			String originalFilename = file.getOriginalFilename();
-			String extension = FilenameUtils.getExtension(originalFilename);
-			String sm_filename = sm_name + "." + extension;
+			String root = context.getRealPath("");
+			String sm_path = root + IMAGES + File.separator + SLIDER_MAIN + File.separator;
+
+			String time = String.valueOf(new java.util.Date().getTime());
+			String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+			String sm_filename = time + DOT + extension;
 
 			try {
 				file.transferTo(new File(sm_path + sm_filename));
@@ -103,12 +116,18 @@ public class SliderMainController {
 
 			sliderMainBean.setSm_path(sm_path);
 			sliderMainBean.setSm_filename(sm_filename);
+			sliderMainBean.setSm_status(1);
+			sliderMainBean.setSm_update_time(new java.util.Date());
 
 			sliderMainService.insert(sliderMainBean);
+
+			logger.info("圖片上傳成功，位置: " + sm_path + sm_filename);
 
 			// 新增成功
 			return REDIRECT + SLIDER_MAIN_LIST_PAGE;
 		}
+
+		logger.info("圖片上傳失敗");
 
 		// 新增失敗
 		return REDIRECT + SLIDER_MAIN_LIST_PAGE;
@@ -137,9 +156,35 @@ public class SliderMainController {
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider-main/edit.do", method = RequestMethod.POST)
-	public String editProcess(SliderMainBean sliderMainBean) {
+	public String editProcess(@RequestParam(FILE) MultipartFile file, SliderMainBean sliderMainBean,
+			HttpServletRequest request) {
+
+		if (!file.isEmpty()) {
+
+			String root = context.getRealPath("");
+			String sm_path = root + IMAGES + File.separator + SLIDER_MAIN + File.separator;
+
+			String time = String.valueOf(new java.util.Date().getTime());
+			String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+			String sm_filename = time + DOT + extension;
+
+			try {
+				file.transferTo(new File(sm_path + sm_filename));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			sliderMainBean.setSm_path(sm_path);
+			sliderMainBean.setSm_filename(sm_filename);
+
+			logger.info("圖片上傳成功，位置: " + sm_path + sm_filename);
+		}
+
+		sliderMainBean.setSm_update_time(new java.util.Date());
 
 		sliderMainService.update(sliderMainBean);
+
+		logger.info("圖片編輯成功");
 
 		return REDIRECT + SLIDER_MAIN_LIST_PAGE;
 	}

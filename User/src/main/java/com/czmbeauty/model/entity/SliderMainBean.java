@@ -31,7 +31,6 @@ public class SliderMainBean {
 	private Integer sm_id;
 	@Expose
 	private String sm_name;
-	@Expose
 	private String sm_path;
 	@Expose
 	private String sm_filename;
@@ -39,9 +38,7 @@ public class SliderMainBean {
 	private String sm_url;
 	@Expose
 	private Integer sm_rank;
-	@Expose
 	private Integer sm_status;
-	@Expose
 	private java.util.Date sm_update_time;
 
 	public Integer getSm_id() {

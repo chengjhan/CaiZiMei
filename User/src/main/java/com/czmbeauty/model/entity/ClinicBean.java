@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicBean.java
  * Author: 詹晟
- * Date: 2017/7/18
+ * Date: 2017/7/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.google.gson.annotations.Expose;
 
@@ -57,15 +55,9 @@ public class ClinicBean {
 	private Double cl_longitude;
 	@Expose
 	private String cl_url;
-	@Temporal(TemporalType.TIMESTAMP)
-	@Expose
 	private java.util.Date cl_insert_time;
-	@Temporal(TemporalType.TIMESTAMP)
-	@Expose
 	private java.util.Date cl_update_time;
-	@Expose
 	private Integer cl_status;
-	@Expose
 	private java.util.Date cl_status_time;
 
 	public Integer getCl_id() {

@@ -164,4 +164,4 @@ insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 13, '金門�
 insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 14, '連江縣', 1);
 
 -- clinic
-insert into clinic (cl_name, cl_eng_name, cl_localphone, cl_co_id, cl_st_id, cl_ci_id, cl_address, cl_latitude, cl_longitude, cl_url, cl_insert_time, cl_update_time, cl_status, cl_status_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 1, 11, 101, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now(), '1', now());
+insert into clinic (cl_name, cl_eng_name, cl_localphone, cl_co_id, cl_st_id, cl_ci_id, cl_address, cl_latitude, cl_longitude, cl_url, cl_insert_time, cl_update_time, cl_status, cl_status_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now(), '1', now());

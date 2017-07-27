@@ -20,7 +20,7 @@ $(document).ready(function(){
 	
 	$.getJSON("slider-main/open-slide-list.ajax", function(data){
 		$.each(data, function(index, sliderMainBean){
-			var slide_img = $("<img src=/Admin/images/slider-main/" + sliderMainBean.sm_filename + " class='img-slider'>");
+			var slide_img = $("<img src='/Admin/images/slider-main/" + sliderMainBean.sm_filename + "' title='" + sliderMainBean.sm_name + "' alt='" + sliderMainBean.sm_name + "' class='img-slider'>");
 			var slide_a = $("<a href=" + sliderMainBean.sm_url + " target='_blank' class='a-silder'></a>").append(slide_img);
 			var slide_div = $("<div class='swiper-slide'></div>").append(slide_a);
 			swiper.appendSlide(slide_div);

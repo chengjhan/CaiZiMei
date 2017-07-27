@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/24
+ * Date: 2017/7/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -36,8 +36,9 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 註冊
 	 * 
-	 * @param adminBean-->AdminBean
-	 * @return result-->AdminBean
+	 * @param adminBean
+	 *            AdminBean
+	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
@@ -67,9 +68,11 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 登入
 	 * 
-	 * @param ad_username-->管理員帳號
-	 * @param ad_password-->管理員密碼(原碼)
-	 * @return adminBean-->AdminBean
+	 * @param ad_username
+	 *            管理員帳號
+	 * @param ad_password
+	 *            管理員密碼(原碼)
+	 * @return AdminBean
 	 * @return null
 	 * @return null
 	 */
@@ -115,7 +118,8 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 管理員流水號搜尋
 	 * 
-	 * @param ad_id-->管理員流水號
+	 * @param ad_id
+	 *            管理員流水號
 	 * @return AdminBean
 	 */
 	@Override
@@ -128,7 +132,8 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 管理員帳號搜尋
 	 * 
-	 * @param ad_username-->管理員帳號
+	 * @param ad_username
+	 *            管理員帳號
 	 * @return AdminBean
 	 */
 	@Override
@@ -141,7 +146,8 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 管理員信箱搜尋
 	 * 
-	 * @param ad_email-->管理員信箱
+	 * @param ad_email
+	 *            管理員信箱
 	 * @return AdminBean
 	 */
 	@Override
@@ -154,7 +160,8 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 修改資料
 	 * 
-	 * @param adminBean-->AdminBean
+	 * @param adminBean
+	 *            AdminBean
 	 * @return AdminBean
 	 */
 	@Override
@@ -169,9 +176,12 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 修改密碼
 	 * 
-	 * @param adminBean-->AdminBean
-	 * @param ad_password_old-->舊密碼(原碼)
-	 * @param ad_password_new-->新密碼(原碼)
+	 * @param adminBean
+	 *            AdminBean
+	 * @param ad_password_old
+	 *            舊密碼(原碼)
+	 * @param ad_password_new
+	 *            新密碼(原碼)
 	 * @return AdminBean
 	 * @return null
 	 */
@@ -202,8 +212,10 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 忘記密碼
 	 * 
-	 * @param adminBean-->AdminBean
-	 * @param ad_password_random-->驗證碼(原碼)
+	 * @param adminBean
+	 *            AdminBean
+	 * @param ad_password_random
+	 *            驗證碼(原碼)
 	 * @return AdminBean
 	 */
 	@Override
@@ -222,8 +234,9 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 切換狀態
 	 * 
-	 * @param adminBean_ad_id-->AdminBean-->ad_id
-	 * @return adminBean-->AdminBean
+	 * @param adminBean_ad_id
+	 *            AdminBean --> ad_id
+	 * @return AdminBean
 	 */
 	@Override
 	@Transactional

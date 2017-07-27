@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/7/24
+ * Date: 2017/7/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,24 +19,56 @@ import com.czmbeauty.model.entity.AdminBean;
  */
 public interface AdminService {
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#signUp(AdminBean)
+	 */
 	AdminBean signUp(AdminBean adminBean);
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#signIn(String, String)
+	 */
 	AdminBean signIn(String ad_username, String ad_password);
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#selectAll()
+	 */
 	List<AdminBean> selectAll();
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#selectByAd_id(Integer)
+	 */
 	AdminBean selectByAd_id(Integer ad_id);
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#selectByAd_username(String)
+	 */
 	AdminBean selectByAd_username(String ad_username);
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#selectByAd_email(String)
+	 */
 	AdminBean selectByAd_email(String ad_email);
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#update(AdminBean)
+	 */
 	AdminBean update(AdminBean adminBean);
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#updateAd_password(AdminBean,
+	 *      String, String)
+	 */
 	AdminBean updateAd_password(AdminBean adminBean, String ad_password_old, String ad_password_new);
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#updateAd_password(AdminBean,
+	 *      String)
+	 */
 	AdminBean updateAd_password(AdminBean adminBean, String ad_password_random);
 
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#updateAd_status(AdminBean)
+	 */
 	AdminBean updateAd_status(AdminBean adminBean_ad_id);
 
 }

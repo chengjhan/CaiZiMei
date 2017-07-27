@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/25
+ * Date: 2017/7/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -79,7 +79,8 @@ public class AdminController {
 	/**
 	 * 註冊 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 */
 	@RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
@@ -94,7 +95,8 @@ public class AdminController {
 	/**
 	 * 註冊 - submit
 	 * 
-	 * @param adminBean-->form-backing-object
+	 * @param adminBean
+	 *            AdminBean --> form backing object
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 */
@@ -141,7 +143,8 @@ public class AdminController {
 	/**
 	 * 編輯個人資訊 - submit
 	 * 
-	 * @param admin-->form-backing-object
+	 * @param admin
+	 *            AdminBean --> form backing object
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
 	// 得到 <form:form modelAttribute="admin"> 表單更新的資料
@@ -167,9 +170,12 @@ public class AdminController {
 	/**
 	 * 變更密碼 - submit
 	 * 
-	 * @param admin-->Session
-	 * @param ad_password_old-->舊密碼(原碼)
-	 * @param ad_password_new-->新密碼(原碼)
+	 * @param admin
+	 *            Session
+	 * @param ad_password_old
+	 *            舊密碼(原碼)
+	 * @param ad_password_new
+	 *            新密碼(原碼)
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
@@ -192,8 +198,10 @@ public class AdminController {
 	/**
 	 * 登入 - 初期處理
 	 * 
-	 * @param next-->SigninInterceptor-->GET-->next
-	 * @param model-->Model
+	 * @param next
+	 *            SigninInterceptor --> GET --> 原請求畫面
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
@@ -215,10 +223,14 @@ public class AdminController {
 	/**
 	 * 登入 - submit
 	 * 
-	 * @param ad_username-->管理員帳號
-	 * @param ad_password-->管理員密碼(原碼)
-	 * @param request-->HttpServletRequest
-	 * @param model-->Model
+	 * @param ad_username
+	 *            管理員帳號
+	 * @param ad_password
+	 *            管理員密碼(原碼)
+	 * @param request
+	 *            HttpServletRequest
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/next
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/secure/sign-in.jsp
@@ -288,8 +300,10 @@ public class AdminController {
 	/**
 	 * 忘記密碼 - submit
 	 * 
-	 * @param ad_email-->Session
-	 * @param model-->Model
+	 * @param ad_email
+	 *            管理員信箱
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 * @return /WEB-INF/views/secure/forget-password.jsp
 	 */
@@ -337,10 +351,14 @@ public class AdminController {
 	/**
 	 * 重設密碼 - submit
 	 * 
-	 * @param ad_email-->Session
-	 * @param ad_password_random-->驗證碼(原碼)
-	 * @param ad_password_new-->新密碼(原碼)
-	 * @param sessionStatus-->SessionStatus
+	 * @param ad_email
+	 *            Session
+	 * @param ad_password_random
+	 *            驗證碼(原碼)
+	 * @param ad_password_new
+	 *            新密碼(原碼)
+	 * @param sessionStatus
+	 *            SessionStatus
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
@@ -368,9 +386,12 @@ public class AdminController {
 	/**
 	 * 登出
 	 * 
-	 * @param admin-->Session
-	 * @param request-->HttpServletRequest
-	 * @param sessionStatus-->SessionStatus
+	 * @param admin
+	 *            Session
+	 * @param request
+	 *            HttpServletRequest
+	 * @param sessionStatus
+	 *            SessionStatus
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-out", method = RequestMethod.GET)
@@ -393,7 +414,8 @@ public class AdminController {
 	/**
 	 * 管理員一覽 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
@@ -408,7 +430,8 @@ public class AdminController {
 	/**
 	 * 帳戶開關 - submit
 	 * 
-	 * @param adminBean_ad_id-->form-backing-object-->GET-->ad_id
+	 * @param adminBean_ad_id
+	 *            AdminBean --> form backing object --> GET --> ad_id
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */
 	@RequestMapping(value = "/admin/switch", method = RequestMethod.GET)

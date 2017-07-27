@@ -19,6 +19,9 @@ import com.czmbeauty.model.entity.SliderMainBean;
  */
 public interface SliderMainService {
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.SliderMainServiceImpl#selectBySm_status()
+	 */
 	List<SliderMainBean> selectBySm_status();
 
 }

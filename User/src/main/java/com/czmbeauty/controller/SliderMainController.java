@@ -38,7 +38,7 @@ public class SliderMainController {
 	/**
 	 * 開啟的圖片 JSON (AJAX)
 	 * 
-	 * @return clinic JSON
+	 * @return slide JSON
 	 */
 	@RequestMapping(value = "/slider-main/open-slide-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -46,7 +46,6 @@ public class SliderMainController {
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
-		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		Gson gson = builder.create();
 
 		List<SliderMainBean> result = sliderMainService.selectBySm_status();

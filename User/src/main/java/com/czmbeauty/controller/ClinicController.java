@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.czmbeauty.model.entity.ClinicBean;
 import com.czmbeauty.model.service.ClinicService;
@@ -28,7 +27,6 @@ import com.google.gson.GsonBuilder;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes("clinicList")
 public class ClinicController {
 
 	/**
@@ -48,7 +46,6 @@ public class ClinicController {
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
-		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		Gson gson = builder.create();
 
 		List<ClinicBean> result = clinicService.selectByCl_status();

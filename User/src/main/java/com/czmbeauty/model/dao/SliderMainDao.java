@@ -19,6 +19,9 @@ import com.czmbeauty.model.entity.SliderMainBean;
  */
 public interface SliderMainDao {
 
+	/**
+	 * @see com.czmbeauty.model.dao.impl.SliderMainDaoImpl#selectBySm_status()
+	 */
 	List<SliderMainBean> selectBySm_status();
 
 }

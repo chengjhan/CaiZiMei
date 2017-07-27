@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainController.java
  * Author: 詹晟
- * Date: 2017/7/26
+ * Date: 2017/7/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -61,7 +61,8 @@ public class SliderMainController {
 	/**
 	 * 圖片一覽 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider-main/list", method = RequestMethod.GET)
@@ -76,7 +77,8 @@ public class SliderMainController {
 	/**
 	 * 新增圖片 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/slider-main/add.jsp
 	 */
 	@RequestMapping(value = "/slider-main/add", method = RequestMethod.GET)
@@ -91,8 +93,10 @@ public class SliderMainController {
 	/**
 	 * 新增圖片 - submit
 	 * 
-	 * @param file-->MultipartFile
-	 * @param sliderMainBean-->form-backing-object
+	 * @param file
+	 *            MultipartFile
+	 * @param sliderMainBean
+	 *            SliderMainBean --> form backing object
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider-main/add.do", method = RequestMethod.POST)
@@ -135,8 +139,10 @@ public class SliderMainController {
 	/**
 	 * 編輯圖片資訊 - 初期處理
 	 * 
-	 * @param sliderMainBean_sm_id-->form-backing-object-->GET-->sm_id
-	 * @param model-->Model
+	 * @param sliderMainBean_sm_id
+	 *            SliderMainBean --> form backing object --> GET --> sm_id
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/slider-main/edit.jsp
 	 */
 	@RequestMapping(value = "/slider-main/edit", method = RequestMethod.GET)
@@ -151,15 +157,17 @@ public class SliderMainController {
 	/**
 	 * 編輯圖片資訊 - submit
 	 * 
-	 * @param file-->MultipartFile
-	 * @param sliderMainBean-->form-backing-object
+	 * @param file
+	 *            MultipartFile
+	 * @param sliderMainBean
+	 *            SliderMainBean --> form backing object
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider-main/edit.do", method = RequestMethod.POST)
 	public String editProcess(@RequestParam(FILE) MultipartFile file, SliderMainBean sliderMainBean) {
 
 		SliderMainBean oldSliderMainBean = sliderMainService.selectBySm_id(sliderMainBean.getSm_id());
-		
+
 		String sm_path;
 		String sm_filename;
 
@@ -200,7 +208,8 @@ public class SliderMainController {
 	/**
 	 * 圖片開關 - submit
 	 * 
-	 * @param sliderMainBean_sm_id-->form-backing-object-->GET-->sm_id
+	 * @param sliderMainBean_sm_id
+	 *            SliderMainBean --> form backing object --> GET --> sm_id
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider-main/switch", method = RequestMethod.GET)

@@ -1,5 +1,5 @@
 /*
- * CaiZiMei
+ * CaiZiMei/User
  * File: ClinicBean.java
  * Author: 詹晟
  * Date: 2017/7/27

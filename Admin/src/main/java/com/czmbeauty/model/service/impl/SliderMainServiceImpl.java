@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/25
+ * Date: 2017/7/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -47,7 +47,8 @@ public class SliderMainServiceImpl implements SliderMainService {
 	/**
 	 * 圖片流水號搜尋
 	 * 
-	 * @param sm_id-->圖片流水號
+	 * @param sm_id
+	 *            圖片流水號
 	 * @return SliderMainBean
 	 */
 	@Override
@@ -72,8 +73,9 @@ public class SliderMainServiceImpl implements SliderMainService {
 	/**
 	 * 新增圖片
 	 * 
-	 * @param sliderMainBean-->SliderMainBean
-	 * @return result-->SliderMainBean
+	 * @param sliderMainBean
+	 *            SliderMainBean
+	 * @return SliderMainBean
 	 */
 	@Override
 	@Transactional
@@ -91,7 +93,8 @@ public class SliderMainServiceImpl implements SliderMainService {
 	/**
 	 * 修改資料
 	 * 
-	 * @param sliderMainBean-->SliderMainBean
+	 * @param sliderMainBean
+	 *            SliderMainBean
 	 * @return SliderMainBean
 	 */
 	@Override
@@ -104,8 +107,9 @@ public class SliderMainServiceImpl implements SliderMainService {
 	/**
 	 * 切換狀態
 	 * 
-	 * @param sliderMainBean_sm_id-->SliderMainBean-->sm_id
-	 * @return sliderMainBean-->SliderMainBean
+	 * @param sliderMainBean_sm_id
+	 *            SliderMainBean --> sm_id
+	 * @return SliderMainBean
 	 */
 	@Override
 	@Transactional

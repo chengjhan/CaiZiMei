@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/25
+ * Date: 2017/7/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,8 +46,9 @@ public class SliderMainDaoImpl implements SliderMainDao {
 	/**
 	 * 圖片流水號搜尋
 	 * 
-	 * @param sm_id-->圖片流水號
-	 * @return List<SliderMainBean>
+	 * @param sm_id
+	 *            圖片流水號
+	 * @return SliderMainBean
 	 */
 	@Override
 	public SliderMainBean selectBySm_id(Integer sm_id) {
@@ -71,8 +72,9 @@ public class SliderMainDaoImpl implements SliderMainDao {
 	/**
 	 * 新增圖片
 	 * 
-	 * @param sliderMainBean-->SliderMainBean
-	 * @return sliderMainBean-->SliderMainBean
+	 * @param sliderMainBean
+	 *            SliderMainBean
+	 * @return SliderMainBean
 	 */
 	@Override
 	public SliderMainBean insert(SliderMainBean sliderMainBean) {
@@ -85,8 +87,9 @@ public class SliderMainDaoImpl implements SliderMainDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param sliderMainBean-->SliderMainBean
-	 * @return sliderMainBean-->SliderMainBean
+	 * @param sliderMainBean
+	 *            SliderMainBean
+	 * @return SliderMainBean
 	 */
 	@Override
 	public SliderMainBean update(SliderMainBean sliderMainBean) {

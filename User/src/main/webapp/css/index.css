@@ -73,11 +73,11 @@ h3 {
 }
 
 .swiper-button-prev {
-	background-image: url("http://localhost:8080/CaiZiMei_springmvc/images/slider_arrow_left.svg");
+	background-image: url("/User/images/slider_arrow_left.svg");
 }
 
 .swiper-button-next {
-	background-image: url("http://localhost:8080/CaiZiMei_springmvc/images/slider_arrow_right.svg");
+	background-image: url("/User/images/slider_arrow_right.svg");
 }
 
 .swiper-pagination-bullet-active {

@@ -23,12 +23,11 @@
 		<section id="section-1">
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"><a href="http://www.twinkle-clinic.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_twinkle_clinic_1000x380.jpg" class="img-slider"></a></div>
-					<div class="swiper-slide"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_diamondcosmetic_1000x380.jpg" class="img-slider"></a></div>
-					<div class="swiper-slide"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_fabulous_clinic_1000x380.png" class="img-slider"></a></div>
-					<div class="swiper-slide"><a href="http://hollywood.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_hollywood_1000x380.jpg" class="img-slider"></a></div>
-					<div class="swiper-slide"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png" class="img-slider"></a></div>
-					<div class="swiper-slide"><a href="http://1637.tw/07-2270748/" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_1637_1000x380.jpg" class="img-slider"></a></div>
+<%-- 					<div class="swiper-slide"><a href="http://www.twinkle-clinic.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_twinkle_clinic_1000x380.jpg" class="img-slider"></a></div> --%>
+<%-- 					<div class="swiper-slide"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_diamondcosmetic_1000x380.jpg" class="img-slider"></a></div> --%>
+<%-- 					<div class="swiper-slide"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_fabulous_clinic_1000x380.png" class="img-slider"></a></div> --%>
+<%-- 					<div class="swiper-slide"><a href="http://hollywood.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_hollywood_1000x380.jpg" class="img-slider"></a></div> --%>
+<%-- 					<div class="swiper-slide"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png" class="img-slider"></a></div> --%>					
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div>
@@ -38,88 +37,91 @@
 			</div>
 		</section>
 		<section id="section-2">
-			<div class="swiper-container" style="float:left">
-				<h3>相關影音</h3>
-				<div class="swiper-wrapper">
-					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/zrNZARN_wXI" frameborder="0" allowfullscreen></iframe></div>
-					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/RiDrdTmFzJs" frameborder="0" allowfullscreen></iframe></div>
-					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/XnHGRpli9gA" frameborder="0" allowfullscreen></iframe></div>
-				</div>
+<!-- 			<div class="swiper-container" style="float:left"> -->
+<!-- 				<h3>相關影音</h3> -->
+<!-- 				<div class="swiper-wrapper"> -->
+<!-- 					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/zrNZARN_wXI" frameborder="0" allowfullscreen></iframe></div> -->
+<!-- 					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/RiDrdTmFzJs" frameborder="0" allowfullscreen></iframe></div> -->
+<!-- 					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/XnHGRpli9gA" frameborder="0" allowfullscreen></iframe></div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
+<!-- 				</div> -->
 				<!-- Add Pagination -->
-				<div class="swiper-pagination"></div>
+<!-- 				<div class="swiper-pagination"></div> -->
 				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
-			<div class="swiper-container" style="float:right">
-				<h3>加盟店資訊</h3>
-				<div class="swiper-wrapper">
-					<div class="swiper-slide" style="height:342px">Slide 1</div>
-					<div class="swiper-slide" style="height:342px">Slide 2</div>
-					<div class="swiper-slide" style="height:342px">Slide 3</div>
-				</div>
+<!-- 				<div class="swiper-button-next"></div> -->
+<!-- 				<div class="swiper-button-prev"></div> -->
+<!-- 			</div> -->
+<!-- 			<div class="swiper-container" style="float:right"> -->
+<!-- 				<h3>加盟店資訊</h3> -->
+<!-- 				<div class="swiper-wrapper"> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
+<!-- 				</div> -->
 				<!-- Add Pagination -->
-				<div class="swiper-pagination"></div>
+<!-- 				<div class="swiper-pagination"></div> -->
 				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
+<!-- 				<div class="swiper-button-next"></div> -->
+<!-- 				<div class="swiper-button-prev"></div> -->
+<!-- 			</div> -->
 		</section>
 		<section id="section-3">
-			<div class="swiper-container" style="float:left">
-				<h3>近期活動</h3>
-				<div class="swiper-wrapper">
-					<div class="swiper-slide" style="height:342px">Slide 1</div>
-					<div class="swiper-slide" style="height:342px">Slide 2</div>
-					<div class="swiper-slide" style="height:342px">Slide 3</div>
-				</div>
+<!-- 			<div class="swiper-container" style="float:left"> -->
+<!-- 				<h3>近期活動</h3> -->
+<!-- 				<div class="swiper-wrapper"> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
+<!-- 				</div> -->
 				<!-- Add Pagination -->
-				<div class="swiper-pagination"></div>
+<!-- 				<div class="swiper-pagination"></div> -->
 				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
-			<div class="swiper-container" style="float:right">
-				<h3>優惠活動</h3>
-				<div class="swiper-wrapper">
-					<div class="swiper-slide" style="height:342px">Slide 1</div>
-					<div class="swiper-slide" style="height:342px">Slide 2</div>
-					<div class="swiper-slide" style="height:342px">Slide 3</div>
-				</div>
+<!-- 				<div class="swiper-button-next"></div> -->
+<!-- 				<div class="swiper-button-prev"></div> -->
+<!-- 			</div> -->
+<!-- 			<div class="swiper-container" style="float:right"> -->
+<!-- 				<h3>優惠活動</h3> -->
+<!-- 				<div class="swiper-wrapper"> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
+<!-- 				</div> -->
 				<!-- Add Pagination -->
-				<div class="swiper-pagination"></div>
+<!-- 				<div class="swiper-pagination"></div> -->
 				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
+<!-- 				<div class="swiper-button-next"></div> -->
+<!-- 				<div class="swiper-button-prev"></div> -->
+<!-- 			</div> -->
 		</section>
 		<section id="section-4">
-			<div class="swiper-container" style="float:left">
-				<h3>醫療新知</h3>
-				<div class="swiper-wrapper">
-					<div class="swiper-slide" style="height:342px">Slide 1</div>
-					<div class="swiper-slide" style="height:342px">Slide 2</div>
-					<div class="swiper-slide" style="height:342px">Slide 3</div>
-				</div>
+<!-- 			<div class="swiper-container" style="float:left"> -->
+<!-- 				<h3>醫療新知</h3> -->
+<!-- 				<div class="swiper-wrapper"> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
+<!-- 				</div> -->
 				<!-- Add Pagination -->
-				<div class="swiper-pagination"></div>
+<!-- 				<div class="swiper-pagination"></div> -->
 				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
-			<div class="swiper-container" style="float:right">
-				<h3>醫療團隊</h3>
-				<div class="swiper-wrapper">
-					<div class="swiper-slide" style="height:342px">Slide 1</div>
-					<div class="swiper-slide" style="height:342px">Slide 2</div>
-					<div class="swiper-slide" style="height:342px">Slide 3</div>
-				</div>
+<!-- 				<div class="swiper-button-next"></div> -->
+<!-- 				<div class="swiper-button-prev"></div> -->
+<!-- 			</div> -->
+<!-- 			<div class="swiper-container" style="float:right"> -->
+<!-- 				<h3>醫療團隊</h3> -->
+<!-- 				<div class="swiper-wrapper"> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
+<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
+<!-- 				</div> -->
 				<!-- Add Pagination -->
-				<div class="swiper-pagination"></div>
+<!-- 				<div class="swiper-pagination"></div> -->
 				<!-- Add Arrows -->
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-			</div>
+<!-- 				<div class="swiper-button-next"></div> -->
+<!-- 				<div class="swiper-button-prev"></div> -->
+<!-- 			</div> -->
 		</section>
 		<section id="section-5">
 			<div id="id-map"></div>
@@ -130,7 +132,7 @@
 	<c:import url="footer.jsp" />
 	
 	<!-- load -->
-	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/index.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<%=request.getContextPath()%>/js/index-slider.js" type="text/javascript" charset="utf-8"></script>

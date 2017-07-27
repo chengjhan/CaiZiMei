@@ -22,7 +22,7 @@
 		<section id="section-0"></section>
 		<section id="section-1">
 			<div id="id-div-section-1-content">
-				<img src="<%=request.getContextPath()%>/images/caizimei_territory_1002x382.jpg" class="img-territory">
+				<img src="<%=request.getContextPath()%>/images/menu/territory_1002x382.jpg" class="img-territory">
 			</div>
 		</section>
 		<section id="section-99"></section>

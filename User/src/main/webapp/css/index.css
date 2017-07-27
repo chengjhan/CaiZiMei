@@ -73,11 +73,11 @@ h3 {
 }
 
 .swiper-button-prev {
-	background-image: url("/User/images/slider_arrow_left.svg");
+	background-image: url("/User/images/index/slider_arrow_left.svg");
 }
 
 .swiper-button-next {
-	background-image: url("/User/images/slider_arrow_right.svg");
+	background-image: url("/User/images/index/slider_arrow_right.svg");
 }
 
 .swiper-pagination-bullet-active {

@@ -171,7 +171,7 @@ public class AdminController {
 	 * 變更密碼 - submit
 	 * 
 	 * @param admin
-	 *            Session
+	 *            AdminBean --> Session
 	 * @param ad_password_old
 	 *            舊密碼(原碼)
 	 * @param ad_password_new
@@ -352,7 +352,7 @@ public class AdminController {
 	 * 重設密碼 - submit
 	 * 
 	 * @param ad_email
-	 *            Session
+	 *            String --> Session
 	 * @param ad_password_random
 	 *            驗證碼(原碼)
 	 * @param ad_password_new
@@ -387,7 +387,7 @@ public class AdminController {
 	 * 登出
 	 * 
 	 * @param admin
-	 *            Session
+	 *            AdminBean --> Session
 	 * @param request
 	 *            HttpServletRequest
 	 * @param sessionStatus

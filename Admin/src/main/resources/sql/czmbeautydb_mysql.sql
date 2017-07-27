@@ -116,7 +116,7 @@ create table slider_main (
 	sm_id					int auto_increment not null,
 	sm_name					nvarchar(20) not null,
 	sm_path					varchar(500) not null,
-	sm_filename				varchar(20) not null,
+	sm_filename				varchar(50) not null,
 	sm_url					varchar(100),
 	sm_rank					tinyint not null,
 	sm_status				tinyint not null,
@@ -165,3 +165,11 @@ insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 14, '連江�
 
 -- clinic
 insert into clinic (cl_name, cl_eng_name, cl_localphone, cl_co_id, cl_st_id, cl_ci_id, cl_address, cl_latitude, cl_longitude, cl_url, cl_insert_time, cl_update_time, cl_status, cl_status_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now(), '1', now());
+
+-- slider_main
+insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('曼星整形醫美診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_twinkle_clinic_1000x380.jpg', 'http://twinkle-clinic.tw', 1, 1, now());
+insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('晶鑽時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_diamondcosmetic_1000x380.jpg', 'http://diamondcosmetic.com.tw/', 2, 1, now());
+insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('法泊時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_fabulous_clinic_1000x380.png', 'http://www.fabulous-clinic.com', 3, 1, now());
+insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty_1000x380.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
+insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood_1000x380.jpg', 'http://hollywood.tw/', 5, 1, now());
+insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637_1000x380.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());

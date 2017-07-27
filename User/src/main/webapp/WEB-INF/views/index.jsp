@@ -22,13 +22,7 @@
 <!-- 		<section id="section-0"></section> -->
 		<section id="section-1">
 			<div class="swiper-container">
-				<div class="swiper-wrapper">
-<%-- 					<div class="swiper-slide"><a href="http://www.twinkle-clinic.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_twinkle_clinic_1000x380.jpg" class="img-slider"></a></div> --%>
-<%-- 					<div class="swiper-slide"><a href="http://diamondcosmetic.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_diamondcosmetic_1000x380.jpg" class="img-slider"></a></div> --%>
-<%-- 					<div class="swiper-slide"><a href="http://www.fabulous-clinic.com" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_fabulous_clinic_1000x380.png" class="img-slider"></a></div> --%>
-<%-- 					<div class="swiper-slide"><a href="http://hollywood.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_hollywood_1000x380.jpg" class="img-slider"></a></div> --%>
-<%-- 					<div class="swiper-slide"><a href="http://www.joya-beauty.com.tw" target="_blank" class="a-silder"><img src="<%=request.getContextPath()%>/images/clinic_joya_beauty_1000x380.png" class="img-slider"></a></div> --%>					
-				</div>
+				<div class="swiper-wrapper"></div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div>
 				<!-- Add Arrows -->
@@ -135,7 +129,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/index.js" type="text/javascript" charset="utf-8"></script>
-	<script src="<%=request.getContextPath()%>/js/index-slider.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/index-slider-main.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<%=request.getContextPath()%>/js/index-map.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJznZ1ht-uJFa-tBJBpYYtzQ2609ba2Eg&callback=initMap" async defer></script>
 </body>

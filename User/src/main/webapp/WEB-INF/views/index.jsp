@@ -23,9 +23,7 @@
 		<section id="section-1">
 			<div class="swiper-container">
 				<div class="swiper-wrapper"></div>
-				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div>
-				<!-- Add Arrows -->
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
@@ -41,9 +39,7 @@
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
 <!-- 				</div> -->
-				<!-- Add Pagination -->
 <!-- 				<div class="swiper-pagination"></div> -->
-				<!-- Add Arrows -->
 <!-- 				<div class="swiper-button-next"></div> -->
 <!-- 				<div class="swiper-button-prev"></div> -->
 <!-- 			</div> -->
@@ -54,9 +50,7 @@
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
 <!-- 				</div> -->
-				<!-- Add Pagination -->
 <!-- 				<div class="swiper-pagination"></div> -->
-				<!-- Add Arrows -->
 <!-- 				<div class="swiper-button-next"></div> -->
 <!-- 				<div class="swiper-button-prev"></div> -->
 <!-- 			</div> -->
@@ -69,9 +63,7 @@
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
 <!-- 				</div> -->
-				<!-- Add Pagination -->
 <!-- 				<div class="swiper-pagination"></div> -->
-				<!-- Add Arrows -->
 <!-- 				<div class="swiper-button-next"></div> -->
 <!-- 				<div class="swiper-button-prev"></div> -->
 <!-- 			</div> -->
@@ -82,9 +74,7 @@
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
 <!-- 				</div> -->
-				<!-- Add Pagination -->
 <!-- 				<div class="swiper-pagination"></div> -->
-				<!-- Add Arrows -->
 <!-- 				<div class="swiper-button-next"></div> -->
 <!-- 				<div class="swiper-button-prev"></div> -->
 <!-- 			</div> -->
@@ -97,9 +87,7 @@
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
 <!-- 				</div> -->
-				<!-- Add Pagination -->
 <!-- 				<div class="swiper-pagination"></div> -->
-				<!-- Add Arrows -->
 <!-- 				<div class="swiper-button-next"></div> -->
 <!-- 				<div class="swiper-button-prev"></div> -->
 <!-- 			</div> -->
@@ -110,9 +98,7 @@
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
 <!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
 <!-- 				</div> -->
-				<!-- Add Pagination -->
 <!-- 				<div class="swiper-pagination"></div> -->
-				<!-- Add Arrows -->
 <!-- 				<div class="swiper-button-next"></div> -->
 <!-- 				<div class="swiper-button-prev"></div> -->
 <!-- 			</div> -->

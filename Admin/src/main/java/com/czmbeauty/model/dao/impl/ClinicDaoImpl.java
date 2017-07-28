@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/21
+ * Date: 2017/7/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,7 +46,8 @@ public class ClinicDaoImpl implements ClinicDao {
 	/**
 	 * 診所流水號搜尋
 	 * 
-	 * @param cl_id-->診所流水號
+	 * @param cl_id
+	 *            Integer 診所流水號
 	 * @return ClinicBean
 	 */
 	@Override
@@ -70,8 +71,9 @@ public class ClinicDaoImpl implements ClinicDao {
 	/**
 	 * 新增診所
 	 * 
-	 * @param clinicBean-->ClinicBean
-	 * @return clinicBean-->ClinicBean
+	 * @param clinicBean
+	 *            ClinicBean
+	 * @return ClinicBean
 	 */
 	@Override
 	public ClinicBean insert(ClinicBean clinicBean) {
@@ -84,8 +86,9 @@ public class ClinicDaoImpl implements ClinicDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param newClinicBean-->ClinicBean
-	 * @return clinicBean-->ClinicBean
+	 * @param newClinicBean
+	 *            ClinicBean
+	 * @return ClinicBean
 	 */
 	@Override
 	public ClinicBean update(ClinicBean newClinicBean) {

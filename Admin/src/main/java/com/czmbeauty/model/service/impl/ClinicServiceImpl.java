@@ -55,7 +55,8 @@ public class ClinicServiceImpl implements ClinicService {
 	/**
 	 * 診所流水號搜尋
 	 * 
-	 * @param cl_id-->診所流水號
+	 * @param cl_id
+	 *            Integer 診所流水號
 	 * @return ClinicBean
 	 */
 	@Override
@@ -80,8 +81,9 @@ public class ClinicServiceImpl implements ClinicService {
 	/**
 	 * 新增診所
 	 * 
-	 * @param clinicBean-->ClinicBean
-	 * @return result-->ClinicBean
+	 * @param clinicBean
+	 *            ClinicBean
+	 * @return ClinicBean
 	 */
 	@Override
 	@Transactional
@@ -116,7 +118,8 @@ public class ClinicServiceImpl implements ClinicService {
 	/**
 	 * 修改資料
 	 * 
-	 * @param clinicBean-->ClinicBean
+	 * @param clinicBean
+	 *            ClinicBean
 	 * @return ClinicBean
 	 */
 	@Override
@@ -144,7 +147,7 @@ public class ClinicServiceImpl implements ClinicService {
 	 * 切換狀態
 	 * 
 	 * @param cl_id
-	 *            診所流水號
+	 *            Integer 診所流水號
 	 * @return ClinicBean
 	 */
 	@Override

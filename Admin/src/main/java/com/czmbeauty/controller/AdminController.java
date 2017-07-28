@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/7/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -173,9 +173,9 @@ public class AdminController {
 	 * @param admin
 	 *            AdminBean --> Session
 	 * @param ad_password_old
-	 *            舊密碼(原碼)
+	 *            String --> 舊密碼(原碼)
 	 * @param ad_password_new
-	 *            新密碼(原碼)
+	 *            String --> 新密碼(原碼)
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
@@ -224,9 +224,9 @@ public class AdminController {
 	 * 登入 - submit
 	 * 
 	 * @param ad_username
-	 *            管理員帳號
+	 *            String --> 管理員帳號
 	 * @param ad_password
-	 *            管理員密碼(原碼)
+	 *            String --> 管理員密碼(原碼)
 	 * @param request
 	 *            HttpServletRequest
 	 * @param model
@@ -301,7 +301,7 @@ public class AdminController {
 	 * 忘記密碼 - submit
 	 * 
 	 * @param ad_email
-	 *            管理員信箱
+	 *            String --> 管理員信箱
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/secure/reset-password.jsp
@@ -354,9 +354,9 @@ public class AdminController {
 	 * @param ad_email
 	 *            String --> Session
 	 * @param ad_password_random
-	 *            驗證碼(原碼)
+	 *            String --> 驗證碼(原碼)
 	 * @param ad_password_new
-	 *            新密碼(原碼)
+	 *            String --> 新密碼(原碼)
 	 * @param sessionStatus
 	 *            SessionStatus
 	 * @return /WEB-INF/views/secure/sign-in.jsp

@@ -19,16 +19,34 @@ import com.czmbeauty.model.entity.ClinicBean;
  */
 public interface ClinicService {
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.ClinicServiceImpl
+	 */
 	List<ClinicBean> selectAll();
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.ClinicServiceImpl#selectByCl_id(Integer)
+	 */
 	ClinicBean selectByCl_id(Integer cl_id);
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.ClinicServiceImpl#selectByCl_status()
+	 */
 	List<ClinicBean> selectByCl_status();
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.ClinicServiceImpl#insert(ClinicBean)
+	 */
 	ClinicBean insert(ClinicBean clinicBean);
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.ClinicServiceImpl#update(ClinicBean)
+	 */
 	ClinicBean update(ClinicBean clinicBean);
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.ClinicServiceImpl#updateCl_status(Integer)
+	 */
 	ClinicBean updateCl_status(Integer cl_id);
 
 }

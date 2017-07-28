@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/7/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -47,7 +47,7 @@ public class SliderMainDaoImpl implements SliderMainDao {
 	 * 圖片流水號搜尋
 	 * 
 	 * @param sm_id
-	 *            圖片流水號
+	 *            Integer --> 圖片流水號
 	 * @return SliderMainBean
 	 */
 	@Override

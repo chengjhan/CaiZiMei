@@ -93,7 +93,8 @@ public class ClinicController {
 	/**
 	 * 診所一覽 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/clinic/list", method = RequestMethod.GET)
@@ -108,7 +109,8 @@ public class ClinicController {
 	/**
 	 * 新增診所 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/clinic/add.jsp
 	 */
 	@RequestMapping(value = "/clinic/add", method = RequestMethod.GET)
@@ -126,7 +128,8 @@ public class ClinicController {
 	/**
 	 * 新增診所 - submit
 	 * 
-	 * @param clinicBean-->form-backing-object
+	 * @param clinicBean
+	 *            ClinicBean --> form backing object
 	 * @return /WEB-INF/views/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/clinic/add.do", method = RequestMethod.POST)
@@ -140,8 +143,10 @@ public class ClinicController {
 	/**
 	 * 編輯診所資訊 - 初期處理
 	 * 
-	 * @param clinicBean_cl_id-->form-backing-object-->GET-->cl_id
-	 * @param model-->Model
+	 * @param clinicBean_cl_id
+	 *            ClinicBean --> form backing object --> GET --> cl_id
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/clinic/edit.jsp
 	 */
 	@RequestMapping(value = "/clinic/edit", method = RequestMethod.GET)
@@ -168,7 +173,8 @@ public class ClinicController {
 	/**
 	 * 編輯診所資訊 - submit
 	 * 
-	 * @param clinicBean-->form-backing-object
+	 * @param clinicBean
+	 *            ClinicBean --> form backing object
 	 * @return /WEB-INF/views/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/clinic/edit.do", method = RequestMethod.POST)
@@ -178,20 +184,6 @@ public class ClinicController {
 
 		return REDIRECT + CLINIC_LIST_PAGE;
 	}
-
-//	/**
-//	 * 診所開關 - submit
-//	 * 
-//	 * @param clinicBean_cl_id-->form-backing-object-->GET-->cl_id
-//	 * @return /WEB-INF/views/clinic/list.jsp
-//	 */
-//	@RequestMapping(value = "/clinic/switch", method = RequestMethod.GET)
-//	public String switchProcess(ClinicBean clinicBean_cl_id) {
-//
-//		clinicService.updateCl_status(clinicBean_cl_id);
-//
-//		return REDIRECT + CLINIC_LIST_PAGE;
-//	}
 
 	/**
 	 * 所有診所 JSON (AJAX)
@@ -238,17 +230,19 @@ public class ClinicController {
 
 		return json;
 	}
-	
+
 	/**
 	 * 診所開關 (AJAX)
 	 * 
-	 * @param 
+	 * @param cl_id
+	 *            String 診所流水號
+	 * @return cl_name
 	 */
-	@RequestMapping(value = "/clinic/switch.ajax", method = RequestMethod.GET)
+	@RequestMapping(value = "/clinic/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public void switchAjaxProcess(String cl_id) {
-		
-		clinicService.updateCl_status(Integer.valueOf(cl_id));
+	public String switchAjaxProcess(String cl_id) {
+
+		return clinicService.updateCl_status(Integer.valueOf(cl_id)).getCl_name();
 	}
-	
+
 }

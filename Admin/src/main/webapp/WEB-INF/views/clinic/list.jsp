@@ -14,7 +14,7 @@
 		<label for="id-input-switch">顯示開啟的診所</label>
 		<input type="checkbox" id="id-input-switch" />
 	</div>
-	<table border="1" style="font-size:13px">
+	<table border="1" style="font-size:14px">
 		<thead>
 			<tr>
 				<td>編號</td>
@@ -31,7 +31,7 @@
 				<td>網址</td>
 <!-- 				<td>新增時間</td> -->
 				<td>更新時間</td>
-				<td>狀態更新時間</td>
+<!-- 				<td>狀態更新時間</td> -->
 				<td>編輯</td>
 				<td>狀態</td>
 			</tr>
@@ -56,10 +56,10 @@
 					<td><a href="${bean.cl_url}">${bean.cl_url}</a></td>
 <%-- 					<td>${cl_insert_time_format}</td> --%>
 					<td>${cl_update_time_format}</td>
-					<td>${cl_status_time_format}</td>
+<%-- 					<td>${cl_status_time_format}</td> --%>
 					<td><a href="<%=request.getContextPath()%>/clinic/edit?cl_id=${bean.cl_id}">編輯</a></td>
 					<td>
-						<div class="cl-status-switch" data-cl-id="${bean.cl_id}" style="width:20px">
+						<div class="cl-status-switch" data-cl-id="${bean.cl_id}" style="width:20px;cursor:pointer">
 							<c:choose>
 								<c:when test="${bean.cl_status eq 1}">
 									<img src="<%=request.getContextPath()%>/images/true.svg" data-cl-status="1" style="width:100%">
@@ -88,18 +88,16 @@
 	<script>
 		$(document).ready(function(){
 			$(".cl-status-switch").click(function(){
-				var cl_id = $(this).attr("data-cl-id");
-				alert("cl_id=" + cl_id);
-				var cl_status = $(".cl-status-switch img").attr("data-cl-status");
-				alert("cl_status=" + cl_status);
-				
-				$.get("/Admin/clinic/switch.ajax", {"cl_id": cl_id}, function(){
+				var $this = $(this);
+				var cl_id = $this.attr("data-cl-id");
+				var cl_status = $this.children("img").attr("data-cl-status");				
+				$.get("/Admin/clinic/switch.ajax", {"cl_id": cl_id}, function(data){
 					if(cl_status == "1"){
-						alert("關閉嗎?");
-						$(this).find("img").attr("src", "/Admin/images/false.svg");
+// 						alert("將關閉 「" + data + "」。");
+						$this.children("img").attr("src", "/Admin/images/false.svg");
 					}else{
-						alert("打開嗎?");
-						$(this).find("img").attr("src", "/Admin/images/true.svg");
+// 						alert("將開啟 「" + data + "」。");
+						$this.children("img").attr("src", "/Admin/images/true.svg");
 					}
 				});
 			});

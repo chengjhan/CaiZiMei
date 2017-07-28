@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/7/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -47,7 +47,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * 管理員流水號搜尋
 	 * 
 	 * @param ad_id
-	 *            管理員流水號
+	 *            Integer --> 管理員流水號
 	 * @return AdminBean
 	 */
 	@Override
@@ -60,7 +60,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * 管理員帳號搜尋
 	 * 
 	 * @param ad_username
-	 *            管理員帳號
+	 *            String --> 管理員帳號
 	 * @return AdminBean
 	 * @return null
 	 */
@@ -82,7 +82,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * 管理員信箱搜尋
 	 * 
 	 * @param ad_email
-	 *            管理員信箱
+	 *            String --> 管理員信箱
 	 * @return AdminBean
 	 * @return null
 	 */

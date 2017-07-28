@@ -56,7 +56,7 @@ public class ClinicServiceImpl implements ClinicService {
 	 * 診所流水號搜尋
 	 * 
 	 * @param cl_id
-	 *            Integer 診所流水號
+	 *            Integer --> 診所流水號
 	 * @return ClinicBean
 	 */
 	@Override
@@ -147,7 +147,7 @@ public class ClinicServiceImpl implements ClinicService {
 	 * 切換狀態
 	 * 
 	 * @param cl_id
-	 *            Integer 診所流水號
+	 *            Integer --> 診所流水號
 	 * @return ClinicBean
 	 */
 	@Override

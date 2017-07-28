@@ -47,7 +47,7 @@ public class ClinicDaoImpl implements ClinicDao {
 	 * 診所流水號搜尋
 	 * 
 	 * @param cl_id
-	 *            Integer 診所流水號
+	 *            Integer --> 診所流水號
 	 * @return ClinicBean
 	 */
 	@Override

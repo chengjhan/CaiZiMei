@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicController.java
  * Author: 詹晟
- * Date: 2017/7/25
+ * Date: 2017/7/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -179,19 +179,19 @@ public class ClinicController {
 		return REDIRECT + CLINIC_LIST_PAGE;
 	}
 
-	/**
-	 * 診所開關 - submit
-	 * 
-	 * @param clinicBean_cl_id-->form-backing-object-->GET-->cl_id
-	 * @return /WEB-INF/views/clinic/list.jsp
-	 */
-	@RequestMapping(value = "/clinic/switch", method = RequestMethod.GET)
-	public String switchProcess(ClinicBean clinicBean_cl_id) {
-
-		clinicService.updateCl_status(clinicBean_cl_id);
-
-		return REDIRECT + CLINIC_LIST_PAGE;
-	}
+//	/**
+//	 * 診所開關 - submit
+//	 * 
+//	 * @param clinicBean_cl_id-->form-backing-object-->GET-->cl_id
+//	 * @return /WEB-INF/views/clinic/list.jsp
+//	 */
+//	@RequestMapping(value = "/clinic/switch", method = RequestMethod.GET)
+//	public String switchProcess(ClinicBean clinicBean_cl_id) {
+//
+//		clinicService.updateCl_status(clinicBean_cl_id);
+//
+//		return REDIRECT + CLINIC_LIST_PAGE;
+//	}
 
 	/**
 	 * 所有診所 JSON (AJAX)
@@ -238,5 +238,17 @@ public class ClinicController {
 
 		return json;
 	}
-
+	
+	/**
+	 * 診所開關 (AJAX)
+	 * 
+	 * @param 
+	 */
+	@RequestMapping(value = "/clinic/switch.ajax", method = RequestMethod.GET)
+	@ResponseBody
+	public void switchAjaxProcess(String cl_id) {
+		
+		clinicService.updateCl_status(Integer.valueOf(cl_id));
+	}
+	
 }

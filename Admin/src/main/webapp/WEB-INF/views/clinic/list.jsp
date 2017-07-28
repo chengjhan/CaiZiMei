@@ -20,7 +20,7 @@
 				<td>編號</td>
 				<td>流水號</td>
 				<td>名稱</td>
-				<td>英文名稱</td>
+<!-- 				<td>英文名稱</td> -->
 				<td>電話</td>
 				<td>國家</td>
 				<td>區域</td>
@@ -29,9 +29,8 @@
 				<td>緯度</td>
 				<td>經度</td>
 				<td>網址</td>
-				<td>新增時間</td>
+<!-- 				<td>新增時間</td> -->
 				<td>更新時間</td>
-				<td>狀態</td>
 				<td>狀態更新時間</td>
 				<td>編輯</td>
 				<td>狀態</td>
@@ -46,7 +45,7 @@
 					<td>${status.count}</td>
 					<td>${bean.cl_id}</td>
 					<td>${bean.cl_name}</td>
-					<td>${bean.cl_eng_name}</td>
+<%-- 					<td>${bean.cl_eng_name}</td> --%>
 					<td>${bean.cl_localphone}</td>
 					<td>${bean.cl_CountryBean.co_name}</td>
 					<td>${bean.cl_StateBean.st_name}</td>
@@ -55,12 +54,22 @@
 					<td>${bean.cl_latitude}</td>
 					<td>${bean.cl_longitude}</td>
 					<td><a href="${bean.cl_url}">${bean.cl_url}</a></td>
-					<td>${cl_insert_time_format}</td>
+<%-- 					<td>${cl_insert_time_format}</td> --%>
 					<td>${cl_update_time_format}</td>
-					<td>${bean.cl_status}</td>
 					<td>${cl_status_time_format}</td>
 					<td><a href="<%=request.getContextPath()%>/clinic/edit?cl_id=${bean.cl_id}">編輯</a></td>
-					<td><a href="<%=request.getContextPath()%>/clinic/switch?cl_id=${bean.cl_id}">變更</a></td>
+					<td>
+						<div class="cl-status-switch" data-cl-id="${bean.cl_id}" style="width:20px">
+							<c:choose>
+								<c:when test="${bean.cl_status eq 1}">
+									<img src="<%=request.getContextPath()%>/images/true.svg" data-cl-status="1" style="width:100%">
+								</c:when>
+								<c:when test="${bean.cl_status eq 0}">
+									<img src="<%=request.getContextPath()%>/images/false.svg" data-cl-status="0" style="width:100%">
+								</c:when>
+							</c:choose>
+						</div>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -75,5 +84,26 @@
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 	<script src="<%=request.getContextPath()%>/js/clinic/list.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script>
+		$(document).ready(function(){
+			$(".cl-status-switch").click(function(){
+				var cl_id = $(this).attr("data-cl-id");
+				alert("cl_id=" + cl_id);
+				var cl_status = $(".cl-status-switch img").attr("data-cl-status");
+				alert("cl_status=" + cl_status);
+				
+				$.get("/Admin/clinic/switch.ajax", {"cl_id": cl_id}, function(){
+					if(cl_status == "1"){
+						alert("關閉嗎?");
+						$(this).find("img").attr("src", "/Admin/images/false.svg");
+					}else{
+						alert("打開嗎?");
+						$(this).find("img").attr("src", "/Admin/images/true.svg");
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>

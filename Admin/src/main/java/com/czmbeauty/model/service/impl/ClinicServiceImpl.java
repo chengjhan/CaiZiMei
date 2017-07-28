@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/24
+ * Date: 2017/7/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -143,15 +143,16 @@ public class ClinicServiceImpl implements ClinicService {
 	/**
 	 * 切換狀態
 	 * 
-	 * @param clinicBean_cl_id-->ClinicBean-->cl_id
-	 * @return clinicBean-->ClinicBean
+	 * @param cl_id
+	 *            診所流水號
+	 * @return ClinicBean
 	 */
 	@Override
 	@Transactional
-	public ClinicBean updateCl_status(ClinicBean clinicBean_cl_id) {
+	public ClinicBean updateCl_status(Integer cl_id) {
 
 		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
-		ClinicBean clinicBean = clinicDao.selectByCl_id(clinicBean_cl_id.getCl_id());
+		ClinicBean clinicBean = clinicDao.selectByCl_id(cl_id);
 
 		if (clinicBean.getCl_status() == 1) {
 

@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ClinicController.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/7/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,6 +10,7 @@ package com.czmbeauty.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,8 @@ import com.google.gson.GsonBuilder;
  */
 @Controller
 public class ClinicController {
+	
+	private static final Logger logger = Logger.getLogger(ClinicController.class);
 
 	/**
 	 * 注入 ClinicService
@@ -51,7 +54,8 @@ public class ClinicController {
 		List<ClinicBean> result = clinicService.selectByCl_status();
 
 		String json = gson.toJson(result);
-		System.out.println("JSON = " + json);
+		
+		logger.info("JSON = " + json);
 
 		return json;
 	}

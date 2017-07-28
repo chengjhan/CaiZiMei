@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: SliderMainController.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/7/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,6 +10,7 @@ package com.czmbeauty.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,8 @@ import com.google.gson.GsonBuilder;
  */
 @Controller
 public class SliderMainController {
+	
+	private static final Logger logger = Logger.getLogger(SliderMainController.class);
 
 	/**
 	 * 注入 SliderMainService
@@ -42,7 +45,7 @@ public class SliderMainController {
 	 */
 	@RequestMapping(value = "/slider-main/open-slide-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openClinicListAjaxProcess() {
+	public String openSlideListAjaxProcess() {
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
@@ -51,7 +54,8 @@ public class SliderMainController {
 		List<SliderMainBean> result = sliderMainService.selectBySm_status();
 
 		String json = gson.toJson(result);
-		System.out.println("JSON = " + json);
+		
+		logger.info("JSON = " + json);
 
 		return json;
 	}

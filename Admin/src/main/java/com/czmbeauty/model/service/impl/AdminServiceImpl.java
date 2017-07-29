@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/28
+ * Date: 2017/7/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -234,16 +234,16 @@ public class AdminServiceImpl implements AdminService {
 	/**
 	 * 切換狀態
 	 * 
-	 * @param adminBean_ad_id
-	 *            AdminBean --> ad_id
+	 * @param ad_id
+	 *            Integer --> 管理員流水號
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateAd_status(AdminBean adminBean_ad_id) {
+	public AdminBean updateAd_status(Integer ad_id) {
 
 		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
-		AdminBean adminBean = adminDao.selectByAd_id(adminBean_ad_id.getAd_id());
+		AdminBean adminBean = adminDao.selectByAd_id(ad_id);
 
 		if (adminBean.getAd_status() == 1) {
 

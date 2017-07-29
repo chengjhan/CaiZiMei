@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminBean.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/7/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,6 +19,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * admin entity
  * 
@@ -30,7 +32,9 @@ public class AdminBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose
 	private Integer ad_id;
+	@Expose
 	private String ad_username;
 	private String ad_password;
 	private String ad_salt;
@@ -43,7 +47,9 @@ public class AdminBean {
 	private java.util.Date ad_signin_time;
 	private java.util.Date ad_update_info_time;
 	private java.util.Date ad_update_pwd_time;
+	@Expose
 	private Integer ad_status;
+	@Expose
 	private java.util.Date ad_status_time;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "al_AdminBean")

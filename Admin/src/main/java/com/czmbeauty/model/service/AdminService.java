@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/7/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -67,8 +67,8 @@ public interface AdminService {
 	AdminBean updateAd_password(AdminBean adminBean, String ad_password_random);
 
 	/**
-	 * @see com.czmbeauty.model.service.AdminService#updateAd_status(AdminBean)
+	 * @see com.czmbeauty.model.service.AdminService#updateAd_status(Integer)
 	 */
-	AdminBean updateAd_status(AdminBean adminBean_ad_id);
+	AdminBean updateAd_status(Integer ad_id);
 
 }

@@ -22,7 +22,6 @@
 				<td>登入次數</td>
 				<td>最後登入IP</td>
 				<td>最後登入時間</td>
-				<td>狀態</td>
 				<td>狀態變更時間</td>
 				<td>變更</td>
 			</tr>
@@ -42,9 +41,19 @@
 					<td>${bean.ad_signin_number}</td>
 					<td>${bean.ad_signin_ip}</td>
 					<td>${ad_signin_time}</td>
-					<td>${bean.ad_status}</td>
 					<td>${ad_status_time}</td>
-					<td><a href="<%=request.getContextPath()%>/admin/switch?ad_id=${bean.ad_id}">變更</a></td>
+					<td>
+						<div class="ad-status-switch" data-ad-id="${bean.ad_id}" style="width:20px;cursor:pointer">
+							<c:choose>
+								<c:when test="${bean.ad_status eq 1}">
+									<img src="<%=request.getContextPath()%>/images/true.svg" data-ad-status="1" style="width:100%">
+								</c:when>
+								<c:when test="${bean.ad_status eq 0}">
+									<img src="<%=request.getContextPath()%>/images/false.svg" data-ad-status="0" style="width:100%">
+								</c:when>
+							</c:choose>
+						</div>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -52,5 +61,9 @@
 	<p>
 		<a href="<%=request.getContextPath()%>/">首頁</a>
 	</p>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/js/admin/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

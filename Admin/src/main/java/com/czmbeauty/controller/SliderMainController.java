@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainController.java
  * Author: 詹晟
- * Date: 2017/7/29
+ * Date: 2017/7/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -213,7 +213,7 @@ public class SliderMainController {
 	 *            String --> 圖片流水號
 	 * @return sm_name
 	 */
-	@RequestMapping(value = "/slider-main/switch", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/slider-main/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String switchAjaxProcess(String sm_id) {
 

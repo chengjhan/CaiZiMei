@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/28
+ * Date: 2017/7/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -46,6 +47,8 @@ import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
 import com.czmbeauty.model.service.AdminLogService;
 import com.czmbeauty.model.service.AdminService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * admin controller
@@ -428,18 +431,28 @@ public class AdminController {
 	}
 
 	/**
-	 * 帳戶開關 - submit
+	 * 帳戶開關 (AJAX)
 	 * 
-	 * @param adminBean_ad_id
-	 *            AdminBean --> form backing object --> GET --> ad_id
-	 * @return /WEB-INF/views/admin/list.jsp
+	 * @param ad_id
+	 *            String --> 管理員流水號
+	 * @return AdminBean JSON
 	 */
-	@RequestMapping(value = "/admin/switch", method = RequestMethod.GET)
-	public String switchProcess(AdminBean adminBean_ad_id) {
+	@RequestMapping(value = "/admin/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String switchAjaxProcess(String ad_id) {
 
-		adminService.updateAd_status(adminBean_ad_id);
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
+		Gson gson = builder.create();
 
-		return REDIRECT + ADMIN_LIST_PAGE;
+		AdminBean result = adminService.updateAd_status(Integer.valueOf(ad_id));
+
+		String json = gson.toJson(result);
+
+		logger.info("JSON = " + json);
+
+		return json;
 	}
 
 }

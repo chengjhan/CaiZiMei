@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ClinicController.java
  * Author: 詹晟
- * Date: 2017/7/28
+ * Date: 2017/7/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -235,7 +235,7 @@ public class ClinicController {
 	 * 診所開關 (AJAX)
 	 * 
 	 * @param cl_id
-	 *            String 診所流水號
+	 *            String --> 診所流水號
 	 * @return cl_name
 	 */
 	@RequestMapping(value = "/clinic/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")

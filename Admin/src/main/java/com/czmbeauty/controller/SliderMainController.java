@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainController.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/7/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -31,6 +31,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.czmbeauty.model.entity.SliderMainBean;
@@ -206,18 +207,17 @@ public class SliderMainController {
 	}
 
 	/**
-	 * 圖片開關 - submit
+	 * 圖片開關 (AJAX)
 	 * 
-	 * @param sliderMainBean_sm_id
-	 *            SliderMainBean --> form backing object --> GET --> sm_id
-	 * @return /WEB-INF/views/slider-main/list.jsp
+	 * @param sm_id
+	 *            String --> 圖片流水號
+	 * @return sm_name
 	 */
-	@RequestMapping(value = "/slider-main/switch", method = RequestMethod.GET)
-	public String switchProcess(SliderMainBean sliderMainBean_sm_id) {
+	@RequestMapping(value = "/slider-main/switch", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String switchAjaxProcess(String sm_id) {
 
-		sliderMainService.updateSm_status(sliderMainBean_sm_id);
-
-		return REDIRECT + SLIDER_MAIN_LIST_PAGE;
+		return sliderMainService.updateSm_status(Integer.valueOf(sm_id)).getSm_name();
 	}
 
 }

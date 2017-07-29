@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainService.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/7/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -45,8 +45,8 @@ public interface SliderMainService {
 	SliderMainBean update(SliderMainBean sliderMainBean);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.SliderMainServiceImpl#updateSm_status(SliderMainBean)
+	 * @see com.czmbeauty.model.service.impl.SliderMainServiceImpl#updateSm_status(Integer)
 	 */
-	SliderMainBean updateSm_status(SliderMainBean sliderMainBean_sm_id);
+	SliderMainBean updateSm_status(Integer sm_id);
 
 }

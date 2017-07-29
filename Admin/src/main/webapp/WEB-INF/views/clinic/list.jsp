@@ -20,7 +20,7 @@
 				<td>編號</td>
 				<td>流水號</td>
 				<td>名稱</td>
-<!-- 				<td>英文名稱</td> -->
+				<td>英文名稱</td>
 				<td>電話</td>
 				<td>國家</td>
 				<td>區域</td>
@@ -30,7 +30,7 @@
 				<td>經度</td>
 				<td>網址</td>
 <!-- 				<td>新增時間</td> -->
-				<td>更新時間</td>
+<!-- 				<td>更新時間</td> -->
 <!-- 				<td>狀態更新時間</td> -->
 				<td>編輯</td>
 				<td>狀態</td>
@@ -45,7 +45,7 @@
 					<td>${status.count}</td>
 					<td>${bean.cl_id}</td>
 					<td>${bean.cl_name}</td>
-<%-- 					<td>${bean.cl_eng_name}</td> --%>
+					<td>${bean.cl_eng_name}</td>
 					<td>${bean.cl_localphone}</td>
 					<td>${bean.cl_CountryBean.co_name}</td>
 					<td>${bean.cl_StateBean.st_name}</td>
@@ -55,7 +55,7 @@
 					<td>${bean.cl_longitude}</td>
 					<td><a href="${bean.cl_url}">${bean.cl_url}</a></td>
 <%-- 					<td>${cl_insert_time_format}</td> --%>
-					<td>${cl_update_time_format}</td>
+<%-- 					<td>${cl_update_time_format}</td> --%>
 <%-- 					<td>${cl_status_time_format}</td> --%>
 					<td><a href="<%=request.getContextPath()%>/clinic/edit?cl_id=${bean.cl_id}">編輯</a></td>
 					<td>

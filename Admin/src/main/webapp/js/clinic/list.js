@@ -19,15 +19,17 @@ var createClinicListTable = function(data){
 //		var	cl_insert_time_td = $("<td></td>").append(clinicBean.cl_insert_time);
 //		var	cl_update_time_td = $("<td></td>").append(clinicBean.cl_update_time);
 //		var	cl_status_time_td = $("<td></td>").append(clinicBean.cl_status_time);
-		var edit_a = $("<a href='../clinic/edit?cl_id=" + clinicBean.cl_id + "'></a>").append("編輯");
-		var edit_td = $("<td></td>").append(edit_a);
+		var edit_img = $("<img src='../images/edit.svg' style='width:100%'>");
+		var edit_a = $("<a href='../clinic/edit?cl_id=" + clinicBean.cl_id + "'></a>").append(edit_img);
+		var edit_div = $("<div style='width:30px'></div>").append(edit_a);
+		var edit_td = $("<td></td>").append(edit_div);
 		var switch_img;
 		if(clinicBean.cl_status == 1){
 			switch_img = $("<img src='../images/true.svg' data-cl-status='1' style='width:100%'>");
 		}else{
 			switch_img = $("<img src='../images/false.svg' data-cl-status='0' style='width:100%'>");
 		}
-		var switch_div = $("<div class='cl-status-switch' data-cl-id='" + clinicBean.cl_id + "' style='width:20px;cursor:pointer'></div>").append(switch_img);
+		var switch_div = $("<div class='cl-status-switch' data-cl-id='" + clinicBean.cl_id + "' style='width:30px;cursor:pointer'></div>").append(switch_img);
 		var switch_td = $("<td></td>").append(switch_div);
 //		var clinicList_tr = $("<tr></tr>").append([count_td, cl_id_td, cl_name_td, cl_eng_name_td, cl_localphone_td, co_name_td, st_name_td, ci_name_td, cl_address_td, cl_latitude_td, cl_longitude_td, cl_url_td, cl_insert_time_td, cl_update_time_td, cl_status_time_td, edit_td, switch_td]);
 		var clinicList_tr = $("<tr></tr>").append([count_td, cl_id_td, cl_name_td, cl_eng_name_td, cl_localphone_td, co_name_td, st_name_td, ci_name_td, cl_address_td, cl_latitude_td, cl_longitude_td, cl_url_td, edit_td, switch_td]);

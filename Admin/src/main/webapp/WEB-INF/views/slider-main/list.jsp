@@ -18,8 +18,10 @@
 						<td>流水號</td>
 						<td style="width:300px">${bean.sm_id}</td>
 						<td rowspan="5">
-							<a href="<%=request.getContextPath()%>/slider-main/edit?sm_id=${bean.sm_id}">編輯</a><br />
-							<div class="sm-status-switch" data-sm-id="${bean.sm_id}" style="width:20px;cursor:pointer">
+							<div style="width:30px">
+								<a href="<%=request.getContextPath()%>/slider-main/edit?sm_id=${bean.sm_id}"><img src="<%=request.getContextPath()%>/images/edit.svg" style="width:100%"></a>
+							</div>
+							<div class="sm-status-switch" data-sm-id="${bean.sm_id}" style="width:30px;cursor:pointer">
 								<c:choose>
 									<c:when test="${bean.sm_status eq 1}">
 										<img src="<%=request.getContextPath()%>/images/true.svg" data-sm-status="1" style="width:100%">

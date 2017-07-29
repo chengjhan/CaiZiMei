@@ -33,7 +33,7 @@
 <!-- 				<td>更新時間</td> -->
 <!-- 				<td>狀態更新時間</td> -->
 				<td>編輯</td>
-				<td>狀態</td>
+				<td>開啟</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -57,9 +57,13 @@
 <%-- 					<td>${cl_insert_time_format}</td> --%>
 <%-- 					<td>${cl_update_time_format}</td> --%>
 <%-- 					<td>${cl_status_time_format}</td> --%>
-					<td><a href="<%=request.getContextPath()%>/clinic/edit?cl_id=${bean.cl_id}">編輯</a></td>
 					<td>
-						<div class="cl-status-switch" data-cl-id="${bean.cl_id}" style="width:20px;cursor:pointer">
+						<div style="width:30px">
+							<a href="<%=request.getContextPath()%>/clinic/edit?cl_id=${bean.cl_id}"><img src="<%=request.getContextPath()%>/images/edit.svg" style="width:100%"></a>
+						</div>
+					</td>
+					<td>
+						<div class="cl-status-switch" data-cl-id="${bean.cl_id}" style="width:30px;cursor:pointer">
 							<c:choose>
 								<c:when test="${bean.cl_status eq 1}">
 									<img src="<%=request.getContextPath()%>/images/true.svg" data-cl-status="1" style="width:100%">

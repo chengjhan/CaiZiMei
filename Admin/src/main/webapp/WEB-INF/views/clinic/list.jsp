@@ -84,24 +84,5 @@
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 	<script src="<%=request.getContextPath()%>/js/clinic/list.js" type="text/javascript" charset="utf-8"></script>
-	
-	<script>
-		$(document).ready(function(){
-			$(".cl-status-switch").click(function(){
-				var $this = $(this);
-				var cl_id = $this.attr("data-cl-id");
-				var cl_status = $this.children("img").attr("data-cl-status");				
-				$.get("/Admin/clinic/switch.ajax", {"cl_id": cl_id}, function(data){
-					if(cl_status == "1"){
-// 						alert("將關閉 「" + data + "」。");
-						$this.children("img").attr("src", "/Admin/images/false.svg");
-					}else{
-// 						alert("將開啟 「" + data + "」。");
-						$this.children("img").attr("src", "/Admin/images/true.svg");
-					}
-				});
-			});
-		});
-	</script>
 </body>
 </html>

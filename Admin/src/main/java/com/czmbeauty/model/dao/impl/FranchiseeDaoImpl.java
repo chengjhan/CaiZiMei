@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/22
+ * Date: 2017/7/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,7 +46,8 @@ public class FranchiseeDaoImpl implements FranchiseeDao {
 	/**
 	 * 加盟店流水號搜尋
 	 * 
-	 * @param fr_id-->加盟店流水號
+	 * @param fr_id
+	 *            Integer --> 加盟店流水號
 	 * @return FranchiseeBean
 	 */
 	@Override
@@ -71,8 +72,9 @@ public class FranchiseeDaoImpl implements FranchiseeDao {
 	/**
 	 * 新增加盟店
 	 * 
-	 * @param franchiseeBean-->FranchiseeBean
-	 * @return franchiseeBean-->FranchiseeBean
+	 * @param franchiseeBean
+	 *            FranchiseeBean
+	 * @return FranchiseeBean
 	 */
 	@Override
 	public FranchiseeBean insert(FranchiseeBean franchiseeBean) {
@@ -85,8 +87,9 @@ public class FranchiseeDaoImpl implements FranchiseeDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param newFranchiseeBean-->FranchiseeBean
-	 * @return franchiseeBean-->FranchiseeBean
+	 * @param newFranchiseeBean
+	 *            FranchiseeBean
+	 * @return FranchiseeBean
 	 */
 	@Override
 	public FranchiseeBean update(FranchiseeBean newFranchiseeBean) {

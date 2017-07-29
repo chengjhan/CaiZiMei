@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/24
+ * Date: 2017/7/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -55,7 +55,8 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 	/**
 	 * 加盟店流水號搜尋
 	 * 
-	 * @param fr_id-->加盟店流水號
+	 * @param fr_id
+	 *            Integer --> 加盟店流水號
 	 * @return FranchiseeBean
 	 */
 	@Override
@@ -80,8 +81,9 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 	/**
 	 * 新增加盟店
 	 * 
-	 * @param franchiseeBean-->FranchiseeBean
-	 * @return result-->FranchiseeBean
+	 * @param franchiseeBean
+	 *            FranchiseeBean
+	 * @return FranchiseeBean
 	 */
 	@Override
 	@Transactional
@@ -116,7 +118,8 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 	/**
 	 * 修改資料
 	 * 
-	 * @param franchiseeBean-->FranchiseeBean
+	 * @param franchiseeBean
+	 *            FranchiseeBean
 	 * @return FranchiseeBean
 	 */
 	@Override
@@ -143,15 +146,16 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 	/**
 	 * 切換狀態
 	 * 
-	 * @param franchiseeBean_fr_id-->FranchiseeBean-->fr_id
+	 * @param fr_id
+	 *            Integer --> 加盟店流水號
 	 * @return FranchiseeBean
 	 */
 	@Override
 	@Transactional
-	public FranchiseeBean updateFr_status(FranchiseeBean franchiseeBean_fr_id) {
+	public FranchiseeBean updateFr_status(Integer fr_id) {
 
 		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
-		FranchiseeBean franchiseeBean = franchiseeDao.selectByFr_id(franchiseeBean_fr_id.getFr_id());
+		FranchiseeBean franchiseeBean = franchiseeDao.selectByFr_id(fr_id);
 
 		if (franchiseeBean.getFr_status() == 1) {
 

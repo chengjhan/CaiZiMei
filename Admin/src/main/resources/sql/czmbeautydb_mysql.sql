@@ -140,6 +140,7 @@ insert into state (st_co_id, st_name, st_rank) values (1, '金門', 3);
 insert into state (st_co_id, st_name, st_rank) values (1, '馬祖', 4);
 insert into state (st_co_id, st_name, st_rank) values (2, '福建省', 1);
 insert into state (st_co_id, st_name, st_rank) values (2, '廣東省', 2);
+insert into state (st_co_id, st_name, st_rank) values (2, '甘肅省', 3);
 
 -- city
 insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '基隆市', 1);
@@ -164,6 +165,7 @@ insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '宜蘭�
 insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 12, '澎湖縣', 1);
 insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 13, '金門縣', 1);
 insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 14, '連江縣', 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (2, 17, '天水市', 1);
 
 -- clinic
 insert into clinic (cl_name, cl_eng_name, cl_localphone, cl_co_id, cl_st_id, cl_ci_id, cl_address, cl_latitude, cl_longitude, cl_url, cl_insert_time, cl_update_time, cl_status, cl_status_time) values ('曼星整形醫美診所', 'Twinkle Clinic', '02-27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now(), 1, now());
@@ -183,6 +185,9 @@ insert into clinic (cl_name, cl_eng_name, cl_localphone, cl_co_id, cl_st_id, cl_
 insert into clinic (cl_name, cl_eng_name, cl_localphone, cl_co_id, cl_st_id, cl_ci_id, cl_address, cl_latitude, cl_longitude, cl_url, cl_insert_time, cl_update_time, cl_status, cl_status_time) values ('好萊塢診所-台中', 'Hollywood', '04-22595825', 1, 11, 108, '西屯區市政北一路1號2樓', 24.157116, 120.646442, 'http://hollywood.tw/', now(), now(), 1, now());
 insert into clinic (cl_name, cl_eng_name, cl_localphone, cl_co_id, cl_st_id, cl_ci_id, cl_address, cl_latitude, cl_longitude, cl_url, cl_insert_time, cl_update_time, cl_status, cl_status_time) values ('璀璨精品牙醫診所', 'Dazzling Dental Clinic', '02-28721239', 1, 11, 102, '士林區天玉街41號', 25.121355, 121.529410, 'http://www.dazzlingdental.com.tw/', now(), now(), 1, now());
 insert into clinic (cl_name, cl_eng_name, cl_localphone, cl_co_id, cl_st_id, cl_ci_id, cl_address, cl_latitude, cl_longitude, cl_url, cl_insert_time, cl_update_time, cl_status, cl_status_time) values ('何彬彬牙醫診所', 'Ho Bing Bing Dental Clinic', '07-2270748', 1, 11, 115, '新興區民生一路56號', 22.628011, 120.310796, 'http://1637.tw/07-2270748/', now(), now(), 1, now());
+
+-- franchisee
+insert into franchisee (fr_name, fr_eng_name, fr_localphone, fr_co_id, fr_st_id, fr_ci_id, fr_address, fr_latitude, fr_longitude, fr_url, fr_insert_time, fr_update_time, fr_status, fr_status_time) values ('甘肅天水采姿美加盟旗艦館', 'CaiZiMei', '', 2, 17, 123, '秦城區陽光麗景灣商鋪19號', 34.576471, 105.721828, 'https://www.google.com.tw', now(), now(), 1, now());
 
 -- slider_main
 insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('曼星整形醫美診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_twinkle_clinic_1000x380.jpg', 'http://twinkle-clinic.tw', 1, 1, now());

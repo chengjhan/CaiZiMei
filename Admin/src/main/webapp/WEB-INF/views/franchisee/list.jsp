@@ -14,7 +14,7 @@
 		<label for="id-input-switch">顯示開啟的加盟店</label>
 		<input type="checkbox" id="id-input-switch" />
 	</div>
-	<table border="1" style="font-size:13px">
+	<table border="1" style="font-size:14px">
 		<thead>
 			<tr>
 				<td>編號</td>
@@ -29,12 +29,11 @@
 				<td>緯度</td>
 				<td>經度</td>
 				<td>網址</td>
-				<td>新增時間</td>
-				<td>更新時間</td>
-				<td>狀態</td>
-				<td>狀態更新時間</td>
+<!-- 				<td>新增時間</td> -->
+<!-- 				<td>更新時間</td> -->
+<!-- 				<td>狀態更新時間</td> -->
 				<td>編輯</td>
-				<td>狀態</td>
+				<td>開啟</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -55,12 +54,26 @@
 					<td>${bean.fr_latitude}</td>
 					<td>${bean.fr_longitude}</td>
 					<td><a href="${bean.fr_url}">${bean.fr_url}</a></td>
-					<td>${fr_insert_time_format}</td>
-					<td>${fr_update_time_format}</td>
-					<td>${bean.fr_status}</td>
-					<td>${fr_status_time_format}</td>
-					<td><a href="<%=request.getContextPath()%>/franchisee/edit?fr_id=${bean.fr_id}">編輯</a></td>
-					<td><a href="<%=request.getContextPath()%>/franchisee/switch?fr_id=${bean.fr_id}">變更</a></td>
+<%-- 					<td>${fr_insert_time_format}</td> --%>
+<%-- 					<td>${fr_update_time_format}</td> --%>
+<%-- 					<td>${fr_status_time_format}</td> --%>
+					<td>
+						<div style="width:30px">
+							<a href="<%=request.getContextPath()%>/franchisee/edit?fr_id=${bean.fr_id}"><img src="<%=request.getContextPath()%>/images/edit.svg" style="width:100%"></a>
+						</div>
+					</td>
+					<td>
+						<div class="fr-status-switch" data-fr-id="${bean.fr_id}" style="width:30px;cursor:pointer">
+							<c:choose>
+								<c:when test="${bean.fr_status eq 1}">
+									<img src="<%=request.getContextPath()%>/images/true.svg" data-fr-status="1" style="width:100%">
+								</c:when>
+								<c:when test="${bean.fr_status eq 0}">
+									<img src="<%=request.getContextPath()%>/images/false.svg" data-fr-status="0" style="width:100%">
+								</c:when>
+							</c:choose>
+						</div>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: FranchiseeController.java
  * Author: 詹晟
- * Date: 2017/7/25
+ * Date: 2017/7/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -93,7 +93,8 @@ public class FranchiseeController {
 	/**
 	 * 加盟店一覽 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/franchisee/list.jsp
 	 */
 	@RequestMapping(value = "/franchisee/list", method = RequestMethod.GET)
@@ -108,7 +109,8 @@ public class FranchiseeController {
 	/**
 	 * 新增加盟店 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/franchisee/add.jsp
 	 */
 	@RequestMapping(value = "/franchisee/add", method = RequestMethod.GET)
@@ -126,7 +128,8 @@ public class FranchiseeController {
 	/**
 	 * 新增加盟店 - submit
 	 * 
-	 * @param franchiseeBean-->form-backing-object
+	 * @param franchiseeBean
+	 *            FranchiseeBean --> form backing object
 	 * @return /WEB-INF/views/franchisee/list.jsp
 	 */
 	@RequestMapping(value = "/franchisee/add.do", method = RequestMethod.POST)
@@ -140,8 +143,10 @@ public class FranchiseeController {
 	/**
 	 * 編輯加盟店資訊 - 初期處理
 	 * 
-	 * @param franchiseeBean_fr_id-->form-backing-object-->GET-->fr_id
-	 * @param model-->Model
+	 * @param franchiseeBean_fr_id
+	 *            FranchiseeBean --> form backing object --> GET --> fr_id
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/franchisee/edit.jsp
 	 */
 	@RequestMapping(value = "/franchisee/edit", method = RequestMethod.GET)
@@ -168,27 +173,14 @@ public class FranchiseeController {
 	/**
 	 * 編輯加盟店資訊 - submit
 	 * 
-	 * @param franchiseeBean-->form-backing-object
+	 * @param franchiseeBean
+	 *            FranchiseeBean --> form backing object
 	 * @return /WEB-INF/views/franchisee/list.jsp
 	 */
 	@RequestMapping(value = "/franchisee/edit.do", method = RequestMethod.POST)
 	public String editProcess(FranchiseeBean franchiseeBean) {
 
 		franchiseeService.update(franchiseeBean);
-
-		return REDIRECT + FRANCHISEE_LIST_PAGE;
-	}
-
-	/**
-	 * 加盟店開關 - submit
-	 * 
-	 * @param franchiseeBean_fr_id-->form-backing-object-->GET-->fr_id
-	 * @return /WEB-INF/views/franchisee/list.jsp
-	 */
-	@RequestMapping(value = "/franchisee/switch", method = RequestMethod.GET)
-	public String switchProcess(FranchiseeBean franchiseeBean_fr_id) {
-
-		franchiseeService.updateFr_status(franchiseeBean_fr_id);
 
 		return REDIRECT + FRANCHISEE_LIST_PAGE;
 	}
@@ -237,6 +229,20 @@ public class FranchiseeController {
 		logger.info("JSON = " + json);
 
 		return json;
+	}
+
+	/**
+	 * 加盟店開關 (AJAX)
+	 * 
+	 * @param fr_id
+	 *            String --> 加盟店流水號
+	 * @return fr_name
+	 */
+	@RequestMapping(value = "/franchisee/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String switchAjaxProcess(String fr_id) {
+
+		return franchiseeService.updateFr_status(Integer.valueOf(fr_id)).getFr_name();
 	}
 
 }

@@ -37,7 +37,7 @@
 		<a href="<%=request.getContextPath()%>/city/list">城市一覽</a>
 	</p>
 	<p>
-		<a href="<%=request.getContextPath()%>/company/list">公司一覽</a>
+		<a href="<%=request.getContextPath()%>/office/list">辦事處一覽</a>
 	</p>
 	<p>
 		<a href="<%=request.getContextPath()%>/franchisee/list">加盟店一覽</a>

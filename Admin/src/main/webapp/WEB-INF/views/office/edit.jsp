@@ -70,6 +70,6 @@
 	
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
-	<script src="<%=request.getContextPath()%>/js/office/edit.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/base/edit.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

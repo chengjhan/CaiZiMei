@@ -10,10 +10,6 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
-	<div>
-		<label for="id-input-switch">顯示開啟的加盟店</label>
-		<input type="checkbox" id="id-input-switch" />
-	</div>
 	<table border="1" style="font-size:14px">
 		<thead>
 			<tr>
@@ -37,39 +33,39 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bean" items="${franchiseeList}" varStatus="status">
-				<fmt:formatDate value="${bean.fr_insert_time}" var="fr_insert_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
-				<fmt:formatDate value="${bean.fr_update_time}" var="fr_update_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
-				<fmt:formatDate value="${bean.fr_status_time}" var="fr_status_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
+			<c:forEach var="bean" items="${baseList}" varStatus="status">
+				<fmt:formatDate value="${bean.ba_insert_time}" var="ba_insert_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
+				<fmt:formatDate value="${bean.ba_update_time}" var="ba_update_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
+				<fmt:formatDate value="${bean.ba_status_time}" var="ba_status_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 				<tr>
 					<td>${status.count}</td>
-					<td>${bean.fr_id}</td>
-					<td>${bean.fr_name}</td>
-					<td>${bean.fr_eng_name}</td>
-					<td>${bean.fr_localphone}</td>
-					<td>${bean.fr_CountryBean.co_name}</td>
-					<td>${bean.fr_StateBean.st_name}</td>
-					<td>${bean.fr_CityBean.ci_name}</td>
-					<td>${bean.fr_address}</td>
-					<td>${bean.fr_latitude}</td>
-					<td>${bean.fr_longitude}</td>
-					<td><a href="${bean.fr_url}">${bean.fr_url}</a></td>
-<%-- 					<td>${fr_insert_time_format}</td> --%>
-<%-- 					<td>${fr_update_time_format}</td> --%>
-<%-- 					<td>${fr_status_time_format}</td> --%>
+					<td>${bean.ba_id}</td>
+					<td>${bean.ba_name}</td>
+					<td>${bean.ba_eng_name}</td>
+					<td>${bean.ba_localphone}</td>
+					<td>${bean.ba_CountryBean.co_name}</td>
+					<td>${bean.ba_StateBean.st_name}</td>
+					<td>${bean.ba_CityBean.ci_name}</td>
+					<td>${bean.ba_address}</td>
+					<td>${bean.ba_latitude}</td>
+					<td>${bean.ba_longitude}</td>
+					<td><a href="${bean.ba_url}">${bean.ba_url}</a></td>
+<%-- 					<td>${ba_insert_time_format}</td> --%>
+<%-- 					<td>${ba_update_time_format}</td> --%>
+<%-- 					<td>${ba_status_time_format}</td> --%>
 					<td>
 						<div style="width:30px">
-							<a href="<%=request.getContextPath()%>/franchisee/edit?fr_id=${bean.fr_id}"><img src="<%=request.getContextPath()%>/images/edit.svg" style="width:100%"></a>
+							<a href="<%=request.getContextPath()%>/franchisee/edit?ba_id=${bean.ba_id}"><img src="<%=request.getContextPath()%>/images/edit.svg" style="width:100%"></a>
 						</div>
 					</td>
 					<td>
-						<div class="fr-status-switch" data-fr-id="${bean.fr_id}" style="width:30px;cursor:pointer">
+						<div class="ba-status-switch" data-ba-id="${bean.ba_id}" style="width:30px;cursor:pointer">
 							<c:choose>
-								<c:when test="${bean.fr_status eq 1}">
-									<img src="<%=request.getContextPath()%>/images/true.svg" data-fr-status="1" style="width:100%">
+								<c:when test="${bean.ba_status eq 1}">
+									<img src="<%=request.getContextPath()%>/images/true.svg" data-ba-status="1" style="width:100%">
 								</c:when>
-								<c:when test="${bean.fr_status eq 0}">
-									<img src="<%=request.getContextPath()%>/images/false.svg" data-fr-status="0" style="width:100%">
+								<c:when test="${bean.ba_status eq 0}">
+									<img src="<%=request.getContextPath()%>/images/false.svg" data-ba-status="0" style="width:100%">
 								</c:when>
 							</c:choose>
 						</div>
@@ -87,6 +83,6 @@
 	
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
-	<script src="<%=request.getContextPath()%>/js/franchisee/list.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/base/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

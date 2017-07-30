@@ -25,6 +25,21 @@ public interface BaseService {
 	List<BaseBean> selectAllOffice();
 
 	/**
+	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllFranchisee()
+	 */
+	List<BaseBean> selectAllFranchisee();
+
+	/**
+	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllClinic()
+	 */
+	List<BaseBean> selectAllClinic();
+
+	/**
+	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectOpenClinic()
+	 */
+	List<BaseBean> selectOpenClinic();
+
+	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectByBa_id(Integer)
 	 */
 	BaseBean selectByBa_id(Integer ba_id);

@@ -13,20 +13,20 @@
 		<table border="1">
 			<tr>
 				<td>名稱</td>
-				<td><form:input path="cl_name" /></td>
+				<td><form:input path="ba_name" /></td>
 			</tr>
 			<tr>
 				<td>英文名稱</td>
-				<td><form:input path="cl_eng_name" /></td>
+				<td><form:input path="ba_eng_name" /></td>
 			</tr>
 			<tr>
 				<td>電話</td>
-				<td><form:input path="cl_localphone" /></td>
+				<td><form:input path="ba_localphone" /></td>
 			</tr>
 			<tr>
 				<td>國家</td>
 				<td>
-					<form:select id="id-input-cl-co-id" path="cl_CountryBean">
+					<form:select id="id-input-ba-co-id" path="ba_CountryBean">
 						<form:option value="0" label="請選擇國家" />
 						<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 					</form:select>
@@ -35,7 +35,7 @@
 			<tr>
 				<td>區域</td>
 				<td>
-					<form:select id="id-input-cl-st-id" path="cl_StateBean">
+					<form:select id="id-input-ba-st-id" path="ba_StateBean">
 						<form:option value="0" label="請選擇區域" />
 					</form:select>
 				</td>
@@ -43,18 +43,18 @@
 			<tr>
 				<td>城市</td>
 				<td>
-					<form:select id="id-input-cl-ci-id" path="cl_CityBean">
+					<form:select id="id-input-ba-ci-id" path="ba_CityBean">
 						<form:option value="0" label="請選擇城市" />
 					</form:select>
 				</td>
 			</tr>
 			<tr>
 				<td>地址</td>
-				<td><form:input path="cl_address" /></td>
+				<td><form:input path="ba_address" /></td>
 			</tr>
 			<tr>
 				<td>網址</td>
-				<td><form:input path="cl_url" /></td>
+				<td><form:input path="ba_url" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="新增" /></td>
@@ -64,6 +64,6 @@
 
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
-	<script src="<%=request.getContextPath()%>/js/clinic/add.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/base/add.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

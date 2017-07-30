@@ -44,6 +44,43 @@ public class BaseDaoImpl implements BaseDao {
 	}
 
 	/**
+	 * 搜尋所有加盟店
+	 * 
+	 * @return List<BaseBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<BaseBean> selectAllFranchisee() {
+
+		return (List<BaseBean>) hibernateTemplate.find("from BaseBean where ba_ca_id=2 order by ba_id asc");
+	}
+
+	/**
+	 * 搜尋所有診所
+	 * 
+	 * @return List<BaseBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<BaseBean> selectAllClinic() {
+
+		return (List<BaseBean>) hibernateTemplate.find("from BaseBean where ba_ca_id=3 order by ba_id asc");
+	}
+
+	/**
+	 * 搜尋開啟的診所
+	 * 
+	 * @return List<BaseBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<BaseBean> selectOpenClinic() {
+
+		return (List<BaseBean>) hibernateTemplate
+				.find("from BaseBean where ba_ca_id=3 and ba_status=1 order by ba_id asc");
+	}
+
+	/**
 	 * 據點流水號搜尋
 	 * 
 	 * @param ba_id

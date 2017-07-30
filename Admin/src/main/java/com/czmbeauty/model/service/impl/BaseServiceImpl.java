@@ -46,9 +46,46 @@ public class BaseServiceImpl implements BaseService {
 	 * @return List<BaseBean>
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public List<BaseBean> selectAllOffice() {
 
 		return baseDao.selectAllOffice();
+	}
+
+	/**
+	 * 搜尋所有加盟店
+	 * 
+	 * @return List<BaseBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<BaseBean> selectAllFranchisee() {
+
+		return baseDao.selectAllFranchisee();
+	}
+
+	/**
+	 * 搜尋所有診所
+	 * 
+	 * @return List<BaseBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<BaseBean> selectAllClinic() {
+
+		return baseDao.selectAllClinic();
+	}
+
+	/**
+	 * 搜尋開啟的診所
+	 * 
+	 * @return List<BaseBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<BaseBean> selectOpenClinic() {
+
+		return baseDao.selectOpenClinic();
 	}
 
 	/**

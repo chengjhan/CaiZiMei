@@ -25,6 +25,21 @@ public interface BaseDao {
 	List<BaseBean> selectAllOffice();
 
 	/**
+	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectAllFranchisee()
+	 */
+	List<BaseBean> selectAllFranchisee();
+
+	/**
+	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectAllClinic()
+	 */
+	List<BaseBean> selectAllClinic();
+
+	/**
+	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectOpenClinic()
+	 */
+	List<BaseBean> selectOpenClinic();
+
+	/**
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectByBa_id(Integer)
 	 */
 	BaseBean selectByBa_id(Integer ba_id);

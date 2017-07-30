@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/7/30
+ * Date: 2017/7/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,11 +13,20 @@ import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
+import static com.czmbeauty.common.constants.PageNameConstants.CLINIC_ADD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.CLINIC_EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.CLINIC_LIST_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.FRANCHISEE_ADD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.FRANCHISEE_EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.FRANCHISEE_LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +49,8 @@ import com.czmbeauty.model.service.CategoryService;
 import com.czmbeauty.model.service.CityService;
 import com.czmbeauty.model.service.CountryService;
 import com.czmbeauty.model.service.StateService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * base controller
@@ -48,6 +59,8 @@ import com.czmbeauty.model.service.StateService;
  */
 @Controller
 public class BaseController {
+
+	private static final Logger logger = Logger.getLogger(BaseController.class);
 
 	/**
 	 * 注入 CountryService
@@ -107,6 +120,38 @@ public class BaseController {
 	}
 
 	/**
+	 * 加盟店一覽 - 初期處理
+	 * 
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/franchisee/list.jsp
+	 */
+	@RequestMapping(value = "/franchisee/list", method = RequestMethod.GET)
+	public String franchiseeListView(Model model) {
+
+		// 取得所有辦事處 List，放入 table
+		model.addAttribute(BASE_LIST, baseService.selectAllFranchisee());
+
+		return FRANCHISEE_LIST_PAGE;
+	}
+
+	/**
+	 * 診所一覽 - 初期處理
+	 * 
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/clinic/list.jsp
+	 */
+	@RequestMapping(value = "/clinic/list", method = RequestMethod.GET)
+	public String clinicListView(Model model) {
+
+		// 取得所有辦事處 List，放入 table
+		model.addAttribute(BASE_LIST, baseService.selectAllClinic());
+
+		return CLINIC_LIST_PAGE;
+	}
+
+	/**
 	 * 新增辦事處 - 初期處理
 	 * 
 	 * @param model
@@ -126,6 +171,44 @@ public class BaseController {
 	}
 
 	/**
+	 * 新增加盟店 - 初期處理
+	 * 
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/franchisee/add.jsp
+	 */
+	@RequestMapping(value = "/franchisee/add", method = RequestMethod.GET)
+	public String franchiseeAddView(Model model) {
+
+		// 取得所有國家 List，放入 select
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
+		// 新增 form backing object
+		model.addAttribute(BASE_BEAN, new BaseBean());
+
+		return FRANCHISEE_ADD_PAGE;
+	}
+
+	/**
+	 * 新增診所 - 初期處理
+	 * 
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/clinic/add.jsp
+	 */
+	@RequestMapping(value = "/clinic/add", method = RequestMethod.GET)
+	public String clinicAddView(Model model) {
+
+		// 取得所有國家 List，放入 select
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
+		// 新增 form backing object
+		model.addAttribute(BASE_BEAN, new BaseBean());
+
+		return CLINIC_ADD_PAGE;
+	}
+
+	/**
 	 * 新增辦事處 - submit
 	 * 
 	 * @param beasBean
@@ -140,6 +223,40 @@ public class BaseController {
 		baseService.insert(baseBean);
 
 		return REDIRECT + OFFICE_LIST_PAGE;
+	}
+
+	/**
+	 * 新增加盟店 - submit
+	 * 
+	 * @param beasBean
+	 *            BaseBean --> form backing object
+	 * @return /WEB-INF/views/franchisee/list.jsp
+	 */
+	@RequestMapping(value = "/franchisee/add.do", method = RequestMethod.POST)
+	public String franchiseeAddProcess(BaseBean baseBean) {
+
+		baseBean.setBa_CategoryBean(categoryService.selectByCa_id(2));
+
+		baseService.insert(baseBean);
+
+		return REDIRECT + FRANCHISEE_LIST_PAGE;
+	}
+
+	/**
+	 * 新增診所 - submit
+	 * 
+	 * @param beasBean
+	 *            BaseBean --> form backing object
+	 * @return /WEB-INF/views/clinic/list.jsp
+	 */
+	@RequestMapping(value = "/clinic/add.do", method = RequestMethod.POST)
+	public String clinicAddProcess(BaseBean baseBean) {
+
+		baseBean.setBa_CategoryBean(categoryService.selectByCa_id(3));
+
+		baseService.insert(baseBean);
+
+		return REDIRECT + CLINIC_LIST_PAGE;
 	}
 
 	/**
@@ -173,6 +290,66 @@ public class BaseController {
 	}
 
 	/**
+	 * 編輯加盟店資訊 - 初期處理
+	 * 
+	 * @param baseBean_ba_id
+	 *            BaseBean --> form backing object --> GET --> ba_id
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/franchisee/edit.jsp
+	 */
+	@RequestMapping(value = "/franchisee/edit", method = RequestMethod.GET)
+	public String franchiseeEditView(BaseBean baseBean_ba_id, Model model) {
+
+		// 取得選定加盟店 id 的 BaseBean
+		BaseBean baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
+
+		// 取得所有國家 List，放入 select
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
+		// 取得加盟店所在國家中的所有區域 List，放入 select
+		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
+
+		// 取得加盟店所在區域中的所有城市 List，放入 select
+		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
+
+		// 使表單回填 BaseBean 內所有資料
+		model.addAttribute(BASE_BEAN, baseBean);
+
+		return FRANCHISEE_EDIT_PAGE;
+	}
+
+	/**
+	 * 編輯診所資訊 - 初期處理
+	 * 
+	 * @param baseBean_ba_id
+	 *            BaseBean --> form backing object --> GET --> ba_id
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/clinic/edit.jsp
+	 */
+	@RequestMapping(value = "/clinic/edit", method = RequestMethod.GET)
+	public String clinicEditView(BaseBean baseBean_ba_id, Model model) {
+
+		// 取得選定診所 id 的 BaseBean
+		BaseBean baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
+
+		// 取得所有國家 List，放入 select
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
+		// 取得診所所在國家中的所有區域 List，放入 select
+		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
+
+		// 取得診所所在區域中的所有城市 List，放入 select
+		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
+
+		// 使表單回填 BaseBean 內所有資料
+		model.addAttribute(BASE_BEAN, baseBean);
+
+		return CLINIC_EDIT_PAGE;
+	}
+
+	/**
 	 * 編輯辦事處資訊 - submit
 	 * 
 	 * @param baseBean
@@ -185,6 +362,82 @@ public class BaseController {
 		baseService.update(baseBean);
 
 		return REDIRECT + OFFICE_LIST_PAGE;
+	}
+
+	/**
+	 * 編輯加盟店資訊 - submit
+	 * 
+	 * @param baseBean
+	 *            BaseBean --> form backing object
+	 * @return /WEB-INF/views/franchisee/list.jsp
+	 */
+	@RequestMapping(value = "/franchisee/edit.do", method = RequestMethod.POST)
+	public String franchiseeEditProcess(BaseBean baseBean) {
+
+		baseService.update(baseBean);
+
+		return REDIRECT + FRANCHISEE_LIST_PAGE;
+	}
+
+	/**
+	 * 編輯診所資訊 - submit
+	 * 
+	 * @param baseBean
+	 *            BaseBean --> form backing object
+	 * @return /WEB-INF/views/clinic/list.jsp
+	 */
+	@RequestMapping(value = "/clinic/edit.do", method = RequestMethod.POST)
+	public String clinicEditProcess(BaseBean baseBean) {
+
+		baseService.update(baseBean);
+
+		return REDIRECT + CLINIC_LIST_PAGE;
+	}
+
+	/**
+	 * 所有診所 JSON (AJAX)
+	 * 
+	 * @return clinic JSON
+	 */
+	@RequestMapping(value = "/clinic/all-clinic-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String allClinicListAjaxProcess() {
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
+		Gson gson = builder.create();
+
+		List<BaseBean> result = baseService.selectAllClinic();
+
+		String json = gson.toJson(result);
+
+		logger.info("JSON = " + json);
+
+		return json;
+	}
+
+	/**
+	 * 開啟的診所 JSON (AJAX)
+	 * 
+	 * @return clinic JSON
+	 */
+	@RequestMapping(value = "/clinic/open-clinic-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openClinicListAjaxProcess() {
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
+		Gson gson = builder.create();
+
+		List<BaseBean> result = baseService.selectOpenClinic();
+
+		String json = gson.toJson(result);
+
+		logger.info("JSON = " + json);
+
+		return json;
 	}
 
 	/**

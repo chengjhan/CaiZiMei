@@ -28,14 +28,6 @@ public interface ModelAttributeConstants {
 
 	public static final String BASE_LIST = "baseList";
 
-	public static final String FRANCHISEE_BEAN = "franchiseeBean";
-
-	public static final String FRANCHISEE_LIST = "franchiseeList";
-
-	public static final String CLINIC_BEAN = "clinicBean";
-
-	public static final String CLINIC_LIST = "clinicList";
-
 	public static final String FILE = "file";
 
 	public static final String SLIDER_MAIN_BEAN = "sliderMainBean";

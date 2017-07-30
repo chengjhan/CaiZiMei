@@ -30,7 +30,7 @@
 			<tr>
 				<td>國家</td>
 				<td>
-					<form:select id="id-input-cl-co-id" path="ba_CountryBean">
+					<form:select id="id-input-ba-co-id" path="ba_CountryBean">
 						<form:option value="0" label="請選擇國家" />
 						<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 					</form:select>
@@ -39,7 +39,7 @@
 			<tr>
 				<td>區域</td>
 				<td>
-					<form:select id="id-input-cl-st-id" path="ba_StateBean">
+					<form:select id="id-input-ba-st-id" path="ba_StateBean">
 						<form:option value="0" label="請選擇區域" />
 						<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
 					</form:select>
@@ -48,7 +48,7 @@
 			<tr>
 				<td>城市</td>
 				<td>
-					<form:select id="id-input-cl-ci-id" path="ba_CityBean">
+					<form:select id="id-input-ba-ci-id" path="ba_CityBean">
 						<form:option value="0" label="請選擇城市" />
 						<form:options items="${cityList}" itemValue="ci_id" itemLabel="ci_name" />
 					</form:select>

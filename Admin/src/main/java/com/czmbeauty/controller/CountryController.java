@@ -15,9 +15,12 @@ import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_EDIT_PAGE
 import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -75,11 +78,18 @@ public class CountryController {
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/add.do", method = RequestMethod.POST)
-	public String addProcess(CountryBean countryBean) {
+	public String addProcess(@Valid CountryBean countryBean, BindingResult result) {
 
-		countryService.insert(countryBean);
+		if (result.hasErrors()) {
 
-		return REDIRECT + COUNTRY_LIST_PAGE;
+			return COUNTRY_ADD_PAGE;
+		} else {
+
+			countryService.insert(countryBean);
+
+			return REDIRECT + COUNTRY_LIST_PAGE;
+		}
+
 	}
 
 	/**

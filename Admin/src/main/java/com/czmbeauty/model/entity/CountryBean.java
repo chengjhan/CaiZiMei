@@ -18,6 +18,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.google.gson.annotations.Expose;
 
@@ -35,12 +40,18 @@ public class CountryBean {
 	@Expose
 	private Integer co_id;
 	@Expose
+	@Size(max = 2)
 	private String co_iso;
 	@Expose
+	@NotBlank
+	@Size(max = 20)
 	private String co_name;
 	@Expose
+	@Size(max = 5)
+	@Pattern(regexp = "(?=.*[0-9])")
 	private String co_phonecode;
 	@Expose
+	@Max(99)
 	private Integer co_rank;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "st_CountryBean")

@@ -1,8 +1,8 @@
 /*
  * CaiZiMei/User
- * File: ClinicDaoImpl.java
+ * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/19
+ * Date: 2017/7/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,16 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.czmbeauty.model.dao.ClinicDao;
-import com.czmbeauty.model.entity.ClinicBean;
+import com.czmbeauty.model.dao.BaseDao;
+import com.czmbeauty.model.entity.BaseBean;
 
 /**
- * clinic DAO implement
+ * base DAO implement
  * 
  * @author 詹晟
  */
-@Repository(value = "clinicDao")
-public class ClinicDaoImpl implements ClinicDao {
+@Repository(value = "baseDao")
+public class BaseDaoImpl implements BaseDao {
 
 	/**
 	 * 注入 HibernateTemplate
@@ -34,13 +34,13 @@ public class ClinicDaoImpl implements ClinicDao {
 	/**
 	 * 狀態搜尋
 	 * 
-	 * @return List<ClinicBean>
+	 * @return List<BaseBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ClinicBean> selectByCl_status() {
+	public List<BaseBean> selectOpen() {
 
-		return (List<ClinicBean>) hibernateTemplate.find("from ClinicBean where cl_status=1 order by cl_id asc");
+		return (List<BaseBean>) hibernateTemplate.find("from BaseBean where ba_status=1 order by ba_id asc");
 	}
 
 }

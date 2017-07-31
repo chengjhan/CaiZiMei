@@ -1,5 +1,5 @@
 /*
- * CaiZiMei
+ * CaiZiMei/User
  * File: CategoryBean.java
  * Author: 詹晟
  * Date: 2017/7/31

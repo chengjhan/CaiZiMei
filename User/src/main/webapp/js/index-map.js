@@ -1,6 +1,6 @@
 function initMap(){
 	
-	var beanArray = [];
+	var baseArray = [];
 	var markerArray = [];
 	
 	var centerLocation = {
@@ -17,12 +17,12 @@ function initMap(){
 	var addMarker = function(){
 
 		// 取出陣列資料
-		for(var i = 0; i < beanArray.length; i++){
+		for(var i = 0; i < baseArray.length; i++){
 
-			var name = beanArray[i][1];
-			var lat = beanArray[i][2];
-			var lng = beanArray[i][3];
-			var url = beanArray[i][4];
+			var name = baseArray[i][1];
+			var lat = baseArray[i][2];
+			var lng = baseArray[i][3];
+			var url = baseArray[i][4];
 			var latLng = new google.maps.LatLng(lat, lng);
 			
 			// 建立標記
@@ -43,21 +43,12 @@ function initMap(){
 		}
 	}
 	
-	$.getJSON("franchisee/open-franchisee-list.ajax", function(data){
-		$.each(data, function(index, franchiseeBean){
+	$.getJSON("base/open-list.ajax", function(data){
+		$.each(data, function(index, baseBean){
 			
-			// 加入加盟店陣列
-			var aFranchiseeBean = [franchiseeBean.fr_id, franchiseeBean.fr_name, franchiseeBean.fr_latitude, franchiseeBean.fr_longitude, franchiseeBean.fr_url];
-			beanArray.push(aFranchiseeBean);
-		});
-	});
-	
-	$.getJSON("clinic/open-clinic-list.ajax", function(data){
-		$.each(data, function(index, clinicBean){
-			
-			// 加入診所陣列
-			var aClinicBean = [clinicBean.cl_id, clinicBean.cl_name, clinicBean.cl_latitude, clinicBean.cl_longitude, clinicBean.cl_url];
-			beanArray.push(aClinicBean);
+			// 加入據點陣列
+			var aBaseBean = [baseBean.ba_id, baseBean.ba_name, baseBean.ba_latitude, baseBean.ba_longitude, baseBean.ba_url];
+			baseArray.push(aBaseBean);
 		});
 		
 		// 執行標記

@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: StateBean.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/7/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -47,8 +47,8 @@ public class StateBean {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_StateBean")
 	private Set<CityBean> st_CityBean;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cl_StateBean")
-	private Set<ClinicBean> st_ClinicBean;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ba_StateBean")
+	private Set<BaseBean> st_BaseBean;
 
 	public Integer getSt_id() {
 		return st_id;
@@ -90,12 +90,12 @@ public class StateBean {
 		this.st_CityBean = st_CityBean;
 	}
 
-	public Set<ClinicBean> getSt_ClinicBean() {
-		return st_ClinicBean;
+	public Set<BaseBean> getSt_BaseBean() {
+		return st_BaseBean;
 	}
 
-	public void setSt_ClinicBean(Set<ClinicBean> st_ClinicBean) {
-		this.st_ClinicBean = st_ClinicBean;
+	public void setSt_BaseBean(Set<BaseBean> st_BaseBean) {
+		this.st_BaseBean = st_BaseBean;
 	}
 
 }

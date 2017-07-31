@@ -44,10 +44,6 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="simpleDateFormat" class="java.text.SimpleDateFormat">
-		<constructor-arg value="yyyy-MM-dd" />
-	</bean>
-
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />

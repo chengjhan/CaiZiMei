@@ -43,7 +43,7 @@ public class BaseController {
 	 * 
 	 * @return base JSON
 	 */
-	@RequestMapping(value = "/base/open-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/base/open-base-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String openListAjaxProcess() {
 

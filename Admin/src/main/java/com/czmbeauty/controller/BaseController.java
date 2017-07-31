@@ -129,7 +129,7 @@ public class BaseController {
 	@RequestMapping(value = "/franchisee/list", method = RequestMethod.GET)
 	public String franchiseeListView(Model model) {
 
-		// 取得所有辦事處 List，放入 table
+		// 取得所有加盟店 List，放入 table
 		model.addAttribute(BASE_LIST, baseService.selectAllFranchisee());
 
 		return FRANCHISEE_LIST_PAGE;
@@ -145,7 +145,7 @@ public class BaseController {
 	@RequestMapping(value = "/clinic/list", method = RequestMethod.GET)
 	public String clinicListView(Model model) {
 
-		// 取得所有辦事處 List，放入 table
+		// 取得所有診所 List，放入 table
 		model.addAttribute(BASE_LIST, baseService.selectAllClinic());
 
 		return CLINIC_LIST_PAGE;

@@ -13,7 +13,7 @@
 		<div>
 			<form:label path="ad_username">帳號</form:label>
 			<form:input id="id-input-ad-username" path="ad_username" />
-			<span id="id-span-ad-username" style="color: red"></span>
+			<span id="id-span-ad-username" style="color:red"></span>
 		</div>
 		<div>
 			<form:label path="ad_password">密碼</form:label>
@@ -39,5 +39,9 @@
 			<input type="submit" id="id-input-submit" value="註冊">
 		</div>
 	</form:form>
+	
+	<!-- load -->
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/js/admin/sign-up.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/30
+ * Date: 2017/7/31
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -428,6 +428,31 @@ public class AdminController {
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());
 
 		return ADMIN_LIST_PAGE;
+	}
+
+	/**
+	 * 帳號重複驗證 (AJAX)
+	 * 
+	 * @param ad_username
+	 *            String --> 管理員帳號
+	 * @return 1
+	 * @return 0
+	 */
+	@RequestMapping(value = "/admin/username-repeat.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String usernameRepeatAjaxProcess(String ad_username) {
+
+		AdminBean adminBean = adminService.selectByAd_username(ad_username);
+
+		if (adminBean != null) {
+
+			// 已使用
+			return "1";
+		} else {
+
+			// 未使用
+			return "0";
+		}
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/7/22
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,9 +21,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.service.CountryService;
 
@@ -42,9 +45,18 @@ public class CountryController {
 	private CountryService countryService;
 
 	/**
+	 * 提供 form backing object 資料轉換
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		webDataBinder.registerCustomEditor(Integer.class, new PrimitiveNumberEditor(Integer.class, true));
+	}
+
+	/**
 	 * 國家一覽 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/list", method = RequestMethod.GET)
@@ -59,7 +71,8 @@ public class CountryController {
 	/**
 	 * 新增國家 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/country/add.jsp
 	 */
 	@RequestMapping(value = "/country/add", method = RequestMethod.GET)
@@ -74,7 +87,10 @@ public class CountryController {
 	/**
 	 * 新增國家 - submit
 	 * 
-	 * @param countryBean-->form-backing-object
+	 * @param countryBean
+	 *            CountryBean --> form backing object
+	 * @param result
+	 *            BindingResult
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/add.do", method = RequestMethod.POST)
@@ -89,14 +105,15 @@ public class CountryController {
 
 			return REDIRECT + COUNTRY_LIST_PAGE;
 		}
-
 	}
 
 	/**
 	 * 編輯國家資訊 - 初期處理
 	 * 
-	 * @param countryBean_co_id-->form-backing-object-->GET-->co_id
-	 * @param model-->Model
+	 * @param countryBean_co_id
+	 *            CountryBean --> form backing object --> GET --> co_id
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/country/edit.jsp
 	 */
 	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
@@ -111,21 +128,31 @@ public class CountryController {
 	/**
 	 * 編輯國家資訊 - submit
 	 * 
-	 * @param countryBean-->form-backing-object
+	 * @param countryBean
+	 *            CountryBean --> form backing object
+	 * @param result
+	 *            BindingResult
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/edit.do", method = RequestMethod.POST)
-	public String editProcess(CountryBean countryBean) {
+	public String editProcess(@Valid CountryBean countryBean, BindingResult result) {
 
-		countryService.update(countryBean);
+		if (result.hasErrors()) {
 
-		return REDIRECT + COUNTRY_LIST_PAGE;
+			return COUNTRY_EDIT_PAGE;
+		} else {
+
+			countryService.update(countryBean);
+
+			return REDIRECT + COUNTRY_LIST_PAGE;
+		}
 	}
 
 	/**
 	 * 刪除國家 - submit
 	 * 
-	 * @param countryBean-->form-backing-object
+	 * @param countryBean
+	 *            CountryBean --> form backing object
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/delete", method = RequestMethod.GET)

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -47,8 +47,9 @@ public class CountryServiceImpl implements CountryService {
 	/**
 	 * 國家流水號搜尋
 	 * 
-	 * @param co_id-->國家流水號
-	 * @return result-->CountryBean
+	 * @param co_id
+	 *            Integer --> 國家流水號
+	 * @return CountryBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -66,8 +67,9 @@ public class CountryServiceImpl implements CountryService {
 	/**
 	 * 新增國家
 	 * 
-	 * @param countryBean-->CountryBean
-	 * @return result-->CountryBean
+	 * @param countryBean
+	 *            CountryBean
+	 * @return CountryBean
 	 */
 	@Override
 	@Transactional
@@ -85,7 +87,8 @@ public class CountryServiceImpl implements CountryService {
 	/**
 	 * 修改資料
 	 * 
-	 * @param countryBean-->CountryBean
+	 * @param countryBean
+	 *            CountryBean
 	 * @return CountryBean
 	 */
 	@Override
@@ -98,8 +101,9 @@ public class CountryServiceImpl implements CountryService {
 	/**
 	 * 刪除國家
 	 * 
-	 * @param co_id-->國家流水號
-	 * @return true-->成功
+	 * @param co_id
+	 *            Integer --> 國家流水號
+	 * @return true
 	 */
 	@Override
 	@Transactional

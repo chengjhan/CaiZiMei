@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryService.java
  * Author: 詹晟
- * Date: 2017/7/12
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,14 +19,29 @@ import com.czmbeauty.model.entity.CountryBean;
  */
 public interface CountryService {
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#selectAll()
+	 */
 	List<CountryBean> selectAll();
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#selectByCo_id(Integer)
+	 */
 	CountryBean selectByCo_id(Integer co_id);
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#insert(CountryBean)
+	 */
 	CountryBean insert(CountryBean countryBean);
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#update(CountryBean)
+	 */
 	CountryBean update(CountryBean countryBean);
 
+	/**
+	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#delete(Integer)
+	 */
 	Boolean delete(Integer co_id);
 
 }

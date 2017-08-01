@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryBean.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,6 +41,7 @@ public class CountryBean {
 	private Integer co_id;
 	@Expose
 	@Size(max = 2)
+	@Pattern(regexp = "^$|[a-zA-Z]{2}")
 	private String co_iso;
 	@Expose
 	@NotBlank
@@ -48,7 +49,7 @@ public class CountryBean {
 	private String co_name;
 	@Expose
 	@Size(max = 5)
-	@Pattern(regexp = "(?=.*[0-9])")
+	@Pattern(regexp = "^$|[0-9]+")
 	private String co_phonecode;
 	@Expose
 	@Max(99)

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,7 +46,8 @@ public class CountryDaoImpl implements CountryDao {
 	/**
 	 * 國家流水號搜尋
 	 * 
-	 * @param co_id-->國家流水號
+	 * @param co_id
+	 *            Integer --> 國家流水號
 	 * @return CountryBean
 	 */
 	@Override
@@ -58,8 +59,9 @@ public class CountryDaoImpl implements CountryDao {
 	/**
 	 * 新增國家
 	 * 
-	 * @param countryBean-->CountryBean
-	 * @return countryBean-->CountryBean
+	 * @param countryBean
+	 *            CountryBean
+	 * @return CountryBean
 	 */
 	@Override
 	public CountryBean insert(CountryBean countryBean) {
@@ -72,8 +74,9 @@ public class CountryDaoImpl implements CountryDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param countryBean-->CountryBean
-	 * @return countryBean-->CountryBean
+	 * @param countryBean
+	 *            CountryBean
+	 * @return CountryBean
 	 */
 	@Override
 	public CountryBean update(CountryBean countryBean) {
@@ -87,8 +90,9 @@ public class CountryDaoImpl implements CountryDao {
 	/**
 	 * 刪除國家
 	 * 
-	 * @param co_id-->國家流水號
-	 * @return true-->成功
+	 * @param co_id
+	 *            Integer --> 國家流水號
+	 * @return true
 	 */
 	@Override
 	public Boolean delete(Integer co_id) {

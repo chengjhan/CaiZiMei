@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -168,6 +168,9 @@ public class CityController {
 
 		if (result.hasErrors()) {
 
+			// 取得所有國家 List，放入 select
+			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
 			return CITY_ADD_PAGE;
 		} else {
 
@@ -222,6 +225,15 @@ public class CityController {
 	public String editProcess(@Valid CityBean cityBean, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
+
+			// 取得所有國家 List，放入 select
+			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
+			// 取得城市所在國家中的所有區域 List，放入 select
+			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(cityBean.getCi_CountryBean().getCo_id()));
+
+			// 取得選定城市 id 的 CityBean，放入 Session，使表單回填 CityBean 內所有資料
+			model.addAttribute(CITY_BEAN, cityService.selectByCi_id(cityBean.getCi_id()));
 
 			return CITY_EDIT_PAGE;
 		} else {

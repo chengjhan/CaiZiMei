@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -151,6 +151,9 @@ public class StateController {
 
 		if (result.hasErrors()) {
 
+			// 取得所有國家 List，放入 select
+			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
 			return STATE_ADD_PAGE;
 		} else {
 
@@ -199,6 +202,12 @@ public class StateController {
 	public String editProcess(@Valid StateBean stateBean, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
+
+			// 取得所有國家 List，放入 select
+			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
+			// 取得選定區域 id 的 StateBean，放入 Session，使表單回填 StateBean 內所有資料
+			model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean.getSt_id()));
 
 			return STATE_EDIT_PAGE;
 		} else {

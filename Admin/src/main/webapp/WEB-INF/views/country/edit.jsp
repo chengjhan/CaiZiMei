@@ -7,10 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>編輯國家資訊 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<style>
+.error {
+	color: red;
+}
+</style>
 </head>
 <body>
 	<form:form action="/Admin/country/edit.do" method="post" modelAttribute="countryBean">
-		<table border="1">
+		<table>
 			<tr style="display:none">
 				<td>流水號</td>
 				<td><form:hidden path="co_id" /></td>

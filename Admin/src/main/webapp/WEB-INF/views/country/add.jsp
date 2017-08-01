@@ -7,12 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增國家 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
-</head>
 <style>
 .error {
 	color: red;
 }
 </style>
+</head>
 <body>
 	<form:form action="/Admin/country/add.do" method="post" modelAttribute="countryBean">
 		<table>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/7/25
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,10 +19,13 @@ import static com.czmbeauty.common.constants.PageNameConstants.STATE_LIST_PAGE;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,8 +76,10 @@ public class StateController {
 	/**
 	 * 區域一覽 - 初期處理
 	 * 
-	 * @param stateBean-->Session
-	 * @param model-->Model
+	 * @param stateBean
+	 *            StateBean --> Session
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/state/list.jsp
 	 */
 	@RequestMapping(value = "/state/list", method = RequestMethod.GET)
@@ -114,7 +119,8 @@ public class StateController {
 	/**
 	 * 新增區域 - 初期處理
 	 * 
-	 * @param model-->Model
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/state/add.jsp
 	 */
 	@RequestMapping(value = "/state/add", method = RequestMethod.GET)
@@ -132,26 +138,38 @@ public class StateController {
 	/**
 	 * 新增區域 - submit
 	 * 
-	 * @param stateBean-->form-backing-object
-	 * @param model-->Model
+	 * @param stateBean
+	 *            StateBean --> form backing object
+	 * @param result
+	 *            BindingResult
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/state/list.jsp
 	 */
 	@RequestMapping(value = "/state/add.do", method = RequestMethod.POST)
-	public String addProcess(StateBean stateBean, Model model) {
+	public String addProcess(@Valid StateBean stateBean, BindingResult result, Model model) {
 
-		stateService.insert(stateBean);
+		if (result.hasErrors()) {
 
-		// 將新增的 StateBean 放入 Session，使 select 回填國家
-		model.addAttribute(STATE_BEAN, stateBean);
+			return STATE_ADD_PAGE;
+		} else {
 
-		return REDIRECT + STATE_LIST_PAGE;
+			stateService.insert(stateBean);
+
+			// 將新增的 StateBean 放入 Session，使 select 回填國家
+			model.addAttribute(STATE_BEAN, stateBean);
+
+			return REDIRECT + STATE_LIST_PAGE;
+		}
 	}
 
 	/**
 	 * 編輯區域資訊 - 初期處理
 	 * 
-	 * @param stateBean_st_id-->form-backing-object-->GET-->st_id
-	 * @param model-->Model
+	 * @param stateBean_st_id
+	 *            StateBean --> form backing object --> GET --> st_id
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/state/edit.jsp
 	 */
 	@RequestMapping(value = "/state/edit", method = RequestMethod.GET)
@@ -169,35 +187,47 @@ public class StateController {
 	/**
 	 * 編輯區域資訊 - submit
 	 * 
-	 * @param stateBean-->form-backing-object
-	 * @param model-->Model
+	 * @param stateBean
+	 *            StateBean --> form backing object
+	 * @param result
+	 *            BindingResult
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/state/list.jsp
 	 */
 	@RequestMapping(value = "/state/edit.do", method = RequestMethod.POST)
-	public String editProcess(StateBean stateBean, Model model) {
+	public String editProcess(@Valid StateBean stateBean, BindingResult result, Model model) {
 
-		stateService.update(stateBean);
+		if (result.hasErrors()) {
 
-		// 將編輯的 StateBean 放入 Session，使 select 回填國家
-		model.addAttribute(STATE_BEAN, stateBean);
+			return STATE_EDIT_PAGE;
+		} else {
 
-		return REDIRECT + STATE_LIST_PAGE;
+			stateService.update(stateBean);
+
+			// 將編輯的 StateBean 放入 Session，使 select 回填國家
+			model.addAttribute(STATE_BEAN, stateBean);
+
+			return REDIRECT + STATE_LIST_PAGE;
+		}
 	}
 
 	/**
 	 * 刪除區域 - submit
 	 * 
-	 * @param stateBean-->form-backing-object
-	 * @param model-->Model
+	 * @param stateBean_st_id
+	 *            StateBean --> form backing object --> GET --> st_id
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/state/list.jsp
 	 */
 	@RequestMapping(value = "/state/delete", method = RequestMethod.GET)
-	public String deleteProcess(StateBean stateBean, Model model) {
+	public String deleteProcess(StateBean stateBean_st_id, Model model) {
 
 		// 將刪除的 StateBean 放入 Session，使 select 回填國家
-		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean.getSt_id()));
+		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean_st_id.getSt_id()));
 
-		stateService.delete(stateBean.getSt_id());
+		stateService.delete(stateBean_st_id.getSt_id());
 
 		return REDIRECT + STATE_LIST_PAGE;
 	}
@@ -205,7 +235,8 @@ public class StateController {
 	/**
 	 * 選定國家中的所有區域 JSON (AJAX)
 	 * 
-	 * @param st_co_id-->國家流水號
+	 * @param st_co_id
+	 *            Integer --> 國家流水號
 	 * @return state JSON
 	 */
 	@RequestMapping(value = "/state/choice-country-state-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")

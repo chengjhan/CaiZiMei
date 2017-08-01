@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,7 +34,8 @@ public class StateDaoImpl implements StateDao {
 	/**
 	 * 區域流水號搜尋
 	 * 
-	 * @param st_id-->區域流水號
+	 * @param st_id
+	 *            Integer --> 區域流水號
 	 * @return StateBean
 	 */
 	@Override
@@ -46,7 +47,8 @@ public class StateDaoImpl implements StateDao {
 	/**
 	 * 國家流水號搜尋
 	 * 
-	 * @param st_co_id-->國家流水號
+	 * @param st_co_id
+	 *            Integer --> 國家流水號
 	 * @return List<CityBean>
 	 */
 	@Override
@@ -60,8 +62,9 @@ public class StateDaoImpl implements StateDao {
 	/**
 	 * 新增區域
 	 * 
-	 * @param stateBean-->StateBean
-	 * @return stateBean-->StateBean
+	 * @param stateBean
+	 *            StateBean
+	 * @return StateBean
 	 */
 	@Override
 	public StateBean insert(StateBean stateBean) {
@@ -74,8 +77,9 @@ public class StateDaoImpl implements StateDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param stateBean-->StateBean
-	 * @return stateBean-->StateBean
+	 * @param stateBean
+	 *            StateBean
+	 * @return StateBean
 	 */
 	@Override
 	public StateBean update(StateBean stateBean) {
@@ -89,8 +93,9 @@ public class StateDaoImpl implements StateDao {
 	/**
 	 * 刪除區域
 	 * 
-	 * @param st_id-->區域流水號
-	 * @return true-->成功
+	 * @param st_id
+	 *            Integer --> 區域流水號
+	 * @return true
 	 */
 	@Override
 	public Boolean delete(Integer st_id) {

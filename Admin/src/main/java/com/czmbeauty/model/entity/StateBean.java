@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateBean.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,6 +20,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.google.gson.annotations.Expose;
 
@@ -41,8 +45,11 @@ public class StateBean {
 	@Expose
 	private CountryBean st_CountryBean;
 	@Expose
+	@NotBlank
+	@Size(max = 20)
 	private String st_name;
 	@Expose
+	@Max(99)
 	private Integer st_rank;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_StateBean")

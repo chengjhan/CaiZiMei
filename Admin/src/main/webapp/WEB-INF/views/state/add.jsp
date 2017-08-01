@@ -7,10 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增區域 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<style>
+.error {
+	color: red;
+}
+</style>
 </head>
 <body>
 	<form:form action="/Admin/state/add.do" method="post" modelAttribute="stateBean">
-		<table border="1">
+		<table>
 			<tr>
 				<td>國家</td>
 				<td>
@@ -23,10 +28,12 @@
 			<tr>
 				<td>名稱</td>
 				<td><form:input path="st_name" /></td>
+				<td><form:errors path="st_name" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>排序</td>
 				<td><form:input path="st_rank" /></td>
+				<td><form:errors path="st_rank" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="新增" /></td>

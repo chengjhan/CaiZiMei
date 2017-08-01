@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -35,8 +35,9 @@ public class StateServiceImpl implements StateService {
 	/**
 	 * 區域流水號搜尋
 	 * 
-	 * @param st_id-->區域流水號
-	 * @return result-->StateBean
+	 * @param st_id
+	 *            Integer --> 區域流水號
+	 * @return StateBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -54,7 +55,8 @@ public class StateServiceImpl implements StateService {
 	/**
 	 * 國家流水號搜尋
 	 * 
-	 * @param st_co_id-->國家流水號
+	 * @param st_co_id
+	 *            Integer --> 國家流水號
 	 * @return List<StateBean>
 	 */
 	@Override
@@ -67,8 +69,9 @@ public class StateServiceImpl implements StateService {
 	/**
 	 * 新增區域
 	 * 
-	 * @param stateBean-->StateBean
-	 * @return result-->StateBean
+	 * @param stateBean
+	 *            StateBean
+	 * @return StateBean
 	 */
 	@Override
 	@Transactional
@@ -86,7 +89,8 @@ public class StateServiceImpl implements StateService {
 	/**
 	 * 修改資料
 	 * 
-	 * @param stateBean-->StateBean
+	 * @param stateBean
+	 *            StateBean
 	 * @return StateBean
 	 */
 	@Override
@@ -99,8 +103,9 @@ public class StateServiceImpl implements StateService {
 	/**
 	 * 刪除區域
 	 * 
-	 * @param st_id-->城市流水號
-	 * @return true-->成功
+	 * @param st_id
+	 *            Integer --> 區域流水號
+	 * @return true
 	 */
 	@Override
 	@Transactional

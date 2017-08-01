@@ -151,14 +151,14 @@ public class CountryController {
 	/**
 	 * 刪除國家 - submit
 	 * 
-	 * @param countryBean
-	 *            CountryBean --> form backing object
+	 * @param countryBean_co_id
+	 *            CountryBean --> form backing object --> GET --> co_id
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/delete", method = RequestMethod.GET)
-	public String deleteProcess(CountryBean countryBean) {
+	public String deleteProcess(CountryBean countryBean_co_id) {
 
-		countryService.delete(countryBean.getCo_id());
+		countryService.delete(countryBean_co_id.getCo_id());
 
 		return REDIRECT + COUNTRY_LIST_PAGE;
 	}

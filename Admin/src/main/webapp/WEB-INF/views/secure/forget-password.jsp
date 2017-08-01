@@ -17,6 +17,7 @@
 		<div>
 			<input type="submit" id="id-input-submit" value="寄信">
 		</div>
+		<div style="color:red">${error}</div>
 	</form>
 </body>
 </html>

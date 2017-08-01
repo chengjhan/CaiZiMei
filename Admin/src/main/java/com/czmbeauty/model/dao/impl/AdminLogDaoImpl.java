@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/8/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,7 +46,8 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	/**
 	 * 管理員流水號搜尋
 	 * 
-	 * @param al_ad_id-->管理員流水號
+	 * @param al_ad_id
+	 *            Integer --> 管理員流水號
 	 * @return List<AdminLogBean>
 	 */
 	@Override
@@ -60,8 +61,9 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	/**
 	 * 新增管理員日誌
 	 * 
-	 * @param adminLogBean-->AdminLogBean
-	 * @return adminLogBean-->AdminLogBean
+	 * @param adminLogBean
+	 *            AdminLogBean
+	 * @return AdminLogBean
 	 */
 	@Override
 	public AdminLogBean insert(AdminLogBean adminLogBean) {

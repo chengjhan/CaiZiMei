@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -179,13 +179,15 @@ public class AdminController {
 	 *            String --> 舊密碼(原碼)
 	 * @param ad_password_new
 	 *            String --> 新密碼(原碼)
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/index.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
 	@RequestMapping(value = "/admin/change-password.do", method = RequestMethod.POST)
 	public String changePasswordProcess(@ModelAttribute(ADMIN) AdminBean admin,
 			@RequestParam(name = "ad_password_old") String ad_password_old,
-			@RequestParam(name = "ad_password_new") String ad_password_new) {
+			@RequestParam(name = "ad_password_new") String ad_password_new, Model model) {
 
 		if (adminService.updateAd_password(admin, ad_password_old, ad_password_new) != null) {
 
@@ -193,7 +195,9 @@ public class AdminController {
 			return INDEX_PAGE;
 		} else {
 
-			// 密碼輸入錯誤，變更失敗
+			model.addAttribute(ERROR, "密碼錯誤");
+
+			// 密碼錯誤，變更失敗
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 		}
 	}
@@ -202,7 +206,7 @@ public class AdminController {
 	 * 登入 - 初期處理
 	 * 
 	 * @param next
-	 *            SigninInterceptor --> GET --> 原請求畫面
+	 *            String --> SigninInterceptor --> GET --> 原請求畫面
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/secure/sign-in.jsp
@@ -335,7 +339,9 @@ public class AdminController {
 			return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
 		} else {
 
-			// 信箱輸入錯誤
+			model.addAttribute(ERROR, "信箱錯誤");
+
+			// 信箱錯誤，發送失敗
 			return ADMIN_FORGET_PASSWORD_PAGE;
 		}
 	}
@@ -362,13 +368,15 @@ public class AdminController {
 	 *            String --> 新密碼(原碼)
 	 * @param sessionStatus
 	 *            SessionStatus
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
 	public String resetPasswordProcess(@ModelAttribute(ADMIN_EMAIL) String ad_email,
 			@RequestParam(name = "ad_password_random") String ad_password_random,
-			@RequestParam(name = "ad_password_new") String ad_password_new, SessionStatus sessionStatus) {
+			@RequestParam(name = "ad_password_new") String ad_password_new, SessionStatus sessionStatus, Model model) {
 
 		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
@@ -381,7 +389,9 @@ public class AdminController {
 			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 		} else {
 
-			// 驗證碼輸入錯誤，重設失敗
+			model.addAttribute(ERROR, "驗證碼錯誤");
+
+			// 驗證碼錯誤，重設失敗
 			return ADMIN_RESET_PASSWORD_PAGE;
 		}
 	}

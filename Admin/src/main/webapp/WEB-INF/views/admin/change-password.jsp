@@ -25,6 +25,7 @@
 		<div>
 			<input type="submit" id="id-input-submit" value="變更">
 		</div>
+		<div style="color:red">${error}</div>
 	</form>
 </body>
 </html>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/20
+ * Date: 2017/8/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,7 +34,8 @@ public class CityDaoImpl implements CityDao {
 	/**
 	 * 城市流水號搜尋
 	 * 
-	 * @param ci_id-->城市流水號
+	 * @param ci_id
+	 *            Integer --> 城市流水號
 	 * @return CityBean
 	 */
 	@Override
@@ -46,7 +47,8 @@ public class CityDaoImpl implements CityDao {
 	/**
 	 * 區域流水號搜尋
 	 * 
-	 * @param ci_st_id-->區域流水號
+	 * @param ci_st_id
+	 *            Integer --> 區域流水號
 	 * @return List<CityBean>
 	 */
 	@Override
@@ -60,8 +62,9 @@ public class CityDaoImpl implements CityDao {
 	/**
 	 * 新增城市
 	 * 
-	 * @param cityBean-->CityBean
-	 * @return cityBean-->CityBean
+	 * @param cityBean
+	 *            CityBean
+	 * @return CityBean
 	 */
 	@Override
 	public CityBean insert(CityBean cityBean) {
@@ -74,8 +77,9 @@ public class CityDaoImpl implements CityDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param cityBean-->CityBean
-	 * @return cityBean-->CityBean
+	 * @param cityBean
+	 *            CityBean
+	 * @return CityBean
 	 */
 	@Override
 	public CityBean update(CityBean cityBean) {
@@ -89,8 +93,9 @@ public class CityDaoImpl implements CityDao {
 	/**
 	 * 刪除城市
 	 * 
-	 * @param ci_id-->城市流水號
-	 * @return true-->成功
+	 * @param ci_id
+	 *            Integer --> 城市流水號
+	 * @return true
 	 */
 	@Override
 	public Boolean delete(Integer ci_id) {

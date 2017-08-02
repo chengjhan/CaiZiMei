@@ -29,11 +29,13 @@ import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -98,40 +100,51 @@ public class AdminController {
 	/**
 	 * 註冊 - submit
 	 * 
-	 * @param adminBean
-	 *            AdminBean --> form backing object
 	 * @param ad_password_again
 	 *            String --> 重複密碼(原碼)
-	 * @return /WEB-INF/views/index.jsp
+	 * @param adminBean
+	 *            AdminBean --> form backing object
+	 * @param bindingResult
+	 *            BindingResult
 	 * @return /WEB-INF/views/admin/sign-up.jsp
+	 * @return /WEB-INF/views/admin/sign-up.jsp
+	 * @return /WEB-INF/views/admin/sign-up.jsp
+	 * @return /WEB-INF/views/index.jsp
 	 */
 	// 得到 <form:form modelAttribute="adminBean"> 表單新增的資料
 	@RequestMapping(value = "/admin/sign-up.do", method = RequestMethod.POST)
-	public String signUpProcess(AdminBean adminBean, @RequestParam String ad_password_again) {
+	public String signUpProcess(@RequestParam String ad_password_again, @Valid AdminBean adminBean,
+			BindingResult bindingResult) {
 
-		if (adminService.selectByAd_username(adminBean.getAd_username()) == null) {
+		if (bindingResult.hasErrors()) {
 
-			if (adminBean.getAd_password().equals(ad_password_again)) {
+			logger.error("註冊失敗: 格式錯誤");
 
-				adminService.signUp(adminBean);
+			// 註冊失敗: 格式錯誤
+			return ADMIN_SIGN_UP_PAGE;
 
-				logger.info("註冊成功。");
+		} else if (!adminBean.getAd_password().equals(ad_password_again)) {
 
-				// 註冊成功
-				return INDEX_PAGE;
-			} else {
+			logger.error("註冊失敗: 密碼重複錯誤");
 
-				logger.error("密碼重複錯誤，註冊失敗。");
+			// 註冊失敗: 密碼重複錯誤
+			return ADMIN_SIGN_UP_PAGE;
 
-				// 密碼重複錯誤，註冊失敗
-				return REDIRECT + ADMIN_SIGN_UP_PAGE;
-			}
+		} else if (adminService.selectByAd_username(adminBean.getAd_username()) != null) {
+
+			logger.error("註冊失敗: 帳號重複");
+
+			// 註冊失敗: 帳號重複
+			return ADMIN_SIGN_UP_PAGE;
+
 		} else {
 
-			logger.error("帳號重複，註冊失敗。");
+			adminService.signUp(adminBean);
 
-			// 帳號重複，註冊失敗
-			return REDIRECT + ADMIN_SIGN_UP_PAGE;
+			logger.info("註冊成功");
+
+			// 註冊成功
+			return INDEX_PAGE;
 		}
 	}
 
@@ -198,39 +211,38 @@ public class AdminController {
 	 *            String --> 重複新密碼(原碼)
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/admin/change-password.jsp
+	 * @return /WEB-INF/views/admin/change-password.jsp
 	 * @return /WEB-INF/views/index.jsp
-	 * @return /WEB-INF/views/admin/change-password.jsp
-	 * @return /WEB-INF/views/admin/change-password.jsp
 	 */
 	@RequestMapping(value = "/admin/change-password.do", method = RequestMethod.POST)
 	public String changePasswordProcess(@ModelAttribute(ADMIN) AdminBean admin, @RequestParam String ad_password_old,
 			@RequestParam String ad_password_new, @RequestParam String ad_password_new_again, Model model) {
 
-		if (ad_password_new.equals(ad_password_new_again)) {
-
-			if (adminService.updateAd_password(admin, ad_password_old, ad_password_new) != null) {
-
-				logger.info("密碼變更成功。");
-
-				// 密碼變更成功
-				return INDEX_PAGE;
-			} else {
-
-				model.addAttribute(ERROR, "密碼錯誤");
-
-				logger.error("密碼錯誤，變更失敗。");
-
-				// 密碼錯誤，變更失敗
-				return ADMIN_CHANGE_PASSWORD_PAGE;
-			}
-		} else {
+		if (!ad_password_new.equals(ad_password_new_again)) {
 
 			model.addAttribute(ERROR, "新密碼重複錯誤");
 
-			logger.error("新密碼重複錯誤，變更失敗。");
+			logger.error("密碼變更失敗: 新密碼重複錯誤");
 
-			// 新密碼重複錯誤，變更失敗
+			// 密碼變更失敗: 新密碼重複錯誤
 			return ADMIN_CHANGE_PASSWORD_PAGE;
+
+		} else if (adminService.updateAd_password(admin, ad_password_old, ad_password_new) == null) {
+
+			model.addAttribute(ERROR, "密碼錯誤");
+
+			logger.error("密碼變更失敗: 密碼錯誤");
+
+			// 密碼變更失敗: 密碼錯誤
+			return ADMIN_CHANGE_PASSWORD_PAGE;
+
+		} else {
+
+			logger.info("密碼變更成功");
+
+			// 密碼變更成功
+			return INDEX_PAGE;
 		}
 	}
 
@@ -270,9 +282,9 @@ public class AdminController {
 	 *            HttpServletRequest
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/next
 	 * @return /WEB-INF/views/index.jsp
-	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam String ad_username, @RequestParam String ad_password,
@@ -280,7 +292,16 @@ public class AdminController {
 
 		AdminBean adminBean = adminService.signIn(ad_username, ad_password);
 
-		if (adminBean != null) {
+		if (adminBean == null) {
+
+			model.addAttribute(ERROR, "帳號或密碼錯誤");
+
+			logger.error("登入失敗: 帳號或密碼錯誤");
+
+			// 登入失敗: 帳號或密碼錯誤
+			return ADMIN_SIGN_IN_PAGE;
+
+		} else {
 
 			// 更新登入資訊
 			adminBean.setAd_signin_number(adminBean.getAd_signin_number() + 1);
@@ -314,14 +335,6 @@ public class AdminController {
 				// 登入成功
 				return INDEX_PAGE;
 			}
-		} else {
-
-			model.addAttribute(ERROR, "帳號或密碼錯誤");
-
-			logger.error("登入失敗，導向畫面: " + ADMIN_SIGN_IN_PAGE);
-
-			// 登入失敗
-			return ADMIN_SIGN_IN_PAGE;
 		}
 	}
 
@@ -343,15 +356,23 @@ public class AdminController {
 	 *            String --> 管理員信箱
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 * @return /WEB-INF/views/secure/forget-password.jsp
+	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
 	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
 	public String forgetPasswordProcess(@RequestParam String ad_email, Model model) {
 
 		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
-		if (adminBean != null) {
+		if (adminBean == null) {
+
+			model.addAttribute(ERROR, "信箱錯誤");
+
+			logger.error("發送失敗: 信箱錯誤");
+
+			// 發送失敗: 信箱錯誤
+			return ADMIN_FORGET_PASSWORD_PAGE;
+		} else {
 
 			int random = (int) (Math.random() * 1000000);
 			String ad_password_random = String.format("%06d", random);
@@ -367,14 +388,10 @@ public class AdminController {
 			// 將管理員 email 放入 Session
 			model.addAttribute(ADMIN_EMAIL, to);
 
+			logger.info("發送成功: 傳送至 " + to);
+
 			// 發送成功
 			return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
-		} else {
-
-			model.addAttribute(ERROR, "信箱錯誤");
-
-			// 信箱錯誤，發送失敗
-			return ADMIN_FORGET_PASSWORD_PAGE;
 		}
 	}
 
@@ -404,44 +421,43 @@ public class AdminController {
 	 *            SessionStatus
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
+	 * @return /WEB-INF/views/secure/reset-password.jsp
+	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
 	public String resetPasswordProcess(@ModelAttribute(ADMIN_EMAIL) String ad_email,
 			@RequestParam String ad_password_random, @RequestParam String ad_password_new,
 			@RequestParam String ad_password_new_again, SessionStatus sessionStatus, Model model) {
 
-		if (ad_password_new.equals(ad_password_new_again)) {
-
-			AdminBean adminBean = adminService.selectByAd_email(ad_email);
-
-			if (adminService.updateAd_password(adminBean, ad_password_random, ad_password_new) != null) {
-
-				// 清除 @SessionAttributes
-				sessionStatus.setComplete();
-
-				logger.info("密碼重設成功。");
-
-				// 密碼重設成功
-				return REDIRECT + ADMIN_SIGN_IN_PAGE;
-			} else {
-
-				model.addAttribute(ERROR, "驗證碼錯誤");
-
-				logger.error("驗證碼錯誤，重設失敗。");
-
-				// 驗證碼錯誤，重設失敗
-				return ADMIN_RESET_PASSWORD_PAGE;
-			}
-		} else {
+		if (!ad_password_new.equals(ad_password_new_again)) {
 
 			model.addAttribute(ERROR, "新密碼重複錯誤");
 
-			logger.error("新密碼重複錯誤，重設失敗。");
+			logger.error("密碼重設失敗: 新密碼重複錯誤");
 
-			// 新密碼重複錯誤，重設失敗
+			// 密碼重設失敗: 新密碼重複錯誤
 			return ADMIN_RESET_PASSWORD_PAGE;
+
+		} else if (adminService.updateAd_password(adminService.selectByAd_email(ad_email), ad_password_random,
+				ad_password_new) == null) {
+
+			model.addAttribute(ERROR, "驗證碼錯誤");
+
+			logger.error("密碼重設失敗: 驗證碼錯誤");
+
+			// 密碼重設失敗: 驗證碼錯誤
+			return ADMIN_RESET_PASSWORD_PAGE;
+
+		} else {
+
+			// 清除 @SessionAttributes
+			sessionStatus.setComplete();
+
+			logger.info("密碼重設成功");
+
+			// 密碼重設成功
+			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 		}
 	}
 
@@ -470,7 +486,7 @@ public class AdminController {
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
 
-		logger.info("登出成功。");
+		logger.info("登出成功");
 
 		return INDEX_PAGE;
 	}

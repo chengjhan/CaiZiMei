@@ -7,17 +7,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>註冊 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<style>
+.error {
+	color: red;
+}
+</style>
 </head>
 <body>
 	<form:form action="/Admin/admin/sign-up.do" method="post" modelAttribute="adminBean">
 		<div>
 			<form:label path="ad_username">帳號</form:label>
 			<form:input id="id-input-ad-username" path="ad_username" />
+			<form:errors path="ad_username" cssClass="error" />
 			<span id="id-span-ad-username" style="color:red"></span>
 		</div>
 		<div>
 			<form:label path="ad_password">密碼</form:label>
 			<form:password id="id-input-ad-password" path="ad_password" />
+			<form:errors path="ad_password" cssClass="error" />
 		</div>
 		<div>
 			<label for="id-input-ad-password-again">確認密碼</label>

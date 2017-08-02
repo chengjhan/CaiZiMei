@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminBean.java
  * Author: 詹晟
- * Date: 2017/7/30
+ * Date: 2017/8/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,6 +18,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 import com.google.gson.annotations.Expose;
 
@@ -35,11 +39,16 @@ public class AdminBean {
 	@Expose
 	private Integer ad_id;
 	@Expose
+	@Pattern(regexp = "^[a-zA-Z0-9_]{3,20}$")
 	private String ad_username;
+	@Pattern(regexp = "^[\\S]{8,32}$")
 	private String ad_password;
 	private String ad_salt;
+	@Size(max = 20)
 	private String ad_lastname;
+	@Size(max = 20)
 	private String ad_firstname;
+	@Email
 	private String ad_email;
 	private java.util.Date ad_signup_time;
 	private Integer ad_signin_number;

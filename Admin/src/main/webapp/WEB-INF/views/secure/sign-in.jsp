@@ -7,24 +7,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登入 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 </head>
 <body>
-	<form action="<c:url value='/secure/sign-in.do' />" method="post">
-		<div>
-			<label for="id-input-ad-username">帳號</label>
-			<input type="text" id="id-input-ad-username" name="ad_username">
+	<form action="<c:url value='/secure/sign-in.do' />" method="post" class="form-horizontal" style="width:400px">
+		<div class="form-group">
+			<label for="id-input-ad-username" class="col-sm-2 control-label">帳號</label>
+			<div class="col-sm-10">
+				<input type="text" id="id-input-ad-username" class="form-control" name="ad_username">
+			</div>
 		</div>
-		<div>
-			<label for="id-input-ad-password">密碼</label>
-			<input type="password" id="id-input-ad-password" name="ad_password">
+		<div class="form-group">
+			<label for="id-input-ad-password" class="col-sm-2 control-label">密碼</label>
+			<div class="col-sm-10">
+				<input type="password" id="id-input-ad-password" class="form-control" name="ad_password">
+			</div>
 		</div>
-		<div>
-			<input type="submit" id="id-input-submit" value="登入">
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" id="id-input-submit" class="btn btn-default" value="登入">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼</a>
+			</div>
 		</div>
 		<div style="color:red">${error}</div>
 	</form>
-	<p>
-		<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼</a>
-	</p>
 </body>
 </html>

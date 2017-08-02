@@ -91,6 +91,8 @@ public class AdminController {
 	@RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
 	public String signUpView(Model model) {
 
+		logger.info("進入註冊頁面: " + ADMIN_SIGN_UP_PAGE);
+
 		// 新增 form backing object
 		model.addAttribute(ADMIN_BEAN, new AdminBean());
 
@@ -156,6 +158,8 @@ public class AdminController {
 	@RequestMapping(value = "/admin/profile", method = RequestMethod.GET)
 	public String profileView() {
 
+		logger.info("進入個人資訊頁面: " + ADMIN_PROFILE_PAGE);
+
 		return ADMIN_PROFILE_PAGE;
 	}
 
@@ -167,6 +171,8 @@ public class AdminController {
 	// <form:form modelAttribute="admin"> 表單得到 Session 的資料，自動回填
 	@RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
 	public String editView() {
+
+		logger.info("進入編輯個人資訊頁面: " + ADMIN_EDIT_PAGE);
 
 		return ADMIN_EDIT_PAGE;
 	}
@@ -204,6 +210,8 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/change-password", method = RequestMethod.GET)
 	public String changePasswordView() {
+
+		logger.info("進入變更密碼頁面" + ADMIN_CHANGE_PASSWORD_PAGE);
 
 		return ADMIN_CHANGE_PASSWORD_PAGE;
 	}
@@ -268,7 +276,7 @@ public class AdminController {
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
 	public String signInView(String next, Model model) {
 
-		logger.info("進入登入畫面: " + ADMIN_SIGN_IN_PAGE);
+		logger.info("進入登入頁面: " + ADMIN_SIGN_IN_PAGE);
 
 		// 若經過 SigninInterceptor
 		if (next != null) {
@@ -356,6 +364,8 @@ public class AdminController {
 	@RequestMapping(value = "/secure/forget-password", method = RequestMethod.GET)
 	public String forgetPasswordView() {
 
+		logger.info("進入忘記密碼頁面: " + ADMIN_FORGET_PASSWORD_PAGE);
+
 		return ADMIN_FORGET_PASSWORD_PAGE;
 	}
 
@@ -398,7 +408,7 @@ public class AdminController {
 			// 將管理員 email 放入 Session
 			model.addAttribute(ADMIN_EMAIL, to);
 
-			logger.info("發送成功: 傳送至 " + to);
+			logger.info("發送成功，傳送至: " + to);
 
 			// 發送成功
 			return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
@@ -412,6 +422,8 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/secure/reset-password", method = RequestMethod.GET)
 	public String resetPasswordView() {
+
+		logger.info("進入重設密碼頁面: " + ADMIN_RESET_PASSWORD_PAGE);
 
 		return ADMIN_RESET_PASSWORD_PAGE;
 	}
@@ -510,6 +522,8 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
 	public String listView(Model model) {
+
+		logger.info("進入管理員一覽頁面: " + ADMIN_LIST_PAGE);
 
 		// 取得所有管理員 List，放入 table
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());

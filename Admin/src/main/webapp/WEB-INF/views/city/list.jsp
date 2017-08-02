@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>城市一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 </head>
 <body>
 	<form:form modelAttribute="cityBean">
@@ -22,11 +23,11 @@
 			<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
 		</form:select>
 	</form:form>
-	<table border="1">
+	<table class="table table-bordered" style="width:500px">
 		<thead>
 			<tr>
 				<td>編號</td>
-				<td>流水號</td>
+<!-- 				<td>流水號</td> -->
 				<td>名稱</td>
 				<td>排序</td>
 				<td>編輯</td>
@@ -37,7 +38,7 @@
 			<c:forEach var="bean" items="${cityList}" varStatus="status">
 				<tr>
 					<td>${status.count}</td>
-					<td>${bean.ci_id}</td>
+<%-- 					<td>${bean.ci_id}</td> --%>
 					<td>${bean.ci_name}</td>
 					<td>${bean.ci_rank}</td>
 					<td><a href="<%=request.getContextPath()%>/city/edit?ci_id=${bean.ci_id}">編輯</a></td>

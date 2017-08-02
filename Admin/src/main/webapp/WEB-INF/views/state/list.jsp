@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>區域一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 </head>
 <body>
 	<form:form modelAttribute="stateBean">
@@ -17,11 +18,11 @@
 			<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 		</form:select>
 	</form:form>
-	<table border="1">
+	<table class="table table-bordered" style="width:500px">
 		<thead>
 			<tr>
 				<td>編號</td>
-				<td>流水號</td>
+<!-- 				<td>流水號</td> -->
 				<td>名稱</td>
 				<td>排序</td>
 				<td>編輯</td>
@@ -32,7 +33,7 @@
 			<c:forEach var="bean" items="${stateList}" varStatus="status">
 				<tr>
 					<td>${status.count}</td>
-					<td>${bean.st_id}</td>
+<%-- 					<td>${bean.st_id}</td> --%>
 					<td>${bean.st_name}</td>
 					<td>${bean.st_rank}</td>
 					<td><a href="<%=request.getContextPath()%>/state/edit?st_id=${bean.st_id}">編輯</a></td>

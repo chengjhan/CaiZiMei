@@ -8,13 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>加盟店一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 </head>
 <body>
-	<table border="1" style="font-size:14px">
+	<table class="table table-bordered" style="width:1200px">
 		<thead>
 			<tr>
 				<td>編號</td>
-				<td>流水號</td>
+<!-- 				<td>流水號</td> -->
 				<td>名稱</td>
 				<td>英文名稱</td>
 				<td>電話</td>
@@ -22,8 +23,8 @@
 				<td>區域</td>
 				<td>城市</td>
 				<td>地址</td>
-				<td>緯度</td>
-				<td>經度</td>
+<!-- 				<td>緯度</td> -->
+<!-- 				<td>經度</td> -->
 				<td>網址</td>
 <!-- 				<td>新增時間</td> -->
 <!-- 				<td>更新時間</td> -->
@@ -39,7 +40,7 @@
 				<fmt:formatDate value="${bean.ba_status_time}" var="ba_status_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 				<tr>
 					<td>${status.count}</td>
-					<td>${bean.ba_id}</td>
+<%-- 					<td>${bean.ba_id}</td> --%>
 					<td>${bean.ba_name}</td>
 					<td>${bean.ba_eng_name}</td>
 					<td>${bean.ba_localphone}</td>
@@ -47,8 +48,8 @@
 					<td>${bean.ba_StateBean.st_name}</td>
 					<td>${bean.ba_CityBean.ci_name}</td>
 					<td>${bean.ba_address}</td>
-					<td>${bean.ba_latitude}</td>
-					<td>${bean.ba_longitude}</td>
+<%-- 					<td>${bean.ba_latitude}</td> --%>
+<%-- 					<td>${bean.ba_longitude}</td> --%>
 					<td><a href="${bean.ba_url}">${bean.ba_url}</a></td>
 <%-- 					<td>${ba_insert_time_format}</td> --%>
 <%-- 					<td>${ba_update_time_format}</td> --%>

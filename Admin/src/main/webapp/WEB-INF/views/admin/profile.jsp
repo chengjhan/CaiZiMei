@@ -7,9 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>個人資訊 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 </head>
 <body>
-	<table border="1">
+	<table class="table table-bordered" style="width:500px">
 		<tr>
 			<td>姓名</td>
 			<td>${admin.ad_lastname} ${admin.ad_firstname}</td>

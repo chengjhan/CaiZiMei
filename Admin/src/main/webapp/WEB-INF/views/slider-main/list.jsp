@@ -7,17 +7,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>圖片一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 </head>
 <body>
-	<table border="1">
+	<table class="table table-bordered" style="width:800px">
 		<c:forEach var="bean" items="${sliderMainList}" varStatus="status">
 			<tbody>
 					<tr>
-						<td rowspan="5">${status.count}</td>
-						<td rowspan="5" style="width:300px"><img style="width:100%" src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
-						<td>流水號</td>
-						<td style="width:300px">${bean.sm_id}</td>
-						<td rowspan="5">
+						<td rowspan="4">${status.count}</td>
+						<td rowspan="4" style="width:300px"><img style="width:100%" src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
+						<td>名稱</td>
+						<td style="width:300px">${bean.sm_name}</td>
+						<td rowspan="4">
 							<div style="width:30px">
 								<a href="<%=request.getContextPath()%>/slider-main/edit?sm_id=${bean.sm_id}"><img src="<%=request.getContextPath()%>/images/edit.svg" style="width:100%"></a>
 							</div>
@@ -32,10 +33,6 @@
 								</c:choose>
 							</div>
 						</td>
-					</tr>
-					<tr>
-						<td>名稱</td>
-						<td>${bean.sm_name}</td>
 					</tr>
 					<tr>
 						<td>檔名</td>

@@ -180,11 +180,21 @@ public class AdminController {
 	 */
 	// 得到 <form:form modelAttribute="admin"> 表單更新的資料
 	@RequestMapping(value = "/admin/edit.do", method = RequestMethod.POST)
-	public String editProcess(@ModelAttribute(ADMIN) AdminBean admin) {
+	public String editProcess(@Valid @ModelAttribute(ADMIN) AdminBean admin, BindingResult bindingResult) {
 
-		adminService.update(admin);
+		if (bindingResult.hasErrors()) {
 
-		return REDIRECT + ADMIN_PROFILE_PAGE;
+			logger.error("編輯失敗: 格式錯誤");
+
+			return ADMIN_EDIT_PAGE;
+		} else {
+
+			adminService.update(admin);
+
+			logger.info("編輯成功");
+
+			return REDIRECT + ADMIN_PROFILE_PAGE;
+		}
 	}
 
 	/**

@@ -22,6 +22,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.google.gson.annotations.Expose;
 
@@ -48,6 +49,7 @@ public class AdminBean {
 	private String ad_lastname;
 	@Size(max = 20)
 	private String ad_firstname;
+	@NotEmpty
 	@Email
 	private String ad_email;
 	private java.util.Date ad_signup_time;

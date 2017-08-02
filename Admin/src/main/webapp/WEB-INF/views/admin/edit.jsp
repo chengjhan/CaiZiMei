@@ -7,20 +7,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>編輯個人資訊 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<style>
+.error {
+	color: red;
+}
+</style>
 </head>
 <body>
 	<form:form action="/Admin/admin/edit.do" method="post" modelAttribute="admin">
 		<div>
 			<form:label path="ad_lastname">姓氏</form:label>
 			<form:input id="id-input-ad-lastname" path="ad_lastname" />
+			<form:errors path="ad_lastname" cssClass="error" />
 		</div>
 		<div>
 			<form:label path="ad_firstname">名字</form:label>
 			<form:input id="id-input-ad-firstname" path="ad_firstname" />
+			<form:errors path="ad_firstname" cssClass="error" />
 		</div>
 		<div>
 			<form:label path="ad_email">信箱</form:label>
 			<form:input id="id-input-ad-email" path="ad_email" />
+			<form:errors path="ad_email" cssClass="error" />
 		</div>
 		<div>
 			<input type="submit" id="id-input-submit" value="變更">

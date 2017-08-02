@@ -21,7 +21,7 @@
 		</div>
 		<div>
 			<label for="id-input-ad-password-again">確認密碼</label>
-			<input type="password" id="id-input-ad-password-again">
+			<input type="password" id="id-input-ad-password-again" name="ad_password_again">
 		</div>
 		<div>
 			<form:label path="ad_lastname">姓氏</form:label>

@@ -17,7 +17,6 @@
 				<td>流水號</td>
 				<td>帳號</td>
 				<td>姓名</td>
-				<td>信箱</td>
 				<td>註冊時間</td>
 				<td>登入次數</td>
 				<td>最後登入IP</td>
@@ -36,7 +35,6 @@
 					<td>${bean.ad_id}</td>
 					<td>${bean.ad_username}</td>
 					<td>${bean.ad_lastname} ${bean.ad_firstname}</td>
-					<td>${bean.ad_email}</td>
 					<td>${ad_signup_time}</td>
 					<td>${bean.ad_signin_number}</td>
 					<td>${bean.ad_signin_ip}</td>

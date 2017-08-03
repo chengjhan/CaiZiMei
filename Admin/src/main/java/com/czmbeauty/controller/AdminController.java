@@ -301,6 +301,8 @@ public class AdminController {
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/secure/sign-in.jsp
+	 * @return /WEB-INF/views/secure/sign-in.jsp
+	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/next
 	 * @return /WEB-INF/views/index.jsp
 	 */
@@ -308,9 +310,25 @@ public class AdminController {
 	public String signInProcess(@RequestParam String ad_username, @RequestParam String ad_password,
 			HttpServletRequest request, Model model) {
 
-		AdminBean adminBean = adminService.signIn(ad_username, ad_password);
+		if (ad_username == null || ad_username.isEmpty()) {
 
-		if (adminBean == null) {
+			model.addAttribute(ERROR, "帳號未填");
+
+			logger.error("登入失敗: 帳號未填");
+
+			// 登入失敗: 帳號未填
+			return ADMIN_SIGN_IN_PAGE;
+
+		} else if (ad_password == null || ad_password.isEmpty()) {
+
+			model.addAttribute(ERROR, "密碼未填");
+
+			logger.error("登入失敗: 密碼未填");
+
+			// 登入失敗: 密碼未填
+			return ADMIN_SIGN_IN_PAGE;
+
+		} else if (adminService.signIn(ad_username, ad_password) == null) {
 
 			model.addAttribute(ERROR, "帳號或密碼錯誤");
 
@@ -320,6 +338,8 @@ public class AdminController {
 			return ADMIN_SIGN_IN_PAGE;
 
 		} else {
+
+			AdminBean adminBean = adminService.signIn(ad_username, ad_password);
 
 			// 更新登入資訊
 			adminBean.setAd_signin_number(adminBean.getAd_signin_number() + 1);
@@ -350,7 +370,7 @@ public class AdminController {
 
 				logger.info("登入成功，導向首頁: index");
 
-				// 登入成功
+				// 登入成功，導向首頁
 				return INDEX_PAGE;
 			}
 		}

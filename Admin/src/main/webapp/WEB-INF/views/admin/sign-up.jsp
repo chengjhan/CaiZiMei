@@ -8,32 +8,25 @@
 <title>註冊 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-<style>
-.error {
-	color: red;
-}
-
-.sign-up-form {
-	width: 600px;
-}
-</style>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/sign-up.css" type="text/css" />
 </head>
 <body>
-	<form:form action="/Admin/admin/sign-up.do" method="post" modelAttribute="adminBean" cssClass="form-horizontal sign-up-form">
+	<form:form action="/Admin/admin/sign-up.do" method="post" modelAttribute="adminBean" cssClass="form-horizontal form-sign-up">
 		<div class="form-group">
 			<form:label path="ad_username" cssClass="col-sm-2 control-label">帳號</form:label>
 			<div class="col-sm-10">
 				<form:input path="ad_username" id="id-input-ad-username" cssClass="form-control" />
+				<span id="id-span-ad-username" class="error"></span>
+				<form:errors path="ad_username" cssClass="error" />
 			</div>
-			<form:errors path="ad_username" cssClass="error" />
-			<span id="id-span-ad-username" style="color:red"></span>
 		</div>
 		<div class="form-group">
 			<form:label path="ad_password" cssClass="col-sm-2 control-label">密碼</form:label>
 			<div class="col-sm-10">
 				<form:password path="ad_password" id="id-input-ad-password" cssClass="form-control" />
+				<form:errors path="ad_password" cssClass="error" />
 			</div>
-			<form:errors path="ad_password" cssClass="error" />
 		</div>
 		<div class="form-group">
 			<label for="id-input-ad-password-again" class="col-sm-2 control-label">確認密碼</label>
@@ -45,18 +38,21 @@
 			<form:label path="ad_lastname" cssClass="col-sm-2 control-label">姓氏</form:label>
 			<div class="col-sm-10">
 				<form:input path="ad_lastname" id="id-input-ad-lastname" cssClass="form-control" />
+				<form:errors path="ad_lastname" cssClass="error" />
 			</div>
 		</div>
 		<div class="form-group">
 			<form:label path="ad_firstname" cssClass="col-sm-2 control-label">名字</form:label>
 			<div class="col-sm-10">
 				<form:input path="ad_firstname" id="id-input-ad-firstname" cssClass="form-control" />
+				<form:errors path="ad_firstname" cssClass="error" />
 			</div>	
 		</div>
 		<div class="form-group">
 			<form:label path="ad_email" cssClass="col-sm-2 control-label">信箱</form:label>
 			<div class="col-sm-10">
 				<form:input path="ad_email" id="id-input-ad-email" cssClass="form-control" />
+				<form:errors path="ad_email" cssClass="error" />
 			</div>
 		</div>
 		<div class="form-group">

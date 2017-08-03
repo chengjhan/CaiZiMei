@@ -69,7 +69,7 @@ public class AdminDaoImpl implements AdminDao {
 	public AdminBean selectByAd_username(String ad_username) {
 
 		List<AdminBean> list = (List<AdminBean>) hibernateTemplate
-				.findByNamedParam("from AdminBean where ad_username=:ad_username", "ad_username", ad_username);
+				.findByNamedParam("from AdminBean where ad_status=1 and ad_username=:ad_username", "ad_username", ad_username);
 
 		if (!list.isEmpty()) {
 

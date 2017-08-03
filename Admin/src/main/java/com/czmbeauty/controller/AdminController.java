@@ -317,7 +317,7 @@ public class AdminController {
 			logger.error("登入失敗: 帳號未填");
 
 			// 登入失敗: 帳號未填
-			return ADMIN_SIGN_IN_PAGE;
+			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 
 		} else if (ad_password == null || ad_password.isEmpty()) {
 
@@ -326,7 +326,7 @@ public class AdminController {
 			logger.error("登入失敗: 密碼未填");
 
 			// 登入失敗: 密碼未填
-			return ADMIN_SIGN_IN_PAGE;
+			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 
 		} else if (adminService.signIn(ad_username, ad_password) == null) {
 
@@ -335,7 +335,7 @@ public class AdminController {
 			logger.error("登入失敗: 帳號或密碼錯誤");
 
 			// 登入失敗: 帳號或密碼錯誤
-			return ADMIN_SIGN_IN_PAGE;
+			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 
 		} else {
 

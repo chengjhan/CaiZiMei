@@ -9,32 +9,27 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure/sign-in.css" type="text/css" />
 </head>
 <body>
-	<form action="<c:url value='/secure/sign-in.do' />" method="post" class="form-horizontal" style="width:400px">
-		<div class="form-group">
-			<label for="id-input-ad-username" class="col-sm-2 control-label">帳號</label>
-			<div class="col-sm-10">
-				<input type="text" id="id-input-ad-username" class="form-control" name="ad_username">
-			</div>
+	<div class="container-fluid">
+		<div class="container div-sign-in">
+			<form action="<c:url value='/secure/sign-in.do' />" method="post" role="form">
+				<div class="form-group">
+					<label for="id-input-ad-username" class="control-label">帳號</label>
+					<input type="text" id="id-input-ad-username" class="form-control" name="ad_username">
+				</div>
+				<div class="form-group">
+					<label for="id-input-ad-password" class="control-label">密碼</label>
+					<input type="password" id="id-input-ad-password" class="form-control" name="ad_password">
+					<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼？</a>
+				</div>
+				<div class="form-group" style="margin-top:20px">
+					<span class="error">${error}</span>
+					<input type="submit" id="id-input-submit" class="btn btn-default" style="float:right" value="登入">
+				</div>
+			</form>
 		</div>
-		<div class="form-group">
-			<label for="id-input-ad-password" class="col-sm-2 control-label">密碼</label>
-			<div class="col-sm-10">
-				<input type="password" id="id-input-ad-password" class="form-control" name="ad_password">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" id="id-input-submit" class="btn btn-default" value="登入">
-				<span class="error">${error}</span>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼</a>
-			</div>
-		</div>
-	</form>
+	</div>
 </body>
 </html>

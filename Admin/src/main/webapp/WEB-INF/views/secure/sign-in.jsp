@@ -13,8 +13,8 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="container div-sign-in">
-			<form action="<c:url value='/secure/sign-in.do' />" method="post" role="form">
+		<div class="container div-sign-in-form">
+			<form action="<c:url value='/secure/sign-in.do' />" method="post">
 				<div class="form-group">
 					<label for="id-input-ad-username" class="control-label">帳號</label>
 					<input type="text" id="id-input-ad-username" class="form-control" name="ad_username">
@@ -26,9 +26,12 @@
 				</div>
 				<div class="form-group" style="margin-top:20px">
 					<span class="error">${error}</span>
-					<input type="submit" id="id-input-submit" class="btn btn-default" style="float:right" value="登入">
+					<input type="submit" id="id-input-submit" class="btn btn-primary" style="float:right" value="登入">
 				</div>
 			</form>
+		</div>
+		<div class="container" style="width:300px">
+			<a href="<%=request.getContextPath()%>/">首頁</a>
 		</div>
 	</div>
 </body>

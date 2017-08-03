@@ -7,25 +7,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>重設密碼 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure/reset-password.css" type="text/css" />
 </head>
 <body>
-	<form action="<c:url value='/secure/reset-password.do' />" method="post">
-		<div>
-			<label for="id-input-ad-password">驗證碼</label>
-			<input type="password" id="id-input-ad-password-random" name="ad_password_random">
+	<div class="container-fluid">
+		<div class="container div-reset-password-form">
+			<form action="<c:url value='/secure/reset-password.do' />" method="post">
+				<div class="form-group">
+					<label for="id-input-ad-password">驗證碼</label>
+					<input type="password" id="id-input-ad-password-random" class="form-control" name="ad_password_random">
+				</div>
+				<div class="form-group">
+					<label for="id-input-ad-password-new">新密碼</label>
+					<input type="password" id="id-input-ad-password-new" class="form-control" name="ad_password_new">
+				</div>
+				<div class="form-group">
+					<label for="id-input-ad-password-new-again">新密碼</label>
+					<input type="password" id="id-input-ad-password-new-again" class="form-control" name="ad_password_new_again">
+				</div>
+				<div class="form-group" style="margin-top:30px">
+					<span class="error">${error}</span>
+					<input type="submit" id="id-input-submit" class="btn btn-primary" style="float:right" value="變更">
+				</div>
+			</form>
 		</div>
-		<div>
-			<label for="id-input-ad-password-new">新密碼</label>
-			<input type="password" id="id-input-ad-password-new" name="ad_password_new">
+		<div class="container" style="width:300px">
+			<a href="<%=request.getContextPath()%>/">首頁</a>
 		</div>
-		<div>
-			<label for="id-input-ad-password-new-again">新密碼</label>
-			<input type="password" id="id-input-ad-password-new-again" name="ad_password_new_again">
-		</div>
-		<div>
-			<input type="submit" id="id-input-submit" value="變更">
-		</div>
-		<div style="color:red">${error}</div>
-	</form>
+	</div>
 </body>
 </html>

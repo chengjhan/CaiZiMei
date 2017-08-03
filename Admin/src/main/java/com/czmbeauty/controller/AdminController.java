@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/8/2
+ * Date: 2017/8/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -328,50 +328,54 @@ public class AdminController {
 			// 登入失敗: 密碼未填
 			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 
-		} else if (adminService.signIn(ad_username, ad_password) == null) {
-
-			model.addAttribute(ERROR, "帳號或密碼錯誤");
-
-			logger.error("登入失敗: 帳號或密碼錯誤");
-
-			// 登入失敗: 帳號或密碼錯誤
-			return REDIRECT + ADMIN_SIGN_IN_PAGE;
-
 		} else {
 
 			AdminBean adminBean = adminService.signIn(ad_username, ad_password);
 
-			// 更新登入資訊
-			adminBean.setAd_signin_number(adminBean.getAd_signin_number() + 1);
-			adminBean.setAd_signin_ip(request.getRemoteAddr());
-			adminBean.setAd_signin_time(new java.util.Date());
+			if (adminService.signIn(ad_username, ad_password) == null) {
 
-			// 放入 Session
-			model.addAttribute(ADMIN, adminBean);
+				model.addAttribute(ERROR, "帳號或密碼錯誤");
 
-			// 寫入日誌
-			AdminLogBean adminLogBean = new AdminLogBean();
-			adminLogBean.setAl_AdminBean(adminBean);
-			adminLogBean.setAl_operation("登入");
-			adminLogBean.setAl_ip(request.getRemoteAddr());
-			adminLogService.insert(adminLogBean);
+				logger.error("登入失敗: 帳號或密碼錯誤");
 
-			HttpSession session = request.getSession();
-			String next = (String) session.getAttribute(NEXT_PAGE);
+				// 登入失敗: 帳號或密碼錯誤
+				return REDIRECT + ADMIN_SIGN_IN_PAGE;
 
-			// 若經過 SigninInterceptor
-			if (next != null) {
-
-				logger.info("登入成功，導向原請求畫面: " + next);
-
-				// 登入成功，導向原請求畫面
-				return REDIRECT.concat(next);
 			} else {
 
-				logger.info("登入成功，導向首頁: index");
+				// 更新登入資訊
+				adminBean.setAd_signin_number(adminBean.getAd_signin_number() + 1);
+				adminBean.setAd_signin_ip(request.getRemoteAddr());
+				adminBean.setAd_signin_time(new java.util.Date());
 
-				// 登入成功，導向首頁
-				return INDEX_PAGE;
+				// 放入 Session
+				model.addAttribute(ADMIN, adminBean);
+
+				// 寫入日誌
+				AdminLogBean adminLogBean = new AdminLogBean();
+				adminLogBean.setAl_AdminBean(adminBean);
+				adminLogBean.setAl_operation("登入");
+				adminLogBean.setAl_ip(request.getRemoteAddr());
+				adminLogService.insert(adminLogBean);
+
+				HttpSession session = request.getSession();
+				String next = (String) session.getAttribute(NEXT_PAGE);
+
+				// 若經過 SigninInterceptor
+				if (next != null) {
+
+					logger.info("登入成功，導向原請求畫面: " + next);
+
+					// 登入成功，導向原請求畫面
+					return REDIRECT.concat(next);
+
+				} else {
+
+					logger.info("登入成功，導向首頁: index");
+
+					// 登入成功，導向首頁
+					return INDEX_PAGE;
+				}
 			}
 		}
 	}
@@ -397,41 +401,55 @@ public class AdminController {
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/secure/forget-password.jsp
+	 * @return /WEB-INF/views/secure/forget-password.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
 	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
 	public String forgetPasswordProcess(@RequestParam String ad_email, Model model) {
 
-		AdminBean adminBean = adminService.selectByAd_email(ad_email);
+		if (ad_email == null || ad_email.isEmpty()) {
 
-		if (adminBean == null) {
+			model.addAttribute(ERROR, "信箱未填");
 
-			model.addAttribute(ERROR, "信箱錯誤");
+			logger.error("發送失敗: 信箱未填");
 
-			logger.error("發送失敗: 信箱錯誤");
-
-			// 發送失敗: 信箱錯誤
+			// 發送失敗: 信箱未填
 			return ADMIN_FORGET_PASSWORD_PAGE;
+
 		} else {
 
-			int random = (int) (Math.random() * 1000000);
-			String ad_password_random = String.format("%06d", random);
+			AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
-			adminService.updateAd_password(adminBean, ad_password_random);
+			if (adminBean == null) {
 
-			String to = adminBean.getAd_email();
-			String from = FORGET_PASSWORD_MAIL_FORM;
-			String subject = FORGET_PASSWORD_MAIL_SUBJECT;
-			String text = "您的驗證碼為：" + ad_password_random + "。";
-			sendMail.sendMail(to, from, subject, text);
+				model.addAttribute(ERROR, "信箱錯誤");
 
-			// 將管理員 email 放入 Session
-			model.addAttribute(ADMIN_EMAIL, to);
+				logger.error("發送失敗: 信箱錯誤");
 
-			logger.info("發送成功，傳送至: " + to);
+				// 發送失敗: 信箱錯誤
+				return ADMIN_FORGET_PASSWORD_PAGE;
 
-			// 發送成功
-			return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
+			} else {
+
+				int random = (int) (Math.random() * 1000000);
+				String ad_password_random = String.format("%06d", random);
+
+				adminService.updateAd_password(adminBean, ad_password_random);
+
+				String to = adminBean.getAd_email();
+				String from = FORGET_PASSWORD_MAIL_FORM;
+				String subject = FORGET_PASSWORD_MAIL_SUBJECT;
+				String text = "您的驗證碼為：" + ad_password_random + "。";
+				sendMail.sendMail(to, from, subject, text);
+
+				// 將管理員 email 放入 Session
+				model.addAttribute(ADMIN_EMAIL, to);
+
+				logger.info("發送成功，傳送至: " + to);
+
+				// 發送成功
+				return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
+			}
 		}
 	}
 
@@ -465,6 +483,8 @@ public class AdminController {
 	 *            Model
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
+	 * @return /WEB-INF/views/secure/reset-password.jsp
+	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
@@ -472,7 +492,26 @@ public class AdminController {
 			@RequestParam String ad_password_random, @RequestParam String ad_password_new,
 			@RequestParam String ad_password_new_again, SessionStatus sessionStatus, Model model) {
 
-		if (!ad_password_new.equals(ad_password_new_again)) {
+		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
+				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
+
+			model.addAttribute(ERROR, "資料未填");
+
+			logger.error("密碼重設失敗: 資料未填");
+
+			// 密碼重設失敗: 資料未填
+			return ADMIN_RESET_PASSWORD_PAGE;
+
+		} else if (!ad_password_new_again.matches("^[\\S]{8,32}$")) {
+
+			model.addAttribute(ERROR, "格式錯誤");
+
+			logger.error("密碼重設失敗: 格式錯誤");
+
+			// 密碼重設失敗: 格式錯誤
+			return ADMIN_RESET_PASSWORD_PAGE;
+
+		} else if (!ad_password_new.equals(ad_password_new_again)) {
 
 			model.addAttribute(ERROR, "新密碼重複錯誤");
 

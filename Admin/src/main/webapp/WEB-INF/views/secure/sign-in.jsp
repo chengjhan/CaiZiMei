@@ -9,17 +9,21 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure/sign-in.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure/all.css" type="text/css" />
 </head>
 <body>
 	<div class="container-fluid">
-		<div style="width:60px;margin:0 auto">
-			<img src="<%=request.getContextPath()%>/images/caizimei_logo_gray.svg" style="width:100%">
+		<div class="container top">
+			<div class="logo">
+				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/caizimei_logo_gray.svg"></a>
+			</div>
+			<div class="title">
+				<h3>采姿美管理系統</h3>
+			</div>
 		</div>
-		<h3 class="container" style="width:300px;margin:0 auto;font-size:30px">采姿美後台管理系統</h3>
-		<div class="container" style="width:300px;font-size:20px;margin-bottom:5px">登入</div>
-		<div class="container div-sign-in-form">
+		<div class="container form">
 			<form action="<c:url value='/secure/sign-in.do' />" method="post">
+				<div class="form-group sub-title">登入</div>
 				<div class="form-group">
 					<label for="id-input-ad-username" class="control-label">帳號</label>
 					<input type="text" id="id-input-ad-username" class="form-control" name="ad_username">
@@ -34,9 +38,6 @@
 					<input type="submit" id="id-input-submit" class="btn btn-primary" style="float:right" value="登入">
 				</div>
 			</form>
-		</div>
-		<div class="container" style="width:300px">
-			<a href="<%=request.getContextPath()%>/">首頁</a>
 		</div>
 	</div>
 </body>

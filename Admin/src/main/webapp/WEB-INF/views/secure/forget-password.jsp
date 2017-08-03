@@ -9,25 +9,31 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure/forget-password.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure/all.css" type="text/css" />
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="container div-forget-password-form">
+		<div class="container top">
+			<div class="logo">
+				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/caizimei_logo_gray.svg"></a>
+			</div>
+			<div class="title">
+				<h3>采姿美管理系統</h3>
+			</div>
+		</div>
+		<div class="container form">
 			<form action="<c:url value='/secure/forget-password.do' />" method="post">
+				<div class="form-group sub-title">忘記密碼</div>
 				<div class="form-group">
 					<label for="id-input-ad-email">信箱</label>
 					<input type="text" id="id-input-ad-email" class="form-control" name="ad_email">
-					<div><p style="font-size:13px">請輸入您註冊時所填的信箱，系統將發送驗證碼至您的信箱，以重設您的密碼。<p></div>
+					<div><p style="font-size:13px;padding:5px">請輸入您的信箱，系統將發送驗證碼，以重設您的密碼。<p></div>
 				</div>
 				<div class="form-group" style="margin-top:20px">
 					<span class="error">${error}</span>
-					<input type="submit" id="id-input-submit" class="btn btn-primary" style="float:right" value="寄信">
+					<input type="submit" id="id-input-submit" class="btn btn-primary" style="float:right" value="發送">
 				</div>
 			</form>
-		</div>
-		<div class="container" style="width:300px">
-			<a href="<%=request.getContextPath()%>/">首頁</a>
 		</div>
 	</div>
 </body>

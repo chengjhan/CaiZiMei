@@ -13,6 +13,11 @@
 </head>
 <body>
 	<div class="container-fluid">
+		<div style="width:60px;margin:0 auto">
+			<img src="<%=request.getContextPath()%>/images/caizimei_logo_gray.svg" style="width:100%">
+		</div>
+		<h3 class="container" style="width:300px;margin:0 auto;font-size:30px">采姿美後台管理系統</h3>
+		<div class="container" style="width:300px;font-size:20px;margin-bottom:5px">登入</div>
 		<div class="container div-sign-in-form">
 			<form action="<c:url value='/secure/sign-in.do' />" method="post">
 				<div class="form-group">

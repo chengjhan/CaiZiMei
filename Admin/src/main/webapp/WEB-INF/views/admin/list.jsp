@@ -22,11 +22,11 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h2 class="sub-header">管理員一覽</h2>
 				<div class="table-responsive">
-					<table class="table table-bordered" style="width:1000px">
+					<table class="table table-bordered" style="width:100%">
 						<thead>
 							<tr>
 								<td>編號</td>
-								<td>流水號</td>
+<!-- 								<td>流水號</td> -->
 								<td>帳號</td>
 								<td>姓名</td>
 								<td>註冊時間</td>
@@ -34,7 +34,7 @@
 								<td>最後登入IP</td>
 								<td>最後登入時間</td>
 								<td>狀態變更時間</td>
-								<td>變更</td>
+								<td>開啟</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -44,7 +44,7 @@
 								<fmt:formatDate value="${bean.ad_status_time}" var="ad_status_time" pattern="yyyy-MM-dd HH:mm:ss" />
 								<tr>
 									<td>${status.count}</td>
-									<td>${bean.ad_id}</td>
+<%-- 									<td>${bean.ad_id}</td> --%>
 									<td>${bean.ad_username}</td>
 									<td>${bean.ad_lastname} ${bean.ad_firstname}</td>
 									<td>${ad_signup_time}</td>

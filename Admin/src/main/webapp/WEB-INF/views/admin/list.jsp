@@ -7,22 +7,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理員一覽 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/list.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
 	<jsp:include page="../header.jsp" />
 	
+	<!-- container -->
 	<div class="container-fluid">
 		<div class="row">
 		
 			<!-- menu -->
 			<jsp:include page="../menu.jsp" />
 			
-			<!-- content -->
+			<!-- main -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			
+				<!-- title -->
 				<h2 class="sub-header">管理員一覽</h2>
+				
+				<!-- content -->
 				<div class="table-responsive">
-					<table class="table table-bordered" style="width:100%">
+				
+					<!-- table -->
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<td>編號</td>
@@ -53,13 +61,13 @@
 									<td>${ad_signin_time}</td>
 									<td>${ad_status_time}</td>
 									<td>
-										<div class="ad-status-switch" data-ad-id="${bean.ad_id}" style="width:30px;cursor:pointer">
+										<div class="ad-status-switch" data-ad-id="${bean.ad_id}">
 											<c:choose>
 												<c:when test="${bean.ad_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/true.svg" data-ad-status="1" style="width:100%">
+													<img src="<%=request.getContextPath()%>/images/true.svg" data-ad-status="1">
 												</c:when>
 												<c:when test="${bean.ad_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/false.svg" data-ad-status="0" style="width:100%">
+													<img src="<%=request.getContextPath()%>/images/false.svg" data-ad-status="0">
 												</c:when>
 											</c:choose>
 										</div>
@@ -68,15 +76,21 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<!-- table end -->
+					
 				</div>
+				<!-- content end -->
+				
 			</div>
-			<!-- content end -->
+			<!-- main end -->
 			
 		</div>
 	</div>
+	<!-- container end -->
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/admin/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

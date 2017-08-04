@@ -1,0 +1,12 @@
+table {
+	width: 100%;
+}
+
+table img {
+	width: 100%;
+}
+
+.ad-status-switch {
+	width: 30px;
+	cursor: pointer;
+}

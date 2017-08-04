@@ -1,0 +1,31 @@
+.option img {
+	width: 100%;
+}
+
+table {
+	width: 100%;
+	font-size: 12px;
+}
+
+table img {
+	width: 100%;
+}
+
+.option {
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.add-button {
+	width: 30px;
+	float: right;
+}
+
+.edit-button {
+	width: 30px;
+}
+
+.ba-status-switch {
+	width: 30px;
+	cursor: pointer;
+}

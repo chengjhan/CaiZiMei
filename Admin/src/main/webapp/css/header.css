@@ -1,0 +1,10 @@
+nav .logo {
+	width: 30px;
+	margin-top: 10px;
+	margin-right: 5px;
+	float: left;
+}
+
+nav img {
+	width: 100%;
+}

@@ -1,23 +1,22 @@
 var href = document.location.href; // 取得當前 url
-var hrefSplit = href.split("/");
-var hrefArray = [];
-var pageName;
+var hrefSplitByQuestion = href.split("?", 1); // String
+var hrefSplitBySlash = hrefSplitByQuestion[0].split("/"); // Array
+var pageName = "";
 
 // 取得當前頁面
-function getPageName(hrefSplit){
-	for(var i = 0; i < hrefSplit.length; i++){
-		hrefArray.push(hrefSplit.slice(i, i + 1));
-	}
-	if(hrefArray[hrefSplit.length - 2] == "admin"){
-		pageName = hrefArray[hrefSplit.length - 2] + "-" + hrefArray[hrefSplit.length - 1];
-	}else{
-		pageName = hrefArray[hrefSplit.length - 2] + "-list"
+function getPageName(hrefSplitBySlash){
+	if(hrefSplitBySlash[hrefSplitBySlash.length-1] != ""){
+		if(hrefSplitBySlash[hrefSplitBySlash.length-2] == "admin"){
+			pageName = hrefSplitBySlash[hrefSplitBySlash.length - 2] + "-" + hrefSplitBySlash[hrefSplitBySlash.length - 1];
+		}else{
+			pageName = hrefSplitBySlash[hrefSplitBySlash.length - 2] + "-list";
+		}
 	}
 };
 
-getPageName(hrefSplit);
-
 $(document).ready(function(){
+	
+	getPageName(hrefSplitBySlash);
 	
 	// list active
 	var id_li = "#id-li-" + pageName;

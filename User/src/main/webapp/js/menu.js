@@ -1,19 +1,10 @@
 var href = document.location.href; // 取得當前 url
-var hrefSplit = href.split("/");
-var hrefArray = [];
-var pageName;
-
-// 取得當前頁面
-function getPageName(hrefSplit){
-	for(var i = 0; i < hrefSplit.length; i++){
-		hrefArray.push(hrefSplit.slice(i, i + 1));
-	}
-	pageName = hrefArray[hrefSplit.length - 1];
-};
-
-getPageName(hrefSplit);
+var hrefSplit = href.split("/"); // Array
 
 $(document).ready(function(){
+	
+	// 取得當前頁面
+	var pageName = hrefSplit[hrefSplit.length - 1];
 		
 	// list mouseover
 	$(".li-menu-left").hover(function(){

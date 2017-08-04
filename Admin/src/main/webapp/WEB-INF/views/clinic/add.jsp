@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 </head>
 <body>
-	<form:form action="/Admin/clinic/add.do" method="post" modelAttribute="clinicBean">
+	<form:form action="/Admin/clinic/add.do" method="post" modelAttribute="baseBean">
 		<table border="1">
 			<tr>
 				<td>名稱</td>

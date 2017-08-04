@@ -5,7 +5,7 @@ var pageName;
 
 // 取得當前頁面
 function getPageName(hrefSplit){
-	for (var i = 0; i < hrefSplit.length; i++) {
+	for(var i = 0; i < hrefSplit.length; i++){
 		hrefArray.push(hrefSplit.slice(i, i + 1));
 	}
 	pageName = hrefArray[hrefSplit.length - 1];

@@ -1,4 +1,4 @@
-var href = document.location.href; // 取得當前url
+var href = document.location.href; // 取得當前 url
 var hrefSplit = href.split("/");
 var hrefArray = [];
 var pageName;

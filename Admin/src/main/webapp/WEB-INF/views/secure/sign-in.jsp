@@ -14,7 +14,7 @@
 	<div class="container-fluid">
 		<div class="container top">
 			<div class="logo">
-				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/caizimei_logo_gray.svg"></a>
+				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/caizimei_logo_black.svg"></a>
 			</div>
 			<div class="title">
 				<h3>采姿美管理系統</h3>

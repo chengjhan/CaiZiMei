@@ -43,16 +43,16 @@
 						<c:forEach var="bean" items="${sliderMainList}" varStatus="status">
 							<tbody>
 								<tr>
-									<td rowspan="4">${status.count}</td>
+									<td rowspan="4" style="width:50px">${status.count}</td>
 									<td rowspan="4" style="width:500px"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
-									<td>名稱</td>
-									<td style="width:400px">${bean.sm_name}</td>
-									<td rowspan="4">
+									<td style="width:50px">名稱</td>
+									<td>${bean.sm_name}</td>
+									<td rowspan="4" style="width:50px">
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/slider-main/edit?sm_id=${bean.sm_id}"><img src="<%=request.getContextPath()%>/images/edit.svg"></a>
 										</div>
 									</td>	
-									<td rowspan="4">
+									<td rowspan="4" style="width:50px">
 										<div class="sm-status-switch" data-sm-id="${bean.sm_id}">
 											<c:choose>
 												<c:when test="${bean.sm_status eq 1}">
@@ -66,15 +66,15 @@
 									</td>
 								</tr>
 								<tr>
-									<td>檔名</td>
+									<td style="width:50px">檔名</td>
 									<td>${bean.sm_filename}</td>
 								</tr>
 								<tr>
-									<td>連結</td>
+									<td style="width:50px">連結</td>
 									<td><a href="${bean.sm_url}">${bean.sm_url}</a></td>
 								</tr>
 								<tr>
-									<td>排序</td>
+									<td style="width:50px">排序</td>
 									<td>${bean.sm_rank}</td>
 								</tr>
 <!-- 								<tr> -->

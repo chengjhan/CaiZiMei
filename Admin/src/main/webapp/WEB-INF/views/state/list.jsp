@@ -51,12 +51,12 @@
 					<table class="table table-bordered" style="width:500px">
 						<thead>
 							<tr>
-								<td>編號</td>
+								<td style="width:50px">編號</td>
 <!-- 								<td>流水號</td> -->
 								<td>名稱</td>
-								<td>排序</td>
-								<td>編輯</td>
-								<td>刪除</td>
+								<td style="width:75px">排序</td>
+								<td style="width:50px">編輯</td>
+								<td style="width:50px">刪除</td>
 							</tr>
 						</thead>
 						<tbody>

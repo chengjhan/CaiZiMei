@@ -33,16 +33,16 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<td>編號</td>
+								<td style="width:50px">編號</td>
 <!-- 								<td>流水號</td> -->
 								<td>帳號</td>
 								<td>姓名</td>
-								<td>註冊時間</td>
-								<td>登入次數</td>
-								<td>最後登入IP</td>
-								<td>最後登入時間</td>
-								<td>狀態變更時間</td>
-								<td>開啟</td>
+								<td style="width:150px">註冊時間</td>
+								<td style="width:75px">登入次數</td>
+								<td style="width:150px">最後登入IP</td>
+								<td style="width:150px">最後登入時間</td>
+								<td style="width:150px">狀態變更時間</td>
+								<td style="width:50px">開啟</td>
 							</tr>
 						</thead>
 						<tbody>

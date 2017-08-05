@@ -1,14 +1,10 @@
-.option img {
+img {
 	width: 100%;
 }
 
 table {
 	width: 100%;
 	font-size: 12px;
-}
-
-table img {
-	width: 100%;
 }
 
 .option {

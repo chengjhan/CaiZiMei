@@ -11,3 +11,11 @@ img {
 	width: 30px;
 	float: right;
 }
+
+.edit-button {
+	width: 30px;
+}
+
+.delete-button {
+	width: 30px;
+}

@@ -61,8 +61,20 @@
 									<td>${bean.co_name}</td>
 									<td>${bean.co_phonecode}</td>
 									<td>${bean.co_rank}</td>
-									<td><a href="<%=request.getContextPath()%>/country/edit?co_id=${bean.co_id}">編輯</a></td>
-									<td><a href="<%=request.getContextPath()%>/country/delete?co_id=${bean.co_id}">刪除</a></td>
+									<td>
+										<div class="edit-button">
+											<a href="<%=request.getContextPath()%>/country/edit?co_id=${bean.co_id}">
+												<img src="<%=request.getContextPath()%>/images/edit.svg">
+											</a>
+										</div>
+									</td>
+									<td>
+										<div class="delete-button">
+											<a href="<%=request.getContextPath()%>/country/delete?co_id=${bean.co_id}">
+												<img src="<%=request.getContextPath()%>/images/delete.svg">
+											</a>
+										</div>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

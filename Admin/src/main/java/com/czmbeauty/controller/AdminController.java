@@ -211,7 +211,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/change-password", method = RequestMethod.GET)
 	public String changePasswordView() {
 
-		logger.info("進入變更密碼頁面" + ADMIN_CHANGE_PASSWORD_PAGE);
+		logger.info("進入變更密碼頁面: " + ADMIN_CHANGE_PASSWORD_PAGE);
 
 		return ADMIN_CHANGE_PASSWORD_PAGE;
 	}

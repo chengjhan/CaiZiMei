@@ -56,6 +56,7 @@
 							</tr>
 							<tr>
 								<td><input type="submit" value="變更" /></td>
+								<td><a href="<%=request.getContextPath()%>/country/list"><button type="button" class="btn btn-danger">取消</button></a></td>
 							</tr>
 						</table>
 					</form:form>

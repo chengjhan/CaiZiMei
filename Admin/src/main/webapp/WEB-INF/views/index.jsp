@@ -11,14 +11,16 @@
 	<!-- header -->
 	<jsp:include page="header.jsp" />
 	
+	<!-- container -->
 	<div class="container-fluid">
 		<div class="row">
 		
 			<!-- menu -->
 			<jsp:include page="menu.jsp" />
 			
-			<!-- content -->
+			<!-- main -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			
 				<h1 class="page-header">Dashboard</h1>
 				<div class="row placeholders">
 					<div class="col-xs-6 col-sm-3 placeholder">
@@ -101,11 +103,13 @@
 						</tbody>
 					</table>
 				</div>
+				
 			</div>
-			<!-- content end -->
+			<!-- main end -->
 			
 		</div>
 	</div>
+	<!-- container end -->
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

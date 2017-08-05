@@ -50,7 +50,8 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" id="id-input-submit" class="btn btn-primary" value="變更">
+								<input type="submit" id="id-input-submit" class="btn btn-success" value="變更">
+								<a href="<%=request.getContextPath()%>/"><button type="button" class="btn btn-danger">取消</button></a>
 							</div>
 						</div>
 						<div class="error">${error}</div>

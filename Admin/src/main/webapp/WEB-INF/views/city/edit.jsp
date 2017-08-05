@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>編輯城市資訊 - 采姿美管理系統</title>
+<title>編輯城市資訊 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
 </head>
 <body>
@@ -64,6 +64,7 @@
 							</tr>
 							<tr>
 								<td><input type="submit" value="變更" /></td>
+								<td><a href="<%=request.getContextPath()%>/city/list"><button type="button" class="btn btn-danger">取消</button></a></td>
 							</tr>
 						</table>
 					</form:form>

@@ -74,7 +74,8 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" id="id-input-submit" class="btn btn-primary" value="註冊">
+								<input type="submit" id="id-input-submit" class="btn btn-success" value="註冊">
+								<a href="<%=request.getContextPath()%>/"><button type="button" class="btn btn-danger">取消</button></a>
 							</div>
 						</div>
 					</form:form>

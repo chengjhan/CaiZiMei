@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/8/3
+ * Date: 2017/8/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -231,13 +231,34 @@ public class AdminController {
 	 *            Model
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
-	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/admin/change-password.jsp
+	 * @return /WEB-INF/views/admin/change-password.jsp
+	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
 	@RequestMapping(value = "/admin/change-password.do", method = RequestMethod.POST)
 	public String changePasswordProcess(@ModelAttribute(ADMIN) AdminBean admin, @RequestParam String ad_password_old,
 			@RequestParam String ad_password_new, @RequestParam String ad_password_new_again, Model model) {
 
-		if (!ad_password_new.equals(ad_password_new_again)) {
+		if (ad_password_old == null || ad_password_old.isEmpty() || ad_password_new == null || ad_password_new.isEmpty()
+				|| ad_password_new_again == null || ad_password_new_again.isEmpty()) {
+
+			model.addAttribute(ERROR, "資料未填");
+
+			logger.error("密碼變更失敗: 資料未填");
+
+			// 密碼變更失敗: 資料未填
+			return ADMIN_CHANGE_PASSWORD_PAGE;
+
+		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
+
+			model.addAttribute(ERROR, "格式錯誤");
+
+			logger.error("密碼變更失敗: 格式錯誤");
+
+			// 密碼變更失敗: 格式錯誤
+			return ADMIN_CHANGE_PASSWORD_PAGE;
+
+		} else if (!ad_password_new.equals(ad_password_new_again)) {
 
 			model.addAttribute(ERROR, "新密碼重複錯誤");
 
@@ -260,7 +281,7 @@ public class AdminController {
 			logger.info("密碼變更成功");
 
 			// 密碼變更成功
-			return INDEX_PAGE;
+			return REDIRECT + ADMIN_PROFILE_PAGE;
 		}
 	}
 
@@ -502,7 +523,7 @@ public class AdminController {
 			// 密碼重設失敗: 資料未填
 			return ADMIN_RESET_PASSWORD_PAGE;
 
-		} else if (!ad_password_new_again.matches("^[\\S]{8,32}$")) {
+		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
 
 			model.addAttribute(ERROR, "格式錯誤");
 

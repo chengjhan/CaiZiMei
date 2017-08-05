@@ -2,18 +2,6 @@ img {
 	width: 100%;
 }
 
-/* change-password.jsp */
-.change-password-form {
-	width: 600px;
-	margin-top: 20px;
-}
-
-/* edit.jsp */
-.edit-form {
-	width: 600px;
-	margin-top: 20px;
-}
-
 /* list.jsp */
 .ad-status-switch {
 	width: 30px;

@@ -7,6 +7,7 @@
 <title>編輯個人資訊 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/edit.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -29,34 +30,31 @@
 				<div class="table-responsive">
 				
 					<!-- form -->
-					<form:form action="/Admin/admin/edit.do" method="post" modelAttribute="admin" cssClass="form-horizontal edit-form">
-						<div class="form-group">
-							<form:label path="ad_lastname" cssClass="col-sm-2 control-label">姓氏</form:label>
-							<div class="col-sm-6">
-								<form:input id="id-input-ad-lastname" path="ad_lastname" cssClass="form-control" />
-							</div>
-							<form:errors path="ad_lastname" cssClass="error" />
-						</div>
-						<div class="form-group">
-							<form:label path="ad_firstname" cssClass="col-sm-2 control-label">名字</form:label>
-							<div class="col-sm-6">
-								<form:input id="id-input-ad-firstname" path="ad_firstname" cssClass="form-control" />
-							</div>
-							<form:errors path="ad_firstname" cssClass="error" />
-						</div>
-						<div class="form-group">
-							<form:label path="ad_email" cssClass="col-sm-2 control-label">信箱</form:label>
-							<div class="col-sm-6">
-								<form:input id="id-input-ad-email" path="ad_email" cssClass="form-control" />
-							</div>
-							<form:errors path="ad_email" cssClass="error" />
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" id="id-input-submit" class="btn btn-success" value="變更">
-								<a href="<%=request.getContextPath()%>/admin/profile"><button type="button" class="btn btn-danger">取消</button></a>
-							</div>
-						</div>
+					<form:form action="/Admin/admin/edit.do" method="post" modelAttribute="admin" cssClass="form-horizontal">
+						<table class="table">
+							<tr>
+								<td>姓氏</td>
+								<td><form:input id="id-input-ad-lastname" path="ad_lastname" cssClass="form-control" /></td>
+								<td><form:errors path="ad_lastname" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td>名字</td>
+								<td><form:input id="id-input-ad-firstname" path="ad_firstname" cssClass="form-control" /></td>
+								<td><form:errors path="ad_firstname" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td>信箱</td>
+								<td><form:input id="id-input-ad-email" path="ad_email" cssClass="form-control" /></td>
+								<td><form:errors path="ad_email" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<input type="submit" class="btn btn-success" value="變更" />
+									<a href="<%=request.getContextPath()%>/admin/profile"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
+							</tr>
+						</table>
 					</form:form>
 					<!-- form end -->
 					

@@ -7,6 +7,7 @@
 <title>變更密碼 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/change-password.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -29,32 +30,32 @@
 				<div class="table-responsive">
 				
 					<!-- form -->
-					<form action="<c:url value='/admin/change-password.do' />" method="post" class="form-horizontal change-password-form">
-						<div class="form-group">
-							<label for="id-input-ad-password" class="col-sm-2 control-label">舊密碼</label>
-							<div class="col-sm-6">
-								<input type="password" id="id-input-ad-password-old" class="form-control" name="ad_password_old">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="id-input-ad-password-new" class="col-sm-2 control-label">新密碼</label>
-							<div class="col-sm-6">
-								<input type="password" id="id-input-ad-password-new" class="form-control" name="ad_password_new">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="id-input-ad-password-new-again" class="col-sm-2 control-label">新密碼</label>
-							<div class="col-sm-6">
-								<input type="password" id="id-input-ad-password-new-again" class="form-control" name="ad_password_new_again">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" id="id-input-submit" class="btn btn-success" value="變更">
-								<a href="<%=request.getContextPath()%>/"><button type="button" class="btn btn-danger">取消</button></a>
-							</div>
-						</div>
-						<div class="error">${error}</div>
+					<form action="<c:url value='/admin/change-password.do' />" method="post" class="form-horizontal">
+						<table class="table">
+							<tr>
+								<td>舊密碼</td>
+								<td><input type="password" id="id-input-ad-password-old" class="form-control" name="ad_password_old"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>新密碼</td>
+								<td><input type="password" id="id-input-ad-password-new" class="form-control" name="ad_password_new"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>新密碼</td>
+								<td><input type="password" id="id-input-ad-password-new-again" class="form-control" name="ad_password_new_again"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<input type="submit" class="btn btn-success" value="變更" />
+									<a href="<%=request.getContextPath()%>/admin/profile"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
+								<td><div class="error">${error}</div></td>
+							</tr>
+						</table>
 					</form>
 					<!-- form end -->
 	

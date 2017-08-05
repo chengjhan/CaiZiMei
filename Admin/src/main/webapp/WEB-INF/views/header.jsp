@@ -32,8 +32,7 @@
 							<li><a href="<%=request.getContextPath()%>/secure/sign-in">登入</a></li>
 						</c:when>
 						<c:when test="${not empty admin}">
-							<li><a href="<%=request.getContextPath()%>/admin/profile">個人資訊</a></li>
-							<li><a href="<%=request.getContextPath()%>/admin/change-password">變更密碼</a></li>
+							<li><a href="<%=request.getContextPath()%>/admin/profile">設定</a></li>
 							<li><a href="<%=request.getContextPath()%>/secure/sign-out">登出</a></li>
 						</c:when>
 					</c:choose>

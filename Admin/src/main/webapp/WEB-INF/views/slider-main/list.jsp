@@ -44,7 +44,7 @@
 							<tbody>
 								<tr>
 									<td rowspan="4" style="width:50px">${status.count}</td>
-									<td rowspan="4" style="width:500px"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
+									<td rowspan="4" style="width:45%"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
 									<td style="width:50px">名稱</td>
 									<td>${bean.sm_name}</td>
 									<td rowspan="4" style="width:50px">

@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>編輯國家資訊 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/region/edit.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -29,34 +30,37 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/country/edit.do" method="post" modelAttribute="countryBean">
-						<table>
+						<table class="table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="co_id" /></td>
 							</tr>
 							<tr>
 								<td>代碼</td>
-								<td><form:input path="co_iso" /></td>
+								<td><form:input path="co_iso" cssClass="form-control" /></td>
 								<td><form:errors path="co_iso" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>名稱</td>
-								<td><form:input path="co_name" /></td>
+								<td><form:input path="co_name" cssClass="form-control" /></td>
 								<td><form:errors path="co_name" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>電話碼</td>
-								<td><form:input path="co_phonecode" /></td>
+								<td><form:input path="co_phonecode" cssClass="form-control" /></td>
 								<td><form:errors path="co_phonecode" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>排序</td>
-								<td><form:input path="co_rank" /></td>
+								<td><form:input path="co_rank" cssClass="form-control" /></td>
 								<td><form:errors path="co_rank" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td><input type="submit" value="變更" /></td>
-								<td><a href="<%=request.getContextPath()%>/country/list"><button type="button" class="btn btn-danger">取消</button></a></td>
+								<td></td>
+								<td>
+									<input type="submit" class="btn btn-success" value="變更" />
+									<a href="<%=request.getContextPath()%>/country/list"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
 							</tr>
 						</table>
 					</form:form>

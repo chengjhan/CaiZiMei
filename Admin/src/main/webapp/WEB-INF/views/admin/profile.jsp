@@ -17,8 +17,8 @@
 	<div class="container-fluid">
 		<div class="row">
 		
-			<!-- menu -->
-			<jsp:include page="../menu.jsp" />
+			<!-- menu-personal -->
+			<jsp:include page="../menu-personal.jsp" />
 			
 			<!-- main -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -30,13 +30,13 @@
 				<div class="table-responsive">
 				
 					<!-- option -->
-					<div class="btn-group option">
-						<div class="edit-button">
-							<a href="<%=request.getContextPath()%>/admin/edit">
-								<img src="<%=request.getContextPath()%>/images/edit.svg">
-							</a>
-						</div>
-					</div>
+<!-- 					<div class="btn-group option"> -->
+<!-- 						<div class="edit-button"> -->
+<%-- 							<a href="<%=request.getContextPath()%>/admin/edit" title="編輯"> --%>
+<%-- 								<img src="<%=request.getContextPath()%>/images/edit.svg"> --%>
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 				
 					<!-- table -->
 					<table class="table table-bordered" style="width:500px">

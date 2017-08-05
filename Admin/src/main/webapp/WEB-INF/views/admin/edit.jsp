@@ -16,8 +16,8 @@
 	<div class="container-fluid">
 		<div class="row">
 		
-			<!-- menu -->
-			<jsp:include page="../menu.jsp" />
+			<!-- menu-personal -->
+			<jsp:include page="../menu-personal.jsp" />
 			
 			<!-- main -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

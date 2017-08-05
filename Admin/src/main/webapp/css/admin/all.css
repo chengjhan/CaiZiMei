@@ -1,0 +1,38 @@
+img {
+	width: 100%;
+}
+
+/* change-password.jsp */
+.change-password-form {
+	width: 600px;
+	margin-top: 20px;
+}
+
+/* edit.jsp */
+.edit-form {
+	width: 600px;
+	margin-top: 20px;
+}
+
+/* list.jsp */
+.ad-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
+/* profile.jsp */
+.option {
+	width: 500px;
+	margin-bottom: 5px;
+}
+
+.edit-button {
+	width: 30px;
+	float: right;
+}
+
+/* sign-up.jsp */
+.sign-up-form {
+	width: 600px;
+	margin-top: 20px;
+}

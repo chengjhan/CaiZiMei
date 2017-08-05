@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理員一覽 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/list.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->

@@ -233,6 +233,7 @@ public class AdminController {
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
+	 * @return /WEB-INF/views/admin/change-password.jsp
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
 	@RequestMapping(value = "/admin/change-password.do", method = RequestMethod.POST)
@@ -242,20 +243,29 @@ public class AdminController {
 		if (ad_password_old == null || ad_password_old.isEmpty() || ad_password_new == null || ad_password_new.isEmpty()
 				|| ad_password_new_again == null || ad_password_new_again.isEmpty()) {
 
-			model.addAttribute(ERROR, "資料未填");
+			model.addAttribute(ERROR, "密碼未填");
 
-			logger.error("密碼變更失敗: 資料未填");
+			logger.error("密碼變更失敗: 密碼未填");
 
-			// 密碼變更失敗: 資料未填
+			// 密碼變更失敗: 密碼未填
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
 
-			model.addAttribute(ERROR, "格式錯誤");
+			model.addAttribute(ERROR, "密碼格式錯誤");
 
-			logger.error("密碼變更失敗: 格式錯誤");
+			logger.error("密碼變更失敗: 密碼格式錯誤");
 
-			// 密碼變更失敗: 格式錯誤
+			// 密碼變更失敗: 密碼格式錯誤
+			return ADMIN_CHANGE_PASSWORD_PAGE;
+
+		} else if (ad_password_old.equals(ad_password_new)) {
+
+			model.addAttribute(ERROR, "密碼未變更");
+
+			logger.error("密碼變更失敗: 密碼未變更");
+
+			// 密碼變更失敗: 密碼未變更
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.equals(ad_password_new_again)) {
@@ -516,20 +526,20 @@ public class AdminController {
 		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
 				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
 
-			model.addAttribute(ERROR, "資料未填");
+			model.addAttribute(ERROR, "密碼未填");
 
-			logger.error("密碼重設失敗: 資料未填");
+			logger.error("密碼重設失敗: 密碼未填");
 
-			// 密碼重設失敗: 資料未填
+			// 密碼重設失敗: 密碼未填
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
 
-			model.addAttribute(ERROR, "格式錯誤");
+			model.addAttribute(ERROR, "密碼格式錯誤");
 
-			logger.error("密碼重設失敗: 格式錯誤");
+			logger.error("密碼重設失敗: 密碼格式錯誤");
 
-			// 密碼重設失敗: 格式錯誤
+			// 密碼重設失敗: 密碼格式錯誤
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.equals(ad_password_new_again)) {

@@ -7,6 +7,7 @@
 <title>註冊 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/sign-up.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -29,55 +30,50 @@
 				<div class="table-responsive">
 				
 					<!-- form -->
-					<form:form action="/Admin/admin/sign-up.do" method="post" modelAttribute="adminBean" cssClass="form-horizontal sign-up-form">
-						<div class="form-group">
-							<form:label path="ad_username" cssClass="col-sm-2 control-label">帳號</form:label>
-							<div class="col-sm-6">
-								<form:input path="ad_username" id="id-input-ad-username" cssClass="form-control" />
-							</div>
-							<form:errors path="ad_username" cssClass="error" />
-							<span id="id-span-ad-username" class="error"></span>
-						</div>
-						<div class="form-group">
-							<form:label path="ad_password" cssClass="col-sm-2 control-label">密碼</form:label>
-							<div class="col-sm-6">
-								<form:password path="ad_password" id="id-input-ad-password" cssClass="form-control" />
-							</div>
-							<form:errors path="ad_password" cssClass="error" />
-						</div>
-						<div class="form-group">
-							<label for="id-input-ad-password-again" class="col-sm-2 control-label">確認密碼</label>
-							<div class="col-sm-6">	
-								<input type="password" id="id-input-ad-password-again" class="form-control" name="ad_password_again">
-							</div>
-						</div>
-						<div class="form-group">
-							<form:label path="ad_lastname" cssClass="col-sm-2 control-label">姓氏</form:label>
-							<div class="col-sm-6">
-								<form:input path="ad_lastname" id="id-input-ad-lastname" cssClass="form-control" />
-							</div>
-							<form:errors path="ad_lastname" cssClass="error" />
-						</div>
-						<div class="form-group">
-							<form:label path="ad_firstname" cssClass="col-sm-2 control-label">名字</form:label>
-							<div class="col-sm-6">
-								<form:input path="ad_firstname" id="id-input-ad-firstname" cssClass="form-control" />
-							</div>	
-							<form:errors path="ad_firstname" cssClass="error" />
-						</div>
-						<div class="form-group">
-							<form:label path="ad_email" cssClass="col-sm-2 control-label">信箱</form:label>
-							<div class="col-sm-6">
-								<form:input path="ad_email" id="id-input-ad-email" cssClass="form-control" />
-							</div>
-							<form:errors path="ad_email" cssClass="error" />
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<input type="submit" id="id-input-submit" class="btn btn-success" value="註冊">
-								<a href="<%=request.getContextPath()%>/"><button type="button" class="btn btn-danger">取消</button></a>
-							</div>
-						</div>
+					<form:form action="/Admin/admin/sign-up.do" method="post" modelAttribute="adminBean" cssClass="form-horizontal">
+						<table class="table">
+							<tr>
+								<td>帳號</td>
+								<td><form:input path="ad_username" id="id-input-ad-username" cssClass="form-control" /></td>
+								<td>
+									<span id="id-span-ad-username" class="error"></span>
+									<form:errors path="ad_username" cssClass="error" />
+								</td>
+							</tr>
+							<tr>
+								<td>密碼</td>
+								<td><form:password path="ad_password" id="id-input-ad-password" cssClass="form-control" /></td>
+								<td><form:errors path="ad_password" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td>確認密碼</td>
+								<td><input type="password" id="id-input-ad-password-again" class="form-control" name="ad_password_again"></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>姓氏</td>
+								<td><form:input path="ad_lastname" id="id-input-ad-lastname" cssClass="form-control" /></td>
+								<td><form:errors path="ad_lastname" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td>名字</td>
+								<td><form:input path="ad_firstname" id="id-input-ad-firstname" cssClass="form-control" /></td>
+								<td><form:errors path="ad_firstname" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td>信箱</td>
+								<td><form:input path="ad_email" id="id-input-ad-email" cssClass="form-control" /></td>
+								<td><form:errors path="ad_email" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<input type="submit" class="btn btn-success" value="註冊">
+									<a href="<%=request.getContextPath()%>/"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
+							</tr>
+						</table>
 					</form:form>
 					<!-- form end -->
 					

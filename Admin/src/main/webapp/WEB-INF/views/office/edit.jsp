@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>編輯辦事處資訊 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/base/edit.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -29,27 +30,28 @@
 	
 					<!-- form -->
 					<form:form action="/Admin/office/edit.do" method="post" modelAttribute="baseBean">
-						<table>
+						<table class="table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="ba_id" /></td>
 							</tr>
 							<tr>
 								<td>名稱</td>
-								<td><form:input path="ba_name" /></td>
+								<td><form:input path="ba_name" cssClass="form-control" /></td>
+								<td></td>
 							</tr>
 							<tr>
 								<td>英文名稱</td>
-								<td><form:input path="ba_eng_name" /></td>
+								<td><form:input path="ba_eng_name" cssClass="form-control" /></td>
 							</tr>
 							<tr>
 								<td>電話</td>
-								<td><form:input path="ba_localphone" /></td>
+								<td><form:input path="ba_localphone" cssClass="form-control" /></td>
 							</tr>
 							<tr>
 								<td>國家</td>
 								<td>
-									<form:select id="id-input-ba-co-id" path="ba_CountryBean">
+									<form:select path="ba_CountryBean" id="id-input-ba-co-id" cssClass="form-control">
 										<form:option value="0" label="請選擇國家" />
 										<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 									</form:select>
@@ -58,7 +60,7 @@
 							<tr>
 								<td>區域</td>
 								<td>
-									<form:select id="id-input-ba-st-id" path="ba_StateBean">
+									<form:select path="ba_StateBean" id="id-input-ba-st-id" cssClass="form-control">
 										<form:option value="0" label="請選擇區域" />
 										<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
 									</form:select>
@@ -67,7 +69,7 @@
 							<tr>
 								<td>城市</td>
 								<td>
-									<form:select id="id-input-ba-ci-id" path="ba_CityBean">
+									<form:select path="ba_CityBean" id="id-input-ba-ci-id" cssClass="form-control">
 										<form:option value="0" label="請選擇城市" />
 										<form:options items="${cityList}" itemValue="ci_id" itemLabel="ci_name" />
 									</form:select>
@@ -75,15 +77,18 @@
 							</tr>
 							<tr>
 								<td>地址</td>
-								<td><form:input path="ba_address" /></td>
+								<td><form:input path="ba_address" cssClass="form-control" /></td>
 							</tr>
 							<tr>
 								<td>網址</td>
-								<td><form:input path="ba_url" /></td>
+								<td><form:input path="ba_url" cssClass="form-control" /></td>
 							</tr>
 							<tr>
-								<td><input type="submit" value="變更" /></td>
-								<td><a href="<%=request.getContextPath()%>/office/list"><button type="button" class="btn btn-danger">取消</button></a></td>
+								<td></td>
+								<td>
+									<input type="submit" class="btn btn-success" value="變更" />
+									<a href="<%=request.getContextPath()%>/office/list"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
 							</tr>
 						</table>
 					</form:form>

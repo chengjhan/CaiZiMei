@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增區域 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/region/add.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -29,11 +30,11 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/state/add.do" method="post" modelAttribute="stateBean">
-						<table>
+						<table class="table">
 							<tr>
 								<td>國家</td>
 								<td>
-									<form:select path="st_CountryBean">
+									<form:select path="st_CountryBean" cssClass="form-control">
 										<form:option value="0" label="請選擇國家" />
 										<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 									</form:select>
@@ -41,17 +42,20 @@
 							</tr>
 							<tr>
 								<td>名稱</td>
-								<td><form:input path="st_name" /></td>
+								<td><form:input path="st_name" cssClass="form-control" /></td>
 								<td><form:errors path="st_name" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>排序</td>
-								<td><form:input path="st_rank" /></td>
+								<td><form:input path="st_rank" cssClass="form-control" /></td>
 								<td><form:errors path="st_rank" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td><input type="submit" value="新增" /></td>
-								<td><a href="<%=request.getContextPath()%>/state/list"><button type="button" class="btn btn-danger">取消</button></a></td>
+								<td></td>
+								<td>
+									<input type="submit" class="btn btn-success" value="新增" />
+									<a href="<%=request.getContextPath()%>/state/list"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
 							</tr>
 						</table>
 					</form:form>

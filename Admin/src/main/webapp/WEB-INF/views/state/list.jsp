@@ -66,8 +66,20 @@
 <%-- 									<td>${bean.st_id}</td> --%>
 									<td>${bean.st_name}</td>
 									<td>${bean.st_rank}</td>
-									<td><a href="<%=request.getContextPath()%>/state/edit?st_id=${bean.st_id}">編輯</a></td>
-									<td><a href="<%=request.getContextPath()%>/state/delete?st_id=${bean.st_id}">刪除</a></td>
+									<td>
+										<div class="edit-button">
+											<a href="<%=request.getContextPath()%>/state/edit?st_id=${bean.st_id}">
+												<img src="<%=request.getContextPath()%>/images/edit.svg">
+											</a>
+										</div>
+									</td>
+									<td>
+										<div class="delete-button">
+											<a href="<%=request.getContextPath()%>/state/delete?st_id=${bean.st_id}">
+												<img src="<%=request.getContextPath()%>/images/delete.svg">
+											</a>
+										</div>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

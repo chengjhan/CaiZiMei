@@ -28,10 +28,14 @@ state_select.change(function(){
 //			var ci_id_td = $("<td></td>").append(cityBean.ci_id);
 			var ci_name_td = $("<td></td>").append(cityBean.ci_name);
 			var ci_rank_td = $("<td></td>").append(cityBean.ci_rank);
-			var edit_a = $("<a href='../city/edit?ci_id=" + cityBean.ci_id + "'></a>").append("編輯");
-			var edit_td = $("<td></td>").append(edit_a);
-			var delete_a = $("<a href='../city/delete?ci_id=" + cityBean.ci_id + "'></a>").append("刪除");
-			var delete_td = $("<td></td>").append(delete_a);
+			var edit_img = $("<img src='../images/edit.svg'>");
+			var edit_a = $("<a href='../city/edit?ci_id=" + cityBean.ci_id + "'></a>").append(edit_img);
+			var edit_div = $("<div class='edit-button'></div>").append(edit_a);
+			var edit_td = $("<td></td>").append(edit_div);
+			var delete_img = $("<img src='../images/delete.svg'>");
+			var delete_a = $("<a href='../city/delete?ci_id=" + cityBean.ci_id + "'></a>").append(delete_img);
+			var delete_div = $("<div class='delete-button'></div>").append(delete_a);
+			var delete_td = $("<td></td>").append(delete_div);
 //			var cityList_tr = $("<tr></tr>").append([count_td, ci_id_td, ci_name_td, ci_rank_td, edit_td, delete_td]);
 			var cityList_tr = $("<tr></tr>").append([count_td, ci_name_td, ci_rank_td, edit_td, delete_td]);
 			cityList_tbody.append(cityList_tr);

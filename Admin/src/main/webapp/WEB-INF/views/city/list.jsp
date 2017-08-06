@@ -70,8 +70,20 @@
 <%-- 									<td>${bean.ci_id}</td> --%>
 									<td>${bean.ci_name}</td>
 									<td>${bean.ci_rank}</td>
-									<td><a href="<%=request.getContextPath()%>/city/edit?ci_id=${bean.ci_id}">編輯</a></td>
-									<td><a href="<%=request.getContextPath()%>/city/delete?ci_id=${bean.ci_id}">刪除</a></td>
+									<td>
+										<div class="edit-button">
+											<a href="<%=request.getContextPath()%>/city/edit?ci_id=${bean.ci_id}">
+												<img src="<%=request.getContextPath()%>/images/edit.svg">
+											</a>
+										</div>
+									</td>
+									<td>
+										<div class="delete-button">
+											<a href="<%=request.getContextPath()%>/city/delete?ci_id=${bean.ci_id}">
+												<img src="<%=request.getContextPath()%>/images/delete.svg">
+											</a>
+										</div>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

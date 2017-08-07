@@ -80,7 +80,7 @@ public class BaseDaoImpl implements BaseDao {
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<BaseBean> selectAllBasePagination(String hql, Integer first, Integer max) {
+	public List<BaseBean> selectAllBasePagination(String hql, int first, int max) {
 
 		// outer method
 		List<BaseBean> result = (List<BaseBean>) hibernateTemplate.execute(
@@ -96,6 +96,16 @@ public class BaseDaoImpl implements BaseDao {
 					}
 				});
 		return result;
+	}
+
+	/**
+	 * 搜尋所有據點筆數 (分頁)
+	 * 
+	 * @return List<BaseBean>
+	 */
+	@Override
+	public Integer count() {
+		return 0;
 	}
 
 	/**

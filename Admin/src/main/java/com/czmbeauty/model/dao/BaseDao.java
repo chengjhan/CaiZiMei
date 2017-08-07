@@ -36,9 +36,14 @@ public interface BaseDao {
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectAllBasePagination(String,
-	 *      Integer, Integer)
+	 *      int, int)
 	 */
-	List<BaseBean> selectAllBasePagination(String hql, Integer start, Integer max);
+	List<BaseBean> selectAllBasePagination(String hql, int first, int max);
+
+	/**
+	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#count()
+	 */
+	Integer count();
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectOpenClinic()

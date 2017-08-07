@@ -36,9 +36,9 @@ public interface BaseService {
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllBasePagination(String,
-	 *      Integer, Integer)
+	 *      int, int)
 	 */
-	List<BaseBean> selectAllBasePagination(String hql, Integer first, Integer max);
+	List<BaseBean> selectAllBasePagination(String hql, int first, int max);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectOpenClinic()

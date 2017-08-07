@@ -83,7 +83,7 @@ public class BaseServiceImpl implements BaseService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<BaseBean> selectAllBasePagination(String hql, Integer first, Integer max) {
+	public List<BaseBean> selectAllBasePagination(String hql, int first, int max) {
 
 		return baseDao.selectAllBasePagination(hql, first, max);
 	}

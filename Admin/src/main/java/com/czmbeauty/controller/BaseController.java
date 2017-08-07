@@ -140,15 +140,20 @@ public class BaseController {
 	/**
 	 * 診所一覽 - 初期處理
 	 * 
+	 * @param page
+	 *            Integer --> 頁數
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/clinic/list", method = RequestMethod.GET)
-	public String clinicListView(@RequestParam Integer first, Model model) {
+	public String clinicListView(@RequestParam Integer page, Model model) {
+
+		int first = (page - 1) * 10;
+		int max = 10;
 
 		// 取得所有診所 List，放入 table
-		model.addAttribute(BASE_LIST, baseService.selectAllBasePagination(HQL_SELECT_ALL_CLINIC, first, 10));
+		model.addAttribute(BASE_LIST, baseService.selectAllBasePagination(HQL_SELECT_ALL_CLINIC, first, max));
 
 		return CLINIC_LIST_PAGE;
 	}

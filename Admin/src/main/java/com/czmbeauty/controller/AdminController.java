@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/8/6
+ * Date: 2017/8/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -58,7 +58,7 @@ import com.google.gson.GsonBuilder;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = { ADMIN, ADMIN_EMAIL, NEXT_PAGE })
+@SessionAttributes(value = { ADMIN, ADMIN_EMAIL })
 public class AdminController {
 
 	private static final Logger logger = Logger.getLogger(AdminController.class);
@@ -298,25 +298,29 @@ public class AdminController {
 	/**
 	 * 登入 - 初期處理
 	 * 
-	 * @param next
-	 *            String --> SigninInterceptor --> GET --> 原請求畫面
+	 * @param request
+	 *            HttpServletRequest
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
-	public String signInView(String next, Model model) {
+	public String signInView(HttpServletRequest request, Model model) {
 
 		logger.info("進入登入頁面: " + ADMIN_SIGN_IN_PAGE);
 
-		// 若經過 SigninInterceptor
+		HttpSession session = request.getSession();
+		String next = (String) session.getAttribute(NEXT_PAGE);
+
 		if (next != null) {
 
-			// 放入 Session
-			model.addAttribute(NEXT_PAGE, next);
-
+			// 若經過 SigninInterceptor
 			logger.info("原請求畫面: " + next);
+		} else {
+
+			logger.info("原請求畫面: index");
 		}
+
 		return ADMIN_SIGN_IN_PAGE;
 	}
 
@@ -392,14 +396,13 @@ public class AdminController {
 				HttpSession session = request.getSession();
 				String next = (String) session.getAttribute(NEXT_PAGE);
 
-				// 若經過 SigninInterceptor
 				if (next != null) {
 
+					// 若經過 SigninInterceptor
 					logger.info("登入成功，導向原請求畫面: " + next);
 
 					// 登入成功，導向原請求畫面
 					return REDIRECT.concat(next);
-
 				} else {
 
 					logger.info("登入成功，導向首頁: index");
@@ -597,6 +600,9 @@ public class AdminController {
 
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
+
+		// 清除所有 HttpSession
+		request.getSession().invalidate();
 
 		logger.info("登出成功");
 

@@ -2,6 +2,7 @@ package com.czmbeauty.common.interceptor;
 
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
 import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_IN_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.NEXT_PAGE;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,22 +25,31 @@ public class SigninInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
 
-		String contextPath = request.getContextPath();
-		String servletPath = request.getServletPath();
-		String pageName = servletPath.substring(1, servletPath.length());
-//		String queryString = request.getQueryString();
-//		String next = pageName + "?" + queryString;
+		String contextPath = request.getContextPath(); // /專案名
+		String servletPath = request.getServletPath(); // /頁面名
+		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
+		String queryString = request.getQueryString(); // 參數
+		String next;
+
+		if (queryString != null) {
+			next = pageName + "?" + queryString; // 頁面名?參數
+		} else {
+			next = pageName; // 頁面名
+		}
 
 		if (adminBean == null) {
 
-			logger.info("未登入，攔截: " + pageName);
+			logger.info("未登入，攔截: " + next);
 
-			response.sendRedirect(contextPath + "/" + ADMIN_SIGN_IN_PAGE + "?next=" + pageName);
+			// 將原請求畫面及參數，放入 Session
+			session.setAttribute(NEXT_PAGE, next);
+
+			response.sendRedirect(contextPath + "/" + ADMIN_SIGN_IN_PAGE);
 
 			return false;
 		} else {
 
-			logger.info("已登入，放行: " + pageName);
+			logger.info("已登入，放行: " + next);
 
 			return true;
 		}

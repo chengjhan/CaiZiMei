@@ -2,12 +2,13 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/8
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_CLINIC;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_LIST;
@@ -147,7 +148,7 @@ public class BaseController {
 	public String clinicListView(@RequestParam Integer first, Model model) {
 
 		// 取得所有診所 List，放入 table
-		model.addAttribute(BASE_LIST, baseService.selectAllClinic(first, 10));
+		model.addAttribute(BASE_LIST, baseService.selectAllBasePagination(HQL_SELECT_ALL_CLINIC, first, 10));
 
 		return CLINIC_LIST_PAGE;
 	}

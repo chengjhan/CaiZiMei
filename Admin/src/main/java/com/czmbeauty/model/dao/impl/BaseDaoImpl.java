@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/7
+ * Date: 2017/8/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,19 +10,15 @@ package com.czmbeauty.model.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
-import org.hibernate.SessionFactory;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.BaseDao;
 import com.czmbeauty.model.entity.BaseBean;
-import com.czmbeauty.model.entity.CategoryBean;
 
 /**
  * base DAO implement
@@ -31,12 +27,6 @@ import com.czmbeauty.model.entity.CategoryBean;
  */
 @Repository(value = "baseDao")
 public class BaseDaoImpl implements BaseDao {
-
-	/**
-	 * 注入 SessionFactory
-	 */
-	@Autowired
-	private SessionFactory sessionFactory;
 
 	/**
 	 * 注入 HibernateTemplate
@@ -84,26 +74,28 @@ public class BaseDaoImpl implements BaseDao {
 	}
 
 	/**
-	 * 搜尋所有診所 (分頁)
+	 * 搜尋所有據點 (分頁)
 	 * 
 	 * @return List<BaseBean>
 	 */
 	@Override
-	public List<BaseBean> selectAllClinic(Integer first, Integer max) {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<BaseBean> selectAllBasePagination(String hql, Integer first, Integer max) {
 
-		CategoryBean categoryBean = new CategoryBean();
-		categoryBean.setCa_id(3);
+		// outer method
+		List<BaseBean> result = (List<BaseBean>) hibernateTemplate.execute(
 
-		EntityManager entityManager = sessionFactory.createEntityManager();
-		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<BaseBean> criteriaQuery = criteriaBuilder.createQuery(BaseBean.class);
+				// inner class
+				new HibernateCallback() {
 
-		Root<BaseBean> root = criteriaQuery.from(BaseBean.class);
-		criteriaQuery.select(root);
-		criteriaQuery.where(criteriaBuilder.equal(root.get("ba_CategoryBean"), categoryBean));
-		criteriaQuery.orderBy(criteriaBuilder.desc(root.get("ba_status")), criteriaBuilder.asc(root.get("ba_id")));
-
-		return entityManager.createQuery(criteriaQuery).setFirstResult(first).setMaxResults(max).getResultList();
+					// inner method
+					public Object doInHibernate(Session session) throws HibernateException {
+						List<BaseBean> list = session.createQuery(hql).setFirstResult(first).setMaxResults(max)
+								.getResultList();
+						return list;
+					}
+				});
+		return result;
 	}
 
 	/**

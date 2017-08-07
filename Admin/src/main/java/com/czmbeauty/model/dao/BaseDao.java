@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDao.java
  * Author: 詹晟
- * Date: 2017/8/7
+ * Date: 2017/8/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -35,10 +35,10 @@ public interface BaseDao {
 	List<BaseBean> selectAllClinic();
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectAllClinic(Integer,
-	 *      Integer)
+	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectAllBasePagination(String,
+	 *      Integer, Integer)
 	 */
-	List<BaseBean> selectAllClinic(Integer start, Integer max);
+	List<BaseBean> selectAllBasePagination(String hql, Integer start, Integer max);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectOpenClinic()

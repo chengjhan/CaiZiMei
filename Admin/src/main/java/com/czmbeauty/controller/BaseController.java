@@ -34,6 +34,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.czmbeauty.common.editor.CityBeanPropertyEditor;
@@ -143,10 +144,10 @@ public class BaseController {
 	 * @return /WEB-INF/views/clinic/list.jsp
 	 */
 	@RequestMapping(value = "/clinic/list", method = RequestMethod.GET)
-	public String clinicListView(Model model) {
+	public String clinicListView(@RequestParam Integer first, Model model) {
 
 		// 取得所有診所 List，放入 table
-		model.addAttribute(BASE_LIST, baseService.selectAllClinic());
+		model.addAttribute(BASE_LIST, baseService.selectAllClinic(first, 10));
 
 		return CLINIC_LIST_PAGE;
 	}

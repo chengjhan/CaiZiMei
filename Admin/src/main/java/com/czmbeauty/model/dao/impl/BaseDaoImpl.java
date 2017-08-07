@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/30
+ * Date: 2017/8/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,12 +10,19 @@ package com.czmbeauty.model.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.BaseDao;
 import com.czmbeauty.model.entity.BaseBean;
+import com.czmbeauty.model.entity.CategoryBean;
 
 /**
  * base DAO implement
@@ -24,6 +31,12 @@ import com.czmbeauty.model.entity.BaseBean;
  */
 @Repository(value = "baseDao")
 public class BaseDaoImpl implements BaseDao {
+
+	/**
+	 * 注入 SessionFactory
+	 */
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	/**
 	 * 注入 HibernateTemplate
@@ -40,7 +53,8 @@ public class BaseDaoImpl implements BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<BaseBean> selectAllOffice() {
 
-		return (List<BaseBean>) hibernateTemplate.find("from BaseBean where ba_ca_id=1 order by ba_id asc");
+		return (List<BaseBean>) hibernateTemplate
+				.find("from BaseBean where ba_ca_id=1 order by ba_status desc, ba_id asc");
 	}
 
 	/**
@@ -52,7 +66,8 @@ public class BaseDaoImpl implements BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<BaseBean> selectAllFranchisee() {
 
-		return (List<BaseBean>) hibernateTemplate.find("from BaseBean where ba_ca_id=2 order by ba_id asc");
+		return (List<BaseBean>) hibernateTemplate
+				.find("from BaseBean where ba_ca_id=2 order by ba_status desc, ba_id asc");
 	}
 
 	/**
@@ -64,7 +79,31 @@ public class BaseDaoImpl implements BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<BaseBean> selectAllClinic() {
 
-		return (List<BaseBean>) hibernateTemplate.find("from BaseBean where ba_ca_id=3 order by ba_id asc");
+		return (List<BaseBean>) hibernateTemplate
+				.find("from BaseBean where ba_ca_id=3 order by ba_status desc, ba_id asc");
+	}
+
+	/**
+	 * 搜尋所有診所 (分頁)
+	 * 
+	 * @return List<BaseBean>
+	 */
+	@Override
+	public List<BaseBean> selectAllClinic(Integer first, Integer max) {
+
+		CategoryBean categoryBean = new CategoryBean();
+		categoryBean.setCa_id(3);
+
+		EntityManager entityManager = sessionFactory.createEntityManager();
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<BaseBean> criteriaQuery = criteriaBuilder.createQuery(BaseBean.class);
+
+		Root<BaseBean> root = criteriaQuery.from(BaseBean.class);
+		criteriaQuery.select(root);
+		criteriaQuery.where(criteriaBuilder.equal(root.get("ba_CategoryBean"), categoryBean));
+		criteriaQuery.orderBy(criteriaBuilder.desc(root.get("ba_status")), criteriaBuilder.asc(root.get("ba_id")));
+
+		return entityManager.createQuery(criteriaQuery).setFirstResult(first).setMaxResults(max).getResultList();
 	}
 
 	/**

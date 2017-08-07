@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDao.java
  * Author: 詹晟
- * Date: 2017/7/30
+ * Date: 2017/8/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,6 +33,12 @@ public interface BaseDao {
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectAllClinic()
 	 */
 	List<BaseBean> selectAllClinic();
+
+	/**
+	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectAllClinic(Integer,
+	 *      Integer)
+	 */
+	List<BaseBean> selectAllClinic(Integer start, Integer max);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectOpenClinic()

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseService.java
  * Author: 詹晟
- * Date: 2017/7/30
+ * Date: 2017/8/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,6 +33,12 @@ public interface BaseService {
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllClinic()
 	 */
 	List<BaseBean> selectAllClinic();
+
+	/**
+	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllClinic(Integer,
+	 *      Integer)
+	 */
+	List<BaseBean> selectAllClinic(Integer first, Integer max);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectOpenClinic()

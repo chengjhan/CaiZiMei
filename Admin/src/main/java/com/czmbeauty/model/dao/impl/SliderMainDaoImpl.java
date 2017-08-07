@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: SliderMainDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/28
+ * Date: 2017/8/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,7 +40,8 @@ public class SliderMainDaoImpl implements SliderMainDao {
 	@SuppressWarnings("unchecked")
 	public List<SliderMainBean> selectAll() {
 
-		return (List<SliderMainBean>) hibernateTemplate.find("from SliderMainBean order by sm_id asc");
+		return (List<SliderMainBean>) hibernateTemplate
+				.find("from SliderMainBean order by sm_status desc, sm_rank asc");
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/30
+ * Date: 2017/8/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -74,6 +74,18 @@ public class BaseServiceImpl implements BaseService {
 	public List<BaseBean> selectAllClinic() {
 
 		return baseDao.selectAllClinic();
+	}
+
+	/**
+	 * 搜尋所有診所 (分頁)
+	 * 
+	 * @return List<BaseBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<BaseBean> selectAllClinic(Integer first, Integer max) {
+
+		return baseDao.selectAllClinic(first, max);
 	}
 
 	/**

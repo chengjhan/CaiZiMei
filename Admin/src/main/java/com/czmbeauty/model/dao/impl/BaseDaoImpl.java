@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.BaseDao;
 import com.czmbeauty.model.entity.BaseBean;
+import com.czmbeauty.model.entity.CategoryBean;
 
 /**
  * base DAO implement
@@ -74,8 +77,14 @@ public class BaseDaoImpl implements BaseDao {
 	}
 
 	/**
-	 * 搜尋所有據點 (分頁)
+	 * 搜尋特定種類所有據點 (分頁)
 	 * 
+	 * @param hql
+	 *            String
+	 * @param first
+	 *            int --> 起始筆數
+	 * @param max
+	 *            int --> 最大筆數
 	 * @return List<BaseBean>
 	 */
 	@Override
@@ -99,13 +108,20 @@ public class BaseDaoImpl implements BaseDao {
 	}
 
 	/**
-	 * 搜尋所有據點筆數 (分頁)
+	 * 搜尋特定種類所有據點筆數 (分頁)
 	 * 
-	 * @return List<BaseBean>
+	 * @param ba_CategoryBean
+	 *            CategoryBean
+	 * @return int
 	 */
 	@Override
-	public Integer count() {
-		return 0;
+	public int selectAllBaseCount(CategoryBean ba_CategoryBean) {
+
+		DetachedCriteria criteria = DetachedCriteria.forClass(BaseBean.class);
+
+		criteria.add(Restrictions.eq("ba_CategoryBean", ba_CategoryBean));
+
+		return hibernateTemplate.findByCriteria(criteria).size();
 	}
 
 	/**

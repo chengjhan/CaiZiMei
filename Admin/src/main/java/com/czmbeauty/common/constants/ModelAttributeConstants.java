@@ -28,6 +28,8 @@ public interface ModelAttributeConstants {
 
 	public static final String BASE_LIST = "baseList";
 
+	public static final String BASE_PAGE_COUNT = "basePageCount";
+
 	public static final String FILE = "file";
 
 	public static final String SLIDER_MAIN_BEAN = "sliderMainBean";

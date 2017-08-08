@@ -11,6 +11,7 @@ package com.czmbeauty.model.dao;
 import java.util.List;
 
 import com.czmbeauty.model.entity.BaseBean;
+import com.czmbeauty.model.entity.CategoryBean;
 
 /**
  * base DAO interface
@@ -41,9 +42,9 @@ public interface BaseDao {
 	List<BaseBean> selectAllBasePagination(String hql, int first, int max);
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#count()
+	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectAllBaseCount(CategoryBean)
 	 */
-	Integer count();
+	int selectAllBaseCount(CategoryBean ba_CategoryBean);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectOpenClinic()

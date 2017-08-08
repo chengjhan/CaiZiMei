@@ -11,6 +11,7 @@ package com.czmbeauty.model.service;
 import java.util.List;
 
 import com.czmbeauty.model.entity.BaseBean;
+import com.czmbeauty.model.entity.CategoryBean;
 
 /**
  * base service interface
@@ -39,6 +40,11 @@ public interface BaseService {
 	 *      int, int)
 	 */
 	List<BaseBean> selectAllBasePagination(String hql, int first, int max);
+
+	/**
+	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllBaseCount(CategoryBean)
+	 */
+	int selectAllBaseCount(CategoryBean ba_CategoryBean);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectOpenClinic()

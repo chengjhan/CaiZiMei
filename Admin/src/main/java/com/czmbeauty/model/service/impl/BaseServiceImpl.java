@@ -18,6 +18,7 @@ import com.czmbeauty.common.util.Geocoder;
 import com.czmbeauty.model.dao.BaseDao;
 import com.czmbeauty.model.dao.CityDao;
 import com.czmbeauty.model.entity.BaseBean;
+import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.service.BaseService;
 
 /**
@@ -77,8 +78,14 @@ public class BaseServiceImpl implements BaseService {
 	}
 
 	/**
-	 * 搜尋所有據點 (分頁)
+	 * 搜尋特定種類所有據點 (分頁)
 	 * 
+	 * @param hql
+	 *            String
+	 * @param first
+	 *            int --> 起始筆數
+	 * @param max
+	 *            int --> 最大筆數
 	 * @return List<BaseBean>
 	 */
 	@Override
@@ -86,6 +93,20 @@ public class BaseServiceImpl implements BaseService {
 	public List<BaseBean> selectAllBasePagination(String hql, int first, int max) {
 
 		return baseDao.selectAllBasePagination(hql, first, max);
+	}
+
+	/**
+	 * 搜尋特定種類所有據點筆數 (分頁)
+	 * 
+	 * @param ba_CategoryBean
+	 *            CategoryBean
+	 * @return int
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public int selectAllBaseCount(CategoryBean ba_CategoryBean) {
+
+		return baseDao.selectAllBaseCount(ba_CategoryBean);
 	}
 
 	/**

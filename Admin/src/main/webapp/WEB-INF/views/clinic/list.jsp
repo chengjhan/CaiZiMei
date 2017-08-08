@@ -72,7 +72,7 @@
 								<fmt:formatDate value="${bean.ba_update_time}" var="ba_update_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 								<fmt:formatDate value="${bean.ba_status_time}" var="ba_status_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 								<tr>
-									<td>${status.count}</td>
+									<td>${status.count + pageRow * (currentPage - 1)}</td>
 <%-- 									<td>${bean.ba_id}</td> --%>
 									<td>${bean.ba_name}</td>
 									<td>${bean.ba_eng_name}</td>
@@ -111,15 +111,21 @@
 					<!-- table end -->
 					
 					<!-- pagination -->
-					<nav>
-						<ul class="pagination">
-							<li><a href="<%=request.getContextPath()%>/clinic/list?page=${status.count - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-							<c:forEach begin="1" end="${basePageCount}" varStatus="status">
-								<li><a href="<%=request.getContextPath()%>/clinic/list?page=${status.count}">${status.count}</a></li>
-							</c:forEach>
-							<li><a href="<%=request.getContextPath()%>/clinic/list?page=${status.count + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-						</ul>
-					</nav>
+					<c:if test="${pageCount > 1}">
+						<nav style="text-align:center">
+							<ul class="pagination" style="margin:0">
+								<c:if test="${currentPage > 1}">
+									<li><a href="<%=request.getContextPath()%>/clinic/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+								</c:if>
+								<c:forEach begin="1" end="${pageCount}" varStatus="status">
+									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/clinic/list?page=${status.count}">${status.count}</a></li>
+								</c:forEach>
+								<c:if test="${currentPage < pageCount}">
+									<li><a href="<%=request.getContextPath()%>/clinic/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</c:if>
 					<!-- pagination end -->
 					
 				</div>

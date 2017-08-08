@@ -2,17 +2,19 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/8/8
+ * Date: 2017/8/9
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.CommonConstants.PAGE_MAX_COUNT;
+import static com.czmbeauty.common.constants.CommonConstants.CURRENT_PAGE;
+import static com.czmbeauty.common.constants.CommonConstants.MAX_ROW;
+import static com.czmbeauty.common.constants.CommonConstants.PAGE_COUNT;
+import static com.czmbeauty.common.constants.CommonConstants.PAGE_ROW;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_CLINIC;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_LIST;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_PAGE_COUNT;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
@@ -144,7 +146,7 @@ public class BaseController {
 	 * 診所一覽 - 初期處理
 	 * 
 	 * @param page
-	 *            Integer --> 頁數
+	 *            Integer --> 頁碼
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/clinic/list.jsp
@@ -152,24 +154,27 @@ public class BaseController {
 	@RequestMapping(value = "/clinic/list", method = RequestMethod.GET)
 	public String clinicListView(@RequestParam Integer page, Model model) {
 
-		int first = (page - 1) * 10;
+		// 取得當前頁碼
+		model.addAttribute(CURRENT_PAGE, page);
 
-		// 取得特定頁數診所 List，放入 table
-		model.addAttribute(BASE_LIST,
-				baseService.selectAllBasePagination(HQL_SELECT_ALL_CLINIC, first, PAGE_MAX_COUNT));
+		// 取得每頁最大筆數
+		model.addAttribute(PAGE_ROW, MAX_ROW);
+
+		// 取得當前頁碼的診所 List，放入 table
+		int first = (page - 1) * MAX_ROW;
+		model.addAttribute(BASE_LIST, baseService.selectAllBasePagination(HQL_SELECT_ALL_CLINIC, first, MAX_ROW));
 
 		// 取得總頁數
 		CategoryBean ba_CategoryBean = new CategoryBean();
 		ba_CategoryBean.setCa_id(3);
-
 		int clinicCount = baseService.selectAllBaseCount(ba_CategoryBean);
-		int clinicPageCount = 0;
-		if (clinicCount % PAGE_MAX_COUNT == 0) {
-			clinicPageCount = clinicCount / PAGE_MAX_COUNT;
+		int pageCount = 0;
+		if (clinicCount % MAX_ROW == 0) {
+			pageCount = clinicCount / MAX_ROW;
 		} else {
-			clinicPageCount = clinicCount / PAGE_MAX_COUNT + 1;
+			pageCount = clinicCount / MAX_ROW + 1;
 		}
-		model.addAttribute(BASE_PAGE_COUNT, clinicPageCount);
+		model.addAttribute(PAGE_COUNT, pageCount);
 
 		return CLINIC_LIST_PAGE;
 	}

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/8
+ * Date: 2017/8/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.BaseDao;
 import com.czmbeauty.model.entity.BaseBean;
-import com.czmbeauty.model.entity.CategoryBean;
+import com.czmbeauty.model.entity.BaseKindBean;
 
 /**
  * base DAO implement
@@ -47,7 +47,7 @@ public class BaseDaoImpl implements BaseDao {
 	public List<BaseBean> selectAllOffice() {
 
 		return (List<BaseBean>) hibernateTemplate
-				.find("from BaseBean where ba_ca_id=1 order by ba_status desc, ba_id asc");
+				.find("from BaseBean where ba_bk_id=1 order by ba_status desc, ba_id asc");
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class BaseDaoImpl implements BaseDao {
 	public List<BaseBean> selectAllFranchisee() {
 
 		return (List<BaseBean>) hibernateTemplate
-				.find("from BaseBean where ba_ca_id=2 order by ba_status desc, ba_id asc");
+				.find("from BaseBean where ba_bk_id=2 order by ba_status desc, ba_id asc");
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class BaseDaoImpl implements BaseDao {
 	public List<BaseBean> selectAllClinic() {
 
 		return (List<BaseBean>) hibernateTemplate
-				.find("from BaseBean where ba_ca_id=3 order by ba_status desc, ba_id asc");
+				.find("from BaseBean where ba_bk_id=3 order by ba_status desc, ba_id asc");
 	}
 
 	/**
@@ -110,16 +110,16 @@ public class BaseDaoImpl implements BaseDao {
 	/**
 	 * 搜尋特定種類所有據點筆數 (分頁)
 	 * 
-	 * @param ba_CategoryBean
-	 *            CategoryBean
+	 * @param ba_BaseKindBean
+	 *            BaseKindBean
 	 * @return int
 	 */
 	@Override
-	public int selectAllBaseCount(CategoryBean ba_CategoryBean) {
+	public int selectAllBaseCount(BaseKindBean ba_BaseKindBean) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(BaseBean.class);
 
-		criteria.add(Restrictions.eq("ba_CategoryBean", ba_CategoryBean));
+		criteria.add(Restrictions.eq("ba_BaseKindBean", ba_BaseKindBean));
 
 		return hibernateTemplate.findByCriteria(criteria).size();
 	}
@@ -134,7 +134,7 @@ public class BaseDaoImpl implements BaseDao {
 	public List<BaseBean> selectOpenClinic() {
 
 		return (List<BaseBean>) hibernateTemplate
-				.find("from BaseBean where ba_ca_id=3 and ba_status=1 order by ba_id asc");
+				.find("from BaseBean where ba_bk_id=3 and ba_status=1 order by ba_id asc");
 	}
 
 	/**

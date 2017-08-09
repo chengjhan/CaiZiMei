@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/8
+ * Date: 2017/8/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,7 @@ import com.czmbeauty.common.util.Geocoder;
 import com.czmbeauty.model.dao.BaseDao;
 import com.czmbeauty.model.dao.CityDao;
 import com.czmbeauty.model.entity.BaseBean;
-import com.czmbeauty.model.entity.CategoryBean;
+import com.czmbeauty.model.entity.BaseKindBean;
 import com.czmbeauty.model.service.BaseService;
 
 /**
@@ -98,15 +98,15 @@ public class BaseServiceImpl implements BaseService {
 	/**
 	 * 搜尋特定種類所有據點筆數 (分頁)
 	 * 
-	 * @param ba_CategoryBean
-	 *            CategoryBean
+	 * @param ba_BaseKindBean
+	 *            BaseKindBean
 	 * @return int
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public int selectAllBaseCount(CategoryBean ba_CategoryBean) {
+	public int selectAllBaseCount(BaseKindBean ba_BaseKindBean) {
 
-		return baseDao.selectAllBaseCount(ba_CategoryBean);
+		return baseDao.selectAllBaseCount(ba_BaseKindBean);
 	}
 
 	/**

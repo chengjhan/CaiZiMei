@@ -50,12 +50,12 @@ import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
 import com.czmbeauty.model.entity.BaseBean;
-import com.czmbeauty.model.entity.CategoryBean;
+import com.czmbeauty.model.entity.BaseKindBean;
 import com.czmbeauty.model.entity.CityBean;
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.entity.StateBean;
+import com.czmbeauty.model.service.BaseKindService;
 import com.czmbeauty.model.service.BaseService;
-import com.czmbeauty.model.service.CategoryService;
 import com.czmbeauty.model.service.CityService;
 import com.czmbeauty.model.service.CountryService;
 import com.czmbeauty.model.service.StateService;
@@ -96,10 +96,10 @@ public class BaseController {
 	private CityService cityService;
 
 	/**
-	 * 注入 CategoryService
+	 * 注入 BaseKindService
 	 */
 	@Autowired
-	private CategoryService categoryService;
+	private BaseKindService baseKindService;
 
 	/**
 	 * 注入 BaseService
@@ -173,9 +173,9 @@ public class BaseController {
 		model.addAttribute(BASE_LIST, baseService.selectAllBasePagination(HQL_SELECT_ALL_CLINIC, first, MAX_ROW));
 
 		// 取得總頁數
-		CategoryBean ba_CategoryBean = new CategoryBean();
-		ba_CategoryBean.setCa_id(3);
-		int clinicCount = baseService.selectAllBaseCount(ba_CategoryBean);
+		BaseKindBean ba_BaseKindBean = new BaseKindBean();
+		ba_BaseKindBean.setBk_id(3);
+		int clinicCount = baseService.selectAllBaseCount(ba_BaseKindBean);
 		int pageCount = 0;
 		if (clinicCount % MAX_ROW == 0) {
 			pageCount = clinicCount / MAX_ROW;
@@ -254,7 +254,7 @@ public class BaseController {
 	@RequestMapping(value = "/office/add.do", method = RequestMethod.POST)
 	public String officeAddProcess(BaseBean baseBean) {
 
-		baseBean.setBa_CategoryBean(categoryService.selectByCa_id(1));
+		baseBean.setBa_BaseKindBean(baseKindService.selectByBk_id(1));
 
 		baseService.insert(baseBean);
 
@@ -271,7 +271,7 @@ public class BaseController {
 	@RequestMapping(value = "/franchisee/add.do", method = RequestMethod.POST)
 	public String franchiseeAddProcess(BaseBean baseBean) {
 
-		baseBean.setBa_CategoryBean(categoryService.selectByCa_id(2));
+		baseBean.setBa_BaseKindBean(baseKindService.selectByBk_id(2));
 
 		baseService.insert(baseBean);
 
@@ -288,11 +288,11 @@ public class BaseController {
 	@RequestMapping(value = "/clinic/add.do", method = RequestMethod.POST)
 	public String clinicAddProcess(BaseBean baseBean) {
 
-		baseBean.setBa_CategoryBean(categoryService.selectByCa_id(3));
+		baseBean.setBa_BaseKindBean(baseKindService.selectByBk_id(3));
 
 		baseService.insert(baseBean);
 
-		return REDIRECT + CLINIC_LIST_PAGE;
+		return REDIRECT + CLINIC_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
 	}
 
 	/**

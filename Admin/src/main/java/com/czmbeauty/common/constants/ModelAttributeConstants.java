@@ -34,4 +34,8 @@ public interface ModelAttributeConstants {
 
 	public static final String SLIDER_MAIN_LIST = "sliderMainList";
 
+	public static final String IMAGE_BEAN = "imageBean";
+
+	public static final String IMAGE_LIST = "imageList";
+
 }

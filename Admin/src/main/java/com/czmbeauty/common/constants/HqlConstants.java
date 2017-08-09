@@ -17,4 +17,9 @@ public interface HqlConstants {
 	 */
 	public static final String HQL_SELECT_ALL_CLINIC = "from BaseBean where ba_ca_id=3 order by ba_status desc, ba_id asc";
 
+	/**
+	 * 搜尋所有主輪播圖片 (分頁)
+	 */
+	public static final String HQL_SELECT_ALL_SLIDER_MAIN = "from ImageBean where im_ca_id=4 order by im_status desc, im_id asc";
+
 }

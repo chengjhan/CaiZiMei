@@ -27,9 +27,10 @@
 				<value>com.czmbeauty.model.entity.AdminBean</value>
 				<value>com.czmbeauty.model.entity.AdminLogBean</value>
 				<value>com.czmbeauty.model.entity.BaseBean</value>
-				<value>com.czmbeauty.model.entity.BaseKindBean</value>
+				<value>com.czmbeauty.model.entity.CategoryBean</value>
 				<value>com.czmbeauty.model.entity.CityBean</value>
 				<value>com.czmbeauty.model.entity.CountryBean</value>
+				<value>com.czmbeauty.model.entity.ImageBean</value>
 				<value>com.czmbeauty.model.entity.SliderMainBean</value>
 				<value>com.czmbeauty.model.entity.StateBean</value>
 			</list>

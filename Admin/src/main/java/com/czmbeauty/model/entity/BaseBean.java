@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseBean.java
  * Author: 詹晟
- * Date: 2017/8/9
+ * Date: 2017/8/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,8 +32,8 @@ public class BaseBean {
 	@Expose
 	private Integer ba_id;
 	@ManyToOne
-	@JoinColumn(name = "ba_bk_id")
-	private BaseKindBean ba_BaseKindBean;
+	@JoinColumn(name = "ba_ca_id")
+	private CategoryBean ba_CategoryBean;
 	@Expose
 	private String ba_name;
 	@Expose
@@ -75,12 +75,12 @@ public class BaseBean {
 		this.ba_id = ba_id;
 	}
 
-	public BaseKindBean getBa_BaseKindBean() {
-		return ba_BaseKindBean;
+	public CategoryBean getBa_CategoryBean() {
+		return ba_CategoryBean;
 	}
 
-	public void setBa_BaseKindBean(BaseKindBean ba_BaseKindBean) {
-		this.ba_BaseKindBean = ba_BaseKindBean;
+	public void setBa_CategoryBean(CategoryBean ba_CategoryBean) {
+		this.ba_CategoryBean = ba_CategoryBean;
 	}
 
 	public String getBa_name() {

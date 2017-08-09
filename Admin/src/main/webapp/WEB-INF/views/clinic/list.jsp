@@ -89,7 +89,7 @@
 <%-- 									<td>${ba_status_time_format}</td> --%>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/clinic/edit?ba_id=${bean.ba_id}"><img src="<%=request.getContextPath()%>/images/edit.svg"></a>
+											<a href="<%=request.getContextPath()%>/clinic/edit?ba_id=${bean.ba_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/edit.svg"></a>
 										</div>
 									</td>
 									<td>

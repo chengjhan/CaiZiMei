@@ -8,10 +8,8 @@
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.CommonConstants.CURRENT_PAGE;
-import static com.czmbeauty.common.constants.CommonConstants.MAX_ROW;
-import static com.czmbeauty.common.constants.CommonConstants.PAGE_COUNT;
-import static com.czmbeauty.common.constants.CommonConstants.PAGE_ROW;
+import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
+import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_CLINIC;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_LIST;
@@ -28,6 +26,11 @@ import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
+import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
+import static com.czmbeauty.common.constants.PaginationConstants.MAX_ROW;
+import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
+import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW;
+import static com.czmbeauty.common.constants.ParameterConstants.PAGE;
 
 import java.util.List;
 
@@ -68,6 +71,11 @@ import com.google.gson.GsonBuilder;
 public class BaseController {
 
 	private static final Logger logger = Logger.getLogger(BaseController.class);
+
+	/**
+	 * 當前頁碼
+	 */
+	private String currentPage;
 
 	/**
 	 * 注入 CountryService
@@ -146,7 +154,7 @@ public class BaseController {
 	 * 診所一覽 - 初期處理
 	 * 
 	 * @param page
-	 *            Integer --> 頁碼
+	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/clinic/list.jsp
@@ -352,12 +360,16 @@ public class BaseController {
 	 * 
 	 * @param baseBean_ba_id
 	 *            BaseBean --> form backing object --> GET --> ba_id
+	 * @param page
+	 *            String --> 當前頁碼
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/clinic/edit.jsp
 	 */
 	@RequestMapping(value = "/clinic/edit", method = RequestMethod.GET)
-	public String clinicEditView(BaseBean baseBean_ba_id, Model model) {
+	public String clinicEditView(BaseBean baseBean_ba_id, @RequestParam String page, Model model) {
+
+		currentPage = page;
 
 		// 取得選定診所 id 的 BaseBean
 		BaseBean baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
@@ -412,14 +424,14 @@ public class BaseController {
 	 * 
 	 * @param baseBean
 	 *            BaseBean --> form backing object
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/clinic/list?page=currentPage.jsp
 	 */
 	@RequestMapping(value = "/clinic/edit.do", method = RequestMethod.POST)
 	public String clinicEditProcess(BaseBean baseBean) {
 
 		baseService.update(baseBean);
 
-		return REDIRECT + CLINIC_LIST_PAGE;
+		return REDIRECT + CLINIC_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 	}
 
 	/**

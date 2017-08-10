@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -45,13 +45,13 @@ public class BaseController {
 	 */
 	@RequestMapping(value = "/base/open-base-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openListAjaxProcess() {
+	public String openBaseListAjaxProcess() {
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
 
-		List<BaseBean> result = baseService.selectOpen();
+		List<BaseBean> result = baseService.selectOpenBase();
 
 		String json = gson.toJson(result);
 

@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: StateBean.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,8 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.google.gson.annotations.Expose;
-
 /**
  * state entity
  * 
@@ -34,15 +32,11 @@ public class StateBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Expose
 	private Integer st_id;
 	@ManyToOne
 	@JoinColumn(name = "st_co_id")
-	@Expose
 	private CountryBean st_CountryBean;
-	@Expose
 	private String st_name;
-	@Expose
 	private Integer st_rank;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_StateBean")

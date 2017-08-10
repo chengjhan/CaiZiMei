@@ -20,8 +20,8 @@ import com.czmbeauty.model.entity.ImageBean;
 public interface ImageDao {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectByIm_status()
+	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectOpenImage(String)
 	 */
-	List<ImageBean> selectByIm_status();
+	List<ImageBean> selectOpenImage(String sql);
 
 }

@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: BaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,15 +33,15 @@ public class BaseServiceImpl implements BaseService {
 	private BaseDao baseDao;
 
 	/**
-	 * 狀態搜尋
+	 * 搜尋開啟的據點
 	 * 
 	 * @return List<BaseBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<BaseBean> selectOpen() {
+	public List<BaseBean> selectOpenBase() {
 
-		return baseDao.selectOpen();
+		return baseDao.selectOpenBase();
 	}
 
 }

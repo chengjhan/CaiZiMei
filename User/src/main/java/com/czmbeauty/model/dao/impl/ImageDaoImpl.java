@@ -32,15 +32,15 @@ public class ImageDaoImpl implements ImageDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 狀態搜尋
+	 * 搜尋開啟的圖片
 	 * 
 	 * @return List<ImageBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ImageBean> selectByIm_status() {
+	public List<ImageBean> selectOpenImage(String hql) {
 
-		return (List<ImageBean>) hibernateTemplate.find("from ImageBean where im_status=1 order by im_rank asc");
+		return (List<ImageBean>) hibernateTemplate.find(hql);
 	}
 
 }

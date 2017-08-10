@@ -33,15 +33,15 @@ public class ImageServiceImpl implements ImageService {
 	private ImageDao imageDao;
 
 	/**
-	 * 狀態搜尋
+	 * 搜尋開啟的圖片
 	 * 
 	 * @return List<ImageBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<ImageBean> selectByIm_status() {
+	public List<ImageBean> selectOpenImage(String hql) {
 
-		return imageDao.selectByIm_status();
+		return imageDao.selectOpenImage(hql);
 	}
 
 }

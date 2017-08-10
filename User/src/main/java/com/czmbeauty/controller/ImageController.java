@@ -8,6 +8,8 @@
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_MAIN_IMAGE;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -39,19 +41,19 @@ public class ImageController {
 	private ImageService imageService;
 
 	/**
-	 * 開啟的圖片 JSON (AJAX)
+	 * 開啟的主輪播圖片 JSON (AJAX)
 	 * 
 	 * @return image JSON
 	 */
-	@RequestMapping(value = "/slider-main/open-slide-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/image/open-slider-main-image-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openSlideListAjaxProcess() {
+	public String openSliderMainImageListAjaxProcess() {
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
 
-		List<ImageBean> result = imageService.selectByIm_status();
+		List<ImageBean> result = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_MAIN_IMAGE);
 
 		String json = gson.toJson(result);
 

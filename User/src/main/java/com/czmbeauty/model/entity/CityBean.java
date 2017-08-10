@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: CityBean.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,8 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.google.gson.annotations.Expose;
-
 /**
  * city entity
  * 
@@ -34,18 +32,14 @@ public class CityBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Expose
 	private Integer ci_id;
 	@ManyToOne
 	@JoinColumn(name = "ci_co_id")
 	private CountryBean ci_CountryBean;
 	@ManyToOne
 	@JoinColumn(name = "ci_st_id")
-	@Expose
 	private StateBean ci_StateBean;
-	@Expose
 	private String ci_name;
-	@Expose
 	private Integer ci_rank;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ba_CityBean")

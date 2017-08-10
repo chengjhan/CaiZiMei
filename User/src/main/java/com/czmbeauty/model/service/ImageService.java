@@ -20,8 +20,8 @@ import com.czmbeauty.model.entity.ImageBean;
 public interface ImageService {
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectByIm_status()
+	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectOpenImage(String)
 	 */
-	List<ImageBean> selectByIm_status();
+	List<ImageBean> selectOpenImage(String hql);
 
 }

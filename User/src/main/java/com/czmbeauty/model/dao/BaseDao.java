@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: BaseDao.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,8 +20,8 @@ import com.czmbeauty.model.entity.BaseBean;
 public interface BaseDao {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectOpen()
+	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectOpenBase()
 	 */
-	List<BaseBean> selectOpen();
+	List<BaseBean> selectOpenBase();
 
 }

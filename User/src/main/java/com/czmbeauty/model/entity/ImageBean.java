@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * image entity
  * 
@@ -27,13 +29,17 @@ public class ImageBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose
 	private Integer im_id;
 	@ManyToOne
 	@JoinColumn(name = "im_ca_id")
 	private CategoryBean im_CategoryBean;
+	@Expose
 	private String im_name;
 	private String im_path;
+	@Expose
 	private String im_filename;
+	@Expose
 	private String im_url;
 	private Integer im_rank;
 	private Integer im_status;

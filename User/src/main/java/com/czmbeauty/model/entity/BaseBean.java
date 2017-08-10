@@ -36,9 +36,7 @@ public class BaseBean {
 	private CategoryBean ba_CategoryBean;
 	@Expose
 	private String ba_name;
-	@Expose
 	private String ba_eng_name;
-	@Expose
 	private String ba_localphone;
 	@ManyToOne
 	@JoinColumn(name = "ba_co_id")
@@ -48,9 +46,7 @@ public class BaseBean {
 	private StateBean ba_StateBean;
 	@ManyToOne
 	@JoinColumn(name = "ba_ci_id")
-	@Expose
 	private CityBean ba_CityBean;
-	@Expose
 	private String ba_address;
 	@Expose
 	private Double ba_latitude;

@@ -18,12 +18,12 @@ $(document).ready(function(){
 		}, 500);
 	};
 	
-	$.getJSON("slider-main/open-slide-list.ajax", function(data){
-		$.each(data, function(index, sliderMainBean){
-			var slide_img = $("<img src='/Admin/images/slider-main/" + sliderMainBean.sm_filename + "' title='" + sliderMainBean.sm_name + "' alt='" + sliderMainBean.sm_name + "' class='img-slider'>");
-			var slide_a = $("<a href=" + sliderMainBean.sm_url + " target='_blank' class='a-silder'></a>").append(slide_img);
-			var slide_div = $("<div class='swiper-slide'></div>").append(slide_a);
-			swiper.appendSlide(slide_div);
+	$.getJSON("image/open-slider-main-image-list.ajax", function(data){
+		$.each(data, function(index, imageBean){
+			var slider_main_img = $("<img src='/Admin/images/slider-main/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
+			var slider_main_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_main_img);
+			var slider_main_div = $("<div class='swiper-slide'></div>").append(slider_main_a);
+			swiper.appendSlide(slider_main_div);
 		});
 	});
 	

@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: CountryBean.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,8 +19,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.google.gson.annotations.Expose;
-
 /**
  * country entity
  * 
@@ -32,15 +30,10 @@ public class CountryBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Expose
 	private Integer co_id;
-	@Expose
 	private String co_iso;
-	@Expose
 	private String co_name;
-	@Expose
 	private String co_phonecode;
-	@Expose
 	private Integer co_rank;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "st_CountryBean")

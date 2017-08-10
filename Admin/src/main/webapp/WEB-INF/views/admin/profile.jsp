@@ -33,7 +33,7 @@
 <!-- 					<div class="btn-group option"> -->
 <!-- 						<div class="edit-button"> -->
 <%-- 							<a href="<%=request.getContextPath()%>/admin/edit" title="編輯"> --%>
-<%-- 								<img src="<%=request.getContextPath()%>/images/edit.svg"> --%>
+<%-- 								<img src="<%=request.getContextPath()%>/images/icon_edit.svg"> --%>
 <!-- 							</a> -->
 <!-- 						</div> -->
 <!-- 					</div> -->

@@ -33,7 +33,7 @@
 					<div class="btn-group option">
 						<div class="add-button">
 							<a href="<%=request.getContextPath()%>/office/add">
-								<img src="<%=request.getContextPath()%>/images/add.svg">
+								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
 					</div>
@@ -68,7 +68,7 @@
 								<fmt:formatDate value="${bean.ba_update_time}" var="ba_update_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 								<fmt:formatDate value="${bean.ba_status_time}" var="ba_status_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 								<tr>
-									<td>${status.count}</td>
+									<td>${status.count + pageRowCount * (currentPage - 1)}</td>
 <%-- 									<td>${bean.ba_id}</td> --%>
 									<td>${bean.ba_name}</td>
 									<td>${bean.ba_eng_name}</td>
@@ -85,7 +85,7 @@
 <%-- 									<td>${ba_status_time_format}</td> --%>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/office/edit?ba_id=${bean.ba_id}"><img src="<%=request.getContextPath()%>/images/edit.svg"></a>
+											<a href="<%=request.getContextPath()%>/office/edit?ba_id=${bean.ba_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/icon_edit.svg"></a>
 										</div>
 									</td>
 									<td>
@@ -105,6 +105,24 @@
 						</tbody>
 					</table>
 					<!-- table end -->
+					
+					<!-- pagination -->
+					<c:if test="${pageCount > 1}">
+						<nav style="text-align:center">
+							<ul class="pagination" style="margin:0">
+								<c:if test="${currentPage > 1}">
+									<li><a href="<%=request.getContextPath()%>/office/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span></a></li>
+								</c:if>
+								<c:forEach begin="1" end="${pageCount}" varStatus="status">
+									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/office/list?page=${status.count}">${status.count}</a></li>
+								</c:forEach>
+								<c:if test="${currentPage < pageCount}">
+									<li><a href="<%=request.getContextPath()%>/office/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span></a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</c:if>
+					<!-- pagination end -->
 
 				</div>
 				<!-- content end -->

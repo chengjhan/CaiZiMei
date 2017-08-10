@@ -28,11 +28,11 @@ state_select.change(function(){
 //			var ci_id_td = $("<td></td>").append(cityBean.ci_id);
 			var ci_name_td = $("<td></td>").append(cityBean.ci_name);
 			var ci_rank_td = $("<td></td>").append(cityBean.ci_rank);
-			var edit_img = $("<img src='../images/edit.svg'>");
+			var edit_img = $("<img src='../images/icon_edit.svg'>");
 			var edit_a = $("<a href='../city/edit?ci_id=" + cityBean.ci_id + "'></a>").append(edit_img);
 			var edit_div = $("<div class='edit-button'></div>").append(edit_a);
 			var edit_td = $("<td></td>").append(edit_div);
-			var delete_img = $("<img src='../images/delete.svg'>");
+			var delete_img = $("<img src='../images/icon_delete.svg'>");
 			var delete_a = $("<a href='../city/delete?ci_id=" + cityBean.ci_id + "'></a>").append(delete_img);
 			var delete_div = $("<div class='delete-button'></div>").append(delete_a);
 			var delete_td = $("<td></td>").append(delete_div);

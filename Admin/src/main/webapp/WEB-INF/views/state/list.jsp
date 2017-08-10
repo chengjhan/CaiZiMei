@@ -41,7 +41,7 @@
 						</div>
 						<div class="add-button">
 							<a href="<%=request.getContextPath()%>/state/add">
-								<img src="<%=request.getContextPath()%>/images/add.svg">
+								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
 					</div>
@@ -69,14 +69,14 @@
 									<td>
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/state/edit?st_id=${bean.st_id}">
-												<img src="<%=request.getContextPath()%>/images/edit.svg">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
 											</a>
 										</div>
 									</td>
 									<td>
 										<div class="delete-button">
 											<a href="<%=request.getContextPath()%>/state/delete?st_id=${bean.st_id}">
-												<img src="<%=request.getContextPath()%>/images/delete.svg">
+												<img src="<%=request.getContextPath()%>/images/icon_delete.svg">
 											</a>
 										</div>
 									</td>

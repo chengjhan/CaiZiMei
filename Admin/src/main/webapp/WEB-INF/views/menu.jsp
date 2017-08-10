@@ -17,8 +17,8 @@
 			<li id="id-li-city-list"><a href="<%=request.getContextPath()%>/city/list">城市一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
-			<li id="id-li-office-list"><a href="<%=request.getContextPath()%>/office/list">辦事處一覽</a></li>
-			<li id="id-li-franchisee-list"><a href="<%=request.getContextPath()%>/franchisee/list">加盟店一覽</a></li>
+			<li id="id-li-office-list"><a href="<%=request.getContextPath()%>/office/list?page=1">辦事處一覽</a></li>
+			<li id="id-li-franchisee-list"><a href="<%=request.getContextPath()%>/franchisee/list?page=1">加盟店一覽</a></li>
 			<li id="id-li-clinic-list"><a href="<%=request.getContextPath()%>/clinic/list?page=1">診所一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">

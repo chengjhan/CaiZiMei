@@ -32,7 +32,7 @@
 					<div class="btn-group option">
 						<div class="add-button">
 							<a href="<%=request.getContextPath()%>/slider-main/add">
-								<img src="<%=request.getContextPath()%>/images/add.svg">
+								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
 					</div>
@@ -49,7 +49,7 @@
 									<td>${bean.im_name}</td>
 									<td rowspan="4" style="width:50px">
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/slider-main/edit?im_id=${bean.im_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/edit.svg"></a>
+											<a href="<%=request.getContextPath()%>/slider-main/edit?im_id=${bean.im_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/icon_edit.svg"></a>
 										</div>
 									</td>	
 									<td rowspan="4" style="width:50px">

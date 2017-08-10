@@ -19,7 +19,7 @@ var createClinicListTable = function(data){
 //		var	ba_insert_time_td = $("<td></td>").append(baseBean.ba_insert_time);
 //		var	ba_update_time_td = $("<td></td>").append(baseBean.ba_update_time);
 //		var	ba_status_time_td = $("<td></td>").append(baseBean.ba_status_time);
-		var edit_img = $("<img src='../images/edit.svg' style='width:100%'>");
+		var edit_img = $("<img src='../images/icon_edit.svg' style='width:100%'>");
 		var edit_a = $("<a href='../clinic/edit?ba_id=" + baseBean.ba_id + "'></a>").append(edit_img);
 		var edit_div = $("<div style='width:30px'></div>").append(edit_a);
 		var edit_td = $("<td></td>").append(edit_div);

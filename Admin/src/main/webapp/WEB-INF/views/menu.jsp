@@ -22,7 +22,7 @@
 			<li id="id-li-clinic-list"><a href="<%=request.getContextPath()%>/clinic/list?page=1">診所一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
-			<li id="id-li-slider-main-list"><a href="<%=request.getContextPath()%>/slider-main/list">主輪播圖片一覽</a></li>
+			<li id="id-li-slider-main-list"><a href="<%=request.getContextPath()%>/slider-main/list?page=1">主輪播圖片一覽</a></li>
 		</ul>
 	</div>
 	

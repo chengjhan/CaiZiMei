@@ -1,12 +1,8 @@
-.option img {
+img {
 	width: 100%;
 }
 
 table {
-	width: 100%;
-}
-
-table img {
 	width: 100%;
 }
 
@@ -24,7 +20,7 @@ table img {
 	width: 30px;
 }
 
-.sm-status-switch {
+.im-status-switch {
 	width: 30px;
 	cursor: pointer;
 }

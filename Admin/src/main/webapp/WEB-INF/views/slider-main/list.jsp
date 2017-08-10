@@ -40,26 +40,26 @@
 					
 					<!-- table -->
 					<table class="table table-bordered">
-						<c:forEach var="bean" items="${sliderMainList}" varStatus="status">
+						<c:forEach var="bean" items="${imageList}" varStatus="status">
 							<tbody>
 								<tr>
 									<td rowspan="4" style="width:50px">${status.count}</td>
-									<td rowspan="4" style="width:45%"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.sm_filename}"></td>
+									<td rowspan="4" style="width:45%"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.im_filename}"></td>
 									<td style="width:50px">名稱</td>
-									<td>${bean.sm_name}</td>
+									<td>${bean.im_name}</td>
 									<td rowspan="4" style="width:50px">
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/slider-main/edit?sm_id=${bean.sm_id}"><img src="<%=request.getContextPath()%>/images/edit.svg"></a>
+											<a href="<%=request.getContextPath()%>/slider-main/edit?im_id=${bean.im_id}"><img src="<%=request.getContextPath()%>/images/edit.svg"></a>
 										</div>
 									</td>	
 									<td rowspan="4" style="width:50px">
-										<div class="sm-status-switch" data-sm-id="${bean.sm_id}">
+										<div class="im-status-switch" data-im-id="${bean.im_id}">
 											<c:choose>
-												<c:when test="${bean.sm_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/true.svg" data-sm-status="1">
+												<c:when test="${bean.im_status eq 1}">
+													<img src="<%=request.getContextPath()%>/images/true.svg" data-im-status="1">
 												</c:when>
-												<c:when test="${bean.sm_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/false.svg" data-sm-status="0">
+												<c:when test="${bean.im_status eq 0}">
+													<img src="<%=request.getContextPath()%>/images/false.svg" data-im-status="0">
 												</c:when>
 											</c:choose>
 										</div>
@@ -67,19 +67,19 @@
 								</tr>
 								<tr>
 									<td style="width:50px">檔名</td>
-									<td>${bean.sm_filename}</td>
+									<td>${bean.im_filename}</td>
 								</tr>
 								<tr>
 									<td style="width:50px">連結</td>
-									<td><a href="${bean.sm_url}">${bean.sm_url}</a></td>
+									<td><a href="${bean.im_url}">${bean.im_url}</a></td>
 								</tr>
 								<tr>
 									<td style="width:50px">排序</td>
-									<td>${bean.sm_rank}</td>
+									<td>${bean.im_rank}</td>
 								</tr>
 <!-- 								<tr> -->
 <!-- 									<td>最後更新時間</td> -->
-<%-- 									<td>${bean.sm_update_time}</td> --%>
+<%-- 									<td>${bean.im_update_time}</td> --%>
 <!-- 								</tr> -->
 							</tbody>
 						</c:forEach>

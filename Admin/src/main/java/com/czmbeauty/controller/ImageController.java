@@ -9,10 +9,11 @@
 package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.CommonConstants.DOT;
+import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
+import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 import static com.czmbeauty.common.constants.DirectoryConstants.IMAGES;
 import static com.czmbeauty.common.constants.DirectoryConstants.SLIDER_MAIN;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_MAIN;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.FILE;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_LIST;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
@@ -20,9 +21,10 @@ import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_ADD_P
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_LIST_PAGE;
 import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
-import static com.czmbeauty.common.constants.PaginationConstants.MAX_ROW;
+import static com.czmbeauty.common.constants.PaginationConstants.IMAGE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
-import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW;
+import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW_COUNT;
+import static com.czmbeauty.common.constants.ParameterConstants.PAGE;
 
 import java.io.File;
 
@@ -41,6 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
+import com.czmbeauty.model.service.CategoryService;
 import com.czmbeauty.model.service.ImageService;
 
 /**
@@ -54,16 +57,27 @@ public class ImageController {
 	private static final Logger logger = Logger.getLogger(ImageController.class);
 
 	/**
-	 * 注入 ImageService
+	 * 當前頁碼
 	 */
-	@Autowired
-	private ImageService imageService;
+	private String currentPage;
 
 	/**
 	 * 注入 ServletContext
 	 */
 	@Autowired
 	private ServletContext context;
+
+	/**
+	 * 注入 CategoryService
+	 */
+	@Autowired
+	private CategoryService categoryService;
+
+	/**
+	 * 注入 ImageService
+	 */
+	@Autowired
+	private ImageService imageService;
 
 	/**
 	 * 主輪播圖片一覽 - 初期處理
@@ -81,22 +95,22 @@ public class ImageController {
 		model.addAttribute(CURRENT_PAGE, page);
 
 		// 取得每頁最大筆數
-		model.addAttribute(PAGE_ROW, MAX_ROW);
+		model.addAttribute(PAGE_ROW_COUNT, IMAGE_PAGE_ROW_COUNT);
 
 		// 取得當前頁碼的圖片 List，放入 table
-		int first = (page - 1) * MAX_ROW;
+		int first = (page - 1) * IMAGE_PAGE_ROW_COUNT;
 		model.addAttribute(IMAGE_LIST,
-				imageService.selectAllImagePagination(HQL_SELECT_ALL_SLIDER_MAIN, first, MAX_ROW));
+				imageService.selectAllImagePagination(HQL_SELECT_ALL_SLIDER_MAIN, first, IMAGE_PAGE_ROW_COUNT));
 
 		// 取得總頁數
 		CategoryBean im_CategoryBean = new CategoryBean();
 		im_CategoryBean.setCa_id(4);
 		int totalRowCount = imageService.selectAllImageCount(im_CategoryBean);
 		int pageCount = 0;
-		if (totalRowCount % MAX_ROW == 0) {
-			pageCount = totalRowCount / MAX_ROW;
+		if (totalRowCount % IMAGE_PAGE_ROW_COUNT == 0) {
+			pageCount = totalRowCount / IMAGE_PAGE_ROW_COUNT;
 		} else {
-			pageCount = totalRowCount / MAX_ROW + 1;
+			pageCount = totalRowCount / IMAGE_PAGE_ROW_COUNT + 1;
 		}
 		model.addAttribute(PAGE_COUNT, pageCount);
 
@@ -126,12 +140,20 @@ public class ImageController {
 	 *            MultipartFile
 	 * @param imageBean
 	 *            ImageBean --> form backing object
-	 * @return /WEB-INF/views/slider-main/list.jsp
+	 * @return /WEB-INF/views/slider-main/list?page=1.jsp
+	 * @return /WEB-INF/views/slider-main/list?page=1.jsp
 	 */
 	@RequestMapping(value = "/slider-main/add.do", method = RequestMethod.POST)
-	public String addProcess(@RequestParam(FILE) MultipartFile file, ImageBean imageBean) {
+	public String addProcess(@RequestParam MultipartFile file, ImageBean imageBean) {
 
-		if (!file.isEmpty()) {
+		if (file.isEmpty()) {
+
+			logger.info("圖片新增失敗: 未上傳圖片");
+
+			// 新增失敗
+			return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+
+		} else {
 
 			String root = context.getRealPath("");
 			String im_path = root + IMAGES + File.separator + SLIDER_MAIN + File.separator;
@@ -145,7 +167,10 @@ public class ImageController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			logger.info("圖片上傳成功，位置: " + im_path + im_filename);
 
+			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(4));
 			imageBean.setIm_path(im_path);
 			imageBean.setIm_filename(im_filename);
 			imageBean.setIm_status(1);
@@ -153,16 +178,12 @@ public class ImageController {
 
 			imageService.insert(imageBean);
 
-			logger.info("圖片上傳成功，位置: " + im_path + im_filename);
+			logger.info("圖片新增成功");
 
 			// 新增成功
-			return REDIRECT + SLIDER_MAIN_LIST_PAGE;
+			return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
 		}
 
-		logger.info("圖片上傳失敗");
-
-		// 新增失敗
-		return REDIRECT + SLIDER_MAIN_LIST_PAGE;
 	}
 
 	/**
@@ -170,12 +191,16 @@ public class ImageController {
 	 * 
 	 * @param imageBean_im_id
 	 *            ImageBean --> form backing object --> GET --> im_id
+	 * @param page
+	 *            String --> 當前頁碼
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/slider-main/edit.jsp
 	 */
 	@RequestMapping(value = "/slider-main/edit", method = RequestMethod.GET)
-	public String editView(ImageBean imageBean_im_id, Model model) {
+	public String editView(ImageBean imageBean_im_id, @RequestParam String page, Model model) {
+
+		currentPage = page;
 
 		// 取得選定圖片 id 的 ImageBean，使表單回填 ImageBean 內所有資料
 		model.addAttribute(IMAGE_BEAN, imageService.selectByIm_id(imageBean_im_id.getIm_id()));
@@ -190,10 +215,10 @@ public class ImageController {
 	 *            MultipartFile
 	 * @param imageBean
 	 *            ImageBean --> form backing object
-	 * @return /WEB-INF/views/slider-main/list.jsp
+	 * @return /WEB-INF/views/slider-main/list?page=currentPage.jsp
 	 */
 	@RequestMapping(value = "/slider-main/edit.do", method = RequestMethod.POST)
-	public String editProcess(@RequestParam(FILE) MultipartFile file, ImageBean imageBean) {
+	public String editProcess(@RequestParam MultipartFile file, ImageBean imageBean) {
 
 		ImageBean oldImageBean = imageService.selectByIm_id(imageBean.getIm_id());
 
@@ -222,6 +247,7 @@ public class ImageController {
 			im_filename = oldImageBean.getIm_filename();
 		}
 
+		imageBean.setIm_CategoryBean(categoryService.selectByCa_id(4));
 		imageBean.setIm_path(im_path);
 		imageBean.setIm_filename(im_filename);
 		imageBean.setIm_status(oldImageBean.getIm_status());
@@ -231,7 +257,7 @@ public class ImageController {
 
 		logger.info("圖片編輯成功");
 
-		return REDIRECT + SLIDER_MAIN_LIST_PAGE;
+		return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 	}
 
 	/**

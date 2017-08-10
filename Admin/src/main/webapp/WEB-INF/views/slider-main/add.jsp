@@ -28,11 +28,11 @@
 				<div class="table-responsive">
 				
 					<!-- form -->
-					<form:form action="/Admin/slider-main/add.do" method="post" modelAttribute="sliderMainBean" enctype="multipart/form-data">
+					<form:form action="/Admin/slider-main/add.do" method="post" modelAttribute="imageBean" enctype="multipart/form-data">
 						<table>
 							<tr>
 								<td>名稱</td>
-								<td><form:input path="sm_name" /></td>
+								<td><form:input path="im_name" /></td>
 							</tr>
 							<tr>
 								<td>選擇</td>
@@ -40,11 +40,11 @@
 							</tr>
 							<tr>
 								<td>連結</td>
-								<td><form:input path="sm_url" /></td>
+								<td><form:input path="im_url" /></td>
 							</tr>
 							<tr>
 								<td>排序</td>
-								<td><form:input path="sm_rank" /></td>
+								<td><form:input path="im_rank" /></td>
 							</tr>
 							<tr>
 								<td><input type="submit" value="新增" /></td>

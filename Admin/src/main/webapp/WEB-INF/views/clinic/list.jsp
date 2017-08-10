@@ -72,7 +72,7 @@
 								<fmt:formatDate value="${bean.ba_update_time}" var="ba_update_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 								<fmt:formatDate value="${bean.ba_status_time}" var="ba_status_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 								<tr>
-									<td>${status.count + pageRow * (currentPage - 1)}</td>
+									<td>${status.count + pageRowCount * (currentPage - 1)}</td>
 <%-- 									<td>${bean.ba_id}</td> --%>
 									<td>${bean.ba_name}</td>
 									<td>${bean.ba_eng_name}</td>

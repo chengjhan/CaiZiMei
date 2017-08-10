@@ -26,10 +26,10 @@ import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
+import static com.czmbeauty.common.constants.PaginationConstants.BASE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
-import static com.czmbeauty.common.constants.PaginationConstants.MAX_ROW;
 import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
-import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW;
+import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.ParameterConstants.PAGE;
 
 import java.util.List;
@@ -166,21 +166,22 @@ public class BaseController {
 		model.addAttribute(CURRENT_PAGE, page);
 
 		// 取得每頁最大筆數
-		model.addAttribute(PAGE_ROW, MAX_ROW);
+		model.addAttribute(PAGE_ROW_COUNT, BASE_PAGE_ROW_COUNT);
 
 		// 取得當前頁碼的診所 List，放入 table
-		int first = (page - 1) * MAX_ROW;
-		model.addAttribute(BASE_LIST, baseService.selectAllBasePagination(HQL_SELECT_ALL_CLINIC, first, MAX_ROW));
+		int first = (page - 1) * BASE_PAGE_ROW_COUNT;
+		model.addAttribute(BASE_LIST,
+				baseService.selectAllBasePagination(HQL_SELECT_ALL_CLINIC, first, BASE_PAGE_ROW_COUNT));
 
 		// 取得總頁數
 		CategoryBean ba_CategoryBean = new CategoryBean();
 		ba_CategoryBean.setCa_id(3);
 		int clinicCount = baseService.selectAllBaseCount(ba_CategoryBean);
 		int pageCount = 0;
-		if (clinicCount % MAX_ROW == 0) {
-			pageCount = clinicCount / MAX_ROW;
+		if (clinicCount % BASE_PAGE_ROW_COUNT == 0) {
+			pageCount = clinicCount / BASE_PAGE_ROW_COUNT;
 		} else {
-			pageCount = clinicCount / MAX_ROW + 1;
+			pageCount = clinicCount / BASE_PAGE_ROW_COUNT + 1;
 		}
 		model.addAttribute(PAGE_COUNT, pageCount);
 
@@ -283,7 +284,7 @@ public class BaseController {
 	 * 
 	 * @param beasBean
 	 *            BaseBean --> form backing object
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/clinic/list?page=1.jsp
 	 */
 	@RequestMapping(value = "/clinic/add.do", method = RequestMethod.POST)
 	public String clinicAddProcess(BaseBean baseBean) {

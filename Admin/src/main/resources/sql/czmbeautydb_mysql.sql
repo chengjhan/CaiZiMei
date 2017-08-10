@@ -6,7 +6,7 @@ create database if not exists czmbeautydb;
 
 use czmbeautydb;
 
--- create
+-- CREATE
 create table admin (
 	ad_id					int auto_increment not null,
 	ad_username				varchar(50) not null,
@@ -110,23 +110,11 @@ create table image (
 	foreign key (im_ca_id) references category (ca_id)
 );
 
-create table slider_main (
-	sm_id					int auto_increment not null,
-	sm_name					nvarchar(20) not null,
-	sm_path					varchar(500) not null,
-	sm_filename				varchar(50) not null,
-	sm_url					varchar(100),
-	sm_rank					tinyint not null,
-	sm_status				tinyint not null,
-	sm_update_time			datetime not null,
-	primary key (sm_id)
-);
-
--- alter
+-- ALTER
 alter table state auto_increment = 11;
 alter table city auto_increment = 101;
 
--- insert
+-- INSERT
 -- admin
 insert into admin (ad_id, ad_username, ad_password, ad_salt, ad_lastname, ad_firstname, ad_email, ad_signup_time, ad_signin_number, ad_signin_ip, ad_signin_time, ad_update_info_time, ad_update_pwd_time, ad_status, ad_status_time) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', 'czmbeauty', 'admin', 'admin@czmbeauty.com', now(), 0, null, null, now(), now(), 1, now());
 
@@ -202,11 +190,3 @@ insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_
 insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (4, '喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty_1000x380.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
 insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (4, '好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood_1000x380.jpg', 'http://hollywood.tw/', 5, 1, now());
 insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (4, '何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637_1000x380.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());
-
--- slider_main
-insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('曼星整形醫美診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_twinkle_clinic_1000x380.jpg', 'http://twinkle-clinic.tw', 1, 1, now());
-insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('晶鑽時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_diamondcosmetic_1000x380.jpg', 'http://diamondcosmetic.com.tw/', 2, 1, now());
-insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('法泊時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_fabulous_clinic_1000x380.png', 'http://www.fabulous-clinic.com', 3, 1, now());
-insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty_1000x380.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
-insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood_1000x380.jpg', 'http://hollywood.tw/', 5, 1, now());
-insert into slider_main (sm_name, sm_path, sm_filename, sm_url, sm_rank, sm_status, sm_update_time) values ('何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637_1000x380.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());

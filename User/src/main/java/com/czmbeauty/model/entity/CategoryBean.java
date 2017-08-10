@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: CategoryBean.java
  * Author: 詹晟
- * Date: 2017/7/31
+ * Date: 2017/8/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,9 +32,12 @@ public class CategoryBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ca_id;
 	private String ca_name;
+	private String ca_eng_name;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ba_CategoryBean")
 	private Set<BaseBean> ca_BaseBean;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "im_CategoryBean")
+	private Set<ImageBean> ca_ImageBean;
 
 	public Integer getCa_id() {
 		return ca_id;
@@ -52,12 +55,28 @@ public class CategoryBean {
 		this.ca_name = ca_name;
 	}
 
+	public String getCa_eng_name() {
+		return ca_eng_name;
+	}
+
+	public void setCa_eng_name(String ca_eng_name) {
+		this.ca_eng_name = ca_eng_name;
+	}
+
 	public Set<BaseBean> getCa_BaseBean() {
 		return ca_BaseBean;
 	}
 
 	public void setCa_BaseBean(Set<BaseBean> ca_BaseBean) {
 		this.ca_BaseBean = ca_BaseBean;
+	}
+
+	public Set<ImageBean> getCa_ImageBean() {
+		return ca_ImageBean;
+	}
+
+	public void setCa_ImageBean(Set<ImageBean> ca_ImageBean) {
+		this.ca_ImageBean = ca_ImageBean;
 	}
 
 }

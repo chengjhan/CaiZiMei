@@ -80,18 +80,6 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	/**
-	 * 狀態搜尋
-	 * 
-	 * @return List<ImageBean>
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<ImageBean> selectByIm_status() {
-
-		return imageDao.selectByIm_status();
-	}
-
-	/**
 	 * 新增圖片
 	 * 
 	 * @param imageBean

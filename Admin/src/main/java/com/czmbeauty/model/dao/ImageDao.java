@@ -37,11 +37,6 @@ public interface ImageDao {
 	ImageBean selectByIm_id(Integer im_id);
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectByIm_status()
-	 */
-	List<ImageBean> selectByIm_status();
-
-	/**
 	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#insert(ImageBean)
 	 */
 	ImageBean insert(ImageBean imageBean);

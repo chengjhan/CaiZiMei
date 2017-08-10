@@ -37,11 +37,6 @@ public interface ImageService {
 	ImageBean selectByIm_id(Integer im_id);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectByIm_status()
-	 */
-	List<ImageBean> selectByIm_status();
-
-	/**
 	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#insert(ImageBean)
 	 */
 	ImageBean insert(ImageBean imageBean);

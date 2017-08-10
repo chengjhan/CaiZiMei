@@ -1,8 +1,8 @@
 /*
  * CaiZiMei/User
- * File: SliderMainDaoImpl.java
+ * File: ImageDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/8/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,16 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.czmbeauty.model.dao.SliderMainDao;
-import com.czmbeauty.model.entity.SliderMainBean;
+import com.czmbeauty.model.dao.ImageDao;
+import com.czmbeauty.model.entity.ImageBean;
 
 /**
- * slider_main DAO implement
+ * image DAO implement
  * 
  * @author 詹晟
  */
-@Repository(value = "sliderMainDao")
-public class SliderMainDaoImpl implements SliderMainDao {
+@Repository(value = "imageDao")
+public class ImageDaoImpl implements ImageDao {
 
 	/**
 	 * 注入 HibernateTemplate
@@ -34,14 +34,13 @@ public class SliderMainDaoImpl implements SliderMainDao {
 	/**
 	 * 狀態搜尋
 	 * 
-	 * @return List<SliderMainBean>
+	 * @return List<ImageBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<SliderMainBean> selectBySm_status() {
+	public List<ImageBean> selectByIm_status() {
 
-		return (List<SliderMainBean>) hibernateTemplate
-				.find("from SliderMainBean where sm_status=1 order by sm_rank asc");
+		return (List<ImageBean>) hibernateTemplate.find("from ImageBean where im_status=1 order by im_rank asc");
 	}
 
 }

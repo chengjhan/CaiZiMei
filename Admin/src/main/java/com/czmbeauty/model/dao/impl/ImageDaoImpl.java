@@ -99,18 +99,6 @@ public class ImageDaoImpl implements ImageDao {
 	}
 
 	/**
-	 * 狀態搜尋
-	 * 
-	 * @return List<ImageBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<ImageBean> selectByIm_status() {
-
-		return (List<ImageBean>) hibernateTemplate.find("from ImageBean where im_status=1 order by im_rank asc");
-	}
-
-	/**
 	 * 新增圖片
 	 * 
 	 * @param imageBean

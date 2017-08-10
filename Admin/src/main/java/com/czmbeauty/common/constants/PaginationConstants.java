@@ -4,7 +4,7 @@ public interface PaginationConstants {
 
 	public static final int BASE_PAGE_ROW_COUNT = 5;
 
-	public static final int IMAGE_PAGE_ROW_COUNT = 5;
+	public static final int IMAGE_PAGE_ROW_COUNT = 3;
 
 	public static final String PAGE_ROW_COUNT = "pageRowCount";
 

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>主輪播圖片一覽 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/slider-main/list.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/image/list.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -43,13 +43,13 @@
 						<c:forEach var="bean" items="${imageList}" varStatus="status">
 							<tbody>
 								<tr>
-									<td rowspan="4" style="width:50px">${status.count}</td>
+									<td rowspan="4" style="width:50px">${status.count + pageRowCount * (currentPage - 1)}</td>
 									<td rowspan="4" style="width:45%"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.im_filename}"></td>
 									<td style="width:50px">名稱</td>
 									<td>${bean.im_name}</td>
 									<td rowspan="4" style="width:50px">
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/slider-main/edit?im_id=${bean.im_id}"><img src="<%=request.getContextPath()%>/images/edit.svg"></a>
+											<a href="<%=request.getContextPath()%>/slider-main/edit?im_id=${bean.im_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/edit.svg"></a>
 										</div>
 									</td>	
 									<td rowspan="4" style="width:50px">
@@ -85,6 +85,24 @@
 						</c:forEach>
 					</table>
 					<!-- table end -->
+					
+					<!-- pagination -->
+					<c:if test="${pageCount > 1}">
+						<nav style="text-align:center">
+							<ul class="pagination" style="margin:0">
+								<c:if test="${currentPage > 1}">
+									<li><a href="<%=request.getContextPath()%>/slider-main/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span></a></li>
+								</c:if>
+								<c:forEach begin="1" end="${pageCount}" varStatus="status">
+									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/slider-main/list?page=${status.count}">${status.count}</a></li>
+								</c:forEach>
+								<c:if test="${currentPage < pageCount}">
+									<li><a href="<%=request.getContextPath()%>/slider-main/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span></a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</c:if>
+					<!-- pagination end -->
 	
 				</div>
 				<!-- content end -->
@@ -99,6 +117,6 @@
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/slider-main/list.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/image/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

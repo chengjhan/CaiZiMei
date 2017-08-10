@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/8/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -36,32 +36,6 @@ public class BaseDaoImpl implements BaseDao {
 	 */
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
-
-	/**
-	 * 搜尋所有辦事處
-	 * 
-	 * @return List<BaseBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<BaseBean> selectAllOffice() {
-
-		return (List<BaseBean>) hibernateTemplate
-				.find("from BaseBean where ba_ca_id=1 order by ba_status desc, ba_id asc");
-	}
-
-	/**
-	 * 搜尋所有加盟店
-	 * 
-	 * @return List<BaseBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<BaseBean> selectAllFranchisee() {
-
-		return (List<BaseBean>) hibernateTemplate
-				.find("from BaseBean where ba_ca_id=2 order by ba_status desc, ba_id asc");
-	}
 
 	/**
 	 * 搜尋所有診所

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseService.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/8/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,16 +19,6 @@ import com.czmbeauty.model.entity.CategoryBean;
  * @author 詹晟
  */
 public interface BaseService {
-
-	/**
-	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllOffice()
-	 */
-	List<BaseBean> selectAllOffice();
-
-	/**
-	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllFranchisee()
-	 */
-	List<BaseBean> selectAllFranchisee();
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllClinic()

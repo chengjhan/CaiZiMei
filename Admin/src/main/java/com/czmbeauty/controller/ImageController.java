@@ -2,12 +2,13 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/8/11
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.CodeConstants.SLIDER_MAIN_CODE;
 import static com.czmbeauty.common.constants.CommonConstants.DOT;
 import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
@@ -20,6 +21,7 @@ import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_LIST_PAGE;
+import static com.czmbeauty.common.constants.PaginationConstants.BASE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
 import static com.czmbeauty.common.constants.PaginationConstants.IMAGE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
@@ -29,6 +31,7 @@ import static com.czmbeauty.common.constants.ParameterConstants.PAGE;
 import java.io.File;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
@@ -80,41 +83,65 @@ public class ImageController {
 	private ImageService imageService;
 
 	/**
-	 * 主輪播圖片一覽 - 初期處理
+	 * 取得總頁數
+	 * 
+	 * @param im_CategoryBean
+	 *            CategoryBean
+	 * @return int
+	 */
+	public int getPageCount(CategoryBean im_CategoryBean) {
+		int totalRowCount = imageService.selectAllImageCount(im_CategoryBean);
+		int pageCount = 0;
+		if (totalRowCount % BASE_PAGE_ROW_COUNT == 0) {
+			pageCount = totalRowCount / BASE_PAGE_ROW_COUNT;
+		} else {
+			pageCount = totalRowCount / BASE_PAGE_ROW_COUNT + 1;
+		}
+		return pageCount;
+	}
+
+	/**
+	 * 圖片一覽 - 初期處理
 	 * 
 	 * @param page
 	 *            Integer --> 當前頁碼
+	 * @param request
+	 *            HttpServletRequest
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider-main/list", method = RequestMethod.GET)
-	public String SliderMainlistView(@RequestParam Integer page, Model model) {
+	public String SliderMainlistView(@RequestParam Integer page, HttpServletRequest request, Model model) {
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
 
+		// 取得當頁起始筆數
+		int first = (page - 1) * IMAGE_PAGE_ROW_COUNT;
+
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, IMAGE_PAGE_ROW_COUNT);
 
-		// 取得當前頁碼的圖片 List，放入 table
-		int first = (page - 1) * IMAGE_PAGE_ROW_COUNT;
-		model.addAttribute(IMAGE_LIST,
-				imageService.selectAllImagePagination(HQL_SELECT_ALL_SLIDER_MAIN, first, IMAGE_PAGE_ROW_COUNT));
-
-		// 取得總頁數
 		CategoryBean im_CategoryBean = new CategoryBean();
-		im_CategoryBean.setCa_id(4);
-		int totalRowCount = imageService.selectAllImageCount(im_CategoryBean);
-		int pageCount = 0;
-		if (totalRowCount % IMAGE_PAGE_ROW_COUNT == 0) {
-			pageCount = totalRowCount / IMAGE_PAGE_ROW_COUNT;
-		} else {
-			pageCount = totalRowCount / IMAGE_PAGE_ROW_COUNT + 1;
-		}
-		model.addAttribute(PAGE_COUNT, pageCount);
 
-		return SLIDER_MAIN_LIST_PAGE;
+		String image = request.getServletPath().split("/")[1];
+
+		if (SLIDER_MAIN.equals(image)) {
+
+			// 取得當前頁碼的圖片 List，放入 table
+			model.addAttribute(IMAGE_LIST,
+					imageService.selectAllImagePagination(HQL_SELECT_ALL_SLIDER_MAIN, first, IMAGE_PAGE_ROW_COUNT));
+
+			im_CategoryBean.setCa_id(SLIDER_MAIN_CODE);
+
+			// 取得總頁數
+			model.addAttribute(PAGE_COUNT, getPageCount(im_CategoryBean));
+
+			return SLIDER_MAIN_LIST_PAGE;
+		}
+
+		return null;
 	}
 
 	/**
@@ -167,7 +194,7 @@ public class ImageController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			logger.info("圖片上傳成功，位置: " + im_path + im_filename);
 
 			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(4));

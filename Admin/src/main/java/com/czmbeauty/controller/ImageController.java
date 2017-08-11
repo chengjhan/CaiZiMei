@@ -8,12 +8,12 @@
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.CodeConstants.SLIDER_MAIN;
 import static com.czmbeauty.common.constants.CodeConstants.SLIDER_MAIN_CODE;
 import static com.czmbeauty.common.constants.CommonConstants.DOT;
 import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 import static com.czmbeauty.common.constants.DirectoryConstants.IMAGES;
-import static com.czmbeauty.common.constants.DirectoryConstants.SLIDER_MAIN;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_MAIN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_LIST;
@@ -21,7 +21,6 @@ import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_LIST_PAGE;
-import static com.czmbeauty.common.constants.PaginationConstants.BASE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
 import static com.czmbeauty.common.constants.PaginationConstants.IMAGE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
@@ -71,6 +70,12 @@ public class ImageController {
 	private ServletContext context;
 
 	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
+
+	/**
 	 * 注入 CategoryService
 	 */
 	@Autowired
@@ -92,27 +97,37 @@ public class ImageController {
 	public int getPageCount(CategoryBean im_CategoryBean) {
 		int totalRowCount = imageService.selectAllImageCount(im_CategoryBean);
 		int pageCount = 0;
-		if (totalRowCount % BASE_PAGE_ROW_COUNT == 0) {
-			pageCount = totalRowCount / BASE_PAGE_ROW_COUNT;
+		if (totalRowCount % IMAGE_PAGE_ROW_COUNT == 0) {
+			pageCount = totalRowCount / IMAGE_PAGE_ROW_COUNT;
 		} else {
-			pageCount = totalRowCount / BASE_PAGE_ROW_COUNT + 1;
+			pageCount = totalRowCount / IMAGE_PAGE_ROW_COUNT + 1;
 		}
 		return pageCount;
 	}
 
 	/**
-	 * 圖片一覽 - 初期處理
+	 * 取得圖片路徑及檔名
+	 */
+	public String[] getPathAndFilename(String ca_name, MultipartFile file) {
+		String root = context.getRealPath("");
+		String im_path = root + IMAGES + File.separator + ca_name + File.separator;
+		String time = String.valueOf(new java.util.Date().getTime());
+		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+		String im_filename = time + DOT + extension;
+		return new String[] { im_path, im_filename };
+	}
+
+	/**
+	 * 輪播圖片一覽 - 初期處理
 	 * 
 	 * @param page
 	 *            Integer --> 當前頁碼
-	 * @param request
-	 *            HttpServletRequest
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/slider-main/list.jsp
+	 * @return /WEB-INF/views/slider-main/list?page=1.jsp
 	 */
-	@RequestMapping(value = "/slider-main/list", method = RequestMethod.GET)
-	public String SliderMainlistView(@RequestParam Integer page, HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/slider*/list", method = RequestMethod.GET)
+	public String SliderMainlistView(@RequestParam Integer page, Model model) {
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
@@ -125,9 +140,9 @@ public class ImageController {
 
 		CategoryBean im_CategoryBean = new CategoryBean();
 
-		String image = request.getServletPath().split("/")[1];
+		String slider = request.getServletPath().split("/")[1];
 
-		if (SLIDER_MAIN.equals(image)) {
+		if (SLIDER_MAIN.equals(slider)) {
 
 			// 取得當前頁碼的圖片 List，放入 table
 			model.addAttribute(IMAGE_LIST,
@@ -145,76 +160,81 @@ public class ImageController {
 	}
 
 	/**
-	 * 新增主輪播圖片 - 初期處理
+	 * 新增輪播圖片 - 初期處理
 	 * 
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/slider-main/add.jsp
 	 */
-	@RequestMapping(value = "/slider-main/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/slider*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		// 新增 form backing object
 		model.addAttribute(IMAGE_BEAN, new ImageBean());
 
-		return SLIDER_MAIN_ADD_PAGE;
+		String slider = request.getServletPath().split("/")[1];
+
+		if (SLIDER_MAIN.equals(slider)) {
+
+			return SLIDER_MAIN_ADD_PAGE;
+		}
+
+		return null;
 	}
 
 	/**
-	 * 新增主輪播圖片 - submit
+	 * 新增輪播圖片 - submit
 	 * 
 	 * @param file
 	 *            MultipartFile
 	 * @param imageBean
 	 *            ImageBean --> form backing object
-	 * @return /WEB-INF/views/slider-main/list?page=1.jsp
+	 * @return /WEB-INF/views/slider-main/add.jsp
 	 * @return /WEB-INF/views/slider-main/list?page=1.jsp
 	 */
-	@RequestMapping(value = "/slider-main/add.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/slider*/add.do", method = RequestMethod.POST)
 	public String addProcess(@RequestParam MultipartFile file, ImageBean imageBean) {
 
-		if (file.isEmpty()) {
+		String slider = request.getServletPath().split("/")[1];
 
-			logger.info("圖片新增失敗: 未上傳圖片");
+		if (SLIDER_MAIN.equals(slider)) {
 
-			// 新增失敗
-			return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+			if (file.isEmpty()) {
 
-		} else {
+				logger.info("主輪播圖片新增失敗: 未上傳圖片");
 
-			String root = context.getRealPath("");
-			String im_path = root + IMAGES + File.separator + SLIDER_MAIN + File.separator;
+				return SLIDER_MAIN_ADD_PAGE;
 
-			String time = String.valueOf(new java.util.Date().getTime());
-			String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-			String im_filename = time + DOT + extension;
+			} else {
 
-			try {
-				file.transferTo(new File(im_path + im_filename));
-			} catch (Exception e) {
-				e.printStackTrace();
+				String[] pathAndFilename = getPathAndFilename(SLIDER_MAIN, file);
+				try {
+					file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				logger.info("主輪播圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
+
+				imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_MAIN_CODE));
+				imageBean.setIm_path(pathAndFilename[0]);
+				imageBean.setIm_filename(pathAndFilename[1]);
+				imageBean.setIm_status(1);
+				imageBean.setIm_update_time(new java.util.Date());
+
+				imageService.insert(imageBean);
+
+				logger.info("主輪播圖片新增成功");
+
+				return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
 			}
-
-			logger.info("圖片上傳成功，位置: " + im_path + im_filename);
-
-			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(4));
-			imageBean.setIm_path(im_path);
-			imageBean.setIm_filename(im_filename);
-			imageBean.setIm_status(1);
-			imageBean.setIm_update_time(new java.util.Date());
-
-			imageService.insert(imageBean);
-
-			logger.info("圖片新增成功");
-
-			// 新增成功
-			return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
 		}
 
+		return null;
 	}
 
 	/**
-	 * 編輯主輪播圖片資訊 - 初期處理
+	 * 編輯輪播圖片資訊 - 初期處理
 	 * 
 	 * @param imageBean_im_id
 	 *            ImageBean --> form backing object --> GET --> im_id
@@ -224,7 +244,7 @@ public class ImageController {
 	 *            Model
 	 * @return /WEB-INF/views/slider-main/edit.jsp
 	 */
-	@RequestMapping(value = "/slider-main/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/slider*/edit", method = RequestMethod.GET)
 	public String editView(ImageBean imageBean_im_id, @RequestParam String page, Model model) {
 
 		currentPage = page;
@@ -232,11 +252,18 @@ public class ImageController {
 		// 取得選定圖片 id 的 ImageBean，使表單回填 ImageBean 內所有資料
 		model.addAttribute(IMAGE_BEAN, imageService.selectByIm_id(imageBean_im_id.getIm_id()));
 
-		return SLIDER_MAIN_EDIT_PAGE;
+		String slider = request.getServletPath().split("/")[1];
+
+		if (SLIDER_MAIN.equals(slider)) {
+
+			return SLIDER_MAIN_EDIT_PAGE;
+		}
+
+		return null;
 	}
 
 	/**
-	 * 編輯主輪播圖片資訊 - submit
+	 * 編輯輪播圖片資訊 - submit
 	 * 
 	 * @param file
 	 *            MultipartFile
@@ -244,7 +271,7 @@ public class ImageController {
 	 *            ImageBean --> form backing object
 	 * @return /WEB-INF/views/slider-main/list?page=currentPage.jsp
 	 */
-	@RequestMapping(value = "/slider-main/edit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/slider*/edit.do", method = RequestMethod.POST)
 	public String editProcess(@RequestParam MultipartFile file, ImageBean imageBean) {
 
 		ImageBean oldImageBean = imageService.selectByIm_id(imageBean.getIm_id());
@@ -252,39 +279,43 @@ public class ImageController {
 		String im_path;
 		String im_filename;
 
-		if (!file.isEmpty()) {
+		String slider = request.getServletPath().split("/")[1];
 
-			String root = context.getRealPath("");
-			im_path = root + IMAGES + File.separator + SLIDER_MAIN + File.separator;
+		if (SLIDER_MAIN.equals(slider)) {
 
-			String time = String.valueOf(new java.util.Date().getTime());
-			String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-			im_filename = time + DOT + extension;
+			if (file.isEmpty()) {
 
-			try {
-				file.transferTo(new File(im_path + im_filename));
-			} catch (Exception e) {
-				e.printStackTrace();
+				im_path = oldImageBean.getIm_path();
+				im_filename = oldImageBean.getIm_filename();
+
+			} else {
+
+				String[] pathAndFilename = getPathAndFilename(SLIDER_MAIN, file);
+				im_path = pathAndFilename[0];
+				im_filename = pathAndFilename[1];
+				try {
+					file.transferTo(new File(im_path + im_filename));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				logger.info("主輪播圖片上傳成功，位置: " + im_path + im_filename);
 			}
 
-			logger.info("圖片上傳成功，位置: " + im_path + im_filename);
-		} else {
+			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_MAIN_CODE));
+			imageBean.setIm_path(im_path);
+			imageBean.setIm_filename(im_filename);
+			imageBean.setIm_status(oldImageBean.getIm_status());
+			imageBean.setIm_update_time(new java.util.Date());
 
-			im_path = oldImageBean.getIm_path();
-			im_filename = oldImageBean.getIm_filename();
+			imageService.update(imageBean);
+
+			logger.info("主輪播圖片編輯成功");
+
+			return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 		}
 
-		imageBean.setIm_CategoryBean(categoryService.selectByCa_id(4));
-		imageBean.setIm_path(im_path);
-		imageBean.setIm_filename(im_filename);
-		imageBean.setIm_status(oldImageBean.getIm_status());
-		imageBean.setIm_update_time(new java.util.Date());
-
-		imageService.update(imageBean);
-
-		logger.info("圖片編輯成功");
-
-		return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
+		return null;
 	}
 
 	/**

@@ -8,14 +8,14 @@
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.CodeConstants.CLINIC;
 import static com.czmbeauty.common.constants.CodeConstants.CLINIC_CODE;
+import static com.czmbeauty.common.constants.CodeConstants.FRANCHISEE;
 import static com.czmbeauty.common.constants.CodeConstants.FRANCHISEE_CODE;
+import static com.czmbeauty.common.constants.CodeConstants.OFFICE;
 import static com.czmbeauty.common.constants.CodeConstants.OFFICE_CODE;
 import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
-import static com.czmbeauty.common.constants.DirectoryConstants.CLINIC;
-import static com.czmbeauty.common.constants.DirectoryConstants.FRANCHISEE;
-import static com.czmbeauty.common.constants.DirectoryConstants.OFFICE;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_CLINIC;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_FRANCHISEE;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_OFFICE;
@@ -88,6 +88,12 @@ public class BaseController {
 	private String currentPage;
 
 	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
+
+	/**
 	 * 注入 CountryService
 	 */
 	@Autowired
@@ -151,16 +157,14 @@ public class BaseController {
 	 * 
 	 * @param page
 	 *            Integer --> 當前頁碼
-	 * @param request
-	 *            HttpServletRequest
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/office/list.jsp
-	 * @return /WEB-INF/views/franchisee/list.jsp
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/office/list?page=1.jsp
+	 * @return /WEB-INF/views/franchisee/list?page=1.jsp
+	 * @return /WEB-INF/views/clinic/list?page=1.jsp
 	 */
 	@RequestMapping(value = "/*/list", method = RequestMethod.GET)
-	public String baseListView(@RequestParam Integer page, HttpServletRequest request, Model model) {
+	public String baseListView(@RequestParam Integer page, Model model) {
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
@@ -223,8 +227,6 @@ public class BaseController {
 	/**
 	 * 新增據點 - 初期處理
 	 * 
-	 * @param request
-	 *            HttpServletRequest
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/office/add.jsp
@@ -232,7 +234,7 @@ public class BaseController {
 	 * @return /WEB-INF/views/clinic/add.jsp
 	 */
 	@RequestMapping(value = "/*/add", method = RequestMethod.GET)
-	public String officeAddView(HttpServletRequest request, Model model) {
+	public String officeAddView(Model model) {
 
 		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
@@ -263,14 +265,12 @@ public class BaseController {
 	 * 
 	 * @param beasBean
 	 *            BaseBean --> form backing object
-	 * @param request
-	 *            HttpServletRequest
 	 * @return /WEB-INF/views/office/list?page=1.jsp
 	 * @return /WEB-INF/views/franchisee/list?page=1.jsp
 	 * @return /WEB-INF/views/clinic/list?page=1.jsp
 	 */
 	@RequestMapping(value = "/*/add.do", method = RequestMethod.POST)
-	public String officeAddProcess(BaseBean baseBean, HttpServletRequest request) {
+	public String officeAddProcess(BaseBean baseBean) {
 
 		String base = request.getServletPath().split("/")[1];
 
@@ -309,8 +309,6 @@ public class BaseController {
 	 *            BaseBean --> form backing object --> GET --> ba_id
 	 * @param page
 	 *            String --> 當前頁碼
-	 * @param request
-	 *            HttpServletRequest
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/office/edit.jsp
@@ -318,8 +316,7 @@ public class BaseController {
 	 * @return /WEB-INF/views/clinic/edit.jsp
 	 */
 	@RequestMapping(value = "/*/edit", method = RequestMethod.GET)
-	public String clinicEditView(BaseBean baseBean_ba_id, @RequestParam String page, HttpServletRequest request,
-			Model model) {
+	public String clinicEditView(BaseBean baseBean_ba_id, @RequestParam String page, Model model) {
 
 		currentPage = page;
 
@@ -361,14 +358,12 @@ public class BaseController {
 	 * 
 	 * @param baseBean
 	 *            BaseBean --> form backing object
-	 * @param request
-	 *            HttpServletRequest
 	 * @return /WEB-INF/views/office/list?page=currentPage.jsp
 	 * @return /WEB-INF/views/franchisee/list?page=currentPage.jsp
 	 * @return /WEB-INF/views/clinic/list?page=currentPage.jsp
 	 */
 	@RequestMapping(value = "/*/edit.do", method = RequestMethod.POST)
-	public String officeEditProcess(BaseBean baseBean, HttpServletRequest request) {
+	public String officeEditProcess(BaseBean baseBean) {
 
 		baseService.update(baseBean);
 

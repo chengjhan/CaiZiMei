@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDao.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,10 +38,5 @@ public interface CityDao {
 	 * @see com.czmbeauty.model.dao.impl.CityDaoImpl#update(CityBean)
 	 */
 	CityBean update(CityBean cityBean);
-
-	/**
-	 * @see com.czmbeauty.model.dao.impl.CityDaoImpl#delete(Integer)
-	 */
-	Boolean delete(Integer ci_id);
 
 }

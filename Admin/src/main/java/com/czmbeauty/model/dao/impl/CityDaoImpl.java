@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -88,21 +88,6 @@ public class CityDaoImpl implements CityDao {
 		hibernateTemplate.update(cityBean);
 
 		return cityBean;
-	}
-
-	/**
-	 * 刪除城市
-	 * 
-	 * @param ci_id
-	 *            Integer --> 城市流水號
-	 * @return true
-	 */
-	@Override
-	public Boolean delete(Integer ci_id) {
-
-		hibernateTemplate.delete(hibernateTemplate.get(CityBean.class, ci_id));
-
-		return true;
 	}
 
 }

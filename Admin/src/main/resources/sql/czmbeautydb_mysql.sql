@@ -60,6 +60,7 @@ create table city (
 	ci_st_id				int not null,
 	ci_name					nvarchar(50) not null,
 	ci_rank					tinyint,
+	ci_status				tinyint,
 	primary key (ci_id),
 	foreign key (ci_co_id) references country (co_id),
 	foreign key (ci_st_id) references state (st_id)
@@ -132,29 +133,29 @@ insert into state (st_co_id, st_name, st_rank) values (2, '廣東省', 2);
 insert into state (st_co_id, st_name, st_rank) values (2, '甘肅省', 3);
 
 -- city
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '基隆市', 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '臺北市', 2);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '新北市', 3);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '桃園市', 4);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '新竹市', 5);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '新竹縣', 6);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '苗栗縣', 7);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '臺中市', 8);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '彰化縣', 9);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '南投縣', 10);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '雲林縣', 11);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '嘉義市', 12);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '嘉義縣', 13);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '臺南市', 14);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '高雄市', 15);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '屏東縣', 16);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '臺東縣', 17);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '花蓮縣', 18);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 11, '宜蘭縣', 19);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 12, '澎湖縣', 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 13, '金門縣', 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (1, 14, '連江縣', 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank) values (2, 17, '天水市', 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '基隆市', 1, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺北市', 2, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '新北市', 3, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '桃園市', 4, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '新竹市', 5, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '新竹縣', 6, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '苗栗縣', 7, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺中市', 8, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '彰化縣', 9, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '南投縣', 10, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '雲林縣', 11, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '嘉義市', 12, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '嘉義縣', 13, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺南市', 14, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '高雄市', 15, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '屏東縣', 16, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺東縣', 17, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '花蓮縣', 18, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '宜蘭縣', 19, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 12, '澎湖縣', 1, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 13, '金門縣', 1, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 14, '連江縣', 1, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (2, 17, '天水市', 1, 1);
 
 -- category
 insert into category (ca_name, ca_eng_name) values ('辦事處', 'office');

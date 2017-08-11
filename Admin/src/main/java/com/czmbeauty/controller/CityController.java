@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/8/2
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -248,23 +248,17 @@ public class CityController {
 	}
 
 	/**
-	 * 刪除城市 - submit
+	 * 城市開關 (AJAX)
 	 * 
-	 * @param cityBean_ci_id
-	 *            CityBean --> form backing object --> GET --> ci_id
-	 * @param model
-	 *            Model
-	 * @return /WEB-INF/views/city/list.jsp
+	 * @param ci_id
+	 *            String --> 城市流水號
+	 * @return ci_name
 	 */
-	@RequestMapping(value = "/city/delete", method = RequestMethod.GET)
-	public String deleteProcess(CityBean cityBean_ci_id, Model model) {
+	@RequestMapping(value = "/city/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String switchAjaxProcess(String ci_id) {
 
-		// 將刪除的 CityBean 放入 Session，使 select 回填國家及區域
-		model.addAttribute(CITY_BEAN, cityService.selectByCi_id(cityBean_ci_id.getCi_id()));
-
-		cityService.delete(cityBean_ci_id.getCi_id());
-
-		return REDIRECT + CITY_LIST_PAGE;
+		return cityService.updateCi_status(Integer.valueOf(ci_id)).getCi_name();
 	}
 
 	/**
@@ -287,6 +281,7 @@ public class CityController {
 			jsonBean.setCi_id(bean.getCi_id());
 			jsonBean.setCi_name(bean.getCi_name());
 			jsonBean.setCi_rank(bean.getCi_rank());
+			jsonBean.setCi_status(bean.getCi_status());
 			jsonList.add(jsonBean);
 		}
 

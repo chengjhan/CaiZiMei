@@ -78,10 +78,15 @@
 										</div>
 									</td>
 									<td>
-										<div class="delete-button">
-											<a href="<%=request.getContextPath()%>/city/delete?ci_id=${bean.ci_id}">
-												<img src="<%=request.getContextPath()%>/images/icon_delete.svg">
-											</a>
+										<div class="ci-status-switch" data-ci-id="${bean.ci_id}">
+											<c:choose>
+												<c:when test="${bean.ci_status eq 1}">
+													<img src="<%=request.getContextPath()%>/images/true.svg" data-ci-status="1">
+												</c:when>
+												<c:when test="${bean.ci_status eq 0}">
+													<img src="<%=request.getContextPath()%>/images/false.svg" data-ci-status="0">
+												</c:when>
+											</c:choose>
 										</div>
 									</td>
 								</tr>

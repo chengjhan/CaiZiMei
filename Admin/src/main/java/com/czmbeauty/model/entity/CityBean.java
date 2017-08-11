@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityBean.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -54,6 +54,7 @@ public class CityBean {
 	@Expose
 	@Max(99)
 	private Integer ci_rank;
+	private Integer ci_status;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ba_CityBean")
 	private Set<BaseBean> ci_BaseBean;
@@ -104,6 +105,14 @@ public class CityBean {
 
 	public void setCi_BaseBean(Set<BaseBean> ci_BaseBean) {
 		this.ci_BaseBean = ci_BaseBean;
+	}
+
+	public Integer getCi_status() {
+		return ci_status;
+	}
+
+	public void setCi_status(Integer ci_status) {
+		this.ci_status = ci_status;
 	}
 
 }

@@ -2,19 +2,21 @@
  * CaiZiMei
  * File: CityServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.czmbeauty.model.dao.CityDao;
+import com.czmbeauty.model.entity.BaseBean;
 import com.czmbeauty.model.entity.CityBean;
 import com.czmbeauty.model.service.CityService;
 
@@ -101,17 +103,39 @@ public class CityServiceImpl implements CityService {
 	}
 
 	/**
-	 * 刪除城市
+	 * 切換狀態
 	 * 
 	 * @param ci_id
-	 *            Integer --> 城市流水號
-	 * @return true
+	 *            Integer
+	 * @return CityBean
 	 */
 	@Override
 	@Transactional
-	public Boolean delete(Integer ci_id) {
+	public CityBean updateCi_status(Integer ci_id) {
 
-		return cityDao.delete(ci_id);
+		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
+		CityBean cityBean = cityDao.selectByCi_id(ci_id);
+
+		if (cityBean.getCi_status() == 1) {
+
+			// 不顯示
+			cityBean.setCi_status(0);
+			Set<BaseBean> baseSet = cityBean.getCi_BaseBean();
+			for (BaseBean baseBean : baseSet) {
+				baseBean.setBa_status(0);
+				baseBean.setBa_status_time(new java.util.Date());
+			}
+		} else {
+
+			// 顯示
+			cityBean.setCi_status(1);
+			Set<BaseBean> baseSet = cityBean.getCi_BaseBean();
+			for (BaseBean baseBean : baseSet) {
+				baseBean.setBa_status(1);
+				baseBean.setBa_status_time(new java.util.Date());
+			}
+		}
+		return cityBean;
 	}
 
 }

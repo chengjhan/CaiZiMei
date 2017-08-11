@@ -19,3 +19,8 @@ img {
 .delete-button {
 	width: 30px;
 }
+
+.ci-status-switch {
+	width: 30px;
+	cursor: pointer;
+}

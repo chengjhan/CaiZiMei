@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityService.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,8 +40,8 @@ public interface CityService {
 	CityBean update(CityBean cityBean);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.CityServiceImpl#delete(Integer)
+	 * @see com.czmbeauty.model.service.impl.CityServiceImpl#updateCi_status(Integer)
 	 */
-	Boolean delete(Integer ci_id);
+	CityBean updateCi_status(Integer ci_id);
 
 }

@@ -60,7 +60,7 @@
 								<td>名稱</td>
 								<td style="width:75px">排序</td>
 								<td style="width:50px">編輯</td>
-								<td style="width:50px">刪除</td>
+								<td style="width:50px">開啟</td>
 							</tr>
 						</thead>
 						<tbody>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateBean.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -51,6 +51,7 @@ public class StateBean {
 	@Expose
 	@Max(99)
 	private Integer st_rank;
+	private Integer st_status;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ci_StateBean")
 	private Set<CityBean> st_CityBean;
@@ -103,6 +104,14 @@ public class StateBean {
 
 	public void setSt_BaseBean(Set<BaseBean> st_BaseBean) {
 		this.st_BaseBean = st_BaseBean;
+	}
+
+	public Integer getSt_status() {
+		return st_status;
+	}
+
+	public void setSt_status(Integer st_status) {
+		this.st_status = st_status;
 	}
 
 }

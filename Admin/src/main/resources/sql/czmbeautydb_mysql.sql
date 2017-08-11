@@ -50,6 +50,7 @@ create table state (
 	st_co_id				int not null,
 	st_name					nvarchar(50) not null,
 	st_rank					tinyint,
+	st_status				tinyint,
 	primary key (st_id),
 	foreign key (st_co_id) references country (co_id)
 );
@@ -124,13 +125,13 @@ insert into country (co_iso, co_name, co_phonecode, co_rank) values ('TW', '台�
 insert into country (co_iso, co_name, co_phonecode, co_rank) values ('CN', '中國', '86', 2);
 
 -- state
-insert into state (st_co_id, st_name, st_rank) values (1, '台灣', 1);
-insert into state (st_co_id, st_name, st_rank) values (1, '澎湖', 2);
-insert into state (st_co_id, st_name, st_rank) values (1, '金門', 3);
-insert into state (st_co_id, st_name, st_rank) values (1, '馬祖', 4);
-insert into state (st_co_id, st_name, st_rank) values (2, '福建省', 1);
-insert into state (st_co_id, st_name, st_rank) values (2, '廣東省', 2);
-insert into state (st_co_id, st_name, st_rank) values (2, '甘肅省', 3);
+insert into state (st_co_id, st_name, st_rank, st_status) values (1, '台灣', 1, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (1, '澎湖', 2, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (1, '金門', 3, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (1, '馬祖', 4, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (2, '福建省', 1, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (2, '廣東省', 2, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (2, '甘肅省', 3, 1);
 
 -- city
 insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '基隆市', 1, 1);

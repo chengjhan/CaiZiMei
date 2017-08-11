@@ -20,6 +20,16 @@ img {
 	width: 30px;
 }
 
+.co-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
+.st-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
 .ci-status-switch {
 	width: 30px;
 	cursor: pointer;

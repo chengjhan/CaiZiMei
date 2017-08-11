@@ -248,20 +248,6 @@ public class CityController {
 	}
 
 	/**
-	 * 城市開關 (AJAX)
-	 * 
-	 * @param ci_id
-	 *            String --> 城市流水號
-	 * @return ci_name
-	 */
-	@RequestMapping(value = "/city/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String switchAjaxProcess(String ci_id) {
-
-		return cityService.updateCi_status(Integer.valueOf(ci_id)).getCi_name();
-	}
-
-	/**
 	 * 選定區域中的所有城市 JSON (AJAX)
 	 * 
 	 * @param ci_st_id
@@ -290,6 +276,20 @@ public class CityController {
 		logger.info("JSON = " + json);
 
 		return json;
+	}
+
+	/**
+	 * 城市開關 (AJAX)
+	 * 
+	 * @param ci_id
+	 *            String --> 城市流水號
+	 * @return ci_name
+	 */
+	@RequestMapping(value = "/city/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String switchAjaxProcess(String ci_id) {
+
+		return cityService.updateCi_status(Integer.valueOf(ci_id)).getCi_name();
 	}
 
 }

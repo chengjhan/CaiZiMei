@@ -25,11 +25,11 @@ var createClinicListTable = function(data){
 		var edit_td = $("<td></td>").append(edit_div);
 		var switch_img;
 		if(baseBean.ba_status == 1){
-			switch_img = $("<img src='../images/true.svg' data-ba-status='1' style='width:100%'>");
+			switch_img = $("<img src='../images/true.svg' data-ba-status='1'>");
 		}else{
-			switch_img = $("<img src='../images/false.svg' data-ba-status='0' style='width:100%'>");
+			switch_img = $("<img src='../images/false.svg' data-ba-status='0'>");
 		}
-		var switch_div = $("<div class='ba-status-switch' data-ba-id='" + baseBean.ba_id + "' style='width:30px;cursor:pointer'></div>").append(switch_img);
+		var switch_div = $("<div class='ba-status-switch' data-ba-id='" + baseBean.ba_id + "'></div>").append(switch_img);
 		var switch_td = $("<td></td>").append(switch_div);
 //		var clinicList_tr = $("<tr></tr>").append([count_td, ba_id_td, ba_name_td, ba_eng_name_td, ba_localphone_td, co_name_td, st_name_td, ci_name_td, ba_address_td, ba_latitude_td, ba_longitude_td, ba_url_td, ba_insert_time_td, ba_update_time_td, ba_status_time_td, edit_td, switch_td]);
 //		var clinicList_tr = $("<tr></tr>").append([count_td, ba_id_td, ba_name_td, ba_eng_name_td, ba_localphone_td, co_name_td, st_name_td, ci_name_td, ba_address_td, ba_latitude_td, ba_longitude_td, ba_url_td, edit_td, switch_td]);

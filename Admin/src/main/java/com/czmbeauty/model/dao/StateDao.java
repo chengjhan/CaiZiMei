@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateDao.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,10 +38,5 @@ public interface StateDao {
 	 * @see com.czmbeauty.model.dao.impl.StateDaoImpl#update(StateBean)
 	 */
 	StateBean update(StateBean stateBean);
-
-	/**
-	 * @see com.czmbeauty.model.dao.impl.StateDaoImpl#delete(Integer)
-	 */
-	Boolean delete(Integer st_id);
 
 }

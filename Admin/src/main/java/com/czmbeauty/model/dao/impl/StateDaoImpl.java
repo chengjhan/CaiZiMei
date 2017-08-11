@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -88,21 +88,6 @@ public class StateDaoImpl implements StateDao {
 		hibernateTemplate.update(stateBean);
 
 		return stateBean;
-	}
-
-	/**
-	 * 刪除區域
-	 * 
-	 * @param st_id
-	 *            Integer --> 區域流水號
-	 * @return true
-	 */
-	@Override
-	public Boolean delete(Integer st_id) {
-
-		hibernateTemplate.delete(hibernateTemplate.get(StateBean.class, st_id));
-
-		return true;
 	}
 
 }

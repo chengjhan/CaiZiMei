@@ -56,7 +56,7 @@
 								<td>名稱</td>
 								<td style="width:75px">排序</td>
 								<td style="width:50px">編輯</td>
-								<td style="width:50px">刪除</td>
+								<td style="width:50px">開啟</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -74,10 +74,15 @@
 										</div>
 									</td>
 									<td>
-										<div class="delete-button">
-											<a href="<%=request.getContextPath()%>/state/delete?st_id=${bean.st_id}">
-												<img src="<%=request.getContextPath()%>/images/icon_delete.svg">
-											</a>
+										<div class="st-status-switch" data-st-id="${bean.st_id}">
+											<c:choose>
+												<c:when test="${bean.st_status eq 1}">
+													<img src="<%=request.getContextPath()%>/images/true.svg" data-st-status="1">
+												</c:when>
+												<c:when test="${bean.st_status eq 0}">
+													<img src="<%=request.getContextPath()%>/images/false.svg" data-st-status="0">
+												</c:when>
+											</c:choose>
 										</div>
 									</td>
 								</tr>

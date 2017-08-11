@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/8/2
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -222,26 +222,6 @@ public class StateController {
 	}
 
 	/**
-	 * 刪除區域 - submit
-	 * 
-	 * @param stateBean_st_id
-	 *            StateBean --> form backing object --> GET --> st_id
-	 * @param model
-	 *            Model
-	 * @return /WEB-INF/views/state/list.jsp
-	 */
-	@RequestMapping(value = "/state/delete", method = RequestMethod.GET)
-	public String deleteProcess(StateBean stateBean_st_id, Model model) {
-
-		// 將刪除的 StateBean 放入 Session，使 select 回填國家
-		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean_st_id.getSt_id()));
-
-		stateService.delete(stateBean_st_id.getSt_id());
-
-		return REDIRECT + STATE_LIST_PAGE;
-	}
-
-	/**
 	 * 選定國家中的所有區域 JSON (AJAX)
 	 * 
 	 * @param st_co_id
@@ -261,6 +241,7 @@ public class StateController {
 			jsonBean.setSt_id(bean.getSt_id());
 			jsonBean.setSt_name(bean.getSt_name());
 			jsonBean.setSt_rank(bean.getSt_rank());
+			jsonBean.setSt_status(bean.getSt_status());
 			jsonList.add(jsonBean);
 		}
 
@@ -269,6 +250,20 @@ public class StateController {
 		logger.info("JSON = " + json);
 
 		return json;
+	}
+
+	/**
+	 * 區域開關 (AJAX)
+	 * 
+	 * @param st_id
+	 *            String --> 區域流水號
+	 * @return st_name
+	 */
+	@RequestMapping(value = "/state/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String switchAjaxProcess(String st_id) {
+
+		return stateService.updateSt_status(Integer.valueOf(st_id)).getSt_name();
 	}
 
 }

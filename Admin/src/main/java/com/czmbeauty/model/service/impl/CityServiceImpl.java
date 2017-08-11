@@ -83,6 +83,8 @@ public class CityServiceImpl implements CityService {
 
 		if (cityBean != null) {
 
+			cityBean.setCi_status(1);
+
 			result = cityDao.insert(cityBean);
 		}
 		return result;

@@ -84,6 +84,8 @@ public class StateServiceImpl implements StateService {
 
 		if (stateBean != null) {
 
+			stateBean.setSt_status(1);
+
 			result = stateDao.insert(stateBean);
 		}
 		return result;

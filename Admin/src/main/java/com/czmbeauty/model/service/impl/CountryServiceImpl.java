@@ -83,6 +83,8 @@ public class CountryServiceImpl implements CountryService {
 
 		if (countryBean != null) {
 
+			countryBean.setCo_status(1);
+			
 			result = countryDao.insert(countryBean);
 		}
 		return result;

@@ -77,15 +77,19 @@ public class CityDaoImpl implements CityDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param cityBean
+	 * @param newCityBean
 	 *            CityBean
 	 * @return CityBean
 	 */
 	@Override
-	public CityBean update(CityBean cityBean) {
+	public CityBean update(CityBean newCityBean) {
 
-		hibernateTemplate.clear();
-		hibernateTemplate.update(cityBean);
+		CityBean cityBean = hibernateTemplate.get(CityBean.class, newCityBean.getCi_id());
+
+		cityBean.setCi_CountryBean(newCityBean.getCi_CountryBean());
+		cityBean.setCi_StateBean(newCityBean.getCi_StateBean());
+		cityBean.setCi_name(newCityBean.getCi_name());
+		cityBean.setCi_rank(newCityBean.getCi_rank());
 
 		return cityBean;
 	}

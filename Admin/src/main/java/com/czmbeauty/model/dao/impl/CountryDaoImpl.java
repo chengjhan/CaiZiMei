@@ -74,15 +74,19 @@ public class CountryDaoImpl implements CountryDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param countryBean
+	 * @param newCountryBean
 	 *            CountryBean
 	 * @return CountryBean
 	 */
 	@Override
-	public CountryBean update(CountryBean countryBean) {
+	public CountryBean update(CountryBean newCountryBean) {
 
-		hibernateTemplate.clear();
-		hibernateTemplate.update(countryBean);
+		CountryBean countryBean = hibernateTemplate.get(CountryBean.class, newCountryBean.getCo_id());
+
+		countryBean.setCo_iso(newCountryBean.getCo_iso());
+		countryBean.setCo_name(newCountryBean.getCo_name());
+		countryBean.setCo_phonecode(newCountryBean.getCo_phonecode());
+		countryBean.setCo_rank(newCountryBean.getCo_rank());
 
 		return countryBean;
 	}

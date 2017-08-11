@@ -77,15 +77,18 @@ public class StateDaoImpl implements StateDao {
 	/**
 	 * 修改資料
 	 * 
-	 * @param stateBean
+	 * @param newStateBean
 	 *            StateBean
 	 * @return StateBean
 	 */
 	@Override
-	public StateBean update(StateBean stateBean) {
+	public StateBean update(StateBean newStateBean) {
 
-		hibernateTemplate.clear();
-		hibernateTemplate.update(stateBean);
+		StateBean stateBean = hibernateTemplate.get(StateBean.class, newStateBean.getSt_id());
+
+		stateBean.setSt_CountryBean(newStateBean.getSt_CountryBean());
+		stateBean.setSt_name(newStateBean.getSt_name());
+		stateBean.setSt_rank(newStateBean.getSt_rank());
 
 		return stateBean;
 	}

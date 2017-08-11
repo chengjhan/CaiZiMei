@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryDao.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,10 +38,5 @@ public interface CountryDao {
 	 * @see com.czmbeauty.model.dao.impl.CountryDaoImpl#update(CountryBean)
 	 */
 	CountryBean update(CountryBean countryBean);
-
-	/**
-	 * @see com.czmbeauty.model.dao.impl.CountryDaoImpl#delete(Integer)
-	 */
-	Boolean delete(Integer co_id);
 
 }

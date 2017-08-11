@@ -42,6 +42,7 @@ create table country (
 	co_name					nvarchar(50) not null,
 	co_phonecode			varchar(5),
 	co_rank					tinyint,
+	co_status				tinyint,
 	primary key (co_id)
 );
 
@@ -121,8 +122,8 @@ alter table city auto_increment = 101;
 insert into admin (ad_id, ad_username, ad_password, ad_salt, ad_lastname, ad_firstname, ad_email, ad_signup_time, ad_signin_number, ad_signin_ip, ad_signin_time, ad_update_info_time, ad_update_pwd_time, ad_status, ad_status_time) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', 'czmbeauty', 'admin', 'admin@czmbeauty.com', now(), 0, null, null, now(), now(), 1, now());
 
 -- country
-insert into country (co_iso, co_name, co_phonecode, co_rank) values ('TW', '台灣', '886', 1);
-insert into country (co_iso, co_name, co_phonecode, co_rank) values ('CN', '中國', '86', 2);
+insert into country (co_iso, co_name, co_phonecode, co_rank, co_status) values ('TW', '台灣', '886', 1, 1);
+insert into country (co_iso, co_name, co_phonecode, co_rank, co_status) values ('CN', '中國', '86', 2, 1);
 
 -- state
 insert into state (st_co_id, st_name, st_rank, st_status) values (1, '台灣', 1, 1);

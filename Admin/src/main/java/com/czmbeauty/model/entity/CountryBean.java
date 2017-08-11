@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryBean.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -54,6 +54,7 @@ public class CountryBean {
 	@Expose
 	@Max(99)
 	private Integer co_rank;
+	private Integer co_status;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "st_CountryBean")
 	private Set<StateBean> co_StateBean;
@@ -124,6 +125,14 @@ public class CountryBean {
 
 	public void setCo_BaseBean(Set<BaseBean> co_BaseBean) {
 		this.co_BaseBean = co_BaseBean;
+	}
+
+	public Integer getCo_status() {
+		return co_status;
+	}
+
+	public void setCo_status(Integer co_status) {
+		this.co_status = co_status;
 	}
 
 }

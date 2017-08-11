@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,6 +25,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.model.entity.CountryBean;
@@ -149,18 +150,17 @@ public class CountryController {
 	}
 
 	/**
-	 * 刪除國家 - submit
+	 * 國家開關 (AJAX)
 	 * 
-	 * @param countryBean_co_id
-	 *            CountryBean --> form backing object --> GET --> co_id
-	 * @return /WEB-INF/views/country/list.jsp
+	 * @param co_id
+	 *            String --> 國家流水號
+	 * @return co_name
 	 */
-	@RequestMapping(value = "/country/delete", method = RequestMethod.GET)
-	public String deleteProcess(CountryBean countryBean_co_id) {
+	@RequestMapping(value = "/country/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String switchAjaxProcess(String co_id) {
 
-		countryService.delete(countryBean_co_id.getCo_id());
-
-		return REDIRECT + COUNTRY_LIST_PAGE;
+		return countryService.updateCo_status(Integer.valueOf(co_id)).getCo_name();
 	}
 
 }

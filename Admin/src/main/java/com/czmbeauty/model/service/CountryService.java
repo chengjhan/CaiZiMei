@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryService.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,8 +40,8 @@ public interface CountryService {
 	CountryBean update(CountryBean countryBean);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#delete(Integer)
+	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl
 	 */
-	Boolean delete(Integer co_id);
+	CountryBean updateCo_status(Integer co_id);
 
 }

@@ -49,7 +49,7 @@
 								<td style="width:75px">電話碼</td>
 								<td style="width:75px">排序</td>
 								<td style="width:50px">編輯</td>
-								<td style="width:50px">刪除</td>
+								<td style="width:50px">開啟</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -69,10 +69,15 @@
 										</div>
 									</td>
 									<td>
-										<div class="delete-button">
-											<a href="<%=request.getContextPath()%>/country/delete?co_id=${bean.co_id}">
-												<img src="<%=request.getContextPath()%>/images/icon_delete.svg">
-											</a>
+										<div class="co-status-switch" data-co-id="${bean.co_id}">
+											<c:choose>
+												<c:when test="${bean.co_status eq 1}">
+													<img src="<%=request.getContextPath()%>/images/true.svg" data-co-status="1">
+												</c:when>
+												<c:when test="${bean.co_status eq 0}">
+													<img src="<%=request.getContextPath()%>/images/false.svg" data-co-status="0">
+												</c:when>
+											</c:choose>
 										</div>
 									</td>
 								</tr>
@@ -94,5 +99,6 @@
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/country/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/1
+ * Date: 2017/8/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -85,21 +85,6 @@ public class CountryDaoImpl implements CountryDao {
 		hibernateTemplate.update(countryBean);
 
 		return countryBean;
-	}
-
-	/**
-	 * 刪除國家
-	 * 
-	 * @param co_id
-	 *            Integer --> 國家流水號
-	 * @return true
-	 */
-	@Override
-	public Boolean delete(Integer co_id) {
-
-		hibernateTemplate.delete(hibernateTemplate.get(CountryBean.class, co_id));
-
-		return true;
 	}
 
 }

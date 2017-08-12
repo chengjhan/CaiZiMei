@@ -10,8 +10,8 @@ function preview(input) {
 
 $(document).ready(function(){
 	
-	// 圖片上傳預覽
-	$(document).on("change", "#image-upload", function(){
+	// 預覽上傳圖片
+	$(document).on("change", "#image-uploader", function(){
         preview(this);
-    })
+    });
 });

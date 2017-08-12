@@ -28,21 +28,20 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
-					<div class="image-preview">
-						<img class="img-thumbnail">
-					</div>
-				
 					<!-- form -->
 					<form:form action="/Admin/slider-main/add.do" method="post" modelAttribute="imageBean" enctype="multipart/form-data">
+						
+						<label for="image-uploader">
+							<div class="image-preview">
+								<img class="img-thumbnail">
+							</div>
+						</label>
+						<input type="file" id="image-uploader" class="form-control-file" style="display:none" name="file" />
+						
 						<table class="table">
 							<tr>
 								<td>名稱</td>
 								<td><form:input path="im_name" cssClass="form-control" /></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>選擇</td>
-								<td><input type="file" id="image-upload" class="form-control-file" name="file" /></td>
 								<td></td>
 							</tr>
 							<tr>

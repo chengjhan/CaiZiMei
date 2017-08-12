@@ -29,11 +29,24 @@
 				<div class="table-responsive">
 				
 					<div class="image-preview">
-						<img src="<%=request.getContextPath()%>/images/slider-main/${imageBean.im_filename}" class="img-thumbnail">
+						
 					</div>
 					
 					<!-- form -->
 					<form:form action="/Admin/slider-main/edit.do" method="post" modelAttribute="imageBean" enctype="multipart/form-data" cssClass="form-horizontal">
+						
+						<div class="image-upload">
+							<label for="image-uploader">
+								<div class="image-preview">
+									<img src="<%=request.getContextPath()%>/images/slider-main/${imageBean.im_filename}" class="img-thumbnail">
+								</div>
+							</label>
+							<div id="image-reset">
+								<img src="<%=request.getContextPath()%>/images/false.svg" style="display:none">
+							</div>
+						</div>
+						<input type="file" id="image-uploader" name="file" style="display:none" />
+						
 						<table class="table">
 							<tr style="display:none">
 								<td>流水號</td>
@@ -42,11 +55,6 @@
 							<tr>
 								<td>名稱</td>
 								<td><form:input path="im_name" cssClass="form-control" /></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>選擇</td>
-								<td><input type="file" id="image-upload" class="form-control-file" name="file" /></td>
 								<td></td>
 							</tr>
 							<tr>
@@ -77,6 +85,25 @@
 		</div>
 	</div>
 	<!-- container end -->
+	
+	<script>
+		$(document).ready(function(){
+			
+			// 預覽上傳圖片
+			$(document).on("change", "#image-uploader", function(){
+		        preview(this);
+		        $("#image-reset img").removeAttr("style");
+			});
+			
+			// 清除上傳圖片
+			$(document).on("click", "#image-reset", function(){
+				$("#image-uploader").val("");
+				$(".image-preview img").attr("src", "../images/slider-main/${imageBean.im_filename}");
+				$("#image-reset img").attr("style", "display:none");
+			});
+			
+		});
+	</script>
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

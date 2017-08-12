@@ -17,4 +17,5 @@ tr td:nth-child(2) {
 .image-preview {
 	width: 750px;
 	margin-bottom: 10px;
+	cursor: pointer;
 }

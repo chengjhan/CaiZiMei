@@ -1,3 +1,4 @@
+// 預覽上傳圖片
 function preview(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
@@ -7,11 +8,3 @@ function preview(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
-
-$(document).ready(function(){
-	
-	// 圖片上傳預覽
-	$(document).on("change", "#image-upload", function(){
-        preview(this);
-    })
-});

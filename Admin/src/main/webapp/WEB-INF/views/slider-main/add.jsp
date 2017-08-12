@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增主輪播圖片 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/image/add.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -27,28 +28,37 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<div class="image-preview">
+						<img class="img-thumbnail">
+					</div>
+				
 					<!-- form -->
 					<form:form action="/Admin/slider-main/add.do" method="post" modelAttribute="imageBean" enctype="multipart/form-data">
-						<table>
+						<table class="table">
 							<tr>
 								<td>名稱</td>
-								<td><form:input path="im_name" /></td>
+								<td><form:input path="im_name" cssClass="form-control" /></td>
+								<td></td>
 							</tr>
 							<tr>
 								<td>選擇</td>
-								<td><input type="file" name="file" /></td>
+								<td><input type="file" id="image-upload" class="form-control-file" name="file" /></td>
+								<td></td>
 							</tr>
 							<tr>
 								<td>連結</td>
-								<td><form:input path="im_url" /></td>
+								<td><form:input path="im_url" cssClass="form-control" /></td>
+								<td></td>
 							</tr>
 							<tr>
 								<td>排序</td>
-								<td><form:input path="im_rank" /></td>
+								<td><form:input path="im_rank" cssClass="form-control" /></td>
+								<td></td>
 							</tr>
 							<tr>
-								<td><input type="submit" value="新增" /></td>
-								<td><a href="<%=request.getContextPath()%>/slider-main/list"><button type="button" class="btn btn-danger">取消</button></a></td>
+								<td></td>
+								<td><input type="submit" class="btn btn-success" value="新增" /></td>
+<%-- 								<td><a href="<%=request.getContextPath()%>/slider-main/list"><button type="button" class="btn btn-danger">取消</button></a></td> --%>
 							</tr>
 						</table>
 					</form:form>
@@ -67,5 +77,7 @@
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/cropit/jquery.cropit.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/image/add.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -51,7 +51,7 @@
 								<td></td>
 								<td>
 									<input type="submit" class="btn btn-success" value="變更" />
-									<a href="<%=request.getContextPath()%>/admin/profile"><button type="button" class="btn btn-danger">取消</button></a>
+<%-- 									<a href="<%=request.getContextPath()%>/admin/profile"><button type="button" class="btn btn-danger">取消</button></a> --%>
 								</td>
 							</tr>
 						</table>

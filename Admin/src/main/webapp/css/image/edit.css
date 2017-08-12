@@ -1,0 +1,20 @@
+img {
+	width: 100%;
+}
+
+tr td:first-child {
+	width: 75px;
+}
+
+tr td:nth-child(2) {
+	width: 675px;
+}
+
+.table td {
+	border: none !important;
+}
+
+.image-preview {
+	width: 750px;
+	margin-bottom: 10px;
+}

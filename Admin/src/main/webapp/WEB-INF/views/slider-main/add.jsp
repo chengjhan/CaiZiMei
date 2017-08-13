@@ -31,12 +31,17 @@
 					<!-- form -->
 					<form:form action="/Admin/slider-main/add.do" method="post" modelAttribute="imageBean" enctype="multipart/form-data">
 						
-						<label for="image-uploader">
-							<div class="image-preview">
-								<img class="img-thumbnail">
+						<div class="image-upload">
+							<label for="image-uploader">
+								<div class="image-preview">
+									<img class="img-thumbnail">
+								</div>
+							</label>
+							<div id="image-reset">
+								<img src="<%=request.getContextPath()%>/images/false.svg" style="display:none">
 							</div>
-						</label>
-						<input type="file" id="image-uploader" class="form-control-file" style="display:none" name="file" />
+						</div>
+						<input type="file" id="image-uploader" name="file" style="display:none" />
 						
 						<table class="table">
 							<tr>

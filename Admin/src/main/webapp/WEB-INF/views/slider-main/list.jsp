@@ -71,7 +71,7 @@
 								</tr>
 								<tr>
 									<td style="width:50px">連結</td>
-									<td><a href="${bean.im_url}">${bean.im_url}</a></td>
+									<td><a href="${bean.im_url}" target="_blank">${bean.im_url}</a></td>
 								</tr>
 								<tr>
 									<td style="width:50px">排序</td>

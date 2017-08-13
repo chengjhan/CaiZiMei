@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageBean.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/8/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * image entity
@@ -31,10 +35,15 @@ public class ImageBean {
 	@ManyToOne
 	@JoinColumn(name = "im_ca_id")
 	private CategoryBean im_CategoryBean;
+	@NotBlank
+	@Size(max = 20)
 	private String im_name;
 	private String im_path;
 	private String im_filename;
+	@NotBlank
+	@Size(max = 100)
 	private String im_url;
+	@Max(99)
 	private Integer im_rank;
 	private Integer im_status;
 	private java.util.Date im_update_time;

@@ -8,4 +8,6 @@ public interface CommonConstants {
 
 	public static final String EQUAL = "=";
 
+	public static final String AND = "&";
+
 }

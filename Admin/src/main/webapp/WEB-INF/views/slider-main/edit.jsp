@@ -28,10 +28,6 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
-					<div class="image-preview">
-						
-					</div>
-					
 					<!-- form -->
 					<form:form action="/Admin/slider-main/edit.do" method="post" modelAttribute="imageBean" enctype="multipart/form-data" cssClass="form-horizontal">
 						

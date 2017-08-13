@@ -72,6 +72,6 @@ public interface HqlConstants {
 	/**
 	 * 搜尋所有主輪播圖片
 	 */
-	public static final String HQL_SELECT_ALL_SLIDER_MAIN = "from ImageBean where im_ca_id=4 order by im_status desc, im_id asc";
+	public static final String HQL_SELECT_ALL_SLIDER_MAIN = "from ImageBean where im_ca_id=4 order by im_status desc, im_rank asc, im_id asc";
 
 }

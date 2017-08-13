@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/8/11
+ * Date: 2017/8/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,6 +10,7 @@ package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.CodeConstants.SLIDER_MAIN;
 import static com.czmbeauty.common.constants.CodeConstants.SLIDER_MAIN_CODE;
+import static com.czmbeauty.common.constants.CommonConstants.AND;
 import static com.czmbeauty.common.constants.CommonConstants.DOT;
 import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
@@ -25,18 +26,21 @@ import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
 import static com.czmbeauty.common.constants.PaginationConstants.IMAGE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW_COUNT;
+import static com.czmbeauty.common.constants.ParameterConstants.IMAGE_ID;
 import static com.czmbeauty.common.constants.ParameterConstants.PAGE;
 
 import java.io.File;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -107,6 +111,12 @@ public class ImageController {
 
 	/**
 	 * 取得圖片路徑及檔名
+	 * 
+	 * @param ca_name
+	 *            String --> 類別資料夾名
+	 * @param file
+	 *            MultipartFile
+	 * @return String[]
 	 */
 	public String[] getPathAndFilename(String ca_name, MultipartFile file) {
 		String root = context.getRealPath("");
@@ -124,7 +134,7 @@ public class ImageController {
 	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/slider-main/list?page=1.jsp
+	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/list", method = RequestMethod.GET)
 	public String SliderMainlistView(@RequestParam Integer page, Model model) {
@@ -189,11 +199,15 @@ public class ImageController {
 	 *            MultipartFile
 	 * @param imageBean
 	 *            ImageBean --> form backing object
+	 * @param bindingResult
+	 *            BindingResult
 	 * @return /WEB-INF/views/slider-main/add.jsp
-	 * @return /WEB-INF/views/slider-main/list?page=1.jsp
+	 * @return /WEB-INF/views/slider-main/add.jsp
+	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/add.do", method = RequestMethod.POST)
-	public String addProcess(@RequestParam MultipartFile file, ImageBean imageBean) {
+	public String addProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
+			BindingResult bindingResult) {
 
 		String slider = request.getServletPath().split("/")[1];
 
@@ -201,9 +215,15 @@ public class ImageController {
 
 			if (file.isEmpty()) {
 
-				logger.info("主輪播圖片新增失敗: 未上傳圖片");
+				logger.error("主輪播圖片新增失敗: 未上傳圖片");
 
-				return SLIDER_MAIN_ADD_PAGE;
+				return REDIRECT + SLIDER_MAIN_ADD_PAGE;
+
+			} else if (bindingResult.hasErrors()) {
+
+				logger.error("主輪播圖片新增失敗: 資料未填");
+
+				return REDIRECT + SLIDER_MAIN_ADD_PAGE;
 
 			} else {
 
@@ -269,10 +289,14 @@ public class ImageController {
 	 *            MultipartFile
 	 * @param imageBean
 	 *            ImageBean --> form backing object
-	 * @return /WEB-INF/views/slider-main/list?page=currentPage.jsp
+	 * @param bindingResult
+	 *            BindingResult
+	 * @return /WEB-INF/views/slider-main/edit.jsp
+	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/edit.do", method = RequestMethod.POST)
-	public String editProcess(@RequestParam MultipartFile file, ImageBean imageBean) {
+	public String editProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
+			BindingResult bindingResult) {
 
 		ImageBean oldImageBean = imageService.selectByIm_id(imageBean.getIm_id());
 
@@ -283,7 +307,14 @@ public class ImageController {
 
 		if (SLIDER_MAIN.equals(slider)) {
 
-			if (file.isEmpty()) {
+			logger.error("主輪播圖片編輯失敗: 資料未填");
+
+			if (bindingResult.hasErrors()) {
+
+				return REDIRECT + SLIDER_MAIN_EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND
+						+ PAGE + EQUAL + currentPage;
+
+			} else if (file.isEmpty()) {
 
 				im_path = oldImageBean.getIm_path();
 				im_filename = oldImageBean.getIm_filename();

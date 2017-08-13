@@ -2,11 +2,14 @@
  * CaiZiMei
  * File: AdminLogDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/2
+ * Date: 2017/8/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
+
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_ADMIN_LOG;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ADMIN_LOG_BY_ADMIN;
 
 import java.util.List;
 
@@ -40,7 +43,7 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	@SuppressWarnings("unchecked")
 	public List<AdminLogBean> selectAll() {
 
-		return (List<AdminLogBean>) hibernateTemplate.find("from AdminLogBean order by al_insert_time asc");
+		return (List<AdminLogBean>) hibernateTemplate.find(HQL_SELECT_ALL_ADMIN_LOG);
 	}
 
 	/**
@@ -54,8 +57,8 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	@SuppressWarnings("unchecked")
 	public List<AdminLogBean> selectByAl_ad_id(Integer al_ad_id) {
 
-		return (List<AdminLogBean>) hibernateTemplate.findByNamedParam("from AdminLogBean where al_ad_id=:al_ad_id",
-				"al_ad_id", al_ad_id);
+		return (List<AdminLogBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_ADMIN_LOG_BY_ADMIN, "al_ad_id",
+				al_ad_id);
 	}
 
 	/**

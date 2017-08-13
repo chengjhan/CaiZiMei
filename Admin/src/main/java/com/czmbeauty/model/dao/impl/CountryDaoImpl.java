@@ -2,11 +2,13 @@
  * CaiZiMei
  * File: CountryDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/12
+ * Date: 2017/8/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
+
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_COUNTRY;
 
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class CountryDaoImpl implements CountryDao {
 	@SuppressWarnings("unchecked")
 	public List<CountryBean> selectAll() {
 
-		return (List<CountryBean>) hibernateTemplate.find("from CountryBean order by co_rank asc");
+		return (List<CountryBean>) hibernateTemplate.find(HQL_SELECT_ALL_COUNTRY);
 	}
 
 	/**

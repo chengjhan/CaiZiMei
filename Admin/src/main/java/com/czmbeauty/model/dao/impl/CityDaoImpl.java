@@ -2,11 +2,13 @@
  * CaiZiMei
  * File: CityDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/12
+ * Date: 2017/8/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
+
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_CITY_BY_STATE;
 
 import java.util.List;
 
@@ -55,8 +57,7 @@ public class CityDaoImpl implements CityDao {
 	@SuppressWarnings("unchecked")
 	public List<CityBean> selectByCi_st_id(Integer ci_st_id) {
 
-		return (List<CityBean>) hibernateTemplate.findByNamedParam("from CityBean where ci_st_id=:ci_st_id", "ci_st_id",
-				ci_st_id);
+		return (List<CityBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_CITY_BY_STATE, "ci_st_id", ci_st_id);
 	}
 
 	/**

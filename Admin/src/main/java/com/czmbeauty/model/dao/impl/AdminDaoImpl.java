@@ -2,11 +2,15 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/7/28
+ * Date: 2017/8/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
+
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_ADMIN;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_ADMIN_BY_EMAIL;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_ADMIN_BY_USERNAME;
 
 import java.util.List;
 
@@ -40,7 +44,7 @@ public class AdminDaoImpl implements AdminDao {
 	@SuppressWarnings("unchecked")
 	public List<AdminBean> selectAll() {
 
-		return (List<AdminBean>) hibernateTemplate.find("from AdminBean order by ad_id asc");
+		return (List<AdminBean>) hibernateTemplate.find(HQL_SELECT_ALL_ADMIN);
 	}
 
 	/**
@@ -68,8 +72,8 @@ public class AdminDaoImpl implements AdminDao {
 	@SuppressWarnings("unchecked")
 	public AdminBean selectByAd_username(String ad_username) {
 
-		List<AdminBean> list = (List<AdminBean>) hibernateTemplate
-				.findByNamedParam("from AdminBean where ad_status=1 and ad_username=:ad_username", "ad_username", ad_username);
+		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_ADMIN_BY_USERNAME,
+				"ad_username", ad_username);
 
 		if (!list.isEmpty()) {
 
@@ -90,8 +94,8 @@ public class AdminDaoImpl implements AdminDao {
 	@SuppressWarnings("unchecked")
 	public AdminBean selectByAd_email(String ad_email) {
 
-		List<AdminBean> list = (List<AdminBean>) hibernateTemplate
-				.findByNamedParam("from AdminBean where ad_status=1 and ad_email=:ad_email", "ad_email", ad_email);
+		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_ADMIN_BY_EMAIL,
+				"ad_email", ad_email);
 
 		if (!list.isEmpty()) {
 

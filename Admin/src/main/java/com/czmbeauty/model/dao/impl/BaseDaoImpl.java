@@ -2,11 +2,14 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/11
+ * Date: 2017/8/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
+
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_CLINIC;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_CLINIC;
 
 import java.util.List;
 
@@ -46,8 +49,7 @@ public class BaseDaoImpl implements BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<BaseBean> selectAllClinic() {
 
-		return (List<BaseBean>) hibernateTemplate
-				.find("from BaseBean where ba_ca_id=3 order by ba_status desc, ba_id asc");
+		return (List<BaseBean>) hibernateTemplate.find(HQL_SELECT_ALL_CLINIC);
 	}
 
 	/**
@@ -107,8 +109,7 @@ public class BaseDaoImpl implements BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<BaseBean> selectOpenClinic() {
 
-		return (List<BaseBean>) hibernateTemplate
-				.find("from BaseBean where ba_ca_id=3 and ba_status=1 order by ba_id asc");
+		return (List<BaseBean>) hibernateTemplate.find(HQL_SELECT_OPEN_CLINIC);
 	}
 
 	/**

@@ -2,11 +2,13 @@
  * CaiZiMei
  * File: StateDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/12
+ * Date: 2017/8/13
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
+
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_STATE_BY_COUNTRY;
 
 import java.util.List;
 
@@ -55,8 +57,7 @@ public class StateDaoImpl implements StateDao {
 	@SuppressWarnings("unchecked")
 	public List<StateBean> selectBySt_co_id(Integer st_co_id) {
 
-		return (List<StateBean>) hibernateTemplate.findByNamedParam("from StateBean where st_co_id=:st_co_id",
-				"st_co_id", st_co_id);
+		return (List<StateBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_STATE_BY_COUNTRY, "st_co_id", st_co_id);
 	}
 
 	/**

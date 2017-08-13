@@ -51,17 +51,17 @@
 							<tr>
 								<td>名稱</td>
 								<td><form:input path="im_name" cssClass="form-control" /></td>
-								<td></td>
+								<td><form:errors path="im_name" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>連結</td>
 								<td><form:input path="im_url" cssClass="form-control" /></td>
-								<td></td>
+								<td><form:errors path="im_url" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>排序</td>
 								<td><form:input path="im_rank" cssClass="form-control" /></td>
-								<td></td>
+								<td><form:errors path="im_rank" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td></td>

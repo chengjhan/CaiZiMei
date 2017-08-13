@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseBean.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/8/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.google.gson.annotations.Expose;
 
@@ -35,10 +39,15 @@ public class BaseBean {
 	@JoinColumn(name = "ba_ca_id")
 	private CategoryBean ba_CategoryBean;
 	@Expose
+	@NotBlank
+	@Size(max = 20)
 	private String ba_name;
 	@Expose
+	@Size(max = 50)
 	private String ba_eng_name;
 	@Expose
+	@Size(max = 20)
+	@Pattern(regexp = "^$|[0-9]+")
 	private String ba_localphone;
 	@ManyToOne
 	@JoinColumn(name = "ba_co_id")
@@ -51,12 +60,15 @@ public class BaseBean {
 	@Expose
 	private CityBean ba_CityBean;
 	@Expose
+	@NotBlank
+	@Size(max = 50)
 	private String ba_address;
 	@Expose
 	private Double ba_latitude;
 	@Expose
 	private Double ba_longitude;
 	@Expose
+	@Size(max = 100)
 	private String ba_url;
 	@Expose
 	private java.util.Date ba_insert_time;

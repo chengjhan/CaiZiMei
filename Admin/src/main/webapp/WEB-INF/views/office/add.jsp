@@ -34,15 +34,17 @@
 							<tr>
 								<td>名稱</td>
 								<td><form:input path="ba_name" cssClass="form-control" /></td>
-								<td></td>
+								<td><form:errors path="ba_name" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>英文名稱</td>
 								<td><form:input path="ba_eng_name" cssClass="form-control" /></td>
+								<td><form:errors path="ba_eng_name" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>電話</td>
 								<td><form:input path="ba_localphone" cssClass="form-control" /></td>
+								<td><form:errors path="ba_localphone" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>國家</td>
@@ -72,10 +74,12 @@
 							<tr>
 								<td>地址</td>
 								<td><form:input path="ba_address" cssClass="form-control" /></td>
+								<td><form:errors path="ba_address" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td>網址</td>
 								<td><form:input path="ba_url" cssClass="form-control" /></td>
+								<td><form:errors path="ba_url" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td></td>

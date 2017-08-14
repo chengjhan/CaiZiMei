@@ -9,3 +9,7 @@ tr td:nth-child(2) {
 .table td {
 	border: none !important;
 }
+
+.form-error {
+	border-color: red !important;
+}

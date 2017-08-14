@@ -30,3 +30,58 @@ state_select.change(function(){
 		});
 	});
 });
+
+// validation
+$(document).ready(function(){
+	$("#add-form").validate({
+		rules: {
+			ba_name: {
+				required: true,
+				maxlength: 20
+			},
+			ba_eng_name: {
+				maxlength: 50
+			},
+			ba_localphone: {
+				digits: true,
+				maxlength: 20
+			},
+			ba_address: {
+				required: true,
+				maxlength: 20
+			},
+			ba_url: {
+				maxlength: 100
+			}
+		},
+		messages: {
+			ba_name: {
+				required: "必填",
+				maxlength: "必須小於20個字"
+			},
+			ba_eng_name: {
+				maxlength: "必須小於50個字"
+			},
+			ba_localphone: {
+				digits: "必須為數字",
+				maxlength: "必須小於20個字"
+			},
+			ba_address: {
+				required: "必填",
+				maxlength: "必須小於20個字"
+			},
+			ba_url: {
+				maxlength: "必須小於100個字"
+			}
+		},
+		highlight: function(element) {
+			$(element).addClass("form-error");
+		},
+		unhighlight: function(element) {
+			$(element).removeClass("form-error");
+		},
+		submitHandler: function(form){
+			form.submit();
+	    }
+	});
+});

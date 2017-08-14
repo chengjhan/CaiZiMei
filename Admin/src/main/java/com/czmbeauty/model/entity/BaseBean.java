@@ -44,6 +44,7 @@ public class BaseBean {
 	private String ba_name;
 	@Expose
 	@Size(max = 50)
+	@Pattern(regexp = "^$|[a-zA-Z]+")
 	private String ba_eng_name;
 	@Expose
 	@Size(max = 20)

@@ -30,7 +30,7 @@
 				
 					<!-- option -->
 					<div class="btn-group option">
-						<div class="add-button">
+						<div style="width:30px;float:right">
 							<a href="<%=request.getContextPath()%>/country/add">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>

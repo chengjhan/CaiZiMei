@@ -33,11 +33,11 @@
 					<div class="btn-group option">
 						<div style="float:left">
 							<form:form modelAttribute="cityBean">
-								<form:select id="id-input-ci-co-id" path="ci_CountryBean" cssClass="btn btn-default btn-sm">
+								<form:select id="id-input-ci-co-id" path="ci_CountryBean" cssClass="form-control">
 									<form:option value="0" label="請選擇國家" />
 									<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 								</form:select>
-								<form:select id="id-input-ci-st-id" path="ci_StateBean" cssClass="btn btn-default btn-sm">
+								<form:select id="id-input-ci-st-id" path="ci_StateBean" cssClass="form-control">
 									<form:option value="0" label="請選擇區域" />
 									<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
 								</form:select>

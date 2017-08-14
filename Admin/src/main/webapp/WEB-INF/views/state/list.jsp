@@ -33,7 +33,7 @@
 					<div class="btn-group option">
 						<div style="float:left">
 							<form:form modelAttribute="stateBean">
-								<form:select id="id-input-st-co-id" path="st_CountryBean" cssClass="btn btn-default btn-sm">
+								<form:select id="id-input-st-co-id" path="st_CountryBean" cssClass="form-control">
 									<form:option value="0" label="請選擇國家" />
 									<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 								</form:select>

@@ -9,7 +9,9 @@ img {
 
 .add-button {
 	width: 30px;
-	float: right;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 .edit-button {

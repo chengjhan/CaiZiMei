@@ -34,7 +34,7 @@
 						<div class="image-upload">
 							<label for="image-uploader">
 								<div class="image-preview">
-									<img class="img-thumbnail">
+									<img src="<%=request.getContextPath()%>/images/image/upload_new_image_900x300.png" class="img-thumbnail">
 								</div>
 							</label>
 							<div id="image-reset">

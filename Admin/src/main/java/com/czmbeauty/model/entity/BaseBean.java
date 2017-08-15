@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseBean.java
  * Author: 詹晟
- * Date: 2017/8/14
+ * Date: 2017/8/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -44,7 +44,6 @@ public class BaseBean {
 	private String ba_name;
 	@Expose
 	@Size(max = 50)
-	@Pattern(regexp = "^$|[a-zA-Z]+")
 	private String ba_eng_name;
 	@Expose
 	@Size(max = 20)

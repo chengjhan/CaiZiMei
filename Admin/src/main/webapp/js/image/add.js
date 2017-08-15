@@ -19,7 +19,7 @@ $(document).ready(function(){
 	// 清除上傳圖片
 	$(document).on("click", "#image-reset", function(){
 		$("#image-uploader").val("");
-		$(".image-preview img").attr("src", "");
+		$(".image-preview img").attr("src", "../images/image/upload_new_image_900x300.png");
 		$("#image-reset img").attr("style", "display:none");
 	});
 	

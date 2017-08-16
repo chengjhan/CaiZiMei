@@ -1,6 +1,6 @@
-var country_select = $("#id-input-ba-co-id");
-var state_select = $("#id-input-ba-st-id");
-var city_select = $("#id-input-ba-ci-id");
+var country_select = $("#ba_CountryBean");
+var state_select = $("#ba_StateBean");
+var city_select = $("#ba_CityBean");
 
 // 區域 select
 country_select.change(function(){
@@ -19,7 +19,6 @@ country_select.change(function(){
 
 // 城市 select
 state_select.change(function(){
-	var city_select = $("#id-input-ba-ci-id");
 	city_select.empty();
 	city_select.append("<option value='0'>請選擇城市</option>");
 	var ci_st_id = state_select.val();
@@ -33,7 +32,7 @@ state_select.change(function(){
 
 // validation
 $(document).ready(function(){
-	$("#add-form").validate({
+	$("form").validate({
 		rules: {
 			ba_name: {
 				required: true,
@@ -46,17 +45,27 @@ $(document).ready(function(){
 				digits: true,
 				maxlength: 20
 			},
+			ba_CountryBean: {
+				min: 1
+			},
+			ba_StateBean: {
+				min: 1
+			},
+			ba_CityBean: {
+				min: 1
+			},
 			ba_address: {
 				required: true,
 				maxlength: 20
 			},
 			ba_url: {
+				url: true,
 				maxlength: 100
 			}
 		},
 		messages: {
 			ba_name: {
-				required: "必填",
+				required: "必須填入資料",
 				maxlength: "必須小於20個字"
 			},
 			ba_eng_name: {
@@ -66,18 +75,28 @@ $(document).ready(function(){
 				digits: "必須為數字",
 				maxlength: "必須小於20個字"
 			},
+			ba_CountryBean: {
+				min: "必須選擇"
+			},
+			ba_StateBean: {
+				min: "必須選擇"
+			},
+			ba_CityBean: {
+				min: "必須選擇"
+			},
 			ba_address: {
-				required: "必填",
+				required: "必須填入資料",
 				maxlength: "必須小於20個字"
 			},
 			ba_url: {
+				url: "必須填入正確的網址格式",
 				maxlength: "必須小於100個字"
-			}
+			},
 		},
-		highlight: function(element) {
+		highlight: function(element){
 			$(element).addClass("form-error");
 		},
-		unhighlight: function(element) {
+		unhighlight: function(element){
 			$(element).removeClass("form-error");
 		},
 		submitHandler: function(form){

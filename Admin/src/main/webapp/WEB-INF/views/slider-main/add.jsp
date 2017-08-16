@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增主輪播圖片 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/image/add.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/image/form.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -45,17 +45,17 @@
 						
 						<table class="table">
 							<tr>
-								<td>名稱</td>
+								<td><form:label path="im_name">名稱</form:label></td>
 								<td><form:input path="im_name" cssClass="form-control" /></td>
 								<td><form:errors path="im_name" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>連結</td>
+								<td><form:label path="im_url">連結</form:label></td>
 								<td><form:input path="im_url" cssClass="form-control" /></td>
 								<td><form:errors path="im_url" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>排序</td>
+								<td><form:label path="im_rank">排序</form:label></td>
 								<td><form:input path="im_rank" cssClass="form-control" /></td>
 								<td><form:errors path="im_rank" cssClass="error" /></td>
 							</tr>
@@ -78,9 +78,19 @@
 	</div>
 	<!-- container end -->
 	
+	<script>
+		// 清除上傳圖片
+		$(document).on("click", "#image-reset", function(){
+			$("#image-uploader").val("");
+			$(".image-preview img").attr("src", "../images/image/upload_new_image_900x300.png");
+			$("#image-reset img").attr("style", "display:none");
+		});
+	</script>
+	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/image/add.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/image/form.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

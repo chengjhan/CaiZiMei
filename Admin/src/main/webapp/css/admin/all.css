@@ -1,3 +1,15 @@
 img {
 	width: 100%;
 }
+
+input:focus {
+	box-shadow: 0 0 !important;
+}
+
+.form-control {
+	border-radius: 0px !important;
+}
+
+.form-error {
+	border-color: red !important;
+}

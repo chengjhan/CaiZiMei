@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增區域 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/region/add.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/region/form.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->

@@ -5,3 +5,13 @@ tr td:first-child {
 tr td:nth-child(2) {
 	width: 400px;
 }
+
+#ba_localphone {
+	width: 75%;
+	float: left;
+}
+
+#ba_localphone_code {
+	width: 25%;
+	float: left;
+}

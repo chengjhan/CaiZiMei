@@ -43,7 +43,11 @@
 							</tr>
 							<tr>
 								<td><form:label path="ba_localphone">電話</form:label></td>
-								<td><form:input path="ba_localphone" cssClass="form-control" /></td>
+								<td>
+<%-- 									<form:input path="ba_localphone_code" cssClass="form-control" /> --%>
+									<input id="ba_localphone_code" class="form-control" name="ba_localphone_code" />
+									<form:input path="ba_localphone" cssClass="form-control" />
+								</td>
 								<td><form:errors path="ba_localphone" cssClass="error" /></td>
 							</tr>
 							<tr>

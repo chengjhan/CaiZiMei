@@ -1,7 +1,3 @@
-img {
-	width: 100%;
-}
-
 .image-upload {
 	margin-bottom: 10px;
 	overflow: auto;
@@ -28,20 +24,4 @@ tr td:first-child {
 
 tr td:nth-child(2) {
 	width: 675px;
-}
-
-.table td {
-	border: none !important;
-}
-
-input:focus {
-	box-shadow: 0 0 !important;
-}
-
-.form-control {
-	border-radius: 0px !important;
-}
-
-.form-error {
-	border-color: red !important;
 }

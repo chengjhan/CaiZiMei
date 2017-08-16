@@ -7,7 +7,6 @@
 <title>個人資訊 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/profile.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -29,19 +28,10 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
-					<!-- option -->
-<!-- 					<div class="btn-group option"> -->
-<!-- 						<div class="edit-button"> -->
-<%-- 							<a href="<%=request.getContextPath()%>/admin/edit" title="編輯"> --%>
-<%-- 								<img src="<%=request.getContextPath()%>/images/icon_edit.svg"> --%>
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-				
 					<!-- table -->
 					<table class="table table-bordered" style="width:500px">
 						<tr>
-							<td>姓名</td>
+							<td width="150px">姓名</td>
 							<td>${admin.ad_lastname} ${admin.ad_firstname}</td>
 						</tr>
 						<tr>

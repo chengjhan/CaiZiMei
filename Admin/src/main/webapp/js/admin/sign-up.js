@@ -1,6 +1,6 @@
 // 帳號重複驗證
-$("#id-input-ad-username").blur(function(){
-	var ad_username = $("#id-input-ad-username").val();
+$("#ad_username").blur(function(){
+	var ad_username = $(this).val();
 	var ad_username_span = $("#id-span-ad-username");
 	ad_username_span.empty();
 	$.get("../admin/username-repeat.ajax", {"ad_username": ad_username}, function(data){

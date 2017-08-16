@@ -1,15 +1,14 @@
-img {
-	width: 100%;
+/* list.jsp */
+.ad-status-switch {
+	width: 30px;
+	cursor: pointer;
 }
 
-input:focus {
-	box-shadow: 0 0 !important;
+/* form */
+form tr td:first-child {
+	width: 75px;
 }
 
-.form-control {
-	border-radius: 0px !important;
-}
-
-.form-error {
-	border-color: red !important;
+form tr td:nth-child(2) {
+	width: 400px;
 }

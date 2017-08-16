@@ -15,7 +15,7 @@ $(document).on("change", "#image-uploader", function(){
     $("#image-reset img").removeAttr("style");
 });
 
-//validation
+// validation
 $(document).ready(function(){
 	$("form").validate({
 		rules: {

@@ -7,7 +7,6 @@
 <title>變更密碼 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/change-password.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->

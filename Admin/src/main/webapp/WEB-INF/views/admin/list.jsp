@@ -8,7 +8,6 @@
 <title>管理員一覽 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/list.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -34,16 +33,16 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<td style="width:50px">編號</td>
+								<td width="50px">編號</td>
 <!-- 								<td>流水號</td> -->
 								<td>帳號</td>
 								<td>姓名</td>
-								<td style="width:150px">註冊時間</td>
-								<td style="width:75px">登入次數</td>
-								<td style="width:150px">最後登入IP</td>
-								<td style="width:150px">最後登入時間</td>
-								<td style="width:150px">狀態變更時間</td>
-								<td style="width:50px">開啟</td>
+								<td width="150px">註冊時間</td>
+								<td width="75px">登入次數</td>
+								<td width="150px">最後登入IP</td>
+								<td width="150px">最後登入時間</td>
+								<td width="150px">狀態變更時間</td>
+								<td width="50px">開啟</td>
 							</tr>
 						</thead>
 						<tbody>

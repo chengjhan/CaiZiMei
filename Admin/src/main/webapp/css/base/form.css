@@ -5,19 +5,3 @@ tr td:first-child {
 tr td:nth-child(2) {
 	width: 400px;
 }
-
-.table td {
-	border: none !important;
-}
-
-input:focus {
-	box-shadow: 0 0 !important;
-}
-
-.form-control {
-	border-radius: 0px !important;
-}
-
-.form-error {
-	border-color: red !important;
-}

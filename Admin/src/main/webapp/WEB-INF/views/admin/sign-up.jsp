@@ -7,7 +7,6 @@
 <title>註冊 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/sign-up.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -33,37 +32,37 @@
 					<form:form action="/Admin/admin/sign-up.do" method="post" modelAttribute="adminBean" cssClass="form-horizontal">
 						<table class="table">
 							<tr>
-								<td>帳號</td>
-								<td><form:input path="ad_username" id="id-input-ad-username" cssClass="form-control" /></td>
+								<td><form:label path="ad_username">帳號</form:label></td>
+								<td><form:input path="ad_username" cssClass="form-control" /></td>
 								<td>
 									<span id="id-span-ad-username" class="error"></span>
 									<form:errors path="ad_username" cssClass="error" />
 								</td>
 							</tr>
 							<tr>
-								<td>密碼</td>
-								<td><form:password path="ad_password" id="id-input-ad-password" cssClass="form-control" /></td>
+								<td><form:label path="ad_password">密碼</form:label></td>
+								<td><form:password path="ad_password" cssClass="form-control" /></td>
 								<td><form:errors path="ad_password" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>確認密碼</td>
+								<td><label for="id-input-ad-password-again">確認密碼</label></td>
 								<td><input type="password" id="id-input-ad-password-again" class="form-control" name="ad_password_again"></td>
 								<td></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td>姓氏</td>
-								<td><form:input path="ad_lastname" id="id-input-ad-lastname" cssClass="form-control" /></td>
+								<td><form:label path="ad_lastname">姓氏</form:label></td>
+								<td><form:input path="ad_lastname" cssClass="form-control" /></td>
 								<td><form:errors path="ad_lastname" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>名字</td>
-								<td><form:input path="ad_firstname" id="id-input-ad-firstname" cssClass="form-control" /></td>
+								<td><form:label path="ad_firstname">名字</form:label></td>
+								<td><form:input path="ad_firstname" cssClass="form-control" /></td>
 								<td><form:errors path="ad_firstname" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>信箱</td>
-								<td><form:input path="ad_email" id="id-input-ad-email" cssClass="form-control" /></td>
+								<td><form:label path="ad_email">信箱</form:label></td>
+								<td><form:input path="ad_email" cssClass="form-control" /></td>
 								<td><form:errors path="ad_email" cssClass="error" /></td>
 							</tr>
 							<tr>

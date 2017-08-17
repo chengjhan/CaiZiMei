@@ -9,3 +9,85 @@ $("#ad_username").blur(function(){
 		}
 	});
 });
+
+//validation
+$(document).ready(function(){
+	
+	// regex
+	$.validator.addMethod("pattern", function(value, element, regex) {
+		return regex.test(value);
+	}, "格式錯誤");
+	
+	$("form").validate({
+		rules: {
+			ad_username: {
+				required: true,
+				pattern: /^[a-zA-Z0-9_]+$/,
+				minlength: 3,
+				maxlength: 20
+			},
+			ad_password: {
+				required: true,
+				pattern: /^[\\S]+$/,
+				minlength: 8,
+				maxlength: 32
+			},
+			ad_password_again: {
+				required: true,
+				pattern: /^[\\S]+$/,
+				minlength: 8,
+				maxlength: 32
+			},
+			ad_lastname: {
+				maxlength: 20
+			},
+			ad_firstname: {
+				maxlength: 20
+			},
+			ad_email: {
+				required: true,
+				email: true,
+				maxlength: 50
+			},
+		},
+		messages: {
+			ad_username: {
+				required: "這裡必須填入資料",
+				pattern: "帳號只接受英文大小寫、數字及底線符號",
+				minlength: "帳號必須大於3個字",
+				maxlength: "帳號必須小於20個字"
+			},
+			ad_password: {
+				required: "這裡必須填入資料",
+				pattern: "密碼必須包含英文及數字",
+				minlength: "密碼必須大於8個字",
+				maxlength: "密碼必須小於32個字"
+			},
+			ad_password_again: {
+				required: "這裡必須填入資料",
+				minlength: "密碼必須大於8個字",
+				maxlength: "密碼必須小於32個字"
+			},
+			ad_lastname: {
+				maxlength: "姓氏必須小於20個字"
+			},
+			ad_firstname: {
+				maxlength: "名字必須小於20個字"
+			},
+			ad_email: {
+				required: "這裡必須填入資料",
+				email: "必須填入正確的信箱格式",
+				maxlength: "信箱必須小於50個字"
+			},
+		},
+		highlight: function(element){
+			$(element).addClass("form-error");
+		},
+		unhighlight: function(element){
+			$(element).removeClass("form-error");
+		},
+		submitHandler: function(form){
+			form.submit();
+	    }
+	});
+});

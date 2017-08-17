@@ -45,8 +45,8 @@
 								<td><form:errors path="ad_password" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td><label for="id-input-ad-password-again">確認密碼</label></td>
-								<td><input type="password" id="id-input-ad-password-again" class="form-control" name="ad_password_again"></td>
+								<td><label for="ad_password_again">確認密碼</label></td>
+								<td><input type="password" id="ad_password_again" class="form-control" name="ad_password_again"></td>
 								<td></td>
 								<td></td>
 							</tr>
@@ -88,6 +88,7 @@
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/admin/sign-up.js" type="text/javascript" charset="utf-8"></script>
 </body>

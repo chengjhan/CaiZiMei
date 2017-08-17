@@ -6,12 +6,12 @@ tr td:nth-child(2) {
 	width: 400px;
 }
 
-#ba_localphone {
+#ba_tel {
 	width: 75%;
 	float: left;
 }
 
-#ba_localphone_code {
+#ba_tel_code {
 	width: 25%;
 	float: left;
 }

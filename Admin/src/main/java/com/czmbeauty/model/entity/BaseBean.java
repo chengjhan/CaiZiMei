@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseBean.java
  * Author: 詹晟
- * Date: 2017/8/15
+ * Date: 2017/8/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,9 +46,13 @@ public class BaseBean {
 	@Size(max = 50)
 	private String ba_eng_name;
 	@Expose
+	@Size(max = 5)
+	@Pattern(regexp = "^$|[0-9]+")
+	private String ba_tel_code;
+	@Expose
 	@Size(max = 20)
 	@Pattern(regexp = "^$|[0-9]+")
-	private String ba_localphone;
+	private String ba_tel;
 	@ManyToOne
 	@JoinColumn(name = "ba_co_id")
 	private CountryBean ba_CountryBean;
@@ -111,12 +115,20 @@ public class BaseBean {
 		this.ba_eng_name = ba_eng_name;
 	}
 
-	public String getBa_localphone() {
-		return ba_localphone;
+	public String getBa_tel_code() {
+		return ba_tel_code;
 	}
 
-	public void setBa_localphone(String ba_localphone) {
-		this.ba_localphone = ba_localphone;
+	public void setBa_tel_code(String ba_tel_code) {
+		this.ba_tel_code = ba_tel_code;
+	}
+
+	public String getBa_tel() {
+		return ba_tel;
+	}
+
+	public void setBa_tel(String ba_tel) {
+		this.ba_tel = ba_tel;
 	}
 
 	public CountryBean getBa_CountryBean() {

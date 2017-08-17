@@ -76,7 +76,7 @@
 <%-- 									<td>${bean.ba_id}</td> --%>
 									<td>${bean.ba_name}</td>
 									<td>${bean.ba_eng_name}</td>
-									<td>${bean.ba_localphone}</td>
+									<td>${bean.ba_tel_code}-${bean.ba_tel}</td>
 <%-- 									<td>${bean.ba_CountryBean.co_name}</td> --%>
 <%-- 									<td>${bean.ba_StateBean.st_name}</td> --%>
 									<td>${bean.ba_CityBean.ci_name}</td>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/13
+ * Date: 2017/8/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -154,7 +154,8 @@ public class BaseDaoImpl implements BaseDao {
 
 		baseBean.setBa_name(newBaseBean.getBa_name());
 		baseBean.setBa_eng_name(newBaseBean.getBa_eng_name());
-		baseBean.setBa_localphone(newBaseBean.getBa_localphone());
+		baseBean.setBa_tel_code(newBaseBean.getBa_tel_code());
+		baseBean.setBa_tel(newBaseBean.getBa_tel());
 		baseBean.setBa_CountryBean(newBaseBean.getBa_CountryBean());
 		baseBean.setBa_StateBean(newBaseBean.getBa_StateBean());
 		baseBean.setBa_CityBean(newBaseBean.getBa_CityBean());

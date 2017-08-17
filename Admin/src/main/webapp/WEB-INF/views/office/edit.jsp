@@ -37,18 +37,29 @@
 							</tr>
 							<tr>
 								<td><form:label path="ba_name">名稱</form:label></td>
-								<td><form:input path="ba_name" cssClass="form-control" /></td>
+								<td>
+									<form:input path="ba_name" cssClass="form-control" />
+									<div class="error"></div>
+								</td>
 								<td><form:errors path="ba_name" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="ba_eng_name">英文名稱</form:label></td>
-								<td><form:input path="ba_eng_name" cssClass="form-control" /></td>
+								<td>
+									<form:input path="ba_eng_name" cssClass="form-control" />
+									<div class="error"></div>
+								</td>
 								<td><form:errors path="ba_eng_name" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="ba_localphone">電話</form:label></td>
-								<td><form:input path="ba_localphone" cssClass="form-control" /></td>
-								<td><form:errors path="ba_localphone" cssClass="error" /></td>
+								<td><form:label path="ba_tel_code">電話</form:label></td>
+								<td>
+									<form:input path="ba_tel_code" cssClass="form-control" />
+									<form:input path="ba_tel" cssClass="form-control" />
+									<div id="ba_tel_code_error" class="error"></div>
+									<div id="ba_tel_error" class="error"></div>
+								</td>
+								<td><form:errors path="ba_name" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="ba_CountryBean">國家</form:label></td>
@@ -57,6 +68,7 @@
 										<form:option value="0" label="請選擇國家" />
 										<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 									</form:select>
+									<div class="error"></div>
 								</td>
 							</tr>
 							<tr>
@@ -66,6 +78,7 @@
 										<form:option value="0" label="請選擇區域" />
 										<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
 									</form:select>
+									<div class="error"></div>
 								</td>
 							</tr>
 							<tr>
@@ -75,16 +88,23 @@
 										<form:option value="0" label="請選擇城市" />
 										<form:options items="${cityList}" itemValue="ci_id" itemLabel="ci_name" />
 									</form:select>
+									<div class="error"></div>
 								</td>
 							</tr>
 							<tr>
 								<td><form:label path="ba_address">地址</form:label></td>
-								<td><form:input path="ba_address" cssClass="form-control" /></td>
+								<td>
+									<form:input path="ba_address" cssClass="form-control" />
+									<div class="error"></div>
+								</td>
 								<td><form:errors path="ba_address" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="ba_url">網址</form:label></td>
-								<td><form:input path="ba_url" cssClass="form-control" /></td>
+								<td>
+									<form:input path="ba_url" cssClass="form-control" />
+									<div class="error"></div>
+								</td>
 								<td><form:errors path="ba_url" cssClass="error" /></td>
 							</tr>
 							<tr>

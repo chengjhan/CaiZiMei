@@ -41,7 +41,11 @@ $(document).ready(function(){
 			ba_eng_name: {
 				maxlength: 50
 			},
-			ba_localphone: {
+			ba_tel_code: {
+				digits: true,
+				maxlength: 5
+			},
+			ba_tel: {
 				digits: true,
 				maxlength: 20
 			},
@@ -65,32 +69,36 @@ $(document).ready(function(){
 		},
 		messages: {
 			ba_name: {
-				required: "必須填入資料",
-				maxlength: "必須小於20個字"
+				required: "這裡必須填入資料",
+				maxlength: "名稱必須小於20個字"
 			},
 			ba_eng_name: {
-				maxlength: "必須小於50個字"
+				maxlength: "英文名稱必須小於50個字"
 			},
-			ba_localphone: {
-				digits: "必須為數字",
-				maxlength: "必須小於20個字"
+			ba_tel_code: {
+				digits: "區碼必須為數字",
+				maxlength: "區碼必須小於5個字"
+			},
+			ba_tel: {
+				digits: "電話必須為數字",
+				maxlength: "電話必須小於20個字"
 			},
 			ba_CountryBean: {
-				min: "必須選擇"
+				min: "這裡必須選擇"
 			},
 			ba_StateBean: {
-				min: "必須選擇"
+				min: "這裡必須選擇"
 			},
 			ba_CityBean: {
-				min: "必須選擇"
+				min: "這裡必須選擇"
 			},
 			ba_address: {
-				required: "必須填入資料",
-				maxlength: "必須小於20個字"
+				required: "這裡必須填入資料",
+				maxlength: "地址必須小於20個字"
 			},
 			ba_url: {
 				url: "必須填入正確的網址格式",
-				maxlength: "必須小於100個字"
+				maxlength: "網址必須小於100個字"
 			},
 		},
 		highlight: function(element){
@@ -98,6 +106,15 @@ $(document).ready(function(){
 		},
 		unhighlight: function(element){
 			$(element).removeClass("form-error");
+		},
+		errorPlacement: function(error, element){
+			if(element.attr("name") == "ba_tel_code"){
+				error.appendTo(element.closest("td").find("#ba_tel_code_error"));
+			}else if(element.attr("name") == "ba_tel"){
+				error.appendTo(element.closest("td").find("#ba_tel_error"));
+			}else{
+				$(element).closest("td").find(".error").append(error);
+			}
 		},
 		submitHandler: function(form){
 			form.submit();

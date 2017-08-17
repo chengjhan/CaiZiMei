@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminBean.java
  * Author: 詹晟
- * Date: 2017/8/2
+ * Date: 2017/8/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -42,7 +42,7 @@ public class AdminBean {
 	@Expose
 	@Pattern(regexp = "^[a-zA-Z0-9_]{3,20}$")
 	private String ad_username;
-	@Pattern(regexp = "^[\\S]{8,32}$")
+	@Pattern(regexp = "^(?=.*([a-z]|[A-Z]))(?=.*[0-9])(?=\\S+$){8,32}$")
 	private String ad_password;
 	private String ad_salt;
 	@Size(max = 20)

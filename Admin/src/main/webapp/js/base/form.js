@@ -32,6 +32,12 @@ state_select.change(function(){
 
 // validation
 $(document).ready(function(){
+	
+	// regex
+	$.validator.addMethod("pattern", function(value, element, regex){
+		return regex.test(value);
+	});
+	
 	$("form").validate({
 		rules: {
 			ba_name: {
@@ -39,6 +45,7 @@ $(document).ready(function(){
 				maxlength: 20
 			},
 			ba_eng_name: {
+				pattern: /^$|^[a-zA-Z0-9 ,.'-]+$/,
 				maxlength: 50
 			},
 			ba_tel_code: {
@@ -73,6 +80,7 @@ $(document).ready(function(){
 				maxlength: "名稱必須小於20個字"
 			},
 			ba_eng_name: {
+				pattern: "英文名稱只接受英文大小寫、數字、一般符號及空白",
 				maxlength: "英文名稱必須小於50個字"
 			},
 			ba_tel_code: {

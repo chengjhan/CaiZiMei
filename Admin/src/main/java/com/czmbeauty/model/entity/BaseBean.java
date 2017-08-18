@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseBean.java
  * Author: 詹晟
- * Date: 2017/8/17
+ * Date: 2017/8/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -44,14 +44,15 @@ public class BaseBean {
 	private String ba_name;
 	@Expose
 	@Size(max = 50)
+	@Pattern(regexp = "^$|^[a-zA-Z0-9 ,.'-]+$")
 	private String ba_eng_name;
 	@Expose
 	@Size(max = 5)
-	@Pattern(regexp = "^$|[0-9]+")
+	@Pattern(regexp = "^$|^[0-9]+$")
 	private String ba_tel_code;
 	@Expose
 	@Size(max = 20)
-	@Pattern(regexp = "^$|[0-9]+")
+	@Pattern(regexp = "^$|^[0-9]+$")
 	private String ba_tel;
 	@ManyToOne
 	@JoinColumn(name = "ba_co_id")

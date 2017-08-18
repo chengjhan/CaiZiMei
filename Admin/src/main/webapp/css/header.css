@@ -8,3 +8,15 @@ nav .logo {
 	margin-right: 5px;
 	float: left;
 }
+
+.navbar-inverse .navbar-brand {
+	color: white !important;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #dddddd !important;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+	color: white !important;
+}

@@ -18,6 +18,10 @@ $(document).ready(function(){
 		return regex.test(value);
 	});
 	
+	$.validator.addMethod("repeat", function(value, element, regex){
+		return regex.test(value);
+	});
+	
 	$("form").validate({
 		rules: {
 			ad_username: {
@@ -33,7 +37,8 @@ $(document).ready(function(){
 				maxlength: 32
 			},
 			ad_password_again: {
-				required: true
+				required: true,
+				equalTo : "#ad_password"
 			},
 			ad_lastname: {
 				maxlength: 20
@@ -62,6 +67,7 @@ $(document).ready(function(){
 			},
 			ad_password_again: {
 				required: "這裡必須填入資料",
+				equalTo: "密碼重複錯誤"
 			},
 			ad_lastname: {
 				maxlength: "姓氏必須小於20個字"

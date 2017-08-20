@@ -33,15 +33,15 @@ $(document).ready(function(){
 		},
 		messages: {
 			im_name: {
-				required: "必須填入資料",
-				maxlength: "必須小於20個字"
+				required: "這裡必須填入資料",
+				maxlength: "名稱必須小於20個字"
 			},
 			im_url: {
-				url: "必須填入正確的網址格式",
-				maxlength: "必須小於100個字"
+				url: "網址必須填入正確的格式",
+				maxlength: "網址必須小於100個字"
 			},
 			im_rank: {
-				max: "必須填入小於99的數字",
+				max: "排序必須填入小於99的數字",
 			}
 		},
 		highlight: function(element){

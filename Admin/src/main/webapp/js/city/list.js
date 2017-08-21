@@ -1,5 +1,5 @@
-var country_select = $("#id-input-ci-co-id");
-var state_select = $("#id-input-ci-st-id");
+var country_select = $("#ci_CountryBean");
+var state_select = $("#ci_StateBean");
 
 // 區域 select
 country_select.change(function(){

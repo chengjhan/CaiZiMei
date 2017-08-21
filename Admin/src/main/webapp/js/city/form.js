@@ -1,5 +1,5 @@
-var country_select = $("#id-input-ci-co-id");
-var state_select = $("#id-input-ci-st-id");
+var country_select = $("#ci_CountryBean");
+var state_select = $("#ci_StateBean");
 
 // 區域 select
 country_select.change(function(){
@@ -11,5 +11,56 @@ country_select.change(function(){
 			var stateList_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
 			state_select.append(stateList_option);
 		});
+	});
+});
+
+// validation
+$(document).ready(function(){
+	
+	// regex
+	$.validator.addMethod("pattern", function(value, element, regex){
+		return regex.test(value);
+	});
+	
+	$("form").validate({
+		rules: {
+			ci_CountryBean: {
+				min: 1
+			},
+			ci_StateBean: {
+				min: 1
+			},
+			ci_name: {
+				required: true,
+				maxlength: 20
+			},
+			ci_rank: {
+				max: 99
+			},
+		},
+		messages: {
+			ci_CountryBean: {
+				min: "這裡必須選擇"
+			},
+			ci_StateBean: {
+				min: "這裡必須選擇"
+			},
+			ci_name: {
+				required: "這裡必須填入資料",
+				maxlength: "名稱必須小於20個字"
+			},
+			ci_rank: {
+				max: "排序必須填入小於99的數字",
+			},
+		},
+		highlight: function(element){
+			$(element).addClass("form-error");
+		},
+		unhighlight: function(element){
+			$(element).removeClass("form-error");
+		},
+		submitHandler: function(form){
+			form.submit();
+	    }
 	});
 });

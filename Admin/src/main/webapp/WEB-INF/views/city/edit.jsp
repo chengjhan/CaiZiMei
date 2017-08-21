@@ -36,30 +36,30 @@
 								<td><form:hidden path="ci_id" /></td>
 							</tr>
 							<tr>
-								<td>國家</td>
+								<td><form:label path="ci_CountryBean">國家</form:label></td>
 								<td>
-									<form:select path="ci_CountryBean" id="id-input-ci-co-id" cssClass="form-control">
+									<form:select path="ci_CountryBean" cssClass="form-control">
 										<form:option value="0" label="請選擇國家" />
 										<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 									</form:select>
 								</td>
 							</tr>
 							<tr>
-								<td>區域</td>
+								<td><form:label path="ci_StateBean">區域</form:label></td>
 								<td>
-									<form:select path="ci_StateBean" id="id-input-ci-st-id" cssClass="form-control">
+									<form:select path="ci_StateBean" cssClass="form-control">
 										<form:option value="0" label="請選擇區域" />
 										<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
 									</form:select>
 								</td>
 							</tr>
 							<tr>
-								<td>名稱</td>
+								<td><form:label path="ci_name">名稱</form:label></td>
 								<td><form:input path="ci_name" cssClass="form-control" /></td>
 								<td><form:errors path="ci_name" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>排序</td>
+								<td><form:label path="ci_rank">排序</form:label></td>
 								<td><form:input path="ci_rank" cssClass="form-control" /></td>
 								<td><form:errors path="ci_rank" cssClass="error" /></td>
 							</tr>
@@ -86,6 +86,7 @@
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/city/form.js" type="text/javascript" charset="utf-8"></script>
 </body>

@@ -32,18 +32,18 @@
 					<form:form action="/Admin/admin/edit.do" method="post" modelAttribute="admin" cssClass="form-horizontal">
 						<table class="table">
 							<tr>
-								<td>姓氏</td>
-								<td><form:input id="id-input-ad-lastname" path="ad_lastname" cssClass="form-control" /></td>
+								<td><form:label path="ad_lastname">姓氏</form:label></td>
+								<td><form:input path="ad_lastname" cssClass="form-control" /></td>
 								<td><form:errors path="ad_lastname" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>名字</td>
-								<td><form:input id="id-input-ad-firstname" path="ad_firstname" cssClass="form-control" /></td>
+								<td><form:label path="ad_firstname">名字</form:label></td>
+								<td><form:input path="ad_firstname" cssClass="form-control" /></td>
 								<td><form:errors path="ad_firstname" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>信箱</td>
-								<td><form:input id="id-input-ad-email" path="ad_email" cssClass="form-control" /></td>
+								<td><form:label path="ad_email">信箱</form:label></td>
+								<td><form:input path="ad_email" cssClass="form-control" /></td>
 								<td><form:errors path="ad_email" cssClass="error" /></td>
 							</tr>
 							<tr>
@@ -69,6 +69,8 @@
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/admin/form.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

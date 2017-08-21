@@ -32,18 +32,18 @@
 					<form action="<c:url value='/admin/change-password.do' />" method="post" class="form-horizontal">
 						<table class="table">
 							<tr>
-								<td>舊密碼</td>
-								<td><input type="password" id="id-input-ad-password-old" class="form-control" name="ad_password_old"></td>
+								<td><label for="ad_password_old">舊密碼</label></td>
+								<td><input type="password" id="ad_password_old" class="form-control" name="ad_password_old"></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td>新密碼</td>
-								<td><input type="password" id="id-input-ad-password-new" class="form-control" name="ad_password_new"></td>
+								<td><label for="ad_password_new">新密碼</label></td>
+								<td><input type="password" id="ad_password_new" class="form-control" name="ad_password_new"></td>
 								<td></td>
 							</tr>
 							<tr>
-								<td>新密碼</td>
-								<td><input type="password" id="id-input-ad-password-new-again" class="form-control" name="ad_password_new_again"></td>
+								<td><label for="ad_password_new_again">新密碼</label></td>
+								<td><input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again"></td>
 								<td></td>
 							</tr>
 							<tr>
@@ -70,6 +70,8 @@
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/admin/form.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

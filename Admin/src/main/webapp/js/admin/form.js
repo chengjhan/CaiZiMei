@@ -18,6 +18,7 @@ $(document).ready(function(){
 		return regex.test(value);
 	});
 	
+	// repeat
 	$.validator.addMethod("repeat", function(value, element, regex){
 		return regex.test(value);
 	});
@@ -51,6 +52,16 @@ $(document).ready(function(){
 				email: true,
 				maxlength: 50
 			},
+			ad_password_new: {
+				required: true,
+				pattern: /^(?=.*([a-z]|[A-Z]))(?=.*[0-9])(?=\S+$).+$/,
+				minlength: 8,
+				maxlength: 32
+			},
+			ad_password_new_again: {
+				required: true,
+				equalTo : "#ad_password_new"
+			},
 		},
 		messages: {
 			ad_username: {
@@ -79,6 +90,16 @@ $(document).ready(function(){
 				required: "這裡必須填入資料",
 				email: "信箱必須填入正確的格式",
 				maxlength: "信箱必須小於50個字"
+			},
+			ad_password_new: {
+				required: "這裡必須填入資料",
+				pattern: "密碼必須包含英文及數字，不可填入空白",
+				minlength: "密碼必須大於8個字",
+				maxlength: "密碼必須小於32個字"
+			},
+			ad_password_new_again: {
+				required: "這裡必須填入資料",
+				equalTo: "密碼重複錯誤"
 			},
 		},
 		highlight: function(element){

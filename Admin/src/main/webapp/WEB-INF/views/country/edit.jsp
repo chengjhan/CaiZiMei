@@ -36,22 +36,22 @@
 								<td><form:hidden path="co_id" /></td>
 							</tr>
 							<tr>
-								<td>代碼</td>
+								<td><form:label path="co_iso">代碼</form:label></td>
 								<td><form:input path="co_iso" cssClass="form-control" /></td>
 								<td><form:errors path="co_iso" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>名稱</td>
+								<td><form:label path="co_name">名稱</form:label></td>
 								<td><form:input path="co_name" cssClass="form-control" /></td>
 								<td><form:errors path="co_name" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>電話碼</td>
+								<td><form:label path="co_phonecode">電話碼</form:label></td>
 								<td><form:input path="co_phonecode" cssClass="form-control" /></td>
 								<td><form:errors path="co_phonecode" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>排序</td>
+								<td><form:label path="co_rank">排序</form:label></td>
 								<td><form:input path="co_rank" cssClass="form-control" /></td>
 								<td><form:errors path="co_rank" cssClass="error" /></td>
 							</tr>
@@ -78,6 +78,8 @@
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/country/form.js"></script>
 </body>
 </html>

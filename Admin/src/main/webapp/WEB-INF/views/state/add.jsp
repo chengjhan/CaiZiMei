@@ -32,7 +32,7 @@
 					<form:form action="/Admin/state/add.do" method="post" modelAttribute="stateBean">
 						<table class="table">
 							<tr>
-								<td>國家</td>
+								<td><form:label path="st_CountryBean">國家</form:label></td>
 								<td>
 									<form:select path="st_CountryBean" cssClass="form-control">
 										<form:option value="0" label="請選擇國家" />
@@ -41,12 +41,12 @@
 								</td>
 							</tr>
 							<tr>
-								<td>名稱</td>
+								<td><form:label path="st_name">名稱</form:label></td>
 								<td><form:input path="st_name" cssClass="form-control" /></td>
 								<td><form:errors path="st_name" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td>排序</td>
+								<td><form:label path="st_rank">排序</form:label></td>
 								<td><form:input path="st_rank" cssClass="form-control" /></td>
 								<td><form:errors path="st_rank" cssClass="error" /></td>
 							</tr>
@@ -73,6 +73,8 @@
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/state/form.js"></script>
 </body>
 </html>

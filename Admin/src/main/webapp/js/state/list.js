@@ -1,4 +1,4 @@
-var country_select = $("#id-input-st-co-id");
+var country_select = $("#st_CountryBean");
 
 // 區域 table
 country_select.change(function(){

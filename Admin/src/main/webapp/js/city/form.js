@@ -16,12 +16,6 @@ country_select.change(function(){
 
 // validation
 $(document).ready(function(){
-	
-	// regex
-	$.validator.addMethod("pattern", function(value, element, regex){
-		return regex.test(value);
-	});
-	
 	$("form").validate({
 		rules: {
 			ci_CountryBean: {

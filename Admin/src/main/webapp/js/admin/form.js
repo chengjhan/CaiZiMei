@@ -52,6 +52,10 @@ $(document).ready(function(){
 				email: true,
 				maxlength: 50
 			},
+			// change-password.jsp
+			ad_password_old: {
+				required: true
+			},
 			ad_password_new: {
 				required: true,
 				pattern: /^(?=.*([a-z]|[A-Z]))(?=.*[0-9])(?=\S+$).+$/,
@@ -90,6 +94,10 @@ $(document).ready(function(){
 				required: "這裡必須填入資料",
 				email: "信箱必須填入正確的格式",
 				maxlength: "信箱必須小於50個字"
+			},
+			// change-password.jsp
+			ad_password_old: {
+				required: "這裡必須填入資料"
 			},
 			ad_password_new: {
 				required: "這裡必須填入資料",

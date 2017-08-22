@@ -105,7 +105,7 @@ $(document).ready(function(){
 				maxlength: "地址必須小於20個字"
 			},
 			ba_url: {
-				url: "必須填入正確的網址格式",
+				url: "網址必須填入正確的格式",
 				maxlength: "網址必須小於100個字"
 			},
 		},

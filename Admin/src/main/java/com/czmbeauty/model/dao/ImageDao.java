@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageDao.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/8/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,15 +21,15 @@ import com.czmbeauty.model.entity.ImageBean;
 public interface ImageDao {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectAllImagePagination(String,
+	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectPagination(String,
 	 *      int, int)
 	 */
-	List<ImageBean> selectAllImagePagination(String hql, int first, int max);
+	List<ImageBean> selectPagination(String hql, int first, int max);
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectAllImageCount(CategoryBean)
+	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectCountByIm_Ca(CategoryBean)
 	 */
-	int selectAllImageCount(CategoryBean im_CategoryBean);
+	int selectCountByIm_Ca(CategoryBean im_CategoryBean);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectByIm_id(Integer)

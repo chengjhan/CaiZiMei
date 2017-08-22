@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/8/14
+ * Date: 2017/8/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -146,7 +146,7 @@ public class BaseController {
 	 * @return int
 	 */
 	public int getPageCount(CategoryBean ba_CategoryBean) {
-		int totalRowCount = baseService.selectAllBaseCount(ba_CategoryBean);
+		int totalRowCount = baseService.selectCountByBa_Ca(ba_CategoryBean);
 		int pageCount = 0;
 		if (totalRowCount % BASE_PAGE_ROW_COUNT == 0) {
 			pageCount = totalRowCount / BASE_PAGE_ROW_COUNT;
@@ -187,7 +187,7 @@ public class BaseController {
 
 			// 取得當前頁碼的辦事處 List，放入 table
 			model.addAttribute(BASE_LIST,
-					baseService.selectAllBasePagination(HQL_SELECT_ALL_OFFICE, first, BASE_PAGE_ROW_COUNT));
+					baseService.selectPagination(HQL_SELECT_ALL_OFFICE, first, BASE_PAGE_ROW_COUNT));
 
 			ba_CategoryBean.setCa_id(OFFICE_CODE);
 
@@ -201,7 +201,7 @@ public class BaseController {
 
 			// 取得當前頁碼的加盟店 List，放入 table
 			model.addAttribute(BASE_LIST,
-					baseService.selectAllBasePagination(HQL_SELECT_ALL_FRANCHISEE, first, BASE_PAGE_ROW_COUNT));
+					baseService.selectPagination(HQL_SELECT_ALL_FRANCHISEE, first, BASE_PAGE_ROW_COUNT));
 
 			ba_CategoryBean.setCa_id(FRANCHISEE_CODE);
 
@@ -215,7 +215,7 @@ public class BaseController {
 
 			// 取得當前頁碼的診所 List，放入 table
 			model.addAttribute(BASE_LIST,
-					baseService.selectAllBasePagination(HQL_SELECT_ALL_CLINIC, first, BASE_PAGE_ROW_COUNT));
+					baseService.selectPagination(HQL_SELECT_ALL_CLINIC, first, BASE_PAGE_ROW_COUNT));
 
 			ba_CategoryBean.setCa_id(CLINIC_CODE);
 

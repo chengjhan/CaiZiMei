@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/17
+ * Date: 2017/8/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -65,7 +65,7 @@ public class BaseDaoImpl implements BaseDao {
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<BaseBean> selectAllBasePagination(String hql, int first, int max) {
+	public List<BaseBean> selectPagination(String hql, int first, int max) {
 
 		// outer method
 		List<BaseBean> result = (List<BaseBean>) hibernateTemplate.execute(
@@ -91,7 +91,7 @@ public class BaseDaoImpl implements BaseDao {
 	 * @return int
 	 */
 	@Override
-	public int selectAllBaseCount(CategoryBean ba_CategoryBean) {
+	public int selectCountByBa_Ca(CategoryBean ba_CategoryBean) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(BaseBean.class);
 

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseService.java
  * Author: 詹晟
- * Date: 2017/8/11
+ * Date: 2017/8/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -26,15 +26,15 @@ public interface BaseService {
 	List<BaseBean> selectAllClinic();
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllBasePagination(String,
+	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectPagination(String,
 	 *      int, int)
 	 */
-	List<BaseBean> selectAllBasePagination(String hql, int first, int max);
+	List<BaseBean> selectPagination(String hql, int first, int max);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectAllBaseCount(CategoryBean)
+	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectCountByBa_Ca(CategoryBean)
 	 */
-	int selectAllBaseCount(CategoryBean ba_CategoryBean);
+	int selectCountByBa_Ca(CategoryBean ba_CategoryBean);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectOpenClinic()

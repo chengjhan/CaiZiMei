@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageService.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/8/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,15 +21,15 @@ import com.czmbeauty.model.entity.ImageBean;
 public interface ImageService {
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectAllImagePagination(String,
+	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectPagination(String,
 	 *      int, int)
 	 */
-	List<ImageBean> selectAllImagePagination(String hql, int first, int max);
+	List<ImageBean> selectPagination(String hql, int first, int max);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectAllImageCount(CategoryBean)
+	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectCountByIm_Ca(CategoryBean)
 	 */
-	int selectAllImageCount(CategoryBean im_CategoryBean);
+	int selectCountByIm_Ca(CategoryBean im_CategoryBean);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectByIm_id(Integer)

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/8/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,9 +46,9 @@ public class ImageServiceImpl implements ImageService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<ImageBean> selectAllImagePagination(String hql, int first, int max) {
+	public List<ImageBean> selectPagination(String hql, int first, int max) {
 
-		return imageDao.selectAllImagePagination(hql, first, max);
+		return imageDao.selectPagination(hql, first, max);
 	}
 
 	/**
@@ -60,9 +60,9 @@ public class ImageServiceImpl implements ImageService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public int selectAllImageCount(CategoryBean im_CategoryBean) {
+	public int selectCountByIm_Ca(CategoryBean im_CategoryBean) {
 
-		return imageDao.selectAllImageCount(im_CategoryBean);
+		return imageDao.selectCountByIm_Ca(im_CategoryBean);
 	}
 
 	/**

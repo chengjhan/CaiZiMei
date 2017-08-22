@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/11
+ * Date: 2017/8/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -66,9 +66,9 @@ public class BaseServiceImpl implements BaseService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<BaseBean> selectAllBasePagination(String hql, int first, int max) {
+	public List<BaseBean> selectPagination(String hql, int first, int max) {
 
-		return baseDao.selectAllBasePagination(hql, first, max);
+		return baseDao.selectPagination(hql, first, max);
 	}
 
 	/**
@@ -80,9 +80,9 @@ public class BaseServiceImpl implements BaseService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public int selectAllBaseCount(CategoryBean ba_CategoryBean) {
+	public int selectCountByBa_Ca(CategoryBean ba_CategoryBean) {
 
-		return baseDao.selectAllBaseCount(ba_CategoryBean);
+		return baseDao.selectCountByBa_Ca(ba_CategoryBean);
 	}
 
 	/**

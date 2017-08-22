@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/8/13
+ * Date: 2017/8/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -99,7 +99,7 @@ public class ImageController {
 	 * @return int
 	 */
 	public int getPageCount(CategoryBean im_CategoryBean) {
-		int totalRowCount = imageService.selectAllImageCount(im_CategoryBean);
+		int totalRowCount = imageService.selectCountByIm_Ca(im_CategoryBean);
 		int pageCount = 0;
 		if (totalRowCount % IMAGE_PAGE_ROW_COUNT == 0) {
 			pageCount = totalRowCount / IMAGE_PAGE_ROW_COUNT;
@@ -156,7 +156,7 @@ public class ImageController {
 
 			// 取得當前頁碼的圖片 List，放入 table
 			model.addAttribute(IMAGE_LIST,
-					imageService.selectAllImagePagination(HQL_SELECT_ALL_SLIDER_MAIN, first, IMAGE_PAGE_ROW_COUNT));
+					imageService.selectPagination(HQL_SELECT_ALL_SLIDER_MAIN, first, IMAGE_PAGE_ROW_COUNT));
 
 			im_CategoryBean.setCa_id(SLIDER_MAIN_CODE);
 

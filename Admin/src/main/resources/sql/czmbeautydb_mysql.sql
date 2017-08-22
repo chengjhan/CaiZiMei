@@ -114,6 +114,17 @@ create table image (
 	foreign key (im_ca_id) references category (ca_id)
 );
 
+create table youtube (
+	yo_id					int auto_increment not null,
+	yo_ca_id				int not null,
+	yo_name					nvarchar(20),
+	yo_tag					varchar(500) not null,
+	yo_rank					tinyint not null,
+	yo_update_time			datetime not null,
+	primary key (yo_id),
+	foreign key (yo_ca_id) references category (ca_id)
+);
+
 -- ALTER
 alter table state auto_increment = 11;
 alter table city auto_increment = 101;

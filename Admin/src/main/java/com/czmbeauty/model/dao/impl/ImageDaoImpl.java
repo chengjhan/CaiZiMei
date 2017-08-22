@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/8/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -50,7 +50,7 @@ public class ImageDaoImpl implements ImageDao {
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<ImageBean> selectAllImagePagination(String hql, int first, int max) {
+	public List<ImageBean> selectPagination(String hql, int first, int max) {
 
 		// outer method
 		List<ImageBean> result = (List<ImageBean>) hibernateTemplate.execute(
@@ -76,7 +76,7 @@ public class ImageDaoImpl implements ImageDao {
 	 * @return int
 	 */
 	@Override
-	public int selectAllImageCount(CategoryBean im_CategoryBean) {
+	public int selectCountByIm_Ca(CategoryBean im_CategoryBean) {
 
 		DetachedCriteria criteria = DetachedCriteria.forClass(ImageBean.class);
 

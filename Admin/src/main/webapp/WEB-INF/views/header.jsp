@@ -21,7 +21,7 @@
 					<span class="icon-bar"></span>
 				</button>
 				<div class="logo">
-					<img src="<%=request.getContextPath()%>/images/caizimei_logo_white.svg">
+					<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/caizimei_logo_white.svg"></a>
 				</div>
 				<a class="navbar-brand" href="<%=request.getContextPath()%>/">采姿美管理系統</a>
 			</div>

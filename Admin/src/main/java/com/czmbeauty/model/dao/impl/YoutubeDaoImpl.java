@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: YoutubeDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/22
+ * Date: 2017/8/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -36,7 +38,7 @@ public class YoutubeDaoImpl implements YoutubeDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋特定類別的所有圖片 (分頁)
+	 * 搜尋特定類別的所有影片 (分頁)
 	 * 
 	 * @param hql
 	 *            String
@@ -66,28 +68,65 @@ public class YoutubeDaoImpl implements YoutubeDao {
 		return result;
 	}
 
+	/**
+	 * 搜尋特定類別的所有影片筆數 (分頁)
+	 * 
+	 * @param yo_CategoryBean
+	 *            CategoryBean
+	 * @return int
+	 */
 	@Override
 	public int selectCountByYo_Ca(CategoryBean yo_CategoryBean) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		DetachedCriteria criteria = DetachedCriteria.forClass(YoutubeBean.class);
+
+		criteria.add(Restrictions.eq("yo_CategoryBean", yo_CategoryBean));
+
+		return hibernateTemplate.findByCriteria(criteria).size();
 	}
 
+	/**
+	 * 影片流水號搜尋
+	 * 
+	 * @param yo_id
+	 *            Integer --> 影片流水號
+	 * @return YoutubeBean
+	 */
 	@Override
 	public YoutubeBean selectByYo_id(Integer yo_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return hibernateTemplate.get(YoutubeBean.class, yo_id);
 	}
 
+	/**
+	 * 新增影片
+	 * 
+	 * @param youtubeBean
+	 *            YoutubeBean
+	 * @return YoutubeBean
+	 */
 	@Override
 	public YoutubeBean insert(YoutubeBean youtubeBean) {
-		// TODO Auto-generated method stub
-		return null;
+
+		hibernateTemplate.save(youtubeBean);
+
+		return youtubeBean;
 	}
 
+	/**
+	 * 修改資料
+	 * 
+	 * @param youtubeBean
+	 *            YoutubeBean
+	 * @return YoutubeBean
+	 */
 	@Override
 	public YoutubeBean update(YoutubeBean youtubeBean) {
-		// TODO Auto-generated method stub
-		return null;
+
+		hibernateTemplate.clear();
+		hibernateTemplate.update(youtubeBean);
+
+		return youtubeBean;
 	}
 
 }

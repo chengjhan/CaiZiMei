@@ -54,7 +54,7 @@ public class ImageServiceImpl implements ImageService {
 	/**
 	 * 搜尋特定類別的所有圖片筆數 (分頁)
 	 * 
-	 * @param ba_CategoryBean
+	 * @param im_CategoryBean
 	 *            CategoryBean
 	 * @return int
 	 */

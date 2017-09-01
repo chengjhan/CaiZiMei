@@ -32,4 +32,8 @@ public interface ModelAttributeConstants {
 
 	public static final String IMAGE_LIST = "imageList";
 
+	public static final String VIDEO_BEAN = "videoBean";
+
+	public static final String VIDEO_LIST = "videoList";
+
 }

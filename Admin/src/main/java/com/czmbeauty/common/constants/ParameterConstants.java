@@ -8,4 +8,6 @@ public interface ParameterConstants {
 
 	public static final String IMAGE_ID = "im_id";
 
+	public static final String VIDEO_ID = "vi_id";
+
 }

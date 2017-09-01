@@ -1,12 +1,14 @@
 /*
  * CaiZiMei
- * File: YoutubeDaoImpl.java
+ * File: VideoDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/23
+ * Date: 2017/9/1
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
+
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_VIDEO;
 
 import java.util.List;
 
@@ -19,17 +21,17 @@ import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.czmbeauty.model.dao.YoutubeDao;
+import com.czmbeauty.model.dao.VideoDao;
 import com.czmbeauty.model.entity.CategoryBean;
-import com.czmbeauty.model.entity.YoutubeBean;
+import com.czmbeauty.model.entity.VideoBean;
 
 /**
- * youtube DAO implement
+ * video DAO implement
  * 
  * @author 詹晟
  */
-@Repository(value = "youtubeDao")
-public class YoutubeDaoImpl implements YoutubeDao {
+@Repository(value = "videoDao")
+public class VideoDaoImpl implements VideoDao {
 
 	/**
 	 * 注入 HibernateTemplate
@@ -50,17 +52,17 @@ public class YoutubeDaoImpl implements YoutubeDao {
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<YoutubeBean> selectPagination(String hql, int first, int max) {
+	public List<VideoBean> selectPagination(String hql, int first, int max) {
 
 		// outer method
-		List<YoutubeBean> result = (List<YoutubeBean>) hibernateTemplate.execute(
+		List<VideoBean> result = (List<VideoBean>) hibernateTemplate.execute(
 
 				// inner class
 				new HibernateCallback() {
 
 					// inner method
 					public Object doInHibernate(Session session) throws HibernateException {
-						List<YoutubeBean> list = session.createQuery(hql).setFirstResult(first).setMaxResults(max)
+						List<VideoBean> list = session.createQuery(hql).setFirstResult(first).setMaxResults(max)
 								.getResultList();
 						return list;
 					}
@@ -71,16 +73,16 @@ public class YoutubeDaoImpl implements YoutubeDao {
 	/**
 	 * 搜尋特定類別的所有影片筆數 (分頁)
 	 * 
-	 * @param yo_CategoryBean
+	 * @param vi_CategoryBean
 	 *            CategoryBean
 	 * @return int
 	 */
 	@Override
-	public int selectCountByYo_Ca(CategoryBean yo_CategoryBean) {
+	public int selectCountByVi_Ca(CategoryBean vi_CategoryBean) {
 
-		DetachedCriteria criteria = DetachedCriteria.forClass(YoutubeBean.class);
+		DetachedCriteria criteria = DetachedCriteria.forClass(VideoBean.class);
 
-		criteria.add(Restrictions.eq("yo_CategoryBean", yo_CategoryBean));
+		criteria.add(Restrictions.eq("vi_CategoryBean", vi_CategoryBean));
 
 		return hibernateTemplate.findByCriteria(criteria).size();
 	}
@@ -88,45 +90,67 @@ public class YoutubeDaoImpl implements YoutubeDao {
 	/**
 	 * 影片流水號搜尋
 	 * 
-	 * @param yo_id
+	 * @param vi_id
 	 *            Integer --> 影片流水號
-	 * @return YoutubeBean
+	 * @return VideoBean
 	 */
 	@Override
-	public YoutubeBean selectByYo_id(Integer yo_id) {
+	public VideoBean selectByVi_id(Integer vi_id) {
 
-		return hibernateTemplate.get(YoutubeBean.class, yo_id);
+		return hibernateTemplate.get(VideoBean.class, vi_id);
+	}
+
+	/**
+	 * 影片狀態搜尋
+	 * 
+	 * @param vi_ca_id
+	 *            Integer --> 類別流水號
+	 * @return List<VideoBean>
+	 * @return null
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<VideoBean> selectByVi_status(Integer vi_ca_id) {
+
+		List<VideoBean> list = (List<VideoBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_VIDEO, "vi_ca_id",
+				vi_ca_id);
+
+		if (!list.isEmpty()) {
+
+			return list;
+		}
+		return null;
 	}
 
 	/**
 	 * 新增影片
 	 * 
-	 * @param youtubeBean
-	 *            YoutubeBean
-	 * @return YoutubeBean
+	 * @param videoBean
+	 *            VideoBean
+	 * @return VideoBean
 	 */
 	@Override
-	public YoutubeBean insert(YoutubeBean youtubeBean) {
+	public VideoBean insert(VideoBean videoBean) {
 
-		hibernateTemplate.save(youtubeBean);
+		hibernateTemplate.save(videoBean);
 
-		return youtubeBean;
+		return videoBean;
 	}
 
 	/**
 	 * 修改資料
 	 * 
-	 * @param youtubeBean
-	 *            YoutubeBean
-	 * @return YoutubeBean
+	 * @param videoBean
+	 *            VideoBean
+	 * @return VideoBean
 	 */
 	@Override
-	public YoutubeBean update(YoutubeBean youtubeBean) {
+	public VideoBean update(VideoBean videoBean) {
 
 		hibernateTemplate.clear();
-		hibernateTemplate.update(youtubeBean);
+		hibernateTemplate.update(videoBean);
 
-		return youtubeBean;
+		return videoBean;
 	}
 
 }

@@ -22,7 +22,7 @@ form .table td {
 	border: none !important;
 }
 
-form .table input:focus {
+form .table select:focus, form .table input:focus, form .table textarea:focus {
 	box-shadow: 0 0 !important;
 }
 

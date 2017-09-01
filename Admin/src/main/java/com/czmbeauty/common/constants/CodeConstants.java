@@ -19,4 +19,8 @@ public interface CodeConstants {
 
 	public static final int SLIDER_MAIN_CODE = 4;
 
+	public static final String VIDEO_MAIN = "video-main";
+
+	public static final int VIDEO_MAIN_CODE = 5;
+
 }

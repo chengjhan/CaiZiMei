@@ -114,15 +114,16 @@ create table image (
 	foreign key (im_ca_id) references category (ca_id)
 );
 
-create table youtube (
-	yo_id					int auto_increment not null,
-	yo_ca_id				int not null,
-	yo_name					nvarchar(20),
-	yo_tag					varchar(500) not null,
-	yo_rank					tinyint not null,
-	yo_update_time			datetime not null,
-	primary key (yo_id),
-	foreign key (yo_ca_id) references category (ca_id)
+create table video (
+	vi_id					int auto_increment not null,
+	vi_ca_id				int not null,
+	vi_name					nvarchar(50),
+	vi_tag					varchar(500) not null,
+	vi_rank					tinyint not null,
+	vi_status				tinyint not null,
+	vi_update_time			datetime not null,
+	primary key (vi_id),
+	foreign key (vi_ca_id) references category (ca_id)
 );
 
 -- ALTER
@@ -176,6 +177,7 @@ insert into category (ca_name, ca_eng_name) values ('辦事處', 'office');
 insert into category (ca_name, ca_eng_name) values ('加盟店', 'franchisee');
 insert into category (ca_name, ca_eng_name) values ('診所', 'clinic');
 insert into category (ca_name, ca_eng_name) values ('主輪播', 'slider_main');
+insert into category (ca_name, ca_eng_name) values ('主影片', 'video_main');
 
 -- base
 insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (1, '采姿美台北辦事處', 'CaiZiMei', '02', '27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://localhost:8080/User/', now(), now(), 1, now());

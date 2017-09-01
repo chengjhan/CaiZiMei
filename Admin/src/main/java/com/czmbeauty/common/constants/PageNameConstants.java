@@ -66,4 +66,10 @@ public interface PageNameConstants {
 
 	public static final String SLIDER_MAIN_EDIT_PAGE = "slider-main/edit";
 
+	public static final String VIDEO_MAIN_LIST_PAGE = "video-main/list";
+
+	public static final String VIDEO_MAIN_ADD_PAGE = "video-main/add";
+
+	public static final String VIDEO_MAIN_EDIT_PAGE = "video-main/edit";
+
 }

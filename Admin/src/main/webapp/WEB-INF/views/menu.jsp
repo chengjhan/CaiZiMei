@@ -24,6 +24,9 @@
 		<ul class="nav nav-sidebar">
 			<li id="id-li-slider-main-list"><a href="<%=request.getContextPath()%>/slider-main/list?page=1">主輪播圖片一覽</a></li>
 		</ul>
+		<ul class="nav nav-sidebar">
+			<li id="id-li-video-main-list"><a href="<%=request.getContextPath()%>/video-main/list?page=1">主影片一覽</a></li>
+		</ul>
 	</div>
 	
 	<!-- load -->

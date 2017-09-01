@@ -74,4 +74,15 @@ public interface HqlConstants {
 	 */
 	public static final String HQL_SELECT_ALL_SLIDER_MAIN = "from ImageBean where im_ca_id=4 order by im_status desc, im_rank asc, im_id asc";
 
+	// video
+	/**
+	 * 搜尋所有主影片
+	 */
+	public static final String HQL_SELECT_ALL_VIDEO_MAIN = "from VideoBean where vi_ca_id=5 order by vi_rank asc, vi_id asc";
+
+	/**
+	 * 搜尋開啟的影片
+	 */
+	public static final String HQL_SELECT_OPEN_VIDEO = "from VideoBean where vi_status=1 and vi_ca_id=:vi_ca_id";
+
 }

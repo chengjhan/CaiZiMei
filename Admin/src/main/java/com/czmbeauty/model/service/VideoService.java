@@ -1,8 +1,8 @@
 /*
  * CaiZiMei
- * File: YoutubeService.java
+ * File: VideoService.java
  * Author: 詹晟
- * Date: 2017/8/24
+ * Date: 2017/9/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,39 +11,44 @@ package com.czmbeauty.model.service;
 import java.util.List;
 
 import com.czmbeauty.model.entity.CategoryBean;
-import com.czmbeauty.model.entity.YoutubeBean;
+import com.czmbeauty.model.entity.VideoBean;
 
 /**
- * youtube service interface
+ * video service interface
  * 
  * @author 詹晟
  */
-public interface YoutubeService {
+public interface VideoService {
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.YoutubeServiceImpl#selectPagination(String,
+	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectPagination(String,
 	 *      int, int)
 	 */
-	List<YoutubeBean> selectPagination(String hql, int first, int max);
+	List<VideoBean> selectPagination(String hql, int first, int max);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.YoutubeServiceImpl#selectCountByYo_Ca(CategoryBean)
+	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectCountByVi_Ca(CategoryBean)
 	 */
-	int selectCountByYo_Ca(CategoryBean yo_CategoryBean);
+	int selectCountByVi_Ca(CategoryBean vi_CategoryBean);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.YoutubeServiceImpl#selectByYo_id(Integer)
+	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectByVi_id(Integer)
 	 */
-	YoutubeBean selectByYo_id(Integer yo_id);
+	VideoBean selectByVi_id(Integer vi_id);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.YoutubeServiceImpl#insert(YoutubeBean)
+	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#insert(VideoBean)
 	 */
-	YoutubeBean insert(YoutubeBean youtubeBean);
+	VideoBean insert(VideoBean videoBean);
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.YoutubeServiceImpl#update(YoutubeBean)
+	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#update(VideoBean)
 	 */
-	YoutubeBean update(YoutubeBean youtubeBean);
+	VideoBean update(VideoBean videoBean);
+
+	/**
+	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#updateVi_status(Integer)
+	 */
+	VideoBean updateVi_status(Integer vi_id);
 
 }

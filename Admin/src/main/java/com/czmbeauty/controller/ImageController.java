@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/8/22
+ * Date: 2017/9/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,12 +41,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
 import com.czmbeauty.model.service.CategoryService;
@@ -90,6 +93,14 @@ public class ImageController {
 	 */
 	@Autowired
 	private ImageService imageService;
+
+	/**
+	 * 提供 form backing object 資料轉換
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		webDataBinder.registerCustomEditor(Integer.class, new PrimitiveNumberEditor(Integer.class, true));
+	}
 
 	/**
 	 * 取得總頁數
@@ -137,7 +148,7 @@ public class ImageController {
 	 * @return /WEB-INF/views/slider-main/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/list", method = RequestMethod.GET)
-	public String SliderMainlistView(@RequestParam Integer page, Model model) {
+	public String listView(@RequestParam Integer page, Model model) {
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
@@ -165,7 +176,6 @@ public class ImageController {
 
 			return SLIDER_MAIN_LIST_PAGE;
 		}
-
 		return null;
 	}
 
@@ -188,7 +198,6 @@ public class ImageController {
 
 			return SLIDER_MAIN_ADD_PAGE;
 		}
-
 		return null;
 	}
 
@@ -249,7 +258,6 @@ public class ImageController {
 				return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
 			}
 		}
-
 		return null;
 	}
 
@@ -278,7 +286,6 @@ public class ImageController {
 
 			return SLIDER_MAIN_EDIT_PAGE;
 		}
-
 		return null;
 	}
 
@@ -345,7 +352,6 @@ public class ImageController {
 
 			return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 		}
-
 		return null;
 	}
 

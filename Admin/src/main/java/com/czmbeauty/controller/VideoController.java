@@ -130,9 +130,7 @@ public class VideoController {
 
 		CategoryBean vi_CategoryBean = new CategoryBean();
 
-		String video = request.getServletPath().split("/")[1];
-
-		if (VIDEO_MAIN.equals(video)) {
+		if (VIDEO_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			// 取得當前頁碼的影片 List，放入 table
 			model.addAttribute(VIDEO_LIST,
@@ -161,9 +159,7 @@ public class VideoController {
 		// 新增 form backing object
 		model.addAttribute(VIDEO_BEAN, new VideoBean());
 
-		String video = request.getServletPath().split("/")[1];
-
-		if (VIDEO_MAIN.equals(video)) {
+		if (VIDEO_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			return VIDEO_MAIN_ADD_PAGE;
 		}
@@ -183,9 +179,7 @@ public class VideoController {
 	@RequestMapping(value = "/video*/add.do", method = RequestMethod.POST)
 	public String addProcess(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
-		String video = request.getServletPath().split("/")[1];
-
-		if (VIDEO_MAIN.equals(video)) {
+		if (VIDEO_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			if (bindingResult.hasErrors()) {
 
@@ -228,9 +222,7 @@ public class VideoController {
 		// 取得選定影片 id 的 VideoBean，使表單回填 VideoBean 內所有資料
 		model.addAttribute(VIDEO_BEAN, videoService.selectByVi_id(videoBean_vi_id.getVi_id()));
 
-		String video = request.getServletPath().split("/")[1];
-
-		if (VIDEO_MAIN.equals(video)) {
+		if (VIDEO_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			return VIDEO_MAIN_EDIT_PAGE;
 		}
@@ -250,9 +242,7 @@ public class VideoController {
 	@RequestMapping(value = "/video*/edit.do", method = RequestMethod.POST)
 	public String editProcess(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
-		String video = request.getServletPath().split("/")[1];
-
-		if (VIDEO_MAIN.equals(video)) {
+		if (VIDEO_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			if (bindingResult.hasErrors()) {
 

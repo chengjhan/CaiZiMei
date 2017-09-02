@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/8/7
+ * Date: 2017/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -193,6 +193,7 @@ public class AdminController {
 			logger.error("編輯失敗: 格式錯誤");
 
 			return ADMIN_EDIT_PAGE;
+			
 		} else {
 
 			adminService.update(admin);
@@ -316,6 +317,7 @@ public class AdminController {
 
 			// 若經過 SigninInterceptor
 			logger.info("原請求畫面: " + next);
+			
 		} else {
 
 			logger.info("原請求畫面: index");
@@ -403,6 +405,7 @@ public class AdminController {
 
 					// 登入成功，導向原請求畫面
 					return REDIRECT.concat(next);
+					
 				} else {
 
 					logger.info("登入成功，導向首頁: index");
@@ -645,6 +648,7 @@ public class AdminController {
 
 			// 已使用
 			return "1";
+			
 		} else {
 
 			// 未使用

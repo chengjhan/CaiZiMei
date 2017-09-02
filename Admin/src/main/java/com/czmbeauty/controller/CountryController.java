@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/8/12
+ * Date: 2017/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -100,6 +100,7 @@ public class CountryController {
 		if (result.hasErrors()) {
 
 			return COUNTRY_ADD_PAGE;
+			
 		} else {
 
 			countryService.insert(countryBean);
@@ -141,6 +142,7 @@ public class CountryController {
 		if (result.hasErrors()) {
 
 			return COUNTRY_EDIT_PAGE;
+			
 		} else {
 
 			countryService.update(countryBean);

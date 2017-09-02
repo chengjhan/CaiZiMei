@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/1
+ * Date: 2017/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -161,9 +161,7 @@ public class ImageController {
 
 		CategoryBean im_CategoryBean = new CategoryBean();
 
-		String slider = request.getServletPath().split("/")[1];
-
-		if (SLIDER_MAIN.equals(slider)) {
+		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			// 取得當前頁碼的圖片 List，放入 table
 			model.addAttribute(IMAGE_LIST,
@@ -192,9 +190,7 @@ public class ImageController {
 		// 新增 form backing object
 		model.addAttribute(IMAGE_BEAN, new ImageBean());
 
-		String slider = request.getServletPath().split("/")[1];
-
-		if (SLIDER_MAIN.equals(slider)) {
+		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			return SLIDER_MAIN_ADD_PAGE;
 		}
@@ -218,9 +214,7 @@ public class ImageController {
 	public String addProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
-		String slider = request.getServletPath().split("/")[1];
-
-		if (SLIDER_MAIN.equals(slider)) {
+		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			if (file.isEmpty()) {
 
@@ -280,9 +274,7 @@ public class ImageController {
 		// 取得選定圖片 id 的 ImageBean，使表單回填 ImageBean 內所有資料
 		model.addAttribute(IMAGE_BEAN, imageService.selectByIm_id(imageBean_im_id.getIm_id()));
 
-		String slider = request.getServletPath().split("/")[1];
-
-		if (SLIDER_MAIN.equals(slider)) {
+		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			return SLIDER_MAIN_EDIT_PAGE;
 		}
@@ -310,13 +302,11 @@ public class ImageController {
 		String im_path;
 		String im_filename;
 
-		String slider = request.getServletPath().split("/")[1];
-
-		if (SLIDER_MAIN.equals(slider)) {
-
-			logger.error("主輪播圖片編輯失敗: 資料未填");
+		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
 
 			if (bindingResult.hasErrors()) {
+
+				logger.error("主輪播圖片編輯失敗: 資料未填");
 
 				return REDIRECT + SLIDER_MAIN_EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND
 						+ PAGE + EQUAL + currentPage;

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/8/22
+ * Date: 2017/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -196,7 +196,6 @@ public class BaseController {
 
 			return OFFICE_LIST_PAGE;
 		}
-
 		if (FRANCHISEE.equals(base)) {
 
 			// 取得當前頁碼的加盟店 List，放入 table
@@ -210,7 +209,6 @@ public class BaseController {
 
 			return FRANCHISEE_LIST_PAGE;
 		}
-
 		if (CLINIC.equals(base)) {
 
 			// 取得當前頁碼的診所 List，放入 table
@@ -224,7 +222,6 @@ public class BaseController {
 
 			return CLINIC_LIST_PAGE;
 		}
-
 		return null;
 	}
 
@@ -260,7 +257,6 @@ public class BaseController {
 
 			return CLINIC_ADD_PAGE;
 		}
-
 		return null;
 	}
 
@@ -340,7 +336,6 @@ public class BaseController {
 				return REDIRECT + CLINIC_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
 			}
 		}
-
 		return null;
 	}
 
@@ -391,7 +386,6 @@ public class BaseController {
 
 			return CLINIC_EDIT_PAGE;
 		}
-
 		return null;
 	}
 
@@ -468,7 +462,6 @@ public class BaseController {
 				return REDIRECT + CLINIC_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 			}
 		}
-
 		return null;
 	}
 

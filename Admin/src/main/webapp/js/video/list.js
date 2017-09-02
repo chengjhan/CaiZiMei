@@ -13,7 +13,9 @@ $(document).on("click", ".vi-status-switch", function(){
 	var vi_id = $this.attr("data-vi-id");
 	var vi_status = $this.children("img").attr("data-vi-status");				
 	$.get("../video/switch.ajax", {"vi_id": vi_id}, function(data){
+		$("img[data-vi-status='1']").attr("src", "../images/false.svg");
+		$("img[data-vi-status='1']").attr("data-vi-status", "0");
 		$this.children("img").attr("src", "../images/true.svg");
-		$this.children("img").attr("data-im-status", "1");
+		$this.children("img").attr("data-vi-status", "1");
 	});
 });

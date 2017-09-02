@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/9/1
+ * Date: 2017/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -250,15 +250,13 @@ public class VideoController {
 	@RequestMapping(value = "/video*/edit.do", method = RequestMethod.POST)
 	public String editProcess(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
-		VideoBean oldVideoBean = videoService.selectByVi_id(videoBean.getVi_id());
-
 		String video = request.getServletPath().split("/")[1];
 
 		if (VIDEO_MAIN.equals(video)) {
 
-			logger.error("影片編輯失敗: 資料未填");
-
 			if (bindingResult.hasErrors()) {
+
+				logger.error("主影片編輯失敗: 資料未填");
 
 				return REDIRECT + VIDEO_MAIN_EDIT_PAGE + QUESTION + VIDEO_ID + EQUAL + videoBean.getVi_id() + AND + PAGE
 						+ EQUAL + currentPage;
@@ -266,12 +264,12 @@ public class VideoController {
 			}
 
 			videoBean.setVi_CategoryBean(categoryService.selectByCa_id(VIDEO_MAIN_CODE));
-			videoBean.setVi_status(oldVideoBean.getVi_status());
+			videoBean.setVi_status(videoService.selectByVi_id(videoBean.getVi_id()).getVi_status());
 			videoBean.setVi_update_time(new java.util.Date());
 
 			videoService.update(videoBean);
 
-			logger.info("影片編輯成功");
+			logger.info("主影片編輯成功");
 
 			return REDIRECT + VIDEO_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 		}

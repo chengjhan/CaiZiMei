@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/22
+ * Date: 2017/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -131,6 +131,7 @@ public class ImageServiceImpl implements ImageService {
 
 			// 不顯示
 			imageBean.setIm_status(0);
+
 		} else {
 
 			// 顯示

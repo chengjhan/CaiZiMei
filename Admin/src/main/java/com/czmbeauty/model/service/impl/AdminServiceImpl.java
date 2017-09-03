@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/7/30
+ * Date: 2017/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -61,7 +61,6 @@ public class AdminServiceImpl implements AdminService {
 
 			result = adminDao.insert(adminBean);
 		}
-
 		return result;
 	}
 
@@ -90,6 +89,7 @@ public class AdminServiceImpl implements AdminService {
 
 				// 帳號及密碼正確
 				return adminBean;
+
 			} else {
 
 				// 密碼錯誤
@@ -100,7 +100,6 @@ public class AdminServiceImpl implements AdminService {
 			// 帳號錯誤
 			return null;
 		}
-
 	}
 
 	/**
@@ -202,6 +201,7 @@ public class AdminServiceImpl implements AdminService {
 
 			// 變更成功
 			return adminDao.update(adminBean);
+
 		} else {
 
 			// 變更失敗
@@ -250,13 +250,13 @@ public class AdminServiceImpl implements AdminService {
 			// 關閉帳號
 			adminBean.setAd_status(0);
 			adminBean.setAd_status_time(new java.util.Date());
+
 		} else {
 
 			// 開啟帳號
 			adminBean.setAd_status(1);
 			adminBean.setAd_status_time(new java.util.Date());
 		}
-
 		return adminBean;
 	}
 

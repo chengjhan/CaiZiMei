@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/1
+ * Date: 2017/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -132,12 +132,10 @@ public class VideoServiceImpl implements VideoService {
 		if (list != null) {
 
 			for (VideoBean bean : list) {
-
 				VideoBean other = videoDao.selectByVi_id(bean.getVi_id());
 				other.setVi_status(0);
 			}
 		}
-
 		videoBean.setVi_status(1);
 
 		return videoBean;

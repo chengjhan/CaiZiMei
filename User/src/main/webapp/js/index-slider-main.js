@@ -18,7 +18,7 @@ $(document).ready(function(){
 		}, 500);
 	};
 	
-	$.getJSON("image/open-slider-main-image-list.ajax", function(data){
+	$.getJSON("image/open-slider-main-list.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_main_img = $("<img src='/Admin/images/slider-main/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
 			var slider_main_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_main_img);

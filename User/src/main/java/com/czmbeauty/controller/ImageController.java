@@ -2,13 +2,13 @@
  * CaiZiMei/User
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/9/3
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_MAIN_IMAGE;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_MAIN;
 
 import java.util.List;
 
@@ -45,15 +45,15 @@ public class ImageController {
 	 * 
 	 * @return image JSON
 	 */
-	@RequestMapping(value = "/image/open-slider-main-image-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/image/open-slider-main-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openSliderMainImageListAjaxProcess() {
+	public String openSliderMainListAjaxProcess() {
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
 
-		List<ImageBean> result = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_MAIN_IMAGE);
+		List<ImageBean> result = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_MAIN);
 
 		String json = gson.toJson(result);
 

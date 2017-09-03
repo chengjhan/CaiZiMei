@@ -29,20 +29,12 @@
 			</div>
 		</section>
 		<section id="section-2">
-<!-- 			<div class="swiper-container" style="float:left"> -->
-<!-- 				<h3>相關影音</h3> -->
-<!-- 				<div class="swiper-wrapper"> -->
-<!-- 					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/zrNZARN_wXI" frameborder="0" allowfullscreen></iframe></div> -->
-<!-- 					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/RiDrdTmFzJs" frameborder="0" allowfullscreen></iframe></div> -->
-<!-- 					<div class="swiper-slide"><iframe width="608" height="342" src="https://www.youtube.com/embed/XnHGRpli9gA" frameborder="0" allowfullscreen></iframe></div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="swiper-pagination"></div> -->
-<!-- 				<div class="swiper-button-next"></div> -->
-<!-- 				<div class="swiper-button-prev"></div> -->
-<!-- 			</div> -->
+			<div style="float:left">
+				<h3>相關影音</h3>
+				<div class="video-main">
+					<iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
 <!-- 			<div class="swiper-container" style="float:right"> -->
 <!-- 				<h3>加盟店資訊</h3> -->
 <!-- 				<div class="swiper-wrapper"> -->

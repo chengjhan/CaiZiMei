@@ -42,7 +42,10 @@
 							</tr>
 							<tr>
 								<td><form:label path="vi_tag">標籤</form:label></td>
-								<td><form:textarea path="vi_tag" cssClass="form-control" rows="6" /></td>
+								<td>
+									<form:textarea path="vi_tag" cssClass="form-control" rows="6" />
+									<p style="color:red">※ 請至 Youtube 網站複製嵌入標籤。</p>
+								</td>
 								<td><form:errors path="vi_tag" cssClass="error" /></td>
 							</tr>
 							<tr>
@@ -54,7 +57,6 @@
 								<td></td>
 								<td>
 									<input type="submit" class="btn btn-success" value="變更" />
-									<a href="<%=request.getContextPath()%>/video/list"><button type="button" class="btn btn-danger">取消</button></a>
 								</td>
 							</tr>
 						</table>

@@ -54,7 +54,7 @@
 								<td style="width:50px">編號</td>
 <!-- 								<td>流水號</td> -->
 								<td>名稱</td>
-								<td style="width:75px">排序</td>
+								<td style="width:50px">排序</td>
 								<td style="width:50px">編輯</td>
 								<td style="width:50px">開啟</td>
 							</tr>

@@ -68,7 +68,7 @@ $(document).ready(function(){
 			ad_password_new_again: {
 				required: true,
 				equalTo : "#ad_password_new"
-			},
+			}
 		},
 		messages: {
 			ad_username: {
@@ -111,7 +111,7 @@ $(document).ready(function(){
 			ad_password_new_again: {
 				required: "這裡必須填入資料",
 				equalTo: "密碼重複錯誤"
-			},
+			}
 		},
 		highlight: function(element){
 			$(element).addClass("form-error");

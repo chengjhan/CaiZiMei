@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/4
+ * Date: 2017/9/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -637,6 +637,25 @@ public class AdminController {
 	public String emailRepeatAjaxProcess(String ad_email) {
 
 		AdminBean bean = adminService.selectByAd_email(ad_email);
+
+		return (bean != null) ? "這個信箱已經被使用了" : "true";
+	}
+
+	/**
+	 * 信箱重複驗證 (edit) (AJAX)
+	 * 
+	 * @param admin
+	 *            AdminBean --> Session
+	 * @param ad_email
+	 *            String --> 管理員信箱
+	 * @return "這個信箱已經被使用了"
+	 * @return "true"
+	 */
+	@RequestMapping(value = "/admin/edit-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String editEmailRepeatAjaxProcess(@ModelAttribute(ADMIN) AdminBean admin, String ad_email) {
+
+		AdminBean bean = adminService.selectByAd_email(admin.getAd_id(), ad_email);
 
 		return (bean != null) ? "這個信箱已經被使用了" : "true";
 	}

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -154,6 +154,22 @@ public class AdminServiceImpl implements AdminService {
 	public AdminBean selectByAd_email(String ad_email) {
 
 		return adminDao.selectByAd_email(ad_email);
+	}
+
+	/**
+	 * 管理員信箱搜尋 (edit) (AJAX)
+	 * 
+	 * @param ad_id
+	 *            Integer --> 管理員流水號
+	 * @param ad_email
+	 *            String --> 管理員信箱
+	 * @return AdminBean
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public AdminBean selectByAd_email(Integer ad_id, String ad_email) {
+
+		return adminDao.selectByAd_email(ad_id, ad_email);
 	}
 
 	/**

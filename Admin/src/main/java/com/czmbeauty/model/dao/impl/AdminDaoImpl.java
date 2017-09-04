@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/4
+ * Date: 2017/9/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,6 +10,7 @@ package com.czmbeauty.model.dao.impl;
 
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_ADMIN;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_ADMIN_BY_EMAIL;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_ADMIN_BY_EMAIL_EXCEPT_MYSELF;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_ADMIN_BY_USERNAME;
 
 import java.util.List;
@@ -92,6 +93,29 @@ public class AdminDaoImpl implements AdminDao {
 
 		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_ADMIN_BY_EMAIL,
 				"ad_email", ad_email);
+
+		return (!list.isEmpty()) ? list.get(0) : null;
+	}
+
+	/**
+	 * 管理員信箱搜尋 (edit) (AJAX)
+	 * 
+	 * @param ad_id
+	 *            Integer --> 管理員流水號
+	 * @param ad_email
+	 *            String --> 管理員信箱
+	 * @return AdminBean
+	 * @return null
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public AdminBean selectByAd_email(Integer ad_id, String ad_email) {
+
+		String[] paramNames = { "ad_email", "ad_id" };
+		Object[] values = { ad_email, ad_id };
+
+		List<AdminBean> list = (List<AdminBean>) hibernateTemplate
+				.findByNamedParam(HQL_SELECT_OPEN_ADMIN_BY_EMAIL_EXCEPT_MYSELF, paramNames, values);
 
 		return (!list.isEmpty()) ? list.get(0) : null;
 	}

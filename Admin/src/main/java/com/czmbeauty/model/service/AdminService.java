@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/7/30
+ * Date: 2017/9/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -48,6 +48,12 @@ public interface AdminService {
 	 * @see com.czmbeauty.model.service.AdminService#selectByAd_email(String)
 	 */
 	AdminBean selectByAd_email(String ad_email);
+
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#selectByAd_email(Integer,
+	 *      String)
+	 */
+	AdminBean selectByAd_email(Integer ad_id, String ad_email);
 
 	/**
 	 * @see com.czmbeauty.model.service.AdminService#update(AdminBean)

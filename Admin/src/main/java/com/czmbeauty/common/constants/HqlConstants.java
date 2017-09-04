@@ -18,6 +18,11 @@ public interface HqlConstants {
 	 */
 	public static final String HQL_SELECT_OPEN_ADMIN_BY_EMAIL = "from AdminBean where ad_status=1 and ad_email=:ad_email";
 
+	/**
+	 * 管理員信箱搜尋 (edit) (AJAX)
+	 */
+	public static final String HQL_SELECT_OPEN_ADMIN_BY_EMAIL_EXCEPT_MYSELF = "from AdminBean where ad_status=1 and ad_email=:ad_email and ad_id!=:ad_id";
+
 	// admin_log
 	/**
 	 * 搜尋所有管理員日誌

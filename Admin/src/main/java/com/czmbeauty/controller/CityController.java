@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -111,7 +111,7 @@ public class CityController {
 
 				// 若為編輯，取得編輯的 CityBean，放入 Session，使 select 回填國家及區域
 				model.addAttribute(CITY_BEAN, persistentCityBean);
-				
+
 			} else {
 
 				// 若為刪除，取得刪除的 CityBean 中的 CountryBean 及 StateBean，放入空 CityBean
@@ -173,7 +173,7 @@ public class CityController {
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 			return CITY_ADD_PAGE;
-			
+
 		} else {
 
 			cityService.insert(cityBean);
@@ -238,7 +238,7 @@ public class CityController {
 			model.addAttribute(CITY_BEAN, cityService.selectByCi_id(cityBean.getCi_id()));
 
 			return CITY_EDIT_PAGE;
-			
+
 		} else {
 
 			cityService.update(cityBean);
@@ -251,7 +251,7 @@ public class CityController {
 	}
 
 	/**
-	 * 選定區域中的所有城市 JSON (AJAX)
+	 * 選定區域中的所有城市 (AJAX)
 	 * 
 	 * @param ci_st_id
 	 *            Integer --> 區域流水號
@@ -261,11 +261,10 @@ public class CityController {
 	@ResponseBody
 	public String choiceStateCityListAjaxProcess(Integer ci_st_id) {
 
-		List<CityBean> result = cityService.selectByCi_st_id(ci_st_id);
+		List<CityBean> list = cityService.selectByCi_st_id(ci_st_id);
 
 		List<CityBean> jsonList = new ArrayList<CityBean>();
-
-		for (CityBean bean : result) {
+		for (CityBean bean : list) {
 			CityBean jsonBean = new CityBean();
 			jsonBean.setCi_id(bean.getCi_id());
 			jsonBean.setCi_name(bean.getCi_name());

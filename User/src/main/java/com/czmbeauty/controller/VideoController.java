@@ -38,7 +38,7 @@ public class VideoController {
 	private VideoService videoService;
 
 	/**
-	 * 開啟的主影片 JSON (AJAX)
+	 * 開啟的主影片 (AJAX)
 	 * 
 	 * @return video JSON
 	 */
@@ -46,12 +46,12 @@ public class VideoController {
 	@ResponseBody
 	public String openVideoMainListAjaxProcess() {
 
-		VideoBean result = videoService.selectOpenVideo(HQL_SELECT_OPEN_VIDEO_MAIN).get(0);
+		VideoBean bean = videoService.selectOpenVideo(HQL_SELECT_OPEN_VIDEO_MAIN).get(0);
 
 		VideoBean jsonBean = new VideoBean();
-		jsonBean.setVi_id(result.getVi_id());
-		jsonBean.setVi_name(result.getVi_name());
-		jsonBean.setVi_tag(result.getVi_tag().split(" ")[3].split("\"")[1]);
+		jsonBean.setVi_id(bean.getVi_id());
+		jsonBean.setVi_name(bean.getVi_name());
+		jsonBean.setVi_tag(bean.getVi_tag().split(" ")[3].split("\"")[1]);
 
 		String json = new Gson().toJson(jsonBean);
 

@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,7 +41,7 @@ public class ImageController {
 	private ImageService imageService;
 
 	/**
-	 * 開啟的主輪播圖片 JSON (AJAX)
+	 * 開啟的主輪播圖片 (AJAX)
 	 * 
 	 * @return image JSON
 	 */
@@ -49,13 +49,13 @@ public class ImageController {
 	@ResponseBody
 	public String openSliderMainListAjaxProcess() {
 
+		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_MAIN);
+
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
 
-		List<ImageBean> result = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_MAIN);
-
-		String json = gson.toJson(result);
+		String json = gson.toJson(list);
 
 		logger.info("JSON = " + json);
 

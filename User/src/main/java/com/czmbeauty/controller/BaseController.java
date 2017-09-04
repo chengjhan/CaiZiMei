@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/9/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -39,7 +39,7 @@ public class BaseController {
 	private BaseService baseService;
 
 	/**
-	 * 開啟的據點 JSON (AJAX)
+	 * 開啟的據點 (AJAX)
 	 * 
 	 * @return base JSON
 	 */
@@ -47,13 +47,13 @@ public class BaseController {
 	@ResponseBody
 	public String openBaseListAjaxProcess() {
 
+		List<BaseBean> list = baseService.selectOpenBase();
+
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = builder.create();
 
-		List<BaseBean> result = baseService.selectOpenBase();
-
-		String json = gson.toJson(result);
+		String json = gson.toJson(list);
 
 		logger.info("JSON = " + json);
 

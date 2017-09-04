@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -97,7 +97,7 @@ public class StateController {
 
 				// 若為編輯，取得編輯的 StateBean，放入 Session，使 select 回填國家
 				model.addAttribute(STATE_BEAN, persistentStateBean);
-				
+
 			} else {
 
 				// 若為刪除，取得刪除的 StateBean 中的 CountryBean，放入空 StateBean
@@ -156,7 +156,7 @@ public class StateController {
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 			return STATE_ADD_PAGE;
-			
+
 		} else {
 
 			stateService.insert(stateBean);
@@ -212,7 +212,7 @@ public class StateController {
 			model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean.getSt_id()));
 
 			return STATE_EDIT_PAGE;
-			
+
 		} else {
 
 			stateService.update(stateBean);
@@ -225,7 +225,7 @@ public class StateController {
 	}
 
 	/**
-	 * 選定國家中的所有區域 JSON (AJAX)
+	 * 選定國家中的所有區域 (AJAX)
 	 * 
 	 * @param st_co_id
 	 *            Integer --> 國家流水號
@@ -235,11 +235,10 @@ public class StateController {
 	@ResponseBody
 	public String choiceCountryStateListAjaxProcess(Integer st_co_id) {
 
-		List<StateBean> result = stateService.selectBySt_co_id(st_co_id);
+		List<StateBean> list = stateService.selectBySt_co_id(st_co_id);
 
 		List<StateBean> jsonList = new ArrayList<StateBean>();
-
-		for (StateBean bean : result) {
+		for (StateBean bean : list) {
 			StateBean jsonBean = new StateBean();
 			jsonBean.setSt_id(bean.getSt_id());
 			jsonBean.setSt_name(bean.getSt_name());

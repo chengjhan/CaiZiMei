@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -193,7 +193,7 @@ public class AdminController {
 			logger.error("編輯失敗: 格式錯誤");
 
 			return ADMIN_EDIT_PAGE;
-			
+
 		} else {
 
 			adminService.update(admin);
@@ -317,7 +317,7 @@ public class AdminController {
 
 			// 若經過 SigninInterceptor
 			logger.info("原請求畫面: " + next);
-			
+
 		} else {
 
 			logger.info("原請求畫面: index");
@@ -405,7 +405,7 @@ public class AdminController {
 
 					// 登入成功，導向原請求畫面
 					return REDIRECT.concat(next);
-					
+
 				} else {
 
 					logger.info("登入成功，導向首頁: index");
@@ -642,13 +642,39 @@ public class AdminController {
 	@ResponseBody
 	public String usernameRepeatAjaxProcess(String ad_username) {
 
-		AdminBean adminBean = adminService.selectByAd_username(ad_username);
+		AdminBean bean = adminService.selectByAd_username(ad_username);
 
-		if (adminBean != null) {
+		if (bean != null) {
 
 			// 已使用
 			return "1";
-			
+
+		} else {
+
+			// 未使用
+			return "0";
+		}
+	}
+
+	/**
+	 * 信箱重複驗證 (AJAX)
+	 * 
+	 * @param ad_email
+	 *            String --> 管理員信箱
+	 * @return 1
+	 * @return 0
+	 */
+	@RequestMapping(value = "/admin/email-repeat.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String emailRepeatAjaxProcess(String ad_email) {
+
+		AdminBean bean = adminService.selectByAd_email(ad_email);
+
+		if (bean != null) {
+
+			// 已使用
+			return "1";
+
 		} else {
 
 			// 未使用
@@ -667,14 +693,14 @@ public class AdminController {
 	@ResponseBody
 	public String switchAjaxProcess(String ad_id) {
 
+		AdminBean bean = adminService.updateAd_status(Integer.valueOf(ad_id));
+
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		Gson gson = builder.create();
 
-		AdminBean result = adminService.updateAd_status(Integer.valueOf(ad_id));
-
-		String json = gson.toJson(result);
+		String json = gson.toJson(bean);
 
 		logger.info("JSON = " + json);
 

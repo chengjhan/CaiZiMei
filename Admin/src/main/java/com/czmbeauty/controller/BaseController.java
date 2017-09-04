@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -466,7 +466,7 @@ public class BaseController {
 	}
 
 	/**
-	 * 所有診所 JSON (AJAX)
+	 * 所有診所 (AJAX)
 	 * 
 	 * @return clinic JSON
 	 */
@@ -474,14 +474,14 @@ public class BaseController {
 	@ResponseBody
 	public String allClinicListAjaxProcess() {
 
+		List<BaseBean> list = baseService.selectAllClinic();
+
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		Gson gson = builder.create();
 
-		List<BaseBean> result = baseService.selectAllClinic();
-
-		String json = gson.toJson(result);
+		String json = gson.toJson(list);
 
 		logger.info("JSON = " + json);
 
@@ -489,7 +489,7 @@ public class BaseController {
 	}
 
 	/**
-	 * 開啟的診所 JSON (AJAX)
+	 * 開啟的診所 (AJAX)
 	 * 
 	 * @return clinic JSON
 	 */
@@ -497,14 +497,14 @@ public class BaseController {
 	@ResponseBody
 	public String openClinicListAjaxProcess() {
 
+		List<BaseBean> list = baseService.selectOpenClinic();
+
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
 		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		Gson gson = builder.create();
 
-		List<BaseBean> result = baseService.selectOpenClinic();
-
-		String json = gson.toJson(result);
+		String json = gson.toJson(list);
 
 		logger.info("JSON = " + json);
 

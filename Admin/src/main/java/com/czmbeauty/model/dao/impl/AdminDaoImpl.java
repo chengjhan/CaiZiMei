@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/13
+ * Date: 2017/9/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -75,11 +75,7 @@ public class AdminDaoImpl implements AdminDao {
 		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_ADMIN_BY_USERNAME,
 				"ad_username", ad_username);
 
-		if (!list.isEmpty()) {
-
-			return list.get(0);
-		}
-		return null;
+		return (!list.isEmpty()) ? list.get(0) : null;
 	}
 
 	/**
@@ -97,11 +93,7 @@ public class AdminDaoImpl implements AdminDao {
 		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_ADMIN_BY_EMAIL,
 				"ad_email", ad_email);
 
-		if (!list.isEmpty()) {
-
-			return list.get(0);
-		}
-		return null;
+		return (!list.isEmpty()) ? list.get(0) : null;
 	}
 
 	/**

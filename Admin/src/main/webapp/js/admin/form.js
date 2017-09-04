@@ -1,33 +1,3 @@
-// 帳號重複驗證
-$("#ad_username").blur(function(check){
-	var $this = $(this);
-	var ad_username = $this.val();
-	var ad_username_span = $("#id-span-ad-username");
-	ad_username_span.empty();
-	$.get("../admin/username-repeat.ajax", {"ad_username": ad_username}, function(data){
-		if(data == "1"){
-			check.preventDefault();
-			ad_username_span.text("已使用");
-			$this.addClass("form-error");
-		}
-	});
-});
-
-// 信箱重複驗證
-$("#ad_email").blur(function(check){
-	var $this = $(this);
-	var ad_email = $this.val();
-	var ad_email_span = $("#id-span-ad-email");
-	ad_email_span.empty();
-	$.get("../admin/email-repeat.ajax", {"ad_email": ad_email}, function(data){
-		if(data == "1"){
-			check.preventDefault();
-			ad_email_span.text("已使用");
-			$this.addClass("form-error");
-		}
-	});
-});
-
 // validation
 $(document).ready(function(){
 	
@@ -43,15 +13,15 @@ $(document).ready(function(){
 				pattern: /^[a-zA-Z0-9_]+$/,
 				minlength: 3,
 				maxlength: 20,
-				remote: {
+				remote: { // 帳號重複驗證 (AJAX)
 					url: "../admin/username-repeat.ajax", // 後台處理程序
-					type: "get", // 數據發送方式
+					type: "post", // 數據發送方式
 					dataType: "text", // 接受數據格式   
 					data: { // 要傳遞的數據
 						ad_username: function(){
 							return $("#ad_username").val();
 						}
-					},
+					}
 				}
 			},
 			ad_password: {
@@ -73,7 +43,17 @@ $(document).ready(function(){
 			ad_email: {
 				required: true,
 				email: true,
-				maxlength: 50
+				maxlength: 50,
+				remote: { // 信箱重複驗證 (AJAX)
+					url: "../admin/email-repeat.ajax", // 後台處理程序
+					type: "post", // 數據發送方式
+					dataType: "text", // 接受數據格式   
+					data: { // 要傳遞的數據
+						ad_email: function(){
+							return $("#ad_email").val();
+						}
+					}
+				}
 			},
 			// change-password.jsp
 			ad_password_old: {
@@ -95,7 +75,7 @@ $(document).ready(function(){
 				required: "這裡必須填入資料",
 				pattern: "帳號只接受英文大小寫、數字及底線符號",
 				minlength: "帳號必須大於3個字",
-				maxlength: "帳號必須小於20個字",
+				maxlength: "帳號必須小於20個字"
 			},
 			ad_password: {
 				required: "這裡必須填入資料",

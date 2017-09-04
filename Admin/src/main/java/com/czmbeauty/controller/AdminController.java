@@ -612,16 +612,16 @@ public class AdminController {
 	 * 
 	 * @param ad_username
 	 *            String --> 管理員帳號
-	 * @return 1
-	 * @return 0
+	 * @return "這個帳號已經被使用了"
+	 * @return "true"
 	 */
-	@RequestMapping(value = "/admin/username-repeat.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/admin/username-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String usernameRepeatAjaxProcess(String ad_username) {
 
 		AdminBean bean = adminService.selectByAd_username(ad_username);
 
-		return (bean != null) ? "已使用" : "true";
+		return (bean != null) ? "這個帳號已經被使用了" : "true";
 	}
 
 	/**
@@ -629,16 +629,16 @@ public class AdminController {
 	 * 
 	 * @param ad_email
 	 *            String --> 管理員信箱
-	 * @return 1
-	 * @return 0
+	 * @return "這個信箱已經被使用了"
+	 * @return "true"
 	 */
-	@RequestMapping(value = "/admin/email-repeat.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/admin/email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String emailRepeatAjaxProcess(String ad_email) {
 
 		AdminBean bean = adminService.selectByAd_email(ad_email);
 
-		return (bean != null) ? "1" : "0";
+		return (bean != null) ? "這個帳號已經被使用了" : "true";
 	}
 
 	/**

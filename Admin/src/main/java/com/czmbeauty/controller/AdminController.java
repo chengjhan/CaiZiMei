@@ -638,7 +638,7 @@ public class AdminController {
 
 		AdminBean bean = adminService.selectByAd_email(ad_email);
 
-		return (bean != null) ? "這個帳號已經被使用了" : "true";
+		return (bean != null) ? "這個信箱已經被使用了" : "true";
 	}
 
 	/**

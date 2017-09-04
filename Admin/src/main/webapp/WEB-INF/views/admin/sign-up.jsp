@@ -63,7 +63,10 @@
 							<tr>
 								<td><form:label path="ad_email">信箱</form:label></td>
 								<td><form:input path="ad_email" cssClass="form-control" /></td>
-								<td><form:errors path="ad_email" cssClass="error" /></td>
+								<td>
+									<span id="id-span-ad-email" class="error"></span>
+									<form:errors path="ad_email" cssClass="error" />
+								</td>
 							</tr>
 							<tr>
 								<td></td>

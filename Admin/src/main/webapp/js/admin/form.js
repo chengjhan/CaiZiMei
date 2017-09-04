@@ -5,7 +5,19 @@ $("#ad_username").blur(function(){
 	ad_username_span.empty();
 	$.get("../admin/username-repeat.ajax", {"ad_username": ad_username}, function(data){
 		if(data == "1"){
-			ad_username_span.text("已使用");					
+			ad_username_span.text("已使用");
+		}
+	});
+});
+
+// 信箱重複驗證
+$("#ad_email").blur(function(){
+	var ad_email = $(this).val();
+	var ad_email_span = $("#id-span-ad-email");
+	ad_email_span.empty();
+	$.get("../admin/email-repeat.ajax", {"ad_email": ad_email}, function(data){
+		if(data == "1"){
+			ad_email_span.text("已使用");
 		}
 	});
 });

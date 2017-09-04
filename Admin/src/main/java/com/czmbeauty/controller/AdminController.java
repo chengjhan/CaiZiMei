@@ -122,21 +122,18 @@ public class AdminController {
 
 			logger.error("註冊失敗: 格式錯誤");
 
-			// 註冊失敗: 格式錯誤
 			return ADMIN_SIGN_UP_PAGE;
 
 		} else if (!adminBean.getAd_password().equals(ad_password_again)) {
 
 			logger.error("註冊失敗: 密碼重複錯誤");
 
-			// 註冊失敗: 密碼重複錯誤
 			return ADMIN_SIGN_UP_PAGE;
 
 		} else if (adminService.selectByAd_username(adminBean.getAd_username()) != null) {
 
 			logger.error("註冊失敗: 帳號重複");
 
-			// 註冊失敗: 帳號重複
 			return ADMIN_SIGN_UP_PAGE;
 
 		} else {
@@ -145,7 +142,6 @@ public class AdminController {
 
 			logger.info("註冊成功");
 
-			// 註冊成功
 			return INDEX_PAGE;
 		}
 	}
@@ -248,7 +244,6 @@ public class AdminController {
 
 			logger.error("密碼變更失敗: 密碼未填");
 
-			// 密碼變更失敗: 密碼未填
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
@@ -257,7 +252,6 @@ public class AdminController {
 
 			logger.error("密碼變更失敗: 密碼格式錯誤");
 
-			// 密碼變更失敗: 密碼格式錯誤
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (ad_password_old.equals(ad_password_new)) {
@@ -266,7 +260,6 @@ public class AdminController {
 
 			logger.error("密碼變更失敗: 密碼未變更");
 
-			// 密碼變更失敗: 密碼未變更
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.equals(ad_password_new_again)) {
@@ -275,7 +268,6 @@ public class AdminController {
 
 			logger.error("密碼變更失敗: 新密碼重複錯誤");
 
-			// 密碼變更失敗: 新密碼重複錯誤
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (adminService.updateAd_password(admin, ad_password_old, ad_password_new) == null) {
@@ -284,14 +276,12 @@ public class AdminController {
 
 			logger.error("密碼變更失敗: 密碼錯誤");
 
-			// 密碼變更失敗: 密碼錯誤
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else {
 
 			logger.info("密碼變更成功");
 
-			// 密碼變更成功
 			return REDIRECT + ADMIN_PROFILE_PAGE;
 		}
 	}
@@ -353,7 +343,6 @@ public class AdminController {
 
 			logger.error("登入失敗: 帳號未填");
 
-			// 登入失敗: 帳號未填
 			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 
 		} else if (ad_password == null || ad_password.isEmpty()) {
@@ -362,7 +351,6 @@ public class AdminController {
 
 			logger.error("登入失敗: 密碼未填");
 
-			// 登入失敗: 密碼未填
 			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 
 		} else {
@@ -375,7 +363,6 @@ public class AdminController {
 
 				logger.error("登入失敗: 帳號或密碼錯誤");
 
-				// 登入失敗: 帳號或密碼錯誤
 				return REDIRECT + ADMIN_SIGN_IN_PAGE;
 
 			} else {
@@ -403,14 +390,12 @@ public class AdminController {
 					// 若經過 SigninInterceptor
 					logger.info("登入成功，導向原請求畫面: " + next);
 
-					// 登入成功，導向原請求畫面
 					return REDIRECT.concat(next);
 
 				} else {
 
 					logger.info("登入成功，導向首頁: index");
 
-					// 登入成功，導向首頁
 					return INDEX_PAGE;
 				}
 			}
@@ -450,7 +435,6 @@ public class AdminController {
 
 			logger.error("發送失敗: 信箱未填");
 
-			// 發送失敗: 信箱未填
 			return ADMIN_FORGET_PASSWORD_PAGE;
 
 		} else {
@@ -463,7 +447,6 @@ public class AdminController {
 
 				logger.error("發送失敗: 信箱錯誤");
 
-				// 發送失敗: 信箱錯誤
 				return ADMIN_FORGET_PASSWORD_PAGE;
 
 			} else {
@@ -484,7 +467,6 @@ public class AdminController {
 
 				logger.info("發送成功，傳送至: " + to);
 
-				// 發送成功
 				return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
 			}
 		}
@@ -536,7 +518,6 @@ public class AdminController {
 
 			logger.error("密碼重設失敗: 密碼未填");
 
-			// 密碼重設失敗: 密碼未填
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
@@ -545,7 +526,6 @@ public class AdminController {
 
 			logger.error("密碼重設失敗: 密碼格式錯誤");
 
-			// 密碼重設失敗: 密碼格式錯誤
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.equals(ad_password_new_again)) {
@@ -554,7 +534,6 @@ public class AdminController {
 
 			logger.error("密碼重設失敗: 新密碼重複錯誤");
 
-			// 密碼重設失敗: 新密碼重複錯誤
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else if (adminService.updateAd_password(adminService.selectByAd_email(ad_email), ad_password_random,
@@ -564,7 +543,6 @@ public class AdminController {
 
 			logger.error("密碼重設失敗: 驗證碼錯誤");
 
-			// 密碼重設失敗: 驗證碼錯誤
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else {
@@ -574,7 +552,6 @@ public class AdminController {
 
 			logger.info("密碼重設成功");
 
-			// 密碼重設成功
 			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 		}
 	}
@@ -644,16 +621,7 @@ public class AdminController {
 
 		AdminBean bean = adminService.selectByAd_username(ad_username);
 
-		if (bean != null) {
-
-			// 已使用
-			return "1";
-
-		} else {
-
-			// 未使用
-			return "0";
-		}
+		return (bean != null) ? "1" : "0";
 	}
 
 	/**
@@ -670,16 +638,7 @@ public class AdminController {
 
 		AdminBean bean = adminService.selectByAd_email(ad_email);
 
-		if (bean != null) {
-
-			// 已使用
-			return "1";
-
-		} else {
-
-			// 未使用
-			return "0";
-		}
+		return (bean != null) ? "1" : "0";
 	}
 
 	/**

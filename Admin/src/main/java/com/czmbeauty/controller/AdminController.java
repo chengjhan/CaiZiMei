@@ -621,7 +621,7 @@ public class AdminController {
 
 		AdminBean bean = adminService.selectByAd_username(ad_username);
 
-		return (bean != null) ? "1" : "0";
+		return (bean != null) ? "已使用" : "true";
 	}
 
 	/**

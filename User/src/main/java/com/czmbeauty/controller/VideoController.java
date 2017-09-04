@@ -42,9 +42,9 @@ public class VideoController {
 	 * 
 	 * @return video JSON
 	 */
-	@RequestMapping(value = "/video/open-video-main.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/video/open-video-main-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openVideoMainAjaxProcess() {
+	public String openVideoMainListAjaxProcess() {
 
 		VideoBean result = videoService.selectOpenVideo(HQL_SELECT_OPEN_VIDEO_MAIN).get(0);
 

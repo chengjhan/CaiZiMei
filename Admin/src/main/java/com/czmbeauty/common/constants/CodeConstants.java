@@ -23,4 +23,8 @@ public interface CodeConstants {
 
 	public static final int VIDEO_MAIN_CODE = 5;
 
+	public static final String SLIDER_FRANCHISEE = "slider-franchisee";
+
+	public static final int SLIDER_FRANCHISEE_CODE = 6;
+
 }

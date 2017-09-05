@@ -79,6 +79,11 @@ public interface HqlConstants {
 	 */
 	public static final String HQL_SELECT_ALL_SLIDER_MAIN = "from ImageBean where im_ca_id=4 order by im_status desc, im_rank asc, im_id asc";
 
+	/**
+	 * 搜尋所有加盟店資訊輪播圖片
+	 */
+	public static final String HQL_SELECT_ALL_SLIDER_FRANCHISEE = "from ImageBean where im_ca_id=6 order by im_status desc, im_rank asc, im_id asc";
+
 	// video
 	/**
 	 * 搜尋所有主影片

@@ -2,12 +2,14 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/5
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.CodeConstants.SLIDER_FRANCHISEE;
+import static com.czmbeauty.common.constants.CodeConstants.SLIDER_FRANCHISEE_CODE;
 import static com.czmbeauty.common.constants.CodeConstants.SLIDER_MAIN;
 import static com.czmbeauty.common.constants.CodeConstants.SLIDER_MAIN_CODE;
 import static com.czmbeauty.common.constants.CommonConstants.AND;
@@ -15,10 +17,14 @@ import static com.czmbeauty.common.constants.CommonConstants.DOT;
 import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 import static com.czmbeauty.common.constants.DirectoryConstants.IMAGES;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_FRANCHISEE;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_MAIN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_LIST;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
+import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_FRANCHISEE_ADD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_FRANCHISEE_EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_FRANCHISEE_LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_LIST_PAGE;
@@ -146,6 +152,7 @@ public class ImageController {
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/slider-main/list.jsp
+	 * @return /WEB-INF/views/slider-franchisee/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
@@ -161,7 +168,9 @@ public class ImageController {
 
 		CategoryBean im_CategoryBean = new CategoryBean();
 
-		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
+		String slider = request.getServletPath().split("/")[1];
+
+		if (SLIDER_MAIN.equals(slider)) {
 
 			// 取得當前頁碼的圖片 List，放入 table
 			model.addAttribute(IMAGE_LIST,
@@ -174,6 +183,19 @@ public class ImageController {
 
 			return SLIDER_MAIN_LIST_PAGE;
 		}
+		if (SLIDER_FRANCHISEE.equals(slider)) {
+
+			// 取得當前頁碼的圖片 List，放入 table
+			model.addAttribute(IMAGE_LIST,
+					imageService.selectPagination(HQL_SELECT_ALL_SLIDER_FRANCHISEE, first, IMAGE_PAGE_ROW_COUNT));
+
+			im_CategoryBean.setCa_id(SLIDER_FRANCHISEE_CODE);
+
+			// 取得總頁數
+			model.addAttribute(PAGE_COUNT, getPageCount(im_CategoryBean));
+
+			return SLIDER_FRANCHISEE_LIST_PAGE;
+		}
 		return null;
 	}
 
@@ -183,6 +205,7 @@ public class ImageController {
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/slider-main/add.jsp
+	 * @return /WEB-INF/views/slider-franchisee/add.jsp
 	 */
 	@RequestMapping(value = "/slider*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
@@ -190,9 +213,15 @@ public class ImageController {
 		// 新增 form backing object
 		model.addAttribute(IMAGE_BEAN, new ImageBean());
 
-		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
+		String slider = request.getServletPath().split("/")[1];
+
+		if (SLIDER_MAIN.equals(slider)) {
 
 			return SLIDER_MAIN_ADD_PAGE;
+		}
+		if (SLIDER_FRANCHISEE.equals(slider)) {
+
+			return SLIDER_FRANCHISEE_ADD_PAGE;
 		}
 		return null;
 	}
@@ -265,6 +294,7 @@ public class ImageController {
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/slider-main/edit.jsp
+	 * @return /WEB-INF/views/slider-franchisee/edit.jsp
 	 */
 	@RequestMapping(value = "/slider*/edit", method = RequestMethod.GET)
 	public String editView(ImageBean imageBean_im_id, @RequestParam String page, Model model) {
@@ -274,9 +304,15 @@ public class ImageController {
 		// 取得選定圖片 id 的 ImageBean，使表單回填 ImageBean 內所有資料
 		model.addAttribute(IMAGE_BEAN, imageService.selectByIm_id(imageBean_im_id.getIm_id()));
 
-		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
+		String slider = request.getServletPath().split("/")[1];
+
+		if (SLIDER_MAIN.equals(slider)) {
 
 			return SLIDER_MAIN_EDIT_PAGE;
+		}
+		if (SLIDER_FRANCHISEE.equals(slider)) {
+
+			return SLIDER_FRANCHISEE_EDIT_PAGE;
 		}
 		return null;
 	}

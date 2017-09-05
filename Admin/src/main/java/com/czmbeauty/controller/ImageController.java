@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/5
+ * Date: 2017/9/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -235,15 +235,16 @@ public class ImageController {
 	 *            ImageBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
-	 * @return /WEB-INF/views/slider-main/add.jsp
-	 * @return /WEB-INF/views/slider-main/add.jsp
 	 * @return /WEB-INF/views/slider-main/list.jsp
+	 * @return /WEB-INF/views/slider-franchisee/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/add.do", method = RequestMethod.POST)
 	public String addProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
-		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
+		String slider = request.getServletPath().split("/")[1];
+
+		if (SLIDER_MAIN.equals(slider)) {
 
 			if (file.isEmpty()) {
 
@@ -279,6 +280,44 @@ public class ImageController {
 				logger.info("主輪播圖片新增成功");
 
 				return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+			}
+		}
+		if (SLIDER_FRANCHISEE.equals(slider)) {
+
+			if (file.isEmpty()) {
+
+				logger.error("加盟店資訊輪播圖片新增失敗: 未上傳圖片");
+
+				return REDIRECT + SLIDER_FRANCHISEE_ADD_PAGE;
+
+			} else if (bindingResult.hasErrors()) {
+
+				logger.error("加盟店資訊輪播圖片新增失敗: 資料未填");
+
+				return REDIRECT + SLIDER_FRANCHISEE_ADD_PAGE;
+
+			} else {
+
+				String[] pathAndFilename = getPathAndFilename(SLIDER_FRANCHISEE, file);
+				try {
+					file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				logger.info("加盟店資訊輪播圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
+
+				imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_FRANCHISEE_CODE));
+				imageBean.setIm_path(pathAndFilename[0]);
+				imageBean.setIm_filename(pathAndFilename[1]);
+				imageBean.setIm_status(1);
+				imageBean.setIm_update_time(new java.util.Date());
+
+				imageService.insert(imageBean);
+
+				logger.info("加盟店資訊輪播圖片新增成功");
+
+				return REDIRECT + SLIDER_FRANCHISEE_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
 			}
 		}
 		return null;
@@ -326,8 +365,8 @@ public class ImageController {
 	 *            ImageBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
-	 * @return /WEB-INF/views/slider-main/edit.jsp
 	 * @return /WEB-INF/views/slider-main/list.jsp
+	 * @return /WEB-INF/views/slider-franchisee/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/edit.do", method = RequestMethod.POST)
 	public String editProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
@@ -338,7 +377,9 @@ public class ImageController {
 		String im_path;
 		String im_filename;
 
-		if (SLIDER_MAIN.equals(request.getServletPath().split("/")[1])) {
+		String slider = request.getServletPath().split("/")[1];
+
+		if (SLIDER_MAIN.equals(slider)) {
 
 			if (bindingResult.hasErrors()) {
 
@@ -365,7 +406,6 @@ public class ImageController {
 
 				logger.info("主輪播圖片上傳成功，位置: " + im_path + im_filename);
 			}
-
 			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_MAIN_CODE));
 			imageBean.setIm_path(im_path);
 			imageBean.setIm_filename(im_filename);
@@ -377,6 +417,45 @@ public class ImageController {
 			logger.info("主輪播圖片編輯成功");
 
 			return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
+		}
+		if (SLIDER_FRANCHISEE.equals(slider)) {
+
+			if (bindingResult.hasErrors()) {
+
+				logger.error("加盟店資訊輪播圖片編輯失敗: 資料未填");
+
+				return REDIRECT + SLIDER_FRANCHISEE_EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND
+						+ PAGE + EQUAL + currentPage;
+
+			} else if (file.isEmpty()) {
+
+				im_path = oldImageBean.getIm_path();
+				im_filename = oldImageBean.getIm_filename();
+
+			} else {
+
+				String[] pathAndFilename = getPathAndFilename(SLIDER_FRANCHISEE, file);
+				im_path = pathAndFilename[0];
+				im_filename = pathAndFilename[1];
+				try {
+					file.transferTo(new File(im_path + im_filename));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				logger.info("加盟店資訊輪播圖片上傳成功，位置: " + im_path + im_filename);
+			}
+			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_FRANCHISEE_CODE));
+			imageBean.setIm_path(im_path);
+			imageBean.setIm_filename(im_filename);
+			imageBean.setIm_status(oldImageBean.getIm_status());
+			imageBean.setIm_update_time(new java.util.Date());
+
+			imageService.update(imageBean);
+
+			logger.info("加盟店資訊輪播圖片編輯成功");
+
+			return REDIRECT + SLIDER_FRANCHISEE_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 		}
 		return null;
 	}

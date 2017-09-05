@@ -41,7 +41,7 @@
 								<img src="<%=request.getContextPath()%>/images/false.svg" style="display:none">
 							</div>
 						</div>
-						<p style="color:red">※ 請上傳長寬比為 4:3 的圖片 (建議為 600px*450px)。</p>
+						<p style="color:red">※ 請上傳長寬比為 4:3 的圖片 (建議為 640px*480px)。</p>
 						<input type="file" id="image-uploader" name="file" style="display:none" />
 						
 						<table class="table">

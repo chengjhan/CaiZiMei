@@ -26,7 +26,7 @@ h3 {
 	margin: 0 auto;
 	margin-bottom: 40px;
 	background-color: #EEEEEE;
-	overflow : auto; /* 撐開 */
+	overflow: auto; /* 撐開 */
 }
 
 #section-5 {
@@ -41,11 +41,12 @@ h3 {
 	height: 100%;
 }
 
-#section-1 .swiper-container {
+#section-1 .slider-main {
 	width: 100%;
 }
 
-#section-2 .swiper-container, #section-3 .swiper-container, #section-4 .swiper-container {
+#section-2 .video-related, #section-2 .slider-franchisee, #section-3 .swiper-container,
+	#section-4 .swiper-container {
 	width: 48%;
 }
 

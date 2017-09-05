@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>首頁 | 采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_32x32.ico" type="image/x-icon" />
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" /> --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css" type="text/css" />
 </head>
@@ -20,33 +20,32 @@
 	<!-- main -->
 	<main>
 <!-- 		<section id="section-0"></section> -->
+
 		<section id="section-1">
-			<div class="swiper-container">
+			<div class="slider-main swiper-container">
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
 		</section>
+		
 		<section id="section-2">
-			<div style="float:left">
+			<div class="video-related" style="float:left">
 				<h3>相關影音</h3>
-				<div class="video-main">
-					<iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+				<div class="video-main embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
-<!-- 			<div class="swiper-container" style="float:right"> -->
-<!-- 				<h3>加盟店資訊</h3> -->
-<!-- 				<div class="swiper-wrapper"> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="swiper-pagination"></div> -->
-<!-- 				<div class="swiper-button-next"></div> -->
-<!-- 				<div class="swiper-button-prev"></div> -->
-<!-- 			</div> -->
+			<div class="slider-franchisee swiper-container" style="float:right">
+				<h3>加盟店資訊</h3>
+				<div class="swiper-wrapper"></div>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
 		</section>
+		
 		<section id="section-3">
 <!-- 			<div class="swiper-container" style="float:left"> -->
 <!-- 				<h3>近期活動</h3> -->
@@ -71,6 +70,7 @@
 <!-- 				<div class="swiper-button-prev"></div> -->
 <!-- 			</div> -->
 		</section>
+		
 		<section id="section-4">
 <!-- 			<div class="swiper-container" style="float:left"> -->
 <!-- 				<h3>醫療新知</h3> -->
@@ -95,9 +95,11 @@
 <!-- 				<div class="swiper-button-prev"></div> -->
 <!-- 			</div> -->
 		</section>
+		
 		<section id="section-5">
 			<div id="id-map"></div>
 		</section>
+		
 	</main>
 	
 	<!-- footer -->

@@ -41,12 +41,11 @@ h3 {
 	height: 100%;
 }
 
-#section-1 .slider-main {
+.slider-main {
 	width: 100%;
 }
 
-#section-2 .video-related, #section-2 .slider-franchisee, #section-3 .swiper-container,
-	#section-4 .swiper-container {
+.video-related, .slider-franchisee, .slider-recent {
 	width: 48%;
 }
 

@@ -27,4 +27,8 @@ public interface CodeConstants {
 
 	public static final int SLIDER_FRANCHISEE_CODE = 6;
 
+	public static final String SLIDER_RECENT = "slider-recent";
+
+	public static final int SLIDER_RECENT_CODE = 7;
+
 }

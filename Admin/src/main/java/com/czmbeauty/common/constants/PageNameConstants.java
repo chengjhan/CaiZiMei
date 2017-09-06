@@ -72,6 +72,12 @@ public interface PageNameConstants {
 
 	public static final String SLIDER_FRANCHISEE_EDIT_PAGE = "slider-franchisee/edit";
 
+	public static final String SLIDER_RECENT_LIST_PAGE = "slider-recent/list";
+
+	public static final String SLIDER_RECENT_ADD_PAGE = "slider-recent/add";
+
+	public static final String SLIDER_RECENT_EDIT_PAGE = "slider-recent/edit";
+
 	public static final String VIDEO_RELATED_LIST_PAGE = "video-related/list";
 
 	public static final String VIDEO_RELATED_ADD_PAGE = "video-related/add";

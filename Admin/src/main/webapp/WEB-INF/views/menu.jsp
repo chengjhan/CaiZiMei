@@ -24,6 +24,7 @@
 		<ul class="nav nav-sidebar">
 			<li id="id-li-slider-main-list"><a href="<%=request.getContextPath()%>/slider-main/list?page=1">主輪播圖片一覽</a></li>
 			<li id="id-li-slider-franchisee-list"><a href="<%=request.getContextPath()%>/slider-franchisee/list?page=1">加盟店資訊輪播圖片一覽</a></li>
+			<li id="id-li-slider-recent-list"><a href="<%=request.getContextPath()%>/slider-recent/list?page=1">近期活動輪播圖片一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
 			<li id="id-li-video-related-list"><a href="<%=request.getContextPath()%>/video-related/list?page=1">相關影音一覽</a></li>

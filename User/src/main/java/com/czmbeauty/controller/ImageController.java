@@ -10,6 +10,7 @@ package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_FRANCHISEE;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_MAIN;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_RECENT;
 
 import java.util.List;
 
@@ -73,6 +74,28 @@ public class ImageController {
 	public String openSliderFranchiseeListAjaxProcess() {
 
 		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_FRANCHISEE);
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+
+		String json = gson.toJson(list);
+
+		logger.info("JSON = " + json);
+
+		return json;
+	}
+
+	/**
+	 * 開啟的近期活動輪播圖片 (AJAX)
+	 * 
+	 * @return image JSON
+	 */
+	@RequestMapping(value = "/image/open-slider-recent-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openSliderRecentListAjaxProcess() {
+
+		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_RECENT);
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();

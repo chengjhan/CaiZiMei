@@ -1,9 +1,10 @@
 $(document).ready(function(){
 	
-	function reinitSwiper(slider_main, slider_franchisee){
+	function reinitSwiper(slider_main, slider_franchisee, slider_recent){
 		setTimeout(function(){
 			slider_main.reInit();
 			slider_franchisee.reInit();
+			slider_recent.reInit();
 		}, 500);
 	}
 	
@@ -53,6 +54,28 @@ $(document).ready(function(){
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
 			var slider_div = $("<div class='swiper-slide'></div>").append(slider_a);
 			slider_franchisee.appendSlide(slider_div);
+		});
+	});
+	
+	// 近期活動輪播
+	var slider_recent = new Swiper('.slider-recent', {
+		pagination: '.swiper-pagination',
+		paginationClickable: true,
+		nextButton: '.swiper-button-next',
+		prevButton: '.swiper-button-prev',
+		spaceBetween: 30,
+		centeredSlides: true,
+		autoplay: 2500,
+		autoplayDisableOnInteraction: false,
+		loop: true
+	});
+	
+	$.getJSON("image/open-slider-recent-list.ajax", function(data){
+		$.each(data, function(index, imageBean){
+			var slider_img = $("<img src='/Admin/images/slider-recent/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
+			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
+			var slider_div = $("<div class='swiper-slide'></div>").append(slider_a);
+			slider_recent.appendSlide(slider_div);
 		});
 	});
 	

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CategoryService.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/9/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,5 +21,10 @@ public interface CategoryService {
 	 * @see com.czmbeauty.model.service.impl.CategoryServiceImpl#selectByCa_id(Integer)
 	 */
 	CategoryBean selectByCa_id(Integer ca_id);
+
+	/**
+	 * @see com.czmbeauty.model.service.impl.CategoryServiceImpl#selectByCa_directory(String)
+	 */
+	CategoryBean selectByCa_directory(String ca_directory);
 
 }

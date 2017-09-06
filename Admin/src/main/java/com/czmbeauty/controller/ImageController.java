@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/6
+ * Date: 2017/9/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,23 +33,20 @@ import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_TEAM;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_LIST;
+import static com.czmbeauty.common.constants.PageNameConstants.ADD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_FRANCHISEE_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_FRANCHISEE_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_FRANCHISEE_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_KNOWLEDGE_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_KNOWLEDGE_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_KNOWLEDGE_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_RECENT_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_RECENT_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_RECENT_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_SALE_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_SALE_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_SALE_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_TEAM_ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_TEAM_EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_TEAM_LIST_PAGE;
 import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
@@ -169,6 +166,63 @@ public class ImageController {
 	}
 
 	/**
+	 * 新增圖片
+	 * 
+	 * @param ca_directory
+	 *            String --> 類別資料夾名稱
+	 * @param file
+	 *            MultipartFile
+	 * @param imageBean
+	 *            ImageBean --> form backing object
+	 * @param bindingResult
+	 *            BindingResult
+	 * @return /WEB-INF/views/ca_directory/add.jsp
+	 * @return /WEB-INF/views/ca_directory/add.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
+	 */
+	private String add(String ca_directory, MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
+
+		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+		String ca_name = categoryBean.getCa_name();
+
+		if (file.isEmpty()) {
+
+			logger.error(ca_name + "圖片新增失敗: 未上傳圖片");
+
+			return REDIRECT + ca_directory + ADD_PAGE;
+
+		} else if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "圖片新增失敗: 資料未填");
+
+			return REDIRECT + ca_directory + ADD_PAGE;
+
+		} else {
+
+			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
+			try {
+				file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			logger.info(ca_name + "圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
+
+			imageBean.setIm_CategoryBean(categoryBean);
+			imageBean.setIm_path(pathAndFilename[0]);
+			imageBean.setIm_filename(pathAndFilename[1]);
+			imageBean.setIm_status(1);
+			imageBean.setIm_update_time(new java.util.Date());
+
+			imageService.insert(imageBean);
+
+			logger.info(ca_name + "圖片新增成功");
+
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+		}
+	}
+
+	/**
 	 * 輪播圖片一覽 - 初期處理
 	 * 
 	 * @param page
@@ -284,12 +338,7 @@ public class ImageController {
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/slider-main/add.jsp
-	 * @return /WEB-INF/views/slider-franchisee/add.jsp
-	 * @return /WEB-INF/views/slider-recent/add.jsp
-	 * @return /WEB-INF/views/slider-sale/add.jsp
-	 * @return /WEB-INF/views/slider-knowledge/add.jsp
-	 * @return /WEB-INF/views/slider-team/add.jsp
+	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
 	@RequestMapping(value = "/slider*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
@@ -297,33 +346,7 @@ public class ImageController {
 		// 新增 form backing object
 		model.addAttribute(IMAGE_BEAN, new ImageBean());
 
-		String slider = request.getServletPath().split("/")[1];
-
-		if (SLIDER_MAIN.equals(slider)) {
-
-			return SLIDER_MAIN_ADD_PAGE;
-		}
-		if (SLIDER_FRANCHISEE.equals(slider)) {
-
-			return SLIDER_FRANCHISEE_ADD_PAGE;
-		}
-		if (SLIDER_RECENT.equals(slider)) {
-
-			return SLIDER_RECENT_ADD_PAGE;
-		}
-		if (SLIDER_SALE.equals(slider)) {
-
-			return SLIDER_SALE_ADD_PAGE;
-		}
-		if (SLIDER_KNOWLEDGE.equals(slider)) {
-
-			return SLIDER_KNOWLEDGE_ADD_PAGE;
-		}
-		if (SLIDER_TEAM.equals(slider)) {
-
-			return SLIDER_TEAM_ADD_PAGE;
-		}
-		return null;
+		return request.getServletPath().split("/")[1] + ADD_PAGE;
 	}
 
 	/**
@@ -335,248 +358,15 @@ public class ImageController {
 	 *            ImageBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
-	 * @return /WEB-INF/views/slider-main/list.jsp
-	 * @return /WEB-INF/views/slider-franchisee/list.jsp
-	 * @return /WEB-INF/views/slider-recent/list.jsp
-	 * @return /WEB-INF/views/slider-sale/list.jsp
-	 * @return /WEB-INF/views/slider-knowledge/list.jsp
-	 * @return /WEB-INF/views/slider-team/list.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/add.do", method = RequestMethod.POST)
 	public String addProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
-		String slider = request.getServletPath().split("/")[1];
+		String ca_directory = request.getServletPath().split("/")[1];
 
-		if (SLIDER_MAIN.equals(slider)) {
-
-			if (file.isEmpty()) {
-
-				logger.error("主輪播圖片新增失敗: 未上傳圖片");
-
-				return REDIRECT + SLIDER_MAIN_ADD_PAGE;
-
-			} else if (bindingResult.hasErrors()) {
-
-				logger.error("主輪播圖片新增失敗: 資料未填");
-
-				return REDIRECT + SLIDER_MAIN_ADD_PAGE;
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_MAIN, file);
-				try {
-					file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("主輪播圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
-
-				imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_MAIN_CODE));
-				imageBean.setIm_path(pathAndFilename[0]);
-				imageBean.setIm_filename(pathAndFilename[1]);
-				imageBean.setIm_status(1);
-				imageBean.setIm_update_time(new java.util.Date());
-
-				imageService.insert(imageBean);
-
-				logger.info("主輪播圖片新增成功");
-
-				return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-			}
-		}
-		if (SLIDER_FRANCHISEE.equals(slider)) {
-
-			if (file.isEmpty()) {
-
-				logger.error("加盟店資訊輪播圖片新增失敗: 未上傳圖片");
-
-				return REDIRECT + SLIDER_FRANCHISEE_ADD_PAGE;
-
-			} else if (bindingResult.hasErrors()) {
-
-				logger.error("加盟店資訊輪播圖片新增失敗: 資料未填");
-
-				return REDIRECT + SLIDER_FRANCHISEE_ADD_PAGE;
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_FRANCHISEE, file);
-				try {
-					file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("加盟店資訊輪播圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
-
-				imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_FRANCHISEE_CODE));
-				imageBean.setIm_path(pathAndFilename[0]);
-				imageBean.setIm_filename(pathAndFilename[1]);
-				imageBean.setIm_status(1);
-				imageBean.setIm_update_time(new java.util.Date());
-
-				imageService.insert(imageBean);
-
-				logger.info("加盟店資訊輪播圖片新增成功");
-
-				return REDIRECT + SLIDER_FRANCHISEE_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-			}
-		}
-		if (SLIDER_RECENT.equals(slider)) {
-
-			if (file.isEmpty()) {
-
-				logger.error("近期活動輪播圖片新增失敗: 未上傳圖片");
-
-				return REDIRECT + SLIDER_RECENT_ADD_PAGE;
-
-			} else if (bindingResult.hasErrors()) {
-
-				logger.error("近期活動輪播圖片新增失敗: 資料未填");
-
-				return REDIRECT + SLIDER_RECENT_ADD_PAGE;
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_RECENT, file);
-				try {
-					file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("近期活動輪播圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
-
-				imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_RECENT_CODE));
-				imageBean.setIm_path(pathAndFilename[0]);
-				imageBean.setIm_filename(pathAndFilename[1]);
-				imageBean.setIm_status(1);
-				imageBean.setIm_update_time(new java.util.Date());
-
-				imageService.insert(imageBean);
-
-				logger.info("近期活動輪播圖片新增成功");
-
-				return REDIRECT + SLIDER_RECENT_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-			}
-		}
-		if (SLIDER_SALE.equals(slider)) {
-
-			if (file.isEmpty()) {
-
-				logger.error("優惠活動輪播圖片新增失敗: 未上傳圖片");
-
-				return REDIRECT + SLIDER_SALE_ADD_PAGE;
-
-			} else if (bindingResult.hasErrors()) {
-
-				logger.error("優惠活動輪播圖片新增失敗: 資料未填");
-
-				return REDIRECT + SLIDER_SALE_ADD_PAGE;
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_SALE, file);
-				try {
-					file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("優惠活動輪播圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
-
-				imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_SALE_CODE));
-				imageBean.setIm_path(pathAndFilename[0]);
-				imageBean.setIm_filename(pathAndFilename[1]);
-				imageBean.setIm_status(1);
-				imageBean.setIm_update_time(new java.util.Date());
-
-				imageService.insert(imageBean);
-
-				logger.info("優惠活動輪播圖片新增成功");
-
-				return REDIRECT + SLIDER_SALE_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-			}
-		}
-		if (SLIDER_KNOWLEDGE.equals(slider)) {
-
-			if (file.isEmpty()) {
-
-				logger.error("醫療新知輪播圖片新增失敗: 未上傳圖片");
-
-				return REDIRECT + SLIDER_KNOWLEDGE_ADD_PAGE;
-
-			} else if (bindingResult.hasErrors()) {
-
-				logger.error("醫療新知輪播圖片新增失敗: 資料未填");
-
-				return REDIRECT + SLIDER_KNOWLEDGE_ADD_PAGE;
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_KNOWLEDGE, file);
-				try {
-					file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("醫療新知輪播圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
-
-				imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_KNOWLEDGE_CODE));
-				imageBean.setIm_path(pathAndFilename[0]);
-				imageBean.setIm_filename(pathAndFilename[1]);
-				imageBean.setIm_status(1);
-				imageBean.setIm_update_time(new java.util.Date());
-
-				imageService.insert(imageBean);
-
-				logger.info("醫療新知輪播圖片新增成功");
-
-				return REDIRECT + SLIDER_KNOWLEDGE_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-			}
-		}
-		if (SLIDER_TEAM.equals(slider)) {
-
-			if (file.isEmpty()) {
-
-				logger.error("醫療團隊輪播圖片新增失敗: 未上傳圖片");
-
-				return REDIRECT + SLIDER_TEAM_ADD_PAGE;
-
-			} else if (bindingResult.hasErrors()) {
-
-				logger.error("醫療團隊輪播圖片新增失敗: 資料未填");
-
-				return REDIRECT + SLIDER_TEAM_ADD_PAGE;
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_TEAM, file);
-				try {
-					file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("醫療團隊輪播圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
-
-				imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_TEAM_CODE));
-				imageBean.setIm_path(pathAndFilename[0]);
-				imageBean.setIm_filename(pathAndFilename[1]);
-				imageBean.setIm_status(1);
-				imageBean.setIm_update_time(new java.util.Date());
-
-				imageService.insert(imageBean);
-
-				logger.info("醫療團隊輪播圖片新增成功");
-
-				return REDIRECT + SLIDER_TEAM_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-			}
-		}
-		return null;
+		return add(ca_directory, file, imageBean, bindingResult);
 	}
 
 	/**
@@ -588,12 +378,7 @@ public class ImageController {
 	 *            String --> 當前頁碼
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/slider-main/edit.jsp
-	 * @return /WEB-INF/views/slider-franchisee/edit.jsp
-	 * @return /WEB-INF/views/slider-recent/edit.jsp
-	 * @return /WEB-INF/views/slider-sale/edit.jsp
-	 * @return /WEB-INF/views/slider-knowledge/edit.jsp
-	 * @return /WEB-INF/views/slider-team/edit.jsp
+	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
 	@RequestMapping(value = "/slider*/edit", method = RequestMethod.GET)
 	public String editView(ImageBean imageBean_im_id, @RequestParam String page, Model model) {
@@ -603,33 +388,7 @@ public class ImageController {
 		// 取得選定圖片 id 的 ImageBean，使表單回填 ImageBean 內所有資料
 		model.addAttribute(IMAGE_BEAN, imageService.selectByIm_id(imageBean_im_id.getIm_id()));
 
-		String slider = request.getServletPath().split("/")[1];
-
-		if (SLIDER_MAIN.equals(slider)) {
-
-			return SLIDER_MAIN_EDIT_PAGE;
-		}
-		if (SLIDER_FRANCHISEE.equals(slider)) {
-
-			return SLIDER_FRANCHISEE_EDIT_PAGE;
-		}
-		if (SLIDER_RECENT.equals(slider)) {
-
-			return SLIDER_RECENT_EDIT_PAGE;
-		}
-		if (SLIDER_SALE.equals(slider)) {
-
-			return SLIDER_SALE_EDIT_PAGE;
-		}
-		if (SLIDER_KNOWLEDGE.equals(slider)) {
-
-			return SLIDER_KNOWLEDGE_EDIT_PAGE;
-		}
-		if (SLIDER_TEAM.equals(slider)) {
-
-			return SLIDER_TEAM_EDIT_PAGE;
-		}
-		return null;
+		return request.getServletPath().split("/")[1] + EDIT_PAGE;
 	}
 
 	/**

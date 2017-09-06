@@ -8,6 +8,12 @@ public interface PageNameConstants {
 
 	public static final String NEXT_PAGE = "next";
 
+	public static final String LIST_PAGE = "/list";
+
+	public static final String ADD_PAGE = "/add";
+
+	public static final String EDIT_PAGE = "/edit";
+
 	public static final String ADMIN_SIGN_UP_PAGE = "admin/sign-up";
 
 	public static final String ADMIN_PROFILE_PAGE = "admin/profile";

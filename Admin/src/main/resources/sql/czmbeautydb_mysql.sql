@@ -71,7 +71,7 @@ create table city (
 create table category (
 	ca_id					int auto_increment not null,
 	ca_name					nvarchar(20) not null,
-	ca_eng_name				varchar(50) not null,
+	ca_directory			varchar(50) not null,
 	primary key (ca_id)
 );
 
@@ -173,16 +173,16 @@ insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 14
 insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (2, 17, '天水市', 1, 1);
 
 -- category
-insert into category (ca_name, ca_eng_name) values ('辦事處', 'office');
-insert into category (ca_name, ca_eng_name) values ('加盟店', 'franchisee');
-insert into category (ca_name, ca_eng_name) values ('診所', 'clinic');
-insert into category (ca_name, ca_eng_name) values ('主輪播', 'slider_main');
-insert into category (ca_name, ca_eng_name) values ('相關影音', 'video_related');
-insert into category (ca_name, ca_eng_name) values ('加盟店資訊輪播', 'slider_franchisee');
-insert into category (ca_name, ca_eng_name) values ('近期活動輪播', 'slider_recent');
-insert into category (ca_name, ca_eng_name) values ('優惠活動輪播', 'slider_sale');
-insert into category (ca_name, ca_eng_name) values ('醫療新知輪播', 'slider_knowledge');
-insert into category (ca_name, ca_eng_name) values ('醫療團隊輪播', 'slider_team');
+insert into category (ca_name, ca_directory) values ('辦事處', 'office');
+insert into category (ca_name, ca_directory) values ('加盟店', 'franchisee');
+insert into category (ca_name, ca_directory) values ('診所', 'clinic');
+insert into category (ca_name, ca_directory) values ('主輪播', 'slider-main');
+insert into category (ca_name, ca_directory) values ('相關影音', 'video-related');
+insert into category (ca_name, ca_directory) values ('加盟店資訊輪播', 'slider-franchisee');
+insert into category (ca_name, ca_directory) values ('近期活動輪播', 'slider-recent');
+insert into category (ca_name, ca_directory) values ('優惠活動輪播', 'slider-sale');
+insert into category (ca_name, ca_directory) values ('醫療新知輪播', 'slider-knowledge');
+insert into category (ca_name, ca_directory) values ('醫療團隊輪播', 'slider-team');
 
 -- base
 insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (1, '采姿美台北辦事處', 'CaiZiMei', '02', '27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://localhost:8080/User/', now(), now(), 1, now());

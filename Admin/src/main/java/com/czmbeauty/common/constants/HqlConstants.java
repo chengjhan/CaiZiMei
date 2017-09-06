@@ -34,6 +34,10 @@ public interface HqlConstants {
 	/** 區域流水號搜尋 */
 	public static final String HQL_SELECT_CITY_BY_STATE = "from CityBean where ci_st_id=:ci_st_id order by ci_rank asc, ci_id asc";
 
+	// category
+	/** 類別資料夾名稱搜尋 */
+	public static final String HQL_SELECT_CATEGORY_BY_DIRECTORY = "from CategoryBean where ca_directory=:ca_directory";
+
 	// base
 	/** 搜尋所有辦事處 */
 	public static final String HQL_SELECT_ALL_OFFICE = "from BaseBean where ba_ca_id=1 order by ba_status desc, ba_id asc";

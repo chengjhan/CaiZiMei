@@ -2,11 +2,13 @@
  * CaiZiMei
  * File: CategoryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/9/7
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service.impl;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,22 @@ public class CategoryServiceImpl implements CategoryService {
 			result = categoryDao.selectByCa_id(ca_id);
 		}
 		return result;
+	}
+
+	/**
+	 * 類別資料夾名稱搜尋
+	 * 
+	 * @param ca_directory
+	 *            String --> 類別資料夾名稱
+	 * @return CategoryBean
+	 * @return null
+	 */
+	@Override
+	public CategoryBean selectByCa_directory(String ca_directory) {
+
+		List<CategoryBean> list = categoryDao.selectByCa_directory(ca_directory);
+
+		return (!list.isEmpty()) ? list.get(0) : null;
 	}
 
 }

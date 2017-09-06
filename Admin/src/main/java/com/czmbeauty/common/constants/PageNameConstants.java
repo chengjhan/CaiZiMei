@@ -78,6 +78,24 @@ public interface PageNameConstants {
 
 	public static final String SLIDER_RECENT_EDIT_PAGE = "slider-recent/edit";
 
+	public static final String SLIDER_SALE_LIST_PAGE = "slider-sale/list";
+
+	public static final String SLIDER_SALE_ADD_PAGE = "slider-sale/add";
+
+	public static final String SLIDER_SALE_EDIT_PAGE = "slider-sale/edit";
+
+	public static final String SLIDER_KNOWLEDGE_LIST_PAGE = "slider-knowledge/list";
+
+	public static final String SLIDER_KNOWLEDGE_ADD_PAGE = "slider-knowledge/add";
+
+	public static final String SLIDER_KNOWLEDGE_EDIT_PAGE = "slider-knowledge/edit";
+
+	public static final String SLIDER_TEAM_LIST_PAGE = "slider-team/list";
+
+	public static final String SLIDER_TEAM_ADD_PAGE = "slider-team/add";
+
+	public static final String SLIDER_TEAM_EDIT_PAGE = "slider-team/edit";
+
 	public static final String VIDEO_RELATED_LIST_PAGE = "video-related/list";
 
 	public static final String VIDEO_RELATED_ADD_PAGE = "video-related/add";

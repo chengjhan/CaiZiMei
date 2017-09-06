@@ -1,10 +1,13 @@
 $(document).ready(function(){
 	
-	function reinitSwiper(slider_main, slider_franchisee, slider_recent){
+	function reinitSwiper(slider_main, slider_franchisee, slider_recent, slider_sale, slider_knowledge, slider_team){
 		setTimeout(function(){
 			slider_main.reInit();
 			slider_franchisee.reInit();
 			slider_recent.reInit();
+			slider_sale.reInit();
+			slider_knowledge.reInit();
+			slider_team.reInit();
 		}, 500);
 	}
 	
@@ -76,6 +79,72 @@ $(document).ready(function(){
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
 			var slider_div = $("<div class='swiper-slide'></div>").append(slider_a);
 			slider_recent.appendSlide(slider_div);
+		});
+	});
+	
+	// 優惠活動輪播
+	var slider_sale = new Swiper('.slider-sale', {
+		pagination: '.swiper-pagination',
+		paginationClickable: true,
+		nextButton: '.swiper-button-next',
+		prevButton: '.swiper-button-prev',
+		spaceBetween: 30,
+		centeredSlides: true,
+		autoplay: 2500,
+		autoplayDisableOnInteraction: false,
+		loop: true
+	});
+	
+	$.getJSON("image/open-slider-sale-list.ajax", function(data){
+		$.each(data, function(index, imageBean){
+			var slider_img = $("<img src='/Admin/images/slider-sale/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
+			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
+			var slider_div = $("<div class='swiper-slide'></div>").append(slider_a);
+			slider_sale.appendSlide(slider_div);
+		});
+	});
+	
+	// 醫療新知輪播
+	var slider_knowledge = new Swiper('.slider-knowledge', {
+		pagination: '.swiper-pagination',
+		paginationClickable: true,
+		nextButton: '.swiper-button-next',
+		prevButton: '.swiper-button-prev',
+		spaceBetween: 30,
+		centeredSlides: true,
+		autoplay: 2500,
+		autoplayDisableOnInteraction: false,
+		loop: true
+	});
+	
+	$.getJSON("image/open-slider-knowledge-list.ajax", function(data){
+		$.each(data, function(index, imageBean){
+			var slider_img = $("<img src='/Admin/images/slider-knowledge/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
+			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
+			var slider_div = $("<div class='swiper-slide'></div>").append(slider_a);
+			slider_knowledge.appendSlide(slider_div);
+		});
+	});
+	
+	// 醫療團隊輪播
+	var slider_team = new Swiper('.slider-team', {
+		pagination: '.swiper-pagination',
+		paginationClickable: true,
+		nextButton: '.swiper-button-next',
+		prevButton: '.swiper-button-prev',
+		spaceBetween: 30,
+		centeredSlides: true,
+		autoplay: 2500,
+		autoplayDisableOnInteraction: false,
+		loop: true
+	});
+	
+	$.getJSON("image/open-slider-team-list.ajax", function(data){
+		$.each(data, function(index, imageBean){
+			var slider_img = $("<img src='/Admin/images/slider-team/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
+			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
+			var slider_div = $("<div class='swiper-slide'></div>").append(slider_a);
+			slider_team.appendSlide(slider_div);
 		});
 	});
 	

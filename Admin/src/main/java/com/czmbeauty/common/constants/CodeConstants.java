@@ -31,4 +31,16 @@ public interface CodeConstants {
 
 	public static final int SLIDER_RECENT_CODE = 7;
 
+	public static final String SLIDER_SALE = "slider-sale";
+
+	public static final int SLIDER_SALE_CODE = 8;
+
+	public static final String SLIDER_KNOWLEDGE = "slider-knowledge";
+
+	public static final int SLIDER_KNOWLEDGE_CODE = 9;
+
+	public static final String SLIDER_TEAM = "slider-team";
+
+	public static final int SLIDER_TEAM_CODE = 10;
+
 }

@@ -45,7 +45,8 @@ h3 {
 	width: 100%;
 }
 
-.video-related, .slider-franchisee, .slider-recent {
+.video-related, .slider-franchisee, .slider-recent, .slider-sale,
+	.slider-knowledge, .slider-team {
 	width: 48%;
 }
 

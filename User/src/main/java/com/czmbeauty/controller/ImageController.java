@@ -9,8 +9,11 @@
 package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_FRANCHISEE;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_KNOWLEDGE;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_MAIN;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_RECENT;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_SALE;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_TEAM;
 
 import java.util.List;
 
@@ -96,6 +99,72 @@ public class ImageController {
 	public String openSliderRecentListAjaxProcess() {
 
 		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_RECENT);
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+
+		String json = gson.toJson(list);
+
+		logger.info("JSON = " + json);
+
+		return json;
+	}
+
+	/**
+	 * 開啟的優惠活動輪播圖片 (AJAX)
+	 * 
+	 * @return image JSON
+	 */
+	@RequestMapping(value = "/image/open-slider-sale-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openSliderSaleListAjaxProcess() {
+
+		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_SALE);
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+
+		String json = gson.toJson(list);
+
+		logger.info("JSON = " + json);
+
+		return json;
+	}
+
+	/**
+	 * 開啟的醫療新知輪播圖片 (AJAX)
+	 * 
+	 * @return image JSON
+	 */
+	@RequestMapping(value = "/image/open-slider-knowledge-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openSliderKnowledgeListAjaxProcess() {
+
+		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_KNOWLEDGE);
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+
+		String json = gson.toJson(list);
+
+		logger.info("JSON = " + json);
+
+		return json;
+	}
+
+	/**
+	 * 開啟的醫療團隊輪播圖片 (AJAX)
+	 * 
+	 * @return image JSON
+	 */
+	@RequestMapping(value = "/image/open-slider-team-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openSliderTeamListAjaxProcess() {
+
+		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_TEAM);
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();

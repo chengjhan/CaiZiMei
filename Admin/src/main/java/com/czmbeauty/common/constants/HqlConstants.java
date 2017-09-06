@@ -57,6 +57,15 @@ public interface HqlConstants {
 	/** 搜尋所有近期活動輪播圖片 */
 	public static final String HQL_SELECT_ALL_SLIDER_RECENT = "from ImageBean where im_ca_id=7 order by im_status desc, im_rank asc, im_id asc";
 
+	/** 搜尋所有優惠活動輪播圖片 */
+	public static final String HQL_SELECT_ALL_SLIDER_SALE = "from ImageBean where im_ca_id=8 order by im_status desc, im_rank asc, im_id asc";
+
+	/** 搜尋所有醫療新知輪播圖片 */
+	public static final String HQL_SELECT_ALL_SLIDER_KNOWLEDGE = "from ImageBean where im_ca_id=9 order by im_status desc, im_rank asc, im_id asc";
+
+	/** 搜尋所有醫療團隊輪播圖片 */
+	public static final String HQL_SELECT_ALL_SLIDER_TEAM = "from ImageBean where im_ca_id=10 order by im_status desc, im_rank asc, im_id asc";
+
 	// video
 	/** 搜尋所有相關影音 */
 	public static final String HQL_SELECT_ALL_VIDEO_RELATED = "from VideoBean where vi_ca_id=5 order by vi_rank asc, vi_id asc";

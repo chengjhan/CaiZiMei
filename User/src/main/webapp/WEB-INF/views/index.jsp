@@ -54,42 +54,30 @@
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
-<!-- 			<div class="swiper-container" style="float:right"> -->
-<!-- 				<h3>優惠活動</h3> -->
-<!-- 				<div class="swiper-wrapper"> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="swiper-pagination"></div> -->
-<!-- 				<div class="swiper-button-next"></div> -->
-<!-- 				<div class="swiper-button-prev"></div> -->
-<!-- 			</div> -->
+			<div class="slider-sale swiper-container" style="float:right">
+				<h3>優惠活動</h3>
+				<div class="swiper-wrapper"></div>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
 		</section>
 		
 		<section id="section-4">
-<!-- 			<div class="swiper-container" style="float:left"> -->
-<!-- 				<h3>醫療新知</h3> -->
-<!-- 				<div class="swiper-wrapper"> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="swiper-pagination"></div> -->
-<!-- 				<div class="swiper-button-next"></div> -->
-<!-- 				<div class="swiper-button-prev"></div> -->
-<!-- 			</div> -->
-<!-- 			<div class="swiper-container" style="float:right"> -->
-<!-- 				<h3>醫療團隊</h3> -->
-<!-- 				<div class="swiper-wrapper"> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 1</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 2</div> -->
-<!-- 					<div class="swiper-slide" style="height:342px">Slide 3</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="swiper-pagination"></div> -->
-<!-- 				<div class="swiper-button-next"></div> -->
-<!-- 				<div class="swiper-button-prev"></div> -->
-<!-- 			</div> -->
+			<div class="slider-knowledge swiper-container" style="float:left">
+				<h3>醫療新知</h3>
+				<div class="swiper-wrapper"></div>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+			<div class="slider-team swiper-container" style="float:right">
+				<h3>醫療團隊</h3>
+				<div class="swiper-wrapper"></div>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
 		</section>
 		
 		<section id="section-5">

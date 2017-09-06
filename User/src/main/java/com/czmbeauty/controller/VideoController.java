@@ -2,13 +2,13 @@
  * CaiZiMei/User
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/9/4
+ * Date: 2017/9/6
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_VIDEO_MAIN;
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_VIDEO_RELATED;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +38,15 @@ public class VideoController {
 	private VideoService videoService;
 
 	/**
-	 * 開啟的主影片 (AJAX)
+	 * 開啟的相關影音 (AJAX)
 	 * 
 	 * @return video JSON
 	 */
-	@RequestMapping(value = "/video/open-video-main-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/video/open-video-related-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openVideoMainListAjaxProcess() {
+	public String openVideoRelatedListAjaxProcess() {
 
-		VideoBean bean = videoService.selectOpenVideo(HQL_SELECT_OPEN_VIDEO_MAIN).get(0);
+		VideoBean bean = videoService.selectOpenVideo(HQL_SELECT_OPEN_VIDEO_RELATED).get(0);
 
 		VideoBean jsonBean = new VideoBean();
 		jsonBean.setVi_id(bean.getVi_id());

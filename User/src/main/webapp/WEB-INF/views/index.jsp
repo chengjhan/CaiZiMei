@@ -33,7 +33,7 @@
 		<section id="section-2">
 			<div class="video-related" style="float:left">
 				<h3>相關影音</h3>
-				<div class="video-main embed-responsive embed-responsive-16by9">
+				<div class="embed-responsive embed-responsive-16by9">
 					<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>

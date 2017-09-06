@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>主影片一覽 | 采姿美管理系統</title>
+<title>相關影音一覽 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/video/list.css" type="text/css" />
 </head>
@@ -23,7 +23,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			
 				<!-- title -->
-				<h2 class="sub-header">主影片一覽</h2>
+				<h2 class="sub-header">相關影音一覽</h2>
 				
 				<!-- content -->
 				<div class="table-responsive">
@@ -31,7 +31,7 @@
 					<!-- option -->
 					<div class="btn-group option">
 						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/video-main/add">
+							<a href="<%=request.getContextPath()%>/video-related/add">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -59,7 +59,7 @@
 									<td>${bean.vi_rank}</td>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/video-main/edit?vi_id=${bean.vi_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/icon_edit.svg"></a>
+											<a href="<%=request.getContextPath()%>/video-related/edit?vi_id=${bean.vi_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/icon_edit.svg"></a>
 										</div>
 									</td>
 									<td>
@@ -85,13 +85,13 @@
 						<nav style="text-align:center">
 							<ul class="pagination" style="margin:0">
 								<c:if test="${currentPage > 1}">
-									<li><a href="<%=request.getContextPath()%>/video-main/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+									<li><a href="<%=request.getContextPath()%>/video-related/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
 								</c:if>
 								<c:forEach begin="1" end="${pageCount}" varStatus="status">
-									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/video-main/list?page=${status.count}">${status.count}</a></li>
+									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/video-related/list?page=${status.count}">${status.count}</a></li>
 								</c:forEach>
 								<c:if test="${currentPage < pageCount}">
-									<li><a href="<%=request.getContextPath()%>/video-main/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+									<li><a href="<%=request.getContextPath()%>/video-related/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
 								</c:if>
 							</ul>
 						</nav>

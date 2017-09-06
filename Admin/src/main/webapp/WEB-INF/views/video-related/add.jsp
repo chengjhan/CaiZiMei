@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>新增主影片 | 采姿美管理系統</title>
+<title>新增相關影音 | 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/video/form.css" type="text/css" />
 </head>
@@ -23,13 +23,13 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				
 				<!-- title -->
-				<h2 class="sub-header">新增主影片</h2>
+				<h2 class="sub-header">新增相關影音</h2>
 				
 				<!-- content -->
 				<div class="table-responsive">
 				
 					<!-- form -->
-					<form:form action="/Admin/video-main/add.do" method="post" modelAttribute="videoBean">
+					<form:form action="/Admin/video-related/add.do" method="post" modelAttribute="videoBean">
 						<table class="table">
 							<tr>
 								<td><form:label path="vi_name">名稱</form:label></td>

@@ -86,9 +86,9 @@ public interface HqlConstants {
 
 	// video
 	/**
-	 * 搜尋所有主影片
+	 * 搜尋所有相關影音
 	 */
-	public static final String HQL_SELECT_ALL_VIDEO_MAIN = "from VideoBean where vi_ca_id=5 order by vi_rank asc, vi_id asc";
+	public static final String HQL_SELECT_ALL_VIDEO_RELATED = "from VideoBean where vi_ca_id=5 order by vi_rank asc, vi_id asc";
 
 	/**
 	 * 搜尋開啟的影片

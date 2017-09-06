@@ -16,8 +16,8 @@ public interface HqlConstants {
 
 	// video
 	/**
-	 * 搜尋開啟的主影片
+	 * 搜尋開啟的相關影音
 	 */
-	public static final String HQL_SELECT_OPEN_VIDEO_MAIN = "from VideoBean where vi_ca_id=5 and vi_status=1 order by vi_rank asc";
+	public static final String HQL_SELECT_OPEN_VIDEO_RELATED = "from VideoBean where vi_ca_id=5 and vi_status=1 order by vi_rank asc";
 
 }

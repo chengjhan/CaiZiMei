@@ -22,10 +22,10 @@ $(document).ready(function(){
 	
 	$.getJSON("image/open-slider-main-list.ajax", function(data){
 		$.each(data, function(index, imageBean){
-			var slider_main_img = $("<img src='/Admin/images/slider-main/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
-			var slider_main_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_main_img);
-			var slider_main_div = $("<div class='swiper-slide'></div>").append(slider_main_a);
-			slider_main.appendSlide(slider_main_div);
+			var slider_img = $("<img src='/Admin/images/slider-main/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
+			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
+			var slider_div = $("<div class='swiper-slide'></div>").append(slider_a);
+			slider_main.appendSlide(slider_div);
 		});
 	});
 	
@@ -34,7 +34,7 @@ $(document).ready(function(){
 		$(".video-related iframe").attr("src", data.vi_tag);
 	});
 	
-	// 加盟店資訊
+	// 加盟店資訊輪播
 	var slider_franchisee = new Swiper('.slider-franchisee', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
@@ -47,12 +47,12 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/open-slider-main-list.ajax", function(data){
+	$.getJSON("image/open-slider-franchisee-list.ajax", function(data){
 		$.each(data, function(index, imageBean){
-			var slider_main_img = $("<img src='/Admin/images/slider-main/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
-			var slider_main_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_main_img);
-			var slider_main_div = $("<div class='swiper-slide'></div>").append(slider_main_a);
-			slider_franchisee.appendSlide(slider_main_div);
+			var slider_img = $("<img src='/Admin/images/slider-franchisee/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
+			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
+			var slider_div = $("<div class='swiper-slide'></div>").append(slider_a);
+			slider_franchisee.appendSlide(slider_div);
 		});
 	});
 	

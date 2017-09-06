@@ -2,12 +2,13 @@
  * CaiZiMei/User
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/4
+ * Date: 2017/9/6
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_FRANCHISEE;
 import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_MAIN;
 
 import java.util.List;
@@ -50,6 +51,28 @@ public class ImageController {
 	public String openSliderMainListAjaxProcess() {
 
 		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_MAIN);
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = builder.create();
+
+		String json = gson.toJson(list);
+
+		logger.info("JSON = " + json);
+
+		return json;
+	}
+
+	/**
+	 * 開啟的加盟店資訊輪播圖片 (AJAX)
+	 * 
+	 * @return image JSON
+	 */
+	@RequestMapping(value = "/image/open-slider-franchisee-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openSliderFranchiseeListAjaxProcess() {
+
+		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_FRANCHISEE);
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();

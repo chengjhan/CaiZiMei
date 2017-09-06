@@ -33,7 +33,7 @@
 						
 						<div class="image-upload">
 							<label for="image-uploader">
-								<div class="image-preview">
+								<div class="image-preview" style="max-width:900px">
 									<img src="<%=request.getContextPath()%>/images/image/upload_new_image_900x300.png" class="img-thumbnail">
 								</div>
 							</label>

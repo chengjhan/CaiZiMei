@@ -33,7 +33,7 @@
 						
 						<div class="image-upload">
 							<label for="image-uploader">
-								<div class="image-preview">
+								<div class="image-preview" style="max-width:400px">
 									<img src="<%=request.getContextPath()%>/images/slider-franchisee/${imageBean.im_filename}" class="img-thumbnail">
 								</div>
 							</label>

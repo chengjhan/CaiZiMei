@@ -33,7 +33,7 @@
 						
 						<div class="image-upload">
 							<label for="image-uploader">
-								<div class="image-preview">
+								<div class="image-preview" style="max-width:400px">
 									<img src="<%=request.getContextPath()%>/images/image/upload_new_image_400x300.png" class="img-thumbnail">
 								</div>
 							</label>
@@ -82,7 +82,7 @@
 		// 清除上傳圖片
 		$(document).on("click", "#image-reset", function(){
 			$("#image-uploader").val("");
-			$(".image-preview img").attr("src", "../images/image/upload_new_image_900x300.png");
+			$(".image-preview img").attr("src", "../images/image/upload_new_image_400x300.png");
 			$("#image-reset img").attr("style", "display:none");
 		});
 	</script>

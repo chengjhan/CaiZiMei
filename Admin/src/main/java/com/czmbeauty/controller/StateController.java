@@ -113,7 +113,6 @@ public class StateController {
 			// 取得編輯或刪除的 StateBean 的國家，並取得此國家中的所有區域 List，放入 table
 			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(stateBean.getSt_CountryBean().getCo_id()));
 		}
-
 		return STATE_LIST_PAGE;
 	}
 

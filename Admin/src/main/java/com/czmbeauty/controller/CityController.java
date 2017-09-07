@@ -130,7 +130,6 @@ public class CityController {
 			// 取得編輯或刪除的 CityBean 的區域，並取得此區域中的所有城市 List，放入 table
 			model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(cityBean.getCi_StateBean().getSt_id()));
 		}
-
 		return CITY_LIST_PAGE;
 	}
 

@@ -312,7 +312,6 @@ public class AdminController {
 
 			logger.info("原請求畫面: index");
 		}
-
 		return ADMIN_SIGN_IN_PAGE;
 	}
 

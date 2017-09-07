@@ -48,10 +48,4 @@ public interface PageNameConstants {
 
 	public static final String CITY_EDIT_PAGE = "city/edit";
 
-	public static final String VIDEO_RELATED_LIST_PAGE = "video-related/list";
-
-	public static final String VIDEO_RELATED_ADD_PAGE = "video-related/add";
-
-	public static final String VIDEO_RELATED_EDIT_PAGE = "video-related/edit";
-
 }

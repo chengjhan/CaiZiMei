@@ -270,7 +270,7 @@ public class ImageController {
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 
 		String hql = "from ImageBean where im_ca_id=" + categoryBean.getCa_id()
-				+ "order by im_status desc, im_rank asc, im_id asc";
+				+ " order by im_status desc, im_rank asc, im_id asc";
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);

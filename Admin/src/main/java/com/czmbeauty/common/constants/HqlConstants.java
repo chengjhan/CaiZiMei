@@ -53,8 +53,8 @@ public interface HqlConstants {
 	public static final String HQL_SELECT_ALL_IMAGE_BY_CATEGORY = "from ImageBean where im_ca_id=:im_ca_id order by im_status desc, im_rank asc, im_id asc";
 
 	// video
-	/** 搜尋所有相關影音 */
-	public static final String HQL_SELECT_ALL_VIDEO_RELATED = "from VideoBean where vi_ca_id=5 order by vi_rank asc, vi_id asc";
+	/** 類別搜尋 */
+	public static final String HQL_SELECT_ALL_VIDEO_BY_CATEGORY = "from VideoBean where vi_ca_id=:vi_ca_id order by vi_rank asc, vi_id asc";
 
 	/** 搜尋開啟的影片 */
 	public static final String HQL_SELECT_OPEN_VIDEO = "from VideoBean where vi_status=1 and vi_ca_id=:vi_ca_id";

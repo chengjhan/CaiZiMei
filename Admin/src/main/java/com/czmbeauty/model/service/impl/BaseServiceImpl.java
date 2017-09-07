@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -42,18 +42,6 @@ public class BaseServiceImpl implements BaseService {
 	private BaseDao baseDao;
 
 	/**
-	 * 搜尋所有診所
-	 * 
-	 * @return List<BaseBean>
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<BaseBean> selectAllClinic() {
-
-		return baseDao.selectAllClinic();
-	}
-
-	/**
 	 * 搜尋特定類別的所有據點 (分頁)
 	 * 
 	 * @param hql
@@ -83,18 +71,6 @@ public class BaseServiceImpl implements BaseService {
 	public int selectCountByBa_Ca(CategoryBean ba_CategoryBean) {
 
 		return baseDao.selectCountByBa_Ca(ba_CategoryBean);
-	}
-
-	/**
-	 * 搜尋開啟的診所
-	 * 
-	 * @return List<BaseBean>
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<BaseBean> selectOpenClinic() {
-
-		return baseDao.selectOpenClinic();
 	}
 
 	/**

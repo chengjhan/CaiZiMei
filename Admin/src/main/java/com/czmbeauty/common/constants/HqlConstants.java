@@ -42,12 +42,6 @@ public interface HqlConstants {
 	/** 類別搜尋 */
 	public static final String HQL_SELECT_ALL_BASE_BY_CATEGORY = "from BaseBean where ba_ca_id=:ba_ca_id order by ba_status desc, ba_id asc";
 
-	/** 搜尋所有診所 */
-	public static final String HQL_SELECT_ALL_CLINIC = "from BaseBean where ba_ca_id=3 order by ba_status desc, ba_id asc";
-
-	/** 搜尋開啟的診所 */
-	public static final String HQL_SELECT_OPEN_CLINIC = "from BaseBean where ba_ca_id=3 and ba_status=1 order by ba_id asc";
-
 	// image
 	/** 類別搜尋 */
 	public static final String HQL_SELECT_ALL_IMAGE_BY_CATEGORY = "from ImageBean where im_ca_id=:im_ca_id order by im_status desc, im_rank asc, im_id asc";

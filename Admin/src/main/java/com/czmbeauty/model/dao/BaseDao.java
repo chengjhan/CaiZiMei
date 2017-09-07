@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDao.java
  * Author: 詹晟
- * Date: 2017/8/22
+ * Date: 2017/9/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,11 +21,6 @@ import com.czmbeauty.model.entity.CategoryBean;
 public interface BaseDao {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectAllClinic()
-	 */
-	List<BaseBean> selectAllClinic();
-
-	/**
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectPagination(String,
 	 *      int, int)
 	 */
@@ -35,11 +30,6 @@ public interface BaseDao {
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectCountByBa_Ca(CategoryBean)
 	 */
 	int selectCountByBa_Ca(CategoryBean ba_CategoryBean);
-
-	/**
-	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectOpenClinic()
-	 */
-	List<BaseBean> selectOpenClinic();
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectByBa_id(Integer)

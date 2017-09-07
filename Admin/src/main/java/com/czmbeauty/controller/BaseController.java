@@ -27,8 +27,6 @@ import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.ParameterConstants.BASE_ID;
 import static com.czmbeauty.common.constants.ParameterConstants.PAGE;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -58,8 +56,6 @@ import com.czmbeauty.model.service.CategoryService;
 import com.czmbeauty.model.service.CityService;
 import com.czmbeauty.model.service.CountryService;
 import com.czmbeauty.model.service.StateService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 /**
  * base controller
@@ -325,52 +321,6 @@ public class BaseController {
 	public String officeEditProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
 		return edit(request.getServletPath().split("/")[1], baseBean, bindingResult);
-	}
-
-	/**
-	 * 所有診所 (AJAX)
-	 * 
-	 * @return clinic JSON
-	 */
-	@RequestMapping(value = "/clinic/all-clinic-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String allClinicListAjaxProcess() {
-
-		List<BaseBean> list = baseService.selectAllClinic();
-
-		GsonBuilder builder = new GsonBuilder();
-		builder.excludeFieldsWithoutExposeAnnotation();
-		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
-		Gson gson = builder.create();
-
-		String json = gson.toJson(list);
-
-		logger.info("JSON = " + json);
-
-		return json;
-	}
-
-	/**
-	 * 開啟的診所 (AJAX)
-	 * 
-	 * @return clinic JSON
-	 */
-	@RequestMapping(value = "/clinic/open-clinic-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String openClinicListAjaxProcess() {
-
-		List<BaseBean> list = baseService.selectOpenClinic();
-
-		GsonBuilder builder = new GsonBuilder();
-		builder.excludeFieldsWithoutExposeAnnotation();
-		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
-		Gson gson = builder.create();
-
-		String json = gson.toJson(list);
-
-		logger.info("JSON = " + json);
-
-		return json;
 	}
 
 	/**

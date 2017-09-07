@@ -31,10 +31,6 @@
 				
 					<!-- option -->
 					<div class="btn-group option">
-<!-- 						<div style="float:left"> -->
-<!-- 							<input type="checkbox" id="id-input-switch" /> -->
-<!-- 							<label for="id-input-switch">顯示開啟的診所</label> -->
-<!-- 						</div> -->
 						<div class="add-button">
 							<a href="<%=request.getContextPath()%>/clinic/add">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
@@ -142,6 +138,5 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/base/list.js" type="text/javascript" charset="utf-8"></script>
-	<script src="<%=request.getContextPath()%>/js/clinic/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -2,14 +2,11 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/22
+ * Date: 2017/9/7
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
-
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_CLINIC;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_CLINIC;
 
 import java.util.List;
 
@@ -39,18 +36,6 @@ public class BaseDaoImpl implements BaseDao {
 	 */
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
-
-	/**
-	 * 搜尋所有診所
-	 * 
-	 * @return List<BaseBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<BaseBean> selectAllClinic() {
-
-		return (List<BaseBean>) hibernateTemplate.find(HQL_SELECT_ALL_CLINIC);
-	}
 
 	/**
 	 * 搜尋特定類別的所有據點 (分頁)
@@ -98,18 +83,6 @@ public class BaseDaoImpl implements BaseDao {
 		criteria.add(Restrictions.eq("ba_CategoryBean", ba_CategoryBean));
 
 		return hibernateTemplate.findByCriteria(criteria).size();
-	}
-
-	/**
-	 * 搜尋開啟的診所
-	 * 
-	 * @return List<BaseBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<BaseBean> selectOpenClinic() {
-
-		return (List<BaseBean>) hibernateTemplate.find(HQL_SELECT_OPEN_CLINIC);
 	}
 
 	/**

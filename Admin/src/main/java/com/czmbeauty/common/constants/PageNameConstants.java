@@ -48,24 +48,6 @@ public interface PageNameConstants {
 
 	public static final String CITY_EDIT_PAGE = "city/edit";
 
-	public static final String OFFICE_LIST_PAGE = "office/list";
-
-	public static final String OFFICE_ADD_PAGE = "office/add";
-
-	public static final String OFFICE_EDIT_PAGE = "office/edit";
-
-	public static final String FRANCHISEE_LIST_PAGE = "franchisee/list";
-
-	public static final String FRANCHISEE_ADD_PAGE = "franchisee/add";
-
-	public static final String FRANCHISEE_EDIT_PAGE = "franchisee/edit";
-
-	public static final String CLINIC_LIST_PAGE = "clinic/list";
-
-	public static final String CLINIC_ADD_PAGE = "clinic/add";
-
-	public static final String CLINIC_EDIT_PAGE = "clinic/edit";
-
 	public static final String VIDEO_RELATED_LIST_PAGE = "video-related/list";
 
 	public static final String VIDEO_RELATED_ADD_PAGE = "video-related/add";

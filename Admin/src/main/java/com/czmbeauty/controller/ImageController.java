@@ -106,7 +106,7 @@ public class ImageController {
 	 *            CategoryBean
 	 * @return int
 	 */
-	public int getPageCount(CategoryBean im_CategoryBean) {
+	private int getPageCount(CategoryBean im_CategoryBean) {
 		int totalRowCount = imageService.selectCountByIm_Ca(im_CategoryBean);
 		int pageCount = 0;
 		if (totalRowCount % IMAGE_PAGE_ROW_COUNT == 0) {
@@ -126,7 +126,7 @@ public class ImageController {
 	 *            MultipartFile
 	 * @return String[]
 	 */
-	public String[] getPathAndFilename(String ca_directory, MultipartFile file) {
+	private String[] getPathAndFilename(String ca_directory, MultipartFile file) {
 		String root = context.getRealPath("");
 		String im_path = root + IMAGES + File.separator + ca_directory + File.separator;
 		String time = String.valueOf(new java.util.Date().getTime());
@@ -321,9 +321,7 @@ public class ImageController {
 	public String addProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-
-		return add(ca_directory, file, imageBean, bindingResult);
+		return add(request.getServletPath().split("/")[1], file, imageBean, bindingResult);
 	}
 
 	/**
@@ -363,9 +361,7 @@ public class ImageController {
 	public String editProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-
-		return edit(ca_directory, file, imageBean, bindingResult);
+		return edit(request.getServletPath().split("/")[1], file, imageBean, bindingResult);
 	}
 
 	/**

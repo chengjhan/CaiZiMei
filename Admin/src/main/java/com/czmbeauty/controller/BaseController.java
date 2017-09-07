@@ -2,38 +2,23 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/4
+ * Date: 2017/9/7
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.CodeConstants.CLINIC;
-import static com.czmbeauty.common.constants.CodeConstants.CLINIC_CODE;
-import static com.czmbeauty.common.constants.CodeConstants.FRANCHISEE;
-import static com.czmbeauty.common.constants.CodeConstants.FRANCHISEE_CODE;
-import static com.czmbeauty.common.constants.CodeConstants.OFFICE;
-import static com.czmbeauty.common.constants.CodeConstants.OFFICE_CODE;
 import static com.czmbeauty.common.constants.CommonConstants.AND;
 import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_CLINIC;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_FRANCHISEE;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_OFFICE;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.BASE_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
-import static com.czmbeauty.common.constants.PageNameConstants.CLINIC_ADD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.CLINIC_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.CLINIC_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.FRANCHISEE_ADD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.FRANCHISEE_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.FRANCHISEE_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_ADD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.OFFICE_LIST_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.ADD_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.EDIT_PAGE;
+import static com.czmbeauty.common.constants.PageNameConstants.LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 import static com.czmbeauty.common.constants.PaginationConstants.BASE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
@@ -145,7 +130,7 @@ public class BaseController {
 	 *            CategoryBean
 	 * @return int
 	 */
-	public int getPageCount(CategoryBean ba_CategoryBean) {
+	private int getPageCount(CategoryBean ba_CategoryBean) {
 		int totalRowCount = baseService.selectCountByBa_Ca(ba_CategoryBean);
 		int pageCount = 0;
 		if (totalRowCount % BASE_PAGE_ROW_COUNT == 0) {
@@ -157,72 +142,106 @@ public class BaseController {
 	}
 
 	/**
+	 * 新增據點
+	 * 
+	 * @param ca_directory
+	 *            String --> 類別資料夾名稱
+	 * @param baseBean
+	 *            BaseBean --> form backing object
+	 * @param bindingResult
+	 *            BindingResult
+	 * @return /WEB-INF/views/ca_directory/add.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
+	 */
+	private String add(String ca_directory, BaseBean baseBean, BindingResult bindingResult) {
+
+		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+		String ca_name = categoryBean.getCa_name();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "新增失敗: 資料未填");
+
+			return ca_directory + ADD_PAGE;
+
+		} else {
+
+			baseBean.setBa_CategoryBean(categoryBean);
+
+			baseService.insert(baseBean);
+
+			logger.info(ca_name + "新增成功");
+
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+		}
+	}
+
+	/**
+	 * 編輯據點資訊
+	 * 
+	 * @param ca_directory
+	 *            String --> 類別資料夾名稱
+	 * @param baseBean
+	 *            BaseBean --> form backing object
+	 * @param bindingResult
+	 *            BindingResult
+	 * @return /WEB-INF/views/ca_directory/edit.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
+	 */
+	private String edit(String ca_directory, BaseBean baseBean, BindingResult bindingResult) {
+
+		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "編輯失敗: 資料未填");
+
+			return REDIRECT + ca_directory + EDIT_PAGE + QUESTION + BASE_ID + EQUAL + baseBean.getBa_id() + AND + PAGE
+					+ EQUAL + currentPage;
+
+		} else {
+
+			baseService.update(baseBean);
+
+			logger.info(ca_name + "編輯成功");
+
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
+		}
+	}
+
+	/**
 	 * 據點一覽 - 初期處理
 	 * 
 	 * @param page
 	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/office/list.jsp
-	 * @return /WEB-INF/views/franchisee/list.jsp
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/list", method = RequestMethod.GET)
 	public String baseListView(@RequestParam Integer page, Model model) {
 
+		String ca_directory = request.getServletPath().split("/")[1];
+		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+
+		String hql = "from BaseBean where ba_ca_id=" + categoryBean.getCa_id() + " order by ba_status desc, ba_id asc";
+
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
-
-		// 取得當頁起始筆數
-		int first = (page - 1) * BASE_PAGE_ROW_COUNT;
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, BASE_PAGE_ROW_COUNT);
 
-		CategoryBean ba_CategoryBean = new CategoryBean();
+		// 取得當頁起始筆數
+		int first = (page - 1) * BASE_PAGE_ROW_COUNT;
 
-		String base = request.getServletPath().split("/")[1];
+		// 取得當前頁碼的據點 List，放入 table
+		model.addAttribute(BASE_LIST, baseService.selectPagination(hql, first, BASE_PAGE_ROW_COUNT));
 
-		if (OFFICE.equals(base)) {
+		// 取得總頁數
+		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
 
-			// 取得當前頁碼的辦事處 List，放入 table
-			model.addAttribute(BASE_LIST,
-					baseService.selectPagination(HQL_SELECT_ALL_OFFICE, first, BASE_PAGE_ROW_COUNT));
-
-			ba_CategoryBean.setCa_id(OFFICE_CODE);
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(ba_CategoryBean));
-
-			return OFFICE_LIST_PAGE;
-		}
-		if (FRANCHISEE.equals(base)) {
-
-			// 取得當前頁碼的加盟店 List，放入 table
-			model.addAttribute(BASE_LIST,
-					baseService.selectPagination(HQL_SELECT_ALL_FRANCHISEE, first, BASE_PAGE_ROW_COUNT));
-
-			ba_CategoryBean.setCa_id(FRANCHISEE_CODE);
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(ba_CategoryBean));
-
-			return FRANCHISEE_LIST_PAGE;
-		}
-		if (CLINIC.equals(base)) {
-
-			// 取得當前頁碼的診所 List，放入 table
-			model.addAttribute(BASE_LIST,
-					baseService.selectPagination(HQL_SELECT_ALL_CLINIC, first, BASE_PAGE_ROW_COUNT));
-
-			ba_CategoryBean.setCa_id(CLINIC_CODE);
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(ba_CategoryBean));
-
-			return CLINIC_LIST_PAGE;
-		}
-		return null;
+		return ca_directory + LIST_PAGE;
 	}
 
 	/**
@@ -230,9 +249,7 @@ public class BaseController {
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/office/add.jsp
-	 * @return /WEB-INF/views/franchisee/add.jsp
-	 * @return /WEB-INF/views/clinic/add.jsp
+	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
 	@RequestMapping(value = "/*/add", method = RequestMethod.GET)
 	public String officeAddView(Model model) {
@@ -243,100 +260,22 @@ public class BaseController {
 		// 新增 form backing object
 		model.addAttribute(BASE_BEAN, new BaseBean());
 
-		String base = request.getServletPath().split("/")[1];
-
-		if (OFFICE.equals(base)) {
-
-			return OFFICE_ADD_PAGE;
-		}
-		if (FRANCHISEE.equals(base)) {
-
-			return FRANCHISEE_ADD_PAGE;
-		}
-		if (CLINIC.equals(base)) {
-
-			return CLINIC_ADD_PAGE;
-		}
-		return null;
+		return request.getServletPath().split("/")[1] + ADD_PAGE;
 	}
 
 	/**
 	 * 新增據點 - submit
 	 * 
-	 * @param beasBean
+	 * @param baseBean
 	 *            BaseBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
-	 * @return /WEB-INF/views/office/add.jsp
-	 * @return /WEB-INF/views/office/list.jsp
-	 * @return /WEB-INF/views/franchisee/add.jsp
-	 * @return /WEB-INF/views/franchisee/list.jsp
-	 * @return /WEB-INF/views/clinic/add.jsp
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/add.do", method = RequestMethod.POST)
 	public String officeAddProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
-		String base = request.getServletPath().split("/")[1];
-
-		if (OFFICE.equals(base)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("辦事處新增失敗: 資料未填");
-
-				return OFFICE_ADD_PAGE;
-
-			} else {
-
-				baseBean.setBa_CategoryBean(categoryService.selectByCa_id(OFFICE_CODE));
-
-				baseService.insert(baseBean);
-
-				logger.info("辦事處新增成功");
-
-				return REDIRECT + OFFICE_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-			}
-		}
-		if (FRANCHISEE.equals(base)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("加盟店新增失敗: 資料未填");
-
-				return FRANCHISEE_ADD_PAGE;
-
-			} else {
-
-				baseBean.setBa_CategoryBean(categoryService.selectByCa_id(FRANCHISEE_CODE));
-
-				baseService.insert(baseBean);
-
-				logger.info("加盟店新增成功");
-
-				return REDIRECT + FRANCHISEE_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-			}
-		}
-		if (CLINIC.equals(base)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("診所新增失敗: 資料未填");
-
-				return CLINIC_ADD_PAGE;
-
-			} else {
-
-				baseBean.setBa_CategoryBean(categoryService.selectByCa_id(CLINIC_CODE));
-
-				baseService.insert(baseBean);
-
-				logger.info("診所新增成功");
-
-				return REDIRECT + CLINIC_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-			}
-		}
-		return null;
+		return add(request.getServletPath().split("/")[1], baseBean, bindingResult);
 	}
 
 	/**
@@ -348,9 +287,7 @@ public class BaseController {
 	 *            String --> 當前頁碼
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/office/edit.jsp
-	 * @return /WEB-INF/views/franchisee/edit.jsp
-	 * @return /WEB-INF/views/clinic/edit.jsp
+	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
 	@RequestMapping(value = "/*/edit", method = RequestMethod.GET)
 	public String clinicEditView(BaseBean baseBean_ba_id, @RequestParam String page, Model model) {
@@ -372,21 +309,7 @@ public class BaseController {
 		// 使表單回填 BaseBean 內所有資料
 		model.addAttribute(BASE_BEAN, baseBean);
 
-		String base = request.getServletPath().split("/")[1];
-
-		if (OFFICE.equals(base)) {
-
-			return OFFICE_EDIT_PAGE;
-		}
-		if (FRANCHISEE.equals(base)) {
-
-			return FRANCHISEE_EDIT_PAGE;
-		}
-		if (CLINIC.equals(base)) {
-
-			return CLINIC_EDIT_PAGE;
-		}
-		return null;
+		return request.getServletPath().split("/")[1] + EDIT_PAGE;
 	}
 
 	/**
@@ -396,73 +319,12 @@ public class BaseController {
 	 *            BaseBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
-	 * @return /WEB-INF/views/office/edit.jsp
-	 * @return /WEB-INF/views/office/list.jsp
-	 * @return /WEB-INF/views/franchisee/edit.jsp
-	 * @return /WEB-INF/views/franchisee/list.jsp
-	 * @return /WEB-INF/views/clinic/edit.jsp
-	 * @return /WEB-INF/views/clinic/list.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/edit.do", method = RequestMethod.POST)
 	public String officeEditProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
-		String base = request.getServletPath().split("/")[1];
-
-		if (OFFICE.equals(base)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("辦事處編輯失敗: 資料未填");
-
-				return REDIRECT + OFFICE_EDIT_PAGE + QUESTION + BASE_ID + EQUAL + baseBean.getBa_id() + AND + PAGE
-						+ EQUAL + currentPage;
-
-			} else {
-
-				baseService.update(baseBean);
-
-				logger.info("辦事處編輯成功");
-
-				return REDIRECT + OFFICE_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-			}
-		}
-		if (FRANCHISEE.equals(base)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("加盟店編輯失敗: 資料未填");
-
-				return REDIRECT + FRANCHISEE_EDIT_PAGE + QUESTION + BASE_ID + EQUAL + baseBean.getBa_id() + AND + PAGE
-						+ EQUAL + currentPage;
-
-			} else {
-
-				baseService.update(baseBean);
-
-				logger.info("加盟店編輯成功");
-
-				return REDIRECT + FRANCHISEE_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-			}
-		}
-		if (CLINIC.equals(base)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("診所編輯失敗: 資料未填");
-
-				return REDIRECT + CLINIC_EDIT_PAGE + QUESTION + BASE_ID + EQUAL + baseBean.getBa_id() + AND + PAGE
-						+ EQUAL + currentPage;
-
-			} else {
-
-				baseService.update(baseBean);
-
-				logger.info("診所編輯成功");
-
-				return REDIRECT + CLINIC_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-			}
-		}
-		return null;
+		return edit(request.getServletPath().split("/")[1], baseBean, bindingResult);
 	}
 
 	/**

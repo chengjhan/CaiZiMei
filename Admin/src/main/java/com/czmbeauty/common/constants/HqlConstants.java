@@ -39,11 +39,8 @@ public interface HqlConstants {
 	public static final String HQL_SELECT_CATEGORY_BY_DIRECTORY = "from CategoryBean where ca_directory=:ca_directory";
 
 	// base
-	/** 搜尋所有辦事處 */
-	public static final String HQL_SELECT_ALL_OFFICE = "from BaseBean where ba_ca_id=1 order by ba_status desc, ba_id asc";
-
-	/** 搜尋所有加盟店 */
-	public static final String HQL_SELECT_ALL_FRANCHISEE = "from BaseBean where ba_ca_id=2 order by ba_status desc, ba_id asc";
+	/** 類別搜尋 */
+	public static final String HQL_SELECT_ALL_BASE_BY_CATEGORY = "from BaseBean where ba_ca_id=:ba_ca_id order by ba_status desc, ba_id asc";
 
 	/** 搜尋所有診所 */
 	public static final String HQL_SELECT_ALL_CLINIC = "from BaseBean where ba_ca_id=3 order by ba_status desc, ba_id asc";

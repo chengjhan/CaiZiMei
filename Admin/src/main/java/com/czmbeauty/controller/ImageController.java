@@ -8,47 +8,17 @@
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_FRANCHISEE;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_FRANCHISEE_CODE;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_KNOWLEDGE;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_KNOWLEDGE_CODE;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_MAIN;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_MAIN_CODE;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_RECENT;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_RECENT_CODE;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_SALE;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_SALE_CODE;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_TEAM;
-import static com.czmbeauty.common.constants.CodeConstants.SLIDER_TEAM_CODE;
 import static com.czmbeauty.common.constants.CommonConstants.AND;
 import static com.czmbeauty.common.constants.CommonConstants.DOT;
 import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 import static com.czmbeauty.common.constants.DirectoryConstants.IMAGES;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_FRANCHISEE;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_KNOWLEDGE;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_MAIN;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_RECENT;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_SALE;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_SLIDER_TEAM;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_LIST;
 import static com.czmbeauty.common.constants.PageNameConstants.ADD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.EDIT_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.LIST_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_FRANCHISEE_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_FRANCHISEE_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_KNOWLEDGE_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_KNOWLEDGE_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_MAIN_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_RECENT_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_RECENT_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_SALE_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_SALE_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_TEAM_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.SLIDER_TEAM_LIST_PAGE;
 import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
 import static com.czmbeauty.common.constants.PaginationConstants.IMAGE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
@@ -150,15 +120,15 @@ public class ImageController {
 	/**
 	 * 取得圖片路徑及檔名
 	 * 
-	 * @param ca_name
-	 *            String --> 類別資料夾名
+	 * @param ca_directory
+	 *            String --> 類別資料夾名稱
 	 * @param file
 	 *            MultipartFile
 	 * @return String[]
 	 */
-	public String[] getPathAndFilename(String ca_name, MultipartFile file) {
+	public String[] getPathAndFilename(String ca_directory, MultipartFile file) {
 		String root = context.getRealPath("");
-		String im_path = root + IMAGES + File.separator + ca_name + File.separator;
+		String im_path = root + IMAGES + File.separator + ca_directory + File.separator;
 		String time = String.valueOf(new java.util.Date().getTime());
 		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
 		String im_filename = time + DOT + extension;
@@ -223,114 +193,101 @@ public class ImageController {
 	}
 
 	/**
+	 * 編輯圖片資訊
+	 * 
+	 * @param ca_directory
+	 *            String --> 類別資料夾名稱
+	 * @param file
+	 *            MultipartFile
+	 * @param imageBean
+	 *            ImageBean --> form backing object
+	 * @param bindingResult
+	 *            BindingResult
+	 * @return /WEB-INF/views/ca_directory/edit.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
+	 */
+	private String edit(String ca_directory, MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
+
+		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+		String ca_name = categoryBean.getCa_name();
+
+		ImageBean oldImageBean = imageService.selectByIm_id(imageBean.getIm_id());
+
+		String im_path;
+		String im_filename;
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "圖片編輯失敗: 資料未填");
+
+			return REDIRECT + ca_directory + EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND + PAGE
+					+ EQUAL + currentPage;
+
+		} else if (file.isEmpty()) {
+
+			im_path = oldImageBean.getIm_path();
+			im_filename = oldImageBean.getIm_filename();
+
+		} else {
+
+			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
+			im_path = pathAndFilename[0];
+			im_filename = pathAndFilename[1];
+			try {
+				file.transferTo(new File(im_path + im_filename));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			logger.info(ca_name + "圖片上傳成功，位置: " + im_path + im_filename);
+		}
+		imageBean.setIm_CategoryBean(categoryBean);
+		imageBean.setIm_path(im_path);
+		imageBean.setIm_filename(im_filename);
+		imageBean.setIm_status(oldImageBean.getIm_status());
+		imageBean.setIm_update_time(new java.util.Date());
+
+		imageService.update(imageBean);
+
+		logger.info(ca_name + "圖片編輯成功");
+
+		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
+	}
+
+	/**
 	 * 輪播圖片一覽 - 初期處理
 	 * 
 	 * @param page
 	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/slider-main/list.jsp
-	 * @return /WEB-INF/views/slider-franchisee/list.jsp
-	 * @return /WEB-INF/views/slider-recent/list.jsp
-	 * @return /WEB-INF/views/slider-sale/list.jsp
-	 * @return /WEB-INF/views/slider-knowledge/list.jsp
-	 * @return /WEB-INF/views/slider-team/list.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
+		String ca_directory = request.getServletPath().split("/")[1];
+		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+
+		String hql = "from ImageBean where im_ca_id=" + categoryBean.getCa_id()
+				+ "order by im_status desc, im_rank asc, im_id asc";
+
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
-
-		// 取得當頁起始筆數
-		int first = (page - 1) * IMAGE_PAGE_ROW_COUNT;
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, IMAGE_PAGE_ROW_COUNT);
 
-		CategoryBean im_CategoryBean = new CategoryBean();
+		// 取得當頁起始筆數
+		int first = (page - 1) * IMAGE_PAGE_ROW_COUNT;
 
-		String slider = request.getServletPath().split("/")[1];
+		// 取得當前頁碼的圖片 List，放入 table
+		model.addAttribute(IMAGE_LIST, imageService.selectPagination(hql, first, IMAGE_PAGE_ROW_COUNT));
 
-		if (SLIDER_MAIN.equals(slider)) {
+		// 取得總頁數
+		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
 
-			// 取得當前頁碼的圖片 List，放入 table
-			model.addAttribute(IMAGE_LIST,
-					imageService.selectPagination(HQL_SELECT_ALL_SLIDER_MAIN, first, IMAGE_PAGE_ROW_COUNT));
-
-			im_CategoryBean.setCa_id(SLIDER_MAIN_CODE);
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(im_CategoryBean));
-
-			return SLIDER_MAIN_LIST_PAGE;
-		}
-		if (SLIDER_FRANCHISEE.equals(slider)) {
-
-			// 取得當前頁碼的圖片 List，放入 table
-			model.addAttribute(IMAGE_LIST,
-					imageService.selectPagination(HQL_SELECT_ALL_SLIDER_FRANCHISEE, first, IMAGE_PAGE_ROW_COUNT));
-
-			im_CategoryBean.setCa_id(SLIDER_FRANCHISEE_CODE);
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(im_CategoryBean));
-
-			return SLIDER_FRANCHISEE_LIST_PAGE;
-		}
-		if (SLIDER_RECENT.equals(slider)) {
-
-			// 取得當前頁碼的圖片 List，放入 table
-			model.addAttribute(IMAGE_LIST,
-					imageService.selectPagination(HQL_SELECT_ALL_SLIDER_RECENT, first, IMAGE_PAGE_ROW_COUNT));
-
-			im_CategoryBean.setCa_id(SLIDER_RECENT_CODE);
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(im_CategoryBean));
-
-			return SLIDER_RECENT_LIST_PAGE;
-		}
-		if (SLIDER_SALE.equals(slider)) {
-
-			// 取得當前頁碼的圖片 List，放入 table
-			model.addAttribute(IMAGE_LIST,
-					imageService.selectPagination(HQL_SELECT_ALL_SLIDER_SALE, first, IMAGE_PAGE_ROW_COUNT));
-
-			im_CategoryBean.setCa_id(SLIDER_SALE_CODE);
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(im_CategoryBean));
-
-			return SLIDER_SALE_LIST_PAGE;
-		}
-		if (SLIDER_KNOWLEDGE.equals(slider)) {
-
-			// 取得當前頁碼的圖片 List，放入 table
-			model.addAttribute(IMAGE_LIST,
-					imageService.selectPagination(HQL_SELECT_ALL_SLIDER_KNOWLEDGE, first, IMAGE_PAGE_ROW_COUNT));
-
-			im_CategoryBean.setCa_id(SLIDER_KNOWLEDGE_CODE);
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(im_CategoryBean));
-
-			return SLIDER_KNOWLEDGE_LIST_PAGE;
-		}
-		if (SLIDER_TEAM.equals(slider)) {
-
-			// 取得當前頁碼的圖片 List，放入 table
-			model.addAttribute(IMAGE_LIST,
-					imageService.selectPagination(HQL_SELECT_ALL_SLIDER_TEAM, first, IMAGE_PAGE_ROW_COUNT));
-
-			im_CategoryBean.setCa_id(SLIDER_TEAM_CODE);
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(im_CategoryBean));
-
-			return SLIDER_TEAM_LIST_PAGE;
-		}
-		return null;
+		return ca_directory + LIST_PAGE;
 	}
 
 	/**
@@ -400,257 +357,15 @@ public class ImageController {
 	 *            ImageBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
-	 * @return /WEB-INF/views/slider-main/list.jsp
-	 * @return /WEB-INF/views/slider-franchisee/list.jsp
-	 * @return /WEB-INF/views/slider-recent/list.jsp
-	 * @return /WEB-INF/views/slider-sale/list.jsp
+	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/edit.do", method = RequestMethod.POST)
 	public String editProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
-		ImageBean oldImageBean = imageService.selectByIm_id(imageBean.getIm_id());
+		String ca_directory = request.getServletPath().split("/")[1];
 
-		String im_path;
-		String im_filename;
-
-		String slider = request.getServletPath().split("/")[1];
-
-		if (SLIDER_MAIN.equals(slider)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("主輪播圖片編輯失敗: 資料未填");
-
-				return REDIRECT + SLIDER_MAIN_EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND
-						+ PAGE + EQUAL + currentPage;
-
-			} else if (file.isEmpty()) {
-
-				im_path = oldImageBean.getIm_path();
-				im_filename = oldImageBean.getIm_filename();
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_MAIN, file);
-				im_path = pathAndFilename[0];
-				im_filename = pathAndFilename[1];
-				try {
-					file.transferTo(new File(im_path + im_filename));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("主輪播圖片上傳成功，位置: " + im_path + im_filename);
-			}
-			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_MAIN_CODE));
-			imageBean.setIm_path(im_path);
-			imageBean.setIm_filename(im_filename);
-			imageBean.setIm_status(oldImageBean.getIm_status());
-			imageBean.setIm_update_time(new java.util.Date());
-
-			imageService.update(imageBean);
-
-			logger.info("主輪播圖片編輯成功");
-
-			return REDIRECT + SLIDER_MAIN_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-		}
-		if (SLIDER_FRANCHISEE.equals(slider)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("加盟店資訊輪播圖片編輯失敗: 資料未填");
-
-				return REDIRECT + SLIDER_FRANCHISEE_EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND
-						+ PAGE + EQUAL + currentPage;
-
-			} else if (file.isEmpty()) {
-
-				im_path = oldImageBean.getIm_path();
-				im_filename = oldImageBean.getIm_filename();
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_FRANCHISEE, file);
-				im_path = pathAndFilename[0];
-				im_filename = pathAndFilename[1];
-				try {
-					file.transferTo(new File(im_path + im_filename));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("加盟店資訊輪播圖片上傳成功，位置: " + im_path + im_filename);
-			}
-			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_FRANCHISEE_CODE));
-			imageBean.setIm_path(im_path);
-			imageBean.setIm_filename(im_filename);
-			imageBean.setIm_status(oldImageBean.getIm_status());
-			imageBean.setIm_update_time(new java.util.Date());
-
-			imageService.update(imageBean);
-
-			logger.info("加盟店資訊輪播圖片編輯成功");
-
-			return REDIRECT + SLIDER_FRANCHISEE_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-		}
-		if (SLIDER_RECENT.equals(slider)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("近期活動輪播圖片編輯失敗: 資料未填");
-
-				return REDIRECT + SLIDER_RECENT_EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND
-						+ PAGE + EQUAL + currentPage;
-
-			} else if (file.isEmpty()) {
-
-				im_path = oldImageBean.getIm_path();
-				im_filename = oldImageBean.getIm_filename();
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_RECENT, file);
-				im_path = pathAndFilename[0];
-				im_filename = pathAndFilename[1];
-				try {
-					file.transferTo(new File(im_path + im_filename));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("近期活動輪播圖片上傳成功，位置: " + im_path + im_filename);
-			}
-			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_RECENT_CODE));
-			imageBean.setIm_path(im_path);
-			imageBean.setIm_filename(im_filename);
-			imageBean.setIm_status(oldImageBean.getIm_status());
-			imageBean.setIm_update_time(new java.util.Date());
-
-			imageService.update(imageBean);
-
-			logger.info("近期活動輪播圖片編輯成功");
-
-			return REDIRECT + SLIDER_RECENT_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-		}
-		if (SLIDER_SALE.equals(slider)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("優惠活動輪播圖片編輯失敗: 資料未填");
-
-				return REDIRECT + SLIDER_SALE_EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND
-						+ PAGE + EQUAL + currentPage;
-
-			} else if (file.isEmpty()) {
-
-				im_path = oldImageBean.getIm_path();
-				im_filename = oldImageBean.getIm_filename();
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_SALE, file);
-				im_path = pathAndFilename[0];
-				im_filename = pathAndFilename[1];
-				try {
-					file.transferTo(new File(im_path + im_filename));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("優惠活動輪播圖片上傳成功，位置: " + im_path + im_filename);
-			}
-			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_SALE_CODE));
-			imageBean.setIm_path(im_path);
-			imageBean.setIm_filename(im_filename);
-			imageBean.setIm_status(oldImageBean.getIm_status());
-			imageBean.setIm_update_time(new java.util.Date());
-
-			imageService.update(imageBean);
-
-			logger.info("優惠活動輪播圖片編輯成功");
-
-			return REDIRECT + SLIDER_SALE_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-		}
-		if (SLIDER_KNOWLEDGE.equals(slider)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("醫療新知輪播圖片編輯失敗: 資料未填");
-
-				return REDIRECT + SLIDER_KNOWLEDGE_EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND
-						+ PAGE + EQUAL + currentPage;
-
-			} else if (file.isEmpty()) {
-
-				im_path = oldImageBean.getIm_path();
-				im_filename = oldImageBean.getIm_filename();
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_KNOWLEDGE, file);
-				im_path = pathAndFilename[0];
-				im_filename = pathAndFilename[1];
-				try {
-					file.transferTo(new File(im_path + im_filename));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("醫療新知輪播圖片上傳成功，位置: " + im_path + im_filename);
-			}
-			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_KNOWLEDGE_CODE));
-			imageBean.setIm_path(im_path);
-			imageBean.setIm_filename(im_filename);
-			imageBean.setIm_status(oldImageBean.getIm_status());
-			imageBean.setIm_update_time(new java.util.Date());
-
-			imageService.update(imageBean);
-
-			logger.info("醫療新知輪播圖片編輯成功");
-
-			return REDIRECT + SLIDER_KNOWLEDGE_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-		}
-		if (SLIDER_TEAM.equals(slider)) {
-
-			if (bindingResult.hasErrors()) {
-
-				logger.error("醫療團隊輪播圖片編輯失敗: 資料未填");
-
-				return REDIRECT + SLIDER_TEAM_EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND
-						+ PAGE + EQUAL + currentPage;
-
-			} else if (file.isEmpty()) {
-
-				im_path = oldImageBean.getIm_path();
-				im_filename = oldImageBean.getIm_filename();
-
-			} else {
-
-				String[] pathAndFilename = getPathAndFilename(SLIDER_TEAM, file);
-				im_path = pathAndFilename[0];
-				im_filename = pathAndFilename[1];
-				try {
-					file.transferTo(new File(im_path + im_filename));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				logger.info("醫療團隊輪播圖片上傳成功，位置: " + im_path + im_filename);
-			}
-			imageBean.setIm_CategoryBean(categoryService.selectByCa_id(SLIDER_TEAM_CODE));
-			imageBean.setIm_path(im_path);
-			imageBean.setIm_filename(im_filename);
-			imageBean.setIm_status(oldImageBean.getIm_status());
-			imageBean.setIm_update_time(new java.util.Date());
-
-			imageService.update(imageBean);
-
-			logger.info("醫療團隊輪播圖片編輯成功");
-
-			return REDIRECT + SLIDER_TEAM_LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-		}
-		return null;
+		return edit(ca_directory, file, imageBean, bindingResult);
 	}
 
 	/**

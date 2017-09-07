@@ -52,23 +52,8 @@ public interface HqlConstants {
 	public static final String HQL_SELECT_OPEN_CLINIC = "from BaseBean where ba_ca_id=3 and ba_status=1 order by ba_id asc";
 
 	// image
-	/** 搜尋所有主輪播圖片 */
-	public static final String HQL_SELECT_ALL_SLIDER_MAIN = "from ImageBean where im_ca_id=4 order by im_status desc, im_rank asc, im_id asc";
-
-	/** 搜尋所有加盟店資訊輪播圖片 */
-	public static final String HQL_SELECT_ALL_SLIDER_FRANCHISEE = "from ImageBean where im_ca_id=6 order by im_status desc, im_rank asc, im_id asc";
-
-	/** 搜尋所有近期活動輪播圖片 */
-	public static final String HQL_SELECT_ALL_SLIDER_RECENT = "from ImageBean where im_ca_id=7 order by im_status desc, im_rank asc, im_id asc";
-
-	/** 搜尋所有優惠活動輪播圖片 */
-	public static final String HQL_SELECT_ALL_SLIDER_SALE = "from ImageBean where im_ca_id=8 order by im_status desc, im_rank asc, im_id asc";
-
-	/** 搜尋所有醫療新知輪播圖片 */
-	public static final String HQL_SELECT_ALL_SLIDER_KNOWLEDGE = "from ImageBean where im_ca_id=9 order by im_status desc, im_rank asc, im_id asc";
-
-	/** 搜尋所有醫療團隊輪播圖片 */
-	public static final String HQL_SELECT_ALL_SLIDER_TEAM = "from ImageBean where im_ca_id=10 order by im_status desc, im_rank asc, im_id asc";
+	/** 類別搜尋 */
+	public static final String HQL_SELECT_ALL_IMAGE_BY_CATEGORY = "from ImageBean where im_ca_id=:im_ca_id order by im_status desc, im_rank asc, im_id asc";
 
 	// video
 	/** 搜尋所有相關影音 */

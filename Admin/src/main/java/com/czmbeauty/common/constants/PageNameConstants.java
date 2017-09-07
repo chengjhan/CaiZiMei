@@ -66,42 +66,6 @@ public interface PageNameConstants {
 
 	public static final String CLINIC_EDIT_PAGE = "clinic/edit";
 
-	public static final String SLIDER_MAIN_LIST_PAGE = "slider-main/list";
-
-	public static final String SLIDER_MAIN_ADD_PAGE = "slider-main/add";
-
-	public static final String SLIDER_MAIN_EDIT_PAGE = "slider-main/edit";
-
-	public static final String SLIDER_FRANCHISEE_LIST_PAGE = "slider-franchisee/list";
-
-	public static final String SLIDER_FRANCHISEE_ADD_PAGE = "slider-franchisee/add";
-
-	public static final String SLIDER_FRANCHISEE_EDIT_PAGE = "slider-franchisee/edit";
-
-	public static final String SLIDER_RECENT_LIST_PAGE = "slider-recent/list";
-
-	public static final String SLIDER_RECENT_ADD_PAGE = "slider-recent/add";
-
-	public static final String SLIDER_RECENT_EDIT_PAGE = "slider-recent/edit";
-
-	public static final String SLIDER_SALE_LIST_PAGE = "slider-sale/list";
-
-	public static final String SLIDER_SALE_ADD_PAGE = "slider-sale/add";
-
-	public static final String SLIDER_SALE_EDIT_PAGE = "slider-sale/edit";
-
-	public static final String SLIDER_KNOWLEDGE_LIST_PAGE = "slider-knowledge/list";
-
-	public static final String SLIDER_KNOWLEDGE_ADD_PAGE = "slider-knowledge/add";
-
-	public static final String SLIDER_KNOWLEDGE_EDIT_PAGE = "slider-knowledge/edit";
-
-	public static final String SLIDER_TEAM_LIST_PAGE = "slider-team/list";
-
-	public static final String SLIDER_TEAM_ADD_PAGE = "slider-team/add";
-
-	public static final String SLIDER_TEAM_EDIT_PAGE = "slider-team/edit";
-
 	public static final String VIDEO_RELATED_LIST_PAGE = "video-related/list";
 
 	public static final String VIDEO_RELATED_ADD_PAGE = "video-related/add";

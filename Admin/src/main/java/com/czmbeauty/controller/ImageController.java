@@ -157,13 +157,13 @@ public class ImageController {
 
 		if (file.isEmpty()) {
 
-			logger.error(ca_name + "圖片新增失敗: 未上傳圖片");
+			logger.error(ca_name + "新增失敗: 未上傳圖片");
 
 			return REDIRECT + ca_directory + ADD_PAGE;
 
 		} else if (bindingResult.hasErrors()) {
 
-			logger.error(ca_name + "圖片新增失敗: 資料未填");
+			logger.error(ca_name + "新增失敗: 資料未填");
 
 			return REDIRECT + ca_directory + ADD_PAGE;
 
@@ -176,7 +176,7 @@ public class ImageController {
 				e.printStackTrace();
 			}
 
-			logger.info(ca_name + "圖片上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
+			logger.info(ca_name + "上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
 
 			imageBean.setIm_CategoryBean(categoryBean);
 			imageBean.setIm_path(pathAndFilename[0]);
@@ -186,7 +186,7 @@ public class ImageController {
 
 			imageService.insert(imageBean);
 
-			logger.info(ca_name + "圖片新增成功");
+			logger.info(ca_name + "新增成功");
 
 			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
 		}
@@ -218,7 +218,7 @@ public class ImageController {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error(ca_name + "圖片編輯失敗: 資料未填");
+			logger.error(ca_name + "編輯失敗: 資料未填");
 
 			return REDIRECT + ca_directory + EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND + PAGE
 					+ EQUAL + currentPage;
@@ -239,7 +239,7 @@ public class ImageController {
 				e.printStackTrace();
 			}
 
-			logger.info(ca_name + "圖片上傳成功，位置: " + im_path + im_filename);
+			logger.info(ca_name + "上傳成功，位置: " + im_path + im_filename);
 		}
 		imageBean.setIm_CategoryBean(categoryBean);
 		imageBean.setIm_path(im_path);
@@ -249,7 +249,7 @@ public class ImageController {
 
 		imageService.update(imageBean);
 
-		logger.info(ca_name + "圖片編輯成功");
+		logger.info(ca_name + "編輯成功");
 
 		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 	}

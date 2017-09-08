@@ -62,8 +62,10 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="submit" class="btn btn-success" value="新增" /></td>
-<%-- 								<td><a href="<%=request.getContextPath()%>/slider-main/list"><button type="button" class="btn btn-danger">取消</button></a></td> --%>
+								<td>
+									<input type="submit" class="btn btn-success" value="新增" />
+									<a href="<%=request.getContextPath()%>/slider-main/list?page=1"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
 							</tr>
 						</table>
 					</form:form>

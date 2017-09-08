@@ -70,10 +70,7 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td>
-									<input type="submit" class="btn btn-success" value="註冊">
-<%-- 									<a href="<%=request.getContextPath()%>/"><button type="button" class="btn btn-danger">取消</button></a> --%>
-								</td>
+								<td><input type="submit" class="btn btn-success" value="註冊"></td>
 							</tr>
 						</table>
 					</form:form>

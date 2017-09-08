@@ -52,7 +52,6 @@
 						<thead>
 							<tr>
 								<td style="width:50px">編號</td>
-<!-- 								<td>流水號</td> -->
 								<td>名稱</td>
 								<td style="width:50px">排序</td>
 								<td style="width:50px">編輯</td>
@@ -63,7 +62,6 @@
 							<c:forEach var="bean" items="${stateList}" varStatus="status">
 								<tr>
 									<td>${status.count}</td>
-<%-- 									<td>${bean.st_id}</td> --%>
 									<td>${bean.st_name}</td>
 									<td>${bean.st_rank}</td>
 									<td>

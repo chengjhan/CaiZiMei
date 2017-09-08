@@ -55,9 +55,7 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td>
-									<input type="submit" class="btn btn-success" value="變更" />
-								</td>
+								<td><input type="submit" class="btn btn-success" value="變更" /></td>
 							</tr>
 						</table>
 					</form:form>

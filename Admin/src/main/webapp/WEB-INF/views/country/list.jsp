@@ -43,7 +43,6 @@
 						<thead>
 							<tr>
 								<td style="width:50px">編號</td>
-<!-- 								<td>流水號</td> -->
 								<td style="width:50px">代碼</td>
 								<td>名稱</td>
 								<td style="width:75px">電話碼</td>
@@ -56,7 +55,6 @@
 							<c:forEach var="bean" items="${countryList}" varStatus="status">
 								<tr>
 									<td>${status.count}</td>
-<%-- 									<td>${bean.co_id}</td> --%>
 									<td>${bean.co_iso}</td>
 									<td>${bean.co_name}</td>
 									<td>${bean.co_phonecode}</td>

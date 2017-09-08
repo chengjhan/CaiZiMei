@@ -77,10 +77,6 @@
 									<td style="width:50px">排序</td>
 									<td>${bean.im_rank}</td>
 								</tr>
-<!-- 								<tr> -->
-<!-- 									<td>最後更新時間</td> -->
-<%-- 									<td>${bean.im_update_time}</td> --%>
-<!-- 								</tr> -->
 							</tbody>
 						</c:forEach>
 					</table>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,45 +43,26 @@
 						<thead>
 							<tr>
 								<td style="width:50px">編號</td>
-<!-- 								<td>流水號</td> -->
 								<td>名稱</td>
 								<td>英文名稱</td>
 								<td style="width:100px">電話</td>
-<!-- 								<td>國家</td> -->
-<!-- 								<td>區域</td> -->
 								<td>城市</td>
 								<td>地址</td>
-<!-- 								<td>緯度</td> -->
-<!-- 								<td>經度</td> -->
 								<td>網址</td>
-<!-- 								<td>新增時間</td> -->
-<!-- 								<td>更新時間</td> -->
-<!-- 								<td>狀態更新時間</td> -->
 								<td style="width:50px">編輯</td>
 								<td style="width:50px">開啟</td>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="bean" items="${baseList}" varStatus="status">
-								<fmt:formatDate value="${bean.ba_insert_time}" var="ba_insert_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
-								<fmt:formatDate value="${bean.ba_update_time}" var="ba_update_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
-								<fmt:formatDate value="${bean.ba_status_time}" var="ba_status_time_format" pattern="yyyy-MM-dd HH:mm:ss" />
 								<tr>
 									<td>${status.count + pageRowCount * (currentPage - 1)}</td>
-<%-- 									<td>${bean.ba_id}</td> --%>
 									<td>${bean.ba_name}</td>
 									<td>${bean.ba_eng_name}</td>
 									<td>${bean.ba_tel_code}-${bean.ba_tel}</td>
-<%-- 									<td>${bean.ba_CountryBean.co_name}</td> --%>
-<%-- 									<td>${bean.ba_StateBean.st_name}</td> --%>
 									<td>${bean.ba_CityBean.ci_name}</td>
 									<td>${bean.ba_address}</td>
-<%-- 									<td>${bean.ba_latitude}</td> --%>
-<%-- 									<td>${bean.ba_longitude}</td> --%>
 									<td><a href="${bean.ba_url}">${bean.ba_url}</a></td>
-<%-- 									<td>${ba_insert_time_format}</td> --%>
-<%-- 									<td>${ba_update_time_format}</td> --%>
-<%-- 									<td>${ba_status_time_format}</td> --%>
 									<td>
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/office/edit?ba_id=${bean.ba_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/icon_edit.svg"></a>

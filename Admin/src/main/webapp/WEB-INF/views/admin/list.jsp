@@ -34,7 +34,6 @@
 						<thead>
 							<tr>
 								<td width="50px">編號</td>
-<!-- 								<td>流水號</td> -->
 								<td>帳號</td>
 								<td>姓名</td>
 								<td width="150px">註冊時間</td>
@@ -52,7 +51,6 @@
 								<fmt:formatDate value="${bean.ad_status_time}" var="ad_status_time" pattern="yyyy-MM-dd HH:mm:ss" />
 								<tr>
 									<td>${status.count}</td>
-<%-- 									<td>${bean.ad_id}</td> --%>
 									<td>${bean.ad_username}</td>
 									<td>${bean.ad_lastname} ${bean.ad_firstname}</td>
 									<td>${ad_signup_time}</td>

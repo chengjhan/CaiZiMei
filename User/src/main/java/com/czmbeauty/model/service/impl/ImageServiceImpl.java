@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.model.dao.CategoryDao;
 import com.czmbeauty.model.dao.ImageDao;
 import com.czmbeauty.model.entity.ImageBean;
 import com.czmbeauty.model.service.ImageService;
@@ -27,23 +28,29 @@ import com.czmbeauty.model.service.ImageService;
 public class ImageServiceImpl implements ImageService {
 
 	/**
+	 * 注入 CategoryDao
+	 */
+	@Autowired
+	private CategoryDao categoryDao;
+
+	/**
 	 * 注入 ImageDao
 	 */
 	@Autowired
 	private ImageDao imageDao;
 
 	/**
-	 * 類別流水號搜尋開啟的圖片
+	 * 類別資料夾名稱搜尋開啟的圖片
 	 * 
-	 * @param im_ca_id
-	 *            String --> 類別流水號
+	 * @param ca_directory
+	 *            String --> 類別資料夾名稱
 	 * @return List<ImageBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<ImageBean> selectOpenImage(String im_ca_id) {
+	public List<ImageBean> selectOpenImage(String ca_directory) {
 
-		return imageDao.selectOpenImage(im_ca_id);
+		return imageDao.selectOpenImage(categoryDao.selectByCa_directory(ca_directory));
 	}
 
 }

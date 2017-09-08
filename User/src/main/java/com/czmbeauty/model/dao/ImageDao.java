@@ -10,6 +10,7 @@ package com.czmbeauty.model.dao;
 
 import java.util.List;
 
+import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
 
 /**
@@ -20,8 +21,8 @@ import com.czmbeauty.model.entity.ImageBean;
 public interface ImageDao {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectOpenImage(String)
+	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectOpenImage(CategoryBean)
 	 */
-	List<ImageBean> selectOpenImage(String im_ca_id);
+	List<ImageBean> selectOpenImage(CategoryBean im_CategoryBean);
 
 }

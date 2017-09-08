@@ -34,31 +34,21 @@ public class CategoryDaoImpl implements CategoryDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 類別流水號搜尋
-	 * 
-	 * @param ca_id
-	 *            Integer --> 類別流水號
-	 * @return CategoryBean
-	 */
-	@Override
-	public CategoryBean selectByCa_id(Integer ca_id) {
-
-		return hibernateTemplate.get(CategoryBean.class, ca_id);
-	}
-
-	/**
 	 * 類別資料夾名稱搜尋
 	 * 
 	 * @param ca_directory
 	 *            String --> 類別資料夾名稱
-	 * @return List<CategoryBean>
+	 * @return CategoryBean
+	 * @return null
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<CategoryBean> selectByCa_directory(String ca_directory) {
+	public CategoryBean selectByCa_directory(String ca_directory) {
 
-		return (List<CategoryBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_CATEGORY_BY_DIRECTORY, "ca_directory",
-				ca_directory);
+		List<CategoryBean> list = (List<CategoryBean>) hibernateTemplate
+				.findByNamedParam(HQL_SELECT_CATEGORY_BY_DIRECTORY, "ca_directory", ca_directory);
+
+		return (!list.isEmpty()) ? list.get(0) : null;
 	}
 
 }

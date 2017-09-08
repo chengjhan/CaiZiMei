@@ -8,15 +8,16 @@
  */
 package com.czmbeauty.model.dao.impl;
 
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_IMAGE_BY_CATEGORY;
-
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.ImageDao;
+import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
 
 /**
@@ -34,18 +35,22 @@ public class ImageDaoImpl implements ImageDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 類別流水號搜尋開啟的圖片
+	 * 類別搜尋開啟的圖片
 	 * 
-	 * @param im_ca_id
-	 *            String --> 類別流水號
+	 * @param im_CategoryBean
+	 *            CategoryBean --> 類別
 	 * @return List<ImageBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ImageBean> selectOpenImage(String im_ca_id) {
+	public List<ImageBean> selectOpenImage(CategoryBean im_CategoryBean) {
 
-		return (List<ImageBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_IMAGE_BY_CATEGORY, "im_ca_id",
-				im_ca_id);
+		DetachedCriteria criteria = DetachedCriteria.forClass(ImageBean.class);
+
+		criteria.add(Restrictions.eq("im_CategoryBean", im_CategoryBean));
+		criteria.add(Restrictions.eq("im_status", 1));
+
+		return (List<ImageBean>) hibernateTemplate.findByCriteria(criteria);
 	}
 
 }

@@ -24,7 +24,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/open-slider-main-list.ajax", function(data){
+	$.getJSON("image/slider-main.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-main/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
@@ -51,7 +51,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/open-slider-franchisee-list.ajax", function(data){
+	$.getJSON("image/slider-franchisee.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-franchisee/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
@@ -73,7 +73,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/open-slider-recent-list.ajax", function(data){
+	$.getJSON("image/slider-recent.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-recent/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
@@ -95,7 +95,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/open-slider-sale-list.ajax", function(data){
+	$.getJSON("image/slider-sale.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-sale/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
@@ -117,7 +117,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/open-slider-knowledge-list.ajax", function(data){
+	$.getJSON("image/slider-knowledge.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-knowledge/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
@@ -139,7 +139,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/open-slider-team-list.ajax", function(data){
+	$.getJSON("image/slider-team.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-team/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);

@@ -8,8 +8,6 @@
  */
 package com.czmbeauty.model.dao;
 
-import java.util.List;
-
 import com.czmbeauty.model.entity.CategoryBean;
 
 /**
@@ -20,13 +18,8 @@ import com.czmbeauty.model.entity.CategoryBean;
 public interface CategoryDao {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.CategoryDaoImpl#selectByCa_id(Integer)
-	 */
-	CategoryBean selectByCa_id(Integer ca_id);
-
-	/**
 	 * @see com.czmbeauty.model.dao.impl.CategoryDaoImpl#selectByCa_directory(String)
 	 */
-	List<CategoryBean> selectByCa_directory(String ca_directory);
+	CategoryBean selectByCa_directory(String ca_directory);
 
 }

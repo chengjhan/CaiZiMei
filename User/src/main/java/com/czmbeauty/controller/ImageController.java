@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.czmbeauty.model.entity.ImageBean;
-import com.czmbeauty.model.service.CategoryService;
 import com.czmbeauty.model.service.ImageService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,30 +41,21 @@ public class ImageController {
 	private HttpServletRequest request;
 
 	/**
-	 * 注入 CategoryService
-	 */
-	@Autowired
-	private CategoryService categoryService;
-
-	/**
 	 * 注入 ImageService
 	 */
 	@Autowired
 	private ImageService imageService;
 
 	/**
-	 * 開啟的圖片
+	 * 開啟的圖片 JSON
 	 * 
-	 * @return JSON
+	 * @return image JSON
 	 */
 	private String getJSON() {
 
-		String ca_directory = request.getServletPath().split("/")[2].split("-")[1] + "-"
-				+ request.getServletPath().split("/")[2].split("-")[2];
+		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
 
-		Integer ca_id = categoryService.selectByCa_directory(ca_directory).getCa_id();
-
-		List<ImageBean> list = imageService.selectOpenImage(String.valueOf(ca_id));
+		List<ImageBean> list = imageService.selectOpenImage(ca_directory);
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
@@ -83,9 +73,9 @@ public class ImageController {
 	 * 
 	 * @return image JSON
 	 */
-	@RequestMapping(value = "/image/open-slider-*-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/image/slider*.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openSliderListAjaxProcess() {
+	public String openSliderAjaxProcess() {
 
 		return getJSON();
 	}

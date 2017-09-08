@@ -22,6 +22,6 @@ public interface ImageService {
 	/**
 	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectOpenImage(String)
 	 */
-	List<ImageBean> selectOpenImage(String im_ca_id);
+	List<ImageBean> selectOpenImage(String ca_directory);
 
 }

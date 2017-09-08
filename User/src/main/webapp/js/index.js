@@ -34,7 +34,7 @@ $(document).ready(function(){
 	});
 	
 	// 相關影音
-	$.getJSON("video/open-video-related-list.ajax", function(data){
+	$.getJSON("video/video-related.ajax", function(data){
 		$(".video-related iframe").attr("src", data.vi_tag);
 	});
 	

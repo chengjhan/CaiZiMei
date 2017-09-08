@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: VideoServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.model.dao.CategoryDao;
 import com.czmbeauty.model.dao.VideoDao;
 import com.czmbeauty.model.entity.VideoBean;
 import com.czmbeauty.model.service.VideoService;
@@ -27,21 +28,29 @@ import com.czmbeauty.model.service.VideoService;
 public class VideoServiceImpl implements VideoService {
 
 	/**
+	 * 注入 CategoryDao
+	 */
+	@Autowired
+	private CategoryDao categoryDao;
+
+	/**
 	 * 注入 VideoDao
 	 */
 	@Autowired
 	private VideoDao videoDao;
 
 	/**
-	 * 搜尋開啟的影片
+	 * 類別資料夾名稱搜尋開啟的影片
 	 * 
+	 * @param ca_directory
+	 *            String --> 類別資料夾名稱
 	 * @return List<VideoBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<VideoBean> selectOpenVideo(String hql) {
+	public List<VideoBean> selectOpenVideo(String ca_directory) {
 
-		return videoDao.selectOpenVideo(hql);
+		return videoDao.selectOpenVideo(categoryDao.selectByCa_directory(ca_directory));
 	}
 
 }

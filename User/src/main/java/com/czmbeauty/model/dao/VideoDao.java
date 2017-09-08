@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: VideoDao.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,6 +10,7 @@ package com.czmbeauty.model.dao;
 
 import java.util.List;
 
+import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.VideoBean;
 
 /**
@@ -20,8 +21,8 @@ import com.czmbeauty.model.entity.VideoBean;
 public interface VideoDao {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.VideoDaoImpl#selectOpenVideo(String)
+	 * @see com.czmbeauty.model.dao.impl.VideoDaoImpl#selectOpenVideo(CategoryBean)
 	 */
-	List<VideoBean> selectOpenVideo(String sql);
+	List<VideoBean> selectOpenVideo(CategoryBean vi_CategoryBean);
 
 }

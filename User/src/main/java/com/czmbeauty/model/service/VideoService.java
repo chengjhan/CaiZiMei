@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: VideoService.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,6 +22,6 @@ public interface VideoService {
 	/**
 	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectOpenVideo(String)
 	 */
-	List<VideoBean> selectOpenVideo(String hql);
+	List<VideoBean> selectOpenVideo(String ca_directory);
 
 }

@@ -2,13 +2,13 @@
  * CaiZiMei/User
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/9/6
+ * Date: 2017/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_VIDEO_RELATED;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,21 +32,27 @@ public class VideoController {
 	private static final Logger logger = Logger.getLogger(VideoController.class);
 
 	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
+
+	/**
 	 * 注入 VideoService
 	 */
 	@Autowired
 	private VideoService videoService;
 
 	/**
-	 * 開啟的相關影音 (AJAX)
+	 * 開啟的影片 JSON
 	 * 
 	 * @return video JSON
 	 */
-	@RequestMapping(value = "/video/open-video-related-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String openVideoRelatedListAjaxProcess() {
+	private String getJSON() {
 
-		VideoBean bean = videoService.selectOpenVideo(HQL_SELECT_OPEN_VIDEO_RELATED).get(0);
+		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
+
+		VideoBean bean = videoService.selectOpenVideo(ca_directory).get(0);
 
 		VideoBean jsonBean = new VideoBean();
 		jsonBean.setVi_id(bean.getVi_id());
@@ -58,6 +64,18 @@ public class VideoController {
 		logger.info("JSON = " + json);
 
 		return json;
+	}
+
+	/**
+	 * 開啟的影片 (AJAX)
+	 * 
+	 * @return video JSON
+	 */
+	@RequestMapping(value = "/video/video*.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openVideoAjaxProcess() {
+
+		return getJSON();
 	}
 
 }

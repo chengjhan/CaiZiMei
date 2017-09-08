@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/9/7
+ * Date: 2017/9/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -107,8 +107,6 @@ public class VideoController {
 	/**
 	 * 新增影片
 	 * 
-	 * @param ca_directory
-	 *            String --> 類別資料夾名稱
 	 * @param videoBean
 	 *            VideoBean --> form backing object
 	 * @param bindingResult
@@ -116,7 +114,9 @@ public class VideoController {
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	private String add(String ca_directory, VideoBean videoBean, BindingResult bindingResult) {
+	private String add(VideoBean videoBean, BindingResult bindingResult) {
+
+		String ca_directory = request.getServletPath().split("/")[1];
 
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 		String ca_name = categoryBean.getCa_name();
@@ -144,8 +144,6 @@ public class VideoController {
 	/**
 	 * 編輯影片資訊
 	 * 
-	 * @param ca_directory
-	 *            String --> 類別資料夾名稱
 	 * @param videoBean
 	 *            VideoBean --> form backing object
 	 * @param bindingResult
@@ -153,7 +151,9 @@ public class VideoController {
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	private String edit(String ca_directory, VideoBean videoBean, BindingResult bindingResult) {
+	private String edit(VideoBean videoBean, BindingResult bindingResult) {
+
+		String ca_directory = request.getServletPath().split("/")[1];
 
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 		String ca_name = categoryBean.getCa_name();
@@ -240,7 +240,7 @@ public class VideoController {
 	@RequestMapping(value = "/video*/add.do", method = RequestMethod.POST)
 	public String addProcess(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
-		return add(request.getServletPath().split("/")[1], videoBean, bindingResult);
+		return add(videoBean, bindingResult);
 	}
 
 	/**
@@ -277,7 +277,7 @@ public class VideoController {
 	@RequestMapping(value = "/video*/edit.do", method = RequestMethod.POST)
 	public String editProcess(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
-		return edit(request.getServletPath().split("/")[1], videoBean, bindingResult);
+		return edit(videoBean, bindingResult);
 	}
 
 	/**

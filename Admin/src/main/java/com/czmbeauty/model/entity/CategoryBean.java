@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CategoryBean.java
  * Author: 詹晟
- * Date: 2017/9/6
+ * Date: 2017/9/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,6 +38,8 @@ public class CategoryBean {
 	private Set<BaseBean> ca_BaseBean;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "im_CategoryBean")
 	private Set<ImageBean> ca_ImageBean;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "vi_CategoryBean")
+	private Set<VideoBean> ca_VideoBean;
 
 	public Integer getCa_id() {
 		return ca_id;
@@ -77,6 +79,14 @@ public class CategoryBean {
 
 	public void setCa_ImageBean(Set<ImageBean> ca_ImageBean) {
 		this.ca_ImageBean = ca_ImageBean;
+	}
+
+	public Set<VideoBean> getCa_VideoBean() {
+		return ca_VideoBean;
+	}
+
+	public void setCa_VideoBean(Set<VideoBean> ca_VideoBean) {
+		this.ca_VideoBean = ca_VideoBean;
 	}
 
 }

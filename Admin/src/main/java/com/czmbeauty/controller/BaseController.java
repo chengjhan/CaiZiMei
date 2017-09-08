@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/7
+ * Date: 2017/9/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -140,8 +140,6 @@ public class BaseController {
 	/**
 	 * 新增據點
 	 * 
-	 * @param ca_directory
-	 *            String --> 類別資料夾名稱
 	 * @param baseBean
 	 *            BaseBean --> form backing object
 	 * @param bindingResult
@@ -149,7 +147,9 @@ public class BaseController {
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	private String add(String ca_directory, BaseBean baseBean, BindingResult bindingResult) {
+	private String add(BaseBean baseBean, BindingResult bindingResult) {
+
+		String ca_directory = request.getServletPath().split("/")[1];
 
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 		String ca_name = categoryBean.getCa_name();
@@ -175,8 +175,6 @@ public class BaseController {
 	/**
 	 * 編輯據點資訊
 	 * 
-	 * @param ca_directory
-	 *            String --> 類別資料夾名稱
 	 * @param baseBean
 	 *            BaseBean --> form backing object
 	 * @param bindingResult
@@ -184,7 +182,9 @@ public class BaseController {
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	private String edit(String ca_directory, BaseBean baseBean, BindingResult bindingResult) {
+	private String edit(BaseBean baseBean, BindingResult bindingResult) {
+
+		String ca_directory = request.getServletPath().split("/")[1];
 
 		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
 
@@ -271,7 +271,7 @@ public class BaseController {
 	@RequestMapping(value = "/*/add.do", method = RequestMethod.POST)
 	public String officeAddProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
-		return add(request.getServletPath().split("/")[1], baseBean, bindingResult);
+		return add(baseBean, bindingResult);
 	}
 
 	/**
@@ -320,7 +320,7 @@ public class BaseController {
 	@RequestMapping(value = "/*/edit.do", method = RequestMethod.POST)
 	public String officeEditProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
-		return edit(request.getServletPath().split("/")[1], baseBean, bindingResult);
+		return edit(baseBean, bindingResult);
 	}
 
 	/**

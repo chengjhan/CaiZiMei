@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/7
+ * Date: 2017/9/9
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -138,8 +138,6 @@ public class ImageController {
 	/**
 	 * 新增圖片
 	 * 
-	 * @param ca_directory
-	 *            String --> 類別資料夾名稱
 	 * @param file
 	 *            MultipartFile
 	 * @param imageBean
@@ -150,7 +148,9 @@ public class ImageController {
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	private String add(String ca_directory, MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
+	private String add(MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
+
+		String ca_directory = request.getServletPath().split("/")[1];
 
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 		String ca_name = categoryBean.getCa_name();
@@ -195,8 +195,6 @@ public class ImageController {
 	/**
 	 * 編輯圖片資訊
 	 * 
-	 * @param ca_directory
-	 *            String --> 類別資料夾名稱
 	 * @param file
 	 *            MultipartFile
 	 * @param imageBean
@@ -206,7 +204,9 @@ public class ImageController {
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	private String edit(String ca_directory, MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
+	private String edit(MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
+
+		String ca_directory = request.getServletPath().split("/")[1];
 
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 		String ca_name = categoryBean.getCa_name();
@@ -321,7 +321,7 @@ public class ImageController {
 	public String addProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
-		return add(request.getServletPath().split("/")[1], file, imageBean, bindingResult);
+		return add(file, imageBean, bindingResult);
 	}
 
 	/**
@@ -361,7 +361,7 @@ public class ImageController {
 	public String editProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
-		return edit(request.getServletPath().split("/")[1], file, imageBean, bindingResult);
+		return edit(file, imageBean, bindingResult);
 	}
 
 	/**

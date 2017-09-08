@@ -25,7 +25,6 @@ state_select.change(function(){
 		$.each(data, function(index, cityBean){
 			index = index + 1;
 			var count_td = $("<td></td>").append(index);
-//			var ci_id_td = $("<td></td>").append(cityBean.ci_id);
 			var ci_name_td = $("<td></td>").append(cityBean.ci_name);
 			var ci_rank_td = $("<td></td>").append(cityBean.ci_rank);
 			var edit_img = $("<img src='../images/icon_edit.svg'>");
@@ -40,7 +39,6 @@ state_select.change(function(){
 			}
 			var switch_div = $("<div class='ci-status-switch' data-ci-id='" + cityBean.ci_id + "'></div>").append(switch_img);
 			var switch_td = $("<td></td>").append(switch_div);
-//			var cityList_tr = $("<tr></tr>").append([count_td, ci_id_td, ci_name_td, ci_rank_td, edit_td, switch_td]);
 			var cityList_tr = $("<tr></tr>").append([count_td, ci_name_td, ci_rank_td, edit_td, switch_td]);
 			cityList_tbody.append(cityList_tr);
 		});

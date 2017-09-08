@@ -16,7 +16,6 @@ function getPageName(hrefSplitBySlash){
 };
 
 $(document).ready(function(){
-	
 	getPageName(hrefSplitBySlash);
 	
 	// list active

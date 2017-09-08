@@ -9,7 +9,6 @@ country_select.change(function(){
 		$.each(data, function(index, stateBean){
 			index = index + 1;
 			var count_td = $("<td></td>").append(index);
-//			var st_id_td = $("<td></td>").append(stateBean.st_id);
 			var st_name_td = $("<td></td>").append(stateBean.st_name);
 			var st_rank_td = $("<td></td>").append(stateBean.st_rank);
 			var edit_img = $("<img src='../images/icon_edit.svg'>");
@@ -24,7 +23,6 @@ country_select.change(function(){
 			}
 			var switch_div = $("<div class='st-status-switch' data-st-id='" + stateBean.st_id + "'></div>").append(switch_img);
 			var switch_td = $("<td></td>").append(switch_div);
-//			var stateList_tr = $("<tr></tr>").append([count_td, st_id_td, st_name_td, st_rank_td, edit_td, switch_td]);
 			var stateList_tr = $("<tr></tr>").append([count_td, st_name_td, st_rank_td, edit_td, switch_td]);
 			stateList_tbody.append(stateList_tr);
 		});

@@ -1,6 +1,5 @@
 // validation
 $(document).ready(function(){
-	
 	$("form").validate({
 		rules: {
 			ad_lastname: {

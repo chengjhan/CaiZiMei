@@ -2,20 +2,15 @@
  * CaiZiMei/User
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/6
+ * Date: 2017/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_FRANCHISEE;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_KNOWLEDGE;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_MAIN;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_RECENT;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_SALE;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_SLIDER_TEAM;
-
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.czmbeauty.model.entity.ImageBean;
+import com.czmbeauty.model.service.CategoryService;
 import com.czmbeauty.model.service.ImageService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,21 +36,36 @@ public class ImageController {
 	private static final Logger logger = Logger.getLogger(ImageController.class);
 
 	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
+
+	/**
+	 * 注入 CategoryService
+	 */
+	@Autowired
+	private CategoryService categoryService;
+
+	/**
 	 * 注入 ImageService
 	 */
 	@Autowired
 	private ImageService imageService;
 
 	/**
-	 * 開啟的主輪播圖片 (AJAX)
+	 * 開啟的圖片
 	 * 
-	 * @return image JSON
+	 * @return JSON
 	 */
-	@RequestMapping(value = "/image/open-slider-main-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String openSliderMainListAjaxProcess() {
+	private String getJSON() {
 
-		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_MAIN);
+		String ca_directory = request.getServletPath().split("/")[2].split("-")[1] + "-"
+				+ request.getServletPath().split("/")[2].split("-")[2];
+
+		Integer ca_id = categoryService.selectByCa_directory(ca_directory).getCa_id();
+
+		List<ImageBean> list = imageService.selectOpenImage(String.valueOf(ca_id));
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();
@@ -68,113 +79,15 @@ public class ImageController {
 	}
 
 	/**
-	 * 開啟的加盟店資訊輪播圖片 (AJAX)
+	 * 開啟的輪播圖片 (AJAX)
 	 * 
 	 * @return image JSON
 	 */
-	@RequestMapping(value = "/image/open-slider-franchisee-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/image/open-slider-*-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openSliderFranchiseeListAjaxProcess() {
+	public String openSliderListAjaxProcess() {
 
-		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_FRANCHISEE);
-
-		GsonBuilder builder = new GsonBuilder();
-		builder.excludeFieldsWithoutExposeAnnotation();
-		Gson gson = builder.create();
-
-		String json = gson.toJson(list);
-
-		logger.info("JSON = " + json);
-
-		return json;
-	}
-
-	/**
-	 * 開啟的近期活動輪播圖片 (AJAX)
-	 * 
-	 * @return image JSON
-	 */
-	@RequestMapping(value = "/image/open-slider-recent-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String openSliderRecentListAjaxProcess() {
-
-		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_RECENT);
-
-		GsonBuilder builder = new GsonBuilder();
-		builder.excludeFieldsWithoutExposeAnnotation();
-		Gson gson = builder.create();
-
-		String json = gson.toJson(list);
-
-		logger.info("JSON = " + json);
-
-		return json;
-	}
-
-	/**
-	 * 開啟的優惠活動輪播圖片 (AJAX)
-	 * 
-	 * @return image JSON
-	 */
-	@RequestMapping(value = "/image/open-slider-sale-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String openSliderSaleListAjaxProcess() {
-
-		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_SALE);
-
-		GsonBuilder builder = new GsonBuilder();
-		builder.excludeFieldsWithoutExposeAnnotation();
-		Gson gson = builder.create();
-
-		String json = gson.toJson(list);
-
-		logger.info("JSON = " + json);
-
-		return json;
-	}
-
-	/**
-	 * 開啟的醫療新知輪播圖片 (AJAX)
-	 * 
-	 * @return image JSON
-	 */
-	@RequestMapping(value = "/image/open-slider-knowledge-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String openSliderKnowledgeListAjaxProcess() {
-
-		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_KNOWLEDGE);
-
-		GsonBuilder builder = new GsonBuilder();
-		builder.excludeFieldsWithoutExposeAnnotation();
-		Gson gson = builder.create();
-
-		String json = gson.toJson(list);
-
-		logger.info("JSON = " + json);
-
-		return json;
-	}
-
-	/**
-	 * 開啟的醫療團隊輪播圖片 (AJAX)
-	 * 
-	 * @return image JSON
-	 */
-	@RequestMapping(value = "/image/open-slider-team-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String openSliderTeamListAjaxProcess() {
-
-		List<ImageBean> list = imageService.selectOpenImage(HQL_SELECT_OPEN_SLIDER_TEAM);
-
-		GsonBuilder builder = new GsonBuilder();
-		builder.excludeFieldsWithoutExposeAnnotation();
-		Gson gson = builder.create();
-
-		String json = gson.toJson(list);
-
-		logger.info("JSON = " + json);
-
-		return json;
+		return getJSON();
 	}
 
 }

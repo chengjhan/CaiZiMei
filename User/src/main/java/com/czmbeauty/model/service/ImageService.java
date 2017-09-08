@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ImageService.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,6 +22,6 @@ public interface ImageService {
 	/**
 	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectOpenImage(String)
 	 */
-	List<ImageBean> selectOpenImage(String hql);
+	List<ImageBean> selectOpenImage(String im_ca_id);
 
 }

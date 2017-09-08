@@ -2,11 +2,13 @@
  * CaiZiMei/User
  * File: ImageDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
+
+import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_IMAGE_BY_CATEGORY;
 
 import java.util.List;
 
@@ -32,15 +34,18 @@ public class ImageDaoImpl implements ImageDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋開啟的圖片
+	 * 類別流水號搜尋開啟的圖片
 	 * 
+	 * @param im_ca_id
+	 *            String --> 類別流水號
 	 * @return List<ImageBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ImageBean> selectOpenImage(String hql) {
+	public List<ImageBean> selectOpenImage(String im_ca_id) {
 
-		return (List<ImageBean>) hibernateTemplate.find(hql);
+		return (List<ImageBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_IMAGE_BY_CATEGORY, "im_ca_id",
+				im_ca_id);
 	}
 
 }

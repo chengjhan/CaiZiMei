@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ImageServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/9/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,15 +33,17 @@ public class ImageServiceImpl implements ImageService {
 	private ImageDao imageDao;
 
 	/**
-	 * 搜尋開啟的圖片
+	 * 類別流水號搜尋開啟的圖片
 	 * 
+	 * @param im_ca_id
+	 *            String --> 類別流水號
 	 * @return List<ImageBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<ImageBean> selectOpenImage(String hql) {
+	public List<ImageBean> selectOpenImage(String im_ca_id) {
 
-		return imageDao.selectOpenImage(hql);
+		return imageDao.selectOpenImage(im_ca_id);
 	}
 
 }

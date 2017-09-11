@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/9
+ * Date: 2017/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -151,7 +151,6 @@ public class ImageController {
 	private String add(MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
 
 		String ca_directory = request.getServletPath().split("/")[1];
-
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 		String ca_name = categoryBean.getCa_name();
 
@@ -207,7 +206,6 @@ public class ImageController {
 	private String edit(MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
 
 		String ca_directory = request.getServletPath().split("/")[1];
-
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 		String ca_name = categoryBean.getCa_name();
 
@@ -287,6 +285,8 @@ public class ImageController {
 		// 取得總頁數
 		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
 
+		logger.info("進入" + categoryBean.getCa_name() + "一覽頁面: " + ca_directory + LIST_PAGE);
+
 		return ca_directory + LIST_PAGE;
 	}
 
@@ -300,10 +300,15 @@ public class ImageController {
 	@RequestMapping(value = "/slider*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
+		String ca_directory = request.getServletPath().split("/")[1];
+		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+
 		// 新增 form backing object
 		model.addAttribute(IMAGE_BEAN, new ImageBean());
 
-		return request.getServletPath().split("/")[1] + ADD_PAGE;
+		logger.info("進入新增" + ca_name + "頁面: " + ca_directory + ADD_PAGE);
+
+		return ca_directory + ADD_PAGE;
 	}
 
 	/**
@@ -340,10 +345,15 @@ public class ImageController {
 
 		currentPage = page;
 
+		String ca_directory = request.getServletPath().split("/")[1];
+		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+
 		// 取得選定圖片 id 的 ImageBean，使表單回填 ImageBean 內所有資料
 		model.addAttribute(IMAGE_BEAN, imageService.selectByIm_id(imageBean_im_id.getIm_id()));
 
-		return request.getServletPath().split("/")[1] + EDIT_PAGE;
+		logger.info("進入編輯" + ca_name + "資訊頁面: " + ca_directory + EDIT_PAGE);
+
+		return ca_directory + EDIT_PAGE;
 	}
 
 	/**

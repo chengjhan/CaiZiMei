@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/9
+ * Date: 2017/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -150,7 +150,6 @@ public class BaseController {
 	private String add(BaseBean baseBean, BindingResult bindingResult) {
 
 		String ca_directory = request.getServletPath().split("/")[1];
-
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 		String ca_name = categoryBean.getCa_name();
 
@@ -185,7 +184,6 @@ public class BaseController {
 	private String edit(BaseBean baseBean, BindingResult bindingResult) {
 
 		String ca_directory = request.getServletPath().split("/")[1];
-
 		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
 
 		if (bindingResult.hasErrors()) {
@@ -237,6 +235,8 @@ public class BaseController {
 		// 取得總頁數
 		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
 
+		logger.info("進入" + categoryBean.getCa_name() + "一覽頁面: " + ca_directory + LIST_PAGE);
+
 		return ca_directory + LIST_PAGE;
 	}
 
@@ -250,13 +250,18 @@ public class BaseController {
 	@RequestMapping(value = "/*/add", method = RequestMethod.GET)
 	public String officeAddView(Model model) {
 
+		String ca_directory = request.getServletPath().split("/")[1];
+		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+
 		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
 		// 新增 form backing object
 		model.addAttribute(BASE_BEAN, new BaseBean());
 
-		return request.getServletPath().split("/")[1] + ADD_PAGE;
+		logger.info("進入新增" + ca_name + "頁面: " + ca_directory + ADD_PAGE);
+
+		return ca_directory + ADD_PAGE;
 	}
 
 	/**
@@ -290,6 +295,9 @@ public class BaseController {
 
 		currentPage = page;
 
+		String ca_directory = request.getServletPath().split("/")[1];
+		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+
 		// 取得選定診所 id 的 BaseBean
 		BaseBean baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
 
@@ -305,7 +313,9 @@ public class BaseController {
 		// 使表單回填 BaseBean 內所有資料
 		model.addAttribute(BASE_BEAN, baseBean);
 
-		return request.getServletPath().split("/")[1] + EDIT_PAGE;
+		logger.info("進入編輯" + ca_name + "資訊頁面: " + ca_directory + EDIT_PAGE);
+
+		return ca_directory + EDIT_PAGE;
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/9/4
+ * Date: 2017/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -130,6 +130,9 @@ public class CityController {
 			// 取得編輯或刪除的 CityBean 的區域，並取得此區域中的所有城市 List，放入 table
 			model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(cityBean.getCi_StateBean().getSt_id()));
 		}
+
+		logger.info("進入城市一覽頁面: " + CITY_LIST_PAGE);
+
 		return CITY_LIST_PAGE;
 	}
 
@@ -148,6 +151,8 @@ public class CityController {
 
 		// 新增 form backing object
 		model.addAttribute(CITY_BEAN, new CityBean());
+
+		logger.info("進入新增城市頁面: " + CITY_ADD_PAGE);
 
 		return CITY_ADD_PAGE;
 	}
@@ -171,6 +176,8 @@ public class CityController {
 			// 取得所有國家 List，放入 select
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
+			logger.error("城市新增失敗: 格式錯誤");
+
 			return CITY_ADD_PAGE;
 
 		} else {
@@ -179,6 +186,8 @@ public class CityController {
 
 			// 將新增的 CityBean 放入 Session，使 select 回填國家及區域
 			model.addAttribute(CITY_BEAN, cityBean);
+
+			logger.info("城市新增成功");
 
 			return REDIRECT + CITY_LIST_PAGE;
 		}
@@ -208,6 +217,8 @@ public class CityController {
 		// 放入 Session，使表單回填 CityBean 內所有資料
 		model.addAttribute(CITY_BEAN, cityBean);
 
+		logger.info("進入編輯城市資訊頁面: " + CITY_EDIT_PAGE);
+
 		return CITY_EDIT_PAGE;
 	}
 
@@ -236,6 +247,8 @@ public class CityController {
 			// 取得選定城市 id 的 CityBean，放入 Session，使表單回填 CityBean 內所有資料
 			model.addAttribute(CITY_BEAN, cityService.selectByCi_id(cityBean.getCi_id()));
 
+			logger.error("城市資訊編輯失敗: 格式錯誤");
+
 			return CITY_EDIT_PAGE;
 
 		} else {
@@ -244,6 +257,8 @@ public class CityController {
 
 			// 將編輯的 CityBean 放入 Session，使 select 回填國家及區域
 			model.addAttribute(CITY_BEAN, cityBean);
+
+			logger.info("城市資訊編輯成功");
 
 			return REDIRECT + CITY_LIST_PAGE;
 		}

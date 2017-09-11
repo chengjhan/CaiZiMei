@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/5
+ * Date: 2017/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -64,6 +64,12 @@ public class AdminController {
 	private static final Logger logger = Logger.getLogger(AdminController.class);
 
 	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
+
+	/**
 	 * 注入 AdminService
 	 */
 	@Autowired
@@ -91,10 +97,10 @@ public class AdminController {
 	@RequestMapping(value = "/admin/sign-up", method = RequestMethod.GET)
 	public String signUpView(Model model) {
 
-		logger.info("進入註冊頁面: " + ADMIN_SIGN_UP_PAGE);
-
 		// 新增 form backing object
 		model.addAttribute(ADMIN_BEAN, new AdminBean());
+
+		logger.info("進入註冊頁面: " + ADMIN_SIGN_UP_PAGE);
 
 		return ADMIN_SIGN_UP_PAGE;
 	}
@@ -186,7 +192,7 @@ public class AdminController {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("編輯失敗: 格式錯誤");
+			logger.error("個人資訊編輯失敗: 格式錯誤");
 
 			return ADMIN_EDIT_PAGE;
 
@@ -194,7 +200,7 @@ public class AdminController {
 
 			adminService.update(admin);
 
-			logger.info("編輯成功");
+			logger.info("個人資訊編輯成功");
 
 			return REDIRECT + ADMIN_PROFILE_PAGE;
 		}
@@ -289,16 +295,12 @@ public class AdminController {
 	/**
 	 * 登入 - 初期處理
 	 * 
-	 * @param request
-	 *            HttpServletRequest
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
-	public String signInView(HttpServletRequest request, Model model) {
-
-		logger.info("進入登入頁面: " + ADMIN_SIGN_IN_PAGE);
+	public String signInView(Model model) {
 
 		HttpSession session = request.getSession();
 		String next = (String) session.getAttribute(NEXT_PAGE);
@@ -312,6 +314,9 @@ public class AdminController {
 
 			logger.info("原請求畫面: index");
 		}
+
+		logger.info("進入登入頁面: " + ADMIN_SIGN_IN_PAGE);
+
 		return ADMIN_SIGN_IN_PAGE;
 	}
 
@@ -322,8 +327,6 @@ public class AdminController {
 	 *            String --> 管理員帳號
 	 * @param ad_password
 	 *            String --> 管理員密碼(原碼)
-	 * @param request
-	 *            HttpServletRequest
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/secure/sign-in.jsp
@@ -333,8 +336,7 @@ public class AdminController {
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
-	public String signInProcess(@RequestParam String ad_username, @RequestParam String ad_password,
-			HttpServletRequest request, Model model) {
+	public String signInProcess(@RequestParam String ad_username, @RequestParam String ad_password, Model model) {
 
 		if (ad_username == null || ad_username.isEmpty()) {
 
@@ -560,15 +562,12 @@ public class AdminController {
 	 * 
 	 * @param admin
 	 *            AdminBean --> Session
-	 * @param request
-	 *            HttpServletRequest
 	 * @param sessionStatus
 	 *            SessionStatus
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-out", method = RequestMethod.GET)
-	public String signOutProcess(@ModelAttribute(ADMIN) AdminBean admin, HttpServletRequest request,
-			SessionStatus sessionStatus) {
+	public String signOutProcess(@ModelAttribute(ADMIN) AdminBean admin, SessionStatus sessionStatus) {
 
 		// 寫入日誌
 		AdminLogBean adminLogBean = new AdminLogBean();
@@ -598,10 +597,10 @@ public class AdminController {
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
-		logger.info("進入管理員一覽頁面: " + ADMIN_LIST_PAGE);
-
 		// 取得所有管理員 List，放入 table
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());
+
+		logger.info("進入管理員一覽頁面: " + ADMIN_LIST_PAGE);
 
 		return ADMIN_LIST_PAGE;
 	}

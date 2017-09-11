@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/9/4
+ * Date: 2017/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -113,6 +113,9 @@ public class StateController {
 			// 取得編輯或刪除的 StateBean 的國家，並取得此國家中的所有區域 List，放入 table
 			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(stateBean.getSt_CountryBean().getCo_id()));
 		}
+
+		logger.info("進入區域一覽頁面: " + STATE_LIST_PAGE);
+
 		return STATE_LIST_PAGE;
 	}
 
@@ -131,6 +134,8 @@ public class StateController {
 
 		// 新增 form backing object
 		model.addAttribute(STATE_BEAN, new StateBean());
+
+		logger.info("進入新增區域頁面: " + STATE_ADD_PAGE);
 
 		return STATE_ADD_PAGE;
 	}
@@ -154,6 +159,8 @@ public class StateController {
 			// 取得所有國家 List，放入 select
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
+			logger.error("區域新增失敗: 格式錯誤");
+
 			return STATE_ADD_PAGE;
 
 		} else {
@@ -162,6 +169,8 @@ public class StateController {
 
 			// 將新增的 StateBean 放入 Session，使 select 回填國家
 			model.addAttribute(STATE_BEAN, stateBean);
+
+			logger.info("區域新增成功");
 
 			return REDIRECT + STATE_LIST_PAGE;
 		}
@@ -184,6 +193,8 @@ public class StateController {
 
 		// 取得選定區域 id 的 StateBean，放入 Session，使表單回填 StateBean 內所有資料
 		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean_st_id.getSt_id()));
+
+		logger.info("進入編輯區域資訊頁面: " + STATE_EDIT_PAGE);
 
 		return STATE_EDIT_PAGE;
 	}
@@ -210,6 +221,8 @@ public class StateController {
 			// 取得選定區域 id 的 StateBean，放入 Session，使表單回填 StateBean 內所有資料
 			model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean.getSt_id()));
 
+			logger.error("區域資訊編輯失敗: 格式錯誤");
+
 			return STATE_EDIT_PAGE;
 
 		} else {
@@ -218,6 +231,8 @@ public class StateController {
 
 			// 將編輯的 StateBean 放入 Session，使 select 回填國家
 			model.addAttribute(STATE_BEAN, stateBean);
+
+			logger.info("區域資訊編輯成功");
 
 			return REDIRECT + STATE_LIST_PAGE;
 		}

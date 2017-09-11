@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -17,6 +17,7 @@ import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,8 @@ import com.czmbeauty.model.service.CountryService;
  */
 @Controller
 public class CountryController {
+
+	private static final Logger logger = Logger.getLogger(CountryController.class);
 
 	/**
 	 * 注入 CountryService
@@ -66,6 +69,8 @@ public class CountryController {
 		// 取得所有國家 List，放入 table
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
+		logger.info("進入國家一覽頁面: " + COUNTRY_LIST_PAGE);
+
 		return COUNTRY_LIST_PAGE;
 	}
 
@@ -81,6 +86,8 @@ public class CountryController {
 
 		// 新增 form backing object
 		model.addAttribute(COUNTRY_BEAN, new CountryBean());
+
+		logger.info("進入新增國家頁面: " + COUNTRY_ADD_PAGE);
 
 		return COUNTRY_ADD_PAGE;
 	}
@@ -99,11 +106,15 @@ public class CountryController {
 
 		if (result.hasErrors()) {
 
+			logger.error("國家新增失敗: 格式錯誤");
+
 			return COUNTRY_ADD_PAGE;
-			
+
 		} else {
 
 			countryService.insert(countryBean);
+
+			logger.info("國家新增成功");
 
 			return REDIRECT + COUNTRY_LIST_PAGE;
 		}
@@ -124,6 +135,8 @@ public class CountryController {
 		// 取得選定國家 id 的 CountryBean，使表單回填 CountryBean 內所有資料
 		model.addAttribute(COUNTRY_BEAN, countryService.selectByCo_id(countryBean_co_id.getCo_id()));
 
+		logger.info("進入編輯國家資訊頁面: " + COUNTRY_EDIT_PAGE);
+
 		return COUNTRY_EDIT_PAGE;
 	}
 
@@ -141,11 +154,15 @@ public class CountryController {
 
 		if (result.hasErrors()) {
 
+			logger.error("國家資訊編輯失敗: 格式錯誤");
+
 			return COUNTRY_EDIT_PAGE;
-			
+
 		} else {
 
 			countryService.update(countryBean);
+
+			logger.info("國家資訊編輯成功");
 
 			return REDIRECT + COUNTRY_LIST_PAGE;
 		}

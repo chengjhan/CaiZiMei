@@ -24,16 +24,21 @@
 			<form action="<c:url value='/secure/forget-password.do' />" method="post">
 				<div class="form-group sub-title">忘記密碼</div>
 				<div class="form-group">
-					<label for="id-input-ad-email">信箱</label>
-					<input type="text" id="id-input-ad-email" class="form-control" name="ad_email">
+					<label for="ad_email">信箱</label>
+					<input type="text" id="ad_email" class="form-control" name="ad_email">
 					<div><p style="font-size:13px;padding:5px">請輸入您的信箱，系統將發送驗證碼，以重設您的密碼。<p></div>
 				</div>
 				<div class="form-group" style="margin-top:20px">
 					<span class="error">${error}</span>
-					<input type="submit" id="id-input-submit" class="btn btn-primary" style="float:right" value="發送">
+					<input type="submit" class="btn btn-primary" style="float:right" value="發送">
 				</div>
 			</form>
 		</div>
 	</div>
+	
+	<!-- load -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/secure/form.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

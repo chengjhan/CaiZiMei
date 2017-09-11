@@ -24,17 +24,17 @@
 			<form action="<c:url value='/secure/sign-in.do' />" method="post">
 				<div class="form-group sub-title">登入</div>
 				<div class="form-group">
-					<label for="id-input-ad-username" class="control-label">帳號</label>
-					<input type="text" id="id-input-ad-username" class="form-control" name="ad_username">
+					<label for="ad_username" class="control-label">帳號</label>
+					<input type="text" id="ad_username" class="form-control" name="ad_username">
 				</div>
 				<div class="form-group">
-					<label for="id-input-ad-password" class="control-label">密碼</label>
-					<input type="password" id="id-input-ad-password" class="form-control" name="ad_password">
+					<label for="ad_password" class="control-label">密碼</label>
+					<input type="password" id="ad_password" class="form-control" name="ad_password">
 					<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼？</a>
 				</div>
 				<div class="form-group" style="margin-top:20px">
 					<span class="error">${error}</span>
-					<input type="submit" id="id-input-submit" class="btn btn-primary" style="float:right" value="登入">
+					<input type="submit" class="btn btn-primary" style="float:right" value="登入">
 				</div>
 			</form>
 		</div>

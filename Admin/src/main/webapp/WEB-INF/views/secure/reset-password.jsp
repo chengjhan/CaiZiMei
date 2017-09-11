@@ -24,23 +24,28 @@
 			<form action="<c:url value='/secure/reset-password.do' />" method="post">
 				<div class="form-group sub-title">重設密碼</div>
 				<div class="form-group">
-					<label for="id-input-ad-password">驗證碼</label>
-					<input type="password" id="id-input-ad-password-random" class="form-control" name="ad_password_random">
+					<label for="ad_password_random">驗證碼</label>
+					<input type="password" id="ad_password_random" class="form-control" name="ad_password_random">
 				</div>
 				<div class="form-group">
-					<label for="id-input-ad-password-new">新密碼</label>
-					<input type="password" id="id-input-ad-password-new" class="form-control" name="ad_password_new">
+					<label for="ad_password_new">新密碼</label>
+					<input type="password" id="ad_password_new" class="form-control" name="ad_password_new">
 				</div>
 				<div class="form-group">
-					<label for="id-input-ad-password-new-again">新密碼</label>
-					<input type="password" id="id-input-ad-password-new-again" class="form-control" name="ad_password_new_again">
+					<label for="ad_password_new_again">新密碼</label>
+					<input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again">
 				</div>
 				<div class="form-group" style="margin-top:30px">
 					<span class="error">${error}</span>
-					<input type="submit" id="id-input-submit" class="btn btn-primary" style="float:right" value="重設">
+					<input type="submit" class="btn btn-primary" style="float:right" value="重設">
 				</div>
 			</form>
 		</div>
 	</div>
+	
+	<!-- load -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/secure/form.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

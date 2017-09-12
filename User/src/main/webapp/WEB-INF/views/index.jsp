@@ -19,8 +19,8 @@
 	
 	<!-- main -->
 	<main>
-<!-- 		<section id="section-0"></section> -->
 
+		<!-- section-1 -->
 		<section id="section-1">
 			<div class="slider-main swiper-container">
 				<div class="swiper-wrapper"></div>
@@ -29,62 +29,72 @@
 				<div class="swiper-button-prev"></div>
 			</div>
 		</section>
+		<!-- section-1 end -->
 		
+		<!-- section-2 -->
 		<section id="section-2">
 			<div class="video-related" style="float:left">
-				<h3>相關影音</h3>
+				<h4>相關影音</h4>
 				<div class="embed-responsive embed-responsive-16by9">
 					<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
 			<div class="slider-franchisee swiper-container" style="float:right">
-				<h3>加盟店資訊</h3>
+				<h4>加盟店資訊</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
 		</section>
+		<!-- section-2 end -->
 		
+		<!-- section-3 -->
 		<section id="section-3">
 			<div class="slider-recent swiper-container" style="float:left">
-				<h3>近期活動</h3>
+				<h4>近期活動</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
 			<div class="slider-sale swiper-container" style="float:right">
-				<h3>優惠活動</h3>
+				<h4>優惠活動</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
 		</section>
+		<!-- section-3 end -->
 		
+		<!-- section-4 -->
 		<section id="section-4">
 			<div class="slider-knowledge swiper-container" style="float:left">
-				<h3>醫療新知</h3>
+				<h4>醫療新知</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
 			<div class="slider-team swiper-container" style="float:right">
-				<h3>醫療團隊</h3>
+				<h4>醫療團隊</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
 		</section>
+		<!-- section-4 end -->
 		
+		<!-- section-5 -->
 		<section id="section-5">
 			<div id="id-map"></div>
 		</section>
+		<!-- section-5 end -->
 		
 	</main>
+	<!-- main end -->
 	
 	<!-- footer -->
 	<c:import url="footer.jsp" />

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>重設密碼 | 采姿美管理系統</title>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure/all.css" type="text/css" />
@@ -14,7 +14,7 @@
 	<div class="container-fluid">
 		<div class="container top">
 			<div class="logo">
-				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/caizimei_logo_black.svg"></a>
+				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/logo_black.svg"></a>
 			</div>
 			<div class="title">
 				<h3>采姿美管理系統</h3>

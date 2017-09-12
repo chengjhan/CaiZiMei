@@ -17,9 +17,9 @@ country_select.change(function(){
 			var edit_td = $("<td></td>").append(edit_div);
 			var switch_img;
 			if(stateBean.st_status == 1){
-				switch_img = $("<img src='../images/true.svg' data-st-status='1'>");
+				switch_img = $("<img src='../images/icon_true.svg' data-st-status='1'>");
 			}else{
-				switch_img = $("<img src='../images/false.svg' data-st-status='0'>");
+				switch_img = $("<img src='../images/icon_false.svg' data-st-status='0'>");
 			}
 			var switch_div = $("<div class='st-status-switch' data-st-id='" + stateBean.st_id + "'></div>").append(switch_img);
 			var switch_td = $("<td></td>").append(switch_div);
@@ -37,11 +37,11 @@ $(document).on("click", ".st-status-switch", function(){
 	$.get("../state/switch.ajax", {"st_id": st_id}, function(data){
 		if(st_status == "1"){
 //			alert("將關閉 「" + data + "」。");
-			$this.children("img").attr("src", "../images/false.svg");
+			$this.children("img").attr("src", "../images/icon_false.svg");
 			$this.children("img").attr("data-st-status", "0");
 		}else{
 //			alert("將開啟 「" + data + "」。");
-			$this.children("img").attr("src", "../images/true.svg");
+			$this.children("img").attr("src", "../images/icon_true.svg");
 			$this.children("img").attr("data-st-status", "1");
 		}
 	});

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增近期活動輪播圖片 | 采姿美管理系統</title>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/image/form.css" type="text/css" />
 </head>
 <body>
@@ -38,7 +38,7 @@
 								</div>
 							</label>
 							<div id="image-reset">
-								<img src="<%=request.getContextPath()%>/images/false.svg" style="display:none">
+								<img src="<%=request.getContextPath()%>/images/icon_false.svg" style="display:none">
 							</div>
 						</div>
 						<p style="color:red">※ 請上傳長寬比為 4:3 的圖片 (建議為 640px*480px)。</p>

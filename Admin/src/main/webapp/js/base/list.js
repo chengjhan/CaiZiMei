@@ -15,11 +15,11 @@ $(document).on("click", ".ba-status-switch", function(){
 	$.get("../base/switch.ajax", {"ba_id": ba_id}, function(data){
 		if(ba_status == "1"){
 //			alert("將關閉 「" + data + "」。");
-			$this.children("img").attr("src", "../images/false.svg");
+			$this.children("img").attr("src", "../images/icon_false.svg");
 			$this.children("img").attr("data-ba-status", "0");
 		}else{
 //			alert("將開啟 「" + data + "」。");
-			$this.children("img").attr("src", "../images/true.svg");
+			$this.children("img").attr("src", "../images/icon_true.svg");
 			$this.children("img").attr("data-ba-status", "1");
 		}
 	});

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>優惠活動輪播圖片一覽 | 采姿美管理系統</title>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_black_32x32.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/image/list.css" type="text/css" />
 </head>
 <body>
@@ -56,10 +56,10 @@
 										<div class="im-status-switch" data-im-id="${bean.im_id}">
 											<c:choose>
 												<c:when test="${bean.im_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/true.svg" data-im-status="1">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-im-status="1">
 												</c:when>
 												<c:when test="${bean.im_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/false.svg" data-im-status="0">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-im-status="0">
 												</c:when>
 											</c:choose>
 										</div>

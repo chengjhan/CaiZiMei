@@ -11,7 +11,7 @@
 		<div id="id-div-footer-top">
 			<div id="id-div-footer-top-content">
 				<div id="id-div-footer-top-content-logo">
-					<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/caizimei_logo_white.svg" class="img-icon"></a>
+					<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/logo_white.svg" class="img-icon"></a>
 				</div>
 				<div>
 					<a href="<%=request.getContextPath()%>/" class="a-catalog"><span class="span-breadcrumb">采姿美國際股份有限公司</span></a>

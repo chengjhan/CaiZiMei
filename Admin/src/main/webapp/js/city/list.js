@@ -37,7 +37,7 @@ state_select.change(function(){
 			}else{
 				switch_img = $("<img src='../images/icon_false.svg' data-ci-status='0'>");
 			}
-			var switch_div = $("<div class='ci-status-switch' data-ci-id='" + cityBean.ci_id + "'></div>").append(switch_img);
+			var switch_div = $("<div class='ci-status-switch' data-ci-id='" + cityBean.ci_id + "' title='切換'></div>").append(switch_img);
 			var switch_td = $("<td></td>").append(switch_div);
 			var cityList_tr = $("<tr></tr>").append([count_td, ci_name_td, ci_rank_td, edit_td, switch_td]);
 			cityList_tbody.append(cityList_tr);

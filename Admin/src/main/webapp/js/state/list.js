@@ -21,7 +21,7 @@ country_select.change(function(){
 			}else{
 				switch_img = $("<img src='../images/icon_false.svg' data-st-status='0'>");
 			}
-			var switch_div = $("<div class='st-status-switch' data-st-id='" + stateBean.st_id + "'></div>").append(switch_img);
+			var switch_div = $("<div class='st-status-switch' data-st-id='" + stateBean.st_id + "' title='切換'></div>").append(switch_img);
 			var switch_td = $("<td></td>").append(switch_div);
 			var stateList_tr = $("<tr></tr>").append([count_td, st_name_td, st_rank_td, edit_td, switch_td]);
 			stateList_tbody.append(stateList_tr);

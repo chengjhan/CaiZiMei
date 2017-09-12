@@ -55,7 +55,7 @@
 										</div>
 									</td>	
 									<td rowspan="4" style="width:50px">
-										<div class="im-status-switch" data-im-id="${bean.im_id}">
+										<div class="im-status-switch" data-im-id="${bean.im_id}" title="切換">
 											<c:choose>
 												<c:when test="${bean.im_status eq 1}">
 													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-im-status="1">

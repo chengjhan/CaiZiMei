@@ -89,7 +89,7 @@
 										</div>
 									</td>
 									<td>
-										<div class="ba-status-switch" data-ba-id="${bean.ba_id}">
+										<div class="ba-status-switch" data-ba-id="${bean.ba_id}" title="切換">
 											<c:choose>
 												<c:when test="${bean.ba_status eq 1}">
 													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ba-status="1">

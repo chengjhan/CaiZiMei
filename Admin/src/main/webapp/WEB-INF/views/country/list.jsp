@@ -67,7 +67,7 @@
 										</div>
 									</td>
 									<td>
-										<div class="co-status-switch" data-co-id="${bean.co_id}">
+										<div class="co-status-switch" data-co-id="${bean.co_id}" title="切換">
 											<c:choose>
 												<c:when test="${bean.co_status eq 1}">
 													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-co-status="1">

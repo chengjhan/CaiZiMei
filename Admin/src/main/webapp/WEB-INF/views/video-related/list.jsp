@@ -65,7 +65,7 @@
 										</div>
 									</td>
 									<td>
-										<div class="vi-status-switch" data-vi-id="${bean.vi_id}">
+										<div class="vi-status-switch" data-vi-id="${bean.vi_id}" title="切換">
 											<c:choose>
 												<c:when test="${bean.vi_status eq 1}">
 													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-vi-status="1">

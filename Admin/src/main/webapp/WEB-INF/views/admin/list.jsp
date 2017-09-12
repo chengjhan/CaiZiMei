@@ -59,7 +59,7 @@
 									<td>${ad_signin_time}</td>
 									<td>${ad_status_time}</td>
 									<td>
-										<div class="ad-status-switch" data-ad-id="${bean.ad_id}">
+										<div class="ad-status-switch" data-ad-id="${bean.ad_id}" title="切換">
 											<c:choose>
 												<c:when test="${bean.ad_status eq 1}">
 													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ad-status="1">

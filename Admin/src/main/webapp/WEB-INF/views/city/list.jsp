@@ -76,7 +76,7 @@
 										</div>
 									</td>
 									<td>
-										<div class="ci-status-switch" data-ci-id="${bean.ci_id}">
+										<div class="ci-status-switch" data-ci-id="${bean.ci_id}" title="切換">
 											<c:choose>
 												<c:when test="${bean.ci_status eq 1}">
 													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ci-status="1">

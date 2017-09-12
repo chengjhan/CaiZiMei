@@ -31,7 +31,7 @@
 					<!-- option -->
 					<div class="btn-group option">
 						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/slider-knowledge/add">
+							<a href="<%=request.getContextPath()%>/slider-knowledge/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -49,7 +49,9 @@
 									<td>${bean.im_name}</td>
 									<td rowspan="4" style="width:50px">
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/slider-knowledge/edit?im_id=${bean.im_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/icon_edit.svg"></a>
+											<a href="<%=request.getContextPath()%>/slider-knowledge/edit?im_id=${bean.im_id}&page=${currentPage}" title="編輯">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
+											</a>
 										</div>
 									</td>	
 									<td rowspan="4" style="width:50px">

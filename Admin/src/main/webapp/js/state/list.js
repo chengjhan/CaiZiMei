@@ -12,7 +12,7 @@ country_select.change(function(){
 			var st_name_td = $("<td></td>").append(stateBean.st_name);
 			var st_rank_td = $("<td></td>").append(stateBean.st_rank);
 			var edit_img = $("<img src='../images/icon_edit.svg'>");
-			var edit_a = $("<a href='../state/edit?st_id=" + stateBean.st_id + "'></a>").append(edit_img);
+			var edit_a = $("<a href='../state/edit?st_id=" + stateBean.st_id + "' title='編輯'></a>").append(edit_img);
 			var edit_div = $("<div class='edit-button'></div>").append(edit_a);
 			var edit_td = $("<td></td>").append(edit_div);
 			var switch_img;

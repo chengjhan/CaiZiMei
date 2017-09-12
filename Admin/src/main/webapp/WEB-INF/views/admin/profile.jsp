@@ -29,7 +29,7 @@
 				<div class="table-responsive">
 				
 					<!-- table -->
-					<table class="table table-bordered" style="width:500px">
+					<table class="table table-striped" style="width:500px">
 						<tr>
 							<td width="150px">姓名</td>
 							<td>${admin.ad_lastname} ${admin.ad_firstname}</td>

@@ -40,7 +40,7 @@
 							</form:form>
 						</div>
 						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/state/add">
+							<a href="<%=request.getContextPath()%>/state/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -48,9 +48,9 @@
 					<!-- option end -->
 					
 					<!-- table -->
-					<table class="table table-bordered" style="width:500px">
+					<table class="table table-striped table-hover" style="width:500px">
 						<thead>
-							<tr>
+							<tr class="active">
 								<td style="width:50px">編號</td>
 								<td>名稱</td>
 								<td style="width:50px">排序</td>
@@ -66,7 +66,7 @@
 									<td>${bean.st_rank}</td>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/state/edit?st_id=${bean.st_id}">
+											<a href="<%=request.getContextPath()%>/state/edit?st_id=${bean.st_id}" title="編輯">
 												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
 											</a>
 										</div>

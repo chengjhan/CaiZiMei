@@ -31,7 +31,7 @@
 					<!-- option -->
 					<div class="btn-group option">
 						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/video-related/add">
+							<a href="<%=request.getContextPath()%>/video-related/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -44,7 +44,7 @@
 							<tr>
 								<td style="width:50px">編號</td>
 								<td>名稱</td>
-								<td style="width:560px">標籤</td>
+								<td style="width:560px">影片</td>
 								<td style="width:50px">排序</td>
 								<td style="width:50px">編輯</td>
 								<td style="width:50px">開啟</td>
@@ -59,7 +59,9 @@
 									<td>${bean.vi_rank}</td>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/video-related/edit?vi_id=${bean.vi_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/icon_edit.svg"></a>
+											<a href="<%=request.getContextPath()%>/video-related/edit?vi_id=${bean.vi_id}&page=${currentPage}" title="編輯">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
+											</a>
 										</div>
 									</td>
 									<td>

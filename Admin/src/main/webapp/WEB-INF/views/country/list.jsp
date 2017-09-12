@@ -31,7 +31,7 @@
 					<!-- option -->
 					<div class="btn-group option">
 						<div style="width:30px;float:right">
-							<a href="<%=request.getContextPath()%>/country/add">
+							<a href="<%=request.getContextPath()%>/country/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -39,9 +39,9 @@
 					<!-- option end -->
 				
 					<!-- table -->
-					<table class="table table-bordered" style="width:500px">
+					<table class="table table-striped table-hover" style="width:500px">
 						<thead>
-							<tr>
+							<tr class="active">
 								<td style="width:50px">編號</td>
 								<td style="width:50px">代碼</td>
 								<td>名稱</td>
@@ -61,7 +61,7 @@
 									<td>${bean.co_rank}</td>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/country/edit?co_id=${bean.co_id}">
+											<a href="<%=request.getContextPath()%>/country/edit?co_id=${bean.co_id}" title="編輯">
 												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
 											</a>
 										</div>

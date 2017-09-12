@@ -30,9 +30,9 @@
 				<div class="table-responsive">
 				
 					<!-- table -->
-					<table class="table table-bordered">
+					<table class="table table-hover">
 						<thead>
-							<tr>
+							<tr class="active">
 								<td width="50px">編號</td>
 								<td>帳號</td>
 								<td>姓名</td>

@@ -31,7 +31,7 @@
 					<!-- option -->
 					<div class="btn-group option">
 						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/franchisee/add">
+							<a href="<%=request.getContextPath()%>/franchisee/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -39,14 +39,13 @@
 					<!-- option end -->
 					
 					<!-- table -->
-					<table class="table table-bordered">
+					<table class="table table-hover">
 						<thead>
-							<tr>
+							<tr class="active">
 								<td style="width:50px">編號</td>
 								<td>名稱</td>
 								<td>英文名稱</td>
 								<td style="width:100px">電話</td>
-								<td>城市</td>
 								<td>地址</td>
 								<td>網址</td>
 								<td style="width:50px">編輯</td>
@@ -60,12 +59,13 @@
 									<td>${bean.ba_name}</td>
 									<td>${bean.ba_eng_name}</td>
 									<td>${bean.ba_tel_code}-${bean.ba_tel}</td>
-									<td>${bean.ba_CityBean.ci_name}</td>
-									<td>${bean.ba_address}</td>
+									<td>${bean.ba_CityBean.ci_name}${bean.ba_address}</td>
 									<td><a href="${bean.ba_url}">${bean.ba_url}</a></td>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/franchisee/edit?ba_id=${bean.ba_id}&page=${currentPage}"><img src="<%=request.getContextPath()%>/images/icon_edit.svg"></a>
+											<a href="<%=request.getContextPath()%>/franchisee/edit?ba_id=${bean.ba_id}&page=${currentPage}" title="編輯">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
+											</a>
 										</div>
 									</td>
 									<td>

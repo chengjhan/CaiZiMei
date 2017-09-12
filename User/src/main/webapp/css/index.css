@@ -1,5 +1,5 @@
 main {
-	background-color: #EEEEEE;
+	background-color: #fafafa;
 }
 
 h4 {
@@ -20,7 +20,7 @@ h4 {
 	width: 80%;
 	margin: 0 auto;
 	margin-bottom: 40px;
-	background-color: #EEEEEE;
+	background-color: #fafafa;
 	overflow: auto; /* 撐開 */
 }
 

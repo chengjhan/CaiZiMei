@@ -215,3 +215,5 @@ insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_
 
 -- video
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 0, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 0, now());

@@ -212,3 +212,6 @@ insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_
 insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (4, '喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty_1000x380.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
 insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (4, '好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood_1000x380.jpg', 'http://hollywood.tw/', 5, 1, now());
 insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (4, '何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637_1000x380.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());
+
+-- video
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());

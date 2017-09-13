@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: VideoDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/8
+ * Date: 2017/9/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.VideoDao;
 import com.czmbeauty.model.entity.CategoryBean;
-import com.czmbeauty.model.entity.ImageBean;
 import com.czmbeauty.model.entity.VideoBean;
 
 /**
@@ -46,7 +45,7 @@ public class VideoDaoImpl implements VideoDao {
 	@SuppressWarnings("unchecked")
 	public List<VideoBean> selectOpenVideo(CategoryBean vi_CategoryBean) {
 
-		DetachedCriteria criteria = DetachedCriteria.forClass(ImageBean.class);
+		DetachedCriteria criteria = DetachedCriteria.forClass(VideoBean.class);
 
 		criteria.add(Restrictions.eq("vi_CategoryBean", vi_CategoryBean));
 		criteria.add(Restrictions.eq("vi_status", 1));

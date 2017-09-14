@@ -47,27 +47,25 @@ public class SigninInterceptor implements HandlerInterceptor {
 			response.sendRedirect(contextPath + "/" + ADMIN_SIGN_IN_PAGE);
 
 			return false;
+
 		} else {
 
 			logger.info("已登入，放行: " + next);
 
 			return true;
 		}
-
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
 			throws Exception {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
 		// TODO Auto-generated method stub
-
 	}
 
 }

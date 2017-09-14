@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/11
+ * Date: 2017/9/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -148,7 +148,7 @@ public class AdminController {
 
 			logger.info("註冊成功");
 
-			return INDEX_PAGE;
+			return REDIRECT + INDEX_PAGE;
 		}
 	}
 
@@ -397,7 +397,7 @@ public class AdminController {
 
 					logger.info("登入成功，導向首頁: index");
 
-					return INDEX_PAGE;
+					return REDIRECT + INDEX_PAGE;
 				}
 			}
 		}
@@ -584,7 +584,7 @@ public class AdminController {
 
 		logger.info("登出成功");
 
-		return INDEX_PAGE;
+		return REDIRECT + INDEX_PAGE;
 	}
 
 	/**

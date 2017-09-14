@@ -4,7 +4,7 @@ public interface PageNameConstants {
 
 	public static final String REDIRECT = "redirect:/";
 
-	public static final String INDEX_PAGE = "redirect:/";
+	public static final String INDEX_PAGE = "index";
 
 	public static final String NEXT_PAGE = "next";
 

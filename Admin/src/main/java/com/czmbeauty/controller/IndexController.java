@@ -8,8 +8,6 @@
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.PageNameConstants.INDEX_PAGE;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,12 +23,34 @@ public class IndexController {
 	/**
 	 * 首頁 - 初期處理
 	 * 
+	 * @return /WEB-INF/views/
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String view() {
+
+		return "home";
+	}
+
+	/**
+	 * 首頁 - 初期處理
+	 * 
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String indexView() {
 
-		return INDEX_PAGE;
+		return "home";
+	}
+
+	/**
+	 * 首頁 - 初期處理
+	 * 
+	 * @return /WEB-INF/views/home.jsp
+	 */
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String homeView() {
+
+		return "home";
 	}
 
 }

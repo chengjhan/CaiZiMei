@@ -29,7 +29,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+
 	<!-- Session filter -->
 	<filter>
 		<filter-name>OpenSessionInViewFilter</filter-name>
@@ -72,5 +72,11 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<!-- error -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/page-not-found</location>
+	</error-page>
 
 </web-app>

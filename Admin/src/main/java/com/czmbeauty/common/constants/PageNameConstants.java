@@ -48,4 +48,6 @@ public interface PageNameConstants {
 
 	public static final String CITY_EDIT_PAGE = "city/edit";
 
+	public static final String ERROR_PAGE_NOT_FOUND_PAGE = "error/page-not-found";
+
 }

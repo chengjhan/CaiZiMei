@@ -33,7 +33,7 @@
 						
 						<div class="image-upload">
 							<label for="image-uploader">
-								<div class="image-preview" style="max-width:400px">
+								<div class="image-preview" style="max-width:533px">
 									<img src="<%=request.getContextPath()%>/images/slider-sale/${imageBean.im_filename}" class="img-thumbnail">
 								</div>
 							</label>
@@ -41,7 +41,7 @@
 								<img src="<%=request.getContextPath()%>/images/icon_false.svg" style="display:none">
 							</div>
 						</div>
-						<p style="color:red">※ 請上傳長寬比為 4:3 的圖片 (建議為 640px*480px)。</p>
+						<p style="color:red">※ 請上傳長寬比為 16:9 的圖片 (建議為 640px*360px)。</p>
 						<input type="file" id="image-uploader" name="file" style="display:none" />
 						
 						<table class="table">

@@ -33,15 +33,15 @@
 						
 						<div class="image-upload">
 							<label for="image-uploader">
-								<div class="image-preview" style="max-width:400px">
-									<img src="<%=request.getContextPath()%>/images/image/upload_new_image_400x300.png" class="img-thumbnail">
+								<div class="image-preview" style="max-width:533px">
+									<img src="<%=request.getContextPath()%>/images/image/upload_new_image_533x300.png" class="img-thumbnail">
 								</div>
 							</label>
 							<div id="image-reset">
 								<img src="<%=request.getContextPath()%>/images/icon_false.svg" style="display:none">
 							</div>
 						</div>
-						<p style="color:red">※ 請上傳長寬比為 4:3 的圖片 (建議為 640px*480px)。</p>
+						<p style="color:red">※ 請上傳長寬比為 16:9 的圖片 (建議為 640px*360px)。</p>
 						<input type="file" id="image-uploader" name="file" style="display:none" />
 						
 						<table class="table">
@@ -82,7 +82,7 @@
 		// 清除上傳圖片
 		$(document).on("click", "#image-reset", function(){
 			$("#image-uploader").val("");
-			$(".image-preview img").attr("src", "../images/image/upload_new_image_400x300.png");
+			$(".image-preview img").attr("src", "../images/image/upload_new_image_533x300.png");
 			$("#image-reset img").attr("style", "display:none");
 		});
 	</script>

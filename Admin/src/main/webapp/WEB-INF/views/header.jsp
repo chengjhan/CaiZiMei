@@ -21,9 +21,9 @@
 					<span class="icon-bar"></span>
 				</button>
 				<div class="logo">
-					<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/logo_white.svg"></a>
+					<a href="<%=request.getContextPath()%>/index"><img src="<%=request.getContextPath()%>/images/logo_white.svg"></a>
 				</div>
-				<a class="navbar-brand" href="<%=request.getContextPath()%>/">采姿美管理系統</a>
+				<a class="navbar-brand" href="<%=request.getContextPath()%>/index">采姿美管理系統</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">

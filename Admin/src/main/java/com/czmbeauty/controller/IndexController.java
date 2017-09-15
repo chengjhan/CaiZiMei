@@ -10,6 +10,7 @@ package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.PageNameConstants.INDEX_PAGE;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexController {
 
+	private static final Logger logger = Logger.getLogger(IndexController.class);
+
 	/**
 	 * 首頁 - 初期處理
 	 * 
@@ -29,6 +32,8 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String indexView() {
+
+		logger.info("進入首頁: " + INDEX_PAGE);
 
 		return INDEX_PAGE;
 	}

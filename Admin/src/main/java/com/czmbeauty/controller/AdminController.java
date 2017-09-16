@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/14
+ * Date: 2017/9/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -58,7 +58,7 @@ import com.google.gson.GsonBuilder;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = { ADMIN, ADMIN_EMAIL })
+@SessionAttributes(ADMIN)
 public class AdminController {
 
 	private static final Logger logger = Logger.getLogger(AdminController.class);
@@ -388,6 +388,8 @@ public class AdminController {
 
 				if (next != null) {
 
+					session.removeAttribute(NEXT_PAGE);
+
 					// 若經過 SigninInterceptor
 					logger.info("登入成功，導向原請求畫面: " + next);
 
@@ -464,7 +466,7 @@ public class AdminController {
 				sendMail.sendMail(to, from, subject, text);
 
 				// 將管理員 email 放入 Session
-				model.addAttribute(ADMIN_EMAIL, to);
+				request.getSession().setAttribute(ADMIN_EMAIL, to);
 
 				logger.info("發送成功，傳送至: " + to);
 
@@ -508,9 +510,11 @@ public class AdminController {
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
-	public String resetPasswordProcess(@ModelAttribute(ADMIN_EMAIL) String ad_email,
-			@RequestParam String ad_password_random, @RequestParam String ad_password_new,
+	public String resetPasswordProcess(@RequestParam String ad_password_random, @RequestParam String ad_password_new,
 			@RequestParam String ad_password_new_again, SessionStatus sessionStatus, Model model) {
+
+		HttpSession session = request.getSession();
+		String ad_email = (String) session.getAttribute(ADMIN_EMAIL);
 
 		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
 				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
@@ -550,6 +554,8 @@ public class AdminController {
 
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();
+
+			session.removeAttribute(ADMIN_EMAIL);
 
 			logger.info("密碼重設成功");
 

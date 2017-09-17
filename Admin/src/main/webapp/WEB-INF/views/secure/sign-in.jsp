@@ -20,20 +20,24 @@
 				<h3>采姿美管理系統</h3>
 			</div>
 		</div>
+		<c:if test="${not empty error}">
+			<div class="container form error-message">
+				<span>${error}</span>
+			</div>
+		</c:if>
 		<div class="container form">
 			<form action="<c:url value='/secure/sign-in.do' />" method="post">
 				<div class="form-group sub-title">登入</div>
 				<div class="form-group">
 					<label for="ad_username" class="control-label">帳號</label>
-					<input type="text" id="ad_username" class="form-control" name="ad_username">
+					<input type="text" id="ad_username" class="form-control" name="ad_username" value="${ad_username}">
 				</div>
 				<div class="form-group">
 					<label for="ad_password" class="control-label">密碼</label>
-					<input type="password" id="ad_password" class="form-control" name="ad_password">
+					<input type="password" id="ad_password" class="form-control" name="ad_password" value="${ad_password}">
 					<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼？</a>
 				</div>
 				<div class="form-group" style="margin-top:20px">
-					<span class="error">${error}</span>
 					<input type="submit" class="btn btn-primary" style="float:right" value="登入">
 				</div>
 			</form>

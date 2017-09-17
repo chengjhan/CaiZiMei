@@ -8,6 +8,10 @@ public interface ModelAttributeConstants {
 
 	public static final String ADMIN_BEAN = "adminBean";
 
+	public static final String ADMIN_USERNAME = "ad_username";
+
+	public static final String ADMIN_PASSWORD = "ad_password";
+
 	public static final String ADMIN_EMAIL = "ad_email";
 
 	public static final String ADMIN_LIST = "adminList";

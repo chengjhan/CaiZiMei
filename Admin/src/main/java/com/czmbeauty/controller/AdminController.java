@@ -14,6 +14,8 @@ import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_LIST;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_USERNAME;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ERROR;
 import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_CHANGE_PASSWORD_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_EDIT_PAGE;
@@ -338,13 +340,16 @@ public class AdminController {
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam String ad_username, @RequestParam String ad_password, Model model) {
 
+		model.addAttribute(ADMIN_USERNAME, ad_username);
+		model.addAttribute(ADMIN_PASSWORD, ad_password);
+
 		if (ad_username == null || ad_username.isEmpty()) {
 
 			model.addAttribute(ERROR, "帳號未填");
 
 			logger.error("登入失敗: 帳號未填");
 
-			return REDIRECT + ADMIN_SIGN_IN_PAGE;
+			return ADMIN_SIGN_IN_PAGE;
 
 		} else if (ad_password == null || ad_password.isEmpty()) {
 
@@ -352,7 +357,7 @@ public class AdminController {
 
 			logger.error("登入失敗: 密碼未填");
 
-			return REDIRECT + ADMIN_SIGN_IN_PAGE;
+			return ADMIN_SIGN_IN_PAGE;
 
 		} else {
 
@@ -364,7 +369,7 @@ public class AdminController {
 
 				logger.error("登入失敗: 帳號或密碼錯誤");
 
-				return REDIRECT + ADMIN_SIGN_IN_PAGE;
+				return ADMIN_SIGN_IN_PAGE;
 
 			} else {
 

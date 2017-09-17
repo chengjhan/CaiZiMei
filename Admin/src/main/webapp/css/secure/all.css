@@ -43,3 +43,12 @@ h3 {
 	border-radius: 4px 4px 4px 4px;
 	background-color: white;
 }
+
+.error-message {
+	background-color: #ffdce0;
+	margin-bottom: 15px;
+}
+
+.error-message span {
+	color: #86181d;
+}

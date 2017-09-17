@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/17
+ * Date: 2017/9/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -340,11 +340,10 @@ public class AdminController {
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam String ad_username, @RequestParam String ad_password, Model model) {
 
-		model.addAttribute(ADMIN_USERNAME, ad_username);
-		model.addAttribute(ADMIN_PASSWORD, ad_password);
-
 		if (ad_username == null || ad_username.isEmpty()) {
 
+			model.addAttribute(ADMIN_USERNAME, ad_username);
+			model.addAttribute(ADMIN_PASSWORD, ad_password);
 			model.addAttribute(ERROR, "帳號未填");
 
 			logger.error("登入失敗: 帳號未填");
@@ -353,6 +352,8 @@ public class AdminController {
 
 		} else if (ad_password == null || ad_password.isEmpty()) {
 
+			model.addAttribute(ADMIN_USERNAME, ad_username);
+			model.addAttribute(ADMIN_PASSWORD, ad_password);
 			model.addAttribute(ERROR, "密碼未填");
 
 			logger.error("登入失敗: 密碼未填");
@@ -365,6 +366,8 @@ public class AdminController {
 
 			if (adminService.signIn(ad_username, ad_password) == null) {
 
+				model.addAttribute(ADMIN_USERNAME, ad_username);
+				model.addAttribute(ADMIN_PASSWORD, ad_password);
 				model.addAttribute(ERROR, "帳號或密碼錯誤");
 
 				logger.error("登入失敗: 帳號或密碼錯誤");

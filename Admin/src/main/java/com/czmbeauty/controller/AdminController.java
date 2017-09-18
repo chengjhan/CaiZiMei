@@ -16,6 +16,9 @@ import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_NEW;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_NEW_AGAIN;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_NEW_ERROR;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_OLD;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_OLD_ERROR;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_RANDOM;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_USERNAME;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ERROR;
@@ -48,6 +51,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
 import com.czmbeauty.model.service.AdminLogService;
@@ -257,14 +261,6 @@ public class AdminController {
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
-		} else if (ad_password_old.equals(ad_password_new)) {
-
-			model.addAttribute(ERROR, "密碼未變更");
-
-			logger.error("密碼變更失敗: 密碼未變更");
-
-			return ADMIN_CHANGE_PASSWORD_PAGE;
-
 		} else if (!ad_password_new.equals(ad_password_new_again)) {
 
 			model.addAttribute(ERROR, "新密碼重複錯誤");
@@ -273,15 +269,33 @@ public class AdminController {
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
-		} else if (adminService.updateAd_password(admin, ad_password_old, ad_password_new) == null) {
+		} else if (!admin.getAd_password()
+				.equals(CryptographicHashFunction.getHashedPassword(ad_password_old, admin.getAd_salt()))) {
 
-			model.addAttribute(ERROR, "密碼錯誤");
+			model.addAttribute(ADMIN_PASSWORD_OLD, ad_password_old);
+			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
+			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
+			model.addAttribute(ADMIN_PASSWORD_OLD_ERROR, "密碼錯誤");
 
 			logger.error("密碼變更失敗: 密碼錯誤");
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
+		} else if (admin.getAd_password()
+				.equals(CryptographicHashFunction.getHashedPassword(ad_password_new, admin.getAd_salt()))) {
+
+			model.addAttribute(ADMIN_PASSWORD_OLD, ad_password_old);
+			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
+			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
+			model.addAttribute(ADMIN_PASSWORD_NEW_ERROR, "密碼未變更");
+
+			logger.error("密碼變更失敗: 密碼未變更");
+
+			return ADMIN_CHANGE_PASSWORD_PAGE;
+
 		} else {
+
+			adminService.updateAd_password(admin, ad_password_old, ad_password_new);
 
 			logger.info("密碼變更成功");
 

@@ -12,9 +12,15 @@ public interface ModelAttributeConstants {
 
 	public static final String ADMIN_PASSWORD = "ad_password";
 
+	public static final String ADMIN_PASSWORD_OLD = "ad_password_old";
+
+	public static final String ADMIN_PASSWORD_OLD_ERROR = "ad_password_old_error";
+
 	public static final String ADMIN_PASSWORD_RANDOM = "ad_password_random";
 
 	public static final String ADMIN_PASSWORD_NEW = "ad_password_new";
+
+	public static final String ADMIN_PASSWORD_NEW_ERROR = "ad_password_new_error";
 
 	public static final String ADMIN_PASSWORD_NEW_AGAIN = "ad_password_new_again";
 

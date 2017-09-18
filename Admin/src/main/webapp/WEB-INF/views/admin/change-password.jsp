@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>變更密碼 | 采姿美管理系統</title>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/caizimei_shortcut_icon_gray_32x32.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
 </head>
 <body>
@@ -33,23 +33,33 @@
 						<table class="table">
 							<tr>
 								<td><label for="ad_password_old">舊密碼</label></td>
-								<td><input type="password" id="ad_password_old" class="form-control" name="ad_password_old"></td>
+								<td>
+									<input type="password" id="ad_password_old" class="form-control" name="ad_password_old" value="${ad_password_old}">
+									<c:if test="${not empty ad_password_old_error}">
+										<label for="ad_password_old" id="ad_password_old-error" class="error"><span>${ad_password_old_error}</span></label>
+									</c:if>
+								</td>
 								<td></td>
 							</tr>
 							<tr>
 								<td><label for="ad_password_new">新密碼</label></td>
-								<td><input type="password" id="ad_password_new" class="form-control" name="ad_password_new"></td>
+								<td>
+									<input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}">
+									<c:if test="${not empty ad_password_new_error}">
+										<label for="ad_password_new" id="ad_password_new-error" class="error"><span>${ad_password_new_error}</span></label>
+									</c:if>
+								</td>
 								<td></td>
 							</tr>
 							<tr>
 								<td><label for="ad_password_new_again">新密碼</label></td>
-								<td><input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again"></td>
+								<td><input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again" value="${ad_password_new_again}"></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td></td>
 								<td><input type="submit" class="btn btn-success" value="變更" /></td>
-								<td><div class="error">${error}</div></td>
+								<td></td>
 							</tr>
 						</table>
 					</form>

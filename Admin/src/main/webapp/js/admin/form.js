@@ -6,6 +6,11 @@ $(document).ready(function(){
 		return regex.test(value);
 	});
 	
+	// not equal
+	$.validator.addMethod("notEqual", function(value, element, param){
+		return this.optional(element) || value != $(param).val();
+	});
+	
 	$("form").validate({
 		rules: {
 			ad_username: {
@@ -63,7 +68,8 @@ $(document).ready(function(){
 				required: true,
 				pattern: /^(?=.*([a-z]|[A-Z]))(?=.*[0-9])(?=\S+$).+$/,
 				minlength: 8,
-				maxlength: 32
+				maxlength: 32,
+				notEqual: "#ad_password_old"
 			},
 			ad_password_new_again: {
 				required: true,
@@ -106,7 +112,8 @@ $(document).ready(function(){
 				required: "這裡必須填入資料",
 				pattern: "密碼必須包含英文及數字，不可填入空白",
 				minlength: "密碼必須大於8個字",
-				maxlength: "密碼必須小於32個字"
+				maxlength: "密碼必須小於32個字",
+				notEqual: "新密碼不可與舊密碼相同"
 			},
 			ad_password_new_again: {
 				required: "這裡必須填入資料",

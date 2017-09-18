@@ -8,8 +8,6 @@
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.MailConstants.FORGET_PASSWORD_MAIL_FORM;
-import static com.czmbeauty.common.constants.MailConstants.FORGET_PASSWORD_MAIL_SUBJECT;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL;
@@ -46,7 +44,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.czmbeauty.common.mail.SendMail;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
 import com.czmbeauty.model.service.AdminLogService;
@@ -82,12 +79,6 @@ public class AdminController {
 	 */
 	@Autowired
 	private AdminLogService adminLogService;
-
-	/**
-	 * 注入 SendMail
-	 */
-	@Autowired
-	private SendMail sendMail;
 
 	/**
 	 * 註冊 - 初期處理
@@ -464,16 +455,9 @@ public class AdminController {
 
 			} else {
 
-				int random = (int) (Math.random() * 1000000);
-				String ad_password_random = String.format("%06d", random);
-
-				adminService.updateAd_password(adminBean, ad_password_random);
+				adminService.updateAd_password(adminBean);
 
 				String to = adminBean.getAd_email();
-				String from = FORGET_PASSWORD_MAIL_FORM;
-				String subject = FORGET_PASSWORD_MAIL_SUBJECT;
-				String text = "您的驗證碼為：" + ad_password_random + "。";
-				sendMail.sendMail(to, from, subject, text);
 
 				// 將管理員 email 放入 Session
 				request.getSession().setAttribute(ADMIN_EMAIL, to);

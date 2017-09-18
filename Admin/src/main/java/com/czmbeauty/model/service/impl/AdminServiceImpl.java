@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/5
+ * Date: 2017/9/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.mail.SendMail;
 import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.model.dao.AdminDao;
 import com.czmbeauty.model.entity.AdminBean;
@@ -32,6 +33,12 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Autowired
 	private AdminDao adminDao;
+
+	/**
+	 * 注入 SendMail
+	 */
+	@Autowired
+	private SendMail sendMail;
 
 	/**
 	 * 註冊
@@ -230,19 +237,22 @@ public class AdminServiceImpl implements AdminService {
 	 * 
 	 * @param adminBean
 	 *            AdminBean
-	 * @param ad_password_random
-	 *            String --> 驗證碼(原碼)
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateAd_password(AdminBean adminBean, String ad_password_random) {
+	public AdminBean updateAd_password(AdminBean adminBean) {
+
+		int random = (int) (Math.random() * 1000000);
+		String ad_password_random = String.format("%06d", random);
 
 		String ad_salt = adminBean.getAd_salt();
 		String newHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_random, ad_salt);
 
 		adminBean.setAd_password(newHashedPassword);
 		adminBean.setAd_update_pwd_time(new java.util.Date());
+
+		sendMail.forgetPasswordMail(adminBean.getAd_email(), ad_password_random);
 
 		return adminBean;
 	}

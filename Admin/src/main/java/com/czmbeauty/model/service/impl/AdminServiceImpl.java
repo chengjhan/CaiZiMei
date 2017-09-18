@@ -252,7 +252,7 @@ public class AdminServiceImpl implements AdminService {
 		adminBean.setAd_password(newHashedPassword);
 		adminBean.setAd_update_pwd_time(new java.util.Date());
 
-		sendMail.forgetPasswordMail(adminBean.getAd_email(), ad_password_random);
+		sendMail.forgetPasswordMail(adminBean, ad_password_random);
 
 		return adminBean;
 	}

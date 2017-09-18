@@ -20,23 +20,27 @@
 				<h3>采姿美管理系統</h3>
 			</div>
 		</div>
+		<c:if test="${not empty error}">
+			<div class="container form error-message">
+				<span>${error}</span>
+			</div>
+		</c:if>
 		<div class="container form">
 			<form action="<c:url value='/secure/reset-password.do' />" method="post">
 				<div class="form-group sub-title">重設密碼</div>
 				<div class="form-group">
 					<label for="ad_password_random">驗證碼</label>
-					<input type="password" id="ad_password_random" class="form-control" name="ad_password_random">
+					<input type="password" id="ad_password_random" class="form-control" name="ad_password_random" value="${ad_password_random}">
 				</div>
 				<div class="form-group">
 					<label for="ad_password_new">新密碼</label>
-					<input type="password" id="ad_password_new" class="form-control" name="ad_password_new">
+					<input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}">
 				</div>
 				<div class="form-group">
 					<label for="ad_password_new_again">新密碼</label>
-					<input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again">
+					<input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again" value="${ad_password_new_again}">
 				</div>
 				<div class="form-group" style="margin-top:30px">
-					<span class="error">${error}</span>
 					<input type="submit" class="btn btn-primary" style="float:right" value="重設">
 				</div>
 			</form>

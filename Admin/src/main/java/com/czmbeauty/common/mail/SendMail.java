@@ -8,6 +8,8 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 
+import com.czmbeauty.model.entity.AdminBean;
+
 @Component(value = "sendMail")
 public class SendMail {
 
@@ -20,14 +22,14 @@ public class SendMail {
 	/**
 	 * 寄送 Email
 	 * 
-	 * @param String
-	 *            to --> 收件者
-	 * @param String
-	 *            from --> 寄件者
-	 * @param String
-	 *            subject --> 信件主旨
-	 * @param String
-	 *            text --> 信件內容
+	 * @param to
+	 *            String --> 收件者
+	 * @param from
+	 *            String --> 寄件者
+	 * @param subject
+	 *            String --> 信件主旨
+	 * @param text
+	 *            String --> 信件內容
 	 */
 	private void sendMail(String to, String from, String subject, String text) {
 
@@ -44,16 +46,17 @@ public class SendMail {
 	/**
 	 * 忘記密碼 Email
 	 * 
-	 * @param String
-	 *            to --> 收件者
-	 * @param String
-	 *            ad_password_random --> 驗證碼
+	 * @param adminBean
+	 *            AdminBean
+	 * @param ad_password_random
+	 *            String --> 驗證碼
 	 */
-	public void forgetPasswordMail(String to, String ad_password_random) {
+	public void forgetPasswordMail(AdminBean adminBean, String ad_password_random) {
 
+		String to = adminBean.getAd_email();
 		String from = FORGET_PASSWORD_MAIL_FORM;
 		String subject = FORGET_PASSWORD_MAIL_SUBJECT;
-		String text = "您的驗證碼為：" + ad_password_random + "。";
+		String text = "您的帳號為: " + adminBean.getAd_username() + "，驗證碼為: " + ad_password_random + "。";
 
 		sendMail(to, from, subject, text);
 	}

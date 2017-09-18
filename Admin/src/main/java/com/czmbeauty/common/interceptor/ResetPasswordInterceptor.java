@@ -1,6 +1,7 @@
 package com.czmbeauty.common.interceptor;
 
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL;
+import static com.czmbeauty.common.constants.CommonConstants.SLASH;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL_SESSION;
 import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_IN_PAGE;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ public class ResetPasswordInterceptor implements HandlerInterceptor {
 			throws Exception {
 
 		HttpSession session = request.getSession();
-		String ad_email = (String) session.getAttribute(ADMIN_EMAIL);
+		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
 
 		String servletPath = request.getServletPath(); // /頁面名
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
@@ -29,7 +30,7 @@ public class ResetPasswordInterceptor implements HandlerInterceptor {
 
 			logger.info("攔截: " + pageName);
 
-			response.sendRedirect(request.getContextPath() + "/" + ADMIN_SIGN_IN_PAGE);
+			response.sendRedirect(request.getContextPath() + SLASH + ADMIN_SIGN_IN_PAGE);
 
 			return false;
 

@@ -12,7 +12,15 @@ public interface ModelAttributeConstants {
 
 	public static final String ADMIN_PASSWORD = "ad_password";
 
+	public static final String ADMIN_PASSWORD_RANDOM = "ad_password_random";
+
+	public static final String ADMIN_PASSWORD_NEW = "ad_password_new";
+
+	public static final String ADMIN_PASSWORD_NEW_AGAIN = "ad_password_new_again";
+
 	public static final String ADMIN_EMAIL = "ad_email";
+
+	public static final String ADMIN_EMAIL_SESSION = "ad_email_session";
 
 	public static final String ADMIN_LIST = "adminList";
 

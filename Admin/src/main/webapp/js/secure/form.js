@@ -8,11 +8,6 @@ $(document).ready(function(){
 	
 	$("form").validate({
 		rules: {
-			ad_email: {
-				required: true,
-				email: true,
-				maxlength: 50
-			},
 			ad_password_random: {
 				required: true
 			},
@@ -28,11 +23,6 @@ $(document).ready(function(){
 			}
 		},
 		messages: {
-			ad_email: {
-				required: "這裡必須填入資料",
-				email: "信箱必須填入正確的格式",
-				maxlength: "信箱必須小於50個字"
-			},
 			ad_password_random: {
 				required: "這裡必須填入資料"
 			},

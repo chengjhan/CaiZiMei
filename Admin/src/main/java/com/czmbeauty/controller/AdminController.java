@@ -11,8 +11,12 @@ package com.czmbeauty.controller;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_BEAN;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL_SESSION;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_NEW;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_NEW_AGAIN;
+import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_RANDOM;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_USERNAME;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ERROR;
 import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_CHANGE_PASSWORD_PAGE;
@@ -435,7 +439,8 @@ public class AdminController {
 
 		if (ad_email == null || ad_email.isEmpty()) {
 
-			model.addAttribute(ERROR, "信箱未填");
+			model.addAttribute(ADMIN_EMAIL, ad_email);
+			model.addAttribute(ERROR, "請填入信箱。");
 
 			logger.error("發送失敗: 信箱未填");
 
@@ -447,7 +452,8 @@ public class AdminController {
 
 			if (adminBean == null) {
 
-				model.addAttribute(ERROR, "信箱錯誤");
+				model.addAttribute(ADMIN_EMAIL, ad_email);
+				model.addAttribute(ERROR, "信箱錯誤。");
 
 				logger.error("發送失敗: 信箱錯誤");
 
@@ -455,14 +461,12 @@ public class AdminController {
 
 			} else {
 
+				// 將管理員 email 放入 Session
+				request.getSession().setAttribute(ADMIN_EMAIL_SESSION, ad_email);
+
 				adminService.updateAd_password(adminBean);
 
-				String to = adminBean.getAd_email();
-
-				// 將管理員 email 放入 Session
-				request.getSession().setAttribute(ADMIN_EMAIL, to);
-
-				logger.info("發送成功，傳送至: " + to);
+				logger.info("發送成功，傳送至: " + ad_email);
 
 				return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
 			}
@@ -485,8 +489,6 @@ public class AdminController {
 	/**
 	 * 重設密碼 - submit
 	 * 
-	 * @param ad_email
-	 *            String --> Session
 	 * @param ad_password_random
 	 *            String --> 驗證碼(原碼)
 	 * @param ad_password_new
@@ -508,7 +510,7 @@ public class AdminController {
 			@RequestParam String ad_password_new_again, SessionStatus sessionStatus, Model model) {
 
 		HttpSession session = request.getSession();
-		String ad_email = (String) session.getAttribute(ADMIN_EMAIL);
+		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
 
 		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
 				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
@@ -538,7 +540,10 @@ public class AdminController {
 		} else if (adminService.updateAd_password(adminService.selectByAd_email(ad_email), ad_password_random,
 				ad_password_new) == null) {
 
-			model.addAttribute(ERROR, "驗證碼錯誤");
+			model.addAttribute(ADMIN_PASSWORD_RANDOM, ad_password_random);
+			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
+			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
+			model.addAttribute(ERROR, "驗證碼錯誤。");
 
 			logger.error("密碼重設失敗: 驗證碼錯誤");
 
@@ -549,7 +554,8 @@ public class AdminController {
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();
 
-			session.removeAttribute(ADMIN_EMAIL);
+			// 清除所有 HttpSession
+			session.invalidate();
 
 			logger.info("密碼重設成功");
 

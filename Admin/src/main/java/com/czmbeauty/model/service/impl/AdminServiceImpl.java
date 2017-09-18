@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/18
+ * Date: 2017/9/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -200,36 +200,18 @@ public class AdminServiceImpl implements AdminService {
 	 * 
 	 * @param adminBean
 	 *            AdminBean
-	 * @param ad_password_old
-	 *            String --> 舊密碼(原碼)
 	 * @param ad_password_new
 	 *            String --> 新密碼(原碼)
 	 * @return AdminBean
-	 * @return null
 	 */
 	@Override
 	@Transactional
-	public AdminBean updateAd_password(AdminBean adminBean, String ad_password_old, String ad_password_new) {
+	public AdminBean updateAd_password(AdminBean adminBean, String ad_password_new) {
 
-		String ad_salt = adminBean.getAd_salt();
-		String oldHashedPassword = adminBean.getAd_password();
-		String inputOldHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_old, ad_salt);
+		adminBean.setAd_password(CryptographicHashFunction.getHashedPassword(ad_password_new, adminBean.getAd_salt()));
+		adminBean.setAd_update_pwd_time(new java.util.Date());
 
-		if (oldHashedPassword.equals(inputOldHashedPassword)) {
-
-			String newHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_new, ad_salt);
-
-			adminBean.setAd_password(newHashedPassword);
-			adminBean.setAd_update_pwd_time(new java.util.Date());
-
-			// 變更成功
-			return adminDao.update(adminBean);
-
-		} else {
-
-			// 變更失敗
-			return null;
-		}
+		return adminDao.update(adminBean);
 	}
 
 	/**
@@ -246,10 +228,8 @@ public class AdminServiceImpl implements AdminService {
 		int random = (int) (Math.random() * 1000000);
 		String ad_password_random = String.format("%06d", random);
 
-		String ad_salt = adminBean.getAd_salt();
-		String newHashedPassword = CryptographicHashFunction.getHashedPassword(ad_password_random, ad_salt);
-
-		adminBean.setAd_password(newHashedPassword);
+		adminBean.setAd_password(
+				CryptographicHashFunction.getHashedPassword(ad_password_random, adminBean.getAd_salt()));
 		adminBean.setAd_update_pwd_time(new java.util.Date());
 
 		sendMail.forgetPasswordMail(adminBean, ad_password_random);

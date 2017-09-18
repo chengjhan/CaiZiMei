@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/18
+ * Date: 2017/9/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -295,7 +295,7 @@ public class AdminController {
 
 		} else {
 
-			adminService.updateAd_password(admin, ad_password_old, ad_password_new);
+			adminService.updateAd_password(admin, ad_password_new);
 
 			logger.info("密碼變更成功");
 
@@ -475,10 +475,10 @@ public class AdminController {
 
 			} else {
 
+				adminService.updateAd_password(adminBean);
+
 				// 將管理員 email 放入 Session
 				request.getSession().setAttribute(ADMIN_EMAIL_SESSION, ad_email);
-
-				adminService.updateAd_password(adminBean);
 
 				logger.info("發送成功，傳送至: " + ad_email);
 
@@ -525,6 +525,7 @@ public class AdminController {
 
 		HttpSession session = request.getSession();
 		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
+		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
 		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
 				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
@@ -551,8 +552,8 @@ public class AdminController {
 
 			return ADMIN_RESET_PASSWORD_PAGE;
 
-		} else if (adminService.updateAd_password(adminService.selectByAd_email(ad_email), ad_password_random,
-				ad_password_new) == null) {
+		} else if (!adminBean.getAd_password()
+				.equals(CryptographicHashFunction.getHashedPassword(ad_password_random, adminBean.getAd_salt()))) {
 
 			model.addAttribute(ADMIN_PASSWORD_RANDOM, ad_password_random);
 			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
@@ -564,6 +565,8 @@ public class AdminController {
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else {
+
+			adminService.updateAd_password(adminBean, ad_password_new);
 
 			// 清除 @SessionAttributes
 			sessionStatus.setComplete();

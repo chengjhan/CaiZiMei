@@ -1,6 +1,6 @@
-// validation
 $(document).ready(function(){
 	
+	// validation
 	// regex
 	$.validator.addMethod("pattern", function(value, element, regex){
 		return regex.test(value);
@@ -130,4 +130,7 @@ $(document).ready(function(){
 			form.submit();
 	    }
 	});
+	
+	// 密碼錯誤
+	$("#ad_password_old-error").prev().addClass("form-error");
 });

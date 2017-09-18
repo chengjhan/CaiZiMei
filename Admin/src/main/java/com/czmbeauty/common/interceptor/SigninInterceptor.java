@@ -1,5 +1,7 @@
 package com.czmbeauty.common.interceptor;
 
+import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
+import static com.czmbeauty.common.constants.CommonConstants.SLASH;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
 import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_IN_PAGE;
 import static com.czmbeauty.common.constants.PageNameConstants.NEXT_PAGE;
@@ -32,7 +34,7 @@ public class SigninInterceptor implements HandlerInterceptor {
 		String next;
 
 		if (queryString != null) {
-			next = pageName + "?" + queryString; // 頁面名?參數
+			next = pageName + QUESTION + queryString; // 頁面名?參數
 		} else {
 			next = pageName; // 頁面名
 		}
@@ -44,7 +46,7 @@ public class SigninInterceptor implements HandlerInterceptor {
 			// 將原請求畫面及參數，放入 Session
 			session.setAttribute(NEXT_PAGE, next);
 
-			response.sendRedirect(contextPath + "/" + ADMIN_SIGN_IN_PAGE);
+			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);
 
 			return false;
 

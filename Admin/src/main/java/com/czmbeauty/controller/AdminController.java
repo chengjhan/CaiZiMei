@@ -309,12 +309,13 @@ public class AdminController {
 
 		if (next != null) {
 
-			// 若經過 SigninInterceptor
+			// 經過 SigninInterceptor
 			logger.info("原請求畫面: " + next);
 
 		} else {
 
-			logger.info("原請求畫面: index");
+			// 未經過 SigninInterceptor
+			logger.info("原請求畫面: " + INDEX_PAGE);
 		}
 
 		logger.info("進入登入頁面: " + ADMIN_SIGN_IN_PAGE);
@@ -344,7 +345,7 @@ public class AdminController {
 
 			model.addAttribute(ADMIN_USERNAME, ad_username);
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
-			model.addAttribute(ERROR, "帳號未填");
+			model.addAttribute(ERROR, "請填入帳號。");
 
 			logger.error("登入失敗: 帳號未填");
 
@@ -354,7 +355,7 @@ public class AdminController {
 
 			model.addAttribute(ADMIN_USERNAME, ad_username);
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
-			model.addAttribute(ERROR, "密碼未填");
+			model.addAttribute(ERROR, "請填入密碼。");
 
 			logger.error("登入失敗: 密碼未填");
 
@@ -368,7 +369,7 @@ public class AdminController {
 
 				model.addAttribute(ADMIN_USERNAME, ad_username);
 				model.addAttribute(ADMIN_PASSWORD, ad_password);
-				model.addAttribute(ERROR, "帳號或密碼錯誤");
+				model.addAttribute(ERROR, "帳號或密碼錯誤。");
 
 				logger.error("登入失敗: 帳號或密碼錯誤");
 
@@ -398,14 +399,15 @@ public class AdminController {
 
 					session.removeAttribute(NEXT_PAGE);
 
-					// 若經過 SigninInterceptor
+					// 經過 SigninInterceptor
 					logger.info("登入成功，導向原請求畫面: " + next);
 
 					return REDIRECT.concat(next);
 
 				} else {
 
-					logger.info("登入成功，導向首頁: index");
+					// 未經過 SigninInterceptor
+					logger.info("登入成功，導向首頁: " + INDEX_PAGE);
 
 					return REDIRECT + INDEX_PAGE;
 				}

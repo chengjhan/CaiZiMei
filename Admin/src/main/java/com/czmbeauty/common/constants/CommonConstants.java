@@ -10,4 +10,6 @@ public interface CommonConstants {
 
 	public static final String AND = "&";
 
+	public static final String SLASH = "/";
+
 }

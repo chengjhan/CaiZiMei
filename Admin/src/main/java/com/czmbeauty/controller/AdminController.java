@@ -116,8 +116,6 @@ public class AdminController {
 	 * @param bindingResult
 	 *            BindingResult
 	 * @return /WEB-INF/views/admin/sign-up.jsp
-	 * @return /WEB-INF/views/admin/sign-up.jsp
-	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	// 得到 <form:form modelAttribute="adminBean"> 表單新增的資料
@@ -185,6 +183,8 @@ public class AdminController {
 	 * 
 	 * @param admin
 	 *            AdminBean --> form backing object
+	 * @param bindingResult
+	 *            BindingResult
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
 	// 得到 <form:form modelAttribute="admin"> 表單更新的資料
@@ -233,10 +233,6 @@ public class AdminController {
 	 *            String --> 重複新密碼(原碼)
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/admin/change-password.jsp
-	 * @return /WEB-INF/views/admin/change-password.jsp
-	 * @return /WEB-INF/views/admin/change-password.jsp
-	 * @return /WEB-INF/views/admin/change-password.jsp
 	 * @return /WEB-INF/views/admin/change-password.jsp
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
@@ -342,8 +338,6 @@ public class AdminController {
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/secure/sign-in.jsp
-	 * @return /WEB-INF/views/secure/sign-in.jsp
-	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 * @return /WEB-INF/views/next
 	 * @return /WEB-INF/views/index.jsp
 	 */
@@ -445,7 +439,6 @@ public class AdminController {
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/secure/forget-password.jsp
-	 * @return /WEB-INF/views/secure/forget-password.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
 	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
@@ -513,9 +506,6 @@ public class AdminController {
 	 *            SessionStatus
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/secure/reset-password.jsp
-	 * @return /WEB-INF/views/secure/reset-password.jsp
-	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */

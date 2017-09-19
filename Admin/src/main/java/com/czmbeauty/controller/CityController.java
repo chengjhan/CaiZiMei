@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/9/11
+ * Date: 2017/9/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -162,16 +162,16 @@ public class CityController {
 	 * 
 	 * @param cityBean
 	 *            CityBean --> form backing object
-	 * @param result
+	 * @param bindingResult
 	 *            BindingResult
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(value = "/city/add.do", method = RequestMethod.POST)
-	public String addProcess(@Valid CityBean cityBean, BindingResult result, Model model) {
+	public String addProcess(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
 
-		if (result.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 
 			// 取得所有國家 List，放入 select
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
@@ -227,16 +227,16 @@ public class CityController {
 	 * 
 	 * @param cityBean
 	 *            CityBean --> form backing object
-	 * @param result
+	 * @param bindingResult
 	 *            BindingResult
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(value = "/city/edit.do", method = RequestMethod.POST)
-	public String editProcess(@Valid CityBean cityBean, BindingResult result, Model model) {
+	public String editProcess(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
 
-		if (result.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 
 			// 取得所有國家 List，放入 select
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());

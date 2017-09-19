@@ -145,16 +145,16 @@ public class StateController {
 	 * 
 	 * @param stateBean
 	 *            StateBean --> form backing object
-	 * @param result
+	 * @param bindingResult
 	 *            BindingResult
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/state/list.jsp
 	 */
 	@RequestMapping(value = "/state/add.do", method = RequestMethod.POST)
-	public String addProcess(@Valid StateBean stateBean, BindingResult result, Model model) {
+	public String addProcess(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
 
-		if (result.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 
 			// 取得所有國家 List，放入 select
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
@@ -204,16 +204,16 @@ public class StateController {
 	 * 
 	 * @param stateBean
 	 *            StateBean --> form backing object
-	 * @param result
+	 * @param bindingResult
 	 *            BindingResult
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/state/list.jsp
 	 */
 	@RequestMapping(value = "/state/edit.do", method = RequestMethod.POST)
-	public String editProcess(@Valid StateBean stateBean, BindingResult result, Model model) {
+	public String editProcess(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
 
-		if (result.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 
 			// 取得所有國家 List，放入 select
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());

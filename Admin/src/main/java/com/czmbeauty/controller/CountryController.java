@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/9/11
+ * Date: 2017/9/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -97,14 +97,14 @@ public class CountryController {
 	 * 
 	 * @param countryBean
 	 *            CountryBean --> form backing object
-	 * @param result
+	 * @param bindingResult
 	 *            BindingResult
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/add.do", method = RequestMethod.POST)
-	public String addProcess(@Valid CountryBean countryBean, BindingResult result) {
+	public String addProcess(@Valid CountryBean countryBean, BindingResult bindingResult) {
 
-		if (result.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 
 			logger.error("國家新增失敗: 格式錯誤");
 
@@ -145,14 +145,14 @@ public class CountryController {
 	 * 
 	 * @param countryBean
 	 *            CountryBean --> form backing object
-	 * @param result
+	 * @param bindingResult
 	 *            BindingResult
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/edit.do", method = RequestMethod.POST)
-	public String editProcess(@Valid CountryBean countryBean, BindingResult result) {
+	public String editProcess(@Valid CountryBean countryBean, BindingResult bindingResult) {
 
-		if (result.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 
 			logger.error("國家資訊編輯失敗: 格式錯誤");
 

@@ -211,26 +211,34 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 		String ca_directory = request.getServletPath().split("/")[1];
 		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
 
-		String hql = "from BaseBean where ba_ca_id=" + categoryBean.getCa_id() + " order by ba_status desc, ba_id asc";
+		try {
 
-		// 取得當前頁碼
-		model.addAttribute(CURRENT_PAGE, page);
+			String hql = "from BaseBean where ba_ca_id=" + categoryBean.getCa_id()
+					+ " order by ba_status desc, ba_id asc";
 
-		// 取得每頁最大筆數
-		model.addAttribute(PAGE_ROW_COUNT, BASE_PAGE_ROW_COUNT);
+			// 取得當前頁碼
+			model.addAttribute(CURRENT_PAGE, page);
 
-		// 取得當頁起始筆數
-		int first = (page - 1) * BASE_PAGE_ROW_COUNT;
+			// 取得每頁最大筆數
+			model.addAttribute(PAGE_ROW_COUNT, BASE_PAGE_ROW_COUNT);
 
-		// 取得當前頁碼的據點 List，放入 table
-		model.addAttribute(BASE_LIST, baseService.selectPagination(hql, first, BASE_PAGE_ROW_COUNT));
+			// 取得當頁起始筆數
+			int first = (page - 1) * BASE_PAGE_ROW_COUNT;
 
-		// 取得總頁數
-		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
+			// 取得當前頁碼的據點 List，放入 table
+			model.addAttribute(BASE_LIST, baseService.selectPagination(hql, first, BASE_PAGE_ROW_COUNT));
 
-		logger.info("進入" + categoryBean.getCa_name() + "一覽頁面: " + ca_directory + LIST_PAGE);
+			// 取得總頁數
+			model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
 
-		return ca_directory + LIST_PAGE;
+			logger.info("進入" + categoryBean.getCa_name() + "一覽頁面: " + ca_directory + LIST_PAGE);
+
+			return ca_directory + LIST_PAGE;
+
+		} catch (NullPointerException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
 	}
 
 	/**
@@ -288,27 +296,34 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 		currentPage = page;
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+		try {
 
-		// 取得選定診所 id 的 BaseBean
-		BaseBean baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
+			String ca_directory = request.getServletPath().split("/")[1];
+			String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
 
-		// 取得所有國家 List，放入 select
-		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+			// 取得選定診所 id 的 BaseBean
+			BaseBean baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
 
-		// 取得診所所在國家中的所有區域 List，放入 select
-		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
+			// 取得所有國家 List，放入 select
+			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-		// 取得診所所在區域中的所有城市 List，放入 select
-		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
+			// 取得診所所在國家中的所有區域 List，放入 select
+			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
 
-		// 使表單回填 BaseBean 內所有資料
-		model.addAttribute(BASE_BEAN, baseBean);
+			// 取得診所所在區域中的所有城市 List，放入 select
+			model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
 
-		logger.info("進入編輯" + ca_name + "資訊頁面: " + ca_directory + EDIT_PAGE);
+			// 使表單回填 BaseBean 內所有資料
+			model.addAttribute(BASE_BEAN, baseBean);
 
-		return ca_directory + EDIT_PAGE;
+			logger.info("進入編輯" + ca_name + "資訊頁面: " + ca_directory + EDIT_PAGE);
+
+			return ca_directory + EDIT_PAGE;
+
+		} catch (NullPointerException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
 	}
 
 	/**

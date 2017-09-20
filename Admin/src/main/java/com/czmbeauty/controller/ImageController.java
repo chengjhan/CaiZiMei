@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/19
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,12 +13,6 @@ import static com.czmbeauty.common.constants.CommonConstants.DOT;
 import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 import static com.czmbeauty.common.constants.DirectoryConstants.IMAGES;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_BEAN;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.IMAGE_LIST;
-import static com.czmbeauty.common.constants.PageNameConstants.ADD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
 import static com.czmbeauty.common.constants.PaginationConstants.IMAGE_PAGE_ROW_COUNT;
 import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
@@ -46,6 +40,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.czmbeauty.common.constants.ModelAttributeConstants;
+import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
@@ -58,7 +54,7 @@ import com.czmbeauty.model.service.ImageService;
  * @author 詹晟
  */
 @Controller
-public class ImageController {
+public class ImageController implements ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(ImageController.class);
 

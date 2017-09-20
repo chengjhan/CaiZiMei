@@ -2,16 +2,11 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/5
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
-
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_ADMIN;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_ADMIN_BY_EMAIL;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_ADMIN_BY_EMAIL_EXCEPT_MYSELF;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_ADMIN_BY_USERNAME;
 
 import java.util.List;
 

@@ -2,14 +2,11 @@
  * CaiZiMei
  * File: AdminLogDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/13
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
-
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ALL_ADMIN_LOG;
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_ADMIN_LOG_BY_ADMIN;
 
 import java.util.List;
 

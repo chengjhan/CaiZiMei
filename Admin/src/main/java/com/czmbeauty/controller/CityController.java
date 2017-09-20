@@ -2,20 +2,13 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/9/19
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_BEAN;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_LIST;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
-import static com.czmbeauty.common.constants.PageNameConstants.CITY_ADD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.CITY_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.CITY_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.czmbeauty.common.constants.ModelAttributeConstants;
+import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
@@ -52,7 +47,7 @@ import com.google.gson.Gson;
  */
 @Controller
 @SessionAttributes(value = CITY_BEAN)
-public class CityController {
+public class CityController implements ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(CityController.class);
 

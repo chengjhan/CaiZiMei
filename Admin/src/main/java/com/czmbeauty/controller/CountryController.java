@@ -2,18 +2,11 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/9/19
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
-
-import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_BEAN;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
-import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_ADD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.COUNTRY_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import javax.validation.Valid;
 
@@ -28,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.czmbeauty.common.constants.ModelAttributeConstants;
+import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.service.CountryService;
@@ -38,7 +33,7 @@ import com.czmbeauty.model.service.CountryService;
  * @author 詹晟
  */
 @Controller
-public class CountryController {
+public class CountryController implements ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(CountryController.class);
 

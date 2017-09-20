@@ -2,13 +2,11 @@
  * CaiZiMei
  * File: CategoryDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/9
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
-
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_CATEGORY_BY_DIRECTORY;
 
 import java.util.List;
 

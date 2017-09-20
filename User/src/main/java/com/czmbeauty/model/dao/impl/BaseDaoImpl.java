@@ -2,13 +2,11 @@
  * CaiZiMei/User
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/10
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
-
-import static com.czmbeauty.common.constants.HqlConstants.HQL_SELECT_OPEN_BASE;
 
 import java.util.List;
 

@@ -2,19 +2,13 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/9/11
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
-import static com.czmbeauty.common.constants.ModelAttributeConstants.COUNTRY_LIST;
 import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_BEAN;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_LIST;
-import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
-import static com.czmbeauty.common.constants.PageNameConstants.STATE_ADD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.STATE_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.STATE_LIST_PAGE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.czmbeauty.common.constants.ModelAttributeConstants;
+import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.model.entity.CountryBean;
@@ -48,7 +44,7 @@ import com.google.gson.Gson;
  */
 @Controller
 @SessionAttributes(value = STATE_BEAN)
-public class StateController {
+public class StateController implements ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(StateController.class);
 

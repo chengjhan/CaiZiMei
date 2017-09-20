@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryDao.java
  * Author: 詹晟
- * Date: 2017/8/12
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,6 +10,7 @@ package com.czmbeauty.model.dao;
 
 import java.util.List;
 
+import com.czmbeauty.common.constants.HqlConstants;
 import com.czmbeauty.model.entity.CountryBean;
 
 /**
@@ -17,7 +18,7 @@ import com.czmbeauty.model.entity.CountryBean;
  * 
  * @author 詹晟
  */
-public interface CountryDao {
+public interface CountryDao extends HqlConstants {
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.CountryDaoImpl#selectAll()

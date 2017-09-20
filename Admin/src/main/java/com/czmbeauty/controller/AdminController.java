@@ -2,37 +2,13 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/19
+ * Date: 2017/9/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_BEAN;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL_SESSION;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_LIST;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_NEW;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_NEW_AGAIN;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_NEW_ERROR;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_OLD;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_OLD_ERROR;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_PASSWORD_RANDOM;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_USERNAME;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ERROR;
-import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_CHANGE_PASSWORD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_EDIT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_FORGET_PASSWORD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_LIST_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_PROFILE_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_RESET_PASSWORD_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_IN_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_UP_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.INDEX_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.NEXT_PAGE;
-import static com.czmbeauty.common.constants.PageNameConstants.REDIRECT;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -51,6 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.czmbeauty.common.constants.ModelAttributeConstants;
+import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
@@ -66,7 +44,7 @@ import com.google.gson.GsonBuilder;
  */
 @Controller
 @SessionAttributes(ADMIN)
-public class AdminController {
+public class AdminController implements ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(AdminController.class);
 

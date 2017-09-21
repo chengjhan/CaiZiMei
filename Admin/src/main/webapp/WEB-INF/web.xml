@@ -78,5 +78,9 @@
 		<error-code>404</error-code>
 		<location>/error/page-not-found</location>
 	</error-page>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/error/page-not-found</location>
+	</error-page>
 
 </web-app>

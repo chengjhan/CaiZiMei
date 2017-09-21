@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.common.util.Geocoder;
 import com.czmbeauty.model.dao.BaseDao;
 import com.czmbeauty.model.dao.CityDao;
@@ -78,13 +79,21 @@ public class BaseServiceImpl implements BaseService {
 	 * 
 	 * @param ba_id
 	 *            Integer --> 據點流水號
+	 * @throws PageNotFoundException
+	 * @throws IllegalArgumentException
 	 * @return BaseBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public BaseBean selectByBa_id(Integer ba_id) {
+	public BaseBean selectByBa_id(Integer ba_id) throws PageNotFoundException, IllegalArgumentException {
 
-		return baseDao.selectByBa_id(ba_id);
+		BaseBean baseBean = baseDao.selectByBa_id(ba_id);
+
+		if (baseBean == null) {
+
+			throw new PageNotFoundException();
+		}
+		return baseBean;
 	}
 
 	/**

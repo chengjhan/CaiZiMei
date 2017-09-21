@@ -313,17 +313,18 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 		String servletPath = request.getServletPath();
 		String pageName = servletPath.substring(1, servletPath.length());
 		CategoryBean categoryBean;
+		BaseBean baseBean;
 
 		try {
 			categoryBean = categoryService.selectByCa_directory(pageName);
 
-		} catch (PageNotFoundException e) {
+			// 取得選定診所 id 的 BaseBean
+			baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
+
+		} catch (PageNotFoundException | IllegalArgumentException e) {
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
-
-		// 取得選定診所 id 的 BaseBean
-		BaseBean baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
 
 		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());

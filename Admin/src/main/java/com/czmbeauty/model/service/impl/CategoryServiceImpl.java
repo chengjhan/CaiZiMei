@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CategoryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/9
+ * Date: 2017/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,6 +11,7 @@ package com.czmbeauty.model.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.dao.CategoryDao;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.service.CategoryService;
@@ -32,14 +33,21 @@ public class CategoryServiceImpl implements CategoryService {
 	/**
 	 * 類別資料夾名稱搜尋
 	 * 
-	 * @param ca_directory
-	 *            String --> 類別資料夾名稱
+	 * @param pageName
+	 *            String --> 頁面名
+	 * @throws PageNotFoundException
 	 * @return CategoryBean
 	 */
 	@Override
-	public CategoryBean selectByCa_directory(String ca_directory) {
+	public CategoryBean selectByCa_directory(String pageName) throws PageNotFoundException {
 
-		return categoryDao.selectByCa_directory(ca_directory);
+		CategoryBean categoryBean = categoryDao.selectByCa_directory(pageName.split("/")[0]);
+
+		if (categoryBean == null) {
+
+			throw new PageNotFoundException(pageName);
+		}
+		return categoryBean;
 	}
 
 }

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -39,6 +39,7 @@ import com.czmbeauty.common.editor.CityBeanPropertyEditor;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.entity.BaseBean;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.CityBean;
@@ -203,42 +204,44 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/list", method = RequestMethod.GET)
 	public String baseListView(@RequestParam Integer page, Model model) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+		String servletPath = request.getServletPath();
+		String pageName = servletPath.substring(1, servletPath.length());
+		CategoryBean categoryBean;
 
 		try {
+			categoryBean = categoryService.selectByCa_directory(pageName);
 
-			String hql = "from BaseBean where ba_ca_id=" + categoryBean.getCa_id()
-					+ " order by ba_status desc, ba_id asc";
-
-			// 取得當前頁碼
-			model.addAttribute(CURRENT_PAGE, page);
-
-			// 取得每頁最大筆數
-			model.addAttribute(PAGE_ROW_COUNT, BASE_PAGE_ROW_COUNT);
-
-			// 取得當頁起始筆數
-			int first = (page - 1) * BASE_PAGE_ROW_COUNT;
-
-			// 取得當前頁碼的據點 List，放入 table
-			model.addAttribute(BASE_LIST, baseService.selectPagination(hql, first, BASE_PAGE_ROW_COUNT));
-
-			// 取得總頁數
-			model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
-
-			logger.info("進入" + categoryBean.getCa_name() + "一覽頁面: " + ca_directory + LIST_PAGE);
-
-			return ca_directory + LIST_PAGE;
-
-		} catch (NullPointerException e) {
+		} catch (PageNotFoundException e) {
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
+
+		String hql = "from BaseBean where ba_ca_id=" + categoryBean.getCa_id() + " order by ba_status desc, ba_id asc";
+
+		// 取得當前頁碼
+		model.addAttribute(CURRENT_PAGE, page);
+
+		// 取得每頁最大筆數
+		model.addAttribute(PAGE_ROW_COUNT, BASE_PAGE_ROW_COUNT);
+
+		// 取得當頁起始筆數
+		int first = (page - 1) * BASE_PAGE_ROW_COUNT;
+
+		// 取得當前頁碼的據點 List，放入 table
+		model.addAttribute(BASE_LIST, baseService.selectPagination(hql, first, BASE_PAGE_ROW_COUNT));
+
+		// 取得總頁數
+		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
+
+		logger.info("進入" + categoryBean.getCa_name() + "一覽頁面: " + pageName);
+
+		return pageName;
 	}
 
 	/**
@@ -246,13 +249,23 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 * 
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
 	@RequestMapping(value = "/*/add", method = RequestMethod.GET)
 	public String officeAddView(Model model) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+		String servletPath = request.getServletPath();
+		String pageName = servletPath.substring(1, servletPath.length());
+		CategoryBean categoryBean;
+
+		try {
+			categoryBean = categoryService.selectByCa_directory(pageName);
+
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
 
 		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
@@ -260,9 +273,9 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 		// 新增 form backing object
 		model.addAttribute(BASE_BEAN, new BaseBean());
 
-		logger.info("進入新增" + ca_name + "頁面: " + ca_directory + ADD_PAGE);
+		logger.info("進入新增" + categoryBean.getCa_name() + "頁面: " + pageName);
 
-		return ca_directory + ADD_PAGE;
+		return pageName;
 	}
 
 	/**
@@ -289,6 +302,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 *            String --> 當前頁碼
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
 	@RequestMapping(value = "/*/edit", method = RequestMethod.GET)
@@ -296,34 +310,36 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 		currentPage = page;
 
+		String servletPath = request.getServletPath();
+		String pageName = servletPath.substring(1, servletPath.length());
+		CategoryBean categoryBean;
+
 		try {
+			categoryBean = categoryService.selectByCa_directory(pageName);
 
-			String ca_directory = request.getServletPath().split("/")[1];
-			String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
-
-			// 取得選定診所 id 的 BaseBean
-			BaseBean baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
-
-			// 取得所有國家 List，放入 select
-			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
-
-			// 取得診所所在國家中的所有區域 List，放入 select
-			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
-
-			// 取得診所所在區域中的所有城市 List，放入 select
-			model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
-
-			// 使表單回填 BaseBean 內所有資料
-			model.addAttribute(BASE_BEAN, baseBean);
-
-			logger.info("進入編輯" + ca_name + "資訊頁面: " + ca_directory + EDIT_PAGE);
-
-			return ca_directory + EDIT_PAGE;
-
-		} catch (NullPointerException e) {
+		} catch (PageNotFoundException e) {
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
+
+		// 取得選定診所 id 的 BaseBean
+		BaseBean baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
+
+		// 取得所有國家 List，放入 select
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+
+		// 取得診所所在國家中的所有區域 List，放入 select
+		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
+
+		// 取得診所所在區域中的所有城市 List，放入 select
+		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
+
+		// 使表單回填 BaseBean 內所有資料
+		model.addAttribute(BASE_BEAN, baseBean);
+
+		logger.info("進入編輯" + categoryBean.getCa_name() + "資訊頁面: " + pageName);
+
+		return pageName;
 	}
 
 	/**

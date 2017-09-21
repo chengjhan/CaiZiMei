@@ -55,11 +55,12 @@ public class CountryServiceImpl implements CountryService {
 	 * @param co_id
 	 *            Integer --> 國家流水號
 	 * @throws PageNotFoundException
+	 * @throws IllegalArgumentException
 	 * @return CountryBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public CountryBean selectByCo_id(Integer co_id) throws PageNotFoundException {
+	public CountryBean selectByCo_id(Integer co_id) throws PageNotFoundException, IllegalArgumentException {
 
 		CountryBean countryBean = countryDao.selectByCo_id(co_id);
 

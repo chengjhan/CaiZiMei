@@ -8,6 +8,9 @@
  */
 package com.czmbeauty.controller;
 
+import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -37,6 +40,12 @@ import com.czmbeauty.model.service.CountryService;
 public class CountryController implements ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(CountryController.class);
+
+	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
 
 	/**
 	 * 注入 CountryService
@@ -129,12 +138,21 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
 	public String editView(CountryBean countryBean_co_id, Model model) {
 
+		String servletPath = request.getServletPath();
+		String pageName = servletPath.substring(1, servletPath.length());
+		String queryString = request.getQueryString();
 		CountryBean countryBean;
 
 		try {
 			countryBean = countryService.selectByCo_id(countryBean_co_id.getCo_id());
 
 		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+
+		} catch (IllegalArgumentException e) {
+
+			logger.error("找不到這個頁面: " + pageName + QUESTION + queryString);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}

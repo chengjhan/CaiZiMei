@@ -28,7 +28,7 @@ public interface CountryService {
 	/**
 	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#selectByCo_id(Integer)
 	 */
-	CountryBean selectByCo_id(Integer co_id) throws PageNotFoundException;
+	CountryBean selectByCo_id(Integer co_id) throws PageNotFoundException, IllegalArgumentException;
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#insert(CountryBean)

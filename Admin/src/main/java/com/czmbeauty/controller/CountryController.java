@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.service.CountryService;
 
@@ -122,13 +123,24 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 	 *            CountryBean --> form backing object --> GET --> co_id
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/country/edit.jsp
 	 */
 	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
 	public String editView(CountryBean countryBean_co_id, Model model) {
 
+		CountryBean countryBean;
+
+		try {
+			countryBean = countryService.selectByCo_id(countryBean_co_id.getCo_id());
+
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
+
 		// 取得選定國家 id 的 CountryBean，使表單回填 CountryBean 內所有資料
-		model.addAttribute(COUNTRY_BEAN, countryService.selectByCo_id(countryBean_co_id.getCo_id()));
+		model.addAttribute(COUNTRY_BEAN, countryBean);
 
 		logger.info("進入編輯國家資訊頁面: " + COUNTRY_EDIT_PAGE);
 

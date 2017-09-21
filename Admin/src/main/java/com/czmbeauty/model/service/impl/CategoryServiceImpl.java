@@ -35,6 +35,8 @@ public class CategoryServiceImpl implements CategoryService {
 	 * 
 	 * @param pageName
 	 *            String --> 頁面名
+	 * @param ca_directory
+	 *            String --> 類別資料夾名稱
 	 * @throws PageNotFoundException
 	 * @return CategoryBean
 	 */

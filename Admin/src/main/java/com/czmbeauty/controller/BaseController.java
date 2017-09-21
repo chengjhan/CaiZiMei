@@ -312,6 +312,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 		String servletPath = request.getServletPath();
 		String pageName = servletPath.substring(1, servletPath.length());
+		String queryString = request.getQueryString();
 		CategoryBean categoryBean;
 		BaseBean baseBean;
 
@@ -321,7 +322,13 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 			// 取得選定診所 id 的 BaseBean
 			baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
 
-		} catch (PageNotFoundException | IllegalArgumentException e) {
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+
+		} catch (IllegalArgumentException e) {
+
+			logger.error("找不到這個頁面: " + pageName + QUESTION + queryString);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}

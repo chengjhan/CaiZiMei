@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -300,8 +300,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 			// 未經過 SigninInterceptor
 			logger.info("原請求畫面: " + INDEX_PAGE);
 		}
-
-		logger.info("進入登入頁面: " + ADMIN_SIGN_IN_PAGE);
 
 		return ADMIN_SIGN_IN_PAGE;
 	}

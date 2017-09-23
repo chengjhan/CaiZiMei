@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/23
+ * Date: 2017/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -187,8 +187,8 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 			logger.error(ca_name + "編輯失敗: 資料未填");
 
-			return REDIRECT + ca_directory + EDIT_PAGE + QUESTION + BASE_ID + EQUAL + baseBean.getBa_id() + AND + PAGE
-					+ EQUAL + currentPage;
+			return ca_directory + EDIT_PAGE + QUESTION + BASE_ID + EQUAL + baseBean.getBa_id() + AND + PAGE + EQUAL
+					+ currentPage;
 
 		} else {
 
@@ -211,7 +211,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/list", method = RequestMethod.GET)
-	public String baseListView(@RequestParam Integer page, Model model) {
+	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
 
@@ -253,7 +253,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
 	@RequestMapping(value = "/*/add", method = RequestMethod.GET)
-	public String officeAddView(Model model) {
+	public String addView(Model model) {
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
 
@@ -285,7 +285,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/add.do", method = RequestMethod.POST)
-	public String officeAddProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
+	public String addProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
 		return add(baseBean, bindingResult);
 	}
@@ -303,7 +303,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
 	@RequestMapping(value = "/*/edit", method = RequestMethod.GET)
-	public String clinicEditView(BaseBean baseBean_ba_id, @RequestParam String page, Model model) {
+	public String editView(BaseBean baseBean_ba_id, @RequestParam String page, Model model) {
 
 		currentPage = page;
 
@@ -357,7 +357,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/edit.do", method = RequestMethod.POST)
-	public String officeEditProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
+	public String editProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
 		return edit(baseBean, bindingResult);
 	}

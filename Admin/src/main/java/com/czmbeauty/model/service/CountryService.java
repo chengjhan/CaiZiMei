@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryService.java
  * Author: 詹晟
- * Date: 2017/9/21
+ * Date: 2017/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,7 +10,6 @@ package com.czmbeauty.model.service;
 
 import java.util.List;
 
-import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.entity.CountryBean;
 
 /**
@@ -28,7 +27,7 @@ public interface CountryService {
 	/**
 	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#selectByCo_id(Integer)
 	 */
-	CountryBean selectByCo_id(Integer co_id) throws PageNotFoundException, IllegalArgumentException;
+	CountryBean selectByCo_id(Integer co_id) throws IllegalArgumentException;
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.CountryServiceImpl#insert(CountryBean)

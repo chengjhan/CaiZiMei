@@ -2,13 +2,11 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/9/21
+ * Date: 2017/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
-
-import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -74,8 +72,6 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 		// 取得所有國家 List，放入 table
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-		logger.info("進入國家一覽頁面: " + COUNTRY_LIST_PAGE);
-
 		return COUNTRY_LIST_PAGE;
 	}
 
@@ -91,8 +87,6 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 
 		// 新增 form backing object
 		model.addAttribute(COUNTRY_BEAN, new CountryBean());
-
-		logger.info("進入新增國家頁面: " + COUNTRY_ADD_PAGE);
 
 		return COUNTRY_ADD_PAGE;
 	}
@@ -138,29 +132,29 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
 	public String editView(CountryBean countryBean_co_id, Model model) {
 
-		String servletPath = request.getServletPath();
-		String pageName = servletPath.substring(1, servletPath.length());
-		String queryString = request.getQueryString();
-		CountryBean countryBean;
+		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
 
+		CountryBean countryBean;
 		try {
 			countryBean = countryService.selectByCo_id(countryBean_co_id.getCo_id());
 
+			if (countryBean == null) {
+
+				throw new PageNotFoundException(requestPage);
+			}
 		} catch (PageNotFoundException e) {
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + pageName + QUESTION + queryString);
+			logger.error("找不到這個頁面: " + requestPage);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
 
 		// 取得選定國家 id 的 CountryBean，使表單回填 CountryBean 內所有資料
 		model.addAttribute(COUNTRY_BEAN, countryBean);
-
-		logger.info("進入編輯國家資訊頁面: " + COUNTRY_EDIT_PAGE);
 
 		return COUNTRY_EDIT_PAGE;
 	}

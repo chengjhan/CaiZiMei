@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/21
+ * Date: 2017/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.dao.CountryDao;
 import com.czmbeauty.model.entity.BaseBean;
 import com.czmbeauty.model.entity.CityBean;
@@ -54,20 +53,15 @@ public class CountryServiceImpl implements CountryService {
 	 * 
 	 * @param co_id
 	 *            Integer --> 國家流水號
-	 * @throws PageNotFoundException
 	 * @throws IllegalArgumentException
 	 * @return CountryBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public CountryBean selectByCo_id(Integer co_id) throws PageNotFoundException, IllegalArgumentException {
+	public CountryBean selectByCo_id(Integer co_id) throws IllegalArgumentException {
 
 		CountryBean countryBean = countryDao.selectByCo_id(co_id);
 
-		if (countryBean == null) {
-
-			throw new PageNotFoundException();
-		}
 		return countryBean;
 	}
 

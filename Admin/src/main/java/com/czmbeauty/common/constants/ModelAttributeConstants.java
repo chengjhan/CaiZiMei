@@ -2,6 +2,10 @@ package com.czmbeauty.common.constants;
 
 public interface ModelAttributeConstants {
 
+	public static final String REQUEST_PAGE = "requestPage";
+
+	public static final String REQUEST_ACTION = "requestAction";
+
 	public static final String ERROR = "error";
 
 	public static final String ADMIN = "admin";

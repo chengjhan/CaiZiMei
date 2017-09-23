@@ -15,11 +15,11 @@ public class PageNotFoundException extends NullPointerException {
 		logger.error("找不到這個頁面");
 	}
 
-	public PageNotFoundException(String pageName) {
+	public PageNotFoundException(String requestPage) {
 
-		super("找不到這個頁面: " + pageName);
+		super("找不到這個頁面: " + requestPage);
 
-		logger.error("找不到這個頁面: " + pageName);
+		logger.error("找不到這個頁面: " + requestPage);
 	}
 
 }

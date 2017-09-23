@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/22
+ * Date: 2017/9/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,7 +40,6 @@ import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
-import com.czmbeauty.common.util.RequestPageSplitter;
 import com.czmbeauty.model.entity.BaseBean;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.CityBean;
@@ -144,9 +143,10 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 */
 	private String add(BaseBean baseBean, BindingResult bindingResult) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
 		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
 
 		if (bindingResult.hasErrors()) {
 
@@ -178,8 +178,10 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 */
 	private String edit(BaseBean baseBean, BindingResult bindingResult) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
 
 		if (bindingResult.hasErrors()) {
 
@@ -239,7 +241,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 		// 取得總頁數
 		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
 
-		return RequestPageSplitter.getDirectoryName(requestPage) + LIST_PAGE;
+		return categoryBean.getCa_directory() + LIST_PAGE;
 	}
 
 	/**
@@ -255,8 +257,9 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
 
+		CategoryBean categoryBean;
 		try {
-			categoryService.selectByCa_directory(requestPage);
+			categoryBean = categoryService.selectByCa_directory(requestPage);
 
 		} catch (PageNotFoundException e) {
 
@@ -269,7 +272,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 		// 新增 form backing object
 		model.addAttribute(BASE_BEAN, new BaseBean());
 
-		return RequestPageSplitter.getDirectoryName(requestPage) + ADD_PAGE;
+		return categoryBean.getCa_directory() + ADD_PAGE;
 	}
 
 	/**
@@ -306,9 +309,10 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
 
+		CategoryBean categoryBean;
 		BaseBean baseBean;
 		try {
-			categoryService.selectByCa_directory(requestPage);
+			categoryBean = categoryService.selectByCa_directory(requestPage);
 
 			// 取得選定診所 id 的 BaseBean
 			baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
@@ -340,7 +344,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 		// 使表單回填 BaseBean 內所有資料
 		model.addAttribute(BASE_BEAN, baseBean);
 
-		return RequestPageSplitter.getDirectoryName(requestPage) + EDIT_PAGE;
+		return categoryBean.getCa_directory() + EDIT_PAGE;
 	}
 
 	/**

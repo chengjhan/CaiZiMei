@@ -32,7 +32,6 @@ public class SigninInterceptor implements HandlerInterceptor {
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
 		String queryString = request.getQueryString(); // 參數
 		String next;
-
 		if (queryString != null) {
 			next = pageName + QUESTION + queryString; // 頁面名?參數
 		} else {

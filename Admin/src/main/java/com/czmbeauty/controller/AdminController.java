@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/22
+ * Date: 2017/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -79,8 +79,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 		// 新增 form backing object
 		model.addAttribute(ADMIN_BEAN, new AdminBean());
 
-		logger.info("進入註冊頁面: " + ADMIN_SIGN_UP_PAGE);
-
 		return ADMIN_SIGN_UP_PAGE;
 	}
 
@@ -137,8 +135,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/admin/profile", method = RequestMethod.GET)
 	public String profileView() {
 
-		logger.info("進入個人資訊頁面: " + ADMIN_PROFILE_PAGE);
-
 		return ADMIN_PROFILE_PAGE;
 	}
 
@@ -150,8 +146,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	// <form:form modelAttribute="admin"> 表單得到 Session 的資料，自動回填
 	@RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
 	public String editView() {
-
-		logger.info("進入編輯個人資訊頁面: " + ADMIN_EDIT_PAGE);
 
 		return ADMIN_EDIT_PAGE;
 	}
@@ -192,8 +186,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/admin/change-password", method = RequestMethod.GET)
 	public String changePasswordView() {
-
-		logger.info("進入變更密碼頁面: " + ADMIN_CHANGE_PASSWORD_PAGE);
 
 		return ADMIN_CHANGE_PASSWORD_PAGE;
 	}
@@ -402,8 +394,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/secure/forget-password", method = RequestMethod.GET)
 	public String forgetPasswordView() {
 
-		logger.info("進入忘記密碼頁面: " + ADMIN_FORGET_PASSWORD_PAGE);
-
 		return ADMIN_FORGET_PASSWORD_PAGE;
 	}
 
@@ -463,8 +453,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/secure/reset-password", method = RequestMethod.GET)
 	public String resetPasswordView() {
-
-		logger.info("進入重設密碼頁面: " + ADMIN_RESET_PASSWORD_PAGE);
 
 		return ADMIN_RESET_PASSWORD_PAGE;
 	}
@@ -588,8 +576,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 		// 取得所有管理員 List，放入 table
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());
-
-		logger.info("進入管理員一覽頁面: " + ADMIN_LIST_PAGE);
 
 		return ADMIN_LIST_PAGE;
 	}

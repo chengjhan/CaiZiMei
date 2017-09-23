@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -43,7 +43,7 @@ import com.google.gson.Gson;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = STATE_BEAN)
+@SessionAttributes(STATE_BEAN)
 public class StateController implements ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(StateController.class);
@@ -109,9 +109,6 @@ public class StateController implements ModelAttributeConstants, PageNameConstan
 			// 取得編輯或刪除的 StateBean 的國家，並取得此國家中的所有區域 List，放入 table
 			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(stateBean.getSt_CountryBean().getCo_id()));
 		}
-
-		logger.info("進入區域一覽頁面: " + STATE_LIST_PAGE);
-
 		return STATE_LIST_PAGE;
 	}
 
@@ -130,8 +127,6 @@ public class StateController implements ModelAttributeConstants, PageNameConstan
 
 		// 新增 form backing object
 		model.addAttribute(STATE_BEAN, new StateBean());
-
-		logger.info("進入新增區域頁面: " + STATE_ADD_PAGE);
 
 		return STATE_ADD_PAGE;
 	}
@@ -189,8 +184,6 @@ public class StateController implements ModelAttributeConstants, PageNameConstan
 
 		// 取得選定區域 id 的 StateBean，放入 Session，使表單回填 StateBean 內所有資料
 		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean_st_id.getSt_id()));
-
-		logger.info("進入編輯區域資訊頁面: " + STATE_EDIT_PAGE);
 
 		return STATE_EDIT_PAGE;
 	}

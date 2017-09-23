@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,7 +46,7 @@ import com.google.gson.Gson;
  * @author 詹晟
  */
 @Controller
-@SessionAttributes(value = CITY_BEAN)
+@SessionAttributes(CITY_BEAN)
 public class CityController implements ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(CityController.class);
@@ -125,9 +125,6 @@ public class CityController implements ModelAttributeConstants, PageNameConstant
 			// 取得編輯或刪除的 CityBean 的區域，並取得此區域中的所有城市 List，放入 table
 			model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(cityBean.getCi_StateBean().getSt_id()));
 		}
-
-		logger.info("進入城市一覽頁面: " + CITY_LIST_PAGE);
-
 		return CITY_LIST_PAGE;
 	}
 
@@ -146,8 +143,6 @@ public class CityController implements ModelAttributeConstants, PageNameConstant
 
 		// 新增 form backing object
 		model.addAttribute(CITY_BEAN, new CityBean());
-
-		logger.info("進入新增城市頁面: " + CITY_ADD_PAGE);
 
 		return CITY_ADD_PAGE;
 	}
@@ -211,8 +206,6 @@ public class CityController implements ModelAttributeConstants, PageNameConstant
 
 		// 放入 Session，使表單回填 CityBean 內所有資料
 		model.addAttribute(CITY_BEAN, cityBean);
-
-		logger.info("進入編輯城市資訊頁面: " + CITY_EDIT_PAGE);
 
 		return CITY_EDIT_PAGE;
 	}

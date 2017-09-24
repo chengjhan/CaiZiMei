@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageService.java
  * Author: 詹晟
- * Date: 2017/8/22
+ * Date: 2017/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,7 +34,7 @@ public interface ImageService {
 	/**
 	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectByIm_id(Integer)
 	 */
-	ImageBean selectByIm_id(Integer im_id);
+	ImageBean selectByIm_id(Integer im_id) throws IllegalArgumentException;
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#insert(ImageBean)

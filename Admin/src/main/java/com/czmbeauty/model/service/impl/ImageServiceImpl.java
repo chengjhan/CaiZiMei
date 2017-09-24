@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -70,11 +70,12 @@ public class ImageServiceImpl implements ImageService {
 	 * 
 	 * @param im_id
 	 *            Integer --> 圖片流水號
+	 * @throws IllegalArgumentException
 	 * @return ImageBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public ImageBean selectByIm_id(Integer im_id) {
+	public ImageBean selectByIm_id(Integer im_id) throws IllegalArgumentException {
 
 		return imageDao.selectByIm_id(im_id);
 	}

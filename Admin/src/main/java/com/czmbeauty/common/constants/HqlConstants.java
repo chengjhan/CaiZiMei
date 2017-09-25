@@ -38,6 +38,10 @@ public interface HqlConstants {
 	/** 類別資料夾名稱搜尋 */
 	public static final String HQL_SELECT_CATEGORY_BY_DIRECTORY = "from CategoryBean where ca_directory=:ca_directory";
 
+	// base
+	/** 類別流水號搜尋 */
+	public static final String HQL_SELECT_BASE_BY_CATEGORY = "from BaseBean where ba_ca_id=:ba_ca_id order by ba_status desc, ba_id asc";
+
 	// video
 	/** 搜尋開啟的影片 */
 	public static final String HQL_SELECT_OPEN_VIDEO = "from VideoBean where vi_ca_id=:vi_ca_id and vi_status=1";

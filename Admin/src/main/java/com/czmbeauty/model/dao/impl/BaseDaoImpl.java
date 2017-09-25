@@ -52,8 +52,6 @@ public class BaseDaoImpl implements BaseDao {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<BaseBean> selectPagination(Integer ba_ca_id, int first, int max) {
 
-		String hql = "from BaseBean where ba_ca_id=" + ba_ca_id + " order by ba_status desc, ba_id asc";
-
 		// outer method
 		List<BaseBean> result = (List<BaseBean>) hibernateTemplate.execute(
 
@@ -62,7 +60,8 @@ public class BaseDaoImpl implements BaseDao {
 
 					// inner method
 					public Object doInHibernate(Session session) throws HibernateException {
-						List<BaseBean> list = session.createQuery(hql).setFirstResult(first).setMaxResults(max)
+						List<BaseBean> list = session.createQuery(HQL_SELECT_BASE_BY_CATEGORY)
+								.setParameter("ba_ca_id", ba_ca_id).setFirstResult(first).setMaxResults(max)
 								.getResultList();
 						return list;
 					}

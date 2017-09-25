@@ -102,30 +102,26 @@ public class BaseServiceImpl implements BaseService {
 	@Transactional
 	public BaseBean insert(BaseBean baseBean) {
 
-		BaseBean result = null;
-
-		if (baseBean != null) {
-
-			// 地址轉換經緯度
-			String ci_name = cityDao.selectByCi_id(baseBean.getBa_CityBean().getCi_id()).getCi_name();
-			String ba_address = baseBean.getBa_address();
-			Double[] LatLng = new Double[2];
-			try {
-				LatLng = Geocoder.addressToLatLng(ci_name + ba_address);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			baseBean.setBa_latitude(LatLng[0]);
-			baseBean.setBa_longitude(LatLng[1]);
-			baseBean.setBa_insert_time(new java.util.Date());
-			baseBean.setBa_update_time(new java.util.Date());
-			baseBean.setBa_status(1);
-			baseBean.setBa_status_time(new java.util.Date());
-
-			result = baseDao.insert(baseBean);
+		// 地址轉換經緯度
+		String ci_name = cityDao.selectByCi_id(baseBean.getBa_CityBean().getCi_id()).getCi_name();
+		String ba_address = baseBean.getBa_address();
+		Double[] LatLng = new Double[2];
+		try {
+			LatLng = Geocoder.addressToLatLng(ci_name + ba_address);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return result;
+
+		baseBean.setBa_latitude(LatLng[0]);
+		baseBean.setBa_longitude(LatLng[1]);
+		baseBean.setBa_insert_time(new java.util.Date());
+		baseBean.setBa_update_time(new java.util.Date());
+		baseBean.setBa_status(1);
+		baseBean.setBa_status_time(new java.util.Date());
+
+		baseBean = baseDao.insert(baseBean);
+
+		return baseBean;
 	}
 
 	/**

@@ -42,7 +42,14 @@ public interface HqlConstants {
 	/** 類別流水號搜尋 */
 	public static final String HQL_SELECT_BASE_BY_CATEGORY = "from BaseBean where ba_ca_id=:ba_ca_id order by ba_status desc, ba_id asc";
 
+	// image
+	/** 類別流水號搜尋 */
+	public static final String HQL_SELECT_IMAGE_BY_CATEGORY = "from ImageBean where im_ca_id=:im_ca_id order by im_status desc, im_rank asc, im_id asc";
+
 	// video
+	/** 類別流水號搜尋 */
+	public static final String HQL_SELECT_VIDEO_BY_CATEGORY = "from VideoBean where vi_ca_id=:vi_ca_id order by vi_rank asc, vi_id asc";
+
 	/** 搜尋開啟的影片 */
 	public static final String HQL_SELECT_OPEN_VIDEO = "from VideoBean where vi_ca_id=:vi_ca_id and vi_status=1";
 

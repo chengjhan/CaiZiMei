@@ -43,9 +43,9 @@ public class BaseDaoImpl implements BaseDao {
 	 * @param ba_ca_id
 	 *            Integer --> 類別流水號
 	 * @param first
-	 *            int --> 起始筆數
+	 *            int --> 當頁起始筆數
 	 * @param max
-	 *            int --> 最大筆數
+	 *            int --> 每頁最大筆數
 	 * @return List<BaseBean>
 	 */
 	@Override

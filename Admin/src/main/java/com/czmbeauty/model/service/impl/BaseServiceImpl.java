@@ -49,7 +49,7 @@ public class BaseServiceImpl implements BaseService {
 	 * @param page
 	 *            Integer --> 當前頁碼
 	 * @param max
-	 *            int --> 最大筆數
+	 *            int --> 每頁最大筆數
 	 * @return List<BaseBean>
 	 */
 	@Override

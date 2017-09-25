@@ -40,6 +40,7 @@ import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
+import com.czmbeauty.common.util.Pagination;
 import com.czmbeauty.model.entity.BaseBean;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.CityBean;
@@ -111,24 +112,6 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 		webDataBinder.registerCustomEditor(CountryBean.class, new CountryBeanPropertyEditor());
 		webDataBinder.registerCustomEditor(StateBean.class, new StateBeanPropertyEditor());
 		webDataBinder.registerCustomEditor(CityBean.class, new CityBeanPropertyEditor());
-	}
-
-	/**
-	 * 取得總頁數
-	 * 
-	 * @param ba_CategoryBean
-	 *            CategoryBean
-	 * @return int
-	 */
-	private int getPageCount(CategoryBean ba_CategoryBean) {
-		int totalRowCount = baseService.selectCountByBa_Ca(ba_CategoryBean);
-		int pageCount = 0;
-		if (totalRowCount % BASE_PAGE_ROW_COUNT == 0) {
-			pageCount = totalRowCount / BASE_PAGE_ROW_COUNT;
-		} else {
-			pageCount = totalRowCount / BASE_PAGE_ROW_COUNT + 1;
-		}
-		return pageCount;
 	}
 
 	/**
@@ -224,17 +207,20 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
 
+		int pageRowCount = BASE_PAGE_ROW_COUNT;
+
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
 
 		// 取得每頁最大筆數
-		model.addAttribute(PAGE_ROW_COUNT, BASE_PAGE_ROW_COUNT);
+		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
 
 		// 取得當前頁碼的據點 List，放入 table
-		model.addAttribute(BASE_LIST, baseService.selectPagination(categoryBean.getCa_id(), page, BASE_PAGE_ROW_COUNT));
+		model.addAttribute(BASE_LIST, baseService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
 
 		// 取得總頁數
-		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
+		model.addAttribute(PAGE_COUNT,
+				Pagination.getPageCount(baseService.selectCountByBa_Ca(categoryBean), pageRowCount));
 
 		return categoryBean.getCa_directory() + LIST_PAGE;
 	}

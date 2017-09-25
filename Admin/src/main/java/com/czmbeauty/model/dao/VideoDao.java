@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoDao.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,10 +22,10 @@ import com.czmbeauty.model.entity.VideoBean;
 public interface VideoDao extends HqlConstants {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.VideoDaoImpl#selectPagination(String,
+	 * @see com.czmbeauty.model.dao.impl.VideoDaoImpl#selectPagination(Integer,
 	 *      int, int)
 	 */
-	List<VideoBean> selectPagination(String hql, int first, int max);
+	List<VideoBean> selectPagination(Integer vi_ca_id, int first, int max);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.VideoDaoImpl#selectCountByVi_Ca(CategoryBean)

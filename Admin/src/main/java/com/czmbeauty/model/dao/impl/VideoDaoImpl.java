@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,17 +40,17 @@ public class VideoDaoImpl implements VideoDao {
 	/**
 	 * 搜尋特定類別的所有影片 (分頁)
 	 * 
-	 * @param hql
-	 *            String
+	 * @param vi_ca_id
+	 *            Integer --> 類別流水號
 	 * @param first
-	 *            int --> 起始筆數
+	 *            int --> 當頁起始筆數
 	 * @param max
-	 *            int --> 最大筆數
+	 *            int --> 每頁最大筆數
 	 * @return List<ImageBean>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<VideoBean> selectPagination(String hql, int first, int max) {
+	public List<VideoBean> selectPagination(Integer vi_ca_id, int first, int max) {
 
 		// outer method
 		List<VideoBean> result = (List<VideoBean>) hibernateTemplate.execute(
@@ -60,7 +60,8 @@ public class VideoDaoImpl implements VideoDao {
 
 					// inner method
 					public Object doInHibernate(Session session) throws HibernateException {
-						List<VideoBean> list = session.createQuery(hql).setFirstResult(first).setMaxResults(max)
+						List<VideoBean> list = session.createQuery(HQL_SELECT_VIDEO_BY_CATEGORY)
+								.setParameter("vi_ca_id", vi_ca_id).setFirstResult(first).setMaxResults(max)
 								.getResultList();
 						return list;
 					}

@@ -37,6 +37,7 @@ import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
+import com.czmbeauty.common.util.Pagination;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.VideoBean;
 import com.czmbeauty.model.service.CategoryService;
@@ -81,24 +82,6 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
 		webDataBinder.registerCustomEditor(Integer.class, new PrimitiveNumberEditor(Integer.class, true));
-	}
-
-	/**
-	 * 取得總頁數
-	 * 
-	 * @param vi_CategoryBean
-	 *            CategoryBean
-	 * @return int
-	 */
-	private int getPageCount(CategoryBean vi_CategoryBean) {
-		int totalRowCount = videoService.selectCountByVi_Ca(vi_CategoryBean);
-		int pageCount = 0;
-		if (totalRowCount % VIDEO_PAGE_ROW_COUNT == 0) {
-			pageCount = totalRowCount / VIDEO_PAGE_ROW_COUNT;
-		} else {
-			pageCount = totalRowCount / VIDEO_PAGE_ROW_COUNT + 1;
-		}
-		return pageCount;
 	}
 
 	/**
@@ -198,22 +181,20 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
 
-		String hql = "from VideoBean where vi_ca_id=" + categoryBean.getCa_id() + " order by vi_rank asc, vi_id asc";
+		int pageRowCount = VIDEO_PAGE_ROW_COUNT;
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
 
 		// 取得每頁最大筆數
-		model.addAttribute(PAGE_ROW_COUNT, VIDEO_PAGE_ROW_COUNT);
-
-		// 取得當頁起始筆數
-		int first = (page - 1) * VIDEO_PAGE_ROW_COUNT;
+		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
 
 		// 取得當前頁碼的影片 List，放入 table
-		model.addAttribute(VIDEO_LIST, videoService.selectPagination(hql, first, VIDEO_PAGE_ROW_COUNT));
+		model.addAttribute(VIDEO_LIST, videoService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
 
 		// 取得總頁數
-		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
+		model.addAttribute(PAGE_COUNT,
+				Pagination.getPageCount(videoService.selectCountByVi_Ca(categoryBean), pageRowCount));
 
 		return categoryBean.getCa_directory() + LIST_PAGE;
 	}

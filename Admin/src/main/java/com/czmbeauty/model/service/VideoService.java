@@ -21,10 +21,10 @@ import com.czmbeauty.model.entity.VideoBean;
 public interface VideoService {
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectPagination(String,
-	 *      int, int)
+	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectPagination(Integer,
+	 *      Integer, int)
 	 */
-	List<VideoBean> selectPagination(String hql, int first, int max);
+	List<VideoBean> selectPagination(Integer vi_ca_id, Integer page, int max);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectCountByVi_Ca(CategoryBean)

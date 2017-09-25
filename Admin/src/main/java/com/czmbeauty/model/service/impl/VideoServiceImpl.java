@@ -36,19 +36,22 @@ public class VideoServiceImpl implements VideoService {
 	/**
 	 * 搜尋特定類別的所有影片 (分頁)
 	 * 
-	 * @param hql
-	 *            String
-	 * @param first
-	 *            int --> 起始筆數
+	 * @param vi_ca_id
+	 *            Integer --> 類別流水號
+	 * @param page
+	 *            Integer --> 當前頁碼
 	 * @param max
-	 *            int --> 最大筆數
+	 *            int --> 每頁最大筆數
 	 * @return List<VideoBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<VideoBean> selectPagination(String hql, int first, int max) {
+	public List<VideoBean> selectPagination(Integer vi_ca_id, Integer page, int max) {
 
-		return videoDao.selectPagination(hql, first, max);
+		// 取得當頁起始筆數
+		int first = (page - 1) * max;
+
+		return videoDao.selectPagination(vi_ca_id, first, max);
 	}
 
 	/**

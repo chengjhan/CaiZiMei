@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/22
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -44,19 +44,22 @@ public class BaseServiceImpl implements BaseService {
 	/**
 	 * 搜尋特定類別的所有據點 (分頁)
 	 * 
-	 * @param hql
-	 *            String
-	 * @param first
-	 *            int --> 起始筆數
+	 * @param ba_ca_id
+	 *            Integer --> 類別流水號
+	 * @param page
+	 *            Integer --> 當前頁碼
 	 * @param max
 	 *            int --> 最大筆數
 	 * @return List<BaseBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<BaseBean> selectPagination(String hql, int first, int max) {
+	public List<BaseBean> selectPagination(Integer ba_ca_id, Integer page, int max) {
 
-		return baseDao.selectPagination(hql, first, max);
+		// 取得當頁起始筆數
+		int first = (page - 1) * max;
+
+		return baseDao.selectPagination(ba_ca_id, first, max);
 	}
 
 	/**

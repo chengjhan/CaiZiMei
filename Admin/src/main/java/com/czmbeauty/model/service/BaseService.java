@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseService.java
  * Author: 詹晟
- * Date: 2017/9/22
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,10 +21,10 @@ import com.czmbeauty.model.entity.CategoryBean;
 public interface BaseService {
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectPagination(String,
-	 *      int, int)
+	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectPagination(Integer,
+	 *      Integer, int)
 	 */
-	List<BaseBean> selectPagination(String hql, int first, int max);
+	List<BaseBean> selectPagination(Integer ba_ca_id, Integer page, int max);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#selectCountByBa_Ca(CategoryBean)

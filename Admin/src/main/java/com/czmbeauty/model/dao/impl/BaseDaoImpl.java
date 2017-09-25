@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/7
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,8 +40,8 @@ public class BaseDaoImpl implements BaseDao {
 	/**
 	 * 搜尋特定類別的所有據點 (分頁)
 	 * 
-	 * @param hql
-	 *            String
+	 * @param ba_ca_id
+	 *            Integer --> 類別流水號
 	 * @param first
 	 *            int --> 起始筆數
 	 * @param max
@@ -50,7 +50,9 @@ public class BaseDaoImpl implements BaseDao {
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<BaseBean> selectPagination(String hql, int first, int max) {
+	public List<BaseBean> selectPagination(Integer ba_ca_id, int first, int max) {
+
+		String hql = "from BaseBean where ba_ca_id=" + ba_ca_id + " order by ba_status desc, ba_id asc";
 
 		// outer method
 		List<BaseBean> result = (List<BaseBean>) hibernateTemplate.execute(

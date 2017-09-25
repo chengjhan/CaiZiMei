@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseDao.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,10 +22,10 @@ import com.czmbeauty.model.entity.CategoryBean;
 public interface BaseDao extends HqlConstants {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectPagination(String,
+	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectPagination(Integer,
 	 *      int, int)
 	 */
-	List<BaseBean> selectPagination(String hql, int first, int max);
+	List<BaseBean> selectPagination(Integer ba_ca_id, int first, int max);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.BaseDaoImpl#selectCountByBa_Ca(CategoryBean)

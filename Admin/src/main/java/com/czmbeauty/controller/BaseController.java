@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/24
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -224,19 +224,14 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
 
-		String hql = "from BaseBean where ba_ca_id=" + categoryBean.getCa_id() + " order by ba_status desc, ba_id asc";
-
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, BASE_PAGE_ROW_COUNT);
 
-		// 取得當頁起始筆數
-		int first = (page - 1) * BASE_PAGE_ROW_COUNT;
-
 		// 取得當前頁碼的據點 List，放入 table
-		model.addAttribute(BASE_LIST, baseService.selectPagination(hql, first, BASE_PAGE_ROW_COUNT));
+		model.addAttribute(BASE_LIST, baseService.selectPagination(categoryBean.getCa_id(), page, BASE_PAGE_ROW_COUNT));
 
 		// 取得總頁數
 		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));

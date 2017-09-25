@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.VideoBean;
 import com.czmbeauty.model.service.CategoryService;
@@ -112,15 +113,16 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 */
 	private String add(VideoBean videoBean, BindingResult bindingResult) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
 		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
 
 		if (bindingResult.hasErrors()) {
 
 			logger.error(ca_name + "新增失敗: 資料未填");
 
-			return REDIRECT + ca_directory + ADD_PAGE;
+			return ca_directory + ADD_PAGE;
 
 		} else {
 
@@ -148,16 +150,17 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 */
 	private String edit(VideoBean videoBean, BindingResult bindingResult) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
 		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
 
 		if (bindingResult.hasErrors()) {
 
 			logger.error(ca_name + "編輯失敗: 資料未填");
 
-			return REDIRECT + ca_directory + EDIT_PAGE + QUESTION + VIDEO_ID + EQUAL + videoBean.getVi_id() + AND + PAGE
-					+ EQUAL + currentPage;
+			return ca_directory + EDIT_PAGE + QUESTION + VIDEO_ID + EQUAL + videoBean.getVi_id() + AND + PAGE + EQUAL
+					+ currentPage;
 
 		}
 		videoBean.setVi_CategoryBean(categoryBean);
@@ -178,13 +181,22 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/video*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		CategoryBean categoryBean = categoryService.selectByCa_directory(ca_directory);
+		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
+
+		CategoryBean categoryBean;
+		try {
+			categoryBean = categoryService.selectByCa_directory(requestPage);
+
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
 
 		String hql = "from VideoBean where vi_ca_id=" + categoryBean.getCa_id() + " order by vi_rank asc, vi_id asc";
 
@@ -203,9 +215,7 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 		// 取得總頁數
 		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
 
-		logger.info("進入" + categoryBean.getCa_name() + "一覽頁面: " + ca_directory + LIST_PAGE);
-
-		return ca_directory + LIST_PAGE;
+		return categoryBean.getCa_directory() + LIST_PAGE;
 	}
 
 	/**
@@ -213,20 +223,27 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 * 
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
 	@RequestMapping(value = "/video*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
+
+		CategoryBean categoryBean;
+		try {
+			categoryBean = categoryService.selectByCa_directory(requestPage);
+
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
 
 		// 新增 form backing object
 		model.addAttribute(VIDEO_BEAN, new VideoBean());
 
-		logger.info("進入新增" + ca_name + "頁面: " + ca_directory + ADD_PAGE);
-
-		return ca_directory + ADD_PAGE;
+		return categoryBean.getCa_directory() + ADD_PAGE;
 	}
 
 	/**
@@ -253,6 +270,7 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 *            String --> 當前頁碼
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
 	@RequestMapping(value = "/video*/edit", method = RequestMethod.GET)
@@ -260,15 +278,35 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 
 		currentPage = page;
 
-		String ca_directory = request.getServletPath().split("/")[1];
-		String ca_name = categoryService.selectByCa_directory(ca_directory).getCa_name();
+		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
 
-		// 取得選定影片 id 的 VideoBean，使表單回填 VideoBean 內所有資料
-		model.addAttribute(VIDEO_BEAN, videoService.selectByVi_id(videoBean_vi_id.getVi_id()));
+		CategoryBean categoryBean;
+		VideoBean videoBean;
+		try {
+			categoryBean = categoryService.selectByCa_directory(requestPage);
 
-		logger.info("進入編輯" + ca_name + "資訊頁面: " + ca_directory + EDIT_PAGE);
+			// 取得選定影片 id 的 VideoBean
+			videoBean = videoService.selectByVi_id(videoBean_vi_id.getVi_id());
 
-		return ca_directory + EDIT_PAGE;
+			if (videoBean == null) {
+
+				throw new PageNotFoundException(requestPage);
+			}
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+
+		} catch (IllegalArgumentException e) {
+
+			logger.error("找不到這個頁面: " + requestPage);
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
+
+		// 使表單回填 VideoBean 內所有資料
+		model.addAttribute(VIDEO_BEAN, videoBean);
+
+		return categoryBean.getCa_directory() + EDIT_PAGE;
 	}
 
 	/**

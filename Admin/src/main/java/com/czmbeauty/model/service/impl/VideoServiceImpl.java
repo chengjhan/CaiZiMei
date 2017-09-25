@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/3
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -70,11 +70,12 @@ public class VideoServiceImpl implements VideoService {
 	 * 
 	 * @param vi_id
 	 *            Integer --> 影片流水號
+	 * @throws IllegalArgumentException
 	 * @return VideoBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public VideoBean selectByVi_id(Integer vi_id) {
+	public VideoBean selectByVi_id(Integer vi_id) throws IllegalArgumentException {
 
 		return videoDao.selectByVi_id(vi_id);
 	}

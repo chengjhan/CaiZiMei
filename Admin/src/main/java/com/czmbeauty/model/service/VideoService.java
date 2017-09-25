@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoService.java
  * Author: 詹晟
- * Date: 2017/9/1
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,7 +34,7 @@ public interface VideoService {
 	/**
 	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectByVi_id(Integer)
 	 */
-	VideoBean selectByVi_id(Integer vi_id);
+	VideoBean selectByVi_id(Integer vi_id) throws IllegalArgumentException;
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#insert(VideoBean)

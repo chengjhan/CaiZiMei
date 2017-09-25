@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/19
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -110,15 +110,33 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	/**
-	 * 搜尋所有管理員
+	 * 搜尋所有管理員 (分頁)
 	 * 
+	 * @param page
+	 *            Integer --> 當前頁碼
+	 * @param max
+	 *            int --> 每頁最大筆數
 	 * @return List<AdminBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<AdminBean> selectAll() {
+	public List<AdminBean> selectPagination(Integer page, int max) {
 
-		return adminDao.selectAll();
+		// 取得當頁起始筆數
+		int first = (page - 1) * max;
+
+		return adminDao.selectPagination(first, max);
+	}
+
+	/**
+	 * 搜尋所有管理員筆數 (分頁)
+	 * 
+	 * @return int
+	 */
+	@Override
+	public int selectCount() {
+
+		return adminDao.selectCount();
 	}
 
 	/**

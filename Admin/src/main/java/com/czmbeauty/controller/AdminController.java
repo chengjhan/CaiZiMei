@@ -2,13 +2,17 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/24
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
+import static com.czmbeauty.common.constants.PaginationConstants.ADMIN_PAGE_ROW_COUNT;
+import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
+import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
+import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW_COUNT;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,6 +34,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.util.CryptographicHashFunction;
+import com.czmbeauty.common.util.Pagination;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
 import com.czmbeauty.model.service.AdminLogService;
@@ -567,15 +572,28 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	/**
 	 * 管理員一覽 - 初期處理
 	 * 
+	 * @param page
+	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
-	public String listView(Model model) {
+	public String listView(@RequestParam Integer page, Model model) {
 
-		// 取得所有管理員 List，放入 table
-		model.addAttribute(ADMIN_LIST, adminService.selectAll());
+		int pageRowCount = ADMIN_PAGE_ROW_COUNT;
+
+		// 取得當前頁碼
+		model.addAttribute(CURRENT_PAGE, page);
+
+		// 取得每頁最大筆數
+		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
+
+		// 取得當前頁碼的管理員 List，放入 table
+		model.addAttribute(ADMIN_LIST, adminService.selectPagination(page, pageRowCount));
+
+		// 取得總頁數
+		model.addAttribute(PAGE_COUNT, Pagination.getPageCount(adminService.selectCount(), pageRowCount));
 
 		return ADMIN_LIST_PAGE;
 	}

@@ -9,7 +9,7 @@
 	<div class="col-sm-3 col-md-2 sidebar">
 		<ul class="nav nav-sidebar">
 			<li id="id-li-admin-sign-up"><a href="<%=request.getContextPath()%>/admin/sign-up">管理員註冊</a></li>
-			<li id="id-li-admin-list"><a href="<%=request.getContextPath()%>/admin/list">管理員一覽</a></li>
+			<li id="id-li-admin-list"><a href="<%=request.getContextPath()%>/admin/list?page=1">管理員一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
 			<li id="id-li-country-list"><a href="<%=request.getContextPath()%>/country/list">國家一覽</a></li>

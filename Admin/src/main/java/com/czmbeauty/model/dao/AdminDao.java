@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDao.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,9 +21,14 @@ import com.czmbeauty.model.entity.AdminBean;
 public interface AdminDao extends HqlConstants {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.AdminDaoImpl#selectAll()
+	 * @see com.czmbeauty.model.dao.impl.AdminDaoImpl#selectPagination(int, int)
 	 */
-	List<AdminBean> selectAll();
+	List<AdminBean> selectPagination(int first, int max);
+
+	/**
+	 * @see com.czmbeauty.model.dao.impl.AdminDaoImpl#selectCount()
+	 */
+	int selectCount();
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.AdminDaoImpl#selectByAd_id(Integer)

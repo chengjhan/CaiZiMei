@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,12 +10,16 @@ package com.czmbeauty.model.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.AdminDao;
 import com.czmbeauty.model.entity.AdminBean;
+import com.czmbeauty.model.entity.BaseBean;
 
 /**
  * admin DAO implement
@@ -32,15 +36,43 @@ public class AdminDaoImpl implements AdminDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋所有管理員
+	 * 搜尋所有管理員 (分頁)
 	 * 
+	 * @param first
+	 *            int --> 當頁起始筆數
+	 * @param max
+	 *            int --> 每頁最大筆數
 	 * @return List<AdminBean>
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
-	public List<AdminBean> selectAll() {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<AdminBean> selectPagination(int first, int max) {
 
-		return (List<AdminBean>) hibernateTemplate.find(HQL_SELECT_ALL_ADMIN);
+		// outer method
+		List<AdminBean> result = (List<AdminBean>) hibernateTemplate.execute(
+
+				// inner class
+				new HibernateCallback() {
+
+					// inner method
+					public Object doInHibernate(Session session) throws HibernateException {
+						List<BaseBean> list = session.createQuery(HQL_SELECT_ALL_ADMIN).setFirstResult(first)
+								.setMaxResults(max).getResultList();
+						return list;
+					}
+				});
+		return result;
+	}
+
+	/**
+	 * 搜尋所有管理員筆數 (分頁)
+	 * 
+	 * @return int
+	 */
+	@Override
+	public int selectCount() {
+
+		return hibernateTemplate.find(HQL_SELECT_ALL_ADMIN).size();
 	}
 
 	/**

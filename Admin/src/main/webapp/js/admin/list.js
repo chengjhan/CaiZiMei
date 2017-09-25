@@ -1,3 +1,12 @@
+// 分頁
+$(document).ready(function(){
+	var href = document.location.href; // 取得當前 url
+	var param = href.split("?"); // String
+	var currentPage = param[1].split("="); // String
+	var id_li_page = "#id-li-page-" + currentPage[1];
+	$(id_li_page).addClass("active").children("a").removeAttr("href");
+});
+
 // 管理員開關
 $(document).on("click", ".ad-status-switch", function(){
 	var $this = $(this);

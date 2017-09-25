@@ -2,6 +2,8 @@ package com.czmbeauty.common.constants;
 
 public interface PaginationConstants {
 
+	public static final int ADMIN_PAGE_ROW_COUNT = 10;
+
 	public static final int BASE_PAGE_ROW_COUNT = 10;
 
 	public static final int IMAGE_PAGE_ROW_COUNT = 5;

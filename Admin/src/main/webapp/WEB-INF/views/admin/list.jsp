@@ -76,6 +76,24 @@
 					</table>
 					<!-- table end -->
 					
+					<!-- pagination -->
+					<c:if test="${pageCount > 1}">
+						<nav style="text-align:center">
+							<ul class="pagination" style="margin:0">
+								<c:if test="${currentPage > 1}">
+									<li><a href="<%=request.getContextPath()%>/admin/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+								</c:if>
+								<c:forEach begin="1" end="${pageCount}" varStatus="status">
+									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/admin/list?page=${status.count}">${status.count}</a></li>
+								</c:forEach>
+								<c:if test="${currentPage < pageCount}">
+									<li><a href="<%=request.getContextPath()%>/admin/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</c:if>
+					<!-- pagination end -->
+					
 				</div>
 				<!-- content end -->
 				

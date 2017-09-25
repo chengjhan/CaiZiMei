@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/24
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -44,6 +44,7 @@ import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
+import com.czmbeauty.common.util.Pagination;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
 import com.czmbeauty.model.service.CategoryService;
@@ -94,24 +95,6 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
 		webDataBinder.registerCustomEditor(Integer.class, new PrimitiveNumberEditor(Integer.class, true));
-	}
-
-	/**
-	 * 取得總頁數
-	 * 
-	 * @param im_CategoryBean
-	 *            CategoryBean
-	 * @return int
-	 */
-	private int getPageCount(CategoryBean im_CategoryBean) {
-		int totalRowCount = imageService.selectCountByIm_Ca(im_CategoryBean);
-		int pageCount = 0;
-		if (totalRowCount % IMAGE_PAGE_ROW_COUNT == 0) {
-			pageCount = totalRowCount / IMAGE_PAGE_ROW_COUNT;
-		} else {
-			pageCount = totalRowCount / IMAGE_PAGE_ROW_COUNT + 1;
-		}
-		return pageCount;
 	}
 
 	/**
@@ -274,23 +257,20 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
 
-		String hql = "from ImageBean where im_ca_id=" + categoryBean.getCa_id()
-				+ " order by im_status desc, im_rank asc, im_id asc";
+		int pageRowCount = IMAGE_PAGE_ROW_COUNT;
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
 
 		// 取得每頁最大筆數
-		model.addAttribute(PAGE_ROW_COUNT, IMAGE_PAGE_ROW_COUNT);
-
-		// 取得當頁起始筆數
-		int first = (page - 1) * IMAGE_PAGE_ROW_COUNT;
+		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
 
 		// 取得當前頁碼的圖片 List，放入 table
-		model.addAttribute(IMAGE_LIST, imageService.selectPagination(hql, first, IMAGE_PAGE_ROW_COUNT));
+		model.addAttribute(IMAGE_LIST, imageService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
 
 		// 取得總頁數
-		model.addAttribute(PAGE_COUNT, getPageCount(categoryBean));
+		model.addAttribute(PAGE_COUNT,
+				Pagination.getPageCount(imageService.selectCountByIm_Ca(categoryBean), pageRowCount));
 
 		return categoryBean.getCa_directory() + LIST_PAGE;
 	}

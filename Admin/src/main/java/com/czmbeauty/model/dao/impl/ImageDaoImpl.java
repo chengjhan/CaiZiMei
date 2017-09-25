@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageDaoImpl.java
  * Author: 詹晟
- * Date: 2017/8/22
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -40,17 +40,17 @@ public class ImageDaoImpl implements ImageDao {
 	/**
 	 * 搜尋特定類別的所有圖片 (分頁)
 	 * 
-	 * @param hql
-	 *            String
+	 * @param im_ca_id
+	 *            Integer --> 類別流水號
 	 * @param first
-	 *            int --> 起始筆數
+	 *            int --> 當頁起始筆數
 	 * @param max
-	 *            int --> 最大筆數
+	 *            int --> 每頁最大筆數
 	 * @return List<ImageBean>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<ImageBean> selectPagination(String hql, int first, int max) {
+	public List<ImageBean> selectPagination(Integer im_ca_id, int first, int max) {
 
 		// outer method
 		List<ImageBean> result = (List<ImageBean>) hibernateTemplate.execute(
@@ -60,7 +60,8 @@ public class ImageDaoImpl implements ImageDao {
 
 					// inner method
 					public Object doInHibernate(Session session) throws HibernateException {
-						List<ImageBean> list = session.createQuery(hql).setFirstResult(first).setMaxResults(max)
+						List<ImageBean> list = session.createQuery(HQL_SELECT_IMAGE_BY_CATEGORY)
+								.setParameter("im_ca_id", im_ca_id).setFirstResult(first).setMaxResults(max)
 								.getResultList();
 						return list;
 					}

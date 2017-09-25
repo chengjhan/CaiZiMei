@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/24
+ * Date: 2017/9/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -36,19 +36,22 @@ public class ImageServiceImpl implements ImageService {
 	/**
 	 * 搜尋特定類別的所有圖片 (分頁)
 	 * 
-	 * @param hql
-	 *            String
-	 * @param first
-	 *            int --> 起始筆數
+	 * @param im_ca_id
+	 *            Integer --> 類別流水號
+	 * @param page
+	 *            Integer --> 當前頁碼
 	 * @param max
-	 *            int --> 最大筆數
+	 *            int --> 每頁最大筆數
 	 * @return List<ImageBean>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<ImageBean> selectPagination(String hql, int first, int max) {
+	public List<ImageBean> selectPagination(Integer im_ca_id, Integer page, int max) {
 
-		return imageDao.selectPagination(hql, first, max);
+		// 取得當頁起始筆數
+		int first = (page - 1) * max;
+
+		return imageDao.selectPagination(im_ca_id, first, max);
 	}
 
 	/**

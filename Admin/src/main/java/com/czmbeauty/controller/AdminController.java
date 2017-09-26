@@ -36,8 +36,6 @@ import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.common.util.Pagination;
 import com.czmbeauty.model.entity.AdminBean;
-import com.czmbeauty.model.entity.AdminLogBean;
-import com.czmbeauty.model.service.AdminLogService;
 import com.czmbeauty.model.service.AdminService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -66,12 +64,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@Autowired
 	private AdminService adminService;
-
-	/**
-	 * 注入 AdminLogService
-	 */
-	@Autowired
-	private AdminLogService adminLogService;
 
 	/**
 	 * 註冊 - 初期處理
@@ -373,13 +365,6 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 				// 放入 Session
 				model.addAttribute(ADMIN, adminBean);
 
-				// 寫入日誌
-				AdminLogBean adminLogBean = new AdminLogBean();
-				adminLogBean.setAl_AdminBean(adminBean);
-				adminLogBean.setAl_operation("登入");
-				adminLogBean.setAl_ip(request.getRemoteAddr());
-				adminLogService.insert(adminLogBean);
-
 				HttpSession session = request.getSession();
 				String next = (String) session.getAttribute(NEXT_PAGE);
 
@@ -558,21 +543,12 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	/**
 	 * 登出
 	 * 
-	 * @param admin
-	 *            AdminBean --> Session
 	 * @param sessionStatus
 	 *            SessionStatus
 	 * @return /WEB-INF/views/index.jsp
 	 */
-	@RequestMapping(value = "/secure/sign-out", method = RequestMethod.GET)
-	public String signOutProcess(@ModelAttribute(ADMIN) AdminBean admin, SessionStatus sessionStatus) {
-
-		// 寫入日誌
-		AdminLogBean adminLogBean = new AdminLogBean();
-		adminLogBean.setAl_AdminBean(admin);
-		adminLogBean.setAl_operation("登出");
-		adminLogBean.setAl_ip(request.getRemoteAddr());
-		adminLogService.insert(adminLogBean);
+	@RequestMapping(value = "/secure/sign-out.do", method = RequestMethod.GET)
+	public String signOutProcess(SessionStatus sessionStatus) {
 
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();

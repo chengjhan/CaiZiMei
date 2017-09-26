@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,9 +39,13 @@ public class SigninInterceptor implements HandlerInterceptor {
 			next = pageName; // 頁面名
 		}
 
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
+
 		if (adminBean == null) {
 
-			logger.info("未登入，攔截: " + next);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 未登入，攔截: " + next);
 
 			// 將原請求畫面及參數，放入 Session
 			session.setAttribute(NEXT_PAGE, next);
@@ -51,7 +56,7 @@ public class SigninInterceptor implements HandlerInterceptor {
 
 		} else {
 
-			logger.info("已登入，放行: " + next);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 已登入，放行: " + next);
 
 			return true;
 		}

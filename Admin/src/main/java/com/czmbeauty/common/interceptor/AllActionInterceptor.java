@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,7 +31,10 @@ public class AllActionInterceptor implements HandlerInterceptor {
 
 		request.setAttribute(REQUEST_ACTION, requestAction);
 
-		logger.info("執行動作: " + requestAction);
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+
+		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
+				+ ") 執行動作: " + requestAction);
 
 		return true;
 	}

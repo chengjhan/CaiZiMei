@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/9/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -52,6 +52,8 @@ import com.google.gson.GsonBuilder;
 public class AdminController implements ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(AdminController.class);
+
+	private String className = this.getClass().getSimpleName();
 
 	/**
 	 * 注入 HttpServletRequest
@@ -104,21 +106,23 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	public String signUpProcess(@RequestParam String ad_password_again, @Valid AdminBean adminBean,
 			BindingResult bindingResult) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (bindingResult.hasErrors()) {
 
-			logger.error("註冊失敗: 格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 註冊失敗: 格式錯誤");
 
 			return ADMIN_SIGN_UP_PAGE;
 
 		} else if (!adminBean.getAd_password().equals(ad_password_again)) {
 
-			logger.error("註冊失敗: 密碼重複錯誤");
+			logger.error("(" + className + "." + methodName + ") 註冊失敗: 密碼重複錯誤");
 
 			return ADMIN_SIGN_UP_PAGE;
 
 		} else if (adminService.selectByAd_username(adminBean.getAd_username()) != null) {
 
-			logger.error("註冊失敗: 帳號重複");
+			logger.error("(" + className + "." + methodName + ") 註冊失敗: 帳號重複");
 
 			return ADMIN_SIGN_UP_PAGE;
 
@@ -126,7 +130,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 			adminService.signUp(adminBean);
 
-			logger.info("註冊成功");
+			logger.info("(" + className + "." + methodName + ") 註冊成功");
 
 			return REDIRECT + INDEX_PAGE;
 		}
@@ -168,9 +172,11 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/admin/edit.do", method = RequestMethod.POST)
 	public String editProcess(@Valid @ModelAttribute(ADMIN) AdminBean admin, BindingResult bindingResult) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (bindingResult.hasErrors()) {
 
-			logger.error("個人資訊編輯失敗: 格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 個人資訊編輯失敗: 格式錯誤");
 
 			return ADMIN_EDIT_PAGE;
 
@@ -178,7 +184,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 			adminService.update(admin);
 
-			logger.info("個人資訊編輯成功");
+			logger.info("(" + className + "." + methodName + ") 個人資訊編輯成功");
 
 			return REDIRECT + ADMIN_PROFILE_PAGE;
 		}
@@ -215,12 +221,14 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	public String changePasswordProcess(@ModelAttribute(ADMIN) AdminBean admin, @RequestParam String ad_password_old,
 			@RequestParam String ad_password_new, @RequestParam String ad_password_new_again, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (ad_password_old == null || ad_password_old.isEmpty() || ad_password_new == null || ad_password_new.isEmpty()
 				|| ad_password_new_again == null || ad_password_new_again.isEmpty()) {
 
 			model.addAttribute(ERROR, "密碼未填");
 
-			logger.error("密碼變更失敗: 密碼未填");
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 密碼未填");
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
@@ -228,7 +236,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 			model.addAttribute(ERROR, "密碼格式錯誤");
 
-			logger.error("密碼變更失敗: 密碼格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 密碼格式錯誤");
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
@@ -236,7 +244,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 			model.addAttribute(ERROR, "新密碼重複錯誤");
 
-			logger.error("密碼變更失敗: 新密碼重複錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 新密碼重複錯誤");
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
@@ -248,7 +256,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
 			model.addAttribute(ADMIN_PASSWORD_OLD_ERROR, "密碼錯誤");
 
-			logger.error("密碼變更失敗: 密碼錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 密碼錯誤");
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
@@ -260,7 +268,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
 			model.addAttribute(ADMIN_PASSWORD_NEW_ERROR, "密碼未變更");
 
-			logger.error("密碼變更失敗: 密碼未變更");
+			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 密碼未變更");
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
@@ -268,7 +276,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 			adminService.updateAd_password(admin, ad_password_new);
 
-			logger.info("密碼變更成功");
+			logger.info("(" + className + "." + methodName + ") 密碼變更成功");
 
 			return REDIRECT + ADMIN_PROFILE_PAGE;
 		}
@@ -287,15 +295,17 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 		HttpSession session = request.getSession();
 		String next = (String) session.getAttribute(NEXT_PAGE);
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (next != null) {
 
 			// 經過 SigninInterceptor
-			logger.info("原請求畫面: " + next);
+			logger.info("(" + className + "." + methodName + ") 原請求畫面: " + next);
 
 		} else {
 
 			// 未經過 SigninInterceptor
-			logger.info("原請求畫面: " + INDEX_PAGE);
+			logger.info("(" + className + "." + methodName + ") 原請求畫面: " + INDEX_PAGE);
 		}
 
 		return ADMIN_SIGN_IN_PAGE;
@@ -317,13 +327,15 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
 	public String signInProcess(@RequestParam String ad_username, @RequestParam String ad_password, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (ad_username == null || ad_username.isEmpty()) {
 
 			model.addAttribute(ADMIN_USERNAME, ad_username);
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
 			model.addAttribute(ERROR, "請填入帳號。");
 
-			logger.error("登入失敗: 帳號未填");
+			logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號未填");
 
 			return ADMIN_SIGN_IN_PAGE;
 
@@ -333,7 +345,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
 			model.addAttribute(ERROR, "請填入密碼。");
 
-			logger.error("登入失敗: 密碼未填");
+			logger.error("(" + className + "." + methodName + ") 登入失敗: 密碼未填");
 
 			return ADMIN_SIGN_IN_PAGE;
 
@@ -347,7 +359,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 				model.addAttribute(ADMIN_PASSWORD, ad_password);
 				model.addAttribute(ERROR, "帳號或密碼錯誤。");
 
-				logger.error("登入失敗: 帳號或密碼錯誤");
+				logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號或密碼錯誤");
 
 				return ADMIN_SIGN_IN_PAGE;
 
@@ -376,14 +388,14 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 					session.removeAttribute(NEXT_PAGE);
 
 					// 經過 SigninInterceptor
-					logger.info("登入成功，導向原請求畫面: " + next);
+					logger.info("(" + className + "." + methodName + ") 登入成功，導向原請求畫面: " + next);
 
 					return REDIRECT.concat(next);
 
 				} else {
 
 					// 未經過 SigninInterceptor
-					logger.info("登入成功，導向首頁: " + INDEX_PAGE);
+					logger.info("(" + className + "." + methodName + ") 登入成功，導向首頁: " + INDEX_PAGE);
 
 					return REDIRECT + INDEX_PAGE;
 				}
@@ -415,12 +427,14 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
 	public String forgetPasswordProcess(@RequestParam String ad_email, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (ad_email == null || ad_email.isEmpty()) {
 
 			model.addAttribute(ADMIN_EMAIL, ad_email);
 			model.addAttribute(ERROR, "請填入信箱。");
 
-			logger.error("發送失敗: 信箱未填");
+			logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱未填");
 
 			return ADMIN_FORGET_PASSWORD_PAGE;
 
@@ -433,7 +447,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 				model.addAttribute(ADMIN_EMAIL, ad_email);
 				model.addAttribute(ERROR, "信箱錯誤。");
 
-				logger.error("發送失敗: 信箱錯誤");
+				logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱錯誤");
 
 				return ADMIN_FORGET_PASSWORD_PAGE;
 
@@ -444,7 +458,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 				// 將管理員 email 放入 Session
 				request.getSession().setAttribute(ADMIN_EMAIL_SESSION, ad_email);
 
-				logger.info("發送成功，傳送至: " + ad_email);
+				logger.info("(" + className + "." + methodName + ") 發送成功，傳送至: " + ad_email);
 
 				return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
 			}
@@ -486,12 +500,14 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
 		AdminBean adminBean = adminService.selectByAd_email(ad_email);
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
 				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
 
 			model.addAttribute(ERROR, "密碼未填");
 
-			logger.error("密碼重設失敗: 密碼未填");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼未填");
 
 			return ADMIN_RESET_PASSWORD_PAGE;
 
@@ -499,7 +515,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 			model.addAttribute(ERROR, "密碼格式錯誤");
 
-			logger.error("密碼重設失敗: 密碼格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼格式錯誤");
 
 			return ADMIN_RESET_PASSWORD_PAGE;
 
@@ -507,7 +523,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 			model.addAttribute(ERROR, "新密碼重複錯誤");
 
-			logger.error("密碼重設失敗: 新密碼重複錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 新密碼重複錯誤");
 
 			return ADMIN_RESET_PASSWORD_PAGE;
 
@@ -519,7 +535,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
 			model.addAttribute(ERROR, "驗證碼錯誤。");
 
-			logger.error("密碼重設失敗: 驗證碼錯誤");
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 驗證碼錯誤");
 
 			return ADMIN_RESET_PASSWORD_PAGE;
 
@@ -533,7 +549,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 			// 清除所有 HttpSession
 			session.invalidate();
 
-			logger.info("密碼重設成功");
+			logger.info("(" + className + "." + methodName + ") 密碼重設成功");
 
 			return REDIRECT + ADMIN_SIGN_IN_PAGE;
 		}
@@ -564,7 +580,9 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 		// 清除所有 HttpSession
 		request.getSession().invalidate();
 
-		logger.info("登出成功");
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		logger.info("(" + className + "." + methodName + ") 登出成功");
 
 		return REDIRECT + INDEX_PAGE;
 	}
@@ -671,7 +689,9 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 		String json = gson.toJson(bean);
 
-		logger.info("JSON = " + json);
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 
 		return json;
 	}

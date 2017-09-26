@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,9 +27,13 @@ public class ResetPasswordInterceptor implements HandlerInterceptor {
 		String servletPath = request.getServletPath(); // /頁面名
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
 
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
+
 		if (ad_email == null) {
 
-			logger.info("攔截: " + pageName);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + pageName);
 
 			response.sendRedirect(request.getContextPath() + SLASH + ADMIN_SIGN_IN_PAGE);
 
@@ -36,7 +41,7 @@ public class ResetPasswordInterceptor implements HandlerInterceptor {
 
 		} else {
 
-			logger.info("放行: " + pageName);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 放行: " + pageName);
 
 			return true;
 		}

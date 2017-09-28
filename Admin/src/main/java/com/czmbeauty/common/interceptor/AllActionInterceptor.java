@@ -41,7 +41,15 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		if (requestActionTag.equals(requestAction) || ADMIN_SIGN_OUT_DO.equals(requestAction)) {
+		if (requestActionTag == null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 閒置過久，進入頁面: " + ADMIN_SIGN_IN_PAGE);
+
+			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);
+
+			return false;
+
+		} else if (requestActionTag.equals(requestAction) || ADMIN_SIGN_OUT_DO.equals(requestAction)) {
 
 			request.setAttribute(REQUEST_ACTION, requestAction);
 
@@ -53,7 +61,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAction);
 
-			response.sendRedirect(contextPath + SLASH + ERROR_PAGE_NOT_FOUND_PAGE);
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
 		}

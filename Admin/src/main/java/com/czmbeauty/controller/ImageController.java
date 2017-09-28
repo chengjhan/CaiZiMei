@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/9/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -290,6 +290,10 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 
 		CategoryBean categoryBean;
 		try {
+			if (requestPage == null) {
+
+				throw new PageNotFoundException();
+			}
 			categoryBean = categoryService.selectByCa_directory(requestPage);
 
 		} catch (PageNotFoundException e) {

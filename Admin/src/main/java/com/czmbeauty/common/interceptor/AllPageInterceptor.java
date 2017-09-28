@@ -1,7 +1,6 @@
 package com.czmbeauty.common.interceptor;
 
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.REQUEST_PAGE;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +10,10 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-public class AllPageInterceptor implements HandlerInterceptor {
+import com.czmbeauty.common.constants.ModelAttributeConstants;
+import com.czmbeauty.common.constants.PageNameConstants;
+
+public class AllPageInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(AllPageInterceptor.class);
 
@@ -40,9 +42,14 @@ public class AllPageInterceptor implements HandlerInterceptor {
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
-			throws Exception {
-		// TODO Auto-generated method stub
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+
+		String servletPath = request.getServletPath(); // /頁面名
+		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
+		String requestActionTag = pageName + ".do"; // 動作名
+
+		request.getSession().setAttribute(REQUEST_ACTION_TAG, requestActionTag);
 	}
 
 	@Override

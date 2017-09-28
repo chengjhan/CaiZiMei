@@ -50,4 +50,6 @@ public interface PageNameConstants {
 
 	public static final String ERROR_PAGE_NOT_FOUND_PAGE = "error/page-not-found";
 
+	public static final String ADMIN_SIGN_OUT_DO = "secure/sign-out.do";
+
 }

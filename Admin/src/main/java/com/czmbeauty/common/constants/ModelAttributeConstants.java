@@ -4,6 +4,8 @@ public interface ModelAttributeConstants {
 
 	public static final String REQUEST_PAGE = "requestPage";
 
+	public static final String REQUEST_ACTION_TAG = "requestActionTag";
+
 	public static final String REQUEST_ACTION = "requestAction";
 
 	public static final String ERROR = "error";

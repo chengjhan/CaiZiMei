@@ -1,8 +1,6 @@
 package com.czmbeauty.common.interceptor;
 
-import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.REQUEST_ACTION;
+import static com.czmbeauty.common.constants.CommonConstants.SLASH;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,11 +11,13 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.czmbeauty.common.constants.ModelAttributeConstants;
+import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
 import com.czmbeauty.model.service.AdminLogService;
 
-public class AllActionInterceptor implements HandlerInterceptor {
+public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(AllActionInterceptor.class);
 
@@ -31,24 +31,32 @@ public class AllActionInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		String servletPath = request.getServletPath(); // /頁面名
-		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
-		String queryString = request.getQueryString(); // 參數
-		String requestAction;
-		if (queryString != null) {
-			requestAction = pageName + QUESTION + queryString; // 頁面名?參數
-		} else {
-			requestAction = pageName; // 頁面名
-		}
+		String requestActionTag = (String) request.getSession().getAttribute(REQUEST_ACTION_TAG);
 
-		request.setAttribute(REQUEST_ACTION, requestAction);
+		String contextPath = request.getContextPath(); // /專案名
+		String servletPath = request.getServletPath(); // /頁面名
+		String requestAction = servletPath.substring(1, servletPath.length()); // 動作名
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
-				+ ") 執行動作: " + requestAction);
+		if (requestActionTag.equals(requestAction) || ADMIN_SIGN_OUT_DO.equals(requestAction)) {
 
-		return true;
+			request.setAttribute(REQUEST_ACTION, requestAction);
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestAction);
+
+			return true;
+
+		} else {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAction);
+
+			response.sendRedirect(contextPath + SLASH + ERROR_PAGE_NOT_FOUND_PAGE);
+
+			return false;
+		}
 	}
 
 	@Override
@@ -60,14 +68,7 @@ public class AllActionInterceptor implements HandlerInterceptor {
 		if (adminBean != null) {
 
 			String servletPath = request.getServletPath(); // /頁面名
-			String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
-			String queryString = request.getQueryString(); // 參數
-			String requestAction;
-			if (queryString != null) {
-				requestAction = pageName + QUESTION + queryString; // 頁面名?參數
-			} else {
-				requestAction = pageName; // 頁面名
-			}
+			String requestAction = servletPath.substring(1, servletPath.length()); // 動作名
 
 			AdminLogBean adminLogBean = new AdminLogBean();
 			adminLogBean.setAl_AdminBean(adminBean);

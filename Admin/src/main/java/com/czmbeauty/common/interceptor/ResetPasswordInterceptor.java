@@ -1,8 +1,6 @@
 package com.czmbeauty.common.interceptor;
 
 import static com.czmbeauty.common.constants.CommonConstants.SLASH;
-import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN_EMAIL_SESSION;
-import static com.czmbeauty.common.constants.PageNameConstants.ADMIN_SIGN_IN_PAGE;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +11,10 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-public class ResetPasswordInterceptor implements HandlerInterceptor {
+import com.czmbeauty.common.constants.ModelAttributeConstants;
+import com.czmbeauty.common.constants.PageNameConstants;
+
+public class ResetPasswordInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(ResetPasswordInterceptor.class);
 

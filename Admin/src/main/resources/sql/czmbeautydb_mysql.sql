@@ -126,6 +126,13 @@ create table video (
 	foreign key (vi_ca_id) references category (ca_id)
 );
 
+create table admin_view (
+	av_id					int auto_increment not null,
+	av_name					nvarchar(20) not null,
+	av_page_name			varchar(50) not null,
+	primary key (av_id),
+);
+
 -- ALTER
 alter table state auto_increment = 11;
 alter table city auto_increment = 101;
@@ -217,3 +224,54 @@ insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 0, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 0, now());
+
+-- admin_view
+insert into admin_view (av_name, av_page_name) values ('首頁', 'index');
+insert into admin_view (av_name, av_page_name) values ('變更密碼', 'admin/change-password');
+insert into admin_view (av_name, av_page_name) values ('編輯個人資訊', 'admin/edit');
+insert into admin_view (av_name, av_page_name) values ('管理員一覽', 'admin/list');
+insert into admin_view (av_name, av_page_name) values ('個人資訊', 'admin/profile');
+insert into admin_view (av_name, av_page_name) values ('註冊', 'admin/sign-up');
+insert into admin_view (av_name, av_page_name) values ('新增城市', 'city/add');
+insert into admin_view (av_name, av_page_name) values ('編輯城市資訊', 'city/edit');
+insert into admin_view (av_name, av_page_name) values ('城市一覽', 'city/list');
+insert into admin_view (av_name, av_page_name) values ('新增診所', 'clinic/add');
+insert into admin_view (av_name, av_page_name) values ('編輯診所資訊', 'clinic/edit');
+insert into admin_view (av_name, av_page_name) values ('診所一覽', 'clinic/list');
+insert into admin_view (av_name, av_page_name) values ('新增國家', 'country/add');
+insert into admin_view (av_name, av_page_name) values ('編輯國家資訊', 'country/edit');
+insert into admin_view (av_name, av_page_name) values ('國家一覽', 'country/list');
+insert into admin_view (av_name, av_page_name) values ('找不到網頁', 'error/page-not-found');
+insert into admin_view (av_name, av_page_name) values ('新增加盟店', 'franchisee/add');
+insert into admin_view (av_name, av_page_name) values ('編輯加盟店資訊', 'franchisee/edit');
+insert into admin_view (av_name, av_page_name) values ('加盟店一覽', 'franchisee/list');
+insert into admin_view (av_name, av_page_name) values ('新增辦事處', 'office/add');
+insert into admin_view (av_name, av_page_name) values ('編輯辦事處資訊', 'office/edit');
+insert into admin_view (av_name, av_page_name) values ('辦事處一覽', 'office/list');
+insert into admin_view (av_name, av_page_name) values ('忘記密碼', 'secure/forget-password');
+insert into admin_view (av_name, av_page_name) values ('重設密碼', 'secure/reset-password');
+insert into admin_view (av_name, av_page_name) values ('登入', 'secure/sign-in');
+insert into admin_view (av_name, av_page_name) values ('新增加盟店資訊輪播圖片', 'slider-franchisee/add');
+insert into admin_view (av_name, av_page_name) values ('編輯加盟店資訊輪播圖片資訊', 'slider-franchisee/edit');
+insert into admin_view (av_name, av_page_name) values ('加盟店資訊輪播圖片一覽', 'slider-franchisee/list');
+insert into admin_view (av_name, av_page_name) values ('新增醫療新知輪播圖片', 'slider-knowledge/add');
+insert into admin_view (av_name, av_page_name) values ('編輯醫療新知輪播圖片資訊', 'slider-knowledge/edit');
+insert into admin_view (av_name, av_page_name) values ('醫療新知輪播圖片一覽', 'slider-knowledge/list');
+insert into admin_view (av_name, av_page_name) values ('新增主輪播圖片', 'slider-main/add');
+insert into admin_view (av_name, av_page_name) values ('編輯主輪播圖片資訊', 'slider-main/edit');
+insert into admin_view (av_name, av_page_name) values ('主輪播圖片一覽', 'slider-main/list');
+insert into admin_view (av_name, av_page_name) values ('新增近期活動輪播圖片', 'slider-recent/add');
+insert into admin_view (av_name, av_page_name) values ('編輯近期活動輪播圖片資訊', 'slider-recent/edit');
+insert into admin_view (av_name, av_page_name) values ('近期活動輪播圖片一覽', 'slider-recent/list');
+insert into admin_view (av_name, av_page_name) values ('新增優惠活動輪播圖片', 'slider-sale/add');
+insert into admin_view (av_name, av_page_name) values ('編輯優惠活動輪播圖片資訊', 'slider-sale/edit');
+insert into admin_view (av_name, av_page_name) values ('優惠活動輪播圖片一覽', 'slider-sale/list');
+insert into admin_view (av_name, av_page_name) values ('新增醫療團隊輪播圖片', 'slider-team/add');
+insert into admin_view (av_name, av_page_name) values ('編輯醫療團隊輪播圖片資訊', 'slider-team/edit');
+insert into admin_view (av_name, av_page_name) values ('醫療團隊輪播圖片一覽', 'slider-team/list');
+insert into admin_view (av_name, av_page_name) values ('新增區域', 'state/add');
+insert into admin_view (av_name, av_page_name) values ('編輯區域資訊', 'state/edit');
+insert into admin_view (av_name, av_page_name) values ('區域一覽', 'state/list');
+insert into admin_view (av_name, av_page_name) values ('新增相關影音', 'video-releted/add');
+insert into admin_view (av_name, av_page_name) values ('編輯相關影音資訊', 'video-releted/edit');
+insert into admin_view (av_name, av_page_name) values ('相關影音一覽', 'video-releted/list');

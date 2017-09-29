@@ -22,6 +22,10 @@ public interface HqlConstants {
 	/** 管理員流水號搜尋 */
 	public static final String HQL_SELECT_ADMIN_LOG_BY_ADMIN = "from AdminLogBean where al_ad_id=:al_ad_id order by al_insert_time asc, al_id asc";
 
+	// admin_view
+	/** 頁面名搜尋 */
+	public static final String HQL_SELECT_ADMIN_VIEW_BY_PAGE_NAME = "from AdminViewBean where av_page_name=:av_page_name";
+
 	// country
 	/** 搜尋所有國家 */
 	public static final String HQL_SELECT_ALL_COUNTRY = "from CountryBean order by co_rank asc, co_id asc";

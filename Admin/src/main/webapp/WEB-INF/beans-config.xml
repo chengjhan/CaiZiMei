@@ -26,6 +26,7 @@
 			<list>
 				<value>com.czmbeauty.model.entity.AdminBean</value>
 				<value>com.czmbeauty.model.entity.AdminLogBean</value>
+				<value>com.czmbeauty.model.entity.AdminViewBean</value>
 				<value>com.czmbeauty.model.entity.BaseBean</value>
 				<value>com.czmbeauty.model.entity.CategoryBean</value>
 				<value>com.czmbeauty.model.entity.CityBean</value>

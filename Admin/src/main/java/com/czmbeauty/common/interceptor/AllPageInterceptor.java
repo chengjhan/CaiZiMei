@@ -1,21 +1,32 @@
 package com.czmbeauty.common.interceptor;
 
 import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
+import static com.czmbeauty.common.constants.CommonConstants.SLASH;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.exception.PageNotFoundException;
+import com.czmbeauty.model.entity.AdminViewBean;
+import com.czmbeauty.model.service.AdminViewService;
 
 public class AllPageInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
 
 	private static final Logger logger = Logger.getLogger(AllPageInterceptor.class);
+
+	/**
+	 * 注入 AdminViewService
+	 */
+	@Autowired
+	private AdminViewService adminViewService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -23,6 +34,25 @@ public class AllPageInterceptor implements HandlerInterceptor, ModelAttributeCon
 
 		String servletPath = request.getServletPath(); // /頁面名
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
+
+		try {
+			AdminViewBean adminViewBean = adminViewService.selectByAv_Page_name(pageName);
+
+			if (adminViewBean == null) {
+
+				logger.error("page not found");
+
+				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+				return false;
+			}
+		} catch (PageNotFoundException e) {
+
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+			return false;
+		}
+
 		String queryString = request.getQueryString(); // 參數
 		String requestPage;
 		if (queryString != null) {

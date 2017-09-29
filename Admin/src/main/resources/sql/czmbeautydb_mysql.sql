@@ -130,7 +130,7 @@ create table admin_view (
 	av_id					int auto_increment not null,
 	av_name					nvarchar(20) not null,
 	av_page_name			varchar(50) not null,
-	primary key (av_id),
+	primary key (av_id)
 );
 
 -- ALTER

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/10/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -164,22 +164,13 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/video*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-
-		CategoryBean categoryBean;
-		try {
-			categoryBean = categoryService.selectByCa_directory(requestPage);
-
-		} catch (PageNotFoundException e) {
-
-			return ERROR_PAGE_NOT_FOUND_PAGE;
-		}
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
 
 		int pageRowCount = VIDEO_PAGE_ROW_COUNT;
 
@@ -204,22 +195,13 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
 	@RequestMapping(value = "/video*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-
-		CategoryBean categoryBean;
-		try {
-			categoryBean = categoryService.selectByCa_directory(requestPage);
-
-		} catch (PageNotFoundException e) {
-
-			return ERROR_PAGE_NOT_FOUND_PAGE;
-		}
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
 
 		// 新增 form backing object
 		model.addAttribute(VIDEO_BEAN, new VideoBean());
@@ -260,12 +242,10 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 		currentPage = page;
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
 
-		CategoryBean categoryBean;
 		VideoBean videoBean;
 		try {
-			categoryBean = categoryService.selectByCa_directory(requestPage);
-
 			// 取得選定影片 id 的 VideoBean
 			videoBean = videoService.selectByVi_id(videoBean_vi_id.getVi_id());
 

@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.exception.PageNotFoundException;
-import com.czmbeauty.model.entity.AdminViewBean;
 import com.czmbeauty.model.service.AdminViewService;
 
 public class AllPageInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
@@ -34,25 +33,6 @@ public class AllPageInterceptor implements HandlerInterceptor, ModelAttributeCon
 
 		String servletPath = request.getServletPath(); // /頁面名
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
-
-		try {
-			AdminViewBean adminViewBean = adminViewService.selectByAv_Page_name(pageName);
-
-			if (adminViewBean == null) {
-
-				logger.error("page not found");
-
-				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
-
-				return false;
-			}
-		} catch (PageNotFoundException e) {
-
-			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
-
-			return false;
-		}
-
 		String queryString = request.getQueryString(); // 參數
 		String requestPage;
 		if (queryString != null) {
@@ -61,12 +41,27 @@ public class AllPageInterceptor implements HandlerInterceptor, ModelAttributeCon
 			requestPage = pageName; // 頁面名
 		}
 
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
+
+		try {
+			if (adminViewService.selectByAv_page_name(pageName) == null) {
+
+				throw new PageNotFoundException(requestPage);
+			}
+		} catch (PageNotFoundException e) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPage);
+
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+			return false;
+		}
+
 		request.setAttribute(REQUEST_PAGE, requestPage);
 
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
-
-		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
-				+ ") 進入頁面: " + requestPage);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 進入頁面: " + requestPage);
 
 		return true;
 	}

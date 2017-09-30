@@ -272,6 +272,6 @@ insert into admin_view (av_name, av_page_name) values ('醫療團隊輪播圖片
 insert into admin_view (av_name, av_page_name) values ('新增區域', 'state/add');
 insert into admin_view (av_name, av_page_name) values ('編輯區域資訊', 'state/edit');
 insert into admin_view (av_name, av_page_name) values ('區域一覽', 'state/list');
-insert into admin_view (av_name, av_page_name) values ('新增相關影音', 'video-releted/add');
-insert into admin_view (av_name, av_page_name) values ('編輯相關影音資訊', 'video-releted/edit');
-insert into admin_view (av_name, av_page_name) values ('相關影音一覽', 'video-releted/list');
+insert into admin_view (av_name, av_page_name) values ('新增相關影音', 'video-related/add');
+insert into admin_view (av_name, av_page_name) values ('編輯相關影音資訊', 'video-related/edit');
+insert into admin_view (av_name, av_page_name) values ('相關影音一覽', 'video-related/list');

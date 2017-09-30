@@ -1,5 +1,6 @@
 package com.czmbeauty.common.interceptor;
 
+import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 import static com.czmbeauty.common.constants.CommonConstants.SLASH;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,21 +36,20 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 		String contextPath = request.getContextPath(); // /專案名
 		String servletPath = request.getServletPath(); // /頁面名
-		String requestAction = servletPath.substring(1, servletPath.length()); // 動作名
+		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
+		String queryString = request.getQueryString(); // 參數
+		String requestAction;
+		if (queryString != null) {
+			requestAction = pageName + QUESTION + queryString; // 頁面名?參數
+		} else {
+			requestAction = pageName; // 頁面名
+		}
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		if (requestActionTag == null) {
-
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 閒置過久，進入頁面: " + ADMIN_SIGN_IN_PAGE);
-
-			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);
-
-			return false;
-
-		} else if (requestActionTag.equals(requestAction) || ADMIN_SIGN_OUT_DO.equals(requestAction)) {
+		if (ADMIN_SIGN_OUT_DO.equals(requestAction)) {
 
 			request.setAttribute(REQUEST_ACTION, requestAction);
 
@@ -57,13 +57,29 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 			return true;
 
-		} else {
+		} else if (requestActionTag == null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 閒置過久，進入頁面: " + ADMIN_SIGN_IN_PAGE);
+
+			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);
+
+			return false;
+
+		} else if (!requestActionTag.equals(requestAction) || handlerMethodName.indexOf("View") != -1) {
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAction);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
+
+		} else {
+
+			request.setAttribute(REQUEST_ACTION, requestAction);
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestAction);
+
+			return true;
 		}
 	}
 

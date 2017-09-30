@@ -2,13 +2,12 @@
  * CaiZiMei
  * File: AdminViewService.java
  * Author: 詹晟
- * Date: 2017/9/29
+ * Date: 2017/10/1
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service;
 
-import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.entity.AdminViewBean;
 
 /**
@@ -19,8 +18,8 @@ import com.czmbeauty.model.entity.AdminViewBean;
 public interface AdminViewService {
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.AdminViewServiceImpl#selectByAv_Page_name(String)
+	 * @see com.czmbeauty.model.service.impl.AdminViewServiceImpl#selectByAv_page_name(String)
 	 */
-	AdminViewBean selectByAv_Page_name(String av_page_name) throws PageNotFoundException;
+	AdminViewBean selectByAv_page_name(String av_page_name);
 
 }

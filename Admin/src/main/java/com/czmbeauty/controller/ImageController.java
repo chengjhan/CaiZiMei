@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/9/28
+ * Date: 2017/1/10
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -240,22 +240,13 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-
-		CategoryBean categoryBean;
-		try {
-			categoryBean = categoryService.selectByCa_directory(requestPage);
-
-		} catch (PageNotFoundException e) {
-
-			return ERROR_PAGE_NOT_FOUND_PAGE;
-		}
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
 
 		int pageRowCount = IMAGE_PAGE_ROW_COUNT;
 
@@ -280,26 +271,13 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
 	@RequestMapping(value = "/slider*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-
-		CategoryBean categoryBean;
-		try {
-			if (requestPage == null) {
-
-				throw new PageNotFoundException();
-			}
-			categoryBean = categoryService.selectByCa_directory(requestPage);
-
-		} catch (PageNotFoundException e) {
-
-			return ERROR_PAGE_NOT_FOUND_PAGE;
-		}
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
 
 		// 新增 form backing object
 		model.addAttribute(IMAGE_BEAN, new ImageBean());
@@ -343,12 +321,10 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 		currentPage = page;
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
 
-		CategoryBean categoryBean;
 		ImageBean imageBean;
 		try {
-			categoryBean = categoryService.selectByCa_directory(requestPage);
-
 			// 取得選定圖片 id 的 ImageBean
 			imageBean = imageService.selectByIm_id(imageBean_im_id.getIm_id());
 

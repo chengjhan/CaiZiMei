@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/10/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -190,22 +190,13 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 *            Integer --> 當前頁碼
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-
-		CategoryBean categoryBean;
-		try {
-			categoryBean = categoryService.selectByCa_directory(requestPage);
-
-		} catch (PageNotFoundException e) {
-
-			return ERROR_PAGE_NOT_FOUND_PAGE;
-		}
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
 
 		int pageRowCount = BASE_PAGE_ROW_COUNT;
 
@@ -230,22 +221,13 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
 	@RequestMapping(value = "/*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-
-		CategoryBean categoryBean;
-		try {
-			categoryBean = categoryService.selectByCa_directory(requestPage);
-
-		} catch (PageNotFoundException e) {
-
-			return ERROR_PAGE_NOT_FOUND_PAGE;
-		}
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
 
 		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
@@ -289,13 +271,11 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 		currentPage = page;
 
 		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
 
-		CategoryBean categoryBean;
 		BaseBean baseBean;
 		try {
-			categoryBean = categoryService.selectByCa_directory(requestPage);
-
-			// 取得選定診所 id 的 BaseBean
+			// 取得選定據點 id 的 BaseBean
 			baseBean = baseService.selectByBa_id(baseBean_ba_id.getBa_id());
 
 			if (baseBean == null) {
@@ -316,10 +296,10 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-		// 取得診所所在國家中的所有區域 List，放入 select
+		// 取得據點所在國家中的所有區域 List，放入 select
 		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
 
-		// 取得診所所在區域中的所有城市 List，放入 select
+		// 取得據點所在區域中的所有城市 List，放入 select
 		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
 
 		// 使表單回填 BaseBean 內所有資料

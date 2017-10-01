@@ -133,6 +133,13 @@ create table admin_view (
 	primary key (av_id)
 );
 
+create table admin_action (
+	aa_id					int auto_increment not null,
+	aa_name					nvarchar(20) not null,
+	aa_page_name			varchar(50) not null,
+	primary key (aa_id)
+);
+
 -- ALTER
 alter table state auto_increment = 11;
 alter table city auto_increment = 101;
@@ -275,3 +282,38 @@ insert into admin_view (av_name, av_page_name) values ('區域一覽', 'state/li
 insert into admin_view (av_name, av_page_name) values ('新增相關影音', 'video-related/add');
 insert into admin_view (av_name, av_page_name) values ('編輯相關影音資訊', 'video-related/edit');
 insert into admin_view (av_name, av_page_name) values ('相關影音一覽', 'video-related/list');
+
+-- admin_action
+insert into admin_action (aa_name, aa_page_name) values ('變更密碼', 'admin/change-password.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯個人資訊', 'admin/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('註冊', 'admin/sign-up.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增城市', 'city/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯城市資訊', 'city/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增診所', 'clinic/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯診所資訊', 'clinic/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增國家', 'country/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯國家資訊', 'country/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增加盟店', 'franchisee/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯加盟店資訊', 'franchisee/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增辦事處', 'office/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯辦事處資訊', 'office/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('忘記密碼', 'secure/forget-password.do');
+insert into admin_action (aa_name, aa_page_name) values ('重設密碼', 'secure/reset-password.do');
+insert into admin_action (aa_name, aa_page_name) values ('登入', 'secure/sign-in.do');
+insert into admin_action (aa_name, aa_page_name) values ('登出', 'secure/sign-out.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增加盟店資訊輪播圖片', 'slider-franchisee/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯加盟店資訊輪播圖片資訊', 'slider-franchisee/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增醫療新知輪播圖片', 'slider-knowledge/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯醫療新知輪播圖片資訊', 'slider-knowledge/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增主輪播圖片', 'slider-main/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯主輪播圖片資訊', 'slider-main/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增近期活動輪播圖片', 'slider-recent/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯近期活動輪播圖片資訊', 'slider-recent/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增優惠活動輪播圖片', 'slider-sale/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯優惠活動輪播圖片資訊', 'slider-sale/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增醫療團隊輪播圖片', 'slider-team/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯醫療團隊輪播圖片資訊', 'slider-team/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增區域', 'state/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯區域資訊', 'state/edit.do');
+insert into admin_action (aa_name, aa_page_name) values ('新增相關影音', 'video-related/add.do');
+insert into admin_action (aa_name, aa_page_name) values ('編輯相關影音資訊', 'video-related/edit.do');

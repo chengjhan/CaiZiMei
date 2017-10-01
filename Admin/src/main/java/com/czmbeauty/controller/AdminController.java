@@ -541,7 +541,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	}
 
 	/**
-	 * 登出
+	 * 登出 - submit
 	 * 
 	 * @param sessionStatus
 	 *            SessionStatus

@@ -2,7 +2,7 @@ package com.czmbeauty.common.constants;
 
 public interface ModelAttributeConstants {
 
-	public static final String REQUEST_PAGE = "requestPage";
+	public static final String REQUEST_VIEW = "requestView";
 
 	public static final String REQUEST_ACTION_TAG = "requestActionTag";
 

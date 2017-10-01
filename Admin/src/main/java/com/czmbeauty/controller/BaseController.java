@@ -195,8 +195,8 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	@RequestMapping(value = "/*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		int pageRowCount = BASE_PAGE_ROW_COUNT;
 
@@ -226,8 +226,8 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	@RequestMapping(value = "/*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
@@ -248,7 +248,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/add.do", method = RequestMethod.POST)
-	public String addProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
+	public String addAction(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
 		return add(baseBean, bindingResult);
 	}
@@ -270,8 +270,8 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 		currentPage = page;
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		BaseBean baseBean;
 		try {
@@ -280,7 +280,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 			if (baseBean == null) {
 
-				throw new PageNotFoundException(requestPage);
+				throw new PageNotFoundException(requestView);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -288,7 +288,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + requestPage);
+			logger.error("找不到這個頁面: " + requestView);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -318,7 +318,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/*/edit.do", method = RequestMethod.POST)
-	public String editProcess(@Valid BaseBean baseBean, BindingResult bindingResult) {
+	public String editAction(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
 		return edit(baseBean, bindingResult);
 	}
@@ -332,7 +332,7 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 	 */
 	@RequestMapping(value = "/base/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String switchAjaxProcess(String ba_id) {
+	public String switchAjax(String ba_id) {
 
 		return baseService.updateBa_status(Integer.valueOf(ba_id)).getBa_name();
 	}

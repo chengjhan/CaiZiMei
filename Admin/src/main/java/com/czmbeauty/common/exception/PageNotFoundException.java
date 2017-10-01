@@ -8,18 +8,11 @@ public class PageNotFoundException extends NullPointerException {
 
 	private static final Logger logger = Logger.getLogger(PageNotFoundException.class);
 
-	public PageNotFoundException() {
+	public PageNotFoundException(String requestView) {
 
-		super("不可直接造訪這個頁面");
+		super("找不到這個頁面: " + requestView);
 
-		logger.error("不可直接造訪這個頁面");
-	}
-
-	public PageNotFoundException(String requestPage) {
-
-		super("找不到這個頁面: " + requestPage);
-
-		logger.error("找不到這個頁面: " + requestPage);
+		logger.error("找不到這個頁面: " + requestView);
 	}
 
 }

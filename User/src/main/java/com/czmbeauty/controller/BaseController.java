@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/9/4
+ * Date: 2017/10/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -45,7 +45,7 @@ public class BaseController {
 	 */
 	@RequestMapping(value = "/base/open-base-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openBaseListAjaxProcess() {
+	public String openBaseListAjax() {
 
 		List<BaseBean> list = baseService.selectOpenBase();
 

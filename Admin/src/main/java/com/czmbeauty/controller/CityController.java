@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/9/24
+ * Date: 2017/10/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -159,7 +159,7 @@ public class CityController implements ModelAttributeConstants, PageNameConstant
 	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(value = "/city/add.do", method = RequestMethod.POST)
-	public String addProcess(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
+	public String addAction(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 
@@ -222,7 +222,7 @@ public class CityController implements ModelAttributeConstants, PageNameConstant
 	 * @return /WEB-INF/views/city/list.jsp
 	 */
 	@RequestMapping(value = "/city/edit.do", method = RequestMethod.POST)
-	public String editProcess(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
+	public String editAction(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 
@@ -261,7 +261,7 @@ public class CityController implements ModelAttributeConstants, PageNameConstant
 	 */
 	@RequestMapping(value = "/city/choice-state-city-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String choiceStateCityListAjaxProcess(Integer ci_st_id) {
+	public String choiceStateCityListAjax(Integer ci_st_id) {
 
 		List<CityBean> list = cityService.selectByCi_st_id(ci_st_id);
 
@@ -291,7 +291,7 @@ public class CityController implements ModelAttributeConstants, PageNameConstant
 	 */
 	@RequestMapping(value = "/city/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String switchAjaxProcess(String ci_id) {
+	public String switchAjax(String ci_id) {
 
 		return cityService.updateCi_status(Integer.valueOf(ci_id)).getCi_name();
 	}

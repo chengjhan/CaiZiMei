@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/9/24
+ * Date: 2017/10/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -101,7 +101,7 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/add.do", method = RequestMethod.POST)
-	public String addProcess(@Valid CountryBean countryBean, BindingResult bindingResult) {
+	public String addAction(@Valid CountryBean countryBean, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 
@@ -132,7 +132,7 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
 	public String editView(CountryBean countryBean_co_id, Model model) {
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
 
 		CountryBean countryBean;
 		try {
@@ -140,7 +140,7 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 
 			if (countryBean == null) {
 
-				throw new PageNotFoundException(requestPage);
+				throw new PageNotFoundException(requestView);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -148,7 +148,7 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + requestPage);
+			logger.error("找不到這個頁面: " + requestView);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -169,7 +169,7 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 	 * @return /WEB-INF/views/country/list.jsp
 	 */
 	@RequestMapping(value = "/country/edit.do", method = RequestMethod.POST)
-	public String editProcess(@Valid CountryBean countryBean, BindingResult bindingResult) {
+	public String editAction(@Valid CountryBean countryBean, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 
@@ -196,7 +196,7 @@ public class CountryController implements ModelAttributeConstants, PageNameConst
 	 */
 	@RequestMapping(value = "/country/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String switchAjaxProcess(String co_id) {
+	public String switchAjax(String co_id) {
 
 		return countryService.updateCo_status(Integer.valueOf(co_id)).getCo_name();
 	}

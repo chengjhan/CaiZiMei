@@ -169,8 +169,8 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/video*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		int pageRowCount = VIDEO_PAGE_ROW_COUNT;
 
@@ -200,8 +200,8 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/video*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		// 新增 form backing object
 		model.addAttribute(VIDEO_BEAN, new VideoBean());
@@ -219,7 +219,7 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/video*/add.do", method = RequestMethod.POST)
-	public String addProcess(@Valid VideoBean videoBean, BindingResult bindingResult) {
+	public String addAction(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
 		return add(videoBean, bindingResult);
 	}
@@ -241,8 +241,8 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 
 		currentPage = page;
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		VideoBean videoBean;
 		try {
@@ -251,7 +251,7 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 
 			if (videoBean == null) {
 
-				throw new PageNotFoundException(requestPage);
+				throw new PageNotFoundException(requestView);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -259,7 +259,7 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + requestPage);
+			logger.error("找不到這個頁面: " + requestView);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -280,7 +280,7 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/video*/edit.do", method = RequestMethod.POST)
-	public String editProcess(@Valid VideoBean videoBean, BindingResult bindingResult) {
+	public String editAction(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
 		return edit(videoBean, bindingResult);
 	}
@@ -294,7 +294,7 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/video/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String switchAjaxProcess(String vi_id) {
+	public String switchAjax(String vi_id) {
 
 		return videoService.updateVi_status(Integer.valueOf(vi_id)).getVi_name();
 	}

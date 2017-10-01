@@ -65,7 +65,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 			return false;
 
-		} else if (!requestActionTag.equals(requestAction) || handlerMethodName.indexOf("View") != -1) {
+		} else if (!requestActionTag.equals(requestAction) || handlerMethodName.indexOf("Action") == -1) {
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAction);
 

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/9/24
+ * Date: 2017/10/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -143,7 +143,7 @@ public class StateController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/state/list.jsp
 	 */
 	@RequestMapping(value = "/state/add.do", method = RequestMethod.POST)
-	public String addProcess(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
+	public String addAction(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 
@@ -200,7 +200,7 @@ public class StateController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/state/list.jsp
 	 */
 	@RequestMapping(value = "/state/edit.do", method = RequestMethod.POST)
-	public String editProcess(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
+	public String editAction(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 
@@ -236,7 +236,7 @@ public class StateController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/state/choice-country-state-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String choiceCountryStateListAjaxProcess(Integer st_co_id) {
+	public String choiceCountryStateListAjax(Integer st_co_id) {
 
 		List<StateBean> list = stateService.selectBySt_co_id(st_co_id);
 
@@ -266,7 +266,7 @@ public class StateController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/state/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String switchAjaxProcess(String st_id) {
+	public String switchAjax(String st_id) {
 
 		return stateService.updateSt_status(Integer.valueOf(st_id)).getSt_name();
 	}

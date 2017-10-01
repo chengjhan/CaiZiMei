@@ -17,9 +17,9 @@ import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.service.AdminViewService;
 
-public class AllPageInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
+public class AllViewInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
 
-	private static final Logger logger = Logger.getLogger(AllPageInterceptor.class);
+	private static final Logger logger = Logger.getLogger(AllViewInterceptor.class);
 
 	/**
 	 * 注入 AdminViewService
@@ -34,11 +34,11 @@ public class AllPageInterceptor implements HandlerInterceptor, ModelAttributeCon
 		String servletPath = request.getServletPath(); // /頁面名
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
 		String queryString = request.getQueryString(); // 參數
-		String requestPage;
+		String requestView;
 		if (queryString != null) {
-			requestPage = pageName + QUESTION + queryString; // 頁面名?參數
+			requestView = pageName + QUESTION + queryString; // 頁面名?參數
 		} else {
-			requestPage = pageName; // 頁面名
+			requestView = pageName; // 頁面名
 		}
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -48,20 +48,20 @@ public class AllPageInterceptor implements HandlerInterceptor, ModelAttributeCon
 		try {
 			if (adminViewService.selectByAv_page_name(pageName) == null) {
 
-				throw new PageNotFoundException(requestPage);
+				throw new PageNotFoundException(requestView);
 			}
 		} catch (PageNotFoundException e) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPage);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestView);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
 		}
 
-		request.setAttribute(REQUEST_PAGE, requestPage);
+		request.setAttribute(REQUEST_VIEW, requestView);
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 進入頁面: " + requestPage);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 進入頁面: " + requestView);
 
 		return true;
 	}

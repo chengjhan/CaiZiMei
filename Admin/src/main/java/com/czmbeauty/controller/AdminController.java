@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/9/26
+ * Date: 2017/10/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -95,7 +95,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 */
 	// 得到 <form:form modelAttribute="adminBean"> 表單新增的資料
 	@RequestMapping(value = "/admin/sign-up.do", method = RequestMethod.POST)
-	public String signUpProcess(@RequestParam String ad_password_again, @Valid AdminBean adminBean,
+	public String signUpAction(@RequestParam String ad_password_again, @Valid AdminBean adminBean,
 			BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -162,7 +162,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 */
 	// 得到 <form:form modelAttribute="admin"> 表單更新的資料
 	@RequestMapping(value = "/admin/edit.do", method = RequestMethod.POST)
-	public String editProcess(@Valid @ModelAttribute(ADMIN) AdminBean admin, BindingResult bindingResult) {
+	public String editAction(@Valid @ModelAttribute(ADMIN) AdminBean admin, BindingResult bindingResult) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -210,7 +210,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/admin/profile.jsp
 	 */
 	@RequestMapping(value = "/admin/change-password.do", method = RequestMethod.POST)
-	public String changePasswordProcess(@ModelAttribute(ADMIN) AdminBean admin, @RequestParam String ad_password_old,
+	public String changePasswordAction(@ModelAttribute(ADMIN) AdminBean admin, @RequestParam String ad_password_old,
 			@RequestParam String ad_password_new, @RequestParam String ad_password_new_again, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -317,7 +317,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
-	public String signInProcess(@RequestParam String ad_username, @RequestParam String ad_password, Model model) {
+	public String signInAction(@RequestParam String ad_username, @RequestParam String ad_password, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -410,7 +410,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/secure/reset-password.jsp
 	 */
 	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
-	public String forgetPasswordProcess(@RequestParam String ad_email, Model model) {
+	public String forgetPasswordAction(@RequestParam String ad_email, Model model) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -478,7 +478,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
-	public String resetPasswordProcess(@RequestParam String ad_password_random, @RequestParam String ad_password_new,
+	public String resetPasswordAction(@RequestParam String ad_password_random, @RequestParam String ad_password_new,
 			@RequestParam String ad_password_new_again, SessionStatus sessionStatus, Model model) {
 
 		HttpSession session = request.getSession();
@@ -548,7 +548,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/index.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-out.do", method = RequestMethod.GET)
-	public String signOutProcess(SessionStatus sessionStatus) {
+	public String signOutAction(SessionStatus sessionStatus) {
 
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
@@ -602,7 +602,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/admin/username-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String usernameRepeatAjaxProcess(String ad_username) {
+	public String usernameRepeatAjax(String ad_username) {
 
 		AdminBean bean = adminService.selectByAd_username(ad_username);
 
@@ -619,7 +619,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/admin/email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String emailRepeatAjaxProcess(String ad_email) {
+	public String emailRepeatAjax(String ad_email) {
 
 		AdminBean bean = adminService.selectByAd_email(ad_email);
 
@@ -638,7 +638,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/admin/edit-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String editEmailRepeatAjaxProcess(@ModelAttribute(ADMIN) AdminBean admin, String ad_email) {
+	public String editEmailRepeatAjax(@ModelAttribute(ADMIN) AdminBean admin, String ad_email) {
 
 		AdminBean bean = adminService.selectByAd_email(admin.getAd_id(), ad_email);
 
@@ -654,7 +654,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/admin/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String switchAjaxProcess(String ad_id) {
+	public String switchAjax(String ad_id) {
 
 		AdminBean bean = adminService.updateAd_status(Integer.valueOf(ad_id));
 

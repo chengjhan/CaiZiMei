@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/1/10
+ * Date: 2017/10/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -245,8 +245,8 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/slider*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		int pageRowCount = IMAGE_PAGE_ROW_COUNT;
 
@@ -276,8 +276,8 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/slider*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		// 新增 form backing object
 		model.addAttribute(IMAGE_BEAN, new ImageBean());
@@ -297,7 +297,7 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/add.do", method = RequestMethod.POST)
-	public String addProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
+	public String addAction(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
 		return add(file, imageBean, bindingResult);
@@ -320,8 +320,8 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 
 		currentPage = page;
 
-		String requestPage = (String) request.getAttribute(REQUEST_PAGE);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPage);
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		ImageBean imageBean;
 		try {
@@ -330,7 +330,7 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 
 			if (imageBean == null) {
 
-				throw new PageNotFoundException(requestPage);
+				throw new PageNotFoundException(requestView);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -338,7 +338,7 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + requestPage);
+			logger.error("找不到這個頁面: " + requestView);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -361,7 +361,7 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/edit.do", method = RequestMethod.POST)
-	public String editProcess(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
+	public String editAction(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
 		return edit(file, imageBean, bindingResult);
@@ -376,7 +376,7 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 	 */
 	@RequestMapping(value = "/image/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String switchAjaxProcess(String im_id) {
+	public String switchAjax(String im_id) {
 
 		return imageService.updateIm_status(Integer.valueOf(im_id)).getIm_name();
 	}

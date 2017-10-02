@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminViewBean.java
  * Author: 詹晟
- * Date: 2017/9/29
+ * Date: 2017/10/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,7 +27,7 @@ public class AdminViewBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer av_id;
 	private String av_name;
-	private String av_page_name;
+	private String av_view_name;
 
 	public Integer getAv_id() {
 		return av_id;
@@ -45,12 +45,12 @@ public class AdminViewBean {
 		this.av_name = av_name;
 	}
 
-	public String getAv_page_name() {
-		return av_page_name;
+	public String getAv_view_name() {
+		return av_view_name;
 	}
 
-	public void setAv_page_name(String av_page_name) {
-		this.av_page_name = av_page_name;
+	public void setAv_view_name(String av_view_name) {
+		this.av_view_name = av_view_name;
 	}
 
 }

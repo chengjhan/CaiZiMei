@@ -19,8 +19,8 @@ import com.czmbeauty.model.entity.AdminActionBean;
 public interface AdminActionDao extends HqlConstants {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.AdminActionDaoImpl#selectByAa_page_name(String)
+	 * @see com.czmbeauty.model.dao.impl.AdminActionDaoImpl#selectByAa_action_name(String)
 	 */
-	AdminActionBean selectByAa_page_name(String aa_page_name);
+	AdminActionBean selectByAa_action_name(String aa_action_name);
 
 }

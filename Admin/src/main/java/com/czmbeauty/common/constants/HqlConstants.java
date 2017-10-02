@@ -23,12 +23,12 @@ public interface HqlConstants {
 	public static final String HQL_SELECT_ADMIN_LOG_BY_ADMIN = "from AdminLogBean where al_ad_id=:al_ad_id order by al_insert_time asc, al_id asc";
 
 	// admin_view
-	/** 頁面名搜尋 */
-	public static final String HQL_SELECT_ADMIN_VIEW_BY_PAGE_NAME = "from AdminViewBean where av_page_name=:av_page_name";
+	/** 視圖名搜尋 */
+	public static final String HQL_SELECT_ADMIN_VIEW_BY_VIEW_NAME = "from AdminViewBean where av_view_name=:av_view_name";
 
 	// admin_action
-	/** 頁面名搜尋 */
-	public static final String HQL_SELECT_ADMIN_ACTION_BY_PAGE_NAME = "from AdminActionBean where aa_page_name=:aa_page_name";
+	/** 動作名搜尋 */
+	public static final String HQL_SELECT_ADMIN_ACTION_BY_ACTION_NAME = "from AdminActionBean where aa_action_name=:aa_action_name";
 
 	// country
 	/** 搜尋所有國家 */

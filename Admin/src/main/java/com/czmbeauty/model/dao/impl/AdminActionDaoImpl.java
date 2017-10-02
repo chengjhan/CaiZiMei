@@ -32,19 +32,19 @@ public class AdminActionDaoImpl implements AdminActionDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 頁面名搜尋
+	 * 動作名搜尋
 	 * 
-	 * @param aa_page_name
-	 *            String --> 頁面名
+	 * @param aa_action_name
+	 *            String --> 動作名
 	 * @return AdminActionBean
 	 * @return null
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public AdminActionBean selectByAa_page_name(String aa_page_name) {
+	public AdminActionBean selectByAa_action_name(String aa_action_name) {
 
 		List<AdminActionBean> list = (List<AdminActionBean>) hibernateTemplate
-				.findByNamedParam(HQL_SELECT_ADMIN_ACTION_BY_PAGE_NAME, "aa_page_name", aa_page_name);
+				.findByNamedParam(HQL_SELECT_ADMIN_ACTION_BY_ACTION_NAME, "aa_action_name", aa_action_name);
 
 		return !list.isEmpty() ? list.get(0) : null;
 	}

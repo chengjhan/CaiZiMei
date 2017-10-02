@@ -9,16 +9,16 @@ public class RequestViewSplitter {
 		return directoryName;
 	}
 
-	public static String getPageName(String requestView) {
+	public static String getView(String requestView) {
 
-		String pageName;
+		String view;
 
 		if (requestView.indexOf("?") != -1) {
-			pageName = requestView.split("\\?")[0];
+			view = requestView.split("\\?")[0];
 		} else {
-			pageName = requestView;
+			view = requestView;
 		}
-		return pageName;
+		return view;
 	}
 
 	public static String getQueryString(String requestView) {

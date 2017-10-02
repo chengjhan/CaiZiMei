@@ -30,16 +30,16 @@ public class AdminActionServiceImpl implements AdminActionService {
 	private AdminActionDao adminActionDao;
 
 	/**
-	 * 頁面名搜尋
+	 * 動作名搜尋
 	 * 
-	 * @param aa_page_name
-	 *            String --> 頁面名
+	 * @param aa_action_name
+	 *            String --> 動作名
 	 * @return AdminActionBean
 	 */
 	@Override
-	public AdminActionBean selectByAa_page_name(String aa_page_name) {
+	public AdminActionBean selectByAa_action_name(String aa_action_name) {
 
-		AdminActionBean adminActionBean = adminActionDao.selectByAa_page_name(aa_page_name);
+		AdminActionBean adminActionBean = adminActionDao.selectByAa_action_name(aa_action_name);
 
 		return adminActionBean;
 	}

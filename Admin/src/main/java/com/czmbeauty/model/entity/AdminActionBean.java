@@ -32,7 +32,7 @@ public class AdminActionBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer aa_id;
 	private String aa_name;
-	private String aa_page_name;
+	private String aa_action_name;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "al_AdminActionBean")
 	private Set<AdminLogBean> aa_AdminLogBean;
@@ -53,12 +53,12 @@ public class AdminActionBean {
 		this.aa_name = aa_name;
 	}
 
-	public String getAa_page_name() {
-		return aa_page_name;
+	public String getAa_action_name() {
+		return aa_action_name;
 	}
 
-	public void setAa_page_name(String aa_page_name) {
-		this.aa_page_name = aa_page_name;
+	public void setAa_action_name(String aa_action_name) {
+		this.aa_action_name = aa_action_name;
 	}
 
 	public Set<AdminLogBean> getAa_AdminLogBean() {

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CategoryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/1
+ * Date: 2017/10/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -34,7 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
 	 * 類別資料夾名稱搜尋
 	 * 
 	 * @param requestView
-	 *            String --> 請求頁面
+	 *            String --> 請求視圖
 	 * @param ca_directory
 	 *            String --> 類別資料夾名稱
 	 * @return CategoryBean

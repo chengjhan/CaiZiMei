@@ -43,13 +43,13 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 		String contextPath = request.getContextPath(); // /專案名
 		String servletPath = request.getServletPath(); // /頁面名
-		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
+		String actionName = servletPath.substring(1, servletPath.length()); // 動作名
 		String queryString = request.getQueryString(); // 參數
-		String requestAction;
+		String requestAction; // 請求動作
 		if (queryString != null) {
-			requestAction = pageName + QUESTION + queryString; // 頁面名?參數
+			requestAction = actionName + QUESTION + queryString;
 		} else {
-			requestAction = pageName; // 頁面名
+			requestAction = actionName;
 		}
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -99,18 +99,18 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 		if (adminBean != null) {
 
 			String servletPath = request.getServletPath(); // /頁面名
-			String requestAction = servletPath.substring(1, servletPath.length()); // 動作名
+			String actionName = servletPath.substring(1, servletPath.length()); // 動作名
 
 			AdminLogBean adminLogBean = new AdminLogBean();
 			adminLogBean.setAl_AdminBean(adminBean);
-			adminLogBean.setAl_AdminActionBean(adminActionService.selectByAa_page_name(requestAction));
+			adminLogBean.setAl_AdminActionBean(adminActionService.selectByAa_action_name(actionName));
 			adminLogBean.setAl_ip(request.getRemoteAddr());
 			adminLogService.insert(adminLogBean);
 
 			HandlerMethod handlerMethod = (HandlerMethod) handler;
 
 			logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
-					+ ") 寫入日誌: " + requestAction);
+					+ ") 寫入日誌: " + actionName);
 		}
 	}
 

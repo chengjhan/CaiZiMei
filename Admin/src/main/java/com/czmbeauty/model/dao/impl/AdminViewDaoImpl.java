@@ -32,19 +32,19 @@ public class AdminViewDaoImpl implements AdminViewDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 頁面名搜尋
+	 * 視圖名搜尋
 	 * 
-	 * @param av_page_name
-	 *            String --> 頁面名
+	 * @param av_view_name
+	 *            String --> 視圖名
 	 * @return AdminViewBean
 	 * @return null
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public AdminViewBean selectByAv_page_name(String av_page_name) {
+	public AdminViewBean selectByAv_view_name(String av_view_name) {
 
 		List<AdminViewBean> list = (List<AdminViewBean>) hibernateTemplate
-				.findByNamedParam(HQL_SELECT_ADMIN_VIEW_BY_PAGE_NAME, "av_page_name", av_page_name);
+				.findByNamedParam(HQL_SELECT_ADMIN_VIEW_BY_VIEW_NAME, "av_view_name", av_view_name);
 
 		return !list.isEmpty() ? list.get(0) : null;
 	}

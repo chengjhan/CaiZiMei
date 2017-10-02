@@ -32,13 +32,13 @@ public class AllViewInterceptor implements HandlerInterceptor, ModelAttributeCon
 			throws Exception {
 
 		String servletPath = request.getServletPath(); // /頁面名
-		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
+		String viewName = servletPath.substring(1, servletPath.length()); // 視圖名
 		String queryString = request.getQueryString(); // 參數
-		String requestView;
+		String requestView; // 請求視圖
 		if (queryString != null) {
-			requestView = pageName + QUESTION + queryString; // 頁面名?參數
+			requestView = viewName + QUESTION + queryString;
 		} else {
-			requestView = pageName; // 頁面名
+			requestView = viewName;
 		}
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -46,7 +46,7 @@ public class AllViewInterceptor implements HandlerInterceptor, ModelAttributeCon
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
 		try {
-			if (adminViewService.selectByAv_page_name(pageName) == null) {
+			if (adminViewService.selectByAv_view_name(viewName) == null) {
 
 				throw new PageNotFoundException(requestView);
 			}
@@ -71,8 +71,8 @@ public class AllViewInterceptor implements HandlerInterceptor, ModelAttributeCon
 			ModelAndView modelAndView) throws Exception {
 
 		String servletPath = request.getServletPath(); // /頁面名
-		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
-		String requestActionTag = pageName + ".do"; // 動作名
+		String viewName = servletPath.substring(1, servletPath.length()); // 視圖名
+		String requestActionTag = viewName + ".do"; // 請求動作標籤
 
 		request.getSession().setAttribute(REQUEST_ACTION_TAG, requestActionTag);
 	}

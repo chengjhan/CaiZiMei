@@ -18,8 +18,8 @@ import com.czmbeauty.model.entity.AdminActionBean;
 public interface AdminActionService {
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.AdminActionServiceImpl#selectByAa_page_name(String)
+	 * @see com.czmbeauty.model.service.impl.AdminActionServiceImpl#selectByAa_action_name(String)
 	 */
-	AdminActionBean selectByAa_page_name(String aa_page_name);
+	AdminActionBean selectByAa_action_name(String aa_action_name);
 
 }

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminViewServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/1
+ * Date: 2017/10/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -30,16 +30,16 @@ public class AdminViewServiceImpl implements AdminViewService {
 	private AdminViewDao adminViewDao;
 
 	/**
-	 * 頁面名搜尋
+	 * 視圖名搜尋
 	 * 
-	 * @param av_page_name
-	 *            String --> 頁面名
+	 * @param av_view_name
+	 *            String --> 視圖名
 	 * @return AdminViewBean
 	 */
 	@Override
-	public AdminViewBean selectByAv_page_name(String av_page_name) {
+	public AdminViewBean selectByAv_view_name(String av_view_name) {
 
-		AdminViewBean adminViewBean = adminViewDao.selectByAv_page_name(av_page_name);
+		AdminViewBean adminViewBean = adminViewDao.selectByAv_view_name(av_view_name);
 
 		return adminViewBean;
 	}

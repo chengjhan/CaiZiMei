@@ -51,7 +51,13 @@
 			<mvc:exclude-mapping path="/css/**" />
 			<mvc:exclude-mapping path="/images/**" />
 			<mvc:exclude-mapping path="/js/**" />
-			<bean class="com.czmbeauty.common.interceptor.SigninInterceptor" />
+			<bean class="com.czmbeauty.common.interceptor.NoSignInInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/secure/**" />
+			<mvc:exclude-mapping path="/secure/sign-out.do" />
+			<bean class="com.czmbeauty.common.interceptor.SignInInterceptor" />
 		</mvc:interceptor>
 		
 		<mvc:interceptor>

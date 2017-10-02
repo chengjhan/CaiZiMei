@@ -16,9 +16,9 @@ import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.model.entity.AdminBean;
 
-public class SigninInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
+public class NoSignInInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
 
-	private static final Logger logger = Logger.getLogger(SigninInterceptor.class);
+	private static final Logger logger = Logger.getLogger(NoSignInInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -31,7 +31,7 @@ public class SigninInterceptor implements HandlerInterceptor, ModelAttributeCons
 		String servletPath = request.getServletPath(); // /頁面名
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
 		String queryString = request.getQueryString(); // 參數
-		String next;
+		String next; // 原請求頁面
 		if (queryString != null) {
 			next = pageName + QUESTION + queryString; // 頁面名?參數
 		} else {
@@ -46,7 +46,11 @@ public class SigninInterceptor implements HandlerInterceptor, ModelAttributeCons
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 未登入，攔截: " + next);
 
-			// 將原請求畫面及參數，放入 Session
+			if (ADMIN_SIGN_OUT_DO.equals(next)) {
+				next = INDEX_PAGE;
+			}
+
+			// 將原請求頁面，放入 Session
 			session.setAttribute(NEXT_PAGE, next);
 
 			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);

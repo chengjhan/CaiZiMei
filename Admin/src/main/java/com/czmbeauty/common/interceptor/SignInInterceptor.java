@@ -14,17 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.model.entity.AdminBean;
 
-public class ResetPasswordInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
+public class SignInInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
 
-	private static final Logger logger = Logger.getLogger(ResetPasswordInterceptor.class);
+	private static final Logger logger = Logger.getLogger(SignInInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
 		HttpSession session = request.getSession();
-		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
+		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
 
 		String servletPath = request.getServletPath(); // /頁面名
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
@@ -40,17 +41,17 @@ public class ResetPasswordInterceptor implements HandlerInterceptor, ModelAttrib
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		if (ad_email == null) {
+		if (adminBean != null) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPage);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 已登入，攔截: " + requestPage);
 
-			response.sendRedirect(request.getContextPath() + SLASH + ADMIN_SIGN_IN_PAGE);
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 放行: " + requestPage);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 未登入，放行: " + requestPage);
 
 			return true;
 		}

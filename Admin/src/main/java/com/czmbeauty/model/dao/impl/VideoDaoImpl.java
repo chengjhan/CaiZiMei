@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/10/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -114,7 +114,7 @@ public class VideoDaoImpl implements VideoDao {
 		List<VideoBean> list = (List<VideoBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_VIDEO, "vi_ca_id",
 				vi_ca_id);
 
-		return (!list.isEmpty()) ? list : null;
+		return !list.isEmpty() ? list : null;
 	}
 
 	/**

@@ -26,6 +26,10 @@ public interface HqlConstants {
 	/** 頁面名搜尋 */
 	public static final String HQL_SELECT_ADMIN_VIEW_BY_PAGE_NAME = "from AdminViewBean where av_page_name=:av_page_name";
 
+	// admin_action
+	/** 頁面名搜尋 */
+	public static final String HQL_SELECT_ADMIN_ACTION_BY_PAGE_NAME = "from AdminActionBean where aa_page_name=:aa_page_name";
+
 	// country
 	/** 搜尋所有國家 */
 	public static final String HQL_SELECT_ALL_COUNTRY = "from CountryBean order by co_rank asc, co_id asc";

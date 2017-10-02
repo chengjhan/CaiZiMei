@@ -16,6 +16,7 @@ import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
+import com.czmbeauty.model.service.AdminActionService;
 import com.czmbeauty.model.service.AdminLogService;
 
 public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
@@ -27,6 +28,12 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 	 */
 	@Autowired
 	private AdminLogService adminLogService;
+
+	/**
+	 * 注入 AdminActionService
+	 */
+	@Autowired
+	private AdminActionService adminActionService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -96,7 +103,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 			AdminLogBean adminLogBean = new AdminLogBean();
 			adminLogBean.setAl_AdminBean(adminBean);
-			adminLogBean.setAl_operation(requestAction);
+			adminLogBean.setAl_AdminActionBean(adminActionService.selectByAa_page_name(requestAction));
 			adminLogBean.setAl_ip(request.getRemoteAddr());
 			adminLogService.insert(adminLogBean);
 

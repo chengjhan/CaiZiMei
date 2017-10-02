@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogBean.java
  * Author: 詹晟
- * Date: 2017/7/17
+ * Date: 2017/10/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,7 +32,9 @@ public class AdminLogBean {
 	@ManyToOne
 	@JoinColumn(name = "al_ad_id")
 	private AdminBean al_AdminBean;
-	private String al_operation;
+	@ManyToOne
+	@JoinColumn(name = "al_aa_id")
+	private AdminActionBean al_AdminActionBean;
 	private String al_ip;
 
 	public Integer getAl_id() {
@@ -59,12 +61,12 @@ public class AdminLogBean {
 		this.al_AdminBean = al_AdminBean;
 	}
 
-	public String getAl_operation() {
-		return al_operation;
+	public AdminActionBean getAl_AdminActionBean() {
+		return al_AdminActionBean;
 	}
 
-	public void setAl_operation(String al_operation) {
-		this.al_operation = al_operation;
+	public void setAl_AdminActionBean(AdminActionBean al_AdminActionBean) {
+		this.al_AdminActionBean = al_AdminActionBean;
 	}
 
 	public String getAl_ip() {

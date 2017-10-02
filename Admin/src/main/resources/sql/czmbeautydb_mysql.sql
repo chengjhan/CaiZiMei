@@ -26,16 +26,6 @@ create table admin (
 	primary key (ad_id)
 );
 
-create table admin_log (
-	al_id					int auto_increment not null,
-	al_insert_time			timestamp default current_timestamp not null,
-	al_ad_id				int not null,
-	al_operation			nvarchar(50),
-	al_ip					varchar(20),
-	primary key (al_id),
-	foreign key (al_ad_id) references admin (ad_id)
-);
-
 create table country (
 	co_id					int auto_increment not null,
 	co_iso					varchar(2),
@@ -138,6 +128,17 @@ create table admin_action (
 	aa_name					nvarchar(20) not null,
 	aa_page_name			varchar(50) not null,
 	primary key (aa_id)
+);
+
+create table admin_log (
+	al_id					int auto_increment not null,
+	al_insert_time			timestamp default current_timestamp not null,
+	al_ad_id				int not null,
+	al_aa_id				int not null,
+	al_ip					varchar(20),
+	primary key (al_id),
+	foreign key (al_ad_id) references admin (ad_id),
+	foreign key (al_aa_id) references admin_action (aa_id)
 );
 
 -- ALTER

@@ -5,6 +5,7 @@ import static com.czmbeauty.common.constants.CommonConstants.SLASH;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +95,8 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
-		AdminBean adminBean = (AdminBean) modelAndView.getModel().get(ADMIN);
+		HttpSession session = request.getSession();
+		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
 
 		if (adminBean != null) {
 

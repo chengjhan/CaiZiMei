@@ -5,7 +5,6 @@ import static com.czmbeauty.common.constants.CommonConstants.SLASH;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,25 +94,22 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
-		HttpSession session = request.getSession();
-		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
+		AdminBean sessionAdminBean = (AdminBean) request.getSession().getAttribute(ADMIN);
+		AdminBean modelAndViewAdminBean = (AdminBean) modelAndView.getModel().get(ADMIN);
 
-		if (adminBean != null) {
+		String servletPath = request.getServletPath(); // /頁面名
+		String actionName = servletPath.substring(1, servletPath.length()); // 動作名
 
-			String servletPath = request.getServletPath(); // /頁面名
-			String actionName = servletPath.substring(1, servletPath.length()); // 動作名
+		AdminLogBean adminLogBean = new AdminLogBean();
+		adminLogBean.setAl_AdminBean((sessionAdminBean != null) ? sessionAdminBean : modelAndViewAdminBean);
+		adminLogBean.setAl_AdminActionBean(adminActionService.selectByAa_action_name(actionName));
+		adminLogBean.setAl_ip(request.getRemoteAddr());
+		adminLogService.insert(adminLogBean);
 
-			AdminLogBean adminLogBean = new AdminLogBean();
-			adminLogBean.setAl_AdminBean(adminBean);
-			adminLogBean.setAl_AdminActionBean(adminActionService.selectByAa_action_name(actionName));
-			adminLogBean.setAl_ip(request.getRemoteAddr());
-			adminLogService.insert(adminLogBean);
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
 
-			HandlerMethod handlerMethod = (HandlerMethod) handler;
-
-			logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
-					+ ") 寫入日誌: " + actionName);
-		}
+		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
+				+ ") 寫入日誌: " + actionName);
 	}
 
 	@Override

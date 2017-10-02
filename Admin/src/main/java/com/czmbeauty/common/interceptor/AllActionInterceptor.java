@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.model.entity.AdminActionBean;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
 import com.czmbeauty.model.service.AdminActionService;
@@ -97,19 +98,24 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 		AdminBean sessionAdminBean = (AdminBean) request.getSession().getAttribute(ADMIN);
 		AdminBean modelAndViewAdminBean = (AdminBean) modelAndView.getModel().get(ADMIN);
 
+		if (sessionAdminBean == null && modelAndViewAdminBean == null) {
+			return;
+		}
+
 		String servletPath = request.getServletPath(); // /頁面名
 		String actionName = servletPath.substring(1, servletPath.length()); // 動作名
+		AdminActionBean adminActionBean = adminActionService.selectByAa_action_name(actionName);
 
 		AdminLogBean adminLogBean = new AdminLogBean();
-		adminLogBean.setAl_AdminBean((sessionAdminBean != null) ? sessionAdminBean : modelAndViewAdminBean);
-		adminLogBean.setAl_AdminActionBean(adminActionService.selectByAa_action_name(actionName));
+		adminLogBean.setAl_AdminBean((sessionAdminBean == null) ? modelAndViewAdminBean : sessionAdminBean);
+		adminLogBean.setAl_AdminActionBean(adminActionBean);
 		adminLogBean.setAl_ip(request.getRemoteAddr());
 		adminLogService.insert(adminLogBean);
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 
 		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
-				+ ") 寫入日誌: " + actionName);
+				+ ") 寫入日誌: " + adminActionBean.getAa_name());
 	}
 
 	@Override

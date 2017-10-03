@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminViewServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/2
+ * Date: 2017/10/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,6 +10,7 @@ package com.czmbeauty.model.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.czmbeauty.model.dao.AdminViewDao;
 import com.czmbeauty.model.entity.AdminViewBean;
@@ -37,6 +38,7 @@ public class AdminViewServiceImpl implements AdminViewService {
 	 * @return AdminViewBean
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public AdminViewBean selectByAv_view_name(String av_view_name) {
 
 		AdminViewBean adminViewBean = adminViewDao.selectByAv_view_name(av_view_name);

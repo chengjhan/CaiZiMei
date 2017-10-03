@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminActionServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/2
+ * Date: 2017/10/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -10,6 +10,7 @@ package com.czmbeauty.model.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.czmbeauty.model.dao.AdminActionDao;
 import com.czmbeauty.model.entity.AdminActionBean;
@@ -37,6 +38,7 @@ public class AdminActionServiceImpl implements AdminActionService {
 	 * @return AdminActionBean
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public AdminActionBean selectByAa_action_name(String aa_action_name) {
 
 		AdminActionBean adminActionBean = adminActionDao.selectByAa_action_name(aa_action_name);

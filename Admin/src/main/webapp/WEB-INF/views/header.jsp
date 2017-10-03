@@ -14,17 +14,10 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
 				<div class="logo">
 					<a href="<%=request.getContextPath()%>/index"><img src="<%=request.getContextPath()%>/images/logo_white.svg"></a>
 				</div>
 				<a class="navbar-brand" href="<%=request.getContextPath()%>/index">采姿美管理系統</a>
-				<p class="navbar-text">Welcome ${admin.ad_username}</p>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -33,8 +26,14 @@
 							<li><a href="<%=request.getContextPath()%>/secure/sign-in">登入</a></li>
 						</c:when>
 						<c:when test="${not empty admin}">
-							<li><a href="<%=request.getContextPath()%>/admin/profile">設定</a></li>
-							<li><a href="<%=request.getContextPath()%>/secure/sign-out.do">登出</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${admin.ad_username}<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="<%=request.getContextPath()%>/admin/profile">個人資訊</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="<%=request.getContextPath()%>/secure/sign-out.do">登出</a></li>
+								</ul>
+							</li>
 						</c:when>
 					</c:choose>
 				</ul>

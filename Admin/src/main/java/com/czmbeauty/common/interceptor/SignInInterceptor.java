@@ -30,12 +30,7 @@ public class SignInInterceptor implements HandlerInterceptor, ModelAttributeCons
 		String servletPath = request.getServletPath(); // /頁面名
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
 		String queryString = request.getQueryString(); // 參數
-		String requestPage; // 請求頁面
-		if (queryString != null) {
-			requestPage = pageName + QUESTION + queryString;
-		} else {
-			requestPage = pageName;
-		}
+		String requestPage = (queryString != null) ? (pageName + QUESTION + queryString) : pageName; // 請求頁面
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();

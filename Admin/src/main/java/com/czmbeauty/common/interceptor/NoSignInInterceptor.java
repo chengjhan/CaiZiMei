@@ -31,12 +31,7 @@ public class NoSignInInterceptor implements HandlerInterceptor, ModelAttributeCo
 		String servletPath = request.getServletPath(); // /頁面名
 		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
 		String queryString = request.getQueryString(); // 參數
-		String next; // 原請求頁面
-		if (queryString != null) {
-			next = pageName + QUESTION + queryString; // 頁面名?參數
-		} else {
-			next = pageName; // 頁面名
-		}
+		String next = (queryString != null) ? (pageName + QUESTION + queryString) : pageName; // 原請求頁面
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();

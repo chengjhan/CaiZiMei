@@ -46,12 +46,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 		String servletPath = request.getServletPath(); // /頁面名
 		String actionName = servletPath.substring(1, servletPath.length()); // 動作名
 		String queryString = request.getQueryString(); // 參數
-		String requestAction; // 請求動作
-		if (queryString != null) {
-			requestAction = actionName + QUESTION + queryString;
-		} else {
-			requestAction = actionName;
-		}
+		String requestAction = (queryString != null) ? (actionName + QUESTION + queryString) : actionName; // 請求動作
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();

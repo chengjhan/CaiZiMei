@@ -34,12 +34,7 @@ public class AllViewInterceptor implements HandlerInterceptor, ModelAttributeCon
 		String servletPath = request.getServletPath(); // /頁面名
 		String viewName = servletPath.substring(1, servletPath.length()); // 視圖名
 		String queryString = request.getQueryString(); // 參數
-		String requestView; // 請求視圖
-		if (queryString != null) {
-			requestView = viewName + QUESTION + queryString;
-		} else {
-			requestView = viewName;
-		}
+		String requestView = (queryString != null) ? (viewName + QUESTION + queryString) : viewName; // 請求視圖
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();

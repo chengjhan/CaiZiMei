@@ -30,6 +30,8 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${admin.ad_username}<span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="<%=request.getContextPath()%>/admin/profile">個人資訊</a></li>
+									<li><a href="<%=request.getContextPath()%>/admin/edit">編輯個人資訊</a></li>
+									<li><a href="<%=request.getContextPath()%>/admin/change-password">變更密碼</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<%=request.getContextPath()%>/secure/sign-out.do">登出</a></li>
 								</ul>

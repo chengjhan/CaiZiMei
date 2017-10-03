@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: IndexController.java
  * Author: 詹晟
- * Date: 2017/10/3
+ * Date: 2017/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -24,7 +24,7 @@ import com.czmbeauty.common.constants.PageNameConstants;
 public class IndexController implements ModelAttributeConstants, PageNameConstants {
 
 	/**
-	 * 采姿美 - 首頁
+	 * 首頁 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/index.jsp
 	 */

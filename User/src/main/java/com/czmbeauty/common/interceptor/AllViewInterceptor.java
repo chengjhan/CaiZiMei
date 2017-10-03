@@ -43,6 +43,7 @@ public class AllViewInterceptor implements HandlerInterceptor, ModelAttributeCon
 		try {
 			if (userViewService.selectByUv_view_name(viewName) == null) {
 
+				// 有 mapping，但資料庫無此視圖
 				throw new PageNotFoundException(requestView);
 			}
 		} catch (PageNotFoundException e) {

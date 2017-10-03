@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: MenuController.java
  * Author: 詹晟
- * Date: 2017/10/3
+ * Date: 2017/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -24,7 +24,7 @@ import com.czmbeauty.common.constants.PageNameConstants;
 public class MenuController implements ModelAttributeConstants, PageNameConstants {
 
 	/**
-	 * 采姿美 - 經營理念
+	 * 經營理念 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/menu/idea.jsp
 	 */
@@ -35,7 +35,7 @@ public class MenuController implements ModelAttributeConstants, PageNameConstant
 	}
 
 	/**
-	 * 采姿美 - 公司願景
+	 * 公司願景 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/menu/vision.jsp
 	 */
@@ -46,7 +46,7 @@ public class MenuController implements ModelAttributeConstants, PageNameConstant
 	}
 
 	/**
-	 * 采姿美 - 公司使命
+	 * 公司使命 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/menu/mission.jsp
 	 */
@@ -57,7 +57,7 @@ public class MenuController implements ModelAttributeConstants, PageNameConstant
 	}
 
 	/**
-	 * 采姿美 - 事業版圖
+	 * 事業版圖 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/menu/territory.jsp
 	 */

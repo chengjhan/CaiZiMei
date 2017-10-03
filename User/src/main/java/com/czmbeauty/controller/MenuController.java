@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: MenuController.java
  * Author: 詹晟
- * Date: 2017/7/27
+ * Date: 2017/10/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -12,13 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.czmbeauty.common.constants.ModelAttributeConstants;
+import com.czmbeauty.common.constants.PageNameConstants;
+
 /**
  * menu controller
  * 
  * @author 詹晟
  */
 @Controller
-public class MenuController {
+public class MenuController implements ModelAttributeConstants, PageNameConstants {
 
 	/**
 	 * 采姿美 - 經營理念
@@ -28,7 +31,7 @@ public class MenuController {
 	@RequestMapping(value = "/menu/idea", method = RequestMethod.GET)
 	public String ideaView() {
 
-		return "menu/idea";
+		return MENU_IDEA_PAGE;
 	}
 
 	/**
@@ -39,7 +42,7 @@ public class MenuController {
 	@RequestMapping(value = "/menu/vision", method = RequestMethod.GET)
 	public String visionView() {
 
-		return "menu/vision";
+		return MENU_IDEA_VISION;
 	}
 
 	/**
@@ -50,7 +53,7 @@ public class MenuController {
 	@RequestMapping(value = "/menu/mission", method = RequestMethod.GET)
 	public String missionView() {
 
-		return "menu/mission";
+		return MENU_IDEA_MISSION;
 	}
 
 	/**
@@ -61,7 +64,7 @@ public class MenuController {
 	@RequestMapping(value = "/menu/territory", method = RequestMethod.GET)
 	public String territoryView() {
 
-		return "menu/territory";
+		return MENU_IDEA_TERRITORY;
 	}
 
 }

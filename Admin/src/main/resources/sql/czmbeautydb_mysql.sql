@@ -141,6 +141,13 @@ create table admin_log (
 	foreign key (al_aa_id) references admin_action (aa_id)
 );
 
+create table user_view (
+	uv_id					int auto_increment not null,
+	uv_name					nvarchar(20) not null,
+	uv_view_name			varchar(50) not null,
+	primary key (uv_id)
+);
+
 -- ALTER
 alter table state auto_increment = 11;
 alter table city auto_increment = 101;
@@ -318,3 +325,11 @@ insert into admin_action (aa_name, aa_action_name) values ('新增區域', 'stat
 insert into admin_action (aa_name, aa_action_name) values ('編輯區域資訊', 'state/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'video-related/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音資訊', 'video-related/edit.do');
+
+-- user_view
+insert into user_view (uv_name, uv_view_name) values ('首頁', 'index');
+insert into user_view (uv_name, uv_view_name) values ('找不到網頁', 'error/page-not-found');
+insert into user_view (uv_name, uv_view_name) values ('經營理念', 'menu/idea');
+insert into user_view (uv_name, uv_view_name) values ('公司使命', 'menu/mission');
+insert into user_view (uv_name, uv_view_name) values ('事業版圖', 'menu/territory');
+insert into user_view (uv_name, uv_view_name) values ('公司願景', 'menu/vision');

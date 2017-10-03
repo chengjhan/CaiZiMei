@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/10/1
+ * Date: 2017/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -144,7 +144,6 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 
 			return ca_directory + EDIT_PAGE + QUESTION + VIDEO_ID + EQUAL + videoBean.getVi_id() + AND + PAGE + EQUAL
 					+ currentPage;
-
 		}
 		videoBean.setVi_CategoryBean(categoryBean);
 		videoBean.setVi_status(videoService.selectByVi_id(videoBean.getVi_id()).getVi_status());

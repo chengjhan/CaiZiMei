@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CategoryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/2
+ * Date: 2017/10/4
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,7 +11,7 @@ package com.czmbeauty.model.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.czmbeauty.common.util.RequestViewSplitter;
+import com.czmbeauty.common.util.RequestPageSplitter;
 import com.czmbeauty.model.dao.CategoryDao;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.service.CategoryService;
@@ -33,16 +33,16 @@ public class CategoryServiceImpl implements CategoryService {
 	/**
 	 * 類別資料夾名稱搜尋
 	 * 
-	 * @param requestView
-	 *            String --> 請求視圖
+	 * @param requestPage
+	 *            String --> 請求頁面
 	 * @param ca_directory
 	 *            String --> 類別資料夾名稱
 	 * @return CategoryBean
 	 */
 	@Override
-	public CategoryBean selectByCa_directory(String requestView) {
+	public CategoryBean selectByCa_directory(String requestPage) {
 
-		String ca_directory = RequestViewSplitter.getDirectoryName(requestView);
+		String ca_directory = RequestPageSplitter.getDirectoryName(requestPage);
 
 		CategoryBean categoryBean = categoryDao.selectByCa_directory(ca_directory);
 

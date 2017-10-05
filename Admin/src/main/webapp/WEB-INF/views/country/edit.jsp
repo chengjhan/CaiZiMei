@@ -28,6 +28,13 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li><a href="<%=request.getContextPath()%>/country/list">國家一覽</a></li>
+						<li class="active">編輯國家資訊</li>
+					</ol>
+				
 					<!-- form -->
 					<form:form action="/Admin/country/edit.do" method="post" modelAttribute="countryBean">
 						<table class="table">

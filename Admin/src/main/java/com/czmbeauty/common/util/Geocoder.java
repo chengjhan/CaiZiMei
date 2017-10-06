@@ -21,7 +21,8 @@ public class Geocoder {
 	/**
 	 * 地址轉換經緯度
 	 * 
-	 * @param address-->地址
+	 * @param address
+	 *            String --> 地址
 	 * @return return [緯度, 經度]
 	 * @return null
 	 */
@@ -73,9 +74,10 @@ public class Geocoder {
 					}
 				}
 
-				logger.info("緯度: " + latitude + "，經度: " + longitude);
+				logger.info("緯度: " + latitude + ", 經度: " + longitude);
 
 				return new Double[] { latitude, longitude };
+				
 			} else {
 
 				throw new Exception("Error from the API - response status: " + status);
@@ -86,7 +88,7 @@ public class Geocoder {
 
 	public static void main(String[] args) throws Exception {
 		Double latLng[] = Geocoder.addressToLatLng("台北市信義區信義路五段7號");
-		System.out.println("Latitude: " + latLng[0] + " and Longitude: " + latLng[1]);
+		System.out.println("Latitude: " + latLng[0] + ", Longitude: " + latLng[1]);
 	}
 
 }

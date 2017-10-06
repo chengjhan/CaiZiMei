@@ -13,17 +13,9 @@ public class Pagination {
 	 */
 	public static int getPageCount(int totalRowCount, int pageRowCount) {
 
-		int pageCount = 0;
+		int pageCount = totalRowCount / pageRowCount;
 
-		if (totalRowCount % pageRowCount == 0) {
-
-			pageCount = totalRowCount / pageRowCount;
-
-		} else {
-
-			pageCount = totalRowCount / pageRowCount + 1;
-		}
-		return pageCount;
+		return (totalRowCount % pageRowCount == 0) ? pageCount : (pageCount + 1);
 	}
 
 }

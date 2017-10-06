@@ -22,8 +22,10 @@ public class CryptographicHashFunction {
 	/**
 	 * 製造雜湊密碼
 	 * 
-	 * @param password-->密碼(原碼)
-	 * @param salt-->塩
+	 * @param password
+	 *            String --> 密碼(原碼)
+	 * @param salt
+	 *            String --> 塩
 	 * @return MD5雜湊密碼
 	 */
 	public static String getHashedPassword(String password, String salt) {
@@ -34,8 +36,9 @@ public class CryptographicHashFunction {
 	/**
 	 * 轉換為 MD5
 	 * 
-	 * @param str-->原始字串
-	 * @return str_MD5-->MD5字串
+	 * @param str
+	 *            String --> 原始字串
+	 * @return str_MD5
 	 */
 	public static String getMD5(String str) {
 

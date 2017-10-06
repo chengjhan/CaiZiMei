@@ -27,6 +27,13 @@
 				
 				<!-- content -->
 				<div class="table-responsive">
+				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li><a href="<%=request.getContextPath()%>/clinic/list?page=${currentPage}">診所一覽</a></li>
+						<li class="active">編輯診所資訊</li>
+					</ol>
 
 					<!-- form -->
 					<form:form action="/Admin/clinic/edit.do" method="post" modelAttribute="baseBean">
@@ -111,7 +118,7 @@
 								<td></td>
 								<td>
 									<input type="submit" class="btn btn-success" value="變更" />
-<%-- 									<a href="<%=request.getContextPath()%>/clinic/list"><button type="button" class="btn btn-danger">取消</button></a> --%>
+									<a href="<%=request.getContextPath()%>/clinic/list?page=${currentPage}"><button type="button" class="btn btn-danger">取消</button></a>
 								</td>
 							</tr>
 						</table>

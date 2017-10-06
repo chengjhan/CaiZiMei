@@ -31,7 +31,7 @@
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
-						<li class="active">相關影音一覽</a></li>
+						<li class="active">相關影音一覽</li>
 					</ol>
 				
 					<!-- option -->

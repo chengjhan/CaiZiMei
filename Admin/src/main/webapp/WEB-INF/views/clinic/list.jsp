@@ -29,6 +29,12 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li class="active">診所一覽</li>
+					</ol>
+				
 					<!-- option -->
 					<div class="btn-group option">
 						<div class="add-button">

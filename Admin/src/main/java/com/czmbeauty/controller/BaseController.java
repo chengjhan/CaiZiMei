@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/10/1
+ * Date: 2017/10/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -304,6 +304,9 @@ public class BaseController implements ModelAttributeConstants, PageNameConstant
 
 		// 使表單回填 BaseBean 內所有資料
 		model.addAttribute(BASE_BEAN, baseBean);
+
+		// 取得當前頁碼
+		model.addAttribute(CURRENT_PAGE, page);
 
 		return categoryBean.getCa_directory() + EDIT_PAGE;
 	}

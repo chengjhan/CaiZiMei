@@ -31,7 +31,7 @@
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
-						<li><a href="<%=request.getContextPath()%>/video-related/list?page=1">相關影音一覽</a></li>
+						<li><a href="<%=request.getContextPath()%>/video-related/list?page=${currentPage}">相關影音一覽</a></li>
 						<li class="active">編輯相關影音資訊</li>
 					</ol>
 				

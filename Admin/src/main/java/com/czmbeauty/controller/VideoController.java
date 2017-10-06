@@ -266,6 +266,9 @@ public class VideoController implements ModelAttributeConstants, PageNameConstan
 		// 使表單回填 VideoBean 內所有資料
 		model.addAttribute(VIDEO_BEAN, videoBean);
 
+		// 取得當前頁碼
+		model.addAttribute(CURRENT_PAGE, page);
+
 		return categoryBean.getCa_directory() + EDIT_PAGE;
 	}
 

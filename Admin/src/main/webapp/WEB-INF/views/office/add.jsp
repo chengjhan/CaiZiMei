@@ -28,6 +28,13 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li><a href="<%=request.getContextPath()%>/office/list?page=1">辦事處一覽</a></li>
+						<li class="active">新增辦事處</li>
+					</ol>
+				
 					<!-- form -->
 					<form:form action="/Admin/office/add.do" method="post" modelAttribute="baseBean">
 						<table class="table">

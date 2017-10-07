@@ -27,6 +27,12 @@
 				
 				<!-- content -->
 				<div class="table-responsive">
+				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li class="active">加盟店一覽</li>
+					</ol>
 					
 					<!-- option -->
 					<div class="btn-group option">

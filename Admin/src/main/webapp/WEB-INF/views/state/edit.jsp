@@ -28,6 +28,13 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li><a href="<%=request.getContextPath()%>/state/list">區域一覽</a></li>
+						<li class="active">編輯區域資訊</li>
+					</ol>
+				
 					<!-- form -->
 					<form:form action="/Admin/state/edit.do" method="post" modelAttribute="stateBean">
 						<table class="table">

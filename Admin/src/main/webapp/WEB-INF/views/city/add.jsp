@@ -28,6 +28,13 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li><a href="<%=request.getContextPath()%>/city/list">城市一覽</a></li>
+						<li class="active">新增城市</li>
+					</ol>
+				
 					<!-- form -->
 					<form:form action="/Admin/city/add.do" method="post" modelAttribute="cityBean">
 						<table class="table">

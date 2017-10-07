@@ -28,6 +28,12 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li class="active">管理員註冊</li>
+					</ol>
+				
 					<!-- form -->
 					<form:form action="/Admin/admin/sign-up.do" method="post" modelAttribute="adminBean" cssClass="form-horizontal">
 						<table class="table">

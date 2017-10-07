@@ -29,6 +29,12 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li class="active">管理員一覽</li>
+					</ol>
+				
 					<!-- table -->
 					<table class="table table-hover">
 						<thead>

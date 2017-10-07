@@ -7,6 +7,7 @@
 <title>找不到網頁 - 采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/error/page-not-found.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -17,13 +18,11 @@
 	
 	<!-- main -->
 	<main>
-	
-		<!-- section-1 -->
-		<section id="section-1">
-			
+		<section id="section">
+			<div id="id-div-section-content">
+				<p class="p-content">您所尋找的頁面不存在</p>
+			</div>
 		</section>
-		<!-- section-1 end -->
-		
 	</main>
 	<!-- main end -->
 	

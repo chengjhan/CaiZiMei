@@ -28,6 +28,13 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li><a href="<%=request.getContextPath()%>/slider-main/list?page=1">主輪播圖片一覽</a></li>
+						<li class="active">新增主輪播圖片</li>
+					</ol>
+				
 					<!-- form -->
 					<form:form action="/Admin/slider-main/add.do" method="post" modelAttribute="imageBean" enctype="multipart/form-data">
 						

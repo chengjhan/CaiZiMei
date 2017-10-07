@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/10/1
+ * Date: 2017/10/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -297,8 +297,7 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/slider*/add.do", method = RequestMethod.POST)
-	public String addAction(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
-			BindingResult bindingResult) {
+	public String addAction(@RequestParam MultipartFile file, @Valid ImageBean imageBean, BindingResult bindingResult) {
 
 		return add(file, imageBean, bindingResult);
 	}
@@ -345,6 +344,9 @@ public class ImageController implements ModelAttributeConstants, PageNameConstan
 
 		// 使表單回填 ImageBean 內所有資料
 		model.addAttribute(IMAGE_BEAN, imageBean);
+
+		// 取得當前頁碼
+		model.addAttribute(CURRENT_PAGE, page);
 
 		return categoryBean.getCa_directory() + EDIT_PAGE;
 	}

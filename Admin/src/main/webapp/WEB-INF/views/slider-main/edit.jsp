@@ -28,6 +28,13 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li><a href="<%=request.getContextPath()%>/slider-main/list?page=${currentPage}">主輪播圖片一覽</a></li>
+						<li class="active">編輯主輪播圖片資訊</li>
+					</ol>
+				
 					<!-- form -->
 					<form:form action="/Admin/slider-main/edit.do" method="post" modelAttribute="imageBean" enctype="multipart/form-data" cssClass="form-horizontal">
 						
@@ -66,7 +73,10 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="submit" class="btn btn-success" value="變更" /></td>
+								<td>
+									<input type="submit" class="btn btn-success" value="變更" />
+									<a href="<%=request.getContextPath()%>/slider-main/list?page=${currentPage}"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
 							</tr>
 						</table>
 					</form:form>

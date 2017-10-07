@@ -28,6 +28,13 @@
 				<!-- content -->
 				<div class="table-responsive">
 				
+					<!-- breadcrumb -->
+					<ol class="breadcrumb">
+						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
+						<li><a href="<%=request.getContextPath()%>/slider-franchisee/list?page=1">加盟店資訊輪播圖片一覽</a></li>
+						<li class="active">新增加盟店資訊輪播圖片</li>
+					</ol>
+				
 					<!-- form -->
 					<form:form action="/Admin/slider-franchisee/add.do" method="post" modelAttribute="imageBean" enctype="multipart/form-data">
 						
@@ -62,7 +69,10 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="submit" class="btn btn-success" value="新增" /></td>
+								<td>
+									<input type="submit" class="btn btn-success" value="新增" />
+									<a href="<%=request.getContextPath()%>/slider-franchisee/list?page=1"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
 							</tr>
 						</table>
 					</form:form>

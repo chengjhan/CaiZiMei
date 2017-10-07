@@ -62,7 +62,10 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="submit" class="btn btn-success" value="變更" /></td>
+								<td>
+									<input type="submit" class="btn btn-success" value="變更" />
+									<a href="<%=request.getContextPath()%>/video-related/list?page=${currentPage}"><button type="button" class="btn btn-danger">取消</button></a>
+								</td>
 							</tr>
 						</table>
 					</form:form>

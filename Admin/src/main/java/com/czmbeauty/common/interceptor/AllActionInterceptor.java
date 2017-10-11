@@ -60,9 +60,9 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 			return true;
 
-		} else if (requestActionTag == null) { // session timeout
+		} else if (requestActionTag == null) { // Session timeout
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 閒置過久，進入頁面: " + ADMIN_SIGN_IN_PAGE);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 閒置過久，攔截: " + requestAction);
 
 			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);
 

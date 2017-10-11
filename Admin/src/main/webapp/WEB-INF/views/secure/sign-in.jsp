@@ -30,7 +30,7 @@
 				<div class="form-group sub-title">登入</div>
 				<div class="form-group">
 					<label for="ad_username" class="control-label">帳號</label>
-					<input type="text" id="ad_username" class="form-control" name="ad_username" value="${ad_username}">
+					<input type="text" id="ad_username" class="form-control" name="ad_username" value="${ad_username}" autofocus>
 				</div>
 				<div class="form-group">
 					<label for="ad_password" class="control-label">密碼</label>

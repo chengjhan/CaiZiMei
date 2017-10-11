@@ -73,7 +73,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- session timeout -->
+	<!-- Session timeout -->
 	<session-config>
 		<session-timeout>30</session-timeout>   
 	</session-config>

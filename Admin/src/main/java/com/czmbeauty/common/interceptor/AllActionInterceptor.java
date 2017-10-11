@@ -60,7 +60,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 			return true;
 
-		} else if (requestActionTag == null) {
+		} else if (requestActionTag == null) { // session timeout
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 閒置過久，進入頁面: " + ADMIN_SIGN_IN_PAGE);
 
@@ -68,11 +68,19 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 			return false;
 
-		} else if (!requestActionTag.equals(requestAction) || handlerMethodName.indexOf("Action") == -1) {
+		} else if (handlerMethodName.indexOf("Action") == -1) { // 經過 AllViewInterceptor (GET)
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAction);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+			return false;
+
+		} else if (!requestActionTag.equals(requestAction)) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAction);
+
+			response.sendRedirect(contextPath + SLASH + requestAction.split(".do")[0]);
 
 			return false;
 

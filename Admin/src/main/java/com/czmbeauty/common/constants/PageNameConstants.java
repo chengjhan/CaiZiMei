@@ -54,4 +54,6 @@ public interface PageNameConstants {
 
 	public static final String ADMIN_SWITCH_AJAX = "admin/switch.ajax";
 
+	public static final String COUNTRY_SWITCH_AJAX = "country/switch.ajax";
+
 }

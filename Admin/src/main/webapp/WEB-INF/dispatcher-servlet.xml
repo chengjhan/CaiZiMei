@@ -41,6 +41,11 @@
 		</mvc:interceptor>
 		
 		<mvc:interceptor>
+			<mvc:mapping path="/**/*.ajax" />
+			<bean class="com.czmbeauty.common.interceptor.AllAjaxInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/secure/sign-in" />
 			<mvc:exclude-mapping path="/secure/sign-in.do" />

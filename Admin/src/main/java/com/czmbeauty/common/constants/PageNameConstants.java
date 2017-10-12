@@ -52,4 +52,6 @@ public interface PageNameConstants {
 
 	public static final String ADMIN_SIGN_OUT_DO = "secure/sign-out.do";
 
+	public static final String ADMIN_SWITCH_AJAX = "admin/switch.ajax";
+
 }

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/10/2
+ * Date: 2017/10/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -289,17 +289,14 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		if (next != null) {
+		if (next != null) { // 經過 NoSignInInterceptor
 
-			// 經過 NoSignInInterceptor
 			logger.info("(" + className + "." + methodName + ") 原請求頁面: " + next);
 
-		} else {
+		} else { // 未經過 NoSignInInterceptor
 
-			// 未經過 NoSignInInterceptor
 			logger.info("(" + className + "." + methodName + ") 原請求頁面: " + INDEX_PAGE);
 		}
-
 		return ADMIN_SIGN_IN_PAGE;
 	}
 
@@ -368,18 +365,16 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 				HttpSession session = request.getSession();
 				String next = (String) session.getAttribute(NEXT_PAGE);
 
-				if (next != null) {
+				if (next != null) { // 經過 NoSignInInterceptor
 
 					session.removeAttribute(NEXT_PAGE);
 
-					// 經過 NoSignInInterceptor
 					logger.info("(" + className + "." + methodName + ") 登入成功，導向原請求頁面: " + next);
 
 					return REDIRECT.concat(next);
 
-				} else {
+				} else { // 未經過 NoSignInInterceptor
 
-					// 未經過 NoSignInInterceptor
 					logger.info("(" + className + "." + methodName + ") 登入成功，導向首頁: " + INDEX_PAGE);
 
 					return REDIRECT + INDEX_PAGE;

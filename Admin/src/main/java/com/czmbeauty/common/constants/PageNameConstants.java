@@ -4,6 +4,7 @@ public interface PageNameConstants {
 
 	public static final String REDIRECT = "redirect:/";
 
+	// view
 	public static final String INDEX_PAGE = "index";
 
 	public static final String NEXT_PAGE = "next";
@@ -50,10 +51,22 @@ public interface PageNameConstants {
 
 	public static final String ERROR_PAGE_NOT_FOUND_PAGE = "error/page-not-found";
 
+	// action
 	public static final String ADMIN_SIGN_OUT_DO = "secure/sign-out.do";
 
+	// ajax
 	public static final String ADMIN_SWITCH_AJAX = "admin/switch.ajax";
 
 	public static final String COUNTRY_SWITCH_AJAX = "country/switch.ajax";
+
+	public static final String STATE_SWITCH_AJAX = "state/switch.ajax";
+
+	public static final String CITY_SWITCH_AJAX = "city/switch.ajax";
+
+	public static final String BASE_SWITCH_AJAX = "base/switch.ajax";
+
+	public static final String IMAGE_SWITCH_AJAX = "image/switch.ajax";
+
+	public static final String VIDEO_SWITCH_AJAX = "video/switch.ajax";
 
 }

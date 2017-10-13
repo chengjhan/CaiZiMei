@@ -53,7 +53,6 @@
 			<mvc:exclude-mapping path="/secure/forget-password.do" />
 			<mvc:exclude-mapping path="/secure/reset-password" />
 			<mvc:exclude-mapping path="/secure/reset-password.do" />
-			<mvc:exclude-mapping path="/**/*.ajax" />
 			<mvc:exclude-mapping path="/css/**" />
 			<mvc:exclude-mapping path="/images/**" />
 			<mvc:exclude-mapping path="/js/**" />

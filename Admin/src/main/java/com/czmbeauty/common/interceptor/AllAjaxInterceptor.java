@@ -51,7 +51,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 			String parameter = request.getParameter("ad_id");
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
-					|| adminService.selectByAd_id(Integer.valueOf(parameter)) == null) {
+					|| adminService.selectByAd_id(Integer.valueOf(parameter)) == null || "100".equals(parameter)) {
 
 				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
 

@@ -63,18 +63,36 @@
 									<td>${bean.ad_signin_number}</td>
 									<td>${bean.ad_signin_ip}</td>
 									<td>${ad_signin_time}</td>
-									<td>${ad_status_time}</td>
 									<td>
-										<div class="ad-status-switch" data-ad-id="${bean.ad_id}" title="切換">
-											<c:choose>
-												<c:when test="${bean.ad_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ad-status="1">
-												</c:when>
-												<c:when test="${bean.ad_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ad-status="0">
-												</c:when>
-											</c:choose>
-										</div>
+										<c:choose>
+											<c:when test="${bean.ad_id == 100}">
+												不可變更
+											</c:when>
+											<c:when test="${bean.ad_id != 100}">
+												${ad_status_time}
+											</c:when>
+										</c:choose>
+									</td>
+									<td>
+										<c:choose>
+											<c:when test="${bean.ad_id == 100}">
+												<div style="width:30px">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg">
+												</div>
+											</c:when>
+											<c:when test="${bean.ad_id != 100}">
+												<div class="ad-status-switch" data-ad-id="${bean.ad_id}" title="切換">
+													<c:choose>
+														<c:when test="${bean.ad_status eq 1}">
+															<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ad-status="1">
+														</c:when>
+														<c:when test="${bean.ad_status eq 0}">
+															<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ad-status="0">
+														</c:when>
+													</c:choose>
+												</div>
+											</c:when>
+										</c:choose>
 									</td>
 								</tr>
 							</c:forEach>

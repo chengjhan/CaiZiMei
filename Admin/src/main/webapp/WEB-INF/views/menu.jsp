@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,10 +8,14 @@
 </head>
 <body>
 	<div class="col-sm-3 col-md-2 sidebar">
-		<ul class="nav nav-sidebar">
-			<li id="id-li-admin-sign-up"><a href="<%=request.getContextPath()%>/admin/sign-up">管理員註冊</a></li>
-			<li id="id-li-admin-list"><a href="<%=request.getContextPath()%>/admin/list?page=1">管理員一覽</a></li>
-		</ul>
+		<c:choose>
+			<c:when test="${admin.ad_id eq 100}">
+				<ul class="nav nav-sidebar">
+					<li id="id-li-admin-sign-up"><a href="<%=request.getContextPath()%>/admin/sign-up">管理員註冊</a></li>
+					<li id="id-li-admin-list"><a href="<%=request.getContextPath()%>/admin/list?page=1">管理員一覽</a></li>
+				</ul>
+			</c:when>
+		</c:choose>
 		<ul class="nav nav-sidebar">
 			<li id="id-li-country-list"><a href="<%=request.getContextPath()%>/country/list">國家一覽</a></li>
 			<li id="id-li-state-list"><a href="<%=request.getContextPath()%>/state/list">區域一覽</a></li>

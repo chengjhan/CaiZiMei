@@ -30,7 +30,7 @@
 				<div class="form-group sub-title">忘記密碼</div>
 				<div class="form-group">
 					<label for="ad_email">信箱</label>
-					<input type="text" id="ad_email" class="form-control" name="ad_email" value="${ad_email}">
+					<input type="text" id="ad_email" class="form-control" name="ad_email" value="${ad_email}" autofocus>
 					<div><p style="font-size:13px;padding:5px">請輸入您的信箱，系統將發送驗證碼，以重設您的密碼。<p></div>
 				</div>
 				<div class="form-group" style="margin-top:20px">

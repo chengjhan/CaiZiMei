@@ -30,7 +30,7 @@
 				<div class="form-group sub-title">重設密碼</div>
 				<div class="form-group">
 					<label for="ad_password_random">驗證碼</label>
-					<input type="password" id="ad_password_random" class="form-control" name="ad_password_random" value="${ad_password_random}">
+					<input type="password" id="ad_password_random" class="form-control" name="ad_password_random" value="${ad_password_random}" autofocus>
 				</div>
 				<div class="form-group">
 					<label for="ad_password_new">新密碼</label>

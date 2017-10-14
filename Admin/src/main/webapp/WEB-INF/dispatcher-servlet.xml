@@ -70,6 +70,14 @@
 			<mvc:mapping path="/secure/reset-password.do" />
 			<bean class="com.czmbeauty.common.interceptor.ResetPasswordInterceptor" />
 		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/sign-up" />
+			<mvc:mapping path="/admin/sign-up.do" />
+			<mvc:mapping path="/admin/list" />
+			<mvc:mapping path="/admin/switch.ajax" />
+			<bean class="com.czmbeauty.common.interceptor.NoAuthorityInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 	
 </beans>

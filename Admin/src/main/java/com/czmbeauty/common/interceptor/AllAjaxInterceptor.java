@@ -15,7 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.model.service.AdminService;
+import com.czmbeauty.model.service.BaseService;
+import com.czmbeauty.model.service.CityService;
 import com.czmbeauty.model.service.CountryService;
+import com.czmbeauty.model.service.ImageService;
+import com.czmbeauty.model.service.StateService;
+import com.czmbeauty.model.service.VideoService;
 
 public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
 
@@ -32,6 +37,36 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 	 */
 	@Autowired
 	private CountryService countryService;
+
+	/**
+	 * 注入 StateService
+	 */
+	@Autowired
+	private StateService stateService;
+
+	/**
+	 * 注入 CityService
+	 */
+	@Autowired
+	private CityService cityService;
+
+	/**
+	 * 注入 BaseService
+	 */
+	@Autowired
+	private BaseService baseService;
+
+	/**
+	 * 注入 ImageService
+	 */
+	@Autowired
+	private ImageService imageService;
+
+	/**
+	 * 注入 VideoService
+	 */
+	@Autowired
+	private VideoService videoService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -51,7 +86,8 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 			String parameter = request.getParameter("ad_id");
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
-					|| adminService.selectByAd_id(Integer.valueOf(parameter)) == null || "100".equals(parameter)) {
+					|| adminService.selectByAd_id(Integer.valueOf(parameter)) == null
+					|| adminService.selectByAd_id(Integer.valueOf(parameter)).getAd_authority().intValue() == 1) {
 
 				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
 
@@ -66,6 +102,76 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| countryService.selectByCo_id(Integer.valueOf(parameter)) == null) {
+
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+
+				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+				return false;
+			}
+		}
+		if (STATE_SWITCH_AJAX.equals(ajaxName)) {
+
+			String parameter = request.getParameter("st_id");
+
+			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
+					|| stateService.selectBySt_id(Integer.valueOf(parameter)) == null) {
+
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+
+				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+				return false;
+			}
+		}
+		if (CITY_SWITCH_AJAX.equals(ajaxName)) {
+
+			String parameter = request.getParameter("ci_id");
+
+			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
+					|| cityService.selectByCi_id(Integer.valueOf(parameter)) == null) {
+
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+
+				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+				return false;
+			}
+		}
+		if (BASE_SWITCH_AJAX.equals(ajaxName)) {
+
+			String parameter = request.getParameter("ba_id");
+
+			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
+					|| baseService.selectByBa_id(Integer.valueOf(parameter)) == null) {
+
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+
+				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+				return false;
+			}
+		}
+		if (IMAGE_SWITCH_AJAX.equals(ajaxName)) {
+
+			String parameter = request.getParameter("im_id");
+
+			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
+					|| imageService.selectByIm_id(Integer.valueOf(parameter)) == null) {
+
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+
+				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+				return false;
+			}
+		}
+		if (VIDEO_SWITCH_AJAX.equals(ajaxName)) {
+
+			String parameter = request.getParameter("vi_id");
+
+			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
+					|| videoService.selectByVi_id(Integer.valueOf(parameter)) == null) {
 
 				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
 

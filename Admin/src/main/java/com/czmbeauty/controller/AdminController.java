@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/10/12
+ * Date: 2017/10/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -420,7 +420,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 		} else {
 
-			AdminBean adminBean = adminService.selectByAd_email(ad_email);
+			AdminBean adminBean = adminService.selectByOpenAd_email(ad_email);
 
 			if (adminBean == null) {
 
@@ -478,7 +478,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 		HttpSession session = request.getSession();
 		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
-		AdminBean adminBean = adminService.selectByAd_email(ad_email);
+		AdminBean adminBean = adminService.selectByOpenAd_email(ad_email);
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -588,7 +588,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	}
 
 	/**
-	 * 帳號重複驗證 (AJAX)
+	 * 帳號重複驗證 (sign-up) (AJAX)
 	 * 
 	 * @param ad_username
 	 *            String --> 管理員帳號
@@ -605,7 +605,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	}
 
 	/**
-	 * 信箱重複驗證 (AJAX)
+	 * 信箱重複驗證 (sign-up) (AJAX)
 	 * 
 	 * @param ad_email
 	 *            String --> 管理員信箱

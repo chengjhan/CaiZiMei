@@ -87,7 +87,7 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public AdminBean signIn(String ad_username, String ad_password) {
 
-		AdminBean adminBean = adminDao.selectByAd_username(ad_username);
+		AdminBean adminBean = adminDao.selectByOpenAd_username(ad_username);
 
 		if (adminBean != null) {
 
@@ -155,7 +155,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	/**
-	 * 管理員帳號搜尋
+	 * 管理員帳號搜尋 (sign-up) (AJAX)
 	 * 
 	 * @param ad_username
 	 *            String --> 管理員帳號
@@ -169,7 +169,21 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	/**
-	 * 管理員信箱搜尋
+	 * 管理員帳號搜尋 (sign-in)
+	 * 
+	 * @param ad_username
+	 *            String --> 管理員帳號
+	 * @return AdminBean
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public AdminBean selectByOpenAd_username(String ad_username) {
+
+		return adminDao.selectByOpenAd_username(ad_username);
+	}
+
+	/**
+	 * 管理員信箱搜尋 (sign-up) (AJAX)
 	 * 
 	 * @param ad_email
 	 *            String --> 管理員信箱
@@ -196,6 +210,20 @@ public class AdminServiceImpl implements AdminService {
 	public AdminBean selectByAd_email(Integer ad_id, String ad_email) {
 
 		return adminDao.selectByAd_email(ad_id, ad_email);
+	}
+
+	/**
+	 * 管理員信箱搜尋 (forget-password)
+	 * 
+	 * @param ad_email
+	 *            String --> 管理員信箱
+	 * @return AdminBean
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public AdminBean selectByOpenAd_email(String ad_email) {
+
+		return adminDao.selectByOpenAd_email(ad_email);
 	}
 
 	/**

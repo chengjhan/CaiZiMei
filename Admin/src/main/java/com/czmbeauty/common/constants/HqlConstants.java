@@ -6,14 +6,20 @@ public interface HqlConstants {
 	/** 搜尋所有管理員 */
 	public static final String HQL_SELECT_ALL_ADMIN = "from AdminBean order by ad_id asc";
 
-	/** 管理員帳號搜尋 */
+	/** 管理員帳號搜尋 (sign-up) (AJAX) */
+	public static final String HQL_SELECT_ADMIN_BY_USERNAME = "from AdminBean where ad_username=:ad_username";
+
+	/** 管理員帳號搜尋 (sign-in) */
 	public static final String HQL_SELECT_OPEN_ADMIN_BY_USERNAME = "from AdminBean where ad_username=:ad_username and ad_status=1";
 
-	/** 管理員信箱搜尋 */
-	public static final String HQL_SELECT_OPEN_ADMIN_BY_EMAIL = "from AdminBean where ad_email=:ad_email and ad_status=1";
+	/** 管理員信箱搜尋 (sign-up) (AJAX) */
+	public static final String HQL_SELECT_ADMIN_BY_EMAIL = "from AdminBean where ad_email=:ad_email";
 
 	/** 管理員信箱搜尋 (edit) (AJAX) */
-	public static final String HQL_SELECT_OPEN_ADMIN_BY_EMAIL_EXCEPT_MYSELF = "from AdminBean where ad_id!=:ad_id and ad_email=:ad_email and ad_status=1";
+	public static final String HQL_SELECT_ADMIN_BY_EMAIL_EXCEPT_MYSELF = "from AdminBean where ad_id!=:ad_id and ad_email=:ad_email";
+
+	/** 管理員信箱搜尋 (forget-password) */
+	public static final String HQL_SELECT_OPEN_ADMIN_BY_EMAIL = "from AdminBean where ad_email=:ad_email and ad_status=1";
 
 	// admin_log
 	/** 搜尋所有管理員日誌 */

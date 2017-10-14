@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDao.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/10/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,6 +41,11 @@ public interface AdminDao extends HqlConstants {
 	AdminBean selectByAd_username(String ad_username);
 
 	/**
+	 * @see com.czmbeauty.model.dao.impl.AdminDaoImpl#selectByOpenAd_username(String)
+	 */
+	AdminBean selectByOpenAd_username(String ad_username);
+
+	/**
 	 * @see com.czmbeauty.model.dao.impl.AdminDaoImpl#selectByAd_email(String)
 	 */
 	AdminBean selectByAd_email(String ad_email);
@@ -50,6 +55,11 @@ public interface AdminDao extends HqlConstants {
 	 *      String)
 	 */
 	AdminBean selectByAd_email(Integer ad_id, String ad_email);
+
+	/**
+	 * @see com.czmbeauty.model.dao.impl.AdminDaoImpl#selectByOpenAd_email(String)
+	 */
+	AdminBean selectByOpenAd_email(String ad_email);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.AdminDaoImpl#insert(AdminBean)

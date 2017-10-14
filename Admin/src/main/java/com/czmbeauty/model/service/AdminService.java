@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/10/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -30,8 +30,7 @@ public interface AdminService {
 	AdminBean signIn(String ad_username, String ad_password);
 
 	/**
-	 * @see com.czmbeauty.model.service.AdminService#selectPagination(Integer,
-	 *      int)
+	 * @see com.czmbeauty.model.service.AdminService#selectPagination(Integer, int)
 	 */
 	List<AdminBean> selectPagination(Integer page, int max);
 
@@ -51,6 +50,11 @@ public interface AdminService {
 	AdminBean selectByAd_username(String ad_username);
 
 	/**
+	 * @see com.czmbeauty.model.service.AdminService#selectByOpenAd_username(String)
+	 */
+	AdminBean selectByOpenAd_username(String ad_username);
+
+	/**
 	 * @see com.czmbeauty.model.service.AdminService#selectByAd_email(String)
 	 */
 	AdminBean selectByAd_email(String ad_email);
@@ -60,6 +64,11 @@ public interface AdminService {
 	 *      String)
 	 */
 	AdminBean selectByAd_email(Integer ad_id, String ad_email);
+
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#selectByOpenAd_email(String)
+	 */
+	AdminBean selectByOpenAd_email(String ad_email);
 
 	/**
 	 * @see com.czmbeauty.model.service.AdminService#update(AdminBean)

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/14
+ * Date: 2017/10/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -87,7 +87,7 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public AdminBean signIn(String ad_username, String ad_password) {
 
-		AdminBean adminBean = adminDao.selectByOpenAd_username(ad_username);
+		AdminBean adminBean = adminDao.selectByAd_username(ad_username, 1);
 
 		if (adminBean != null) {
 
@@ -135,6 +135,7 @@ public class AdminServiceImpl implements AdminService {
 	 * @return int
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public int selectCount() {
 
 		return adminDao.selectCount();
@@ -159,41 +160,31 @@ public class AdminServiceImpl implements AdminService {
 	 * 
 	 * @param ad_username
 	 *            String --> 管理員帳號
+	 * @param ad_status
+	 *            Integer --> 管理員狀態
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public AdminBean selectByAd_username(String ad_username) {
+	public AdminBean selectByAd_username(String ad_username, Integer ad_status) {
 
-		return adminDao.selectByAd_username(ad_username);
+		return adminDao.selectByAd_username(ad_username, ad_status);
 	}
 
 	/**
-	 * 管理員帳號搜尋 (sign-in)
-	 * 
-	 * @param ad_username
-	 *            String --> 管理員帳號
-	 * @return AdminBean
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public AdminBean selectByOpenAd_username(String ad_username) {
-
-		return adminDao.selectByOpenAd_username(ad_username);
-	}
-
-	/**
-	 * 管理員信箱搜尋 (sign-up) (AJAX)
+	 * 管理員信箱搜尋
 	 * 
 	 * @param ad_email
 	 *            String --> 管理員信箱
+	 * @param ad_status
+	 *            Integer --> 管理員狀態
 	 * @return AdminBean
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public AdminBean selectByAd_email(String ad_email) {
+	public AdminBean selectByAd_email(String ad_email, Integer ad_status) {
 
-		return adminDao.selectByAd_email(ad_email);
+		return adminDao.selectByAd_email(ad_email, ad_status);
 	}
 
 	/**
@@ -210,20 +201,6 @@ public class AdminServiceImpl implements AdminService {
 	public AdminBean selectByAd_email(Integer ad_id, String ad_email) {
 
 		return adminDao.selectByAd_email(ad_id, ad_email);
-	}
-
-	/**
-	 * 管理員信箱搜尋 (forget-password)
-	 * 
-	 * @param ad_email
-	 *            String --> 管理員信箱
-	 * @return AdminBean
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public AdminBean selectByOpenAd_email(String ad_email) {
-
-		return adminDao.selectByOpenAd_email(ad_email);
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/10/14
+ * Date: 2017/10/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -45,30 +45,22 @@ public interface AdminService {
 	AdminBean selectByAd_id(Integer ad_id);
 
 	/**
-	 * @see com.czmbeauty.model.service.AdminService#selectByAd_username(String)
+	 * @see com.czmbeauty.model.service.AdminService#selectByAd_username(String,
+	 *      Integer)
 	 */
-	AdminBean selectByAd_username(String ad_username);
+	AdminBean selectByAd_username(String ad_username, Integer ad_status);
 
 	/**
-	 * @see com.czmbeauty.model.service.AdminService#selectByOpenAd_username(String)
+	 * @see com.czmbeauty.model.service.AdminService#selectByAd_email(String,
+	 *      Integer)
 	 */
-	AdminBean selectByOpenAd_username(String ad_username);
-
-	/**
-	 * @see com.czmbeauty.model.service.AdminService#selectByAd_email(String)
-	 */
-	AdminBean selectByAd_email(String ad_email);
+	AdminBean selectByAd_email(String ad_email, Integer ad_status);
 
 	/**
 	 * @see com.czmbeauty.model.service.AdminService#selectByAd_email(Integer,
 	 *      String)
 	 */
 	AdminBean selectByAd_email(Integer ad_id, String ad_email);
-
-	/**
-	 * @see com.czmbeauty.model.service.AdminService#selectByOpenAd_email(String)
-	 */
-	AdminBean selectByOpenAd_email(String ad_email);
 
 	/**
 	 * @see com.czmbeauty.model.service.AdminService#update(AdminBean)

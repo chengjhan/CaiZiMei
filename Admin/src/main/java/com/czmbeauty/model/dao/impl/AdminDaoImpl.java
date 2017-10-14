@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/10/14
+ * Date: 2017/10/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -89,55 +91,55 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	/**
-	 * 管理員帳號搜尋 (sign-up) (AJAX)
+	 * 管理員帳號搜尋
 	 * 
 	 * @param ad_username
 	 *            String --> 管理員帳號
+	 * @param ad_status
+	 *            Integer --> 管理員狀態
 	 * @return AdminBean
 	 * @return null
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public AdminBean selectByAd_username(String ad_username) {
+	public AdminBean selectByAd_username(String ad_username, Integer ad_status) {
 
-		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_ADMIN_BY_USERNAME,
-				"ad_username", ad_username);
+		DetachedCriteria criteria = DetachedCriteria.forClass(AdminBean.class);
 
-		return !list.isEmpty() ? list.get(0) : null;
-	}
+		criteria.add(Restrictions.eq("ad_username", ad_username));
 
-	/**
-	 * 管理員帳號搜尋 (sign-in)
-	 * 
-	 * @param ad_username
-	 *            String --> 管理員帳號
-	 * @return AdminBean
-	 * @return null
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public AdminBean selectByOpenAd_username(String ad_username) {
+		if (ad_status != null) {
+			criteria.add(Restrictions.eq("ad_status", ad_status));
+		}
 
-		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_ADMIN_BY_USERNAME,
-				"ad_username", ad_username);
+		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByCriteria(criteria);
 
 		return !list.isEmpty() ? list.get(0) : null;
 	}
 
 	/**
-	 * 管理員信箱搜尋 (sign-up) (AJAX)
+	 * 管理員信箱搜尋
 	 * 
 	 * @param ad_email
 	 *            String --> 管理員信箱
+	 * @param ad_status
+	 *            Integer --> 管理員狀態
 	 * @return AdminBean
 	 * @return null
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public AdminBean selectByAd_email(String ad_email) {
+	public AdminBean selectByAd_email(String ad_email, Integer ad_status) {
 
-		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_ADMIN_BY_EMAIL,
-				"ad_email", ad_email);
+		DetachedCriteria criteria = DetachedCriteria.forClass(AdminBean.class);
+
+		criteria.add(Restrictions.eq("ad_email", ad_email));
+
+		if (ad_status != null) {
+			criteria.add(Restrictions.eq("ad_status", ad_status));
+		}
+
+		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByCriteria(criteria);
 
 		return !list.isEmpty() ? list.get(0) : null;
 	}
@@ -161,24 +163,6 @@ public class AdminDaoImpl implements AdminDao {
 
 		List<AdminBean> list = (List<AdminBean>) hibernateTemplate
 				.findByNamedParam(HQL_SELECT_ADMIN_BY_EMAIL_EXCEPT_MYSELF, paramNames, values);
-
-		return !list.isEmpty() ? list.get(0) : null;
-	}
-
-	/**
-	 * 管理員信箱搜尋 (forget-password)
-	 * 
-	 * @param ad_email
-	 *            String --> 管理員信箱
-	 * @return AdminBean
-	 * @return null
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public AdminBean selectByOpenAd_email(String ad_email) {
-
-		List<AdminBean> list = (List<AdminBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_OPEN_ADMIN_BY_EMAIL,
-				"ad_email", ad_email);
 
 		return !list.isEmpty() ? list.get(0) : null;
 	}

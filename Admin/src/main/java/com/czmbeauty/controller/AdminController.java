@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/10/14
+ * Date: 2017/10/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -112,7 +112,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 			return ADMIN_SIGN_UP_PAGE;
 
-		} else if (adminService.selectByAd_username(adminBean.getAd_username()) != null) {
+		} else if (adminService.selectByAd_username(adminBean.getAd_username(), null) != null) {
 
 			logger.error("(" + className + "." + methodName + ") 註冊失敗: 帳號重複");
 
@@ -420,7 +420,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 		} else {
 
-			AdminBean adminBean = adminService.selectByOpenAd_email(ad_email);
+			AdminBean adminBean = adminService.selectByAd_email(ad_email, 1);
 
 			if (adminBean == null) {
 
@@ -478,7 +478,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 		HttpSession session = request.getSession();
 		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
-		AdminBean adminBean = adminService.selectByOpenAd_email(ad_email);
+		AdminBean adminBean = adminService.selectByAd_email(ad_email, 1);
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -599,7 +599,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	@ResponseBody
 	public String usernameRepeatAjax(String ad_username) {
 
-		AdminBean bean = adminService.selectByAd_username(ad_username);
+		AdminBean bean = adminService.selectByAd_username(ad_username, null);
 
 		return (bean != null) ? "這個帳號已經被使用了" : "true";
 	}
@@ -616,7 +616,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	@ResponseBody
 	public String emailRepeatAjax(String ad_email) {
 
-		AdminBean bean = adminService.selectByAd_email(ad_email);
+		AdminBean bean = adminService.selectByAd_email(ad_email, null);
 
 		return (bean != null) ? "這個信箱已經被使用了" : "true";
 	}

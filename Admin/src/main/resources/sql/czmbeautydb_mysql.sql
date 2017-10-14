@@ -23,6 +23,7 @@ create table admin (
 	ad_update_pwd_time		datetime not null,
 	ad_status				tinyint not null,
 	ad_status_time			datetime not null,
+	ad_authority				tinyint not null,
 	primary key (ad_id)
 );
 
@@ -154,7 +155,7 @@ alter table city auto_increment = 101;
 
 -- INSERT
 -- admin
-insert into admin (ad_id, ad_username, ad_password, ad_salt, ad_lastname, ad_firstname, ad_email, ad_signup_time, ad_signin_number, ad_signin_ip, ad_signin_time, ad_update_info_time, ad_update_pwd_time, ad_status, ad_status_time) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', 'czmbeauty', 'admin', 'admin@czmbeauty.com', now(), 0, null, null, now(), now(), 1, now());
+insert into admin (ad_id, ad_username, ad_password, ad_salt, ad_lastname, ad_firstname, ad_email, ad_signup_time, ad_signin_number, ad_signin_ip, ad_signin_time, ad_update_info_time, ad_update_pwd_time, ad_status, ad_status_time, ad_authority) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', 'czmbeauty', 'admin', 'admin@czmbeauty.com', now(), 0, null, null, now(), now(), 1, now(), 1);
 
 -- country
 insert into country (co_iso, co_name, co_phonecode, co_rank, co_status) values ('TW', '台灣', '886', 1, 1);

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminBean.java
  * Author: 詹晟
- * Date: 2017/8/18
+ * Date: 2017/10/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -62,6 +62,7 @@ public class AdminBean {
 	private Integer ad_status;
 	@Expose
 	private java.util.Date ad_status_time;
+	private Integer ad_authority;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "al_AdminBean")
 	private Set<AdminLogBean> ad_AdminLogBean;
@@ -192,6 +193,14 @@ public class AdminBean {
 
 	public void setAd_AdminLogBean(Set<AdminLogBean> ad_AdminLogBean) {
 		this.ad_AdminLogBean = ad_AdminLogBean;
+	}
+
+	public Integer getAd_authority() {
+		return ad_authority;
+	}
+
+	public void setAd_authority(Integer ad_authority) {
+		this.ad_authority = ad_authority;
 	}
 
 }

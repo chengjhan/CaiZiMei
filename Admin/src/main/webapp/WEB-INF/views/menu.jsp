@@ -9,7 +9,7 @@
 <body>
 	<div class="col-sm-3 col-md-2 sidebar">
 		<c:choose>
-			<c:when test="${admin.ad_id eq 100}">
+			<c:when test="${admin.ad_authority eq 1}">
 				<ul class="nav nav-sidebar">
 					<li id="id-li-admin-sign-up"><a href="<%=request.getContextPath()%>/admin/sign-up">管理員註冊</a></li>
 					<li id="id-li-admin-list"><a href="<%=request.getContextPath()%>/admin/list?page=1">管理員一覽</a></li>

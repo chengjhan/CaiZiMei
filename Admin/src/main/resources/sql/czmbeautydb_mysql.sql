@@ -330,7 +330,7 @@ insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音�
 -- user_view
 insert into user_view (uv_name, uv_view_name) values ('首頁', 'index');
 insert into user_view (uv_name, uv_view_name) values ('找不到網頁', 'error/page-not-found');
-insert into user_view (uv_name, uv_view_name) values ('經營理念', 'menu/idea');
-insert into user_view (uv_name, uv_view_name) values ('公司使命', 'menu/mission');
-insert into user_view (uv_name, uv_view_name) values ('事業版圖', 'menu/territory');
-insert into user_view (uv_name, uv_view_name) values ('公司願景', 'menu/vision');
+insert into user_view (uv_name, uv_view_name) values ('經營理念', 'about/idea');
+insert into user_view (uv_name, uv_view_name) values ('公司使命', 'about/mission');
+insert into user_view (uv_name, uv_view_name) values ('事業版圖', 'about/territory');
+insert into user_view (uv_name, uv_view_name) values ('公司願景', 'about/vision');

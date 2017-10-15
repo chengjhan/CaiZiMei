@@ -23,10 +23,10 @@
 				<div id="id-div-footer-middle-content-menu" class="div-footer-middle-content-left">
 					<a href="<%=request.getContextPath()%>/" class="a-catalog"><h3 class="h3-catalog">首頁</h3></a>
 					<ul class="ul-sub">
-						<li class="li-sub"><a href="<%=request.getContextPath()%>/menu/idea" class="a-sub"><span class="span-sub">經營理念</span></a></li>
-						<li class="li-sub"><a href="<%=request.getContextPath()%>/menu/vision" class="a-sub"><span class="span-sub">公司願景</span></a></li>
-						<li class="li-sub"><a href="<%=request.getContextPath()%>/menu/mission" class="a-sub"><span class="span-sub">公司使命</span></a></li>
-						<li class="li-sub"><a href="<%=request.getContextPath()%>/menu/territory" class="a-sub"><span class="span-sub">事業版圖</span></a></li>
+						<li class="li-sub"><a href="<%=request.getContextPath()%>/about/idea" class="a-sub"><span class="span-sub">經營理念</span></a></li>
+						<li class="li-sub"><a href="<%=request.getContextPath()%>/about/vision" class="a-sub"><span class="span-sub">公司願景</span></a></li>
+						<li class="li-sub"><a href="<%=request.getContextPath()%>/about/mission" class="a-sub"><span class="span-sub">公司使命</span></a></li>
+						<li class="li-sub"><a href="<%=request.getContextPath()%>/about/territory" class="a-sub"><span class="span-sub">事業版圖</span></a></li>
 					</ul>
 				</div>
 				<div id="id-div-footer-middle-content-sns" class="div-footer-middle-content-left">

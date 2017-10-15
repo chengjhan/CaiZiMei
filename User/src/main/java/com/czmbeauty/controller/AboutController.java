@@ -16,19 +16,19 @@ import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 
 /**
- * menu controller
+ * about controller
  * 
  * @author 詹晟
  */
 @Controller
-public class MenuController implements ModelAttributeConstants, PageNameConstants {
+public class AboutController implements ModelAttributeConstants, PageNameConstants {
 
 	/**
 	 * 經營理念 - 初期處理
 	 * 
-	 * @return /WEB-INF/views/menu/idea.jsp
+	 * @return /WEB-INF/views/about/idea.jsp
 	 */
-	@RequestMapping(value = "/menu/idea", method = RequestMethod.GET)
+	@RequestMapping(value = "/about/idea", method = RequestMethod.GET)
 	public String ideaView() {
 
 		return MENU_IDEA_PAGE;
@@ -37,9 +37,9 @@ public class MenuController implements ModelAttributeConstants, PageNameConstant
 	/**
 	 * 公司願景 - 初期處理
 	 * 
-	 * @return /WEB-INF/views/menu/vision.jsp
+	 * @return /WEB-INF/views/about/vision.jsp
 	 */
-	@RequestMapping(value = "/menu/vision", method = RequestMethod.GET)
+	@RequestMapping(value = "/about/vision", method = RequestMethod.GET)
 	public String visionView() {
 
 		return MENU_IDEA_VISION;
@@ -48,9 +48,9 @@ public class MenuController implements ModelAttributeConstants, PageNameConstant
 	/**
 	 * 公司使命 - 初期處理
 	 * 
-	 * @return /WEB-INF/views/menu/mission.jsp
+	 * @return /WEB-INF/views/about/mission.jsp
 	 */
-	@RequestMapping(value = "/menu/mission", method = RequestMethod.GET)
+	@RequestMapping(value = "/about/mission", method = RequestMethod.GET)
 	public String missionView() {
 
 		return MENU_IDEA_MISSION;
@@ -59,9 +59,9 @@ public class MenuController implements ModelAttributeConstants, PageNameConstant
 	/**
 	 * 事業版圖 - 初期處理
 	 * 
-	 * @return /WEB-INF/views/menu/territory.jsp
+	 * @return /WEB-INF/views/about/territory.jsp
 	 */
-	@RequestMapping(value = "/menu/territory", method = RequestMethod.GET)
+	@RequestMapping(value = "/about/territory", method = RequestMethod.GET)
 	public String territoryView() {
 
 		return MENU_IDEA_TERRITORY;

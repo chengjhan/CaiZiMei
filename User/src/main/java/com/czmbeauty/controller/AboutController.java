@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: AboutController.java
  * Author: 詹晟
- * Date: 2017/10/15
+ * Date: 2017/10/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -24,6 +24,17 @@ import com.czmbeauty.common.constants.PageNameConstants;
 public class AboutController implements ModelAttributeConstants, PageNameConstants {
 
 	/**
+	 * 采姿美介紹 - 初期處理
+	 * 
+	 * @return /WEB-INF/views/about/introduction.jsp
+	 */
+	@RequestMapping(value = "/about/introduction", method = RequestMethod.GET)
+	public String introductionView() {
+
+		return ABOUT_INTRODUCTION_PAGE;
+	}
+
+	/**
 	 * 經營理念 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/about/idea.jsp
@@ -31,7 +42,7 @@ public class AboutController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/about/idea", method = RequestMethod.GET)
 	public String ideaView() {
 
-		return MENU_IDEA_PAGE;
+		return ABOUT_IDEA_PAGE;
 	}
 
 	/**
@@ -42,7 +53,7 @@ public class AboutController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/about/vision", method = RequestMethod.GET)
 	public String visionView() {
 
-		return MENU_IDEA_VISION;
+		return ABOUT_IDEA_VISION;
 	}
 
 	/**
@@ -53,7 +64,7 @@ public class AboutController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/about/mission", method = RequestMethod.GET)
 	public String missionView() {
 
-		return MENU_IDEA_MISSION;
+		return ABOUT_IDEA_MISSION;
 	}
 
 	/**
@@ -64,7 +75,7 @@ public class AboutController implements ModelAttributeConstants, PageNameConstan
 	@RequestMapping(value = "/about/territory", method = RequestMethod.GET)
 	public String territoryView() {
 
-		return MENU_IDEA_TERRITORY;
+		return ABOUT_IDEA_TERRITORY;
 	}
 
 }

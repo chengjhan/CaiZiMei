@@ -7,7 +7,7 @@
 <title>經營理念 - 采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/menu/idea.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/about/idea.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->

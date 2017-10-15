@@ -7,7 +7,7 @@
 <title>公司願景 - 采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/menu/vision.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/about/vision.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->

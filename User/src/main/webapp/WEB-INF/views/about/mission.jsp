@@ -7,7 +7,7 @@
 <title>公司使命 - 采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/menu/mission.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/about/mission.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->

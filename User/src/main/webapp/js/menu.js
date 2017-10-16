@@ -3,19 +3,17 @@ var hrefSplit = href.split("/"); // Array
 
 $(document).ready(function(){
 	
-	// 取得當前頁面
-	var pageName = hrefSplit[hrefSplit.length - 1];
-		
+	// 取得當前資料夾名
+	var directoryName = hrefSplit[hrefSplit.length - 2];
+
 	// list mouseover
-	$(".li-menu-left").hover(function(){
-		$(this).addClass("li-menu-mouseover");
+	$(".ul-menu-left li").hover(function(){
+		$(this).addClass("mouseover-menu");
 	}, function(){
-		$(this).removeClass("li-menu-mouseover");
+		$(this).removeClass("mouseover-menu");
 	});
 	
 	// list active
-	var id_li = "#id-li-" + pageName;
-	var id_li_a_span = "#id-li-" + pageName + " span";
-	$(id_li).addClass("li-menu-active");
-	$(id_li_a_span).attr("style", "color:#AA0000");
+	var id_li = "#id-li-" + directoryName;
+	$(id_li).addClass("active-menu");
 });

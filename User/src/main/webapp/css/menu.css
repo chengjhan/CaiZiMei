@@ -5,87 +5,93 @@ nav {
 	padding-top: 4px;
 }
 
-#id-div-menu {
+.div-menu {
 	width: 80%;
 	height: 100%;
 	line-height: 40px;
 	margin: 0 auto;
 }
 
-.ul-menu {
+.ul-menu-left {
 	height: 100%;
 	padding: 0;
 	margin: 0;
 	list-style-type: none; /* 去項目符號 */
 }
 
-.li-menu {
+.div-menu li {
 	display: inline;
 }
 
-.li-menu-mouseover {
-	background-color: white;
-}
-
-.li-menu-active {
-	background-color: white;
-}
-
-.li-menu-left {
+.ul-menu-left li {
 	float: left;
 }
 
-.li-menu-right {
-	float: right;
+.ul-menu-right li {
+	float: left;
 }
 
-.a-menu-left {
+.div-menu a span {
+	font-size: 16px;
+}
+
+.ul-menu-left a {
 	color: white;
 	padding-left: 15px;
 	padding-right: 15px;
 	display: block; /* 填滿符合父元素 */
 }
 
-.a-menu-left:link {
+.ul-menu-left a:link {
 	text-decoration: none;
 }
 
-.a-menu-left:visited {
+.ul-menu-left a:visited {
+	
 }
 
-.a-menu-left:hover {
+.ul-menu-left a:hover {
 	color: #AA0000;
 	text-decoration: none;
 }
 
-.a-menu-left:active {
+.ul-menu-left a:active {
+	
 }
 
-.a-menu-right {
+.ul-menu-right a {
 	color: white;
 	padding-left: 15px;
 	padding-right: 15px;
 	display: block; /* 填滿符合父元素 */
 }
 
-.a-menu-right:link {
+.ul-menu-right a:link {
 	color: white;
 	text-decoration: none;
 }
 
-.a-menu-right:visited {
+.ul-menu-right a:visited {
 	color: white;
 }
 
-.a-menu-right:hover {
+.ul-menu-right a:hover {
 	color: white;
 	text-decoration: underline;
 }
 
-.a-menu-right:active {
+.ul-menu-right a:active {
 	color: white;
 }
 
-.span-menu {
-	font-size: 16px;
+.mouseover-menu {
+	background-color: white;
+}
+
+.active-menu {
+	background-color: white;
+}
+
+.active-menu span {
+	color: #AA0000;
 }

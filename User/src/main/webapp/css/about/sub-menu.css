@@ -12,10 +12,10 @@
 	background-color: #AA0000 !important;
 }
 
-.active {
+.active-sub-menu {
 	background-color: #AA0000;
 }
 
-.active span {
+.active-sub-menu span {
 	color: white;
 }

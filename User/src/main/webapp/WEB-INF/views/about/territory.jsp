@@ -7,7 +7,7 @@
 <title>事業版圖 - 采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/about/territory.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/about/all.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -16,16 +16,26 @@
 	<!-- menu -->
 	<c:import url="../menu.jsp" />
 	
-	<!-- main -->
-	<main>
-		<section id="section-0"></section>
-		<section id="section-1">
-			<div id="id-div-section-1-content">
-				<img src="<%=request.getContextPath()%>/images/menu/territory_1002x382.jpg" class="img-territory">
-			</div>
-		</section>
-		<section id="section-99"></section>
-	</main>
+	<!-- container -->
+	<div class="container-fluid customize-container-fluid">
+		<div class="row customize-row">
+	
+			<!-- sub-menu -->
+			<c:import url="sub-menu.jsp" />
+	
+			<!-- main -->
+			<main class="col-sm-10">
+				<section id="section-1">
+					<div id="id-div-section-1-content">
+						<img src="<%=request.getContextPath()%>/images/menu/territory_1002x382.jpg" class="img-territory">
+					</div>
+				</section>
+			</main>
+			<!-- main end -->
+	
+		</div>
+	</div>
+	<!-- container end -->
 
 	<!-- footer -->
 	<c:import url="../footer.jsp" />

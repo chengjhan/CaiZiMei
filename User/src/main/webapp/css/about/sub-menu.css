@@ -1,0 +1,13 @@
+.sub-sidebar {
+	padding: 0;
+	background-color: white;
+}
+
+.sub-sidebar a {
+	color: #AA0000;
+}
+
+.sub-sidebar a:hover {
+	color: white;
+	background-color: #AA0000 !important;
+}

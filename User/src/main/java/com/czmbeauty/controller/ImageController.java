@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/10/1
+ * Date: 2017/10/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.model.entity.ImageBean;
 import com.czmbeauty.model.service.ImageService;
 import com.google.gson.Gson;
@@ -30,7 +31,7 @@ import com.google.gson.GsonBuilder;
  * @author 詹晟
  */
 @Controller
-public class ImageController {
+public class ImageController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(ImageController.class);
 

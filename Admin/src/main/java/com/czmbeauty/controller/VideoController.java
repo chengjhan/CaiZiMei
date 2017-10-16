@@ -2,21 +2,11 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/10/6
+ * Date: 2017/10/16
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
-
-import static com.czmbeauty.common.constants.CommonConstants.AND;
-import static com.czmbeauty.common.constants.CommonConstants.EQUAL;
-import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
-import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
-import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
-import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW_COUNT;
-import static com.czmbeauty.common.constants.PaginationConstants.VIDEO_PAGE_ROW_COUNT;
-import static com.czmbeauty.common.constants.ParameterConstants.PAGE;
-import static com.czmbeauty.common.constants.ParameterConstants.VIDEO_ID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -33,8 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.common.util.Pagination;
@@ -49,7 +38,7 @@ import com.czmbeauty.model.service.VideoService;
  * @author 詹晟
  */
 @Controller
-public class VideoController implements ModelAttributeConstants, PageNameConstants {
+public class VideoController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(VideoController.class);
 

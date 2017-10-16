@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/10/1
+ * Date: 2017/10/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,8 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.entity.CountryBean;
@@ -35,7 +34,7 @@ import com.czmbeauty.model.service.CountryService;
  * @author 詹晟
  */
 @Controller
-public class CountryController implements ModelAttributeConstants, PageNameConstants {
+public class CountryController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(CountryController.class);
 

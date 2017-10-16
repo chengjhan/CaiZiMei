@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: IndexController.java
  * Author: 詹晟
- * Date: 2017/10/4
+ * Date: 2017/10/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -12,8 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
 
 /**
  * index controller
@@ -21,7 +20,7 @@ import com.czmbeauty.common.constants.PageNameConstants;
  * @author 詹晟
  */
 @Controller
-public class IndexController implements ModelAttributeConstants, PageNameConstants {
+public class IndexController implements ControllerConstants {
 
 	/**
 	 * 首頁 - 初期處理

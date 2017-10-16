@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/10/1
+ * Date: 2017/10/16
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -27,8 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
@@ -47,7 +46,7 @@ import com.google.gson.Gson;
  */
 @Controller
 @SessionAttributes(CITY_BEAN)
-public class CityController implements ModelAttributeConstants, PageNameConstants {
+public class CityController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(CityController.class);
 

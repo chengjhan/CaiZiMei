@@ -2,17 +2,13 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/10/15
+ * Date: 2017/10/16
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
-import static com.czmbeauty.common.constants.PaginationConstants.ADMIN_PAGE_ROW_COUNT;
-import static com.czmbeauty.common.constants.PaginationConstants.CURRENT_PAGE;
-import static com.czmbeauty.common.constants.PaginationConstants.PAGE_COUNT;
-import static com.czmbeauty.common.constants.PaginationConstants.PAGE_ROW_COUNT;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,8 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.common.util.Pagination;
 import com.czmbeauty.model.entity.AdminBean;
@@ -47,7 +42,7 @@ import com.google.gson.GsonBuilder;
  */
 @Controller
 @SessionAttributes(ADMIN)
-public class AdminController implements ModelAttributeConstants, PageNameConstants {
+public class AdminController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(AdminController.class);
 
@@ -91,7 +86,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 	 * @param bindingResult
 	 *            BindingResult
 	 * @return /WEB-INF/views/admin/sign-up.jsp
-	 * @return /WEB-INF/views/index.jsp
+	 * @return /WEB-INF/views/admin/list.jsp
 	 */
 	// 得到 <form:form modelAttribute="adminBean"> 表單新增的資料
 	@RequestMapping(value = "/admin/sign-up.do", method = RequestMethod.POST)
@@ -124,7 +119,7 @@ public class AdminController implements ModelAttributeConstants, PageNameConstan
 
 			logger.info("(" + className + "." + methodName + ") 註冊成功");
 
-			return REDIRECT + INDEX_PAGE;
+			return REDIRECT + ADMIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
 		}
 	}
 

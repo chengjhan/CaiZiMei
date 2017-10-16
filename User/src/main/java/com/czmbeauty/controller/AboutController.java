@@ -12,8 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
 
 /**
  * about controller
@@ -21,7 +20,7 @@ import com.czmbeauty.common.constants.PageNameConstants;
  * @author 詹晟
  */
 @Controller
-public class AboutController implements ModelAttributeConstants, PageNameConstants {
+public class AboutController implements ControllerConstants {
 
 	/**
 	 * 采姿美介紹 - 初期處理

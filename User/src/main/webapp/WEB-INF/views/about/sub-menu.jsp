@@ -9,15 +9,16 @@
 <body>
 	<div class="col-sm-2 sub-sidebar">
 		<ul class="nav nav-sidebar">
-			<li id="id-li-about-introduction"><a href="<%=request.getContextPath()%>/about/introduction">采姿美介紹</a></li>
-			<li id="id-li-about-idea"><a href="<%=request.getContextPath()%>/about/idea">經營理念</a></li>
-			<li id="id-li-about-vision"><a href="<%=request.getContextPath()%>/about/vision">公司願景</a></li>
-			<li id="id-li-about-mission"><a href="<%=request.getContextPath()%>/about/mission">公司使命</a></li>
-			<li id="id-li-about-territory"><a href="<%=request.getContextPath()%>/about/territory">事業版圖</a></li>
+			<li id="id-li-about-introduction"><a href="<%=request.getContextPath()%>/about/introduction"><span>采姿美介紹</span></a></li>
+			<li id="id-li-about-idea"><a href="<%=request.getContextPath()%>/about/idea"><span>經營理念</span></a></li>
+			<li id="id-li-about-vision"><a href="<%=request.getContextPath()%>/about/vision"><span>公司願景</span></a></li>
+			<li id="id-li-about-mission"><a href="<%=request.getContextPath()%>/about/mission"><span>公司使命</span></a></li>
+			<li id="id-li-about-territory"><a href="<%=request.getContextPath()%>/about/territory"><span>事業版圖</span></a></li>
 		</ul>
 	</div>
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/about/sub-menu.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

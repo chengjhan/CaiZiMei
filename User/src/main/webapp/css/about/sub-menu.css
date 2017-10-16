@@ -11,3 +11,11 @@
 	color: white;
 	background-color: #AA0000 !important;
 }
+
+.active {
+	background-color: #AA0000;
+}
+
+.active span {
+	color: white;
+}

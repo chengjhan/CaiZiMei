@@ -40,8 +40,7 @@ h4 {
 	width: 100%;
 }
 
-.video-related, .slider-franchisee, .slider-recent, .slider-sale,
-	.slider-knowledge, .slider-team {
+.slider-sub {
 	width: 48%;
 }
 

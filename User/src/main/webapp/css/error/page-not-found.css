@@ -3,7 +3,7 @@ main {
 	background-color: #fafafa;
 }
 
-#section {
+section {
 	height: 100%;
 	background-color: white;
 	text-align: center; /* 水平置中 */ /* 作用於此元素下的 inline 子元素 */
@@ -19,11 +19,11 @@ section::before {
 	position: relative;
 }
 
-#id-div-section-content {
+section div {
 	display: inline-block; /* 浮動 */
 	vertical-align: middle; /* 垂直置中 */
 }
 
-.p-content {
+section p {
 	font-size: 36px;
 }

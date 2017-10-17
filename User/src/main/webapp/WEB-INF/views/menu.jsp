@@ -11,6 +11,10 @@
 		<div class="div-menu">
 			<ul class="ul-menu-left">
 				<li id="id-li-about"><a href="<%=request.getContextPath()%>/about/introduction"><span>關於我們</span></a></li>
+				<li id="id-li-team"><a href="<%=request.getContextPath()%>/team/introduction"><span>醫療團隊</span></a></li>
+				<li id="id-li-activity"><a href="<%=request.getContextPath()%>/activity/introduction"><span>活動專區</span></a></li>
+				<li id="id-li-knowleage"><a href="<%=request.getContextPath()%>/knowleage/introduction"><span>醫療新知</span></a></li>
+				<li id="id-li-video"><a href="<%=request.getContextPath()%>/video/introduction"><span>相關影音</span></a></li>
 			</ul>
 		</div>
 	</nav>

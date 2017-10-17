@@ -18,9 +18,9 @@
 	
 	<!-- main -->
 	<main>
-		<section id="section">
-			<div id="id-div-section-content">
-				<p class="p-content">您所尋找的頁面不存在</p>
+		<section>
+			<div>
+				<p>您所尋找的頁面不存在</p>
 			</div>
 		</section>
 	</main>

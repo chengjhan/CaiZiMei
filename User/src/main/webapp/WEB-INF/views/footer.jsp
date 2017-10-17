@@ -30,6 +30,8 @@
 					<a href="<%=request.getContextPath()%>/" class="a-catalog"><h3>首頁</h3></a>
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/about/introduction"><span>關於我們</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/team/medical"><span>專業團隊</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/news/recent"><span>最新消息</span></a></li>
 					</ul>
 				</div>
 				

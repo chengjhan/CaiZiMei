@@ -13,11 +13,11 @@ create table admin (
 	ad_password				varchar(50) not null,
 	ad_salt					varchar(50) not null,
 	ad_lastname				nvarchar(20),
-	ad_firstname			nvarchar(20),
-	ad_email				varchar(50) not null,
+	ad_firstname				nvarchar(20),
+	ad_email					varchar(50) not null,
 	ad_signup_time			datetime not null,
-	ad_signin_number		int,
-	ad_signin_ip			varchar(20),
+	ad_signin_number			int,
+	ad_signin_ip				varchar(20),
 	ad_signin_time			datetime,
 	ad_update_info_time		datetime not null,
 	ad_update_pwd_time		datetime not null,
@@ -31,7 +31,7 @@ create table country (
 	co_id					int auto_increment not null,
 	co_iso					varchar(2),
 	co_name					nvarchar(50) not null,
-	co_phonecode			varchar(5),
+	co_phonecode				varchar(5),
 	co_rank					tinyint,
 	co_status				tinyint,
 	primary key (co_id)
@@ -39,7 +39,7 @@ create table country (
 
 create table state (
 	st_id					int auto_increment not null,
-	st_co_id				int not null,
+	st_co_id					int not null,
 	st_name					nvarchar(50) not null,
 	st_rank					tinyint,
 	st_status				tinyint,
@@ -49,8 +49,8 @@ create table state (
 
 create table city (
 	ci_id					int auto_increment not null,
-	ci_co_id				int not null,
-	ci_st_id				int not null,
+	ci_co_id					int not null,
+	ci_st_id					int not null,
 	ci_name					nvarchar(50) not null,
 	ci_rank					tinyint,
 	ci_status				tinyint,
@@ -62,23 +62,23 @@ create table city (
 create table category (
 	ca_id					int auto_increment not null,
 	ca_name					nvarchar(20) not null,
-	ca_directory			varchar(50) not null,
+	ca_directory				varchar(50) not null,
 	primary key (ca_id)
 );
 
 create table base (
 	ba_id					int auto_increment not null,
-	ba_ca_id				int not null,
+	ba_ca_id					int not null,
 	ba_name					nvarchar(20) not null,
 	ba_eng_name				varchar(50),
 	ba_tel_code				varchar(5),
 	ba_tel					varchar(20),
-	ba_co_id				int not null,
-	ba_st_id				int not null,
-	ba_ci_id				int not null,
+	ba_co_id					int not null,
+	ba_st_id					int not null,
+	ba_ci_id					int not null,
 	ba_address				nvarchar(50) not null,
 	ba_latitude				decimal(10,6),
-	ba_longitude			decimal(10,6),
+	ba_longitude				decimal(10,6),
 	ba_url					varchar(100),
 	ba_insert_time			datetime not null,
 	ba_update_time			datetime,
@@ -93,7 +93,7 @@ create table base (
 
 create table image (
 	im_id					int auto_increment not null,
-	im_ca_id				int not null,
+	im_ca_id					int not null,
 	im_name					nvarchar(20) not null,
 	im_path					varchar(500) not null,
 	im_filename				varchar(50) not null,
@@ -107,7 +107,7 @@ create table image (
 
 create table video (
 	vi_id					int auto_increment not null,
-	vi_ca_id				int not null,
+	vi_ca_id					int not null,
 	vi_name					nvarchar(50),
 	vi_tag					varchar(500) not null,
 	vi_rank					tinyint not null,
@@ -120,7 +120,7 @@ create table video (
 create table admin_view (
 	av_id					int auto_increment not null,
 	av_name					nvarchar(20) not null,
-	av_view_name			varchar(50) not null,
+	av_view_name				varchar(50) not null,
 	primary key (av_id)
 );
 
@@ -134,8 +134,8 @@ create table admin_action (
 create table admin_log (
 	al_id					int auto_increment not null,
 	al_insert_time			timestamp default current_timestamp not null,
-	al_ad_id				int not null,
-	al_aa_id				int not null,
+	al_ad_id					int not null,
+	al_aa_id					int not null,
 	al_ip					varchar(20),
 	primary key (al_id),
 	foreign key (al_ad_id) references admin (ad_id),
@@ -145,7 +145,7 @@ create table admin_log (
 create table user_view (
 	uv_id					int auto_increment not null,
 	uv_name					nvarchar(20) not null,
-	uv_view_name			varchar(50) not null,
+	uv_view_name				varchar(50) not null,
 	primary key (uv_id)
 );
 
@@ -335,3 +335,6 @@ insert into user_view (uv_name, uv_view_name) values ('采姿美介紹', 'about/
 insert into user_view (uv_name, uv_view_name) values ('公司使命', 'about/mission');
 insert into user_view (uv_name, uv_view_name) values ('事業版圖', 'about/territory');
 insert into user_view (uv_name, uv_view_name) values ('公司願景', 'about/vision');
+insert into user_view (uv_name, uv_view_name) values ('醫療團隊', 'team/medical');
+insert into user_view (uv_name, uv_view_name) values ('近期活動', 'news/recent');
+insert into user_view (uv_name, uv_view_name) values ('優惠活動', 'news/sale');

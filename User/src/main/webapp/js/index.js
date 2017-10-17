@@ -12,7 +12,7 @@ $(document).ready(function(){
 	}
 	
 	// 主輪播
-	var slider_main = new Swiper('.slider-main', {
+	var slider_main = new Swiper('#slider-main', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
 		nextButton: '.swiper-button-next',
@@ -35,11 +35,11 @@ $(document).ready(function(){
 	
 	// 相關影音
 	$.getJSON("video/video-related.ajax", function(data){
-		$(".video-related iframe").attr("src", data.vi_tag);
+		$("#video-related iframe").attr("src", data.vi_tag);
 	});
 	
 	// 加盟店資訊輪播
-	var slider_franchisee = new Swiper('.slider-franchisee', {
+	var slider_franchisee = new Swiper('#slider-franchisee', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
 		nextButton: '.swiper-button-next',
@@ -61,7 +61,7 @@ $(document).ready(function(){
 	});
 	
 	// 近期活動輪播
-	var slider_recent = new Swiper('.slider-recent', {
+	var slider_recent = new Swiper('#slider-recent', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
 		nextButton: '.swiper-button-next',
@@ -83,7 +83,7 @@ $(document).ready(function(){
 	});
 	
 	// 優惠活動輪播
-	var slider_sale = new Swiper('.slider-sale', {
+	var slider_sale = new Swiper('#slider-sale', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
 		nextButton: '.swiper-button-next',
@@ -105,7 +105,7 @@ $(document).ready(function(){
 	});
 	
 	// 醫療新知輪播
-	var slider_knowledge = new Swiper('.slider-knowledge', {
+	var slider_knowledge = new Swiper('#slider-knowledge', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
 		nextButton: '.swiper-button-next',
@@ -127,7 +127,7 @@ $(document).ready(function(){
 	});
 	
 	// 醫療團隊輪播
-	var slider_team = new Swiper('.slider-team', {
+	var slider_team = new Swiper('#slider-team', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
 		nextButton: '.swiper-button-next',

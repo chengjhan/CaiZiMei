@@ -9,11 +9,8 @@
 <body>
 	<div class="col-sm-2 sub-sidebar">
 		<ul class="nav nav-sidebar">
-			<li id="id-li-about-introduction"><a href="<%=request.getContextPath()%>/about/introduction"><span>采姿美介紹</span></a></li>
-			<li id="id-li-about-idea"><a href="<%=request.getContextPath()%>/about/idea"><span>經營理念</span></a></li>
-			<li id="id-li-about-vision"><a href="<%=request.getContextPath()%>/about/vision"><span>公司願景</span></a></li>
-			<li id="id-li-about-mission"><a href="<%=request.getContextPath()%>/about/mission"><span>公司使命</span></a></li>
-			<li id="id-li-about-territory"><a href="<%=request.getContextPath()%>/about/territory"><span>事業版圖</span></a></li>
+			<li id="id-li-news-recent"><a href="<%=request.getContextPath()%>/news/recent"><span>近期活動</span></a></li>
+			<li id="id-li-news-sale"><a href="<%=request.getContextPath()%>/news/sale"><span>優惠活動</span></a></li>
 		</ul>
 	</div>
 	

@@ -22,7 +22,7 @@
 
 		<!-- section-1 -->
 		<section id="section-1">
-			<div class="swiper-container slider-main">
+			<div id="slider-main" class="swiper-container">
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
 				<div class="swiper-button-next"></div>
@@ -33,13 +33,13 @@
 		
 		<!-- section-2 -->
 		<section id="section-2">
-			<div class="slider-sub" style="float:left">
+			<div id="video-related" class="slider-sub" style="float:left">
 				<h4>相關影音</h4>
 				<div class="embed-responsive embed-responsive-16by9">
 					<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
-			<div class="swiper-container slider-sub" style="float:right">
+			<div id="slider-franchisee" class="swiper-container slider-sub" style="float:right">
 				<h4>加盟店資訊</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
@@ -51,14 +51,14 @@
 		
 		<!-- section-3 -->
 		<section id="section-3">
-			<div class="swiper-container slider-sub" style="float:left">
+			<div id="slider-recent" class="swiper-container slider-sub" style="float:left">
 				<h4>近期活動</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
-			<div class="swiper-container slider-sub" style="float:right">
+			<div id="slider-sale" class="swiper-container slider-sub" style="float:right">
 				<h4>優惠活動</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
@@ -70,14 +70,14 @@
 		
 		<!-- section-4 -->
 		<section id="section-4">
-			<div class="swiper-container slider-sub" style="float:left">
+			<div id="slider-knowledge" class="swiper-container slider-sub" style="float:left">
 				<h4>醫療新知</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
-			<div class="swiper-container slider-sub" style="float:right">
+			<div id="slider-team" class="swiper-container slider-sub" style="float:right">
 				<h4>醫療團隊</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>

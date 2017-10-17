@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: AboutController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/10/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -52,7 +52,7 @@ public class AboutController implements ControllerConstants {
 	@RequestMapping(value = "/about/vision", method = RequestMethod.GET)
 	public String visionView() {
 
-		return ABOUT_IDEA_VISION;
+		return ABOUT_VISION_PAGE;
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class AboutController implements ControllerConstants {
 	@RequestMapping(value = "/about/mission", method = RequestMethod.GET)
 	public String missionView() {
 
-		return ABOUT_IDEA_MISSION;
+		return ABOUT_MISSION_PAGE;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class AboutController implements ControllerConstants {
 	@RequestMapping(value = "/about/territory", method = RequestMethod.GET)
 	public String territoryView() {
 
-		return ABOUT_IDEA_TERRITORY;
+		return ABOUT_TERRITORY_PAGE;
 	}
 
 }

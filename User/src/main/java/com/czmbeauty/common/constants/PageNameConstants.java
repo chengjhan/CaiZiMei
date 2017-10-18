@@ -16,11 +16,17 @@ public interface PageNameConstants {
 
 	public static final String ABOUT_TERRITORY_PAGE = "about/territory";
 
+	public static final String ABOUT_FRANCHISEE_PAGE = "about/franchisee";
+
 	public static final String TEAM_MEDICAL_PAGE = "team/medical";
 
 	public static final String NEWS_RECENT_PAGE = "news/recent";
 
 	public static final String NEWS_SALE_PAGE = "news/sale";
+
+	public static final String INFO_KNOWLEAGE_PAGE = "info/knowleage";
+
+	public static final String INFO_VIDEO_PAGE = "info/video";
 
 	public static final String ERROR_PAGE_NOT_FOUND_PAGE = "error/page-not-found";
 

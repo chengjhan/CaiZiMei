@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: AboutController.java
  * Author: 詹晟
- * Date: 2017/10/18
+ * Date: 2017/10/19
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -75,6 +75,17 @@ public class AboutController implements ControllerConstants {
 	public String territoryView() {
 
 		return ABOUT_TERRITORY_PAGE;
+	}
+
+	/**
+	 * 加盟店 - 初期處理
+	 * 
+	 * @return /WEB-INF/views/about/franchisee.jsp
+	 */
+	@RequestMapping(value = "/about/franchisee", method = RequestMethod.GET)
+	public String franchiseeView() {
+
+		return ABOUT_FRANCHISEE_PAGE;
 	}
 
 }

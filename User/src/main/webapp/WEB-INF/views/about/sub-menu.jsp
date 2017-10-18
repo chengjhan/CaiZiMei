@@ -14,6 +14,7 @@
 			<li id="id-li-about-vision"><a href="<%=request.getContextPath()%>/about/vision"><span>公司願景</span></a></li>
 			<li id="id-li-about-mission"><a href="<%=request.getContextPath()%>/about/mission"><span>公司使命</span></a></li>
 			<li id="id-li-about-territory"><a href="<%=request.getContextPath()%>/about/territory"><span>事業版圖</span></a></li>
+			<li id="id-li-about-franchisee"><a href="<%=request.getContextPath()%>/about/franchisee"><span>加盟店</span></a></li>
 		</ul>
 	</div>
 	

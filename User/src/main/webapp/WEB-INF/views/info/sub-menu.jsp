@@ -10,7 +10,7 @@
 	<div class="col-sm-2 sub-sidebar">
 		<ul class="nav nav-sidebar">
 			<li id="id-li-info-knowleage"><a href="<%=request.getContextPath()%>/info/knowleage"><span>醫療新知</span></a></li>
-			<li id="id-li-info-video"><a href="<%=request.getContextPath()%>/info/video"><span>相關影音</span></a></li>
+			<li id="id-li-info-video-related"><a href="<%=request.getContextPath()%>/info/video-related"><span>相關影音</span></a></li>
 		</ul>
 	</div>
 	

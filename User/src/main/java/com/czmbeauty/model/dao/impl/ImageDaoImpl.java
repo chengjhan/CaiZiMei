@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ImageDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/8
+ * Date: 2017/10/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -11,6 +11,7 @@ package com.czmbeauty.model.dao.impl;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -49,6 +50,7 @@ public class ImageDaoImpl implements ImageDao {
 
 		criteria.add(Restrictions.eq("im_CategoryBean", im_CategoryBean));
 		criteria.add(Restrictions.eq("im_status", 1));
+		criteria.addOrder(Order.asc("im_rank"));
 
 		return (List<ImageBean>) hibernateTemplate.findByCriteria(criteria);
 	}

@@ -26,7 +26,7 @@ public interface PageNameConstants {
 
 	public static final String INFO_KNOWLEAGE_PAGE = "info/knowleage";
 
-	public static final String INFO_VIDEO_PAGE = "info/video";
+	public static final String INFO_VIDEO_RELATED_PAGE = "info/video-related";
 
 	public static final String ERROR_PAGE_NOT_FOUND_PAGE = "error/page-not-found";
 

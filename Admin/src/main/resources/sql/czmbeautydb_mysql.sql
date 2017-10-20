@@ -206,6 +206,7 @@ insert into category (ca_name, ca_directory) values ('主輪播圖片', 'slider-
 insert into category (ca_name, ca_directory) values ('近期活動輪播圖片', 'slider-recent');
 insert into category (ca_name, ca_directory) values ('優惠活動輪播圖片', 'slider-sale');
 insert into category (ca_name, ca_directory) values ('相關影音', 'video-main');
+insert into category (ca_name, ca_directory) values ('相關影音', 'video-related');
 
 -- base
 insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (3, '采姿美台北辦事處', 'CaiZiMei', '02', '27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://localhost:8080/User/', now(), now(), 1, now());
@@ -240,6 +241,15 @@ insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (10, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (10, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 0, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (10, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 0, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 4, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 5, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 6, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());
 
 -- admin_view
 insert into admin_view (av_name, av_view_name) values ('首頁', 'index');
@@ -291,6 +301,9 @@ insert into admin_view (av_name, av_view_name) values ('區域一覽', 'state/li
 insert into admin_view (av_name, av_view_name) values ('新增相關影音', 'video-main/add');
 insert into admin_view (av_name, av_view_name) values ('編輯相關影音資訊', 'video-main/edit');
 insert into admin_view (av_name, av_view_name) values ('相關影音一覽', 'video-main/list');
+insert into admin_view (av_name, av_view_name) values ('新增相關影音', 'video-related/add');
+insert into admin_view (av_name, av_view_name) values ('編輯相關影音資訊', 'video-related/edit');
+insert into admin_view (av_name, av_view_name) values ('相關影音一覽', 'video-related/list');
 
 -- admin_action
 insert into admin_action (aa_name, aa_action_name) values ('變更密碼', 'admin/change-password.do');
@@ -326,6 +339,8 @@ insert into admin_action (aa_name, aa_action_name) values ('新增區域', 'stat
 insert into admin_action (aa_name, aa_action_name) values ('編輯區域資訊', 'state/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'video-main/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音資訊', 'video-main/edit.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'video-related/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音資訊', 'video-related/edit.do');
 
 -- user_view
 insert into user_view (uv_name, uv_view_name) values ('首頁', 'index');
@@ -337,7 +352,7 @@ insert into user_view (uv_name, uv_view_name) values ('事業版圖', 'about/ter
 insert into user_view (uv_name, uv_view_name) values ('公司願景', 'about/vision');
 insert into user_view (uv_name, uv_view_name) values ('找不到網頁', 'error/page-not-found');
 insert into user_view (uv_name, uv_view_name) values ('醫療新知', 'info/knowleage');
-insert into user_view (uv_name, uv_view_name) values ('相關影音', 'info/video');
+insert into user_view (uv_name, uv_view_name) values ('相關影音', 'info/video-related');
 insert into user_view (uv_name, uv_view_name) values ('近期活動', 'news/recent');
 insert into user_view (uv_name, uv_view_name) values ('優惠活動', 'news/sale');
 insert into user_view (uv_name, uv_view_name) values ('醫療團隊', 'team/doctor');

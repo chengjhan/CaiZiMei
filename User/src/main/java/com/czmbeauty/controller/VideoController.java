@@ -2,11 +2,14 @@
  * CaiZiMei/User
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/10/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -68,6 +71,37 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
+	 * 開啟的影片 JSON
+	 * 
+	 * @return video JSON
+	 */
+	private String getJSON(int number) {
+
+		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
+
+		List<VideoBean> list = videoService.selectOpenVideo(ca_directory);
+
+		List<VideoBean> jsonList = new ArrayList<VideoBean>();
+		if (list.size() > number) {
+			for (int i = 0; i < number; i++) {
+				VideoBean jsonBean = new VideoBean();
+				jsonBean.setVi_id(list.get(i).getVi_id());
+				jsonBean.setVi_name(list.get(i).getVi_name());
+				jsonBean.setVi_tag(list.get(i).getVi_tag().split(" ")[3].split("\"")[1]);
+				jsonList.add(jsonBean);
+			}
+		} else {
+			jsonList = list;
+		}
+
+		String json = new Gson().toJson(jsonList);
+
+		logger.info("JSON = " + json);
+
+		return json;
+	}
+
+	/**
 	 * 開啟的影片 (AJAX)
 	 * 
 	 * @return video JSON
@@ -76,6 +110,12 @@ public class VideoController implements ControllerConstants {
 	@ResponseBody
 	public String openVideoAjax() {
 
+		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
+
+		if (VIDEO_RELATED.equals(ca_directory)) {
+
+			return getJSON(6);
+		}
 		return getJSON();
 	}
 

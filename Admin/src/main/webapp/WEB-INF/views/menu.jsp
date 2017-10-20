@@ -36,6 +36,7 @@
 		</ul>
 		<ul class="nav nav-sidebar">
 			<li id="id-li-video-main-list"><a href="<%=request.getContextPath()%>/video-main/list?page=1">相關影音一覽</a></li>
+			<li id="id-li-video-related-list"><a href="<%=request.getContextPath()%>/video-related/list?page=1">相關影音一覽</a></li>
 		</ul>
 	</div>
 	

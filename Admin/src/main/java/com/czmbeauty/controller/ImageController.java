@@ -2,13 +2,11 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/10/20
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
-
-import static com.czmbeauty.common.constants.DirectoryConstants.IMAGES;
 
 import java.io.File;
 

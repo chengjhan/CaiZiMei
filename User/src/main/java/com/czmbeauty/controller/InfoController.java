@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: InfoController.java
  * Author: 詹晟
- * Date: 2017/10/19
+ * Date: 2017/10/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -36,12 +36,12 @@ public class InfoController implements ControllerConstants {
 	/**
 	 * 相關影音 - 初期處理
 	 * 
-	 * @return /WEB-INF/views/info/video.jsp
+	 * @return /WEB-INF/views/info/video-related.jsp
 	 */
-	@RequestMapping(value = "/info/video", method = RequestMethod.GET)
-	public String videoView() {
+	@RequestMapping(value = "/info/video-related", method = RequestMethod.GET)
+	public String videoRelatedView() {
 
-		return INFO_VIDEO_PAGE;
+		return INFO_VIDEO_RELATED_PAGE;
 	}
 
 }

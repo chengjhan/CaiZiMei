@@ -9,7 +9,7 @@
 <body>
 	<div class="col-sm-2 sub-sidebar">
 		<ul class="nav nav-sidebar">
-			<li id="id-li-team-medical"><a href="<%=request.getContextPath()%>/team/medical"><span>醫療團隊</span></a></li>
+			<li id="id-li-team-doctor"><a href="<%=request.getContextPath()%>/team/doctor"><span>醫療團隊</span></a></li>
 		</ul>
 	</div>
 	

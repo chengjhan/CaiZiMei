@@ -11,7 +11,7 @@
 		<div class="div-menu">
 			<ul class="ul-menu-left">
 				<li id="id-li-about"><a href="<%=request.getContextPath()%>/about/introduction"><span>關於我們</span></a></li>
-				<li id="id-li-team"><a href="<%=request.getContextPath()%>/team/medical"><span>專業團隊</span></a></li>
+				<li id="id-li-team"><a href="<%=request.getContextPath()%>/team/doctor"><span>專業團隊</span></a></li>
 				<li id="id-li-news"><a href="<%=request.getContextPath()%>/news/recent"><span>最新消息</span></a></li>
 				<li id="id-li-info"><a href="<%=request.getContextPath()%>/info/knowleage"><span>相關資訊</span></a></li>
 			</ul>

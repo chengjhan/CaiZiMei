@@ -18,7 +18,7 @@ public interface PageNameConstants {
 
 	public static final String ABOUT_FRANCHISEE_PAGE = "about/franchisee";
 
-	public static final String TEAM_MEDICAL_PAGE = "team/medical";
+	public static final String TEAM_DOCTOR_PAGE = "team/doctor";
 
 	public static final String NEWS_RECENT_PAGE = "news/recent";
 

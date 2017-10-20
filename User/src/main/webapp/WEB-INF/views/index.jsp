@@ -33,7 +33,7 @@
 		
 		<!-- section-2 -->
 		<section id="section-2">
-			<div id="video-related" class="slider-sub" style="float:left">
+			<div id="video-main" class="slider-sub" style="float:left">
 				<h4>相關影音</h4>
 				<div class="embed-responsive embed-responsive-16by9">
 					<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
@@ -77,7 +77,7 @@
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
 			</div>
-			<div id="slider-team" class="swiper-container slider-sub" style="float:right">
+			<div id="slider-doctor" class="swiper-container slider-sub" style="float:right">
 				<h4>醫療團隊</h4>
 				<div class="swiper-wrapper"></div>
 				<div class="swiper-pagination"></div>

@@ -1,13 +1,13 @@
 $(document).ready(function(){
 	
-	function reinitSwiper(slider_main, slider_franchisee, slider_recent, slider_sale, slider_knowledge, slider_team){
+	function reinitSwiper(slider_main, slider_franchisee, slider_recent, slider_sale, slider_knowledge, slider_doctor){
 		setTimeout(function(){
 			slider_main.reInit();
 			slider_franchisee.reInit();
 			slider_recent.reInit();
 			slider_sale.reInit();
 			slider_knowledge.reInit();
-			slider_team.reInit();
+			slider_doctor.reInit();
 		}, 500);
 	}
 	
@@ -34,8 +34,8 @@ $(document).ready(function(){
 	});
 	
 	// 相關影音
-	$.getJSON("video/video-related.ajax", function(data){
-		$("#video-related iframe").attr("src", data.vi_tag);
+	$.getJSON("video/video-main.ajax", function(data){
+		$("#video-main iframe").attr("src", data.vi_tag);
 	});
 	
 	// 加盟店資訊輪播
@@ -127,7 +127,7 @@ $(document).ready(function(){
 	});
 	
 	// 醫療團隊輪播
-	var slider_team = new Swiper('#slider-team', {
+	var slider_doctor = new Swiper('#slider-doctor', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
 		nextButton: '.swiper-button-next',
@@ -139,12 +139,12 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/slider-team.ajax", function(data){
+	$.getJSON("image/slider-doctor.ajax", function(data){
 		$.each(data, function(index, imageBean){
-			var slider_img = $("<img src='/Admin/images/slider-team/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
+			var slider_img = $("<img src='/Admin/images/slider-doctor/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='img-slider'>");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='a-silder'></a>").append(slider_img);
 			var slider_div = $("<div class='swiper-slide'></div>").append(slider_a);
-			slider_team.appendSlide(slider_div);
+			slider_doctor.appendSlide(slider_div);
 		});
 	});
 	

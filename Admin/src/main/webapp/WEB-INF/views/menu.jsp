@@ -32,10 +32,10 @@
 			<li id="id-li-slider-recent-list"><a href="<%=request.getContextPath()%>/slider-recent/list?page=1">近期活動輪播圖片一覽</a></li>
 			<li id="id-li-slider-sale-list"><a href="<%=request.getContextPath()%>/slider-sale/list?page=1">優惠活動輪播圖片一覽</a></li>
 			<li id="id-li-slider-knowledge-list"><a href="<%=request.getContextPath()%>/slider-knowledge/list?page=1">醫療新知輪播圖片一覽</a></li>
-			<li id="id-li-slider-team-list"><a href="<%=request.getContextPath()%>/slider-team/list?page=1">醫療團隊輪播圖片一覽</a></li>
+			<li id="id-li-slider-doctor-list"><a href="<%=request.getContextPath()%>/slider-doctor/list?page=1">醫療團隊輪播圖片一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
-			<li id="id-li-video-related-list"><a href="<%=request.getContextPath()%>/video-related/list?page=1">相關影音一覽</a></li>
+			<li id="id-li-video-main-list"><a href="<%=request.getContextPath()%>/video-main/list?page=1">相關影音一覽</a></li>
 		</ul>
 	</div>
 	

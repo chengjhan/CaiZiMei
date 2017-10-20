@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: TeamController.java
  * Author: 詹晟
- * Date: 2017/10/18
+ * Date: 2017/10/20
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -25,12 +25,12 @@ public class TeamController implements ControllerConstants {
 	/**
 	 * 醫療團隊 - 初期處理
 	 * 
-	 * @return /WEB-INF/views/team/medical.jsp
+	 * @return /WEB-INF/views/team/doctor.jsp
 	 */
-	@RequestMapping(value = "/team/medical", method = RequestMethod.GET)
-	public String medicalView() {
+	@RequestMapping(value = "/team/doctor", method = RequestMethod.GET)
+	public String doctorView() {
 
-		return TEAM_MEDICAL_PAGE;
+		return TEAM_DOCTOR_PAGE;
 	}
 
 }

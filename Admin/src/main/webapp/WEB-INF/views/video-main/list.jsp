@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>醫療團隊輪播圖片一覽 - 采姿美管理系統</title>
+<title>相關影音一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/image/list.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/video/list.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -23,7 +23,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			
 				<!-- title -->
-				<h2 class="sub-header">醫療團隊輪播圖片一覽</h2>
+				<h2 class="sub-header">相關影音一覽</h2>
 				
 				<!-- content -->
 				<div class="table-responsive">
@@ -31,13 +31,13 @@
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
-						<li class="active">醫療團隊輪播圖片一覽</li>
+						<li class="active">相關影音一覽</li>
 					</ol>
 				
 					<!-- option -->
 					<div class="btn-group option">
 						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/slider-team/add" title="新增">
+							<a href="<%=request.getContextPath()%>/video-main/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -46,47 +46,45 @@
 					
 					<!-- table -->
 					<table class="table table-bordered">
-						<c:forEach var="bean" items="${imageList}" varStatus="status">
-							<tbody>
+						<thead>
+							<tr>
+								<td style="width:50px">編號</td>
+								<td>名稱</td>
+								<td style="width:560px">影片</td>
+								<td style="width:50px">排序</td>
+								<td style="width:50px">編輯</td>
+								<td style="width:50px">開啟</td>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="bean" items="${videoList}" varStatus="status">
 								<tr>
-									<td rowspan="4" style="width:50px">${status.count + pageRowCount * (currentPage - 1)}</td>
-									<td rowspan="4" style="width:25%"><img src="<%=request.getContextPath()%>/images/slider-team/${bean.im_filename}"></td>
-									<td style="width:50px">名稱</td>
-									<td>${bean.im_name}</td>
-									<td rowspan="4" style="width:50px">
+									<td>${status.count + pageRowCount * (currentPage - 1)}</td>
+									<td>${bean.vi_name}</td>
+									<td>${bean.vi_tag}</td>
+									<td>${bean.vi_rank}</td>
+									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/slider-team/edit?im_id=${bean.im_id}&page=${currentPage}" title="編輯">
+											<a href="<%=request.getContextPath()%>/video-main/edit?vi_id=${bean.vi_id}&page=${currentPage}" title="編輯">
 												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
 											</a>
 										</div>
-									</td>	
-									<td rowspan="4" style="width:50px">
-										<div class="im-status-switch" data-im-id="${bean.im_id}" title="切換">
+									</td>
+									<td>
+										<div class="vi-status-switch" data-vi-id="${bean.vi_id}" title="切換">
 											<c:choose>
-												<c:when test="${bean.im_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-im-status="1">
+												<c:when test="${bean.vi_status eq 1}">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-vi-status="1">
 												</c:when>
-												<c:when test="${bean.im_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-im-status="0">
+												<c:when test="${bean.vi_status eq 0}">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-vi-status="0">
 												</c:when>
 											</c:choose>
 										</div>
 									</td>
 								</tr>
-								<tr>
-									<td style="width:50px">檔名</td>
-									<td>${bean.im_filename}</td>
-								</tr>
-								<tr>
-									<td style="width:50px">連結</td>
-									<td><a href="${bean.im_url}" target="_blank">${bean.im_url}</a></td>
-								</tr>
-								<tr>
-									<td style="width:50px">排序</td>
-									<td>${bean.im_rank}</td>
-								</tr>
-							</tbody>
-						</c:forEach>
+							</c:forEach>
+						</tbody>
 					</table>
 					<!-- table end -->
 					
@@ -95,19 +93,19 @@
 						<nav style="text-align:center">
 							<ul class="pagination" style="margin:0">
 								<c:if test="${currentPage > 1}">
-									<li><a href="<%=request.getContextPath()%>/slider-team/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span></a></li>
+									<li><a href="<%=request.getContextPath()%>/video-main/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
 								</c:if>
 								<c:forEach begin="1" end="${pageCount}" varStatus="status">
-									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/slider-team/list?page=${status.count}">${status.count}</a></li>
+									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/video-main/list?page=${status.count}">${status.count}</a></li>
 								</c:forEach>
 								<c:if test="${currentPage < pageCount}">
-									<li><a href="<%=request.getContextPath()%>/slider-team/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span></a></li>
+									<li><a href="<%=request.getContextPath()%>/video-main/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
 								</c:if>
 							</ul>
 						</nav>
 					</c:if>
 					<!-- pagination end -->
-	
+					
 				</div>
 				<!-- content end -->
 				
@@ -121,6 +119,6 @@
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/image/list.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/video/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

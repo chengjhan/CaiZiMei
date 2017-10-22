@@ -117,6 +117,18 @@ create table video (
 	foreign key (vi_ca_id) references category (ca_id)
 );
 
+create table html (
+	ht_id					int auto_increment not null,
+	ht_ca_id					int not null,
+	ht_name					nvarchar(50),
+	ht_tag					nvarchar(20000) not null,
+	ht_rank					tinyint not null,
+	ht_status				tinyint not null,
+	ht_update_time			datetime not null,
+	primary key (ht_id),
+	foreign key (ht_ca_id) references category (ca_id)
+);
+
 create table admin_view (
 	av_id					int auto_increment not null,
 	av_name					nvarchar(20) not null,
@@ -199,6 +211,7 @@ insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (2, 17
 insert into category (ca_name, ca_directory) values ('診所', 'base-clinic');
 insert into category (ca_name, ca_directory) values ('加盟店', 'base-franchisee');
 insert into category (ca_name, ca_directory) values ('辦事處', 'base-office');
+insert into category (ca_name, ca_directory) values ('醫療新知', 'info-knowleage');
 insert into category (ca_name, ca_directory) values ('相關影音', 'info-video-related');
 insert into category (ca_name, ca_directory) values ('醫療團隊輪播圖片', 'slider-doctor');
 insert into category (ca_name, ca_directory) values ('加盟店資訊輪播圖片', 'slider-franchisee');
@@ -250,6 +263,9 @@ insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'g', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'h', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'i', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());
+
+-- html
+
 
 -- admin_view
 insert into admin_view (av_name, av_view_name) values ('首頁', 'index');

@@ -26,43 +26,13 @@
 			<!-- main -->
 			<main class="col-sm-10">
 			
-				<section id="section-1">
-					<div id="video-related-0" class="video-related" style="float:left">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+				<section>
+					<c:forEach var="bean" items="${videoList}">
+						<div class="video-related">
+							<h5>${bean.vi_name}</h5>
+							<div class="embed-responsive embed-responsive-16by9">${bean.vi_tag}</div>
 						</div>
-					</div>
-					<div id="video-related-1" class="video-related" style="float:right">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
-						</div>
-					</div>
-				</section>
-				
-				<section id="section-2">
-					<div id="video-related-2" class="video-related" style="float:left">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
-						</div>
-					</div>
-					<div id="video-related-3" class="video-related" style="float:right">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
-						</div>
-					</div>
-				</section>
-				
-				<section id="section-3">
-					<div id="video-related-4" class="video-related" style="float:left">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
-						</div>
-					</div>
-					<div id="video-related-5" class="video-related" style="float:right">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
-						</div>
-					</div>
+					</c:forEach>
 				</section>
 				
 			</main>
@@ -77,6 +47,5 @@
 	
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/info/video-related.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

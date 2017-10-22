@@ -38,7 +38,7 @@
 					<!-- option -->
 					<div class="btn-group option">
 						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/clinic/add" title="新增">
+							<a href="<%=request.getContextPath()%>/base-clinic/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -89,7 +89,7 @@
 <%-- 									<td>${ba_status_time_format}</td> --%>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/clinic/edit?ba_id=${bean.ba_id}&page=${currentPage}" title="編輯">
+											<a href="<%=request.getContextPath()%>/base-clinic/edit?ba_id=${bean.ba_id}&page=${currentPage}" title="編輯">
 												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
 											</a>
 										</div>
@@ -117,13 +117,13 @@
 						<nav style="text-align:center">
 							<ul class="pagination" style="margin:0">
 								<c:if test="${currentPage > 1}">
-									<li><a href="<%=request.getContextPath()%>/clinic/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+									<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
 								</c:if>
 								<c:forEach begin="1" end="${pageCount}" varStatus="status">
-									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/clinic/list?page=${status.count}">${status.count}</a></li>
+									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/base-clinic/list?page=${status.count}">${status.count}</a></li>
 								</c:forEach>
 								<c:if test="${currentPage < pageCount}">
-									<li><a href="<%=request.getContextPath()%>/clinic/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+									<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
 								</c:if>
 							</ul>
 						</nav>

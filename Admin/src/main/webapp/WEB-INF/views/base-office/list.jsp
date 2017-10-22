@@ -37,7 +37,7 @@
 					<!-- option -->
 					<div class="btn-group option">
 						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/office/add" title="新增">
+							<a href="<%=request.getContextPath()%>/base-office/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -69,7 +69,7 @@
 									<td><a href="${bean.ba_url}">${bean.ba_url}</a></td>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/office/edit?ba_id=${bean.ba_id}&page=${currentPage}" title="編輯">
+											<a href="<%=request.getContextPath()%>/base-office/edit?ba_id=${bean.ba_id}&page=${currentPage}" title="編輯">
 												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
 											</a>
 										</div>
@@ -97,13 +97,13 @@
 						<nav style="text-align:center">
 							<ul class="pagination" style="margin:0">
 								<c:if test="${currentPage > 1}">
-									<li><a href="<%=request.getContextPath()%>/office/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span></a></li>
+									<li><a href="<%=request.getContextPath()%>/base-office/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span></a></li>
 								</c:if>
 								<c:forEach begin="1" end="${pageCount}" varStatus="status">
-									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/office/list?page=${status.count}">${status.count}</a></li>
+									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/base-office/list?page=${status.count}">${status.count}</a></li>
 								</c:forEach>
 								<c:if test="${currentPage < pageCount}">
-									<li><a href="<%=request.getContextPath()%>/office/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span></a></li>
+									<li><a href="<%=request.getContextPath()%>/base-office/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span></a></li>
 								</c:if>
 							</ul>
 						</nav>

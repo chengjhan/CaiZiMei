@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>編輯辦事處資訊 - 采姿美管理系統</title>
+<title>新增診所 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/base/form.css" type="text/css" />
 </head>
@@ -23,7 +23,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				
 				<!-- title -->
-				<h2 class="sub-header">編輯辦事處資訊</h2>
+				<h2 class="sub-header">新增診所</h2>
 				
 				<!-- content -->
 				<div class="table-responsive">
@@ -31,17 +31,13 @@
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
-						<li><a href="<%=request.getContextPath()%>/office/list?page=${currentPage}">辦事處一覽</a></li>
-						<li class="active">編輯辦事處資訊</li>
+						<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=1">診所一覽</a></li>
+						<li class="active">新增診所</li>
 					</ol>
-	
+				
 					<!-- form -->
-					<form:form action="/Admin/office/edit.do" method="post" modelAttribute="baseBean">
+					<form:form action="/Admin/base-clinic/add.do" method="post" modelAttribute="baseBean">
 						<table class="table">
-							<tr style="display:none">
-								<td>流水號</td>
-								<td><form:hidden path="ba_id" /></td>
-							</tr>
 							<tr>
 								<td><form:label path="ba_name">名稱</form:label></td>
 								<td>
@@ -66,7 +62,7 @@
 									<div id="ba_tel_code_error" class="error"></div>
 									<div id="ba_tel_error" class="error"></div>
 								</td>
-								<td><form:errors path="ba_name" cssClass="error" /></td>
+								<td><form:errors path="ba_tel" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="ba_CountryBean">國家</form:label></td>
@@ -83,7 +79,6 @@
 								<td>
 									<form:select path="ba_StateBean" cssClass="form-control">
 										<form:option value="0" label="請選擇區域" />
-										<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
 									</form:select>
 									<div class="error"></div>
 								</td>
@@ -93,7 +88,6 @@
 								<td>
 									<form:select path="ba_CityBean" cssClass="form-control">
 										<form:option value="0" label="請選擇城市" />
-										<form:options items="${cityList}" itemValue="ci_id" itemLabel="ci_name" />
 									</form:select>
 									<div class="error"></div>
 								</td>
@@ -117,8 +111,8 @@
 							<tr>
 								<td></td>
 								<td>
-									<input type="submit" class="btn btn-success" value="變更" />
-									<a href="<%=request.getContextPath()%>/office/list?page=${currentPage}"><button type="button" class="btn btn-danger">取消</button></a>
+									<input type="submit" class="btn btn-success" value="新增" />
+									<a href="<%=request.getContextPath()%>/base-clinic/list?page=1"><button type="button" class="btn btn-danger">取消</button></a>
 								</td>
 							</tr>
 						</table>

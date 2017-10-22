@@ -22,12 +22,13 @@
 			<li id="id-li-city-list"><a href="<%=request.getContextPath()%>/city/list">城市一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
-			<li id="id-li-office-list"><a href="<%=request.getContextPath()%>/office/list?page=1">辦事處一覽</a></li>
-			<li id="id-li-franchisee-list"><a href="<%=request.getContextPath()%>/franchisee/list?page=1">加盟店一覽</a></li>
-			<li id="id-li-clinic-list"><a href="<%=request.getContextPath()%>/clinic/list?page=1">診所一覽</a></li>
+			<li id="id-li-base-office-list"><a href="<%=request.getContextPath()%>/base-office/list?page=1">辦事處一覽</a></li>
+			<li id="id-li-base-franchisee-list"><a href="<%=request.getContextPath()%>/base-franchisee/list?page=1">加盟店一覽</a></li>
+			<li id="id-li-base-clinic-list"><a href="<%=request.getContextPath()%>/base-clinic/list?page=1">診所一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
 			<li id="id-li-slider-main-list"><a href="<%=request.getContextPath()%>/slider-main/list?page=1">主輪播圖片一覽</a></li>
+			<li id="id-li-video-main-list"><a href="<%=request.getContextPath()%>/video-main/list?page=1">相關影音一覽</a></li>
 			<li id="id-li-slider-franchisee-list"><a href="<%=request.getContextPath()%>/slider-franchisee/list?page=1">加盟店資訊輪播圖片一覽</a></li>
 			<li id="id-li-slider-recent-list"><a href="<%=request.getContextPath()%>/slider-recent/list?page=1">近期活動輪播圖片一覽</a></li>
 			<li id="id-li-slider-sale-list"><a href="<%=request.getContextPath()%>/slider-sale/list?page=1">優惠活動輪播圖片一覽</a></li>
@@ -35,8 +36,8 @@
 			<li id="id-li-slider-doctor-list"><a href="<%=request.getContextPath()%>/slider-doctor/list?page=1">醫療團隊輪播圖片一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
-			<li id="id-li-video-main-list"><a href="<%=request.getContextPath()%>/video-main/list?page=1">相關影音一覽 (首頁)</a></li>
-			<li id="id-li-video-related-list"><a href="<%=request.getContextPath()%>/video-related/list?page=1">相關影音一覽 (相關資訊)</a></li>
+			<li id="id-li-info-knowleage-list"><a href="<%=request.getContextPath()%>/info-knowleage/list?page=1">相關資訊／醫療新知頁面設定</a></li>
+			<li id="id-li-info-video-related-list"><a href="<%=request.getContextPath()%>/info-video-related/list?page=1">相關資訊／相關影音頁面設定</a></li>
 		</ul>
 	</div>
 	

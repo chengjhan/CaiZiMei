@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -154,7 +154,7 @@ public class VideoController implements ControllerConstants {
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = "/video*/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/*video*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
@@ -185,7 +185,7 @@ public class VideoController implements ControllerConstants {
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
-	@RequestMapping(value = "/video*/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/*video*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
@@ -206,7 +206,7 @@ public class VideoController implements ControllerConstants {
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = "/video*/add.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/*video*/add.do", method = RequestMethod.POST)
 	public String addAction(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
 		return add(videoBean, bindingResult);
@@ -224,7 +224,7 @@ public class VideoController implements ControllerConstants {
 	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
-	@RequestMapping(value = "/video*/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/*video*/edit", method = RequestMethod.GET)
 	public String editView(VideoBean videoBean_vi_id, @RequestParam String page, Model model) {
 
 		currentPage = page;
@@ -270,7 +270,7 @@ public class VideoController implements ControllerConstants {
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = "/video*/edit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/*video*/edit.do", method = RequestMethod.POST)
 	public String editAction(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
 		return edit(videoBean, bindingResult);

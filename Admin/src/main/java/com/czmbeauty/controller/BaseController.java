@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -181,7 +181,7 @@ public class BaseController implements ControllerConstants {
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = "/*/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/base*/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
@@ -212,7 +212,7 @@ public class BaseController implements ControllerConstants {
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
-	@RequestMapping(value = "/*/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/base*/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
@@ -236,7 +236,7 @@ public class BaseController implements ControllerConstants {
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = "/*/add.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/base*/add.do", method = RequestMethod.POST)
 	public String addAction(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
 		return add(baseBean, bindingResult);
@@ -254,7 +254,7 @@ public class BaseController implements ControllerConstants {
 	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
-	@RequestMapping(value = "/*/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/base*/edit", method = RequestMethod.GET)
 	public String editView(BaseBean baseBean_ba_id, @RequestParam String page, Model model) {
 
 		currentPage = page;
@@ -309,7 +309,7 @@ public class BaseController implements ControllerConstants {
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = "/*/edit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/base*/edit.do", method = RequestMethod.POST)
 	public String editAction(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
 		return edit(baseBean, bindingResult);

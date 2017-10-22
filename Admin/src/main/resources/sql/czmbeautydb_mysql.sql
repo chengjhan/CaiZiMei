@@ -196,9 +196,10 @@ insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 14
 insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (2, 17, '天水市', 1, 1);
 
 -- category
-insert into category (ca_name, ca_directory) values ('診所', 'clinic');
-insert into category (ca_name, ca_directory) values ('加盟店', 'franchisee');
-insert into category (ca_name, ca_directory) values ('辦事處', 'office');
+insert into category (ca_name, ca_directory) values ('診所', 'base-clinic');
+insert into category (ca_name, ca_directory) values ('加盟店', 'base-franchisee');
+insert into category (ca_name, ca_directory) values ('辦事處', 'base-office');
+insert into category (ca_name, ca_directory) values ('相關影音', 'info-video-related');
 insert into category (ca_name, ca_directory) values ('醫療團隊輪播圖片', 'slider-doctor');
 insert into category (ca_name, ca_directory) values ('加盟店資訊輪播圖片', 'slider-franchisee');
 insert into category (ca_name, ca_directory) values ('醫療新知輪播圖片', 'slider-knowledge');
@@ -206,7 +207,6 @@ insert into category (ca_name, ca_directory) values ('主輪播圖片', 'slider-
 insert into category (ca_name, ca_directory) values ('近期活動輪播圖片', 'slider-recent');
 insert into category (ca_name, ca_directory) values ('優惠活動輪播圖片', 'slider-sale');
 insert into category (ca_name, ca_directory) values ('相關影音', 'video-main');
-insert into category (ca_name, ca_directory) values ('相關影音', 'video-related');
 
 -- base
 insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (3, '采姿美台北辦事處', 'CaiZiMei', '02', '27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://localhost:8080/User/', now(), now(), 1, now());
@@ -230,26 +230,26 @@ insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id,
 insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (1, '何彬彬牙醫診所', 'Ho Bing Bing Dental Clinic', '07', '2270748', 1, 11, 115, '新興區民生一路56號', 22.628011, 120.310796, 'http://1637.tw/07-2270748/', now(), now(), 1, now());
 
 -- image
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (7, '曼星整形醫美診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_twinkle_clinic_1000x380.jpg', 'http://twinkle-clinic.tw', 1, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (7, '晶鑽時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_diamondcosmetic_1000x380.jpg', 'http://diamondcosmetic.com.tw/', 2, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (7, '法泊時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_fabulous_clinic_1000x380.png', 'http://www.fabulous-clinic.com', 3, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (7, '喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty_1000x380.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (7, '好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood_1000x380.jpg', 'http://hollywood.tw/', 5, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (7, '何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637_1000x380.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (8, '曼星整形醫美診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_twinkle_clinic_1000x380.jpg', 'http://twinkle-clinic.tw', 1, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (8, '晶鑽時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_diamondcosmetic_1000x380.jpg', 'http://diamondcosmetic.com.tw/', 2, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (8, '法泊時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_fabulous_clinic_1000x380.png', 'http://www.fabulous-clinic.com', 3, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (8, '喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty_1000x380.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (8, '好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood_1000x380.jpg', 'http://hollywood.tw/', 5, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (8, '何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637_1000x380.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());
 
 -- video
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (10, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (10, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 0, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (10, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 0, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 4, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 5, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 6, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, '', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, 'aaa', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, 'bbb', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 0, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (11, 'ccc', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 0, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'a', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'b', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'c', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'd', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 4, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'e', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 5, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'f', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 6, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'g', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'h', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (4, 'i', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());
 
 -- admin_view
 insert into admin_view (av_name, av_view_name) values ('首頁', 'index');
@@ -258,22 +258,25 @@ insert into admin_view (av_name, av_view_name) values ('編輯個人資訊', 'ad
 insert into admin_view (av_name, av_view_name) values ('管理員一覽', 'admin/list');
 insert into admin_view (av_name, av_view_name) values ('個人資訊', 'admin/profile');
 insert into admin_view (av_name, av_view_name) values ('註冊', 'admin/sign-up');
+insert into admin_view (av_name, av_view_name) values ('新增診所', 'base-clinic/add');
+insert into admin_view (av_name, av_view_name) values ('編輯診所資訊', 'base-clinic/edit');
+insert into admin_view (av_name, av_view_name) values ('診所一覽', 'base-clinic/list');
+insert into admin_view (av_name, av_view_name) values ('新增加盟店', 'base-franchisee/add');
+insert into admin_view (av_name, av_view_name) values ('編輯加盟店資訊', 'base-franchisee/edit');
+insert into admin_view (av_name, av_view_name) values ('加盟店一覽', 'base-franchisee/list');
+insert into admin_view (av_name, av_view_name) values ('新增辦事處', 'base-office/add');
+insert into admin_view (av_name, av_view_name) values ('編輯辦事處資訊', 'base-office/edit');
+insert into admin_view (av_name, av_view_name) values ('辦事處一覽', 'base-office/list');
 insert into admin_view (av_name, av_view_name) values ('新增城市', 'city/add');
 insert into admin_view (av_name, av_view_name) values ('編輯城市資訊', 'city/edit');
 insert into admin_view (av_name, av_view_name) values ('城市一覽', 'city/list');
-insert into admin_view (av_name, av_view_name) values ('新增診所', 'clinic/add');
-insert into admin_view (av_name, av_view_name) values ('編輯診所資訊', 'clinic/edit');
-insert into admin_view (av_name, av_view_name) values ('診所一覽', 'clinic/list');
 insert into admin_view (av_name, av_view_name) values ('新增國家', 'country/add');
 insert into admin_view (av_name, av_view_name) values ('編輯國家資訊', 'country/edit');
 insert into admin_view (av_name, av_view_name) values ('國家一覽', 'country/list');
 insert into admin_view (av_name, av_view_name) values ('找不到網頁', 'error/page-not-found');
-insert into admin_view (av_name, av_view_name) values ('新增加盟店', 'franchisee/add');
-insert into admin_view (av_name, av_view_name) values ('編輯加盟店資訊', 'franchisee/edit');
-insert into admin_view (av_name, av_view_name) values ('加盟店一覽', 'franchisee/list');
-insert into admin_view (av_name, av_view_name) values ('新增辦事處', 'office/add');
-insert into admin_view (av_name, av_view_name) values ('編輯辦事處資訊', 'office/edit');
-insert into admin_view (av_name, av_view_name) values ('辦事處一覽', 'office/list');
+insert into admin_view (av_name, av_view_name) values ('新增相關影音', 'info-video-related/add');
+insert into admin_view (av_name, av_view_name) values ('編輯相關影音資訊', 'info-video-related/edit');
+insert into admin_view (av_name, av_view_name) values ('相關影音頁面設定', 'info-video-related/list');
 insert into admin_view (av_name, av_view_name) values ('忘記密碼', 'secure/forget-password');
 insert into admin_view (av_name, av_view_name) values ('重設密碼', 'secure/reset-password');
 insert into admin_view (av_name, av_view_name) values ('登入', 'secure/sign-in');
@@ -301,24 +304,23 @@ insert into admin_view (av_name, av_view_name) values ('區域一覽', 'state/li
 insert into admin_view (av_name, av_view_name) values ('新增相關影音', 'video-main/add');
 insert into admin_view (av_name, av_view_name) values ('編輯相關影音資訊', 'video-main/edit');
 insert into admin_view (av_name, av_view_name) values ('相關影音一覽', 'video-main/list');
-insert into admin_view (av_name, av_view_name) values ('新增相關影音', 'video-related/add');
-insert into admin_view (av_name, av_view_name) values ('編輯相關影音資訊', 'video-related/edit');
-insert into admin_view (av_name, av_view_name) values ('相關影音一覽', 'video-related/list');
 
 -- admin_action
 insert into admin_action (aa_name, aa_action_name) values ('變更密碼', 'admin/change-password.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯個人資訊', 'admin/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('註冊', 'admin/sign-up.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增診所', 'base-clinic/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯診所資訊', 'base-clinic/edit.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增加盟店', 'base-franchisee/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯加盟店資訊', 'base-franchisee/edit.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增辦事處', 'base-office/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯辦事處資訊', 'base-office/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增城市', 'city/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯城市資訊', 'city/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增診所', 'clinic/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯診所資訊', 'clinic/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增國家', 'country/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯國家資訊', 'country/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增加盟店', 'franchisee/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯加盟店資訊', 'franchisee/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增辦事處', 'office/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯辦事處資訊', 'office/edit.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'info-video-related/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音資訊', 'info-video-related/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('忘記密碼', 'secure/forget-password.do');
 insert into admin_action (aa_name, aa_action_name) values ('重設密碼', 'secure/reset-password.do');
 insert into admin_action (aa_name, aa_action_name) values ('登入', 'secure/sign-in.do');
@@ -339,8 +341,6 @@ insert into admin_action (aa_name, aa_action_name) values ('新增區域', 'stat
 insert into admin_action (aa_name, aa_action_name) values ('編輯區域資訊', 'state/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'video-main/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音資訊', 'video-main/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'video-related/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音資訊', 'video-related/edit.do');
 
 -- user_view
 insert into user_view (uv_name, uv_view_name) values ('首頁', 'index');

@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: InfoController.java
  * Author: 詹晟
- * Date: 2017/10/22
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -62,7 +62,8 @@ public class InfoController implements ControllerConstants {
 	@RequestMapping(value = "/info/video-related", method = RequestMethod.GET)
 	public String videoRelatedView(Model model) {
 
-		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
+		String servletPath = request.getServletPath();
+		String ca_directory = servletPath.split("/")[1] + "-" + servletPath.split("/")[2].split("\\.")[0];
 
 		List<VideoBean> list = videoService.selectOpenVideo(ca_directory);
 

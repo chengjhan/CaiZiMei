@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoDaoImpl.java
  * Author: 詹晟
- * Date: 2017/10/2
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,7 +46,7 @@ public class VideoDaoImpl implements VideoDao {
 	 *            int --> 當頁起始筆數
 	 * @param max
 	 *            int --> 每頁最大筆數
-	 * @return List<ImageBean>
+	 * @return List<VideoBean>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })

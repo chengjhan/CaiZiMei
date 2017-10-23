@@ -55,4 +55,11 @@ public interface HqlConstants {
 	/** 搜尋開啟的影片 */
 	public static final String HQL_SELECT_OPEN_VIDEO = "from VideoBean where vi_ca_id=:vi_ca_id and vi_status=1";
 
+	// html
+	/** 類別流水號搜尋 */
+	public static final String HQL_SELECT_HTML_BY_CATEGORY = "from HtmlBean where ht_ca_id=:ht_ca_id order by ht_rank asc, ht_id asc";
+
+	/** 搜尋開啟的 html */
+	public static final String HQL_SELECT_OPEN_HTML = "from HtmlBean where ht_ca_id=:ht_ca_id and ht_status=1";
+
 }

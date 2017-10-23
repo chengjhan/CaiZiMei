@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/12
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,13 +46,7 @@ public class StateServiceImpl implements StateService {
 	@Transactional(readOnly = true)
 	public StateBean selectBySt_id(Integer st_id) {
 
-		StateBean result = null;
-
-		if (st_id != 0) {
-
-			result = stateDao.selectBySt_id(st_id);
-		}
-		return result;
+		return stateDao.selectBySt_id(st_id);
 	}
 
 	/**
@@ -80,15 +74,9 @@ public class StateServiceImpl implements StateService {
 	@Transactional
 	public StateBean insert(StateBean stateBean) {
 
-		StateBean result = null;
+		stateBean.setSt_status(1);
 
-		if (stateBean != null) {
-
-			stateBean.setSt_status(1);
-
-			result = stateDao.insert(stateBean);
-		}
-		return result;
+		return stateDao.insert(stateBean);
 	}
 
 	/**

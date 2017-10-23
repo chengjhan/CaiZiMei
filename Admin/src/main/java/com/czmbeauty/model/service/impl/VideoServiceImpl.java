@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -94,13 +94,7 @@ public class VideoServiceImpl implements VideoService {
 	@Transactional
 	public VideoBean insert(VideoBean videoBean) {
 
-		VideoBean result = null;
-
-		if (videoBean != null) {
-
-			result = videoDao.insert(videoBean);
-		}
-		return result;
+		return videoDao.insert(videoBean);
 	}
 
 	/**

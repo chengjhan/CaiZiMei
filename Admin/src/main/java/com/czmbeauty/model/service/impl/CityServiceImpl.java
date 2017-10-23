@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/12
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -45,13 +45,7 @@ public class CityServiceImpl implements CityService {
 	@Transactional(readOnly = true)
 	public CityBean selectByCi_id(Integer ci_id) {
 
-		CityBean result = null;
-
-		if (ci_id != 0) {
-
-			result = cityDao.selectByCi_id(ci_id);
-		}
-		return result;
+		return cityDao.selectByCi_id(ci_id);
 	}
 
 	/**
@@ -79,15 +73,9 @@ public class CityServiceImpl implements CityService {
 	@Transactional
 	public CityBean insert(CityBean cityBean) {
 
-		CityBean result = null;
+		cityBean.setCi_status(1);
 
-		if (cityBean != null) {
-
-			cityBean.setCi_status(1);
-
-			result = cityDao.insert(cityBean);
-		}
-		return result;
+		return cityDao.insert(cityBean);
 	}
 
 	/**

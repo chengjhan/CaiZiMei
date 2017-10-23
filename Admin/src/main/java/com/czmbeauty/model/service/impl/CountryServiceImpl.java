@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/24
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -60,9 +60,7 @@ public class CountryServiceImpl implements CountryService {
 	@Transactional(readOnly = true)
 	public CountryBean selectByCo_id(Integer co_id) throws IllegalArgumentException {
 
-		CountryBean countryBean = countryDao.selectByCo_id(co_id);
-
-		return countryBean;
+		return countryDao.selectByCo_id(co_id);
 	}
 
 	/**
@@ -76,15 +74,9 @@ public class CountryServiceImpl implements CountryService {
 	@Transactional
 	public CountryBean insert(CountryBean countryBean) {
 
-		CountryBean result = null;
+		countryBean.setCo_status(1);
 
-		if (countryBean != null) {
-
-			countryBean.setCo_status(1);
-
-			result = countryDao.insert(countryBean);
-		}
-		return result;
+		return countryDao.insert(countryBean);
 	}
 
 	/**

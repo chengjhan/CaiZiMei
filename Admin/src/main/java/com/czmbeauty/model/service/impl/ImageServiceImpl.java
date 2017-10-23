@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageServiceImpl.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -94,13 +94,7 @@ public class ImageServiceImpl implements ImageService {
 	@Transactional
 	public ImageBean insert(ImageBean imageBean) {
 
-		ImageBean result = null;
-
-		if (imageBean != null) {
-
-			result = imageDao.insert(imageBean);
-		}
-		return result;
+		return imageDao.insert(imageBean);
 	}
 
 	/**

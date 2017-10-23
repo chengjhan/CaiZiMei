@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminActionServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/3
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,9 +41,7 @@ public class AdminActionServiceImpl implements AdminActionService {
 	@Transactional(readOnly = true)
 	public AdminActionBean selectByAa_action_name(String aa_action_name) {
 
-		AdminActionBean adminActionBean = adminActionDao.selectByAa_action_name(aa_action_name);
-
-		return adminActionBean;
+		return adminActionDao.selectByAa_action_name(aa_action_name);
 	}
 
 }

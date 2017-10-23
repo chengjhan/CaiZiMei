@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: UserViewServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/3
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,9 +41,7 @@ public class UserViewServiceImpl implements UserViewService {
 	@Transactional(readOnly = true)
 	public UserViewBean selectByUv_view_name(String uv_view_name) {
 
-		UserViewBean userViewBean = userViewDao.selectByUv_view_name(uv_view_name);
-
-		return userViewBean;
+		return userViewDao.selectByUv_view_name(uv_view_name);
 	}
 
 }

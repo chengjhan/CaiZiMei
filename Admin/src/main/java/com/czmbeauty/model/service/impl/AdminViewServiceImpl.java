@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminViewServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/3
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,9 +41,7 @@ public class AdminViewServiceImpl implements AdminViewService {
 	@Transactional(readOnly = true)
 	public AdminViewBean selectByAv_view_name(String av_view_name) {
 
-		AdminViewBean adminViewBean = adminViewDao.selectByAv_view_name(av_view_name);
-
-		return adminViewBean;
+		return adminViewDao.selectByAv_view_name(av_view_name);
 	}
 
 }

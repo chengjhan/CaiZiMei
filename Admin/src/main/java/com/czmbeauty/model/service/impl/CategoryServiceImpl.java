@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CategoryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/4
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -44,9 +44,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 		String ca_directory = RequestPageSplitter.getDirectoryName(requestPage);
 
-		CategoryBean categoryBean = categoryDao.selectByCa_directory(ca_directory);
-
-		return categoryBean;
+		return categoryDao.selectByCa_directory(ca_directory);
 	}
 
 }

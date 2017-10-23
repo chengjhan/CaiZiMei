@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/15
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -51,25 +51,19 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public AdminBean signUp(AdminBean adminBean) {
 
-		AdminBean result = null;
+		String ad_salt = CryptographicHashFunction.getSalt();
 
-		if (adminBean != null) {
+		adminBean.setAd_salt(ad_salt);
+		adminBean.setAd_password(CryptographicHashFunction.getHashedPassword(adminBean.getAd_password(), ad_salt));
+		adminBean.setAd_signup_time(new java.util.Date());
+		adminBean.setAd_signin_number(0);
+		adminBean.setAd_update_pwd_time(new java.util.Date());
+		adminBean.setAd_update_info_time(new java.util.Date());
+		adminBean.setAd_status(1);
+		adminBean.setAd_status_time(new java.util.Date());
+		adminBean.setAd_authority(2);
 
-			String ad_salt = CryptographicHashFunction.getSalt();
-
-			adminBean.setAd_salt(ad_salt);
-			adminBean.setAd_password(CryptographicHashFunction.getHashedPassword(adminBean.getAd_password(), ad_salt));
-			adminBean.setAd_signup_time(new java.util.Date());
-			adminBean.setAd_signin_number(0);
-			adminBean.setAd_update_pwd_time(new java.util.Date());
-			adminBean.setAd_update_info_time(new java.util.Date());
-			adminBean.setAd_status(1);
-			adminBean.setAd_status_time(new java.util.Date());
-			adminBean.setAd_authority(2);
-
-			result = adminDao.insert(adminBean);
-		}
-		return result;
+		return adminDao.insert(adminBean);
 	}
 
 	/**

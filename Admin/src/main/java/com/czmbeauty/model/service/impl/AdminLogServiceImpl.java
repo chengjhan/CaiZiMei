@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogServiceImpl.java
  * Author: 詹晟
- * Date: 2017/8/2
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -69,13 +69,7 @@ public class AdminLogServiceImpl implements AdminLogService {
 	@Transactional
 	public AdminLogBean insert(AdminLogBean adminLogBean) {
 
-		AdminLogBean result = null;
-
-		if (adminLogBean != null) {
-
-			result = adminLogDao.insert(adminLogBean);
-		}
-		return result;
+		return adminLogDao.insert(adminLogBean);
 	}
 
 }

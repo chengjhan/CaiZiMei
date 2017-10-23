@@ -139,7 +139,7 @@ public class BaseController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯據點資訊
+	 * 編輯據點
 	 * 
 	 * @param baseBean
 	 *            BaseBean --> form backing object
@@ -243,7 +243,7 @@ public class BaseController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯據點資訊 - 初期處理
+	 * 編輯據點 - 初期處理
 	 * 
 	 * @param baseBean_ba_id
 	 *            BaseBean --> form backing object --> GET --> ba_id
@@ -301,7 +301,7 @@ public class BaseController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯據點資訊 - submit
+	 * 編輯據點 - submit
 	 * 
 	 * @param baseBean
 	 *            BaseBean --> form backing object

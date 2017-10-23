@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -119,7 +119,7 @@ public class CountryController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯國家資訊 - 初期處理
+	 * 編輯國家 - 初期處理
 	 * 
 	 * @param countryBean_co_id
 	 *            CountryBean --> form backing object --> GET --> co_id
@@ -159,7 +159,7 @@ public class CountryController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯國家資訊 - submit
+	 * 編輯國家 - submit
 	 * 
 	 * @param countryBean
 	 *            CountryBean --> form backing object
@@ -172,7 +172,7 @@ public class CountryController implements ControllerConstants {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error("國家資訊編輯失敗: 格式錯誤");
+			logger.error("國家編輯失敗: 格式錯誤");
 
 			return COUNTRY_EDIT_PAGE;
 
@@ -180,7 +180,7 @@ public class CountryController implements ControllerConstants {
 
 			countryService.update(countryBean);
 
-			logger.info("國家資訊編輯成功");
+			logger.info("國家編輯成功");
 
 			return REDIRECT + COUNTRY_LIST_PAGE;
 		}

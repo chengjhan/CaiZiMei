@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -183,7 +183,7 @@ public class CityController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯城市資訊 - 初期處理
+	 * 編輯城市 - 初期處理
 	 * 
 	 * @param cityBean_ci_id
 	 *            CityBean --> form backing object --> GET --> ci_id
@@ -210,7 +210,7 @@ public class CityController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯城市資訊 - submit
+	 * 編輯城市 - submit
 	 * 
 	 * @param cityBean
 	 *            CityBean --> form backing object
@@ -234,7 +234,7 @@ public class CityController implements ControllerConstants {
 			// 取得選定城市 id 的 CityBean，放入 Session，使表單回填 CityBean 內所有資料
 			model.addAttribute(CITY_BEAN, cityService.selectByCi_id(cityBean.getCi_id()));
 
-			logger.error("城市資訊編輯失敗: 格式錯誤");
+			logger.error("城市編輯失敗: 格式錯誤");
 
 			return CITY_EDIT_PAGE;
 
@@ -245,7 +245,7 @@ public class CityController implements ControllerConstants {
 			// 將編輯的 CityBean 放入 Session，使 select 回填國家及區域
 			model.addAttribute(CITY_BEAN, cityBean);
 
-			logger.info("城市資訊編輯成功");
+			logger.info("城市編輯成功");
 
 			return REDIRECT + CITY_LIST_PAGE;
 		}

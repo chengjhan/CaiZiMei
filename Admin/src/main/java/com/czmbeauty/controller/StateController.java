@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -167,7 +167,7 @@ public class StateController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯區域資訊 - 初期處理
+	 * 編輯區域 - 初期處理
 	 * 
 	 * @param stateBean_st_id
 	 *            StateBean --> form backing object --> GET --> st_id
@@ -188,7 +188,7 @@ public class StateController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯區域資訊 - submit
+	 * 編輯區域 - submit
 	 * 
 	 * @param stateBean
 	 *            StateBean --> form backing object
@@ -209,7 +209,7 @@ public class StateController implements ControllerConstants {
 			// 取得選定區域 id 的 StateBean，放入 Session，使表單回填 StateBean 內所有資料
 			model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean.getSt_id()));
 
-			logger.error("區域資訊編輯失敗: 格式錯誤");
+			logger.error("區域編輯失敗: 格式錯誤");
 
 			return STATE_EDIT_PAGE;
 
@@ -220,7 +220,7 @@ public class StateController implements ControllerConstants {
 			// 將編輯的 StateBean 放入 Session，使 select 回填國家
 			model.addAttribute(STATE_BEAN, stateBean);
 
-			logger.info("區域資訊編輯成功");
+			logger.info("區域編輯成功");
 
 			return REDIRECT + STATE_LIST_PAGE;
 		}

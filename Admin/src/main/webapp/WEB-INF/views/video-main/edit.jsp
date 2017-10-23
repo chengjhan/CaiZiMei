@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>編輯相關影音資訊 - 采姿美管理系統</title>
+<title>編輯相關影音 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/video/form.css" type="text/css" />
 </head>
@@ -23,7 +23,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				
 				<!-- title -->
-				<h2 class="sub-header">編輯相關影音資訊</h2>
+				<h2 class="sub-header">編輯相關影音</h2>
 				
 				<!-- content -->
 				<div class="table-responsive">
@@ -32,7 +32,7 @@
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
 						<li><a href="<%=request.getContextPath()%>/video-main/list?page=${currentPage}">相關影音一覽</a></li>
-						<li class="active">編輯相關影音資訊</li>
+						<li class="active">編輯相關影音</li>
 					</ol>
 				
 					<!-- form -->

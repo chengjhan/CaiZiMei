@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>編輯城市資訊 - 采姿美管理系統</title>
+<title>編輯城市 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/region/form.css" type="text/css" />
 </head>
@@ -23,7 +23,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				
 				<!-- title -->
-				<h2 class="sub-header">編輯城市資訊</h2>
+				<h2 class="sub-header">編輯城市</h2>
 				
 				<!-- content -->
 				<div class="table-responsive">
@@ -32,7 +32,7 @@
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
 						<li><a href="<%=request.getContextPath()%>/city/list">城市一覽</a></li>
-						<li class="active">編輯城市資訊</li>
+						<li class="active">編輯城市</li>
 					</ol>
 
 					<!-- form -->

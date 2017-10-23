@@ -36,8 +36,8 @@
 			<li id="id-li-slider-doctor-list"><a href="<%=request.getContextPath()%>/slider-doctor/list?page=1">醫療團隊輪播圖片一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
-			<li id="id-li-info-knowleage-list"><a href="<%=request.getContextPath()%>/info-knowleage/list?page=1">相關資訊／醫療新知頁面設定</a></li>
-			<li id="id-li-info-video-related-list"><a href="<%=request.getContextPath()%>/info-video-related/list?page=1">相關資訊／相關影音頁面設定</a></li>
+			<li id="id-li-info-knowleage-list"><a href="<%=request.getContextPath()%>/info-knowleage/list?page=1">相關資訊／醫療新知頁面一覽</a></li>
+			<li id="id-li-info-video-related-list"><a href="<%=request.getContextPath()%>/info-video-related/list?page=1">相關資訊／相關影音頁面一覽</a></li>
 		</ul>
 	</div>
 	

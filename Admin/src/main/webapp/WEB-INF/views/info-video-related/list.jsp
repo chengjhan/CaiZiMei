@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>相關影音頁面設定 - 采姿美管理系統</title>
+<title>相關影音頁面一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/video/list.css" type="text/css" />
 </head>
@@ -23,7 +23,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			
 				<!-- title -->
-				<h2 class="sub-header">相關影音頁面設定</h2>
+				<h2 class="sub-header">相關影音頁面一覽</h2>
 				
 				<!-- content -->
 				<div class="table-responsive">
@@ -31,7 +31,7 @@
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
-						<li class="active">相關影音頁面設定</li>
+						<li class="active">相關影音頁面一覽</li>
 					</ol>
 				
 					<!-- option -->

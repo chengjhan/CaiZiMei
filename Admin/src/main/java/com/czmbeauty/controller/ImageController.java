@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/10/20
+ * Date: 2017/10/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -159,7 +159,7 @@ public class ImageController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯圖片資訊
+	 * 編輯圖片
 	 * 
 	 * @param file
 	 *            MultipartFile
@@ -290,7 +290,7 @@ public class ImageController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯輪播圖片資訊 - 初期處理
+	 * 編輯輪播圖片 - 初期處理
 	 * 
 	 * @param imageBean_im_id
 	 *            ImageBean --> form backing object --> GET --> im_id
@@ -339,7 +339,7 @@ public class ImageController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯輪播圖片資訊 - submit
+	 * 編輯輪播圖片 - submit
 	 * 
 	 * @param file
 	 *            MultipartFile

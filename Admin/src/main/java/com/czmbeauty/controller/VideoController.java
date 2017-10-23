@@ -111,7 +111,7 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯影片資訊
+	 * 編輯影片
 	 * 
 	 * @param videoBean
 	 *            VideoBean --> form backing object
@@ -213,7 +213,7 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯影片資訊 - 初期處理
+	 * 編輯影片 - 初期處理
 	 * 
 	 * @param videoBean_vi_id
 	 *            VideoBean --> form backing object --> GET --> vi_id
@@ -262,7 +262,7 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯影片資訊 - submit
+	 * 編輯影片 - submit
 	 * 
 	 * @param videoBean
 	 *            VideoBean --> form backing object

@@ -75,7 +75,7 @@
 													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ht-status="1">
 												</c:when>
 												<c:when test="${bean.ht_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ht-status="0" title="切換">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ht-status="0" title="開啟">
 												</c:when>
 											</c:choose>
 										</div>

@@ -1,6 +1,6 @@
 /*
  * CaiZiMei
- * File: VideoController.java
+ * File: HtmlController.java
  * Author: 詹晟
  * Date: 2017/10/23
  * Version: 1.0
@@ -28,19 +28,19 @@ import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.common.util.Pagination;
 import com.czmbeauty.model.entity.CategoryBean;
-import com.czmbeauty.model.entity.VideoBean;
+import com.czmbeauty.model.entity.HtmlBean;
 import com.czmbeauty.model.service.CategoryService;
-import com.czmbeauty.model.service.VideoService;
+import com.czmbeauty.model.service.HtmlService;
 
 /**
- * video controller
+ * html controller
  * 
  * @author 詹晟
  */
 @Controller
-public class VideoController implements ControllerConstants {
+public class HtmlController implements ControllerConstants {
 
-	private static final Logger logger = Logger.getLogger(VideoController.class);
+	private static final Logger logger = Logger.getLogger(HtmlController.class);
 
 	/**
 	 * 當前頁碼
@@ -60,10 +60,10 @@ public class VideoController implements ControllerConstants {
 	private CategoryService categoryService;
 
 	/**
-	 * 注入 VideoService
+	 * 注入 HtmlService
 	 */
 	@Autowired
-	private VideoService videoService;
+	private HtmlService htmlService;
 
 	/**
 	 * 提供 form backing object 資料轉換
@@ -74,16 +74,16 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
-	 * 新增影片
+	 * 新增 html
 	 * 
-	 * @param videoBean
-	 *            VideoBean --> form backing object
+	 * @param htmlBean
+	 *            HtmlBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	private String add(VideoBean videoBean, BindingResult bindingResult) {
+	private String add(HtmlBean htmlBean, BindingResult bindingResult) {
 
 		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
@@ -98,11 +98,11 @@ public class VideoController implements ControllerConstants {
 
 		} else {
 
-			videoBean.setVi_CategoryBean(categoryBean);
-			videoBean.setVi_status(0);
-			videoBean.setVi_update_time(new java.util.Date());
+			htmlBean.setHt_CategoryBean(categoryBean);
+			htmlBean.setHt_status(0);
+			htmlBean.setHt_update_time(new java.util.Date());
 
-			videoService.insert(videoBean);
+			htmlService.insert(htmlBean);
 
 			logger.info(ca_name + "新增成功");
 
@@ -111,16 +111,16 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯影片
+	 * 編輯 html
 	 * 
-	 * @param videoBean
-	 *            VideoBean --> form backing object
+	 * @param htmlBean
+	 *            HtmlBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	private String edit(VideoBean videoBean, BindingResult bindingResult) {
+	private String edit(HtmlBean htmlBean, BindingResult bindingResult) {
 
 		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
@@ -131,14 +131,14 @@ public class VideoController implements ControllerConstants {
 
 			logger.error(ca_name + "編輯失敗: 資料未填");
 
-			return ca_directory + EDIT_PAGE + QUESTION + VIDEO_ID + EQUAL + videoBean.getVi_id() + AND + PAGE + EQUAL
+			return ca_directory + EDIT_PAGE + QUESTION + HTML_ID + EQUAL + htmlBean.getHt_id() + AND + PAGE + EQUAL
 					+ currentPage;
 		}
-		videoBean.setVi_CategoryBean(categoryBean);
-		videoBean.setVi_status(videoService.selectByVi_id(videoBean.getVi_id()).getVi_status());
-		videoBean.setVi_update_time(new java.util.Date());
+		htmlBean.setHt_CategoryBean(categoryBean);
+		htmlBean.setHt_status(htmlService.selectByHt_id(htmlBean.getHt_id()).getHt_status());
+		htmlBean.setHt_update_time(new java.util.Date());
 
-		videoService.update(videoBean);
+		htmlService.update(htmlBean);
 
 		logger.info(ca_name + "編輯成功");
 
@@ -146,7 +146,7 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
-	 * 影片一覽 - 初期處理
+	 * html 一覽 - 初期處理
 	 * 
 	 * @param page
 	 *            Integer --> 當前頁碼
@@ -154,13 +154,13 @@ public class VideoController implements ControllerConstants {
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = { "/video*/list", "/info-video-related/list" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/info*/list" }, method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
-		int pageRowCount = VIDEO_PAGE_ROW_COUNT;
+		int pageRowCount = HTML_PAGE_ROW_COUNT;
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
@@ -168,55 +168,55 @@ public class VideoController implements ControllerConstants {
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
 
-		// 取得當前頁碼的影片 List，放入 table
-		model.addAttribute(VIDEO_LIST, videoService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
+		// 取得當前頁碼的 html List，放入 table
+		model.addAttribute(HTML_LIST, htmlService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
 
 		// 取得總頁數
 		model.addAttribute(PAGE_COUNT,
-				Pagination.getPageCount(videoService.selectCountByVi_Ca(categoryBean), pageRowCount));
+				Pagination.getPageCount(htmlService.selectCountByHt_Ca(categoryBean), pageRowCount));
 
 		return categoryBean.getCa_directory() + LIST_PAGE;
 	}
 
 	/**
-	 * 新增影片 - 初期處理
+	 * 新增 html - 初期處理
 	 * 
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
-	@RequestMapping(value = { "/video*/add", "/info-video-related/add" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/info*/add" }, method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		// 新增 form backing object
-		model.addAttribute(VIDEO_BEAN, new VideoBean());
+		model.addAttribute(HTML_BEAN, new HtmlBean());
 
 		return categoryBean.getCa_directory() + ADD_PAGE;
 	}
 
 	/**
-	 * 新增影片 - submit
+	 * 新增 html - submit
 	 * 
-	 * @param videoBean
-	 *            VideoBean --> form backing object
+	 * @param htmlBean
+	 *            HtmlBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = { "/video*/add.do", "/info-video-related/add.do" }, method = RequestMethod.POST)
-	public String addAction(@Valid VideoBean videoBean, BindingResult bindingResult) {
+	@RequestMapping(value = { "/info*/add.do" }, method = RequestMethod.POST)
+	public String addAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
-		return add(videoBean, bindingResult);
+		return add(htmlBean, bindingResult);
 	}
 
 	/**
-	 * 編輯影片 - 初期處理
+	 * 編輯 html - 初期處理
 	 * 
-	 * @param videoBean_vi_id
-	 *            VideoBean --> form backing object --> GET --> vi_id
+	 * @param htmlBean_ht_id
+	 *            HtmlBean --> form backing object --> GET --> ht_id
 	 * @param page
 	 *            String --> 當前頁碼
 	 * @param model
@@ -224,20 +224,20 @@ public class VideoController implements ControllerConstants {
 	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
-	@RequestMapping(value = { "/video*/edit", "/info-video-related/edit" }, method = RequestMethod.GET)
-	public String editView(VideoBean videoBean_vi_id, @RequestParam String page, Model model) {
+	@RequestMapping(value = { "/info*/edit" }, method = RequestMethod.GET)
+	public String editView(HtmlBean htmlBean_ht_id, @RequestParam String page, Model model) {
 
 		currentPage = page;
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
-		VideoBean videoBean;
+		HtmlBean htmlBean;
 		try {
-			// 取得選定影片 id 的 VideoBean
-			videoBean = videoService.selectByVi_id(videoBean_vi_id.getVi_id());
+			// 取得選定 html id 的 HtmlBean
+			htmlBean = htmlService.selectByHt_id(htmlBean_ht_id.getHt_id());
 
-			if (videoBean == null) {
+			if (htmlBean == null) {
 
 				throw new PageNotFoundException(requestView);
 			}
@@ -252,8 +252,8 @@ public class VideoController implements ControllerConstants {
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
 
-		// 使表單回填 VideoBean 內所有資料
-		model.addAttribute(VIDEO_BEAN, videoBean);
+		// 使表單回填 htmlBean 內所有資料
+		model.addAttribute(HTML_BEAN, htmlBean);
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
@@ -262,32 +262,32 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
-	 * 編輯影片 - submit
+	 * 編輯 html - submit
 	 * 
-	 * @param videoBean
-	 *            VideoBean --> form backing object
+	 * @param htmlBean
+	 *            HtmlBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = { "/video*/edit.do", "/info-video-related/edit.do" }, method = RequestMethod.POST)
-	public String editAction(@Valid VideoBean videoBean, BindingResult bindingResult) {
+	@RequestMapping(value = { "/info*/edit.do" }, method = RequestMethod.POST)
+	public String editAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
-		return edit(videoBean, bindingResult);
+		return edit(htmlBean, bindingResult);
 	}
 
 	/**
-	 * 影片開關 (AJAX)
+	 * html 開關 (AJAX)
 	 * 
-	 * @param vi_id
-	 *            String --> 影片流水號
-	 * @return vi_name
+	 * @param ht_id
+	 *            String --> html 流水號
+	 * @return ht_name
 	 */
-	@RequestMapping(value = "/video/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/html/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String switchAjax(String vi_id) {
+	public String switchAjax(String ht_id) {
 
-		return videoService.updateVi_status(Integer.valueOf(vi_id)).getVi_name();
+		return htmlService.updateHt_status(Integer.valueOf(ht_id)).getHt_name();
 	}
 
 }

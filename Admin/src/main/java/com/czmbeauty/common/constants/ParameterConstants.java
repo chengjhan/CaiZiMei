@@ -10,4 +10,6 @@ public interface ParameterConstants {
 
 	public static final String VIDEO_ID = "vi_id";
 
+	public static final String HTML_ID = "ht_id";
+
 }

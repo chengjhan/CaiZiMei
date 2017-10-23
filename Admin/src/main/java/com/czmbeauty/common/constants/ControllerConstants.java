@@ -11,4 +11,6 @@ public interface ControllerConstants extends CommonConstants, DirectoryConstants
 
 	public static final int VIDEO_PAGE_ROW_COUNT = 5;
 
+	public static final int HTML_PAGE_ROW_COUNT = 5;
+
 }

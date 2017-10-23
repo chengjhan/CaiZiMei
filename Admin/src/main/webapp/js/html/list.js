@@ -7,7 +7,7 @@ $(document).ready(function(){
 	$(id_li_page).addClass("active").children("a").removeAttr("href");
 });
 
-// 影片開關
+// html 開關
 $(document).on("click", ".ht-status-switch", function(){
 	var $this = $(this);
 	var ht_id = $this.attr("data-ht-id");

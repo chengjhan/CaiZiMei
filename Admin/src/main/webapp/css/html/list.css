@@ -18,5 +18,8 @@ table {
 
 .ht-status-switch {
 	width: 30px;
+}
+
+.ht-status-switch img[data-ht-status='0'] {
 	cursor: pointer;
 }

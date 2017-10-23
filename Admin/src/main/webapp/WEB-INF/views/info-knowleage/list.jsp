@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>醫療新知頁面一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/video/list.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/html/list.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -50,34 +50,32 @@
 							<tr>
 								<td style="width:50px">編號</td>
 								<td>名稱</td>
-								<td style="width:560px">影片</td>
 								<td style="width:50px">排序</td>
 								<td style="width:50px">編輯</td>
 								<td style="width:50px">開啟</td>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="bean" items="${videoList}" varStatus="status">
+							<c:forEach var="bean" items="${htmlList}" varStatus="status">
 								<tr>
 									<td>${status.count + pageRowCount * (currentPage - 1)}</td>
-									<td>${bean.vi_name}</td>
-									<td>${bean.vi_tag}</td>
-									<td>${bean.vi_rank}</td>
+									<td>${bean.ht_name}</td>
+									<td>${bean.ht_rank}</td>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/info-knowleage/edit?vi_id=${bean.vi_id}&page=${currentPage}" title="編輯">
+											<a href="<%=request.getContextPath()%>/info-knowleage/edit?ht_id=${bean.ht_id}&page=${currentPage}" title="編輯">
 												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
 											</a>
 										</div>
 									</td>
 									<td>
-										<div class="vi-status-switch" data-vi-id="${bean.vi_id}" title="切換">
+										<div class="ht-status-switch" data-ht-id="${bean.ht_id}" title="切換">
 											<c:choose>
-												<c:when test="${bean.vi_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-vi-status="1">
+												<c:when test="${bean.ht_status eq 1}">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ht-status="1">
 												</c:when>
-												<c:when test="${bean.vi_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-vi-status="0">
+												<c:when test="${bean.ht_status eq 0}">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ht-status="0">
 												</c:when>
 											</c:choose>
 										</div>
@@ -119,6 +117,6 @@
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/video/list.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/html/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

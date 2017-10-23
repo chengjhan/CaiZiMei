@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增醫療新知頁面 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/video/form.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/html/form.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -36,25 +36,22 @@
 					</ol>
 				
 					<!-- form -->
-					<form:form action="/Admin/info-knowleage/add.do" method="post" modelAttribute="videoBean">
+					<form:form action="/Admin/info-knowleage/add.do" method="post" modelAttribute="htmlBean">
 						<table class="table">
 							<tr>
-								<td><form:label path="vi_name">名稱</form:label></td>
-								<td><form:input path="vi_name" cssClass="form-control" /></td>
-								<td><form:errors path="vi_name" cssClass="error" /></td>
+								<td><form:label path="ht_name">名稱</form:label></td>
+								<td><form:input path="ht_name" cssClass="form-control" /></td>
+								<td><form:errors path="ht_name" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="vi_tag">標籤</form:label></td>
-								<td>
-									<form:textarea path="vi_tag" cssClass="form-control" rows="6" />
-									<p style="color:red">※ 請至 Youtube 網站複製嵌入標籤。</p>
-								</td>
-								<td><form:errors path="vi_tag" cssClass="error" /></td>
+								<td><form:label path="ht_rank">排序</form:label></td>
+								<td><form:input path="ht_rank" cssClass="form-control" /></td>
+								<td><form:errors path="ht_rank" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="vi_rank">排序</form:label></td>
-								<td><form:input path="vi_rank" cssClass="form-control" /></td>
-								<td><form:errors path="vi_rank" cssClass="error" /></td>
+								<td><form:label path="ht_tag">標籤</form:label></td>
+								<td><form:textarea path="ht_tag" cssClass="form-control" rows="10" /></td>
+								<td><form:errors path="ht_tag" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -81,6 +78,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/video/form.js"></script>
+	<script src="<%=request.getContextPath()%>/js/html/form.js"></script>
 </body>
 </html>

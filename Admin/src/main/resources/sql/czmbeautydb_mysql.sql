@@ -338,6 +338,8 @@ insert into admin_action (aa_name, aa_action_name) values ('新增城市', 'city
 insert into admin_action (aa_name, aa_action_name) values ('編輯城市', 'city/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增國家', 'country/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯國家', 'country/edit.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增醫療新知頁面', 'info-knowleage/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯醫療新知頁面', 'info-knowleage/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增相關影音頁面', 'info-video-related/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音頁面', 'info-video-related/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('忘記密碼', 'secure/forget-password.do');

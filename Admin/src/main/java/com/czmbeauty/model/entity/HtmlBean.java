@@ -15,6 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * html entity
@@ -31,8 +35,11 @@ public class HtmlBean {
 	@ManyToOne
 	@JoinColumn(name = "ht_ca_id")
 	private CategoryBean ht_CategoryBean;
+	@Size(max = 50)
 	private String ht_name;
+	@NotBlank
 	private String ht_tag;
+	@Max(99)
 	private Integer ht_rank;
 	private Integer ht_status;
 	private java.util.Date ht_update_time;

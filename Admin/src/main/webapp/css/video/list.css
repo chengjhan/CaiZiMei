@@ -18,5 +18,8 @@ table {
 
 .vi-status-switch {
 	width: 30px;
+}
+
+.vi-status-switch img[data-vi-status='0'] {
 	cursor: pointer;
 }

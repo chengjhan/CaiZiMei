@@ -71,13 +71,13 @@
 										</div>
 									</td>
 									<td>
-										<div class="vi-status-switch" data-vi-id="${bean.vi_id}" title="切換">
+										<div class="vi-status-switch" data-vi-id="${bean.vi_id}">
 											<c:choose>
 												<c:when test="${bean.vi_status eq 1}">
 													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-vi-status="1">
 												</c:when>
 												<c:when test="${bean.vi_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-vi-status="0">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-vi-status="0" title="開啟">
 												</c:when>
 											</c:choose>
 										</div>

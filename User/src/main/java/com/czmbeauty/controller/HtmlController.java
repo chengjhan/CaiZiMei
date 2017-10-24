@@ -43,16 +43,22 @@ public class HtmlController implements ControllerConstants {
 	private HtmlService htmlService;
 
 	/**
-	 * 取得 html
+	 * html - 初期處理
 	 * 
-	 * @return HtmlBean
+	 * @return /WEB-INF/views/viewName
 	 */
-	private HtmlBean getHtml() {
+	@RequestMapping(value = "/info/*", method = RequestMethod.GET)
+	public String htmlView(Model model) {
 
 		String servletPath = request.getServletPath();
-		String ca_directory = servletPath.split("/")[1] + "-" + servletPath.split("/")[2].split("\\.")[0];
+		String viewNameFront = servletPath.split("/")[1];
+		String viewNameBack = servletPath.split("/")[2].split("\\.")[0];
 
-		return ((List<HtmlBean>) htmlService.selectOpenHtml(ca_directory)).get(0);
+		String ca_directory = viewNameFront + "-" + viewNameBack;
+
+		model.addAttribute(HTML_BEAN, ((List<HtmlBean>) htmlService.selectOpenHtml(ca_directory)).get(0));
+
+		return viewNameFront + "/" + viewNameBack;
 	}
 
 	/**
@@ -152,19 +158,6 @@ public class HtmlController implements ControllerConstants {
 	public String newsSaleView() {
 
 		return NEWS_SALE_PAGE;
-	}
-
-	/**
-	 * 醫療新知 - 初期處理
-	 * 
-	 * @return /WEB-INF/views/info/knowleage.jsp
-	 */
-	@RequestMapping(value = "/info/knowleage", method = RequestMethod.GET)
-	public String infoKnowleageView(Model model) {
-
-		model.addAttribute(HTML_BEAN, getHtml());
-
-		return INFO_KNOWLEAGE_PAGE;
 	}
 
 }

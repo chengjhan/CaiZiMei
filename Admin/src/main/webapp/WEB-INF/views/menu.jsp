@@ -39,6 +39,10 @@
 			<li id="id-li-team-doctor-list"><a href="<%=request.getContextPath()%>/team-doctor/list?page=1">醫療團隊頁面一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
+			<li id="id-li-news-recent-list"><a href="<%=request.getContextPath()%>/news-recent/list?page=1">近期活動頁面一覽</a></li>
+			<li id="id-li-news-sale-list"><a href="<%=request.getContextPath()%>/news-sale/list?page=1">優惠活動頁面一覽</a></li>
+		</ul>
+		<ul class="nav nav-sidebar">
 			<li id="id-li-info-knowleage-list"><a href="<%=request.getContextPath()%>/info-knowleage/list?page=1">醫療新知頁面一覽</a></li>
 			<li id="id-li-info-video-related-list"><a href="<%=request.getContextPath()%>/info-video-related/list?page=1">相關影音頁面一覽</a></li>
 		</ul>

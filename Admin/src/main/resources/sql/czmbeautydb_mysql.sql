@@ -213,6 +213,8 @@ insert into category (ca_name, ca_directory) values ('加盟店', 'base-franchis
 insert into category (ca_name, ca_directory) values ('辦事處', 'base-office');
 insert into category (ca_name, ca_directory) values ('醫療新知', 'info-knowleage');
 insert into category (ca_name, ca_directory) values ('相關影音', 'info-video-related');
+insert into category (ca_name, ca_directory) values ('近期活動', 'news-recent');
+insert into category (ca_name, ca_directory) values ('優惠活動', 'news-sale');
 insert into category (ca_name, ca_directory) values ('醫療團隊輪播圖片', 'slider-doctor');
 insert into category (ca_name, ca_directory) values ('加盟店資訊輪播圖片', 'slider-franchisee');
 insert into category (ca_name, ca_directory) values ('醫療新知輪播圖片', 'slider-knowledge');
@@ -294,6 +296,12 @@ insert into admin_view (av_name, av_view_name) values ('醫療新知頁面一覽
 insert into admin_view (av_name, av_view_name) values ('新增相關影音頁面', 'info-video-related/add');
 insert into admin_view (av_name, av_view_name) values ('編輯相關影音頁面', 'info-video-related/edit');
 insert into admin_view (av_name, av_view_name) values ('相關影音頁面一覽', 'info-video-related/list');
+insert into admin_view (av_name, av_view_name) values ('新增近期活動', 'news-recent/add');
+insert into admin_view (av_name, av_view_name) values ('編輯近期活動', 'news-recent/edit');
+insert into admin_view (av_name, av_view_name) values ('近期活動一覽', 'news-recent/list');
+insert into admin_view (av_name, av_view_name) values ('新增優惠活動', 'news-sale/add');
+insert into admin_view (av_name, av_view_name) values ('編輯優惠活動', 'news-sale/edit');
+insert into admin_view (av_name, av_view_name) values ('優惠活動一覽', 'news-sale/list');
 insert into admin_view (av_name, av_view_name) values ('忘記密碼', 'secure/forget-password');
 insert into admin_view (av_name, av_view_name) values ('重設密碼', 'secure/reset-password');
 insert into admin_view (av_name, av_view_name) values ('登入', 'secure/sign-in');
@@ -343,6 +351,10 @@ insert into admin_action (aa_name, aa_action_name) values ('新增醫療新知�
 insert into admin_action (aa_name, aa_action_name) values ('編輯醫療新知頁面', 'info-knowleage/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增相關影音頁面', 'info-video-related/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音頁面', 'info-video-related/edit.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增近期活動', 'news-recent/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯近期活動', 'news-recent/edit.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增優惠活動', 'news-sale/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯優惠活動', 'news-sale/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('忘記密碼', 'secure/forget-password.do');
 insert into admin_action (aa_name, aa_action_name) values ('重設密碼', 'secure/reset-password.do');
 insert into admin_action (aa_name, aa_action_name) values ('登入', 'secure/sign-in.do');

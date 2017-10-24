@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: HtmlController.java
  * Author: 詹晟
- * Date: 2017/10/24
+ * Date: 2017/10/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -48,7 +48,7 @@ public class HtmlController implements ControllerConstants {
 	 * 
 	 * @return /WEB-INF/views/viewName
 	 */
-	@RequestMapping(value = { "/info/*", "/team/*" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/info/*", "/news/*", "/team/*" }, method = RequestMethod.GET)
 	public String htmlView(Model model) {
 
 		String servletPath = request.getServletPath();
@@ -56,6 +56,7 @@ public class HtmlController implements ControllerConstants {
 		String viewNameBack = servletPath.split("/")[2].split("\\.")[0];
 
 		String ca_directory = viewNameFront + "-" + viewNameBack;
+		String viewName = viewNameFront + "/" + viewNameBack;
 
 		List<HtmlBean> list;
 		try {
@@ -63,7 +64,7 @@ public class HtmlController implements ControllerConstants {
 
 			if (list.size() == 0) {
 
-				throw new PageNotFoundException("找不到資料");
+				throw new PageNotFoundException(viewName);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -72,7 +73,7 @@ public class HtmlController implements ControllerConstants {
 
 		model.addAttribute(HTML_BEAN, list.get(0));
 
-		return viewNameFront + "/" + viewNameBack;
+		return viewName;
 	}
 
 	/**
@@ -139,28 +140,6 @@ public class HtmlController implements ControllerConstants {
 	public String aboutFranchiseeView() {
 
 		return ABOUT_FRANCHISEE_PAGE;
-	}
-
-	/**
-	 * 近期活動 - 初期處理
-	 * 
-	 * @return /WEB-INF/views/news/recent.jsp
-	 */
-	@RequestMapping(value = "/news/recent", method = RequestMethod.GET)
-	public String newsRecentView() {
-
-		return NEWS_RECENT_PAGE;
-	}
-
-	/**
-	 * 優惠活動 - 初期處理
-	 * 
-	 * @return /WEB-INF/views/news/sale.jsp
-	 */
-	@RequestMapping(value = "/news/sale", method = RequestMethod.GET)
-	public String newsSaleView() {
-
-		return NEWS_SALE_PAGE;
 	}
 
 }

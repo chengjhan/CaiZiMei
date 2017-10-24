@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.czmbeauty.common.constants.ControllerConstants;
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.entity.HtmlBean;
 import com.czmbeauty.model.service.HtmlService;
 
@@ -56,7 +57,20 @@ public class HtmlController implements ControllerConstants {
 
 		String ca_directory = viewNameFront + "-" + viewNameBack;
 
-		model.addAttribute(HTML_BEAN, ((List<HtmlBean>) htmlService.selectOpenHtml(ca_directory)).get(0));
+		List<HtmlBean> list;
+		try {
+			list = (List<HtmlBean>) htmlService.selectOpenHtml(ca_directory);
+
+			if (list.size() == 0) {
+
+				throw new PageNotFoundException("找不到資料");
+			}
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
+
+		model.addAttribute(HTML_BEAN, list.get(0));
 
 		return viewNameFront + "/" + viewNameBack;
 	}

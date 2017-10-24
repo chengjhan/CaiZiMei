@@ -7,7 +7,7 @@
 <title>事業版圖 - 采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/about/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/container.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -25,11 +25,9 @@
 	
 			<!-- main -->
 			<main class="col-sm-10">
-				<section id="section-1">
-					<div id="id-div-section-1-content">
-						<img src="<%=request.getContextPath()%>/images/menu/territory_1002x382.jpg" class="img-territory">
-					</div>
-				</section>
+			
+				<section><img src="<%=request.getContextPath()%>/images/menu/territory_1002x382.jpg" style="width:100%"></section>
+			
 			</main>
 			<!-- main end -->
 	

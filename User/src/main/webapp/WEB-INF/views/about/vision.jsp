@@ -7,7 +7,7 @@
 <title>公司願景 - 采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/about/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/container.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -25,11 +25,9 @@
 	
 			<!-- main -->
 			<main class="col-sm-10">
-				<section id="section-1">
-					<div id="id-div-section-1-content">
-						<p class="p-content">創造優良獨特的產品及模式，以滿足會員抗老及健康的需求。</p>
-					</div>
-				</section>
+			
+				<section>創造優良獨特的產品及模式，以滿足會員抗老及健康的需求。</section>
+				
 			</main>
 			<!-- main end -->
 	

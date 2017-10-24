@@ -49,47 +49,12 @@ public class VideoController implements ControllerConstants {
 	private VideoService videoService;
 
 	/**
-	 * 開啟的影片 JSON
-	 * 
-	 * @return video JSON
-	 */
-	private String getJSON() {
-
-		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
-
-		VideoBean bean = videoService.selectOpenVideo(ca_directory).get(0);
-
-		VideoBean jsonBean = new VideoBean();
-		jsonBean.setVi_id(bean.getVi_id());
-		jsonBean.setVi_name(bean.getVi_name());
-		jsonBean.setVi_tag(bean.getVi_tag().split(" ")[3].split("\"")[1]);
-
-		String json = new Gson().toJson(jsonBean);
-
-		logger.info("JSON = " + json);
-
-		return json;
-	}
-
-	/**
-	 * 開啟的影片 (AJAX)
-	 * 
-	 * @return video JSON
-	 */
-	@RequestMapping(value = "/video/video*.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String openVideoAjax() {
-
-		return getJSON();
-	}
-
-	/**
 	 * 相關影音 - 初期處理
 	 * 
 	 * @return /WEB-INF/views/info/video-related.jsp
 	 */
 	@RequestMapping(value = "/info/video-related", method = RequestMethod.GET)
-	public String videoRelatedView(Model model) {
+	public String infoVideoRelatedView(Model model) {
 
 		String servletPath = request.getServletPath();
 		String ca_directory = servletPath.split("/")[1] + "-" + servletPath.split("/")[2].split("\\.")[0];
@@ -112,6 +77,31 @@ public class VideoController implements ControllerConstants {
 		model.addAttribute(VIDEO_LIST, videoList);
 
 		return INFO_VIDEO_RELATED_PAGE;
+	}
+
+	/**
+	 * 開啟的影片 (AJAX)
+	 * 
+	 * @return video JSON
+	 */
+	@RequestMapping(value = "/video/video*.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openVideoAjax() {
+
+		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
+
+		VideoBean bean = videoService.selectOpenVideo(ca_directory).get(0);
+
+		VideoBean jsonBean = new VideoBean();
+		jsonBean.setVi_id(bean.getVi_id());
+		jsonBean.setVi_name(bean.getVi_name());
+		jsonBean.setVi_tag(bean.getVi_tag().split(" ")[3].split("\"")[1]);
+
+		String json = new Gson().toJson(jsonBean);
+
+		logger.info("JSON = " + json);
+
+		return json;
 	}
 
 }

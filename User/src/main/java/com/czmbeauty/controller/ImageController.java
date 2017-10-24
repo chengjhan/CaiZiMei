@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/10/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -48,11 +48,13 @@ public class ImageController implements ControllerConstants {
 	private ImageService imageService;
 
 	/**
-	 * 開啟的圖片 JSON
+	 * 開啟的輪播圖片 (AJAX)
 	 * 
 	 * @return image JSON
 	 */
-	private String getJSON() {
+	@RequestMapping(value = "/image/slider*.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String openSliderAjax() {
 
 		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
 
@@ -67,18 +69,6 @@ public class ImageController implements ControllerConstants {
 		logger.info("JSON = " + json);
 
 		return json;
-	}
-
-	/**
-	 * 開啟的輪播圖片 (AJAX)
-	 * 
-	 * @return image JSON
-	 */
-	@RequestMapping(value = "/image/slider*.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	@ResponseBody
-	public String openSliderAjax() {
-
-		return getJSON();
 	}
 
 }

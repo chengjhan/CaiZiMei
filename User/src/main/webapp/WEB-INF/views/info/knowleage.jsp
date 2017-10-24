@@ -7,7 +7,7 @@
 <title>醫療新知 - 采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/info/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/container.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -25,9 +25,9 @@
 	
 			<!-- main -->
 			<main class="col-sm-10">
-				<section>
-					<div class="content">${htmlBean.ht_tag}</div>
-				</section>
+			
+				<section>${htmlBean.ht_tag}</section>
+				
 			</main>
 			<!-- main end -->
 

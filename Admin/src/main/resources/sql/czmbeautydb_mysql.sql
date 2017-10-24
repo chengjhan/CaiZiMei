@@ -219,6 +219,7 @@ insert into category (ca_name, ca_directory) values ('醫療新知輪播圖片',
 insert into category (ca_name, ca_directory) values ('主輪播圖片', 'slider-main');
 insert into category (ca_name, ca_directory) values ('近期活動輪播圖片', 'slider-recent');
 insert into category (ca_name, ca_directory) values ('優惠活動輪播圖片', 'slider-sale');
+insert into category (ca_name, ca_directory) values ('醫療團隊', 'team-doctor');
 insert into category (ca_name, ca_directory) values ('相關影音', 'video-main');
 
 -- base
@@ -263,9 +264,6 @@ insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'g', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'h', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'i', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());
-
--- html
-
 
 -- admin_view
 insert into admin_view (av_name, av_view_name) values ('首頁', 'index');
@@ -320,6 +318,9 @@ insert into admin_view (av_name, av_view_name) values ('優惠活動輪播圖片
 insert into admin_view (av_name, av_view_name) values ('新增區域', 'state/add');
 insert into admin_view (av_name, av_view_name) values ('編輯區域', 'state/edit');
 insert into admin_view (av_name, av_view_name) values ('區域一覽', 'state/list');
+insert into admin_view (av_name, av_view_name) values ('新增醫療團隊', 'team-doctor/add');
+insert into admin_view (av_name, av_view_name) values ('編輯醫療團隊', 'team-doctor/edit');
+insert into admin_view (av_name, av_view_name) values ('醫療團隊一覽', 'team-doctor/list');
 insert into admin_view (av_name, av_view_name) values ('新增相關影音', 'video-main/add');
 insert into admin_view (av_name, av_view_name) values ('編輯相關影音', 'video-main/edit');
 insert into admin_view (av_name, av_view_name) values ('相關影音一覽', 'video-main/list');
@@ -360,6 +361,8 @@ insert into admin_action (aa_name, aa_action_name) values ('新增醫療團隊�
 insert into admin_action (aa_name, aa_action_name) values ('編輯醫療團隊輪播圖片', 'slider-doctor/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增區域', 'state/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯區域', 'state/edit.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增醫療團隊', 'team-doctor/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯醫療團隊', 'team-doctor/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'video-main/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音', 'video-main/edit.do');
 

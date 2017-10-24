@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: HtmlController.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/10/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -154,7 +154,7 @@ public class HtmlController implements ControllerConstants {
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = { "/info*/list" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/info*/list", "/team*/list" }, method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
@@ -185,7 +185,7 @@ public class HtmlController implements ControllerConstants {
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
-	@RequestMapping(value = { "/info*/add" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/info*/add", "/team*/add" }, method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
@@ -206,7 +206,7 @@ public class HtmlController implements ControllerConstants {
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = { "/info*/add.do" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/info*/add.do", "/team*/add.do" }, method = RequestMethod.POST)
 	public String addAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
 		return add(htmlBean, bindingResult);
@@ -224,7 +224,7 @@ public class HtmlController implements ControllerConstants {
 	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
-	@RequestMapping(value = { "/info*/edit" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/info*/edit", "/team*/edit" }, method = RequestMethod.GET)
 	public String editView(HtmlBean htmlBean_ht_id, @RequestParam String page, Model model) {
 
 		currentPage = page;
@@ -270,7 +270,7 @@ public class HtmlController implements ControllerConstants {
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = { "/info*/edit.do" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/info*/edit.do", "/team*/edit.do" }, method = RequestMethod.POST)
 	public String editAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
 		return edit(htmlBean, bindingResult);

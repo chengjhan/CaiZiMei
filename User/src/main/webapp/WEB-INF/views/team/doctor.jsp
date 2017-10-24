@@ -26,7 +26,7 @@
 			<!-- main -->
 			<main class="col-sm-10">
 			
-				<section>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</section>
+				<section>${htmlBean.ht_tag}</section>
 				
 			</main>
 			<!-- main end -->

@@ -47,7 +47,7 @@ public class HtmlController implements ControllerConstants {
 	 * 
 	 * @return /WEB-INF/views/viewName
 	 */
-	@RequestMapping(value = "/info/*", method = RequestMethod.GET)
+	@RequestMapping(value = { "/info/*", "/team/*" }, method = RequestMethod.GET)
 	public String htmlView(Model model) {
 
 		String servletPath = request.getServletPath();
@@ -125,17 +125,6 @@ public class HtmlController implements ControllerConstants {
 	public String aboutFranchiseeView() {
 
 		return ABOUT_FRANCHISEE_PAGE;
-	}
-
-	/**
-	 * 醫療團隊 - 初期處理
-	 * 
-	 * @return /WEB-INF/views/team/doctor.jsp
-	 */
-	@RequestMapping(value = "/team/doctor", method = RequestMethod.GET)
-	public String teamDoctorView() {
-
-		return TEAM_DOCTOR_PAGE;
 	}
 
 	/**

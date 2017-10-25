@@ -154,7 +154,7 @@ public class HtmlController implements ControllerConstants {
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = { "/info*/list", "/news*/list", "/team*/list" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/team*/list", "/news*/list", "/info*/list" }, method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
@@ -185,7 +185,7 @@ public class HtmlController implements ControllerConstants {
 	 *            Model
 	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 */
-	@RequestMapping(value = { "/info*/add", "/news*/add", "/team*/add" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/team*/add", "/news*/add", "/info*/add" }, method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
@@ -206,7 +206,7 @@ public class HtmlController implements ControllerConstants {
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = { "/info*/add.do", "/news*/add.do", "/team*/add.do" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/team*/add.do", "/news*/add.do", "/info*/add.do" }, method = RequestMethod.POST)
 	public String addAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
 		return add(htmlBean, bindingResult);
@@ -224,7 +224,7 @@ public class HtmlController implements ControllerConstants {
 	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 */
-	@RequestMapping(value = { "/info*/edit", "/news*/edit", "/team*/edit" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/team*/edit", "/news*/edit", "/info*/edit" }, method = RequestMethod.GET)
 	public String editView(HtmlBean htmlBean_ht_id, @RequestParam String page, Model model) {
 
 		currentPage = page;
@@ -270,7 +270,7 @@ public class HtmlController implements ControllerConstants {
 	 *            BindingResult
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
-	@RequestMapping(value = { "/info*/edit.do", "/news*/edit.do", "/team*/edit.do" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/team*/edit.do", "/news*/edit.do", "/info*/edit.do" }, method = RequestMethod.POST)
 	public String editAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
 		return edit(htmlBean, bindingResult);

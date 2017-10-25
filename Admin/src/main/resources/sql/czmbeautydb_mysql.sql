@@ -13,17 +13,17 @@ create table admin (
 	ad_password				varchar(50) not null,
 	ad_salt					varchar(50) not null,
 	ad_lastname				nvarchar(20),
-	ad_firstname				nvarchar(20),
-	ad_email					varchar(50) not null,
+	ad_firstname			nvarchar(20),
+	ad_email				varchar(50) not null,
 	ad_signup_time			datetime not null,
-	ad_signin_number			int,
-	ad_signin_ip				varchar(20),
+	ad_signin_number		int,
+	ad_signin_ip			varchar(20),
 	ad_signin_time			datetime,
 	ad_update_info_time		datetime not null,
 	ad_update_pwd_time		datetime not null,
 	ad_status				tinyint not null,
 	ad_status_time			datetime not null,
-	ad_authority				tinyint not null,
+	ad_authority			tinyint not null,
 	primary key (ad_id)
 );
 
@@ -31,7 +31,7 @@ create table country (
 	co_id					int auto_increment not null,
 	co_iso					varchar(2),
 	co_name					nvarchar(50) not null,
-	co_phonecode				varchar(5),
+	co_phonecode			varchar(5),
 	co_rank					tinyint,
 	co_status				tinyint,
 	primary key (co_id)
@@ -39,7 +39,7 @@ create table country (
 
 create table state (
 	st_id					int auto_increment not null,
-	st_co_id					int not null,
+	st_co_id				int not null,
 	st_name					nvarchar(50) not null,
 	st_rank					tinyint,
 	st_status				tinyint,
@@ -49,8 +49,8 @@ create table state (
 
 create table city (
 	ci_id					int auto_increment not null,
-	ci_co_id					int not null,
-	ci_st_id					int not null,
+	ci_co_id				int not null,
+	ci_st_id				int not null,
 	ci_name					nvarchar(50) not null,
 	ci_rank					tinyint,
 	ci_status				tinyint,
@@ -62,23 +62,23 @@ create table city (
 create table category (
 	ca_id					int auto_increment not null,
 	ca_name					nvarchar(20) not null,
-	ca_directory				varchar(50) not null,
+	ca_directory			varchar(50) not null,
 	primary key (ca_id)
 );
 
 create table base (
 	ba_id					int auto_increment not null,
-	ba_ca_id					int not null,
+	ba_ca_id				int not null,
 	ba_name					nvarchar(20) not null,
 	ba_eng_name				varchar(50),
 	ba_tel_code				varchar(5),
 	ba_tel					varchar(20),
-	ba_co_id					int not null,
-	ba_st_id					int not null,
-	ba_ci_id					int not null,
+	ba_co_id				int not null,
+	ba_st_id				int not null,
+	ba_ci_id				int not null,
 	ba_address				nvarchar(50) not null,
 	ba_latitude				decimal(10,6),
-	ba_longitude				decimal(10,6),
+	ba_longitude			decimal(10,6),
 	ba_url					varchar(100),
 	ba_insert_time			datetime not null,
 	ba_update_time			datetime,
@@ -93,7 +93,7 @@ create table base (
 
 create table image (
 	im_id					int auto_increment not null,
-	im_ca_id					int not null,
+	im_ca_id				int not null,
 	im_name					nvarchar(20) not null,
 	im_path					varchar(500) not null,
 	im_filename				varchar(50) not null,
@@ -107,7 +107,7 @@ create table image (
 
 create table video (
 	vi_id					int auto_increment not null,
-	vi_ca_id					int not null,
+	vi_ca_id				int not null,
 	vi_name					nvarchar(50),
 	vi_tag					varchar(500) not null,
 	vi_rank					tinyint not null,
@@ -119,7 +119,7 @@ create table video (
 
 create table html (
 	ht_id					int auto_increment not null,
-	ht_ca_id					int not null,
+	ht_ca_id				int not null,
 	ht_name					nvarchar(50),
 	ht_tag					nvarchar(20000) not null,
 	ht_rank					tinyint not null,
@@ -132,7 +132,7 @@ create table html (
 create table admin_view (
 	av_id					int auto_increment not null,
 	av_name					nvarchar(20) not null,
-	av_view_name				varchar(50) not null,
+	av_view_name			varchar(50) not null,
 	primary key (av_id)
 );
 
@@ -146,8 +146,8 @@ create table admin_action (
 create table admin_log (
 	al_id					int auto_increment not null,
 	al_insert_time			timestamp default current_timestamp not null,
-	al_ad_id					int not null,
-	al_aa_id					int not null,
+	al_ad_id				int not null,
+	al_aa_id				int not null,
 	al_ip					varchar(20),
 	primary key (al_id),
 	foreign key (al_ad_id) references admin (ad_id),
@@ -157,7 +157,7 @@ create table admin_log (
 create table user_view (
 	uv_id					int auto_increment not null,
 	uv_name					nvarchar(20) not null,
-	uv_view_name				varchar(50) not null,
+	uv_view_name			varchar(50) not null,
 	primary key (uv_id)
 );
 
@@ -211,17 +211,18 @@ insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (2, 17
 insert into category (ca_name, ca_directory) values ('診所', 'base-clinic');
 insert into category (ca_name, ca_directory) values ('加盟店', 'base-franchisee');
 insert into category (ca_name, ca_directory) values ('辦事處', 'base-office');
-insert into category (ca_name, ca_directory) values ('醫療新知', 'info-knowleage');
-insert into category (ca_name, ca_directory) values ('相關影音', 'info-video-related');
-insert into category (ca_name, ca_directory) values ('近期活動', 'news-recent');
-insert into category (ca_name, ca_directory) values ('優惠活動', 'news-sale');
+insert into category (ca_name, ca_directory) values ('圖片', 'image');
+insert into category (ca_name, ca_directory) values ('醫療新知頁面', 'info-knowleage');
+insert into category (ca_name, ca_directory) values ('相關影音頁面', 'info-video-related');
+insert into category (ca_name, ca_directory) values ('近期活動頁面', 'news-recent');
+insert into category (ca_name, ca_directory) values ('優惠活動頁面', 'news-sale');
 insert into category (ca_name, ca_directory) values ('醫療團隊輪播圖片', 'slider-doctor');
 insert into category (ca_name, ca_directory) values ('加盟店資訊輪播圖片', 'slider-franchisee');
 insert into category (ca_name, ca_directory) values ('醫療新知輪播圖片', 'slider-knowledge');
 insert into category (ca_name, ca_directory) values ('主輪播圖片', 'slider-main');
 insert into category (ca_name, ca_directory) values ('近期活動輪播圖片', 'slider-recent');
 insert into category (ca_name, ca_directory) values ('優惠活動輪播圖片', 'slider-sale');
-insert into category (ca_name, ca_directory) values ('醫療團隊', 'team-doctor');
+insert into category (ca_name, ca_directory) values ('醫療團隊頁面', 'team-doctor');
 insert into category (ca_name, ca_directory) values ('相關影音', 'video-main');
 
 -- base
@@ -246,26 +247,26 @@ insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id,
 insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (1, '何彬彬牙醫診所', 'Ho Bing Bing Dental Clinic', '07', '2270748', 1, 11, 115, '新興區民生一路56號', 22.628011, 120.310796, 'http://1637.tw/07-2270748/', now(), now(), 1, now());
 
 -- image
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (9, '曼星整形醫美診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_twinkle_clinic_1000x380.jpg', 'http://twinkle-clinic.tw', 1, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (9, '晶鑽時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_diamondcosmetic_1000x380.jpg', 'http://diamondcosmetic.com.tw/', 2, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (9, '法泊時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_fabulous_clinic_1000x380.png', 'http://www.fabulous-clinic.com', 3, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (9, '喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty_1000x380.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (9, '好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood_1000x380.jpg', 'http://hollywood.tw/', 5, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (9, '何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637_1000x380.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (12, '曼星整形醫美診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_twinkle_clinic_1000x380.jpg', 'http://twinkle-clinic.tw', 1, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (12, '晶鑽時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_diamondcosmetic_1000x380.jpg', 'http://diamondcosmetic.com.tw/', 2, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (12, '法泊時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_fabulous_clinic_1000x380.png', 'http://www.fabulous-clinic.com', 3, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (12, '喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty_1000x380.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (12, '好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood_1000x380.jpg', 'http://hollywood.tw/', 5, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (12, '何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637_1000x380.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());
 
 -- video
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (12, 'aaa', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (12, 'bbb', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 0, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (12, 'ccc', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 0, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'a', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'b', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'c', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'd', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 4, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'e', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 5, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'f', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 6, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'g', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'h', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (5, 'i', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (16, 'aaa', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (16, 'bbb', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 0, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (16, 'ccc', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 0, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'a', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'b', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'c', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'd', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 4, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'e', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 5, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'f', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 6, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'g', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'h', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'i', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());
 
 -- admin_view
 insert into admin_view (av_name, av_view_name) values ('首頁', 'index');
@@ -290,6 +291,9 @@ insert into admin_view (av_name, av_view_name) values ('新增國家', 'country/
 insert into admin_view (av_name, av_view_name) values ('編輯國家', 'country/edit');
 insert into admin_view (av_name, av_view_name) values ('國家一覽', 'country/list');
 insert into admin_view (av_name, av_view_name) values ('找不到網頁', 'error/page-not-found');
+insert into admin_view (av_name, av_view_name) values ('新增圖片', 'image/add');
+insert into admin_view (av_name, av_view_name) values ('編輯圖片', 'image/edit');
+insert into admin_view (av_name, av_view_name) values ('圖片一覽', 'image/list');
 insert into admin_view (av_name, av_view_name) values ('新增醫療新知頁面', 'info-knowleage/add');
 insert into admin_view (av_name, av_view_name) values ('編輯醫療新知頁面', 'info-knowleage/edit');
 insert into admin_view (av_name, av_view_name) values ('醫療新知頁面一覽', 'info-knowleage/list');
@@ -347,6 +351,8 @@ insert into admin_action (aa_name, aa_action_name) values ('新增城市', 'city
 insert into admin_action (aa_name, aa_action_name) values ('編輯城市', 'city/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增國家', 'country/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯國家', 'country/edit.do');
+insert into admin_action (aa_name, aa_action_name) values ('新增圖片', 'image/add.do');
+insert into admin_action (aa_name, aa_action_name) values ('編輯圖片', 'image/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增醫療新知頁面', 'info-knowleage/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯醫療新知頁面', 'info-knowleage/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增相關影音頁面', 'info-video-related/add.do');

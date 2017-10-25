@@ -46,6 +46,9 @@
 			<li id="id-li-info-knowleage-list"><a href="<%=request.getContextPath()%>/info-knowleage/list?page=1">醫療新知頁面一覽</a></li>
 			<li id="id-li-info-video-related-list"><a href="<%=request.getContextPath()%>/info-video-related/list?page=1">相關影音頁面一覽</a></li>
 		</ul>
+		<ul class="nav nav-sidebar">
+			<li id="id-li-image-list"><a href="<%=request.getContextPath()%>/image/list?page=1">圖片一覽</a></li>
+		</ul>
 	</div>
 	
 	<!-- load -->

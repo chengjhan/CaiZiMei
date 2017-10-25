@@ -48,7 +48,7 @@ public class HtmlController implements ControllerConstants {
 	 * 
 	 * @return /WEB-INF/views/viewName
 	 */
-	@RequestMapping(value = { "/info/*", "/news/*", "/team/*" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/team/*", "/news/*", "/info/*" }, method = RequestMethod.GET)
 	public String htmlView(Model model) {
 
 		String servletPath = request.getServletPath();

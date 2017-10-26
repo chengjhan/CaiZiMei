@@ -1,5 +1,6 @@
 .image-upload {
 	margin-bottom: 10px;
+	display: inline-block;
 	overflow: auto;
 }
 
@@ -12,8 +13,7 @@
 }
 
 #image-reset {
-	width: 30px;
-	float: left;
+	float: right;
 	cursor: pointer;
 }
 

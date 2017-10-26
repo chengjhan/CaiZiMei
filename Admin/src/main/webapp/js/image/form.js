@@ -12,7 +12,7 @@ function preview(input) {
 // 預覽上傳圖片
 $(document).on("change", "#image-uploader", function(){
     preview(this);
-    $("#image-reset img").removeAttr("style");
+    $("#image-reset").removeAttr("style");
 });
 
 // validation

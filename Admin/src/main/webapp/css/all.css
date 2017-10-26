@@ -34,7 +34,7 @@ form .table .form-control, .pagination>li:first-child>a, .pagination>li:last-chi
 	border-color: red !important;
 }
 
-.btn-success, .btn-danger {
+.btn-success, .btn-danger, .btn-warning {
 	border-radius: 0px !important;
 }
 

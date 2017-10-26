@@ -44,12 +44,9 @@
 									<img src="<%=request.getContextPath()%>/images/slider-main/${imageBean.im_filename}" class="img-thumbnail">
 								</div>
 							</label>
-							<div id="image-reset">
-								<img src="<%=request.getContextPath()%>/images/icon_false.svg" style="display:none">
-							</div>
+							<input type="file" id="image-uploader" name="file" style="display:none" />
 						</div>
 						<p style="color:red">※ 請上傳長寬比為 3:1 的圖片 (建議為 1440px*480px)。</p>
-						<input type="file" id="image-uploader" name="file" style="display:none" />
 						
 						<table class="table">
 							<tr style="display:none">
@@ -76,6 +73,7 @@
 								<td>
 									<input type="submit" class="btn btn-success" value="變更" />
 									<a href="<%=request.getContextPath()%>/slider-main/list?page=${currentPage}"><button type="button" class="btn btn-danger">取消</button></a>
+									<div id="image-reset" style="display:none"><input type="button" class="btn btn-warning" value="重設圖片" /></div>
 								</td>
 							</tr>
 						</table>
@@ -97,7 +95,7 @@
 		$(document).on("click", "#image-reset", function(){
 			$("#image-uploader").val("");
 			$(".image-preview img").attr("src", "../images/slider-main/${imageBean.im_filename}");
-			$("#image-reset img").attr("style", "display:none");
+			$("#image-reset").attr("style", "display:none");
 		});
 	</script>
 	

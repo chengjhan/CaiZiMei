@@ -36,6 +36,14 @@
 			<li id="id-li-slider-doctor-list"><a href="<%=request.getContextPath()%>/slider-doctor/list?page=1">醫療團隊輪播圖片一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
+			<li id="id-li-about-introduction-list"><a href="<%=request.getContextPath()%>/about-introduction/list?page=1">采姿美介紹頁面一覽</a></li>
+			<li id="id-li-about-idea-list"><a href="<%=request.getContextPath()%>/about-idea/list?page=1">經營理念頁面一覽</a></li>
+			<li id="id-li-about-vision-list"><a href="<%=request.getContextPath()%>/about-vision/list?page=1">公司願景頁面一覽</a></li>
+			<li id="id-li-about-mission-list"><a href="<%=request.getContextPath()%>/about-mission/list?page=1">公司使命頁面一覽</a></li>
+			<li id="id-li-about-territory-list"><a href="<%=request.getContextPath()%>/about-territory/list?page=1">事業版圖頁面一覽</a></li>
+			<li id="id-li-about-franchisee-list"><a href="<%=request.getContextPath()%>/about-franchisee/list?page=1">加盟店頁面一覽</a></li>
+		</ul>
+		<ul class="nav nav-sidebar">
 			<li id="id-li-team-doctor-list"><a href="<%=request.getContextPath()%>/team-doctor/list?page=1">醫療團隊頁面一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">

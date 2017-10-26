@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/10/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -63,15 +63,15 @@ public class CountryController implements ControllerConstants {
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/country/list.jsp
+	 * @return /WEB-INF/views/area-country/list.jsp
 	 */
-	@RequestMapping(value = "/country/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/area-country/list", method = RequestMethod.GET)
 	public String listView(Model model) {
 
 		// 取得所有國家 List，放入 table
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-		return COUNTRY_LIST_PAGE;
+		return AREA_COUNTRY_LIST_PAGE;
 	}
 
 	/**
@@ -79,15 +79,15 @@ public class CountryController implements ControllerConstants {
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/country/add.jsp
+	 * @return /WEB-INF/views/area-country/add.jsp
 	 */
-	@RequestMapping(value = "/country/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/area-country/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		// 新增 form backing object
 		model.addAttribute(COUNTRY_BEAN, new CountryBean());
 
-		return COUNTRY_ADD_PAGE;
+		return AREA_COUNTRY_ADD_PAGE;
 	}
 
 	/**
@@ -97,16 +97,16 @@ public class CountryController implements ControllerConstants {
 	 *            CountryBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
-	 * @return /WEB-INF/views/country/list.jsp
+	 * @return /WEB-INF/views/area-country/list.jsp
 	 */
-	@RequestMapping(value = "/country/add.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/area-country/add.do", method = RequestMethod.POST)
 	public String addAction(@Valid CountryBean countryBean, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 
 			logger.error("國家新增失敗: 格式錯誤");
 
-			return COUNTRY_ADD_PAGE;
+			return AREA_COUNTRY_ADD_PAGE;
 
 		} else {
 
@@ -114,7 +114,7 @@ public class CountryController implements ControllerConstants {
 
 			logger.info("國家新增成功");
 
-			return REDIRECT + COUNTRY_LIST_PAGE;
+			return REDIRECT + AREA_COUNTRY_LIST_PAGE;
 		}
 	}
 
@@ -126,9 +126,9 @@ public class CountryController implements ControllerConstants {
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/error/page-not-found.jsp
-	 * @return /WEB-INF/views/country/edit.jsp
+	 * @return /WEB-INF/views/area-country/edit.jsp
 	 */
-	@RequestMapping(value = "/country/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/area-country/edit", method = RequestMethod.GET)
 	public String editView(CountryBean countryBean_co_id, Model model) {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
@@ -155,7 +155,7 @@ public class CountryController implements ControllerConstants {
 		// 取得選定國家 id 的 CountryBean，使表單回填 CountryBean 內所有資料
 		model.addAttribute(COUNTRY_BEAN, countryBean);
 
-		return COUNTRY_EDIT_PAGE;
+		return AREA_COUNTRY_EDIT_PAGE;
 	}
 
 	/**
@@ -165,16 +165,16 @@ public class CountryController implements ControllerConstants {
 	 *            CountryBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
-	 * @return /WEB-INF/views/country/list.jsp
+	 * @return /WEB-INF/views/area-country/list.jsp
 	 */
-	@RequestMapping(value = "/country/edit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/area-country/edit.do", method = RequestMethod.POST)
 	public String editAction(@Valid CountryBean countryBean, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 
 			logger.error("國家編輯失敗: 格式錯誤");
 
-			return COUNTRY_EDIT_PAGE;
+			return AREA_COUNTRY_EDIT_PAGE;
 
 		} else {
 
@@ -182,7 +182,7 @@ public class CountryController implements ControllerConstants {
 
 			logger.info("國家編輯成功");
 
-			return REDIRECT + COUNTRY_LIST_PAGE;
+			return REDIRECT + AREA_COUNTRY_LIST_PAGE;
 		}
 	}
 
@@ -193,7 +193,7 @@ public class CountryController implements ControllerConstants {
 	 *            String --> 國家流水號
 	 * @return co_name
 	 */
-	@RequestMapping(value = "/country/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/area-country/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String switchAjax(String co_id) {
 

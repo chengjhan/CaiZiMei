@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>區域一覽 - 采姿美管理系統</title>
+<title>國家一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/region/list.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/area/list.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -22,9 +21,9 @@
 			
 			<!-- main -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			
+				
 				<!-- title -->
-				<h2 class="sub-header">區域一覽</h2>
+				<h2 class="sub-header">國家一覽</h2>
 				
 				<!-- content -->
 				<div class="table-responsive">
@@ -32,59 +31,55 @@
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
-						<li class="active">區域一覽</li>
+						<li class="active">國家一覽</li>
 					</ol>
-					
+
 					<!-- option -->
 					<div class="btn-group option">
-						<div style="float:left">
-							<form:form modelAttribute="stateBean">
-								<form:select path="st_CountryBean" cssClass="form-control">
-									<form:option value="0" label="請選擇國家" />
-									<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
-								</form:select>
-							</form:form>
-						</div>
-						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/state/add" title="新增">
+						<div style="width:30px;float:right">
+							<a href="<%=request.getContextPath()%>/area-country/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
 					</div>
 					<!-- option end -->
-					
+				
 					<!-- table -->
 					<table class="table table-striped table-hover" style="width:500px">
 						<thead>
 							<tr class="active">
 								<td style="width:50px">編號</td>
+								<td style="width:50px">代碼</td>
 								<td>名稱</td>
+								<td style="width:75px">電話碼</td>
 								<td style="width:50px">排序</td>
 								<td style="width:50px">編輯</td>
 								<td style="width:50px">開啟</td>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="bean" items="${stateList}" varStatus="status">
+							<c:forEach var="bean" items="${countryList}" varStatus="status">
 								<tr>
 									<td>${status.count}</td>
-									<td>${bean.st_name}</td>
-									<td>${bean.st_rank}</td>
+									<td>${bean.co_iso}</td>
+									<td>${bean.co_name}</td>
+									<td>${bean.co_phonecode}</td>
+									<td>${bean.co_rank}</td>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/state/edit?st_id=${bean.st_id}" title="編輯">
+											<a href="<%=request.getContextPath()%>/area-country/edit?co_id=${bean.co_id}" title="編輯">
 												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
 											</a>
 										</div>
 									</td>
 									<td>
-										<div class="st-status-switch" data-st-id="${bean.st_id}" title="切換">
+										<div class="co-status-switch" data-co-id="${bean.co_id}" title="切換">
 											<c:choose>
-												<c:when test="${bean.st_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-st-status="1">
+												<c:when test="${bean.co_status eq 1}">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-co-status="1">
 												</c:when>
-												<c:when test="${bean.st_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-st-status="0">
+												<c:when test="${bean.co_status eq 0}">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-co-status="0">
 												</c:when>
 											</c:choose>
 										</div>
@@ -100,7 +95,7 @@
 				
 			</div>
 			<!-- main end -->
-			
+						
 		</div>
 	</div>
 	<!-- container end -->
@@ -108,6 +103,6 @@
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/state/list.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/area-country/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

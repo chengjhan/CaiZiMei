@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>城市一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/region/list.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/area/list.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -50,7 +50,7 @@
 							</form:form>
 						</div>
 						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/city/add" title="新增">
+							<a href="<%=request.getContextPath()%>/area-city/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>
 						</div>
@@ -76,7 +76,7 @@
 									<td>${bean.ci_rank}</td>
 									<td>
 										<div class="edit-button">
-											<a href="<%=request.getContextPath()%>/city/edit?ci_id=${bean.ci_id}" title="編輯">
+											<a href="<%=request.getContextPath()%>/area-city/edit?ci_id=${bean.ci_id}" title="編輯">
 												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
 											</a>
 										</div>
@@ -112,6 +112,6 @@
 	<!-- load -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/city/list.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/area-city/list.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

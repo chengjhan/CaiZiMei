@@ -5,14 +5,14 @@ country_select.change(function(){
 	var stateList_tbody = $("table tbody");
 	stateList_tbody.empty();
 	var st_co_id = country_select.val();
-	$.getJSON("../state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
+	$.getJSON("../area-state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			index = index + 1;
 			var count_td = $("<td></td>").append(index);
 			var st_name_td = $("<td></td>").append(stateBean.st_name);
 			var st_rank_td = $("<td></td>").append(stateBean.st_rank);
 			var edit_img = $("<img src='../images/icon_edit.svg'>");
-			var edit_a = $("<a href='../state/edit?st_id=" + stateBean.st_id + "' title='編輯'></a>").append(edit_img);
+			var edit_a = $("<a href='../area-state/edit?st_id=" + stateBean.st_id + "' title='編輯'></a>").append(edit_img);
 			var edit_div = $("<div class='edit-button'></div>").append(edit_a);
 			var edit_td = $("<td></td>").append(edit_div);
 			var switch_img;
@@ -34,7 +34,7 @@ $(document).on("click", ".st-status-switch", function(){
 	var $this = $(this);
 	var st_id = $this.attr("data-st-id");
 	var st_status = $this.children("img").attr("data-st-status");				
-	$.get("../state/switch.ajax", {"st_id": st_id}, function(data){
+	$.get("../area-state/switch.ajax", {"st_id": st_id}, function(data){
 		if(st_status == "1"){
 //			alert("將關閉 「" + data + "」。");
 			$this.children("img").attr("src", "../images/icon_false.svg");

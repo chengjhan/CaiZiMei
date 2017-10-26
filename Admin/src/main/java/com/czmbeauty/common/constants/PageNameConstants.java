@@ -31,23 +31,23 @@ public interface PageNameConstants {
 
 	public static final String ADMIN_LIST_PAGE = "admin/list";
 
-	public static final String COUNTRY_LIST_PAGE = "country/list";
+	public static final String AREA_COUNTRY_LIST_PAGE = "area-country/list";
 
-	public static final String COUNTRY_ADD_PAGE = "country/add";
+	public static final String AREA_COUNTRY_ADD_PAGE = "area-country/add";
 
-	public static final String COUNTRY_EDIT_PAGE = "country/edit";
+	public static final String AREA_COUNTRY_EDIT_PAGE = "area-country/edit";
 
-	public static final String STATE_LIST_PAGE = "state/list";
+	public static final String AREA_STATE_LIST_PAGE = "area-state/list";
 
-	public static final String STATE_ADD_PAGE = "state/add";
+	public static final String AREA_STATE_ADD_PAGE = "area-state/add";
 
-	public static final String STATE_EDIT_PAGE = "state/edit";
+	public static final String AREA_STATE_EDIT_PAGE = "area-state/edit";
 
-	public static final String CITY_LIST_PAGE = "city/list";
+	public static final String AREA_CITY_LIST_PAGE = "area-city/list";
 
-	public static final String CITY_ADD_PAGE = "city/add";
+	public static final String AREA_CITY_ADD_PAGE = "area-city/add";
 
-	public static final String CITY_EDIT_PAGE = "city/edit";
+	public static final String AREA_CITY_EDIT_PAGE = "area-city/edit";
 
 	public static final String ERROR_PAGE_NOT_FOUND_PAGE = "error/page-not-found";
 
@@ -57,11 +57,11 @@ public interface PageNameConstants {
 	// ajax
 	public static final String ADMIN_SWITCH_AJAX = "admin/switch.ajax";
 
-	public static final String COUNTRY_SWITCH_AJAX = "country/switch.ajax";
+	public static final String AREA_COUNTRY_SWITCH_AJAX = "area-country/switch.ajax";
 
-	public static final String STATE_SWITCH_AJAX = "state/switch.ajax";
+	public static final String AREA_STATE_SWITCH_AJAX = "area-state/switch.ajax";
 
-	public static final String CITY_SWITCH_AJAX = "city/switch.ajax";
+	public static final String AREA_CITY_SWITCH_AJAX = "area-city/switch.ajax";
 
 	public static final String BASE_SWITCH_AJAX = "base/switch.ajax";
 

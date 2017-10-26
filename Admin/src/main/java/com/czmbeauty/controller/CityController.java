@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/10/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -85,9 +85,9 @@ public class CityController implements ControllerConstants {
 	 *            CityBean --> Session
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/city/list.jsp
+	 * @return /WEB-INF/views/area-city/list.jsp
 	 */
-	@RequestMapping(value = "/city/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/area-city/list", method = RequestMethod.GET)
 	public String listView(CityBean cityBean, Model model) {
 
 		// 取得所有國家 List，放入 select
@@ -124,7 +124,7 @@ public class CityController implements ControllerConstants {
 			// 取得編輯或刪除的 CityBean 的區域，並取得此區域中的所有城市 List，放入 table
 			model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(cityBean.getCi_StateBean().getSt_id()));
 		}
-		return CITY_LIST_PAGE;
+		return AREA_CITY_LIST_PAGE;
 	}
 
 	/**
@@ -132,9 +132,9 @@ public class CityController implements ControllerConstants {
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/city/add.jsp
+	 * @return /WEB-INF/views/area-city/add.jsp
 	 */
-	@RequestMapping(value = "/city/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/area-city/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		// 取得所有國家 List，放入 select
@@ -143,7 +143,7 @@ public class CityController implements ControllerConstants {
 		// 新增 form backing object
 		model.addAttribute(CITY_BEAN, new CityBean());
 
-		return CITY_ADD_PAGE;
+		return AREA_CITY_ADD_PAGE;
 	}
 
 	/**
@@ -155,9 +155,9 @@ public class CityController implements ControllerConstants {
 	 *            BindingResult
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/city/list.jsp
+	 * @return /WEB-INF/views/area-city/list.jsp
 	 */
-	@RequestMapping(value = "/city/add.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/area-city/add.do", method = RequestMethod.POST)
 	public String addAction(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
@@ -167,7 +167,7 @@ public class CityController implements ControllerConstants {
 
 			logger.error("城市新增失敗: 格式錯誤");
 
-			return CITY_ADD_PAGE;
+			return AREA_CITY_ADD_PAGE;
 
 		} else {
 
@@ -178,7 +178,7 @@ public class CityController implements ControllerConstants {
 
 			logger.info("城市新增成功");
 
-			return REDIRECT + CITY_LIST_PAGE;
+			return REDIRECT + AREA_CITY_LIST_PAGE;
 		}
 	}
 
@@ -189,9 +189,9 @@ public class CityController implements ControllerConstants {
 	 *            CityBean --> form backing object --> GET --> ci_id
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/city/edit.jsp
+	 * @return /WEB-INF/views/area-city/edit.jsp
 	 */
-	@RequestMapping(value = "/city/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/area-city/edit", method = RequestMethod.GET)
 	public String editView(CityBean cityBean_ci_id, Model model) {
 
 		// 取得選定城市 id 的 CityBean
@@ -206,7 +206,7 @@ public class CityController implements ControllerConstants {
 		// 放入 Session，使表單回填 CityBean 內所有資料
 		model.addAttribute(CITY_BEAN, cityBean);
 
-		return CITY_EDIT_PAGE;
+		return AREA_CITY_EDIT_PAGE;
 	}
 
 	/**
@@ -218,9 +218,9 @@ public class CityController implements ControllerConstants {
 	 *            BindingResult
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/city/list.jsp
+	 * @return /WEB-INF/views/area-city/list.jsp
 	 */
-	@RequestMapping(value = "/city/edit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/area-city/edit.do", method = RequestMethod.POST)
 	public String editAction(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
@@ -236,7 +236,7 @@ public class CityController implements ControllerConstants {
 
 			logger.error("城市編輯失敗: 格式錯誤");
 
-			return CITY_EDIT_PAGE;
+			return AREA_CITY_EDIT_PAGE;
 
 		} else {
 
@@ -247,7 +247,7 @@ public class CityController implements ControllerConstants {
 
 			logger.info("城市編輯成功");
 
-			return REDIRECT + CITY_LIST_PAGE;
+			return REDIRECT + AREA_CITY_LIST_PAGE;
 		}
 	}
 
@@ -258,7 +258,7 @@ public class CityController implements ControllerConstants {
 	 *            Integer --> 區域流水號
 	 * @return city JSON
 	 */
-	@RequestMapping(value = "/city/choice-state-city-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/area-city/choice-state-city-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String choiceStateCityListAjax(Integer ci_st_id) {
 
@@ -288,7 +288,7 @@ public class CityController implements ControllerConstants {
 	 *            String --> 城市流水號
 	 * @return ci_name
 	 */
-	@RequestMapping(value = "/city/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/area-city/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String switchAjax(String ci_id) {
 

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/10/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -75,9 +75,9 @@ public class StateController implements ControllerConstants {
 	 *            StateBean --> Session
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/state/list.jsp
+	 * @return /WEB-INF/views/area-state/list.jsp
 	 */
-	@RequestMapping(value = "/state/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/area-state/list", method = RequestMethod.GET)
 	public String listView(StateBean stateBean, Model model) {
 
 		// 取得所有國家 List，放入 select
@@ -108,7 +108,7 @@ public class StateController implements ControllerConstants {
 			// 取得編輯或刪除的 StateBean 的國家，並取得此國家中的所有區域 List，放入 table
 			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(stateBean.getSt_CountryBean().getCo_id()));
 		}
-		return STATE_LIST_PAGE;
+		return AREA_STATE_LIST_PAGE;
 	}
 
 	/**
@@ -116,9 +116,9 @@ public class StateController implements ControllerConstants {
 	 * 
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/state/add.jsp
+	 * @return /WEB-INF/views/area-state/add.jsp
 	 */
-	@RequestMapping(value = "/state/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/area-state/add", method = RequestMethod.GET)
 	public String addView(Model model) {
 
 		// 取得所有國家 List，放入 select
@@ -127,7 +127,7 @@ public class StateController implements ControllerConstants {
 		// 新增 form backing object
 		model.addAttribute(STATE_BEAN, new StateBean());
 
-		return STATE_ADD_PAGE;
+		return AREA_STATE_ADD_PAGE;
 	}
 
 	/**
@@ -139,9 +139,9 @@ public class StateController implements ControllerConstants {
 	 *            BindingResult
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/state/list.jsp
+	 * @return /WEB-INF/views/area-state/list.jsp
 	 */
-	@RequestMapping(value = "/state/add.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/area-state/add.do", method = RequestMethod.POST)
 	public String addAction(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
@@ -151,7 +151,7 @@ public class StateController implements ControllerConstants {
 
 			logger.error("區域新增失敗: 格式錯誤");
 
-			return STATE_ADD_PAGE;
+			return AREA_STATE_ADD_PAGE;
 
 		} else {
 
@@ -162,7 +162,7 @@ public class StateController implements ControllerConstants {
 
 			logger.info("區域新增成功");
 
-			return REDIRECT + STATE_LIST_PAGE;
+			return REDIRECT + AREA_STATE_LIST_PAGE;
 		}
 	}
 
@@ -173,9 +173,9 @@ public class StateController implements ControllerConstants {
 	 *            StateBean --> form backing object --> GET --> st_id
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/state/edit.jsp
+	 * @return /WEB-INF/views/area-state/edit.jsp
 	 */
-	@RequestMapping(value = "/state/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/area-state/edit", method = RequestMethod.GET)
 	public String editView(StateBean stateBean_st_id, Model model) {
 
 		// 取得所有國家 List，放入 select
@@ -184,7 +184,7 @@ public class StateController implements ControllerConstants {
 		// 取得選定區域 id 的 StateBean，放入 Session，使表單回填 StateBean 內所有資料
 		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean_st_id.getSt_id()));
 
-		return STATE_EDIT_PAGE;
+		return AREA_STATE_EDIT_PAGE;
 	}
 
 	/**
@@ -196,9 +196,9 @@ public class StateController implements ControllerConstants {
 	 *            BindingResult
 	 * @param model
 	 *            Model
-	 * @return /WEB-INF/views/state/list.jsp
+	 * @return /WEB-INF/views/area-state/list.jsp
 	 */
-	@RequestMapping(value = "/state/edit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/area-state/edit.do", method = RequestMethod.POST)
 	public String editAction(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
@@ -211,7 +211,7 @@ public class StateController implements ControllerConstants {
 
 			logger.error("區域編輯失敗: 格式錯誤");
 
-			return STATE_EDIT_PAGE;
+			return AREA_STATE_EDIT_PAGE;
 
 		} else {
 
@@ -222,7 +222,7 @@ public class StateController implements ControllerConstants {
 
 			logger.info("區域編輯成功");
 
-			return REDIRECT + STATE_LIST_PAGE;
+			return REDIRECT + AREA_STATE_LIST_PAGE;
 		}
 	}
 
@@ -233,7 +233,7 @@ public class StateController implements ControllerConstants {
 	 *            Integer --> 國家流水號
 	 * @return state JSON
 	 */
-	@RequestMapping(value = "/state/choice-country-state-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/area-state/choice-country-state-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String choiceCountryStateListAjax(Integer st_co_id) {
 
@@ -263,7 +263,7 @@ public class StateController implements ControllerConstants {
 	 *            String --> 區域流水號
 	 * @return st_name
 	 */
-	@RequestMapping(value = "/state/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/area-state/switch.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String switchAjax(String st_id) {
 

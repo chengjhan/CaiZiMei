@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增區域 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/region/form.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/area/form.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -31,12 +31,12 @@
 					<!-- breadcrumb -->
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
-						<li><a href="<%=request.getContextPath()%>/state/list">區域一覽</a></li>
+						<li><a href="<%=request.getContextPath()%>/area-state/list">區域一覽</a></li>
 						<li class="active">新增區域</li>
 					</ol>
 				
 					<!-- form -->
-					<form:form action="/Admin/state/add.do" method="post" modelAttribute="stateBean">
+					<form:form action="/Admin/area-state/add.do" method="post" modelAttribute="stateBean">
 						<table class="table">
 							<tr>
 								<td><form:label path="st_CountryBean">國家</form:label></td>
@@ -61,7 +61,7 @@
 								<td></td>
 								<td>
 									<input type="submit" class="btn btn-success" value="新增" />
-									<a href="<%=request.getContextPath()%>/state/list"><button type="button" class="btn btn-danger">取消</button></a>
+									<a href="<%=request.getContextPath()%>/area-state/list"><button type="button" class="btn btn-danger">取消</button></a>
 								</td>
 							</tr>
 						</table>
@@ -82,6 +82,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/state/form.js"></script>
+	<script src="<%=request.getContextPath()%>/js/area-state/form.js"></script>
 </body>
 </html>

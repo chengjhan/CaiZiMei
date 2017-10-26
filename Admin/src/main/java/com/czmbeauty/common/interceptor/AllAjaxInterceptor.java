@@ -96,7 +96,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 				return false;
 			}
 		}
-		if (COUNTRY_SWITCH_AJAX.equals(ajaxName)) {
+		if (AREA_COUNTRY_SWITCH_AJAX.equals(ajaxName)) {
 
 			String parameter = request.getParameter("co_id");
 
@@ -110,7 +110,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 				return false;
 			}
 		}
-		if (STATE_SWITCH_AJAX.equals(ajaxName)) {
+		if (AREA_STATE_SWITCH_AJAX.equals(ajaxName)) {
 
 			String parameter = request.getParameter("st_id");
 
@@ -124,7 +124,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 				return false;
 			}
 		}
-		if (CITY_SWITCH_AJAX.equals(ajaxName)) {
+		if (AREA_CITY_SWITCH_AJAX.equals(ajaxName)) {
 
 			String parameter = request.getParameter("ci_id");
 

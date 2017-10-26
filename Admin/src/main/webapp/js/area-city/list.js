@@ -8,7 +8,7 @@ country_select.change(function(){
 	var cityList_tbody = $("table tbody");
 	cityList_tbody.empty();
 	var st_co_id = country_select.val();
-	$.getJSON("../state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
+	$.getJSON("../area-state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			var state_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
 			state_select.append(state_option);
@@ -21,14 +21,14 @@ state_select.change(function(){
 	var cityList_tbody = $("table tbody");
 	cityList_tbody.empty();
 	var ci_st_id = state_select.val();
-	$.getJSON("../city/choice-state-city-list.ajax", {"ci_st_id": ci_st_id}, function(data){
+	$.getJSON("../area-city/choice-state-city-list.ajax", {"ci_st_id": ci_st_id}, function(data){
 		$.each(data, function(index, cityBean){
 			index = index + 1;
 			var count_td = $("<td></td>").append(index);
 			var ci_name_td = $("<td></td>").append(cityBean.ci_name);
 			var ci_rank_td = $("<td></td>").append(cityBean.ci_rank);
 			var edit_img = $("<img src='../images/icon_edit.svg'>");
-			var edit_a = $("<a href='../city/edit?ci_id=" + cityBean.ci_id + "' title='編輯'></a>").append(edit_img);
+			var edit_a = $("<a href='../area-city/edit?ci_id=" + cityBean.ci_id + "' title='編輯'></a>").append(edit_img);
 			var edit_div = $("<div class='edit-button'></div>").append(edit_a);
 			var edit_td = $("<td></td>").append(edit_div);
 			var switch_img;
@@ -50,7 +50,7 @@ $(document).on("click", ".ci-status-switch", function(){
 	var $this = $(this);
 	var ci_id = $this.attr("data-ci-id");
 	var ci_status = $this.children("img").attr("data-ci-status");				
-	$.get("../city/switch.ajax", {"ci_id": ci_id}, function(data){
+	$.get("../area-city/switch.ajax", {"ci_id": ci_id}, function(data){
 		if(ci_status == "1"){
 //			alert("將關閉 「" + data + "」。");
 			$this.children("img").attr("src", "../images/icon_false.svg");

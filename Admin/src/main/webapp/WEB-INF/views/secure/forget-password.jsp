@@ -8,7 +8,7 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/secure.css" type="text/css" />
 </head>
 <body>
 	<div class="container-fluid">

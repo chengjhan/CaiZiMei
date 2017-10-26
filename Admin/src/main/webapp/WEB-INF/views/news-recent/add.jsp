@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增近期活動頁面 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/html/form.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -37,7 +37,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/news-recent/add.do" method="post" modelAttribute="htmlBean">
-						<table class="table">
+						<table class="table html-table">
 							<tr>
 								<td><form:label path="ht_name">名稱</form:label></td>
 								<td><form:input path="ht_name" cssClass="form-control" /></td>

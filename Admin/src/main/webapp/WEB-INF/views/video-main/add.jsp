@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增相關影音 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/video/form.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -37,7 +37,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/video-main/add.do" method="post" modelAttribute="videoBean">
-						<table class="table">
+						<table class="table video-table">
 							<tr>
 								<td><form:label path="vi_name">名稱</form:label></td>
 								<td><form:input path="vi_name" cssClass="form-control" /></td>

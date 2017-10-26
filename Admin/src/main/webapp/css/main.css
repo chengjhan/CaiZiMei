@@ -1,0 +1,149 @@
+.option {
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.add-button {
+	width: 30px;
+	float: right;
+}
+
+.edit-button {
+	width: 30px;
+}
+
+/* admin */
+.admin-table tr td:first-child {
+	width: 75px;
+}
+
+.admin-table tr td:nth-child(2) {
+	width: 400px;
+}
+
+.ad-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
+/* area */
+.area-table tr td:first-child {
+	width: 75px;
+}
+
+.area-table tr td:nth-child(2) {
+	width: 400px;
+}
+
+.area-add-button {
+	width: 30px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.co-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
+.st-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
+.ci-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
+/* base */
+.base-table tr td:first-child {
+	width: 100px;
+}
+
+.base-table tr td:nth-child(2) {
+	width: 400px;
+}
+
+#ba_tel {
+	width: 75%;
+	float: left;
+}
+
+#ba_tel_code {
+	width: 25%;
+	float: left;
+}
+
+.ba-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
+/* image */
+.image-upload {
+	margin-bottom: 10px;
+	display: inline-block;
+	overflow: auto;
+}
+
+.image-upload label {
+	float: left;
+}
+
+.image-preview {
+	cursor: pointer;
+}
+
+#image-reset {
+	float: right;
+	cursor: pointer;
+}
+
+.image-table tr td:first-child {
+	width: 75px;
+}
+
+.image-table tr td:nth-child(2) {
+	width: 450px;
+}
+
+.im-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
+/* video */
+.video-table tr td:first-child {
+	width: 75px;
+}
+
+.video-table tr td:nth-child(2) {
+	width: 500px;
+}
+
+.vi-status-switch {
+	width: 30px;
+}
+
+.vi-status-switch img[data-vi-status='0'] {
+	cursor: pointer;
+}
+
+/* html */
+.html-table tr td:first-child {
+	width: 75px;
+}
+
+.html-table tr td:nth-child(2) {
+	width: 750px;
+}
+
+.ht-status-switch {
+	width: 30px;
+}
+
+.ht-status-switch img[data-ht-status='0'] {
+	cursor: pointer;
+}

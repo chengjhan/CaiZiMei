@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>編輯個人資訊 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/all.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -30,7 +30,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/admin/edit.do" method="post" modelAttribute="admin" cssClass="form-horizontal">
-						<table class="table">
+						<table class="table admin-table">
 							<tr>
 								<td><form:label path="ad_lastname">姓氏</form:label></td>
 								<td><form:input path="ad_lastname" cssClass="form-control" /></td>

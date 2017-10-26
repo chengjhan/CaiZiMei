@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增加盟店 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/base/form.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -37,7 +37,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/base-franchisee/add.do" method="post" modelAttribute="baseBean">
-						<table class="table">
+						<table class="table base-table">
 							<tr>
 								<td><form:label path="ba_name">名稱</form:label></td>
 								<td>

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>加盟店一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/base/list.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -45,7 +45,7 @@
 					<!-- option end -->
 					
 					<!-- table -->
-					<table class="table table-hover">
+					<table class="table table-hover" style="font-size:13px">
 						<thead>
 							<tr class="active">
 								<td style="width:50px">編號</td>

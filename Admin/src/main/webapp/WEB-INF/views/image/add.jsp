@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增圖片 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/image/form.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -47,7 +47,7 @@
 							<input type="file" id="image-uploader" name="file" style="display:none" />
 						</div>
 						
-						<table class="table">
+						<table class="table image-table">
 							<tr>
 								<td><form:label path="im_name">名稱</form:label></td>
 								<td><form:input path="im_name" cssClass="form-control" /></td>

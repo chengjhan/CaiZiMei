@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>區域一覽 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/area/list.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -36,7 +36,7 @@
 					</ol>
 					
 					<!-- option -->
-					<div class="btn-group option">
+					<div class="btn-group option" style="width:500px;overflow:auto">
 						<div style="float:left">
 							<form:form modelAttribute="stateBean">
 								<form:select path="st_CountryBean" cssClass="form-control">
@@ -45,7 +45,7 @@
 								</form:select>
 							</form:form>
 						</div>
-						<div class="add-button">
+						<div class="area-add-button">
 							<a href="<%=request.getContextPath()%>/area-state/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>編輯加盟店 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/base/form.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" type="text/css" />
 </head>
 <body>
 	<!-- header -->
@@ -37,7 +37,7 @@
 
 					<!-- form -->
 					<form:form action="/Admin/base-franchisee/edit.do" method="post" modelAttribute="baseBean">
-						<table class="table">
+						<table class="table base-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="ba_id" /></td>

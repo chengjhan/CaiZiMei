@@ -17,9 +17,9 @@
 			</c:when>
 		</c:choose>
 		<ul class="nav nav-sidebar">
-			<li id="id-li-country-list"><a href="<%=request.getContextPath()%>/area-country/list">國家一覽</a></li>
-			<li id="id-li-state-list"><a href="<%=request.getContextPath()%>/area-state/list">區域一覽</a></li>
-			<li id="id-li-city-list"><a href="<%=request.getContextPath()%>/area-city/list">城市一覽</a></li>
+			<li id="id-li-area-country-list"><a href="<%=request.getContextPath()%>/area-country/list">國家一覽</a></li>
+			<li id="id-li-area-state-list"><a href="<%=request.getContextPath()%>/area-state/list">區域一覽</a></li>
+			<li id="id-li-area-city-list"><a href="<%=request.getContextPath()%>/area-city/list">城市一覽</a></li>
 		</ul>
 		<ul class="nav nav-sidebar">
 			<li id="id-li-base-office-list"><a href="<%=request.getContextPath()%>/base-office/list?page=1">辦事處一覽</a></li>

@@ -25,7 +25,7 @@
 			<!-- main -->
 			<main class="col-sm-10">
 			
-				<section><img src="<%=request.getContextPath()%>/images/menu/territory_1002x382.jpg" style="width:100%"></section>
+				<section><img src="/Admin/images/image/territory_1002x382.jpg" style="width:100%"></section>
 			
 			</main>
 			<!-- main end -->

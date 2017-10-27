@@ -1,11 +1,11 @@
 .customize-container-fluid {
 	background-color: #fafafa;
-	padding: 15px 0 0 0;
+	padding: 15px 0 15px 0 !important;
 }
 
 .customize-row {
-	width: 80%;
-	margin: 0 auto;
+	width: 80% !important;
+	margin: 0 auto !important;
 }
 
 main {

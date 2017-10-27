@@ -87,26 +87,42 @@
 
 /* image */
 .image-upload {
+	padding: 4px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
 	margin-bottom: 10px;
 	display: inline-block;
 	overflow: auto;
 }
 
 .image-upload label {
+	margin: 0;
 	float: left;
+}
+
+.image-preview {
+	width: 640px;
+	height: 360px;
+	text-align: center; /* 水平置中 */ /* 作用於此元素下的 inline 子元素 */
+	cursor: pointer;
+}
+
+.image-preview::before { /* 偽元素垂直置中 */
+	content: '';
+	width: 0;
+	height: 100%;
+	display: inline-block; /* 浮動 */
+	vertical-align: middle; /* 垂直置中 */
+	position: relative;
 }
 
 .image-upload img {
 	width: auto;
-	max-width: 533px;
+	max-width: 640px;
 	height: auto;
-	max-height: 300px;
-}
-
-.image-preview {
-	width: 533px;
-	height: 300px;
-	cursor: pointer;
+	max-height: 360px;
+	display: inline-block; /* 浮動 */
+	vertical-align: middle; /* 垂直置中 */
 }
 
 #image-reset {
@@ -115,11 +131,11 @@
 }
 
 .image-table tr td:first-child {
-	width: 75px;
+	width: 50px;
 }
 
 .image-table tr td:nth-child(2) {
-	width: 450px;
+	width: 590px;
 }
 
 .im-status-switch {

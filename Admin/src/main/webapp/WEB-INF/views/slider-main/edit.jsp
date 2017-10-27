@@ -40,8 +40,8 @@
 						
 						<div class="image-upload">
 							<label for="image-uploader">
-								<div class="image-preview" style="width:900px">
-									<img src="<%=request.getContextPath()%>/images/slider-main/${imageBean.im_filename}" class="img-thumbnail" style="max-width:900px">
+								<div class="image-preview" style="width:900px;height:300px">
+									<img src="<%=request.getContextPath()%>/images/slider-main/${imageBean.im_filename}" style="max-width:900px;max-height:300px">
 								</div>
 							</label>
 							<input type="file" id="image-uploader" name="file" style="display:none" />
@@ -55,7 +55,7 @@
 							</tr>
 							<tr>
 								<td><form:label path="im_name">名稱</form:label></td>
-								<td><form:input path="im_name" cssClass="form-control" /></td>
+								<td style="width:850px"><form:input path="im_name" cssClass="form-control" /></td>
 								<td><form:errors path="im_name" cssClass="error" /></td>
 							</tr>
 							<tr>

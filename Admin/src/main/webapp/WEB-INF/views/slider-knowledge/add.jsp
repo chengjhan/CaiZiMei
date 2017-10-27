@@ -41,7 +41,7 @@
 						<div class="image-upload">
 							<label for="image-uploader">
 								<div class="image-preview">
-									<img src="<%=request.getContextPath()%>/images/image/upload_new_image_533x300.png" class="img-thumbnail">
+									<img src="<%=request.getContextPath()%>/images/image/upload.png">
 								</div>
 							</label>
 							<input type="file" id="image-uploader" name="file" style="display:none" />
@@ -90,7 +90,7 @@
 		// 清除上傳圖片
 		$(document).on("click", "#image-reset", function(){
 			$("#image-uploader").val("");
-			$(".image-preview img").attr("src", "../images/image/upload_new_image_533x300.png");
+			$(".image-preview img").attr("src", "../images/image/upload.png");
 			$("#image-reset").attr("style", "display:none");
 		});
 	</script>

@@ -40,8 +40,8 @@
 						
 						<div class="image-upload">
 							<label for="image-uploader">
-								<div class="image-preview" style="width:900px">
-									<img src="<%=request.getContextPath()%>/images/image/upload_new_image_900x300.png" class="img-thumbnail" style="max-width:900px">
+								<div class="image-preview" style="width:900px;height:300px">
+									<img src="<%=request.getContextPath()%>/images/image/upload.png" style="max-width:900px;max-height:300px">
 								</div>
 							</label>
 							<input type="file" id="image-uploader" name="file" style="display:none" />
@@ -51,7 +51,7 @@
 						<table class="table image-table">
 							<tr>
 								<td><form:label path="im_name">名稱</form:label></td>
-								<td><form:input path="im_name" cssClass="form-control" /></td>
+								<td style="width:850px"><form:input path="im_name" cssClass="form-control" /></td>
 								<td><form:errors path="im_name" cssClass="error" /></td>
 							</tr>
 							<tr>
@@ -90,7 +90,7 @@
 		// 清除上傳圖片
 		$(document).on("click", "#image-reset", function(){
 			$("#image-uploader").val("");
-			$(".image-preview img").attr("src", "../images/image/upload_new_image_900x300.png");
+			$(".image-preview img").attr("src", "../images/image/upload.png");
 			$("#image-reset").attr("style", "display:none");
 		});
 	</script>

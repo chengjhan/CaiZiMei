@@ -40,7 +40,7 @@
 						
 						<div class="image-upload">
 							<label for="image-uploader">
-								<div class="image-preview" style="max-width:533px">
+								<div class="image-preview">
 									<img src="<%=request.getContextPath()%>/images/image/${imageBean.im_filename}" class="img-thumbnail">
 								</div>
 							</label>

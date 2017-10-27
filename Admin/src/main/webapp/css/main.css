@@ -92,7 +92,16 @@
 	float: left;
 }
 
+.image-upload img {
+	width: auto;
+	max-width: 533px;
+	height: auto;
+	max-height: 300px;
+}
+
 .image-preview {
+	width: 533px;
+	height: 300px;
 	cursor: pointer;
 }
 

@@ -40,8 +40,8 @@
 						
 						<div class="image-upload">
 							<label for="image-uploader">
-								<div class="image-preview" style="max-width:900px">
-									<img src="<%=request.getContextPath()%>/images/image/upload_new_image_900x300.png" class="img-thumbnail">
+								<div class="image-preview" style="width:900px">
+									<img src="<%=request.getContextPath()%>/images/image/upload_new_image_900x300.png" class="img-thumbnail" style="max-width:900px">
 								</div>
 							</label>
 							<input type="file" id="image-uploader" name="file" style="display:none" />

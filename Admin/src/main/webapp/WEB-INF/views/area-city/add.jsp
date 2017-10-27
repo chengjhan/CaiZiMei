@@ -87,8 +87,8 @@
 	<!-- container end -->
 	
 	<!-- load -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/validation/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/area-city/form.js" type="text/javascript" charset="utf-8"></script>
 </body>

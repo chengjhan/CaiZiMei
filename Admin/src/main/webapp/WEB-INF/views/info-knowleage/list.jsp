@@ -115,7 +115,7 @@
 	<!-- container end -->
 	
 	<!-- load -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/html/list.js" type="text/javascript" charset="utf-8"></script>
 </body>

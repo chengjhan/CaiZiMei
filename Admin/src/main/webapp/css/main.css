@@ -3,6 +3,10 @@
 	margin-bottom: 5px;
 }
 
+.option .form-control {
+	border-radius: 0px !important;
+}
+
 .add-button {
 	width: 30px;
 	float: right;

@@ -50,7 +50,7 @@
 							<tbody>
 								<tr>
 									<td rowspan="4" style="width:50px">${status.count + pageRowCount * (currentPage - 1)}</td>
-									<td rowspan="4" style="width:30%"><img src="<%=request.getContextPath()%>/images/image/${bean.im_filename}"></td>
+									<td rowspan="4" style="width:40%"><img src="<%=request.getContextPath()%>/images/image/${bean.im_filename}"></td>
 									<td style="width:50px">名稱</td>
 									<td>${bean.im_name}</td>
 									<td rowspan="4" style="width:50px">

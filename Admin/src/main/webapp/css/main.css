@@ -116,7 +116,7 @@
 	position: relative;
 }
 
-.image-upload img {
+.image-preview img {
 	width: auto;
 	max-width: 640px;
 	height: auto;
@@ -132,10 +132,12 @@
 
 .image-table tr td:first-child {
 	width: 50px;
+	padding-left: 0;
 }
 
 .image-table tr td:nth-child(2) {
-	width: 590px;
+	width: 600px;
+	padding-right: 0;
 }
 
 .im-status-switch {

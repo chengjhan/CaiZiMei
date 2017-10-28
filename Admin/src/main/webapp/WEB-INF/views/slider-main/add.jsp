@@ -51,7 +51,7 @@
 						<table class="table image-table">
 							<tr>
 								<td><form:label path="im_name">名稱</form:label></td>
-								<td style="width:850px"><form:input path="im_name" cssClass="form-control" /></td>
+								<td style="width:860px"><form:input path="im_name" cssClass="form-control" /></td>
 								<td><form:errors path="im_name" cssClass="error" /></td>
 							</tr>
 							<tr>

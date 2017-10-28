@@ -25,7 +25,7 @@
 			<!-- main -->
 			<main class="col-sm-10">
 			
-				<section>創造優良獨特的產品及模式，以滿足會員抗老及健康的需求。</section>
+				<section>${htmlBean.ht_tag}</section>
 				
 			</main>
 			<!-- main end -->

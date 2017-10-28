@@ -25,7 +25,7 @@
 			<!-- main -->
 			<main class="col-sm-10">
 			
-				<section>成為藥妝及醫療系統的領導者，提高會員的保養及醫療常識。</section>
+				<section>${htmlBean.ht_tag}</section>
 				
 			</main>
 			<!-- main end -->

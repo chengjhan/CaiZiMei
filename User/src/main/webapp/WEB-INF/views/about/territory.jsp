@@ -25,7 +25,7 @@
 			<!-- main -->
 			<main class="col-sm-10">
 			
-				<section><img src="/Admin/images/image/territory_1002x382.jpg" style="width:100%"></section>
+				<section>${htmlBean.ht_tag}</section>
 			
 			</main>
 			<!-- main end -->

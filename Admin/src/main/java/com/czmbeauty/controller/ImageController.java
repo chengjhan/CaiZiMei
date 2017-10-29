@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/10/25
+ * Date: 2017/10/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -103,124 +103,6 @@ public class ImageController implements ControllerConstants {
 	}
 
 	/**
-	 * 新增圖片
-	 * 
-	 * @param file
-	 *            MultipartFile
-	 * @param imageBean
-	 *            ImageBean --> form backing object
-	 * @param bindingResult
-	 *            BindingResult
-	 * @return /WEB-INF/views/ca_directory/add.jsp
-	 * @return /WEB-INF/views/ca_directory/list.jsp
-	 */
-	private String add(MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
-
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
-		String ca_name = categoryBean.getCa_name();
-		String ca_directory = categoryBean.getCa_directory();
-
-		if (file.isEmpty()) {
-
-			logger.error(ca_name + "新增失敗: 未上傳圖片");
-
-			return ca_directory + ADD_PAGE;
-
-		} else if (bindingResult.hasErrors()) {
-
-			logger.error(ca_name + "新增失敗: 資料未填");
-
-			return ca_directory + ADD_PAGE;
-
-		} else {
-
-			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
-			try {
-				file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			logger.info(ca_name + "上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
-
-			imageBean.setIm_CategoryBean(categoryBean);
-			imageBean.setIm_path(pathAndFilename[0]);
-			imageBean.setIm_filename(pathAndFilename[1]);
-			imageBean.setIm_status(1);
-			imageBean.setIm_update_time(new java.util.Date());
-
-			imageService.insert(imageBean);
-
-			logger.info(ca_name + "新增成功");
-
-			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-		}
-	}
-
-	/**
-	 * 編輯圖片
-	 * 
-	 * @param file
-	 *            MultipartFile
-	 * @param imageBean
-	 *            ImageBean --> form backing object
-	 * @param bindingResult
-	 *            BindingResult
-	 * @return /WEB-INF/views/ca_directory/edit.jsp
-	 * @return /WEB-INF/views/ca_directory/list.jsp
-	 */
-	private String edit(MultipartFile file, ImageBean imageBean, BindingResult bindingResult) {
-
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
-		String ca_name = categoryBean.getCa_name();
-		String ca_directory = categoryBean.getCa_directory();
-
-		ImageBean oldImageBean = imageService.selectByIm_id(imageBean.getIm_id());
-
-		String im_path;
-		String im_filename;
-
-		if (bindingResult.hasErrors()) {
-
-			logger.error(ca_name + "編輯失敗: 資料未填");
-
-			return ca_directory + EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND + PAGE + EQUAL
-					+ currentPage;
-
-		} else if (file.isEmpty()) {
-
-			im_path = oldImageBean.getIm_path();
-			im_filename = oldImageBean.getIm_filename();
-
-		} else {
-
-			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
-			im_path = pathAndFilename[0];
-			im_filename = pathAndFilename[1];
-			try {
-				file.transferTo(new File(im_path + im_filename));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			logger.info(ca_name + "上傳成功，位置: " + im_path + im_filename);
-		}
-		imageBean.setIm_CategoryBean(categoryBean);
-		imageBean.setIm_path(im_path);
-		imageBean.setIm_filename(im_filename);
-		imageBean.setIm_status(oldImageBean.getIm_status());
-		imageBean.setIm_update_time(new java.util.Date());
-
-		imageService.update(imageBean);
-
-		logger.info(ca_name + "編輯成功");
-
-		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-	}
-
-	/**
 	 * 輪播圖片一覽 - 初期處理
 	 * 
 	 * @param page
@@ -286,7 +168,46 @@ public class ImageController implements ControllerConstants {
 	@RequestMapping(value = { "/slider*/add.do", "/image*/add.do" }, method = RequestMethod.POST)
 	public String addAction(@RequestParam MultipartFile file, @Valid ImageBean imageBean, BindingResult bindingResult) {
 
-		return add(file, imageBean, bindingResult);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
+
+		if (file.isEmpty()) {
+
+			logger.error(ca_name + "新增失敗: 未上傳圖片");
+
+			return ca_directory + ADD_PAGE;
+
+		} else if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "新增失敗: 資料未填");
+
+			return ca_directory + ADD_PAGE;
+
+		} else {
+
+			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
+			try {
+				file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			logger.info(ca_name + "上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
+
+			imageBean.setIm_CategoryBean(categoryBean);
+			imageBean.setIm_path(pathAndFilename[0]);
+			imageBean.setIm_filename(pathAndFilename[1]);
+			imageBean.setIm_status(1);
+			imageBean.setIm_update_time(new java.util.Date());
+
+			imageService.insert(imageBean);
+
+			logger.info(ca_name + "新增成功");
+
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+		}
 	}
 
 	/**
@@ -353,7 +274,52 @@ public class ImageController implements ControllerConstants {
 	public String editAction(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
-		return edit(file, imageBean, bindingResult);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
+
+		ImageBean oldImageBean = imageService.selectByIm_id(imageBean.getIm_id());
+
+		String im_path;
+		String im_filename;
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "編輯失敗: 資料未填");
+
+			return ca_directory + EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND + PAGE + EQUAL
+					+ currentPage;
+
+		} else if (file.isEmpty()) {
+
+			im_path = oldImageBean.getIm_path();
+			im_filename = oldImageBean.getIm_filename();
+
+		} else {
+
+			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
+			im_path = pathAndFilename[0];
+			im_filename = pathAndFilename[1];
+			try {
+				file.transferTo(new File(im_path + im_filename));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			logger.info(ca_name + "上傳成功，位置: " + im_path + im_filename);
+		}
+		imageBean.setIm_CategoryBean(categoryBean);
+		imageBean.setIm_path(im_path);
+		imageBean.setIm_filename(im_filename);
+		imageBean.setIm_status(oldImageBean.getIm_status());
+		imageBean.setIm_update_time(new java.util.Date());
+
+		imageService.update(imageBean);
+
+		logger.info(ca_name + "編輯成功");
+
+		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 	}
 
 	/**

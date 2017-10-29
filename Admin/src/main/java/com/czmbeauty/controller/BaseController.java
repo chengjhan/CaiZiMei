@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/10/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -104,75 +104,6 @@ public class BaseController implements ControllerConstants {
 	}
 
 	/**
-	 * 新增據點
-	 * 
-	 * @param baseBean
-	 *            BaseBean --> form backing object
-	 * @param bindingResult
-	 *            BindingResult
-	 * @return /WEB-INF/views/ca_directory/add.jsp
-	 * @return /WEB-INF/views/ca_directory/list.jsp
-	 */
-	private String add(BaseBean baseBean, BindingResult bindingResult) {
-
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
-		String ca_name = categoryBean.getCa_name();
-		String ca_directory = categoryBean.getCa_directory();
-
-		if (bindingResult.hasErrors()) {
-
-			logger.error(ca_name + "新增失敗: 資料未填");
-
-			return ca_directory + ADD_PAGE;
-
-		} else {
-
-			baseBean.setBa_CategoryBean(categoryBean);
-
-			baseService.insert(baseBean);
-
-			logger.info(ca_name + "新增成功");
-
-			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-		}
-	}
-
-	/**
-	 * 編輯據點
-	 * 
-	 * @param baseBean
-	 *            BaseBean --> form backing object
-	 * @param bindingResult
-	 *            BindingResult
-	 * @return /WEB-INF/views/ca_directory/edit.jsp
-	 * @return /WEB-INF/views/ca_directory/list.jsp
-	 */
-	private String edit(BaseBean baseBean, BindingResult bindingResult) {
-
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
-		String ca_name = categoryBean.getCa_name();
-		String ca_directory = categoryBean.getCa_directory();
-
-		if (bindingResult.hasErrors()) {
-
-			logger.error(ca_name + "編輯失敗: 資料未填");
-
-			return ca_directory + EDIT_PAGE + QUESTION + BASE_ID + EQUAL + baseBean.getBa_id() + AND + PAGE + EQUAL
-					+ currentPage;
-
-		} else {
-
-			baseService.update(baseBean);
-
-			logger.info(ca_name + "編輯成功");
-
-			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-		}
-	}
-
-	/**
 	 * 據點一覽 - 初期處理
 	 * 
 	 * @param page
@@ -239,7 +170,27 @@ public class BaseController implements ControllerConstants {
 	@RequestMapping(value = "/base*/add.do", method = RequestMethod.POST)
 	public String addAction(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
-		return add(baseBean, bindingResult);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "新增失敗: 資料未填");
+
+			return ca_directory + ADD_PAGE;
+
+		} else {
+
+			baseBean.setBa_CategoryBean(categoryBean);
+
+			baseService.insert(baseBean);
+
+			logger.info(ca_name + "新增成功");
+
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+		}
 	}
 
 	/**
@@ -312,7 +263,26 @@ public class BaseController implements ControllerConstants {
 	@RequestMapping(value = "/base*/edit.do", method = RequestMethod.POST)
 	public String editAction(@Valid BaseBean baseBean, BindingResult bindingResult) {
 
-		return edit(baseBean, bindingResult);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "編輯失敗: 資料未填");
+
+			return ca_directory + EDIT_PAGE + QUESTION + BASE_ID + EQUAL + baseBean.getBa_id() + AND + PAGE + EQUAL
+					+ currentPage;
+
+		} else {
+
+			baseService.update(baseBean);
+
+			logger.info(ca_name + "編輯成功");
+
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
+		}
 	}
 
 	/**

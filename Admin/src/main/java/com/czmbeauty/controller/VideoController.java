@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/10/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -74,78 +74,6 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
-	 * 新增影片
-	 * 
-	 * @param videoBean
-	 *            VideoBean --> form backing object
-	 * @param bindingResult
-	 *            BindingResult
-	 * @return /WEB-INF/views/ca_directory/add.jsp
-	 * @return /WEB-INF/views/ca_directory/list.jsp
-	 */
-	private String add(VideoBean videoBean, BindingResult bindingResult) {
-
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
-		String ca_name = categoryBean.getCa_name();
-		String ca_directory = categoryBean.getCa_directory();
-
-		if (bindingResult.hasErrors()) {
-
-			logger.error(ca_name + "新增失敗: 資料未填");
-
-			return ca_directory + ADD_PAGE;
-
-		} else {
-
-			videoBean.setVi_CategoryBean(categoryBean);
-			videoBean.setVi_status(0);
-			videoBean.setVi_update_time(new java.util.Date());
-
-			videoService.insert(videoBean);
-
-			logger.info(ca_name + "新增成功");
-
-			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-		}
-	}
-
-	/**
-	 * 編輯影片
-	 * 
-	 * @param videoBean
-	 *            VideoBean --> form backing object
-	 * @param bindingResult
-	 *            BindingResult
-	 * @return /WEB-INF/views/ca_directory/edit.jsp
-	 * @return /WEB-INF/views/ca_directory/list.jsp
-	 */
-	private String edit(VideoBean videoBean, BindingResult bindingResult) {
-
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
-		String ca_name = categoryBean.getCa_name();
-		String ca_directory = categoryBean.getCa_directory();
-
-		if (bindingResult.hasErrors()) {
-
-			logger.error(ca_name + "編輯失敗: 資料未填");
-
-			return ca_directory + EDIT_PAGE + QUESTION + VIDEO_ID + EQUAL + videoBean.getVi_id() + AND + PAGE + EQUAL
-					+ currentPage;
-		}
-		videoBean.setVi_CategoryBean(categoryBean);
-		videoBean.setVi_status(videoService.selectByVi_id(videoBean.getVi_id()).getVi_status());
-		videoBean.setVi_update_time(new java.util.Date());
-
-		videoService.update(videoBean);
-
-		logger.info(ca_name + "編輯成功");
-
-		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-	}
-
-	/**
 	 * 影片一覽 - 初期處理
 	 * 
 	 * @param page
@@ -209,7 +137,29 @@ public class VideoController implements ControllerConstants {
 	@RequestMapping(value = { "/video*/add.do", "/info-video-related/add.do" }, method = RequestMethod.POST)
 	public String addAction(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
-		return add(videoBean, bindingResult);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "新增失敗: 資料未填");
+
+			return ca_directory + ADD_PAGE;
+
+		} else {
+
+			videoBean.setVi_CategoryBean(categoryBean);
+			videoBean.setVi_status(0);
+			videoBean.setVi_update_time(new java.util.Date());
+
+			videoService.insert(videoBean);
+
+			logger.info(ca_name + "新增成功");
+
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+		}
 	}
 
 	/**
@@ -273,7 +223,27 @@ public class VideoController implements ControllerConstants {
 	@RequestMapping(value = { "/video*/edit.do", "/info-video-related/edit.do" }, method = RequestMethod.POST)
 	public String editAction(@Valid VideoBean videoBean, BindingResult bindingResult) {
 
-		return edit(videoBean, bindingResult);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "編輯失敗: 資料未填");
+
+			return ca_directory + EDIT_PAGE + QUESTION + VIDEO_ID + EQUAL + videoBean.getVi_id() + AND + PAGE + EQUAL
+					+ currentPage;
+		}
+		videoBean.setVi_CategoryBean(categoryBean);
+		videoBean.setVi_status(videoService.selectByVi_id(videoBean.getVi_id()).getVi_status());
+		videoBean.setVi_update_time(new java.util.Date());
+
+		videoService.update(videoBean);
+
+		logger.info(ca_name + "編輯成功");
+
+		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 	}
 
 	/**

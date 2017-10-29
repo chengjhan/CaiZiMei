@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: HtmlController.java
  * Author: 詹晟
- * Date: 2017/10/28
+ * Date: 2017/10/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -74,78 +74,6 @@ public class HtmlController implements ControllerConstants {
 	}
 
 	/**
-	 * 新增 html
-	 * 
-	 * @param htmlBean
-	 *            HtmlBean --> form backing object
-	 * @param bindingResult
-	 *            BindingResult
-	 * @return /WEB-INF/views/ca_directory/add.jsp
-	 * @return /WEB-INF/views/ca_directory/list.jsp
-	 */
-	private String add(HtmlBean htmlBean, BindingResult bindingResult) {
-
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
-		String ca_name = categoryBean.getCa_name();
-		String ca_directory = categoryBean.getCa_directory();
-
-		if (bindingResult.hasErrors()) {
-
-			logger.error(ca_name + "新增失敗: 資料未填");
-
-			return ca_directory + ADD_PAGE;
-
-		} else {
-
-			htmlBean.setHt_CategoryBean(categoryBean);
-			htmlBean.setHt_status(0);
-			htmlBean.setHt_update_time(new java.util.Date());
-
-			htmlService.insert(htmlBean);
-
-			logger.info(ca_name + "新增成功");
-
-			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
-		}
-	}
-
-	/**
-	 * 編輯 html
-	 * 
-	 * @param htmlBean
-	 *            HtmlBean --> form backing object
-	 * @param bindingResult
-	 *            BindingResult
-	 * @return /WEB-INF/views/ca_directory/edit.jsp
-	 * @return /WEB-INF/views/ca_directory/list.jsp
-	 */
-	private String edit(HtmlBean htmlBean, BindingResult bindingResult) {
-
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
-		String ca_name = categoryBean.getCa_name();
-		String ca_directory = categoryBean.getCa_directory();
-
-		if (bindingResult.hasErrors()) {
-
-			logger.error(ca_name + "編輯失敗: 資料未填");
-
-			return ca_directory + EDIT_PAGE + QUESTION + HTML_ID + EQUAL + htmlBean.getHt_id() + AND + PAGE + EQUAL
-					+ currentPage;
-		}
-		htmlBean.setHt_CategoryBean(categoryBean);
-		htmlBean.setHt_status(htmlService.selectByHt_id(htmlBean.getHt_id()).getHt_status());
-		htmlBean.setHt_update_time(new java.util.Date());
-
-		htmlService.update(htmlBean);
-
-		logger.info(ca_name + "編輯成功");
-
-		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
-	}
-
-	/**
 	 * html 一覽 - 初期處理
 	 * 
 	 * @param page
@@ -210,7 +138,29 @@ public class HtmlController implements ControllerConstants {
 			"/info*/add.do" }, method = RequestMethod.POST)
 	public String addAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
-		return add(htmlBean, bindingResult);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "新增失敗: 資料未填");
+
+			return ca_directory + ADD_PAGE;
+
+		} else {
+
+			htmlBean.setHt_CategoryBean(categoryBean);
+			htmlBean.setHt_status(0);
+			htmlBean.setHt_update_time(new java.util.Date());
+
+			htmlService.insert(htmlBean);
+
+			logger.info(ca_name + "新增成功");
+
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+		}
 	}
 
 	/**
@@ -275,7 +225,27 @@ public class HtmlController implements ControllerConstants {
 			"/info*/edit.do" }, method = RequestMethod.POST)
 	public String editAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
-		return edit(htmlBean, bindingResult);
+		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String ca_name = categoryBean.getCa_name();
+		String ca_directory = categoryBean.getCa_directory();
+
+		if (bindingResult.hasErrors()) {
+
+			logger.error(ca_name + "編輯失敗: 資料未填");
+
+			return ca_directory + EDIT_PAGE + QUESTION + HTML_ID + EQUAL + htmlBean.getHt_id() + AND + PAGE + EQUAL
+					+ currentPage;
+		}
+		htmlBean.setHt_CategoryBean(categoryBean);
+		htmlBean.setHt_status(htmlService.selectByHt_id(htmlBean.getHt_id()).getHt_status());
+		htmlBean.setHt_update_time(new java.util.Date());
+
+		htmlService.update(htmlBean);
+
+		logger.info(ca_name + "編輯成功");
+
+		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 	}
 
 	/**

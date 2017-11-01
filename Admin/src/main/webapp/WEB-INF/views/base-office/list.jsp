@@ -94,8 +94,8 @@
 					
 					<!-- pagination -->
 					<c:if test="${pageCount > 1}">
-						<nav style="text-align:center">
-							<ul class="pagination" style="margin:0">
+						<nav class="page">
+							<ul class="pagination">
 								<c:if test="${currentPage > 1}">
 									<li><a href="<%=request.getContextPath()%>/base-office/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span></a></li>
 								</c:if>

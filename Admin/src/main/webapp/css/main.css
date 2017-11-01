@@ -3,6 +3,10 @@
 	margin-bottom: 5px;
 }
 
+.table-hover {
+	border-bottom: 1px solid #ddd;
+}
+
 .option .form-control {
 	border-radius: 0px !important;
 }
@@ -14,6 +18,14 @@
 
 .edit-button {
 	width: 30px;
+}
+
+.page {
+	text-align: center;
+}
+
+.page .pagination {
+	margin: 0 !important;
 }
 
 /* admin */

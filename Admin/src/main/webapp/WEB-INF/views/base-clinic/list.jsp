@@ -114,17 +114,43 @@
 					
 					<!-- pagination -->
 					<c:if test="${pageCount > 1}">
-						<nav style="text-align:center">
-							<ul class="pagination" style="margin:0">
-								<c:if test="${currentPage > 1}">
-									<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-								</c:if>
+						<nav class="page">
+							<ul class="pagination">
+								<c:choose>
+									<c:when test="${currentPage eq 1}">
+										<li class="disabled"><a><span aria-hidden="true">&laquo;&laquo;</span><span class="sr-only">Previous</span></a></li>
+									</c:when>
+									<c:when test="${currentPage > 1}">
+										<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=1"><span aria-hidden="true">&laquo;&laquo;</span><span class="sr-only">Previous</span></a></li>
+									</c:when>
+								</c:choose>
+								<c:choose>
+									<c:when test="${currentPage eq 1}">
+										<li class="disabled"><a><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+									</c:when>
+									<c:when test="${currentPage > 1}">
+										<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+									</c:when>
+								</c:choose>
 								<c:forEach begin="1" end="${pageCount}" varStatus="status">
 									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/base-clinic/list?page=${status.count}">${status.count}</a></li>
 								</c:forEach>
-								<c:if test="${currentPage < pageCount}">
-									<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-								</c:if>
+								<c:choose>
+									<c:when test="${currentPage < pageCount}">
+										<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+									</c:when>
+									<c:when test="${currentPage eq pageCount}">
+										<li class="disabled"><a><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+									</c:when>
+								</c:choose>
+								<c:choose>
+									<c:when test="${currentPage < pageCount}">
+										<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${pageCount}"><span aria-hidden="true">&raquo;&raquo;</span><span class="sr-only">Next</span></a></li>
+									</c:when>
+									<c:when test="${currentPage eq pageCount}">
+										<li class="disabled"><a><span aria-hidden="true">&raquo;&raquo;</span><span class="sr-only">Next</span></a></li>
+									</c:when>
+								</c:choose>
 							</ul>
 						</nav>
 					</c:if>

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/10/29
+ * Date: 2017/11/2
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -117,8 +117,12 @@ public class BaseController implements ControllerConstants {
 
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
+		String ca_directory = categoryBean.getCa_directory();
 
 		int pageRowCount = BASE_PAGE_ROW_COUNT;
+
+		// 取得類別資料夾名稱
+		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);
@@ -133,7 +137,7 @@ public class BaseController implements ControllerConstants {
 		model.addAttribute(PAGE_COUNT,
 				Pagination.getPageCount(baseService.selectCountByBa_Ca(categoryBean), pageRowCount));
 
-		return categoryBean.getCa_directory() + LIST_PAGE;
+		return ca_directory + LIST_PAGE;
 	}
 
 	/**

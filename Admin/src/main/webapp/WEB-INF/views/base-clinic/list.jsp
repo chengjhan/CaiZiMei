@@ -36,14 +36,7 @@
 					</ol>
 				
 					<!-- option -->
-					<div class="btn-group option">
-						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/base-clinic/add" title="新增">
-								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
-							</a>
-						</div>
-					</div>
-					<!-- option end -->
+					<jsp:include page="../option.jsp" />
 					
 					<!-- table -->
 					<table class="table table-hover" style="font-size:13px">
@@ -113,48 +106,7 @@
 					<!-- table end -->
 					
 					<!-- pagination -->
-					<c:if test="${pageCount > 1}">
-						<nav class="page">
-							<ul class="pagination">
-								<c:choose>
-									<c:when test="${currentPage eq 1}">
-										<li class="disabled"><a><span aria-hidden="true">&laquo;&laquo;</span><span class="sr-only">Previous</span></a></li>
-									</c:when>
-									<c:when test="${currentPage > 1}">
-										<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=1"><span aria-hidden="true">&laquo;&laquo;</span><span class="sr-only">Previous</span></a></li>
-									</c:when>
-								</c:choose>
-								<c:choose>
-									<c:when test="${currentPage eq 1}">
-										<li class="disabled"><a><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-									</c:when>
-									<c:when test="${currentPage > 1}">
-										<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-									</c:when>
-								</c:choose>
-								<c:forEach begin="1" end="${pageCount}" varStatus="status">
-									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/base-clinic/list?page=${status.count}">${status.count}</a></li>
-								</c:forEach>
-								<c:choose>
-									<c:when test="${currentPage < pageCount}">
-										<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-									</c:when>
-									<c:when test="${currentPage eq pageCount}">
-										<li class="disabled"><a><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-									</c:when>
-								</c:choose>
-								<c:choose>
-									<c:when test="${currentPage < pageCount}">
-										<li><a href="<%=request.getContextPath()%>/base-clinic/list?page=${pageCount}"><span aria-hidden="true">&raquo;&raquo;</span><span class="sr-only">Next</span></a></li>
-									</c:when>
-									<c:when test="${currentPage eq pageCount}">
-										<li class="disabled"><a><span aria-hidden="true">&raquo;&raquo;</span><span class="sr-only">Next</span></a></li>
-									</c:when>
-								</c:choose>
-							</ul>
-						</nav>
-					</c:if>
-					<!-- pagination end -->
+					<jsp:include page="../pagination.jsp" />
 					
 				</div>
 				<!-- content end -->

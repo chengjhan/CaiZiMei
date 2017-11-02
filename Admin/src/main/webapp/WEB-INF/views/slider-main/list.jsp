@@ -35,14 +35,7 @@
 					</ol>
 				
 					<!-- option -->
-					<div class="btn-group option">
-						<div class="add-button">
-							<a href="<%=request.getContextPath()%>/slider-main/add" title="新增">
-								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
-							</a>
-						</div>
-					</div>
-					<!-- option end -->
+					<jsp:include page="../option.jsp" />
 					
 					<!-- table -->
 					<table class="table table-bordered">
@@ -91,22 +84,7 @@
 					<!-- table end -->
 					
 					<!-- pagination -->
-					<c:if test="${pageCount > 1}">
-						<nav class="page">
-							<ul class="pagination">
-								<c:if test="${currentPage > 1}">
-									<li><a href="<%=request.getContextPath()%>/slider-main/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span></a></li>
-								</c:if>
-								<c:forEach begin="1" end="${pageCount}" varStatus="status">
-									<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/slider-main/list?page=${status.count}">${status.count}</a></li>
-								</c:forEach>
-								<c:if test="${currentPage < pageCount}">
-									<li><a href="<%=request.getContextPath()%>/slider-main/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span></a></li>
-								</c:if>
-							</ul>
-						</nav>
-					</c:if>
-					<!-- pagination end -->
+					<jsp:include page="../pagination.jsp" />
 	
 				</div>
 				<!-- content end -->

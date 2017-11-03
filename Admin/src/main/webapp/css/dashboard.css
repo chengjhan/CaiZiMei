@@ -166,11 +166,6 @@ nav .logo img {
 	transform: translateY(-50%); /* 垂直置中 */
 }
 
-#image-reset {
-	float: right;
-	cursor: pointer;
-}
-
 .image-table tr td:first-child {
 	width: 50px;
 	padding-left: 0;

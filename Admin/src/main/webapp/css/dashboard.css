@@ -58,10 +58,13 @@ nav .logo img {
 /* admin */
 .admin-table tr td:first-child {
 	width: 75px;
+	padding-left: 0;
 }
 
 .admin-table tr td:nth-child(2) {
 	width: 400px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .ad-status-switch {
@@ -71,11 +74,14 @@ nav .logo img {
 
 /* area */
 .area-table tr td:first-child {
-	width: 75px;
+	width: 62.5px;
+	padding-left: 0;
 }
 
 .area-table tr td:nth-child(2) {
 	width: 400px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .area-add-button {
@@ -102,11 +108,14 @@ nav .logo img {
 
 /* base */
 .base-table tr td:first-child {
-	width: 100px;
+	width: 75px;
+	padding-left: 0;
 }
 
 .base-table tr td:nth-child(2) {
 	width: 400px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 #ba_tel {
@@ -142,17 +151,8 @@ nav .logo img {
 .image-preview {
 	width: 640px;
 	height: 360px;
-	text-align: center; /* 水平置中 */ /* 作用於此元素下的 inline 子元素 */
+	text-align: center; /* 水平置中 */ /* 作用於此元素內的 inline 子元素 */
 	cursor: pointer;
-}
-
-.image-preview::before { /* 偽元素垂直置中 */
-	content: '';
-	width: 0;
-	height: 100%;
-	display: inline-block; /* 浮動 */
-	vertical-align: middle; /* 垂直置中 */
-	position: relative;
 }
 
 .image-preview img {
@@ -160,8 +160,10 @@ nav .logo img {
 	max-width: 640px;
 	height: auto;
 	max-height: 360px;
-	display: inline-block; /* 浮動 */
-	vertical-align: middle; /* 垂直置中 */
+	display: inline-block; /* 水平置中 */ /* 浮動 */
+	position: relative; /* 垂直置中 */
+	top: 50%; /* 垂直置中 */
+	transform: translateY(-50%); /* 垂直置中 */
 }
 
 #image-reset {
@@ -176,6 +178,7 @@ nav .logo img {
 
 .image-table tr td:nth-child(2) {
 	width: 600px;
+	padding-left: 0;
 	padding-right: 0;
 }
 
@@ -186,11 +189,14 @@ nav .logo img {
 
 /* video */
 .video-table tr td:first-child {
-	width: 75px;
+	width: 50px;
+	padding-left: 0;
 }
 
 .video-table tr td:nth-child(2) {
 	width: 500px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .vi-status-switch {
@@ -203,11 +209,14 @@ nav .logo img {
 
 /* html */
 .html-table tr td:first-child {
-	width: 75px;
+	width: 50px;
+	padding-left: 0;
 }
 
 .html-table tr td:nth-child(2) {
 	width: 750px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .ht-status-switch {

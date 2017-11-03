@@ -6,7 +6,7 @@ main {
 section {
 	height: 100%;
 	background-color: white;
-	text-align: center; /* 水平置中 */ /* 作用於此元素下的 inline 子元素 */
+	text-align: center; /* 水平置中 */ /* 作用於此元素內的 inline 子元素 */
 }
 
 /* 偽元素垂直置中 */
@@ -14,13 +14,13 @@ section::before {
 	content: '';
 	width: 0;
 	height: 100%;
-	display: inline-block; /* 浮動 */
+	display: inline-block; /* 水平置中 */ /* 浮動 */
+	position: relative; /* 垂直置中 */
 	vertical-align: middle; /* 垂直置中 */
-	position: relative;
 }
 
 section div {
-	display: inline-block; /* 浮動 */
+	display: inline-block; /* 水平置中 */ /* 浮動 */
 	vertical-align: middle; /* 垂直置中 */
 }
 

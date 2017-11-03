@@ -13,31 +13,3 @@ html, body {
 img {
 	width: 100%;
 }
-
-.table>tbody>tr>td {
-	vertical-align: middle !important;
-}
-
-form .table td {
-	border: none !important;
-}
-
-form .table select:focus, form .table input:focus, form .table textarea:focus {
-	box-shadow: 0 0 !important;
-}
-
-form .table .form-control, .pagination>li:first-child>a, .pagination>li:last-child>a {
-	border-radius: 0px !important;
-}
-
-.table .form-error {
-	border-color: red !important;
-}
-
-.btn-success, .btn-danger, .btn-warning {
-	border-radius: 0px !important;
-}
-
-.error {
-	color: red;
-}

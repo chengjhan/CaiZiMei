@@ -71,7 +71,7 @@
 								<td>
 									<input type="submit" class="btn btn-success" value="變更" />
 									<input type="button" id="image-reset" class="btn btn-warning" value="重設圖片" style="display:none" />
-									<a href="<%=request.getContextPath()%>/image/list?page=1"><input type="button" class="btn btn-danger" value="取消" /></a>
+									<a href="<%=request.getContextPath()%>/image/list?page=${currentPage}"><input type="button" class="btn btn-danger" value="取消" /></a>
 								</td>
 							</tr>
 						</table>

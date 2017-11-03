@@ -71,8 +71,8 @@
 								<td></td>
 								<td>
 									<input type="submit" class="btn btn-success" value="變更" />
-									<a href="<%=request.getContextPath()%>/slider-recent/list?page=${currentPage}"><button type="button" class="btn btn-danger">取消</button></a>
-									<div id="image-reset" style="display:none"><input type="button" class="btn btn-warning" value="重設圖片" /></div>
+									<input type="button" id="image-reset" class="btn btn-warning" value="重設圖片" style="display:none" />
+									<a href="<%=request.getContextPath()%>/slider-recent/list?page=${currentPage}"><input type="button" class="btn btn-danger" value="取消" /></a>
 								</td>
 							</tr>
 						</table>

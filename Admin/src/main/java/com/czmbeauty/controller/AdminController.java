@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/11/3
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -31,7 +31,9 @@ import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.util.CryptographicHashFunction;
 import com.czmbeauty.common.util.Pagination;
 import com.czmbeauty.model.entity.AdminBean;
+import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.service.AdminService;
+import com.czmbeauty.model.service.CategoryService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -53,6 +55,12 @@ public class AdminController implements ControllerConstants {
 	 */
 	@Autowired
 	private HttpServletRequest request;
+
+	/**
+	 * 注入 CategoryService
+	 */
+	@Autowired
+	private CategoryService categoryService;
 
 	/**
 	 * 注入 AdminService
@@ -565,7 +573,13 @@ public class AdminController implements ControllerConstants {
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
+
 		int pageRowCount = ADMIN_PAGE_ROW_COUNT;
+
+		// 取得類別資料夾名稱
+		model.addAttribute(CATEGORY_DIRECTORY, categoryBean.getCa_directory());
 
 		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, page);

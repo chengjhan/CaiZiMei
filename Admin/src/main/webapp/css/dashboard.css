@@ -86,6 +86,11 @@ form .table .form-error {
 }
 
 /* admin */
+.ad-status-switch {
+	width: 30px;
+	cursor: pointer;
+}
+
 .admin-form-table tr td:first-child {
 	width: 75px;
 	padding-left: 0;
@@ -95,11 +100,6 @@ form .table .form-error {
 	width: 400px;
 	padding-left: 0;
 	padding-right: 0;
-}
-
-.ad-status-switch {
-	width: 30px;
-	cursor: pointer;
 }
 
 /* area */
@@ -120,17 +120,6 @@ form .table .form-error {
 	width: 50px;
 }
 
-.area-form-table tr td:first-child {
-	width: 62.5px;
-	padding-left: 0;
-}
-
-.area-form-table tr td:nth-child(2) {
-	width: 400px;
-	padding-left: 0;
-	padding-right: 0;
-}
-
 .co-status-switch {
 	width: 30px;
 	cursor: pointer;
@@ -146,6 +135,17 @@ form .table .form-error {
 	cursor: pointer;
 }
 
+.area-form-table tr td:first-child {
+	width: 62.5px;
+	padding-left: 0;
+}
+
+.area-form-table tr td:nth-child(2) {
+	width: 400px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
 /* base */
 .base-list-table {
 	font-size: 13px;
@@ -158,6 +158,11 @@ form .table .form-error {
 
 .base-list-table thead tr td:nth-child(4) {
 	width: 100px;
+}
+
+.ba-status-switch {
+	width: 30px;
+	cursor: pointer;
 }
 
 .base-form-table tr td:first-child {
@@ -179,11 +184,6 @@ form .table .form-error {
 #ba_tel_code {
 	width: 25%;
 	float: left;
-}
-
-.ba-status-switch {
-	width: 30px;
-	cursor: pointer;
 }
 
 /* image */
@@ -211,17 +211,6 @@ form .table .form-error {
 	.image-list-table tbody tr:nth-child(3) td:nth-child(1),
 	.image-list-table tbody tr:nth-child(4) td:nth-child(1) {
 	height: 50px;
-}
-
-.image-form-table tr td:first-child {
-	width: 50px;
-	padding-left: 0;
-}
-
-.image-form-table tr td:nth-child(2) {
-	width: 600px;
-	padding-left: 0;
-	padding-right: 0;
 }
 
 .im-status-switch {
@@ -261,6 +250,17 @@ form .table .form-error {
 	transform: translateY(-50%); /* 垂直置中 */
 }
 
+.image-form-table tr td:first-child {
+	width: 50px;
+	padding-left: 0;
+}
+
+.image-form-table tr td:nth-child(2) {
+	width: 600px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
 /* video */
 .video-list-table thead tr td:nth-child(1), .video-list-table thead tr td:nth-child(4),
 	.video-list-table thead tr td:nth-child(5), .video-list-table thead tr td:nth-child(6)
@@ -270,6 +270,14 @@ form .table .form-error {
 
 .video-list-table thead tr td:nth-child(3) {
 	width: 560px;
+}
+
+.vi-status-switch {
+	width: 30px;
+}
+
+.vi-status-switch img[data-vi-status='0'] {
+	cursor: pointer;
 }
 
 .video-form-table tr td:first-child {
@@ -283,19 +291,19 @@ form .table .form-error {
 	padding-right: 0;
 }
 
-.vi-status-switch {
-	width: 30px;
-}
-
-.vi-status-switch img[data-vi-status='0'] {
-	cursor: pointer;
-}
-
 /* html */
 .html-list-table thead tr td:nth-child(1), .html-list-table thead tr td:nth-child(3),
 	.html-list-table thead tr td:nth-child(4), .html-list-table thead tr td:nth-child(5)
 	{
 	width: 50px;
+}
+
+.ht-status-switch {
+	width: 30px;
+}
+
+.ht-status-switch img[data-ht-status='0'] {
+	cursor: pointer;
 }
 
 .html-form-table tr td:first-child {
@@ -307,12 +315,4 @@ form .table .form-error {
 	width: 750px;
 	padding-left: 0;
 	padding-right: 0;
-}
-
-.ht-status-switch {
-	width: 30px;
-}
-
-.ht-status-switch img[data-ht-status='0'] {
-	cursor: pointer;
 }

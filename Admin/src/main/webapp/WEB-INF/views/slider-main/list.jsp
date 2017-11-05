@@ -42,8 +42,8 @@
 							<tbody>
 								<tr>
 									<td rowspan="4" style="width:50px">${status.count + pageRowCount * (currentPage - 1)}</td>
-									<td rowspan="4" style="width:45%"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.im_filename}"></td>
-									<td style="width:50px">名稱</td>
+									<td rowspan="4" style="width:45%;text-align:center"><img src="<%=request.getContextPath()%>/images/slider-main/${bean.im_filename}"></td>
+									<td style="width:50px;height:50px">名稱</td>
 									<td>${bean.im_name}</td>
 									<td rowspan="4" style="width:50px">
 										<div class="edit-button">
@@ -66,15 +66,15 @@
 									</td>
 								</tr>
 								<tr>
-									<td style="width:50px">檔名</td>
+									<td style="height:50px">檔名</td>
 									<td>${bean.im_filename}</td>
 								</tr>
 								<tr>
-									<td style="width:50px">連結</td>
+									<td style="height:50px">連結</td>
 									<td><a href="${bean.im_url}" target="_blank">${bean.im_url}</a></td>
 								</tr>
 								<tr>
-									<td style="width:50px">排序</td>
+									<td style="height:50px">排序</td>
 									<td>${bean.im_rank}</td>
 								</tr>
 							</tbody>

@@ -50,6 +50,13 @@ nav .logo img {
 	vertical-align: middle !important;
 }
 
+.table>tbody>tr>td>img {
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	max-height: 182px;
+}
+
 .btn-success, .btn-danger, .btn-warning {
 	border-radius: 0px !important;
 }

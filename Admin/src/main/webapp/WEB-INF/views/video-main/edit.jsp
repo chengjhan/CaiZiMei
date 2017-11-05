@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/video-main/edit.do" method="post" modelAttribute="videoBean">
-						<table class="table video-table">
+						<table class="table video-form-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="vi_id" /></td>

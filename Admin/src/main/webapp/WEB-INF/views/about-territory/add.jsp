@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/about-territory/add.do" method="post" modelAttribute="htmlBean">
-						<table class="table html-table">
+						<table class="table html-form-table">
 							<tr>
 								<td><form:label path="ht_name">名稱</form:label></td>
 								<td><form:input path="ht_name" cssClass="form-control" /></td>

@@ -37,14 +37,14 @@
 					<jsp:include page="../option.jsp" />
 					
 					<!-- table -->
-					<table class="table table-bordered">
+					<table class="table table-bordered html-list-table">
 						<thead>
 							<tr>
-								<td style="width:50px">編號</td>
+								<td>編號</td>
 								<td>名稱</td>
-								<td style="width:50px">排序</td>
-								<td style="width:50px">編輯</td>
-								<td style="width:50px">開啟</td>
+								<td>排序</td>
+								<td>編輯</td>
+								<td>開啟</td>
 							</tr>
 						</thead>
 						<tbody>

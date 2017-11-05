@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>編輯相關影音 - 采姿美管理系統</title>
+<title>編輯相關影音頁面 - 采姿美管理系統</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon_black.ico" type="image/x-icon" />
 </head>
 <body>
@@ -22,7 +22,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				
 				<!-- title -->
-				<h2 class="sub-header">編輯相關影音</h2>
+				<h2 class="sub-header">編輯相關影音頁面</h2>
 				
 				<!-- content -->
 				<div class="table-responsive">
@@ -31,12 +31,12 @@
 					<ol class="breadcrumb">
 						<li><a href="<%=request.getContextPath()%>/index">首頁</a></li>
 						<li><a href="<%=request.getContextPath()%>/info-video-related/list?page=${currentPage}">相關影音頁面一覽</a></li>
-						<li class="active">編輯相關影音</li>
+						<li class="active">編輯相關影音頁面</li>
 					</ol>
 				
 					<!-- form -->
 					<form:form action="/Admin/info-video-related/edit.do" method="post" modelAttribute="videoBean">
-						<table class="table html-table">
+						<table class="table video-form-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="vi_id" /></td>

@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/video-main/add.do" method="post" modelAttribute="videoBean">
-						<table class="table video-table">
+						<table class="table video-form-table">
 							<tr>
 								<td><form:label path="vi_name">名稱</form:label></td>
 								<td><form:input path="vi_name" cssClass="form-control" /></td>

@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/info-knowleage/edit.do" method="post" modelAttribute="htmlBean">
-						<table class="table html-table">
+						<table class="table html-form-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="ht_id" /></td>

@@ -50,13 +50,6 @@ nav .logo img {
 	vertical-align: middle !important;
 }
 
-.table>tbody>tr>td>img {
-	width: auto;
-	max-width: 100%;
-	height: auto;
-	max-height: 182px;
-}
-
 .btn-success, .btn-danger, .btn-warning {
 	border-radius: 0px !important;
 }
@@ -171,12 +164,38 @@ form .table .form-error {
 }
 
 /* image */
-.image-table tr td:first-child {
+.image-list-table tbody tr:nth-child(1) td:nth-child(1),
+	.image-list-table tbody tr:nth-child(1) td:nth-child(3),
+	.image-list-table tbody tr:nth-child(1) td:nth-child(5),
+	.image-list-table tbody tr:nth-child(1) td:nth-child(6) {
+	width: 50px;
+}
+
+.image-list-table tbody tr:nth-child(1) td:nth-child(2) {
+	width: 45%;
+	text-align: center;
+}
+
+.image-list-table tbody tr:nth-child(1) td:nth-child(2) img {
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	max-height: 182px;
+}
+
+.image-list-table tbody tr:nth-child(1) td:nth-child(3),
+	.image-list-table tbody tr:nth-child(2) td:nth-child(1),
+	.image-list-table tbody tr:nth-child(3) td:nth-child(1),
+	.image-list-table tbody tr:nth-child(4) td:nth-child(1) {
+	height: 50px;
+}
+
+.image-form-table tr td:first-child {
 	width: 50px;
 	padding-left: 0;
 }
 
-.image-table tr td:nth-child(2) {
+.image-form-table tr td:nth-child(2) {
 	width: 600px;
 	padding-left: 0;
 	padding-right: 0;

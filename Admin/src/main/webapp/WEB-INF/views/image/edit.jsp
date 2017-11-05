@@ -46,7 +46,7 @@
 							<input type="file" id="image-uploader" name="file" style="display:none" />
 						</div>
 						
-						<table class="table image-table">
+						<table class="table image-form-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="im_id" /></td>

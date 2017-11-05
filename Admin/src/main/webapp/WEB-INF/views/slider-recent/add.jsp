@@ -47,7 +47,7 @@
 						</div>
 						<p style="color:red">※ 請上傳長寬比為 16:9 的圖片 (建議為 640px*360px)。</p>
 						
-						<table class="table image-table">
+						<table class="table image-form-table">
 							<tr>
 								<td><form:label path="im_name">名稱</form:label></td>
 								<td><form:input path="im_name" cssClass="form-control" /></td>

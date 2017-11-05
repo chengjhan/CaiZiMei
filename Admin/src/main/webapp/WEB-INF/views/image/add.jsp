@@ -46,7 +46,7 @@
 							<input type="file" id="image-uploader" name="file" style="display:none" />
 						</div>
 						
-						<table class="table image-table">
+						<table class="table image-form-table">
 							<tr>
 								<td><form:label path="im_name">名稱</form:label></td>
 								<td><form:input path="im_name" cssClass="form-control" /></td>

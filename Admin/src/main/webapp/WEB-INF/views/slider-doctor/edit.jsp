@@ -47,7 +47,7 @@
 						</div>
 						<p style="color:red">※ 請上傳長寬比為 16:9 的圖片 (建議為 640px*360px)。</p>
 						
-						<table class="table image-table">
+						<table class="table image-form-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="im_id" /></td>

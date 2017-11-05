@@ -37,15 +37,15 @@
 					<jsp:include page="../option.jsp" />
 					
 					<!-- table -->
-					<table class="table table-bordered">
+					<table class="table table-bordered image-list-table">
 						<c:forEach var="bean" items="${imageList}" varStatus="status">
 							<tbody>
 								<tr>
-									<td rowspan="4" style="width:50px">${status.count + pageRowCount * (currentPage - 1)}</td>
-									<td rowspan="4" style="width:40%"><img src="<%=request.getContextPath()%>/images/image/${bean.im_filename}"></td>
-									<td style="width:50px">名稱</td>
+									<td rowspan="4">${status.count + pageRowCount * (currentPage - 1)}</td>
+									<td rowspan="4"><img src="<%=request.getContextPath()%>/images/image/${bean.im_filename}"></td>
+									<td>名稱</td>
 									<td>${bean.im_name}</td>
-									<td rowspan="4" style="width:50px">
+									<td rowspan="4">
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/image/edit?im_id=${bean.im_id}&page=${currentPage}" title="編輯">
 												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
@@ -54,15 +54,15 @@
 									</td>	
 								</tr>
 								<tr>
-									<td style="width:50px">檔名</td>
+									<td>檔名</td>
 									<td>${bean.im_filename}</td>
 								</tr>
 								<tr>
-									<td style="width:50px">標籤</td>
+									<td>標籤</td>
 									<td>&lt;img src="/Admin/images/image/${bean.im_filename}"&gt;</td>
 								</tr>
 								<tr>
-									<td style="width:50px">連結</td>
+									<td>連結</td>
 									<td><a href="${bean.im_url}" target="_blank">${bean.im_url}</a></td>
 								</tr>
 							</tbody>

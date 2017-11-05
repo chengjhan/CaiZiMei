@@ -86,12 +86,12 @@ form .table .form-error {
 }
 
 /* admin */
-.admin-table tr td:first-child {
+.admin-form-table tr td:first-child {
 	width: 75px;
 	padding-left: 0;
 }
 
-.admin-table tr td:nth-child(2) {
+.admin-form-table tr td:nth-child(2) {
 	width: 400px;
 	padding-left: 0;
 	padding-right: 0;
@@ -110,12 +110,22 @@ form .table .form-error {
 	right: 0;
 }
 
-.area-table tr td:first-child {
+.area-list-table {
+	width: 500px;
+}
+
+.area-list-table thead tr td:nth-child(1), .area-list-table thead tr td:nth-child(3),
+	.area-list-table thead tr td:nth-child(4), .area-list-table thead tr td:nth-child(5)
+	{
+	width: 50px;
+}
+
+.area-form-table tr td:first-child {
 	width: 62.5px;
 	padding-left: 0;
 }
 
-.area-table tr td:nth-child(2) {
+.area-form-table tr td:nth-child(2) {
 	width: 400px;
 	padding-left: 0;
 	padding-right: 0;
@@ -137,12 +147,25 @@ form .table .form-error {
 }
 
 /* base */
-.base-table tr td:first-child {
+.base-list-table {
+	font-size: 13px;
+}
+
+.base-list-table thead tr td:nth-child(1), .base-list-table thead tr td:nth-child(7),
+	.base-list-table thead tr td:nth-child(8) {
+	width: 50px;
+}
+
+.base-list-table thead tr td:nth-child(4) {
+	width: 100px;
+}
+
+.base-form-table tr td:first-child {
 	width: 75px;
 	padding-left: 0;
 }
 
-.base-table tr td:nth-child(2) {
+.base-form-table tr td:nth-child(2) {
 	width: 400px;
 	padding-left: 0;
 	padding-right: 0;

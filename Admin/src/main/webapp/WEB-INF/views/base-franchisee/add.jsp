@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/base-franchisee/add.do" method="post" modelAttribute="baseBean">
-						<table class="table base-table">
+						<table class="table base-form-table">
 							<tr>
 								<td><form:label path="ba_name">名稱</form:label></td>
 								<td>

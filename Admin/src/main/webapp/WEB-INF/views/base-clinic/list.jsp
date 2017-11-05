@@ -38,14 +38,14 @@
 					<jsp:include page="../option.jsp" />
 					
 					<!-- table -->
-					<table class="table table-hover" style="font-size:13px">
+					<table class="table table-hover base-list-table">
 						<thead>
 							<tr class="active">
-								<td style="width:50px">編號</td>
+								<td>編號</td>
 <!-- 								<td>流水號</td> -->
 								<td>名稱</td>
 								<td>英文名稱</td>
-								<td style="width:100px">電話</td>
+								<td>電話</td>
 <!-- 								<td>國家</td> -->
 <!-- 								<td>區域</td> -->
 								<td>地址</td>
@@ -55,8 +55,8 @@
 <!-- 								<td>新增時間</td> -->
 <!-- 								<td>更新時間</td> -->
 <!-- 								<td>狀態更新時間</td> -->
-								<td style="width:50px">編輯</td>
-								<td style="width:50px">開啟</td>
+								<td>編輯</td>
+								<td>開啟</td>
 							</tr>
 						</thead>
 						<tbody>

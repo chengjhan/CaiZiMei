@@ -36,7 +36,7 @@
 
 					<!-- form -->
 					<form:form action="/Admin/base-clinic/edit.do" method="post" modelAttribute="baseBean">
-						<table class="table base-table">
+						<table class="table base-form-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="ba_id" /></td>

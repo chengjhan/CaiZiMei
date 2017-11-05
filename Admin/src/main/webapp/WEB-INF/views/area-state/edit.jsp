@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/area-state/edit.do" method="post" modelAttribute="stateBean">
-						<table class="table area-table">
+						<table class="table area-form-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="st_id" /></td>

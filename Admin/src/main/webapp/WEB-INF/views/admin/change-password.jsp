@@ -29,7 +29,7 @@
 				
 					<!-- form -->
 					<form action="<c:url value='/admin/change-password.do' />" method="post" class="form-horizontal">
-						<table class="table admin-table">
+						<table class="table admin-form-table">
 							<tr>
 								<td><label for="ad_password_old">舊密碼</label></td>
 								<td>

@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/area-country/edit.do" method="post" modelAttribute="countryBean">
-						<table class="table area-table">
+						<table class="table area-form-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="co_id" /></td>

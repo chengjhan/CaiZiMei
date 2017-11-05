@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/area-city/add.do" method="post" modelAttribute="cityBean">
-						<table class="table area-table">
+						<table class="table area-form-table">
 							<tr>
 								<td><form:label path="ci_CountryBean">國家</form:label></td>
 								<td>

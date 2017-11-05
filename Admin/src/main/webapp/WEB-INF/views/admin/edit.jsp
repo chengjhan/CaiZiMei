@@ -29,7 +29,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/admin/edit.do" method="post" modelAttribute="admin" cssClass="form-horizontal">
-						<table class="table admin-table">
+						<table class="table admin-form-table">
 							<tr>
 								<td><form:label path="ad_lastname">姓氏</form:label></td>
 								<td><form:input path="ad_lastname" cssClass="form-control" /></td>

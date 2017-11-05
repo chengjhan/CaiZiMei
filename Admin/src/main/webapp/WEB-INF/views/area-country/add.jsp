@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/area-country/add.do" method="post" modelAttribute="countryBean">
-						<table class="table area-table">
+						<table class="table area-form-table">
 							<tr>
 								<td><form:label path="co_iso">代碼</form:label></td>
 								<td><form:input path="co_iso" cssClass="form-control" /></td>

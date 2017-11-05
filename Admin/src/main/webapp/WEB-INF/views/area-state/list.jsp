@@ -53,14 +53,14 @@
 					<!-- option end -->
 					
 					<!-- table -->
-					<table class="table table-striped table-hover" style="width:500px">
+					<table class="table table-striped table-hover area-list-table">
 						<thead>
 							<tr class="active">
-								<td style="width:50px">編號</td>
+								<td>編號</td>
 								<td>名稱</td>
-								<td style="width:50px">排序</td>
-								<td style="width:50px">編輯</td>
-								<td style="width:50px">開啟</td>
+								<td>排序</td>
+								<td>編輯</td>
+								<td>開啟</td>
 							</tr>
 						</thead>
 						<tbody>

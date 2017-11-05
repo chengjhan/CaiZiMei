@@ -35,7 +35,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/admin/sign-up.do" method="post" modelAttribute="adminBean" cssClass="form-horizontal">
-						<table class="table admin-table">
+						<table class="table admin-form-table">
 							<tr>
 								<td><form:label path="ad_username">帳號</form:label></td>
 								<td><form:input path="ad_username" cssClass="form-control" /></td>

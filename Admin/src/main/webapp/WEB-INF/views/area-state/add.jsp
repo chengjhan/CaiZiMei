@@ -36,7 +36,7 @@
 				
 					<!-- form -->
 					<form:form action="/Admin/area-state/add.do" method="post" modelAttribute="stateBean">
-						<table class="table area-table">
+						<table class="table area-form-table">
 							<tr>
 								<td><form:label path="st_CountryBean">國家</form:label></td>
 								<td>

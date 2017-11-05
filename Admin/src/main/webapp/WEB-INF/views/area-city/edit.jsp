@@ -36,7 +36,7 @@
 
 					<!-- form -->
 					<form:form action="/Admin/area-city/edit.do" method="post" modelAttribute="cityBean">
-						<table class="table area-table">
+						<table class="table area-form-table">
 							<tr style="display:none">
 								<td>流水號</td>
 								<td><form:hidden path="ci_id" /></td>

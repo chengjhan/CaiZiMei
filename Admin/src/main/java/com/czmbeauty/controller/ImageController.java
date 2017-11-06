@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/11/2
+ * Date: 2017/11/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -177,9 +177,17 @@ public class ImageController implements ControllerConstants {
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();
 
+		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+
 		if (file.isEmpty()) {
 
 			logger.error(ca_name + "新增失敗: 未上傳圖片");
+
+			return ca_directory + ADD_PAGE;
+
+		} else if (!JPG.equals(extension) || !PNG.equals(extension)) {
+
+			logger.error(ca_name + "新增失敗: 上傳格式錯誤");
 
 			return ca_directory + ADD_PAGE;
 

@@ -1,24 +1,24 @@
 /* header */
-nav .logo {
+.navbar-header .logo {
 	width: 30px;
 	margin-top: 10px;
 	margin-right: 5px;
 	float: left;
 }
 
-nav .logo img {
+.navbar-header .logo img {
 	width: 100%;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar-header .navbar-brand {
 	color: white !important;
 }
 
-.navbar-inverse .navbar-nav>li>a {
+.navbar-collapse .navbar-nav>li>a {
 	color: #dddddd !important;
 }
 
-.navbar-inverse .navbar-nav>li>a:hover {
+.navbar-collapse .navbar-nav>li>a:hover {
 	color: white !important;
 }
 
@@ -28,17 +28,9 @@ nav .logo img {
 	margin-bottom: 5px;
 }
 
-.option .form-control {
-	border-radius: 0px !important;
-}
-
 .add-button {
 	width: 30px;
 	float: right;
-}
-
-.edit-button {
-	width: 30px;
 }
 
 /* table */
@@ -48,6 +40,10 @@ nav .logo img {
 
 .table>tbody>tr>td {
 	vertical-align: middle !important;
+}
+
+.edit-button {
+	width: 30px;
 }
 
 .btn-success, .btn-danger, .btn-warning {
@@ -103,6 +99,10 @@ form .table .form-error {
 }
 
 /* area */
+.option .form-control {
+	border-radius: 0px !important;
+}
+
 .area-add-button {
 	width: 30px;
 	position: absolute;

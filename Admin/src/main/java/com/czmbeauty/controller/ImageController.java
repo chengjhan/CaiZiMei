@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
+import com.czmbeauty.common.util.ImageUtil;
 import com.czmbeauty.common.util.Pagination;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
@@ -177,27 +178,26 @@ public class ImageController implements ControllerConstants {
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();
 
-		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-
-		if (file.isEmpty()) {
-
-			logger.error(ca_name + "新增失敗: 未上傳圖片");
-
-			return ca_directory + ADD_PAGE;
-
-		} else if (!JPG.equals(extension) || !PNG.equals(extension)) {
-
-			logger.error(ca_name + "新增失敗: 上傳格式錯誤");
-
-			return ca_directory + ADD_PAGE;
-
-		} else if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 
 			logger.error(ca_name + "新增失敗: 資料未填");
 
 			return ca_directory + ADD_PAGE;
 
+		} else if (file.isEmpty()) {
+
+			logger.error(ca_name + "新增失敗: 未上傳圖片");
+
+			return ca_directory + ADD_PAGE;
+
 		} else {
+
+			if (!ImageUtil.isImage(file)) {
+
+				logger.error(ca_name + "新增失敗: 上傳格式錯誤");
+
+				return ca_directory + ADD_PAGE;
+			}
 
 			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
 			try {
@@ -218,7 +218,7 @@ public class ImageController implements ControllerConstants {
 
 			logger.info(ca_name + "新增成功");
 
-			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + PAGE_ONE;
 		}
 	}
 
@@ -309,6 +309,14 @@ public class ImageController implements ControllerConstants {
 			im_filename = oldImageBean.getIm_filename();
 
 		} else {
+
+			if (!ImageUtil.isImage(file)) {
+
+				logger.error(ca_name + "編輯失敗: 上傳格式錯誤");
+
+				return ca_directory + EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND + PAGE
+						+ EQUAL + currentPage;
+			}
 
 			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
 			im_path = pathAndFilename[0];

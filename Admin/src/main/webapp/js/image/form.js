@@ -1,12 +1,32 @@
 // 預覽上傳圖片
-function preview(input) {
+function preview(input){
 	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			$(".image-preview img").attr("src", e.target.result);
+		var div_image_upload = $(".image-upload");
+		div_image_upload.removeAttr("style");
+		div_image_upload.siblings("p").remove();
+		if(!isImage(input.files[0].name.split(".").pop().toLowerCase())){
+			div_image_upload.find("img").attr("src", "../images/image/upload.png");
+			div_image_upload.attr("style", "border-color:red");
+			div_image_upload.after("<p class='error'>請上傳副檔名為 jpg 或 png 的圖片</p>");
+		}else{
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				div_image_upload.find("img").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);			
 		}
-		reader.readAsDataURL(input.files[0]);
 	}
+}
+
+// 判斷圖片副檔名
+function isImage(extension){
+	if(extension == "jpg"){
+		return true;
+	}
+	if(extension == "png"){
+		return true;
+	}
+	return false;
 }
 
 // 預覽上傳圖片

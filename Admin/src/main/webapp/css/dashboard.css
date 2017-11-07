@@ -79,6 +79,7 @@ form .table .form-error {
 
 .error {
 	color: red;
+	font-weight: 700;
 }
 
 /* admin */

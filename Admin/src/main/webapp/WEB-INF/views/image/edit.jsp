@@ -91,6 +91,8 @@
 	<script>
 		// 清除上傳圖片
 		$(document).on("click", "#image-reset", function(){
+			$(".image-upload").removeAttr("style");
+			$(".image-upload").siblings("p").remove();
 			$("#image-uploader").val("");
 			$(".image-preview img").attr("src", "../images/image/${imageBean.im_filename}");
 			$("#image-reset").attr("style", "display:none");

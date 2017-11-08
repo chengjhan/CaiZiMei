@@ -15,7 +15,10 @@
 				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/logo.svg"></a>
 			</div>
 			<div class="div-title">
-				<a href="<%=request.getContextPath()%>/"><span>采姿美國際股份有限公司</span></a>
+				<a href="<%=request.getContextPath()%>/">
+					<span class="title-chn">采姿美國際股份有限公司</span>
+					<span class="title-eng">Cai Zi Mei International CO.,Ltd.</span>
+				</a>
 			</div>
 		</div>
 	</header>

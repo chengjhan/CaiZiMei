@@ -7,7 +7,7 @@ public class ImageUtil {
 
 	public static boolean isImage(MultipartFile file) {
 
-		String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+		String extension = FilenameUtils.getExtension(file.getOriginalFilename()).toLowerCase();
 
 		if ("jpg".equals(extension)) {
 			return true;

@@ -88,8 +88,10 @@
 	<script>
 		// 清除上傳圖片
 		$(document).on("click", "#image-reset", function(){
-			$("#image-uploader").val("");
+			$(".image-upload").removeAttr("style");
+			$(".image-upload").siblings("p[class='error']").remove();
 			$(".image-preview img").attr("src", "../images/image/upload.png");
+			$("#image-uploader").val("");
 			$("#image-reset").attr("style", "display:none");
 		});
 	</script>

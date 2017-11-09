@@ -95,6 +95,11 @@
 	</div>
 	<!-- container end -->
 	
+	<!-- image zoom in -->
+	<div class="image-zoom" style="display:none">
+		<div><img></div>
+	</div>
+	
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>

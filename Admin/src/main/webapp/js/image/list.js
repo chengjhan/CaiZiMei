@@ -15,3 +15,13 @@ $(document).on("click", ".im-status-switch", function(){
 		}
 	});
 });
+
+$(".image-list-table tbody tr td img").on("click", function(){
+	$(".image-zoom").removeAttr("style");
+	document.body.style.overflow = 'hidden';
+});
+
+$(".image-zoom").on("click", function(){
+	$(".image-zoom").attr("style", "display:none");
+	document.body.style.overflow = 'auto';
+});

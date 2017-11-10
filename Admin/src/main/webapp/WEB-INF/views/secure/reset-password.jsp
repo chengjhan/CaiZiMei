@@ -34,10 +34,10 @@
 				</div>
 				<div class="form-group">
 					<label for="ad_password_new">新密碼</label>
-					<input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}">
+					<input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}" placeholder="必須為 8 位以上並包含英文及數字">
 				</div>
 				<div class="form-group">
-					<label for="ad_password_new_again">新密碼</label>
+					<label for="ad_password_new_again">確認密碼</label>
 					<input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again" value="${ad_password_new_again}">
 				</div>
 				<div class="form-group" style="margin-top:30px">

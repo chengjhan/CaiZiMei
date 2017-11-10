@@ -34,7 +34,14 @@
 					</ol>
 				
 					<!-- option -->
-					<jsp:include page="../option.jsp" />
+					<div class="btn-group option">
+						<span style="color:red">※ 排序前 6 個將顯示於「相關資訊/相關影音」頁面中。</span>
+						<div class="add-button">
+							<a href="<%=request.getContextPath()%>/${ca_directory}/add" title="新增">
+								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
+							</a>
+						</div>
+					</div>
 					
 					<!-- table -->
 					<table class="table table-bordered video-list-table">

@@ -320,6 +320,10 @@ form .table .form-error {
 	cursor: pointer;
 }
 
+.vi-status-switch img[data-vi-status='1'] {
+	cursor: not-allowed;
+}
+
 .video-form-table tr td:first-child {
 	width: 50px;
 	padding-left: 0;
@@ -344,6 +348,10 @@ form .table .form-error {
 
 .ht-status-switch img[data-ht-status='0'] {
 	cursor: pointer;
+}
+
+.ht-status-switch img[data-ht-status='1'] {
+	cursor: not-allowed;
 }
 
 .html-form-table tr td:first-child {

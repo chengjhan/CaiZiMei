@@ -76,7 +76,7 @@
 										<c:choose>
 											<c:when test="${bean.ad_authority eq 1}">
 												<div style="width:30px">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" style="cursor:not-allowed">
 												</div>
 											</c:when>
 											<c:otherwise>

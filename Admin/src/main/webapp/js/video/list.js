@@ -6,7 +6,9 @@ $(document).on("click", ".vi-status-switch img[data-vi-status='0']", function(){
 	$.get("../video/switch.ajax", {"vi_id": vi_id}, function(data){
 		vi_status_1.attr("src", "../images/icon_false.svg");
 		vi_status_1.attr("data-vi-status", "0");
+		vi_status_1.attr("title", "開啟");
 		$this.attr("src", "../images/icon_true.svg");
 		$this.attr("data-vi-status", "1");
+		$this.removeAttr("title");
 	});
 });

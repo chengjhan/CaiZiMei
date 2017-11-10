@@ -1,3 +1,14 @@
+// 顯示提示
+$(".video-form-table p").on("click", function(){
+	$(".youtube-help").removeAttr("style");
+	document.body.style.overflow = 'hidden';
+});
+
+$(".youtube-help").on("click", function(){
+	$(".youtube-help").attr("style", "display:none");
+	document.body.style.overflow = 'auto';
+});
+
 // validation
 $(document).ready(function(){
 	

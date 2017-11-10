@@ -335,6 +335,38 @@ form .table .form-error {
 	padding-right: 0;
 }
 
+.video-form-table p {
+	color: red;
+	cursor: pointer;
+}
+
+.youtube-help {
+	width: 100%;
+	padding-top: 75px;
+	background: rgba(62, 62, 64, 0.6);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	z-index: 10000;
+	overflow: scroll !important;
+	text-align: center; /* 水平置中 */ /* 作用於此元素內的 inline 子元素 */
+}
+
+.youtube-help>div {
+	width: 70%;
+	display: inline-block; /* 水平置中 */ /* 浮動 */
+}
+
+.youtube-help>div>div {
+	width: 100%;
+	margin-bottom: 75px;
+}
+
+.youtube-help img {
+	width: 100%;
+	filter: alpha(opacity = 100);
+}
+
 /* html */
 .html-list-table thead tr td:nth-child(1), .html-list-table thead tr td:nth-child(3),
 	.html-list-table thead tr td:nth-child(4), .html-list-table thead tr td:nth-child(5)

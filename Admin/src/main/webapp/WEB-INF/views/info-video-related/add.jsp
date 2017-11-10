@@ -46,7 +46,7 @@
 								<td><form:label path="vi_tag">標籤</form:label></td>
 								<td>
 									<form:textarea path="vi_tag" cssClass="form-control" rows="6" />
-									<p style="color:red">※ 請至 Youtube 網站複製嵌入標籤。</p>
+									<p>※ 請至 Youtube 網站複製嵌入標籤。</p>
 								</td>
 								<td><form:errors path="vi_tag" cssClass="error" /></td>
 							</tr>
@@ -75,6 +75,14 @@
 		</div>
 	</div>
 	<!-- container end -->
+	
+	<!-- youtube help -->
+	<div class="youtube-help" style="display:none">
+		<div>
+			<div><img src="<%=request.getContextPath()%>/images/video/youtube_help_1.png"></div>
+			<div><img src="<%=request.getContextPath()%>/images/video/youtube_help_2.png"></div>
+		</div>
+	</div>
 	
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>

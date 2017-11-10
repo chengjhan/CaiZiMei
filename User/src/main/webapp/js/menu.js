@@ -7,13 +7,13 @@ $(document).ready(function(){
 	var directoryName = hrefSplit[hrefSplit.length - 2];
 
 	// list mouseover
-	$(".ul-menu-left li").hover(function(){
-		$(this).addClass("mouseover-menu");
+	$(".menu li").hover(function(){
+		$(this).addClass("menu-mouseover");
 	}, function(){
-		$(this).removeClass("mouseover-menu");
+		$(this).removeClass("menu-mouseover");
 	});
 	
 	// list active
 	var id_li = "#id-li-" + directoryName;
-	$(id_li).addClass("active-menu");
+	$(id_li).addClass("menu-active");
 });

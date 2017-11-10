@@ -19,7 +19,7 @@ section::before {
 	vertical-align: middle; /* 垂直置中 */
 }
 
-section div {
+section>div {
 	display: inline-block; /* 水平置中 */ /* 浮動 */
 	vertical-align: middle; /* 垂直置中 */
 }

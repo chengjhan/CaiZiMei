@@ -8,7 +8,7 @@ function initMap(){
 		lng: 117
 	};
 	
-	var map = new google.maps.Map(document.getElementById("id-map"), {
+	var map = new google.maps.Map(document.getElementById("map"), {
 		center: centerLocation,
 		zoom: 7,
 		scrollwheel: false // 禁用滾輪縮放

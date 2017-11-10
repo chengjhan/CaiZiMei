@@ -6,15 +6,16 @@
 <title>header</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" type="text/css" />
 </head>
 <body>
 	<header>
-		<div class="div-header">
-			<div class="div-logo">
-				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/logo.svg"></a>
+		<div>
+			<div class="logo">
+				<a href="<%=request.getContextPath()%>/">
+					<img src="<%=request.getContextPath()%>/images/logo.svg">
+				</a>
 			</div>
-			<div class="div-title">
+			<div class="title">
 				<a href="<%=request.getContextPath()%>/">
 					<span class="title-chn">采姿美國際股份有限公司</span>
 					<span class="title-eng">Cai Zi Mei International CO.,Ltd.</span>

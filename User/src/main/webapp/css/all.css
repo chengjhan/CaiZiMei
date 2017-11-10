@@ -5,15 +5,310 @@
 @import url(//fonts.googleapis.com/earlyaccess/cwtexyen.css); /* 圓體 */
 @import url(//fonts.googleapis.com/earlyaccess/cwtexkai.css); /* 楷體 */
 
+* { /* 使 padding 和 border 不會增加元素本身的大小 */
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 html, body {
 	font-family: 'Noto Sans TC', 'Microsoft JhengHei', 'cwTeXHei', 'cwTeXMing', 'cwTeXYen', 'cwTeXFangSong', 'cwTeXKai', sans-serif;
 	background-color: #AA0000;
 	margin: 0;
 }
 
-/* 使 padding 和 border 不會增加元素本身的大小 */
-* {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+/* header */
+header {
+	width: 100%;
+	height: 140px;
+	background-color: white;
+	border-top: #AA0000 3px solid;
+}
+
+header>div {
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+header .logo {
+	height: 60px;
+	top: calc(50% - 40px); /* 垂直置中 */
+	position: relative; /* 垂直置中 */
+	float: left;
+}
+
+header .logo img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+header .title {
+	margin-left: 5px;
+	top: calc(50% - 30px); /* 垂直置中 */
+	position: relative; /* 垂直置中 */
+	float: left;
+}
+
+header .title a:active {
+	color: black;
+}
+
+header .title a:link {
+	color: black;
+	text-decoration: none;
+}
+
+header .title a:visited {
+	color: black;
+}
+
+header .title a:hover {
+	color: black;
+	text-decoration: none;
+}
+
+header .title a .title-chn {
+	font-size: 26px;
+	font-weight: 400; /* 粗細 */
+	color: black;
+	display: block;
+}
+
+header .title a .title-eng {
+	margin-left: -8px;
+	font-size: 21px;
+	display: block;
+}
+
+/* menu */
+.menu {
+	width: 100%;
+	height: 44px;
+	background-color: #AA0000;
+	padding-top: 4px;
+}
+
+.menu div {
+	width: 80%;
+	height: 100%;
+	line-height: 40px;
+	margin: 0 auto;
+}
+
+.menu ul {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	list-style-type: none; /* 去項目符號 */
+}
+
+.menu li {
+	display: inline;
+	float: left;
+}
+
+.menu a {
+	color: white;
+	padding-left: 15px;
+	padding-right: 15px;
+	display: block; /* 填滿符合父元素 */
+}
+
+.menu a:link {
+	text-decoration: none;
+}
+
+.menu a:visited {
+	
+}
+
+.menu a:hover {
+	color: #AA0000;
+	text-decoration: none;
+}
+
+.menu a:active {
+	
+}
+
+.menu a span {
+	font-size: 16px;
+}
+
+.menu-mouseover {
+	background-color: white;
+}
+
+.menu-active {
+	background-color: white;
+}
+
+.menu-active span {
+	color: #AA0000;
+}
+
+/* footer */
+footer {
+	width: 100%;
+	background-color: #AA0000;
+}
+
+footer h3 {
+	font-size: 16px;
+	color: white;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 15px;
+}
+
+footer img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+footer .title:link {
+	color: white;
+	text-decoration: none;
+}
+
+footer .title:visited {
+	color: white;
+}
+
+footer .title:hover {
+	color: white;
+	text-decoration: none;
+}
+
+footer .title:active {
+	color: white;
+}
+
+/* top */
+footer .top {
+	width: 100%;
+	height: 70px;
+}
+
+footer .top>div {
+	width: 80%;
+	height: 100%;
+	line-height: 70px;
+	margin: 0 auto;
+}
+
+footer .top .top-logo {
+	height: 32px;
+	margin-right: 5px;
+	top: calc(50% - 16px); /* 垂直置中 */
+	position: relative; /* 垂直置中 */
+	float: left;
+	position: relative;
+}
+
+footer .top .top-title span {
+	font-size: 16px;
+}
+
+/* middle */
+footer .middle {
+	width: 100%;
+	min-height: 100%;
+}
+
+footer .middle>div {
+	width: 80%;
+	padding: 20px 0px 20px 0px;
+	border-top: gray 1px solid;
+	border-bottom: gray 1px solid;
+	margin: 0 auto;
+	overflow: hidden; /* 符合子元素高度 */
+}
+
+footer .middle ul {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+footer .middle li {
+	margin-bottom: 2px;
+}
+
+footer .middle li a:link { /* 設定還沒瀏覽過的連結樣式 */
+	color: #CCCCCC;
+	text-decoration: none;
+}
+
+footer .middle li a:visited { /* 設定已經瀏覽過的連結樣式 */
+	color: #CCCCCC;
+}
+
+footer .middle li a:hover { /* 設定滑鼠移到連結上的樣式 */
+	color: white;
+	text-decoration: none;
+}
+
+footer .middle li a:active { /* 設定正在被點選的連結樣式 */
+	color: white;
+}
+
+footer .middle-left {
+	width: 125px;
+	float: left;
+}
+
+footer .middle-left li a span {
+	font-size: 14px;
+	margin: 0;
+}
+
+footer .middle-right {
+	float: right;
+}
+
+footer .middle-info li {
+	overflow: hidden;
+	/* 	text-align: center; */
+}
+
+footer .middle-info li>div {
+	width: 24px;
+	margin-right: 5px;
+	float: left;
+}
+
+footer .middle-info li a {
+	line-height: 24px;
+	float: left;
+}
+
+footer .middle-info li a span {
+	font-size: 13px;
+	margin: 0;
+}
+
+/* bottom */
+footer .bottom {
+	width: 100%;
+	height: 40px;
+}
+
+footer .bottom>div {
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+footer .bottom-copyright {
+	line-height: 40px;
+	display: inline;
+}
+
+footer .bottom-copyright span {
+	font-size: 12px;
+	color: white;
+	display: inline;
 }

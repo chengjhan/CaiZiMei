@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>采姿美</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/shortcut_icon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/swiper/swiper.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css" type="text/css" />
 </head>
 <body>
@@ -88,7 +88,7 @@
 		
 		<!-- section-5 -->
 		<section id="section-5">
-			<div id="id-map"></div>
+			<div id="map"></div>
 		</section>
 		<!-- section-5 end -->
 		

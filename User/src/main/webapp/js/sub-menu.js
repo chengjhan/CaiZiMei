@@ -10,5 +10,5 @@ $(document).ready(function(){
 	
 	// list active
 	var id_li = "#id-li-" + directoryName + "-" + pageName;
-	$(id_li).addClass("active-sub-menu");
+	$(id_li).addClass("sub-menu-active");
 });

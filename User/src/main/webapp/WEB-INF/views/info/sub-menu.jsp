@@ -4,10 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>sub-menu</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sub-menu.css" type="text/css" />
 </head>
 <body>
-	<div class="col-sm-2 sub-sidebar">
+	<div class="col-sm-2 sub-menu">
 		<ul class="nav nav-sidebar">
 			<li id="id-li-info-knowleage"><a href="<%=request.getContextPath()%>/info/knowleage"><span>醫療新知</span></a></li>
 			<li id="id-li-info-video-related"><a href="<%=request.getContextPath()%>/info/video-related"><span>相關影音</span></a></li>

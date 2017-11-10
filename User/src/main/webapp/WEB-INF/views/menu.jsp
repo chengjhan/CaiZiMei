@@ -4,10 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>menu</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/menu.css" type="text/css" />
 </head>
 <body>
-	<nav>
+	<nav class="menu">
 		<div class="div-menu">
 			<ul class="ul-menu-left">
 				<li id="id-li-about"><a href="<%=request.getContextPath()%>/about/introduction"><span>關於我們</span></a></li>

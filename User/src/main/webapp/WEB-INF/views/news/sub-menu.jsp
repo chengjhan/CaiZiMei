@@ -4,10 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>sub-menu</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sub-menu.css" type="text/css" />
 </head>
 <body>
-	<div class="col-sm-2 sub-sidebar">
+	<div class="col-sm-2 sub-menu">
 		<ul class="nav nav-sidebar">
 			<li id="id-li-news-recent"><a href="<%=request.getContextPath()%>/news/recent"><span>近期活動</span></a></li>
 			<li id="id-li-news-sale"><a href="<%=request.getContextPath()%>/news/sale"><span>優惠活動</span></a></li>

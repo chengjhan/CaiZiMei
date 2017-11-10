@@ -4,30 +4,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>footer</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css" type="text/css" />
 </head>
 <body>
 	<footer>
 	
 		<!-- top -->
-		<div class="div-footer-top">
-			<div class="div-footer-content">
-				<div class="div-footer-logo">
-					<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/images/logo_white.svg"></a>
+		<div class="top">
+			<div>
+				<div class="top-logo">
+					<a href="<%=request.getContextPath()%>/">
+						<img src="<%=request.getContextPath()%>/images/logo_white.svg">
+					</a>
 				</div>
-				<div class="div-footer-title">
-					<a href="<%=request.getContextPath()%>/" class="a-catalog"><span>采姿美國際股份有限公司</span></a>
+				<div class="top-title">
+					<a href="<%=request.getContextPath()%>/" class="title">
+						<span>采姿美國際股份有限公司</span>
+					</a>
 				</div>
 			</div>
 		</div>
 		<!-- top end -->
 		
 		<!-- middle -->
-		<div class="div-footer-middle">
-			<div class="div-footer-content">
+		<div class="middle">
+			<div>
 			
-				<div class="div-footer-menu middle-left">
-					<a href="<%=request.getContextPath()%>/" class="a-catalog"><h3>首頁</h3></a>
+				<div class="middle-left">
+					<a href="<%=request.getContextPath()%>/" class="title"><h3>首頁</h3></a>
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/about/introduction"><span>關於我們</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/team/doctor"><span>專業團隊</span></a></li>
@@ -36,7 +39,7 @@
 					</ul>
 				</div>
 				
-				<div class="div-footer-sns middle-left">
+				<div class="middle-left">
 					<h3>社群</h3>
 					<ul>
 						<li>
@@ -65,7 +68,7 @@
 					</ul>
 				</div>
 				
-				<div class="div-footer-clinic middle-left">
+				<div class="middle-left">
 					<h3>診所</h3>
 					<ul>
 						<li><a href="http://www.twinkle-clinic.tw" target="_blank"><span>曼星醫美診所</span></a></li>
@@ -78,7 +81,7 @@
 					</ul>
 				</div>
 				
-				<div class="div-footer-info middle-right">
+				<div class="middle-right middle-info">
 					<h3>聯絡我們</h3>
 					<ul>
 						<li>
@@ -106,9 +109,9 @@
 		<!-- middle end -->
 
 		<!-- bottom -->
-		<div class="div-footer-bottom">
-			<div class="div-footer-content">
-				<div class="div-footer-copyright">
+		<div class="bottom">
+			<div>
+				<div class="bottom-copyright">
 					<span>© 2017 FUNUV All rights reserved.</span>
 				</div>
 			</div>

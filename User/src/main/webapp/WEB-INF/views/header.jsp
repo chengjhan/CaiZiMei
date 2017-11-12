@@ -18,7 +18,7 @@
 			<div class="title">
 				<a href="<%=request.getContextPath()%>/">
 					<span class="title-chn">采姿美國際股份有限公司</span>
-					<span class="title-eng">Cai Zi Mei International CO.,Ltd.</span>
+					<span class="title-eng">Cai Zi Mei International Co.,Ltd.</span>
 				</a>
 			</div>
 		</div>

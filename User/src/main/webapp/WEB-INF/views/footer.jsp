@@ -112,7 +112,7 @@
 		<div class="bottom">
 			<div>
 				<div class="bottom-copyright">
-					<span>© 2017 FUNUV All rights reserved.</span>
+					<span>Copyright © 2018 Cai Zi Mei International Co.,Ltd. All rights reserved.</span>
 				</div>
 			</div>
 		</div>

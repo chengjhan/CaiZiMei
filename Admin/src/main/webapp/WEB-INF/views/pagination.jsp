@@ -7,7 +7,6 @@
 <title>pagination</title>
 </head>
 <body>
-	<c:set var="groupCount" value="${(pageCount - 1)/10 + 1}" />
 	<c:if test="${pageCount > 1}">
 		<nav class="page">
 			<ul class="pagination">
@@ -27,9 +26,8 @@
 						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
 					</c:when>
 				</c:choose>
-				<c:forEach begin="1" end="${pageCount}" varStatus="status">
-<%-- 				<c:forEach begin="${groupCount*10 - 10 + 1}" end="${groupCount*10}" varStatus="status"> --%>
-					<li id="id-li-page-${status.count}"><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${status.count}">${status.count}</a></li>
+				<c:forEach begin="${currentGroupStart}" end="${currentGroupEnd}" varStatus="status">
+					<li id="id-li-page-${status.count + groupRowCount*(currentGroup - 1)}"><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${status.count + groupRowCount*(currentGroup - 1)}">${status.count + groupRowCount*(currentGroup - 1)}</a></li>
 				</c:forEach>
 				<c:choose>
 					<c:when test="${currentPage < pageCount}">

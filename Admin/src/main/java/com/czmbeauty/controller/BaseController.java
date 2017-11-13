@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/11/2
+ * Date: 2017/11/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -120,6 +120,9 @@ public class BaseController implements ControllerConstants {
 		String ca_directory = categoryBean.getCa_directory();
 
 		int pageRowCount = BASE_PAGE_ROW_COUNT;
+		int groupRowCount = 10;
+
+		int pageCount = Pagination.getPageCount(baseService.selectCountByBa_Ca(categoryBean), pageRowCount);
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
@@ -134,8 +137,22 @@ public class BaseController implements ControllerConstants {
 		model.addAttribute(BASE_LIST, baseService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
 
 		// 取得總頁數
-		model.addAttribute(PAGE_COUNT,
-				Pagination.getPageCount(baseService.selectCountByBa_Ca(categoryBean), pageRowCount));
+		model.addAttribute(PAGE_COUNT, pageCount);
+
+		// 取得每群最大頁數
+		model.addAttribute("groupRowCount", groupRowCount);
+
+		// 取得總群數
+		model.addAttribute("groupCount", Pagination.getGroupCount(pageCount, groupRowCount));
+
+		// 取得當前群序
+		model.addAttribute("currentGroup", Pagination.getCurrentGroup(page, groupRowCount));
+
+		// 取得當前群序起始頁碼
+		model.addAttribute("currentGroupStart", Pagination.getCurrentGroupStart(page, groupRowCount));
+
+		// 取得當前群序結束頁碼
+		model.addAttribute("currentGroupEnd", Pagination.getCurrentGroupEnd(pageCount, page, groupRowCount));
 
 		return ca_directory + LIST_PAGE;
 	}

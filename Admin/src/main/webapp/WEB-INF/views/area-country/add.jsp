@@ -38,8 +38,8 @@
 					<form:form action="/Admin/area-country/add.do" method="post" modelAttribute="countryBean">
 						<table class="table area-form-table">
 							<tr>
-								<td><form:label path="co_iso">代碼</form:label></td>
-								<td><form:input path="co_iso" cssClass="form-control" /></td>
+								<td><form:label path="co_iso"><a href="https://zh.wikipedia.org/wiki/%E5%9C%8B%E5%AE%B6%E5%9C%B0%E5%8D%80%E4%BB%A3%E7%A2%BC" target="_blank">代碼</a></form:label></td>
+								<td><form:input path="co_iso" cssClass="form-control" placeholder="請輸入 2 位英文字元的國際代碼" /></td>
 								<td><form:errors path="co_iso" cssClass="error" /></td>
 							</tr>
 							<tr>
@@ -48,8 +48,8 @@
 								<td><form:errors path="co_name" cssClass="error" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="co_phonecode">電話碼</form:label></td>
-								<td><form:input path="co_phonecode" cssClass="form-control" /></td>
+								<td><form:label path="co_phonecode"><a href="https://zh.wikipedia.org/wiki/%E5%9B%BD%E9%99%85%E7%94%B5%E8%AF%9D%E5%8C%BA%E5%8F%B7%E5%88%97%E8%A1%A8" target="_blank">電話碼</a></form:label></td>
+								<td><form:input path="co_phonecode" cssClass="form-control" placeholder="請輸入 5 位數字字元以內的國際電話碼" /></td>
 								<td><form:errors path="co_phonecode" cssClass="error" /></td>
 							</tr>
 							<tr>

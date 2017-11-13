@@ -25,12 +25,21 @@
 /* option */
 .option {
 	width: 100%;
+	min-height: 30px;
 	margin-bottom: 5px;
+}
+
+.option select {
+	width: 125px;
+	border-radius: 0px !important;
+	display: inline;
 }
 
 .add-button {
 	width: 30px;
-	float: right;
+	position: absolute;
+	bottom: 0;
+	right: 12px;
 }
 
 /* table */
@@ -100,17 +109,6 @@ form .table .form-error {
 }
 
 /* area */
-.option .form-control {
-	border-radius: 0px !important;
-}
-
-.area-add-button {
-	width: 30px;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-}
-
 .area-list-table {
 	width: 500px;
 }
@@ -145,6 +143,26 @@ form .table .form-error {
 	width: 400px;
 	padding-left: 0;
 	padding-right: 0;
+}
+
+.area-form-table tr td a:link {
+	color: #333;
+	text-decoration: none;
+}
+
+.area-form-table tr td a:visited {
+	color: #333;
+	text-decoration: none;
+}
+
+.area-form-table tr td a:hover {
+	color: #333;
+	text-decoration: none;
+}
+
+.area-form-table tr td a:active {
+	color: #333;
+	text-decoration: none;
 }
 
 /* base */

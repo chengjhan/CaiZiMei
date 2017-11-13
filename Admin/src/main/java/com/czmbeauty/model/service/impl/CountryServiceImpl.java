@@ -74,6 +74,7 @@ public class CountryServiceImpl implements CountryService {
 	@Transactional
 	public CountryBean insert(CountryBean countryBean) {
 
+		countryBean.setCo_iso(countryBean.getCo_iso().toUpperCase());
 		countryBean.setCo_status(1);
 
 		return countryDao.insert(countryBean);

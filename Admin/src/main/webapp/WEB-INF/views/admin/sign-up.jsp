@@ -46,7 +46,7 @@
 							</tr>
 							<tr>
 								<td><form:label path="ad_password">密碼</form:label></td>
-								<td><form:password path="ad_password" cssClass="form-control" placeholder="必須為 8 位以上並包含英文及數字" /></td>
+								<td><form:password path="ad_password" cssClass="form-control" placeholder="請輸入 8 位字元以上並包含英文及數字的密碼" /></td>
 								<td><form:errors path="ad_password" cssClass="error" /></td>
 							</tr>
 							<tr>

@@ -35,20 +35,18 @@
 					</ol>
 				
 					<!-- option -->
-					<div class="btn-group option" style="width:500px;overflow:auto">
-						<div style="float:left">
-							<form:form modelAttribute="cityBean">
-								<form:select path="ci_CountryBean" cssClass="form-control">
-									<form:option value="0" label="請選擇國家" />
-									<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
-								</form:select>
-								<form:select path="ci_StateBean" cssClass="form-control">
-									<form:option value="0" label="請選擇區域" />
-									<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
-								</form:select>
-							</form:form>
-						</div>
-						<div class="area-add-button">
+					<div class="btn-group option" style="width:500px">
+						<form:form modelAttribute="cityBean">
+							<form:select path="ci_CountryBean" cssClass="form-control">
+								<form:option value="0" label="請選擇國家" />
+								<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
+							</form:select>
+							<form:select path="ci_StateBean" cssClass="form-control">
+								<form:option value="0" label="請選擇區域" />
+								<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
+							</form:select>
+						</form:form>
+						<div class="add-button">
 							<a href="<%=request.getContextPath()%>/area-city/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
 							</a>

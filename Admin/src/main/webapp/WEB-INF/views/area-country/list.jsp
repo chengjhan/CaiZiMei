@@ -34,7 +34,7 @@
 					</ol>
 
 					<!-- option -->
-					<div class="btn-group option" style="width:500px;overflow:auto">
+					<div class="btn-group option" style="width:500px">
 						<div class="add-button">
 							<a href="<%=request.getContextPath()%>/area-country/add" title="新增">
 								<img src="<%=request.getContextPath()%>/images/icon_add.svg">

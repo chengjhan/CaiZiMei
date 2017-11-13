@@ -34,7 +34,7 @@
 				</div>
 				<div class="form-group">
 					<label for="ad_password_new">新密碼</label>
-					<input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}" placeholder="必須為 8 位以上並包含英文及數字">
+					<input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}" placeholder="請輸入 8 位字元以上並包含英文及數字的密碼">
 				</div>
 				<div class="form-group">
 					<label for="ad_password_new_again">確認密碼</label>

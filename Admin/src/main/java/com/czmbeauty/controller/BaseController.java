@@ -29,7 +29,7 @@ import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
-import com.czmbeauty.common.util.Pagination;
+import com.czmbeauty.common.util.PaginationUtil;
 import com.czmbeauty.model.entity.BaseBean;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.CityBean;
@@ -122,7 +122,7 @@ public class BaseController implements ControllerConstants {
 		int pageRowCount = BASE_PAGE_ROW_COUNT_NUMBER;
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
-		int pageCount = Pagination.getPageCount(baseService.selectCountByBa_Ca(categoryBean), pageRowCount);
+		int pageCount = PaginationUtil.getPageCount(baseService.selectCountByBa_Ca(categoryBean), pageRowCount);
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
@@ -143,16 +143,16 @@ public class BaseController implements ControllerConstants {
 		model.addAttribute(GROUP_ROW_COUNT, groupRowCount);
 
 		// 取得總群數
-		model.addAttribute(GROUP_COUNT, Pagination.getGroupCount(pageCount, groupRowCount));
+		model.addAttribute(GROUP_COUNT, PaginationUtil.getGroupCount(pageCount, groupRowCount));
 
 		// 取得當前群序
-		model.addAttribute(CURRENT_GROUP, Pagination.getCurrentGroup(page, groupRowCount));
+		model.addAttribute(CURRENT_GROUP, PaginationUtil.getCurrentGroup(page, groupRowCount));
 
 		// 取得當前群序起始頁碼
-		model.addAttribute(CURRENT_GROUP_BEGIN, Pagination.getCurrentGroupBegin(page, groupRowCount));
+		model.addAttribute(CURRENT_GROUP_BEGIN, PaginationUtil.getCurrentGroupBegin(page, groupRowCount));
 
 		// 取得當前群序結束頁碼
-		model.addAttribute(CURRENT_GROUP_END, Pagination.getCurrentGroupEnd(pageCount, page, groupRowCount));
+		model.addAttribute(CURRENT_GROUP_END, PaginationUtil.getCurrentGroupEnd(pageCount, page, groupRowCount));
 
 		return ca_directory + LIST_PAGE;
 	}

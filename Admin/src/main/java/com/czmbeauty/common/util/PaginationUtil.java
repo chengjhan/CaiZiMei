@@ -1,6 +1,6 @@
 package com.czmbeauty.common.util;
 
-public class Pagination {
+public class PaginationUtil {
 
 	/**
 	 * 取得總頁數

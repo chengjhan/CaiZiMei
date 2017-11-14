@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/11/3
+ * Date: 2017/11/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -29,7 +29,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.util.CryptographicHashFunction;
-import com.czmbeauty.common.util.Pagination;
+import com.czmbeauty.common.util.PaginationUtil;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.service.AdminService;
@@ -576,22 +576,40 @@ public class AdminController implements ControllerConstants {
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
-		int pageRowCount = ADMIN_PAGE_ROW_COUNT;
+		int pageRowCount = ADMIN_PAGE_ROW_COUNT_NUMBER;
+		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
+
+		int pageCount = PaginationUtil.getPageCount(adminService.selectCount(), pageRowCount);
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, categoryBean.getCa_directory());
 
-		// 取得當前頁碼
-		model.addAttribute(CURRENT_PAGE, page);
+		// 取得當前頁碼的管理員 List，放入 table
+		model.addAttribute(ADMIN_LIST, adminService.selectPagination(page, pageRowCount));
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
 
-		// 取得當前頁碼的管理員 List，放入 table
-		model.addAttribute(ADMIN_LIST, adminService.selectPagination(page, pageRowCount));
-
 		// 取得總頁數
-		model.addAttribute(PAGE_COUNT, Pagination.getPageCount(adminService.selectCount(), pageRowCount));
+		model.addAttribute(PAGE_COUNT, pageCount);
+
+		// 取得當前頁碼
+		model.addAttribute(CURRENT_PAGE, page);
+
+		// 取得每群最大頁數
+		model.addAttribute(GROUP_ROW_COUNT, groupRowCount);
+
+		// 取得總群數
+		model.addAttribute(GROUP_COUNT, PaginationUtil.getGroupCount(pageCount, groupRowCount));
+
+		// 取得當前群序
+		model.addAttribute(CURRENT_GROUP, PaginationUtil.getCurrentGroup(page, groupRowCount));
+
+		// 取得當前群序起始頁碼
+		model.addAttribute(CURRENT_GROUP_BEGIN, PaginationUtil.getCurrentGroupBegin(page, groupRowCount));
+
+		// 取得當前群序結束頁碼
+		model.addAttribute(CURRENT_GROUP_END, PaginationUtil.getCurrentGroupEnd(pageCount, page, groupRowCount));
 
 		return ADMIN_LIST_PAGE;
 	}

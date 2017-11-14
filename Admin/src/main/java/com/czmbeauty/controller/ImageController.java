@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/11/7
+ * Date: 2017/11/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -32,7 +32,7 @@ import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.common.util.ImageUtil;
-import com.czmbeauty.common.util.Pagination;
+import com.czmbeauty.common.util.PaginationUtil;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
 import com.czmbeauty.model.service.CategoryService;
@@ -119,23 +119,40 @@ public class ImageController implements ControllerConstants {
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 		String ca_directory = categoryBean.getCa_directory();
 
-		int pageRowCount = IMAGE_PAGE_ROW_COUNT;
+		int pageRowCount = IMAGE_PAGE_ROW_COUNT_NUMBER;
+		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
+
+		int pageCount = PaginationUtil.getPageCount(imageService.selectCountByIm_Ca(categoryBean), pageRowCount);
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
 
-		// 取得當前頁碼
-		model.addAttribute(CURRENT_PAGE, page);
+		// 取得當前頁碼的圖片 List，放入 table
+		model.addAttribute(IMAGE_LIST, imageService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
 
-		// 取得當前頁碼的圖片 List，放入 table
-		model.addAttribute(IMAGE_LIST, imageService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
-
 		// 取得總頁數
-		model.addAttribute(PAGE_COUNT,
-				Pagination.getPageCount(imageService.selectCountByIm_Ca(categoryBean), pageRowCount));
+		model.addAttribute(PAGE_COUNT, pageCount);
+
+		// 取得當前頁碼
+		model.addAttribute(CURRENT_PAGE, page);
+
+		// 取得每群最大頁數
+		model.addAttribute(GROUP_ROW_COUNT, groupRowCount);
+
+		// 取得總群數
+		model.addAttribute(GROUP_COUNT, PaginationUtil.getGroupCount(pageCount, groupRowCount));
+
+		// 取得當前群序
+		model.addAttribute(CURRENT_GROUP, PaginationUtil.getCurrentGroup(page, groupRowCount));
+
+		// 取得當前群序起始頁碼
+		model.addAttribute(CURRENT_GROUP_BEGIN, PaginationUtil.getCurrentGroupBegin(page, groupRowCount));
+
+		// 取得當前群序結束頁碼
+		model.addAttribute(CURRENT_GROUP_END, PaginationUtil.getCurrentGroupEnd(pageCount, page, groupRowCount));
 
 		return ca_directory + LIST_PAGE;
 	}

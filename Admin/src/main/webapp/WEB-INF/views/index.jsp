@@ -24,8 +24,6 @@
 				<h2 class="page-header">歡迎進入采姿美管理系統</h2>
 				<div class="row placeholders"></div>
 				
-				<h2 class="sub-header">Section title</h2>
-				
 			</div>
 			<!-- main end -->
 			

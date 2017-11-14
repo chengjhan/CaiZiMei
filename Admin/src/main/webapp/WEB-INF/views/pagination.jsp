@@ -15,7 +15,7 @@
 						<li class="disabled"><a><span>&laquo;&laquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentGroup > 1}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${groupRowCount*(currentGroup - 2) + 1}"><span>&laquo;&laquo;</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${(currentGroup - 2)*groupRowCount + 1}"><span>&laquo;&laquo;</span></a></li>
 					</c:when>
 				</c:choose>
 				<c:choose>
@@ -27,7 +27,7 @@
 					</c:when>
 				</c:choose>
 				<c:forEach begin="${currentGroupBegin}" end="${currentGroupEnd}" varStatus="status">
-					<li id="id-li-page-${status.count + groupRowCount*(currentGroup - 1)}"><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${status.count + groupRowCount*(currentGroup - 1)}">${status.count + groupRowCount*(currentGroup - 1)}</a></li>
+					<li id="id-li-page-${status.count + (currentGroup - 1)*groupRowCount}"><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${status.count + (currentGroup - 1)*groupRowCount}">${status.count + (currentGroup - 1)*groupRowCount}</a></li>
 				</c:forEach>
 				<c:choose>
 					<c:when test="${currentPage < pageCount}">
@@ -39,7 +39,7 @@
 				</c:choose>
 				<c:choose>
 					<c:when test="${currentGroup < groupCount}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${groupRowCount*currentGroup + 1}"><span>&raquo;&raquo;</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentGroup*groupRowCount + 1}"><span>&raquo;&raquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentGroup eq groupCount}">
 						<li class="disabled"><a><span>&raquo;&raquo;</span></a></li>

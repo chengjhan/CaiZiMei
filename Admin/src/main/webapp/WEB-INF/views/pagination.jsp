@@ -12,18 +12,18 @@
 			<ul class="pagination">
 				<c:choose>
 					<c:when test="${currentGroup eq 1}">
-						<li class="disabled"><a><span aria-hidden="true">&laquo;&laquo;</span><span class="sr-only">Previous</span></a></li>
+						<li class="disabled"><a><span>&laquo;&laquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentGroup > 1}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${groupRowCount*(currentGroup - 2) + 1}"><span aria-hidden="true">&laquo;&laquo;</span><span class="sr-only">Previous</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${groupRowCount*(currentGroup - 2) + 1}"><span>&laquo;&laquo;</span></a></li>
 					</c:when>
 				</c:choose>
 				<c:choose>
 					<c:when test="${currentPage eq 1}">
-						<li class="disabled"><a><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+						<li class="disabled"><a><span>&laquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentPage > 1}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage - 1}"><span>&laquo;</span></a></li>
 					</c:when>
 				</c:choose>
 				<c:forEach begin="${currentGroupBegin}" end="${currentGroupEnd}" varStatus="status">
@@ -31,18 +31,18 @@
 				</c:forEach>
 				<c:choose>
 					<c:when test="${currentPage < pageCount}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage + 1}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage + 1}"><span>&raquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentPage eq pageCount}">
-						<li class="disabled"><a><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+						<li class="disabled"><a><span>&raquo;</span></a></li>
 					</c:when>
 				</c:choose>
 				<c:choose>
 					<c:when test="${currentGroup < groupCount}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${groupRowCount*currentGroup + 1}"><span aria-hidden="true">&raquo;&raquo;</span><span class="sr-only">Next</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${groupRowCount*currentGroup + 1}"><span>&raquo;&raquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentGroup eq groupCount}">
-						<li class="disabled"><a><span aria-hidden="true">&raquo;&raquo;</span><span class="sr-only">Next</span></a></li>
+						<li class="disabled"><a><span>&raquo;&raquo;</span></a></li>
 					</c:when>
 				</c:choose>
 			</ul>

@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.czmbeauty.common.constants.ControllerConstants;
-import com.czmbeauty.common.util.CryptographicHashFunction;
+import com.czmbeauty.common.util.PasswordUtil;
 import com.czmbeauty.common.util.PaginationUtil;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.CategoryBean;
@@ -244,7 +244,7 @@ public class AdminController implements ControllerConstants {
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (!admin.getAd_password()
-				.equals(CryptographicHashFunction.getHashedPassword(ad_password_old, admin.getAd_salt()))) {
+				.equals(PasswordUtil.getHashedPassword(ad_password_old, admin.getAd_salt()))) {
 
 			model.addAttribute(ADMIN_PASSWORD_OLD, ad_password_old);
 			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
@@ -255,8 +255,7 @@ public class AdminController implements ControllerConstants {
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
-		} else if (admin.getAd_password()
-				.equals(CryptographicHashFunction.getHashedPassword(ad_password_new, admin.getAd_salt()))) {
+		} else if (admin.getAd_password().equals(PasswordUtil.getHashedPassword(ad_password_new, admin.getAd_salt()))) {
 
 			model.addAttribute(ADMIN_PASSWORD_OLD, ad_password_old);
 			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
@@ -511,7 +510,7 @@ public class AdminController implements ControllerConstants {
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else if (!adminBean.getAd_password()
-				.equals(CryptographicHashFunction.getHashedPassword(ad_password_random, adminBean.getAd_salt()))) {
+				.equals(PasswordUtil.getHashedPassword(ad_password_random, adminBean.getAd_salt()))) {
 
 			model.addAttribute(ADMIN_PASSWORD_RANDOM, ad_password_random);
 			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);

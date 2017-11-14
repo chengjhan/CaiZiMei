@@ -1,6 +1,6 @@
 package com.czmbeauty.common.util;
 
-public class RequestPageSplitter {
+public class StringUtil {
 
 	public static String getDirectoryName(String requestPage) {
 

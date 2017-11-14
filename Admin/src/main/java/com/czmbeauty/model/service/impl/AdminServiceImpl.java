@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/11/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.czmbeauty.common.mail.SendMail;
-import com.czmbeauty.common.util.CryptographicHashFunction;
+import com.czmbeauty.common.util.PasswordUtil;
 import com.czmbeauty.model.dao.AdminDao;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.service.AdminService;
@@ -51,10 +51,10 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public AdminBean signUp(AdminBean adminBean) {
 
-		String ad_salt = CryptographicHashFunction.getSalt();
+		String ad_salt = PasswordUtil.getSalt();
 
 		adminBean.setAd_salt(ad_salt);
-		adminBean.setAd_password(CryptographicHashFunction.getHashedPassword(adminBean.getAd_password(), ad_salt));
+		adminBean.setAd_password(PasswordUtil.getHashedPassword(adminBean.getAd_password(), ad_salt));
 		adminBean.setAd_signup_time(new java.util.Date());
 		adminBean.setAd_signin_number(0);
 		adminBean.setAd_update_pwd_time(new java.util.Date());
@@ -87,7 +87,7 @@ public class AdminServiceImpl implements AdminService {
 
 			String ad_salt = adminBean.getAd_salt();
 
-			if (CryptographicHashFunction.getHashedPassword(ad_password, ad_salt).equals(adminBean.getAd_password())) {
+			if (PasswordUtil.getHashedPassword(ad_password, ad_salt).equals(adminBean.getAd_password())) {
 
 				// 帳號及密碼正確
 				return adminBean;
@@ -226,7 +226,7 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public AdminBean updateAd_password(AdminBean adminBean, String ad_password_new) {
 
-		adminBean.setAd_password(CryptographicHashFunction.getHashedPassword(ad_password_new, adminBean.getAd_salt()));
+		adminBean.setAd_password(PasswordUtil.getHashedPassword(ad_password_new, adminBean.getAd_salt()));
 		adminBean.setAd_update_pwd_time(new java.util.Date());
 
 		return adminDao.update(adminBean);
@@ -246,8 +246,7 @@ public class AdminServiceImpl implements AdminService {
 		int random = (int) (Math.random() * 1000000);
 		String ad_password_random = String.format("%06d", random);
 
-		adminBean.setAd_password(
-				CryptographicHashFunction.getHashedPassword(ad_password_random, adminBean.getAd_salt()));
+		adminBean.setAd_password(PasswordUtil.getHashedPassword(ad_password_random, adminBean.getAd_salt()));
 		adminBean.setAd_update_pwd_time(new java.util.Date());
 
 		sendMail.forgetPasswordMail(adminBean, ad_password_random);

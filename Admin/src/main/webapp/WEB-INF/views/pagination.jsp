@@ -11,11 +11,11 @@
 		<nav class="page">
 			<ul class="pagination">
 				<c:choose>
-					<c:when test="${currentPage eq 1}">
+					<c:when test="${currentGroup eq 1}">
 						<li class="disabled"><a><span aria-hidden="true">&laquo;&laquo;</span><span class="sr-only">Previous</span></a></li>
 					</c:when>
-					<c:when test="${currentPage > 1}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=1"><span aria-hidden="true">&laquo;&laquo;</span><span class="sr-only">Previous</span></a></li>
+					<c:when test="${currentGroup > 1}">
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${groupRowCount*(currentGroup - 2) + 1}"><span aria-hidden="true">&laquo;&laquo;</span><span class="sr-only">Previous</span></a></li>
 					</c:when>
 				</c:choose>
 				<c:choose>
@@ -26,7 +26,7 @@
 						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage - 1}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
 					</c:when>
 				</c:choose>
-				<c:forEach begin="${currentGroupStart}" end="${currentGroupEnd}" varStatus="status">
+				<c:forEach begin="${currentGroupBegin}" end="${currentGroupEnd}" varStatus="status">
 					<li id="id-li-page-${status.count + groupRowCount*(currentGroup - 1)}"><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${status.count + groupRowCount*(currentGroup - 1)}">${status.count + groupRowCount*(currentGroup - 1)}</a></li>
 				</c:forEach>
 				<c:choose>
@@ -38,10 +38,10 @@
 					</c:when>
 				</c:choose>
 				<c:choose>
-					<c:when test="${currentPage < pageCount}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${pageCount}"><span aria-hidden="true">&raquo;&raquo;</span><span class="sr-only">Next</span></a></li>
+					<c:when test="${currentGroup < groupCount}">
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${groupRowCount*currentGroup + 1}"><span aria-hidden="true">&raquo;&raquo;</span><span class="sr-only">Next</span></a></li>
 					</c:when>
-					<c:when test="${currentPage eq pageCount}">
+					<c:when test="${currentGroup eq groupCount}">
 						<li class="disabled"><a><span aria-hidden="true">&raquo;&raquo;</span><span class="sr-only">Next</span></a></li>
 					</c:when>
 				</c:choose>

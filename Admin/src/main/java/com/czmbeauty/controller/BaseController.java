@@ -119,40 +119,40 @@ public class BaseController implements ControllerConstants {
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 		String ca_directory = categoryBean.getCa_directory();
 
-		int pageRowCount = BASE_PAGE_ROW_COUNT;
-		int groupRowCount = 10;
+		int pageRowCount = BASE_PAGE_ROW_COUNT_NUMBER;
+		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
 		int pageCount = Pagination.getPageCount(baseService.selectCountByBa_Ca(categoryBean), pageRowCount);
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
 
-		// 取得當前頁碼
-		model.addAttribute(CURRENT_PAGE, page);
+		// 取得當前頁碼的據點 List，放入 table
+		model.addAttribute(BASE_LIST, baseService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
 
-		// 取得當前頁碼的據點 List，放入 table
-		model.addAttribute(BASE_LIST, baseService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
-
 		// 取得總頁數
 		model.addAttribute(PAGE_COUNT, pageCount);
 
+		// 取得當前頁碼
+		model.addAttribute(CURRENT_PAGE, page);
+
 		// 取得每群最大頁數
-		model.addAttribute("groupRowCount", groupRowCount);
+		model.addAttribute(GROUP_ROW_COUNT, groupRowCount);
 
 		// 取得總群數
-		model.addAttribute("groupCount", Pagination.getGroupCount(pageCount, groupRowCount));
+		model.addAttribute(GROUP_COUNT, Pagination.getGroupCount(pageCount, groupRowCount));
 
 		// 取得當前群序
-		model.addAttribute("currentGroup", Pagination.getCurrentGroup(page, groupRowCount));
+		model.addAttribute(CURRENT_GROUP, Pagination.getCurrentGroup(page, groupRowCount));
 
 		// 取得當前群序起始頁碼
-		model.addAttribute("currentGroupStart", Pagination.getCurrentGroupStart(page, groupRowCount));
+		model.addAttribute(CURRENT_GROUP_BEGIN, Pagination.getCurrentGroupBegin(page, groupRowCount));
 
 		// 取得當前群序結束頁碼
-		model.addAttribute("currentGroupEnd", Pagination.getCurrentGroupEnd(pageCount, page, groupRowCount));
+		model.addAttribute(CURRENT_GROUP_END, Pagination.getCurrentGroupEnd(pageCount, page, groupRowCount));
 
 		return ca_directory + LIST_PAGE;
 	}

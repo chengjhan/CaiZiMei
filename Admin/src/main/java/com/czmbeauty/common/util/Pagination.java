@@ -59,7 +59,7 @@ public class Pagination {
 	 *            int --> 每群最大頁數
 	 * @return int
 	 */
-	public static int getCurrentGroupStart(int currentPage, int groupRowCount) {
+	public static int getCurrentGroupBegin(int currentPage, int groupRowCount) {
 
 		return ((getGroupCount(currentPage, groupRowCount) - 1) * groupRowCount) + 1;
 	}
@@ -77,10 +77,10 @@ public class Pagination {
 	 */
 	public static int getCurrentGroupEnd(int pageCount, int currentPage, int groupRowCount) {
 
-		int currentGroupStart = getCurrentGroupStart(currentPage, groupRowCount);
+		int currentGroupBegin = getCurrentGroupBegin(currentPage, groupRowCount);
 
-		return ((pageCount - currentGroupStart) > (groupRowCount - 1)) ? (currentGroupStart + (groupRowCount - 1))
-				: (currentGroupStart + (pageCount - currentGroupStart));
+		return ((pageCount - currentGroupBegin) > (groupRowCount - 1)) ? (currentGroupBegin + (groupRowCount - 1))
+				: pageCount;
 	}
 
 }

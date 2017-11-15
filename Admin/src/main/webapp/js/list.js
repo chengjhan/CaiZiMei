@@ -1,7 +1,5 @@
-/*
- * admin
- */
-// 管理員開關
+// admin //////////
+// switch
 $(document).on("click", ".ad-status-switch", function(){
 	var $this = $(this);
 	var ad_id = $this.attr("data-ad-id");
@@ -21,10 +19,8 @@ $(document).on("click", ".ad-status-switch", function(){
 	});
 });
 
-/*
- * area-country
- */
-// 國家開關
+// area-country //////////
+// switch
 $(document).on("click", ".co-status-switch", function(){
 	var $this = $(this);
 	var co_id = $this.attr("data-co-id");
@@ -42,16 +38,12 @@ $(document).on("click", ".co-status-switch", function(){
 	});
 });
 
-/*
- * area-state
- */
-var country_select = $("#st_CountryBean");
-
-// 區域 table
-country_select.change(function(){
+// area-state //////////
+// table
+$("#st_CountryBean").change(function(){
 	var stateList_tbody = $("table tbody");
 	stateList_tbody.empty();
-	var st_co_id = country_select.val();
+	var st_co_id = $("#st_CountryBean").val();
 	$.getJSON("../area-state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			index = index + 1;
@@ -76,7 +68,7 @@ country_select.change(function(){
 	});
 });
 
-// 區域開關
+// switch
 $(document).on("click", ".st-status-switch", function(){
 	var $this = $(this);
 	var st_id = $this.attr("data-st-id");
@@ -94,13 +86,11 @@ $(document).on("click", ".st-status-switch", function(){
 	});
 });
 
-/*
- * area-city
- */
+// area-city //////////
 var country_select = $("#ci_CountryBean");
 var state_select = $("#ci_StateBean");
 
-// 區域 select
+// select
 country_select.change(function(){
 	state_select.empty();
 	state_select.append("<option value='0'>請選擇區域</option>");
@@ -115,7 +105,7 @@ country_select.change(function(){
 	});
 });
 
-// 城市 table
+// table
 state_select.change(function(){
 	var cityList_tbody = $("table tbody");
 	cityList_tbody.empty();
@@ -144,7 +134,7 @@ state_select.change(function(){
 	});
 });
 
-// 城市開關
+// switch
 $(document).on("click", ".ci-status-switch", function(){
 	var $this = $(this);
 	var ci_id = $this.attr("data-ci-id");
@@ -162,10 +152,8 @@ $(document).on("click", ".ci-status-switch", function(){
 	});
 });
 
-/*
- * base
- */
-// 據點開關
+// base //////////
+// switch
 $(document).on("click", ".ba-status-switch", function(){
 	var $this = $(this);
 	var ba_id = $this.attr("data-ba-id");
@@ -183,10 +171,8 @@ $(document).on("click", ".ba-status-switch", function(){
 	});
 });
 
-/*
- * image
- */
-// 圖片放大
+// image //////////
+// zoom in
 $(".image-list-table>tbody>tr>td>img").on("click", function(){
 	$(".image-zoom").removeAttr("style");
 	document.body.style.overflow = 'hidden';
@@ -198,7 +184,7 @@ $(".image-zoom").on("click", function(){
 	document.body.style.overflow = 'auto';
 });
 
-// 圖片開關
+// switch
 $(document).on("click", ".im-status-switch", function(){
 	var $this = $(this);
 	var im_id = $this.attr("data-im-id");
@@ -216,10 +202,8 @@ $(document).on("click", ".im-status-switch", function(){
 	});
 });
 
-/*
- * video
- */
-// 影片開關
+// video //////////
+// switch
 $(document).on("click", ".vi-status-switch img[data-vi-status='0']", function(){
 	var $this = $(this);
 	var vi_id = $this.parent("div").attr("data-vi-id");
@@ -234,10 +218,8 @@ $(document).on("click", ".vi-status-switch img[data-vi-status='0']", function(){
 	});
 });
 
-/*
- * html
- */
-// html 開關
+// html //////////
+// switch
 $(document).on("click", ".ht-status-switch img[data-ht-status='0']", function(){
 	var $this = $(this);
 	var ht_id = $this.parent("div").attr("data-ht-id");

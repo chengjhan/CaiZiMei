@@ -22,7 +22,7 @@ $(document).ready(function(){
 				maxlength: "名稱必須小於20個字"
 			},
 			st_rank: {
-				max: "排序必須填入小於99的數字",
+				max: "排序必須填入小於99的數字"
 			},
 		},
 		highlight: function(element){

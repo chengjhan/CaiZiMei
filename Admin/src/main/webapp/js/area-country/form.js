@@ -36,7 +36,7 @@ $(document).ready(function(){
 				maxlength: "電話碼必須小於5個字"
 			},
 			co_rank: {
-				max: "排序必須填入小於99的數字",
+				max: "排序必須填入小於99的數字"
 			},
 		},
 		highlight: function(element){

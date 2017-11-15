@@ -37,7 +37,7 @@ $(document).ready(function(){
 				required: "這裡必須填入資料"
 			},
 			vi_rank: {
-				max: "排序必須填入小於99的數字",
+				max: "排序必須填入小於99的數字"
 			},
 		},
 		highlight: function(element){

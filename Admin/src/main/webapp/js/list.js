@@ -1,4 +1,9 @@
-// admin //////////
+/*
+ * +-------+
+ * | admin |
+ * +-------+
+ */
+
 // switch
 $(document).on("click", ".ad-status-switch", function(){
 	var $this = $(this);
@@ -19,7 +24,12 @@ $(document).on("click", ".ad-status-switch", function(){
 	});
 });
 
-// area-country //////////
+/*
+ * +--------------+
+ * | area-country |
+ * +--------------+
+ */
+
 // switch
 $(document).on("click", ".co-status-switch", function(){
 	var $this = $(this);
@@ -38,7 +48,12 @@ $(document).on("click", ".co-status-switch", function(){
 	});
 });
 
-// area-state //////////
+/*
+ * +------------+
+ * | area-state |
+ * +------------+
+ */
+
 // table
 $("#st_CountryBean").change(function(){
 	var stateList_tbody = $("table tbody");
@@ -86,11 +101,16 @@ $(document).on("click", ".st-status-switch", function(){
 	});
 });
 
-// area-city //////////
+/*
+ * +-----------+
+ * | area-city |
+ * +-----------+
+ */
+
 var country_select = $("#ci_CountryBean");
 var state_select = $("#ci_StateBean");
 
-// select
+// state select
 country_select.change(function(){
 	state_select.empty();
 	state_select.append("<option value='0'>請選擇區域</option>");
@@ -152,7 +172,12 @@ $(document).on("click", ".ci-status-switch", function(){
 	});
 });
 
-// base //////////
+/*
+ * +------+
+ * | base |
+ * +------+
+ */
+
 // switch
 $(document).on("click", ".ba-status-switch", function(){
 	var $this = $(this);
@@ -171,7 +196,12 @@ $(document).on("click", ".ba-status-switch", function(){
 	});
 });
 
-// image //////////
+/*
+ * +-------+
+ * | image |
+ * +-------+
+ */
+
 // zoom in
 $(".image-list-table>tbody>tr>td>img").on("click", function(){
 	$(".image-zoom").removeAttr("style");
@@ -202,7 +232,12 @@ $(document).on("click", ".im-status-switch", function(){
 	});
 });
 
-// video //////////
+/*
+ * +-------+
+ * | video |
+ * +-------+
+ */
+
 // switch
 $(document).on("click", ".vi-status-switch img[data-vi-status='0']", function(){
 	var $this = $(this);
@@ -218,7 +253,12 @@ $(document).on("click", ".vi-status-switch img[data-vi-status='0']", function(){
 	});
 });
 
-// html //////////
+/*
+ * +------+
+ * | html |
+ * +------+
+ */
+
 // switch
 $(document).on("click", ".ht-status-switch img[data-ht-status='0']", function(){
 	var $this = $(this);

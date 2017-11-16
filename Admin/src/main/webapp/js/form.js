@@ -5,14 +5,15 @@
  */
 
 // state select
-$("#ci_CountryBean").change(function(){
-	$("#ci_StateBean").empty();
-	$("#ci_StateBean").append("<option value='0'>請選擇區域</option>");
-	var st_co_id = $("#ci_CountryBean").val();
+$(".area-form-table #ci_CountryBean").change(function(){
+	var state_select = $(".area-form-table #ci_StateBean");
+	state_select.empty();
+	state_select.append("<option value='0'>請選擇區域</option>");
+	var st_co_id = $(this).val();
 	$.getJSON("../area-state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			var state_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
-			$("#ci_StateBean").append(state_option);
+			state_select.append(state_option);
 		});
 	});
 });
@@ -23,17 +24,15 @@ $("#ci_CountryBean").change(function(){
  * +------+
  */
 
-var country_select = $("#ba_CountryBean");
-var state_select = $("#ba_StateBean");
-var city_select = $("#ba_CityBean");
-
 // state select
-country_select.change(function(){
+$(".base-form-table #ba_CountryBean").change(function(){
+	var state_select = $(".base-form-table #ba_StateBean");
+	var city_select = $(".base-form-table #ba_CityBean");
 	state_select.empty();
 	state_select.append("<option value='0'>請選擇區域</option>");
 	city_select.empty();
 	city_select.append("<option value='0'>請選擇城市</option>");
-	var st_co_id = country_select.val();
+	var st_co_id = $(this).val();
 	$.getJSON("../area-state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			var state_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
@@ -43,10 +42,11 @@ country_select.change(function(){
 });
 
 // city select
-state_select.change(function(){
+$(".base-form-table #ba_StateBean").change(function(){
+	var city_select = $(".base-form-table #ba_CityBean");
 	city_select.empty();
 	city_select.append("<option value='0'>請選擇城市</option>");
-	var ci_st_id = state_select.val();
+	var ci_st_id = $(this).val();
 	$.getJSON("../area-city/choice-state-city-list.ajax", {"ci_st_id": ci_st_id}, function(data){
 		$.each(data, function(index, cityBean){
 			var city_option = $("<option value=" + cityBean.ci_id + "></option>").append(cityBean.ci_name);
@@ -61,8 +61,6 @@ state_select.change(function(){
  * +-------+
  */
 
-var image_upload = $(".image-upload");
-
 // 判斷圖片副檔名
 function isImage(extension){
 	if(extension == "jpg"){
@@ -76,6 +74,7 @@ function isImage(extension){
 
 // 預覽上傳圖片
 function preview(input){
+	var image_upload = $(".image-upload");
 	if (input.files && input.files[0]){
 		image_upload.removeAttr("style");
 		image_upload.siblings("p[class='error']").remove();
@@ -99,6 +98,18 @@ $(document).on("change", "#image-uploader", function(){
     $("#image-reset").removeAttr("style");
 });
 
+// 上傳圖片驗證
+$(".image-form-table .btn-success").on("click", function(){
+	var image_upload = $(".image-upload");
+	image_upload.removeAttr("style");
+	image_upload.siblings("p[class='error']").remove();
+	if(image_upload.find("img").attr("src").indexOf("/images/image/upload.png") != -1){
+		image_upload.attr("style", "border-color:red");
+		image_upload.after("<p class='error'>請上傳副檔名為 jpg 或 png 的圖片</p>");
+		return false;
+	}
+});
+
 /*
  * +-------+
  * | video |
@@ -116,6 +127,7 @@ $(".youtube-help").on("click", function(){
 	document.body.style.overflow = 'auto';
 });
 
+// ready
 $(document).ready(function(){
 	
 	// 密碼錯誤
@@ -143,7 +155,7 @@ $(document).ready(function(){
 				remote: { // 帳號重複驗證 (AJAX)
 					url: "../admin/username-repeat.ajax", // 後台處理程序
 					type: "post", // 數據發送方式
-					dataType: "text", // 接受數據格式   
+					dataType: "text", // 接受數據格式
 					data: { // 要傳遞的數據
 						ad_username: function(){
 							return $("#ad_username").val();
@@ -476,15 +488,4 @@ $(document).ready(function(){
 			form.submit();
 	    }
 	});
-});
-
-// image validation
-$(".image-form-table .btn-success").on("click", function(){
-	image_upload.removeAttr("style");
-	image_upload.siblings("p[class='error']").remove();
-	if(image_upload.find("img").attr("src").indexOf("/images/image/upload.png") != -1){
-		image_upload.attr("style", "border-color:red");
-		image_upload.after("<p class='error'>請上傳副檔名為 jpg 或 png 的圖片</p>");
-		return false;
-	}
 });

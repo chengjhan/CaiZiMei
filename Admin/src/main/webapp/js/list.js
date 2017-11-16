@@ -55,10 +55,10 @@ $(document).on("click", ".co-status-switch", function(){
  */
 
 // table
-$("#st_CountryBean").change(function(){
-	var stateList_tbody = $("table tbody");
+$(".option #st_CountryBean").change(function(){
+	var stateList_tbody = $(".area-list-table tbody");
 	stateList_tbody.empty();
-	var st_co_id = $("#st_CountryBean").val();
+	var st_co_id = $(this).val();
 	$.getJSON("../area-state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			index = index + 1;
@@ -107,16 +107,14 @@ $(document).on("click", ".st-status-switch", function(){
  * +-----------+
  */
 
-var country_select = $("#ci_CountryBean");
-var state_select = $("#ci_StateBean");
-
 // state select
-country_select.change(function(){
+$(".option #ci_CountryBean").change(function(){
+	var state_select = $(".option #ci_StateBean");
 	state_select.empty();
 	state_select.append("<option value='0'>請選擇區域</option>");
-	var cityList_tbody = $("table tbody");
+	var cityList_tbody = $(".area-list-table tbody");
 	cityList_tbody.empty();
-	var st_co_id = country_select.val();
+	var st_co_id = $(this).val();
 	$.getJSON("../area-state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
 			var state_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
@@ -126,10 +124,10 @@ country_select.change(function(){
 });
 
 // table
-state_select.change(function(){
-	var cityList_tbody = $("table tbody");
+$(".option #ci_StateBean").change(function(){
+	var cityList_tbody = $(".area-list-table tbody");
 	cityList_tbody.empty();
-	var ci_st_id = state_select.val();
+	var ci_st_id = $(this).val();
 	$.getJSON("../area-city/choice-state-city-list.ajax", {"ci_st_id": ci_st_id}, function(data){
 		$.each(data, function(index, cityBean){
 			index = index + 1;

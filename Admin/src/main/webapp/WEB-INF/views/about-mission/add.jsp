@@ -56,7 +56,7 @@
 								<td></td>
 								<td>
 									<input type="submit" class="btn btn-success" value="新增" />
-									<a href="<%=request.getContextPath()%>/about-mission/list?page=1"><input type="button" class="btn btn-danger" value="取消"></a>
+									<a href="<%=request.getContextPath()%>/about-mission/list?page=1"><input type="button" class="btn btn-danger" value="取消" /></a>
 								</td>
 							</tr>
 						</table>

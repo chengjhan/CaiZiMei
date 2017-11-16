@@ -13,7 +13,7 @@
 			<div>
 				<div class="top-logo">
 					<a href="<%=request.getContextPath()%>/">
-						<img src="<%=request.getContextPath()%>/images/logo_white.svg">
+						<img src="<%=request.getContextPath()%>/images/logo_white.svg" />
 					</a>
 				</div>
 				<div class="top-title">
@@ -86,19 +86,19 @@
 					<ul>
 						<li>
 							<div>
-								<img src="<%=request.getContextPath()%>/images/icon_mail.svg">
+								<img src="<%=request.getContextPath()%>/images/icon_mail.svg" />
 							</div>
 							<a href="mailto:czmbeauty@gmail.com" target="_blank"><span>czmbeauty@gmail.com</span></a>
 						</li>
 						<li>
 							<div>
-								<img src="<%=request.getContextPath()%>/images/icon_phone.svg">
+								<img src="<%=request.getContextPath()%>/images/icon_phone.svg" />
 							</div>
 							<a href="tel:+886227079333" target="_blank"><span>+886-2-27079333</span></a>
 						</li>
 						<li>
 							<div>
-								<img src="<%=request.getContextPath()%>/images/icon_location.svg">
+								<img src="<%=request.getContextPath()%>/images/icon_location.svg" />
 							</div>
 							<a href="https://www.google.com.tw/maps/place/106%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A4%A7%E5%AE%89%E5%8D%80%E4%BF%A1%E7%BE%A9%E8%B7%AF%E5%9B%9B%E6%AE%B558%E8%99%9F/@25.0329686,121.5432156,17z/data=!3m1!4b1!4m5!3m4!1s0x3442abd3024f641d:0x6c67fe2f1f26cedb!8m2!3d25.0329686!4d121.5454043?hl=zh-TW" target="_blank"><span>台北市大安區信義路四段58號3F-2</span></a>
 						</li>

@@ -12,7 +12,7 @@
 		<div>
 			<div class="logo">
 				<a href="<%=request.getContextPath()%>/">
-					<img src="<%=request.getContextPath()%>/images/logo.svg">
+					<img src="<%=request.getContextPath()%>/images/logo.svg" />
 				</a>
 			</div>
 			<div class="title">

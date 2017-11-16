@@ -65,15 +65,15 @@ $("#st_CountryBean").change(function(){
 			var count_td = $("<td></td>").append(index);
 			var st_name_td = $("<td></td>").append(stateBean.st_name);
 			var st_rank_td = $("<td></td>").append(stateBean.st_rank);
-			var edit_img = $("<img src='../images/icon_edit.svg'>");
+			var edit_img = $("<img src='../images/icon_edit.svg' />");
 			var edit_a = $("<a href='../area-state/edit?st_id=" + stateBean.st_id + "' title='編輯'></a>").append(edit_img);
 			var edit_div = $("<div class='edit-button'></div>").append(edit_a);
 			var edit_td = $("<td></td>").append(edit_div);
 			var switch_img;
 			if(stateBean.st_status == 1){
-				switch_img = $("<img src='../images/icon_true.svg' data-st-status='1'>");
+				switch_img = $("<img src='../images/icon_true.svg' data-st-status='1' />");
 			}else{
-				switch_img = $("<img src='../images/icon_false.svg' data-st-status='0'>");
+				switch_img = $("<img src='../images/icon_false.svg' data-st-status='0' />");
 			}
 			var switch_div = $("<div class='st-status-switch' data-st-id='" + stateBean.st_id + "' title='切換'></div>").append(switch_img);
 			var switch_td = $("<td></td>").append(switch_div);
@@ -136,15 +136,15 @@ state_select.change(function(){
 			var count_td = $("<td></td>").append(index);
 			var ci_name_td = $("<td></td>").append(cityBean.ci_name);
 			var ci_rank_td = $("<td></td>").append(cityBean.ci_rank);
-			var edit_img = $("<img src='../images/icon_edit.svg'>");
+			var edit_img = $("<img src='../images/icon_edit.svg' />");
 			var edit_a = $("<a href='../area-city/edit?ci_id=" + cityBean.ci_id + "' title='編輯'></a>").append(edit_img);
 			var edit_div = $("<div class='edit-button'></div>").append(edit_a);
 			var edit_td = $("<td></td>").append(edit_div);
 			var switch_img;
 			if(cityBean.ci_status == 1){
-				switch_img = $("<img src='../images/icon_true.svg' data-ci-status='1'>");
+				switch_img = $("<img src='../images/icon_true.svg' data-ci-status='1' />");
 			}else{
-				switch_img = $("<img src='../images/icon_false.svg' data-ci-status='0'>");
+				switch_img = $("<img src='../images/icon_false.svg' data-ci-status='0' />");
 			}
 			var switch_div = $("<div class='ci-status-switch' data-ci-id='" + cityBean.ci_id + "' title='切換'></div>").append(switch_img);
 			var switch_td = $("<td></td>").append(switch_div);

@@ -64,7 +64,7 @@
 								<td></td>
 								<td>
 									<input type="submit" class="btn btn-success" value="變更" />
-									<a href="<%=request.getContextPath()%>/area-state/list"><input type="button" class="btn btn-danger" value="取消"></a>
+									<a href="<%=request.getContextPath()%>/area-state/list"><input type="button" class="btn btn-danger" value="取消" /></a>
 								</td>
 							</tr>
 						</table>

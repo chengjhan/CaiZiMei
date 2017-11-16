@@ -44,7 +44,7 @@
 						</form:form>
 						<div class="add-button">
 							<a href="<%=request.getContextPath()%>/area-state/add" title="新增">
-								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
+								<img src="<%=request.getContextPath()%>/images/icon_add.svg" />
 							</a>
 						</div>
 					</div>
@@ -70,7 +70,7 @@
 									<td>
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/area-state/edit?st_id=${bean.st_id}" title="編輯">
-												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg" />
 											</a>
 										</div>
 									</td>
@@ -78,10 +78,10 @@
 										<div class="st-status-switch" data-st-id="${bean.st_id}" title="切換">
 											<c:choose>
 												<c:when test="${bean.st_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-st-status="1">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-st-status="1" />
 												</c:when>
 												<c:when test="${bean.st_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-st-status="0">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-st-status="0" />
 												</c:when>
 											</c:choose>
 										</div>

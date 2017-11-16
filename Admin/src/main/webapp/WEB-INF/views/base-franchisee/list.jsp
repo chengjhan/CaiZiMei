@@ -62,7 +62,7 @@
 									<td>
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/base-franchisee/edit?ba_id=${bean.ba_id}&page=${currentPage}" title="編輯">
-												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg" />
 											</a>
 										</div>
 									</td>
@@ -70,10 +70,10 @@
 										<div class="ba-status-switch" data-ba-id="${bean.ba_id}" title="切換">
 											<c:choose>
 												<c:when test="${bean.ba_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ba-status="1">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ba-status="1" />
 												</c:when>
 												<c:when test="${bean.ba_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ba-status="0">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ba-status="0" />
 												</c:when>
 											</c:choose>
 										</div>

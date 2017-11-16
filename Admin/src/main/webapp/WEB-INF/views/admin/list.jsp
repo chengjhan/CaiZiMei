@@ -76,17 +76,17 @@
 										<c:choose>
 											<c:when test="${bean.ad_authority eq 1}">
 												<div style="width:30px">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg" style="cursor:not-allowed">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" style="cursor:not-allowed" />
 												</div>
 											</c:when>
 											<c:otherwise>
 												<div class="ad-status-switch" data-ad-id="${bean.ad_id}" title="切換">
 													<c:choose>
 														<c:when test="${bean.ad_status eq 1}">
-															<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ad-status="1">
+															<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ad-status="1" />
 														</c:when>
 														<c:when test="${bean.ad_status eq 0}">
-															<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ad-status="0">
+															<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ad-status="0" />
 														</c:when>
 													</c:choose>
 												</div>

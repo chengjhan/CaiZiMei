@@ -33,7 +33,7 @@
 							<tr>
 								<td><label for="ad_password_old">舊密碼</label></td>
 								<td>
-									<input type="password" id="ad_password_old" class="form-control" name="ad_password_old" value="${ad_password_old}">
+									<input type="password" id="ad_password_old" class="form-control" name="ad_password_old" value="${ad_password_old}" />
 									<c:if test="${not empty ad_password_old_error}">
 										<label for="ad_password_old" id="ad_password_old-error" class="error"><span>${ad_password_old_error}</span></label>
 									</c:if>
@@ -43,7 +43,7 @@
 							<tr>
 								<td><label for="ad_password_new">新密碼</label></td>
 								<td>
-									<input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}" placeholder="請輸入 8 位字元以上並包含英文及數字的密碼">
+									<input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}" placeholder="請輸入 8 位字元以上並包含英文及數字的密碼" />
 									<c:if test="${not empty ad_password_new_error}">
 										<label for="ad_password_new" id="ad_password_new-error" class="error"><span>${ad_password_new_error}</span></label>
 									</c:if>
@@ -52,7 +52,7 @@
 							</tr>
 							<tr>
 								<td><label for="ad_password_new_again">確認密碼</label></td>
-								<td><input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again" value="${ad_password_new_again}"></td>
+								<td><input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again" value="${ad_password_new_again}" /></td>
 								<td></td>
 							</tr>
 							<tr>

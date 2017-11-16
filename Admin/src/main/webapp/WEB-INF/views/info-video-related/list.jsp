@@ -38,7 +38,7 @@
 						<span style="color:red">※ 排序前 6 個將顯示於「相關資訊/相關影音」頁面中。</span>
 						<div class="add-button">
 							<a href="<%=request.getContextPath()%>/${ca_directory}/add" title="新增">
-								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
+								<img src="<%=request.getContextPath()%>/images/icon_add.svg" />
 							</a>
 						</div>
 					</div>
@@ -64,7 +64,7 @@
 									<td>
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/info-video-related/edit?vi_id=${bean.vi_id}&page=${currentPage}" title="編輯">
-												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg" />
 											</a>
 										</div>
 									</td>

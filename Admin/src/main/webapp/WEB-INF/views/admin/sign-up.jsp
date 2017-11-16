@@ -51,7 +51,7 @@
 							</tr>
 							<tr>
 								<td><label for="ad_password_again">確認密碼</label></td>
-								<td><input type="password" id="ad_password_again" class="form-control" name="ad_password_again"></td>
+								<td><input type="password" id="ad_password_again" class="form-control" name="ad_password_again" /></td>
 								<td></td>
 								<td></td>
 							</tr>
@@ -75,7 +75,7 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="submit" class="btn btn-success" value="註冊"></td>
+								<td><input type="submit" class="btn btn-success" value="註冊" /></td>
 							</tr>
 						</table>
 					</form:form>

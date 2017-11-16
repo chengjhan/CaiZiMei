@@ -14,7 +14,7 @@
 	<div class="container-fluid">
 		<div class="container top">
 			<div class="logo">
-				<a href="<%=request.getContextPath()%>/index"><img src="<%=request.getContextPath()%>/images/logo_black.svg"></a>
+				<a href="<%=request.getContextPath()%>/index"><img src="<%=request.getContextPath()%>/images/logo_black.svg" /></a>
 			</div>
 			<div class="title">
 				<h3>采姿美管理系統</h3>
@@ -41,7 +41,7 @@
 					<input type="password" id="ad_password_new_again" class="form-control" name="ad_password_new_again" value="${ad_password_new_again}" />
 				</div>
 				<div class="form-group" style="margin-top:30px">
-					<input type="submit" class="btn btn-primary" style="float:right" value="重設">
+					<input type="submit" class="btn btn-primary" style="float:right" value="重設" />
 				</div>
 			</form>
 		</div>

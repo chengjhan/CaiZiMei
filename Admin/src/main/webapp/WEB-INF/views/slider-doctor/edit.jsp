@@ -40,7 +40,7 @@
 						<div class="image-upload">
 							<label for="image-uploader">
 								<div class="image-preview">
-									<img src="<%=request.getContextPath()%>/images/slider-doctor/${imageBean.im_filename}">
+									<img src="<%=request.getContextPath()%>/images/slider-doctor/${imageBean.im_filename}" />
 								</div>
 							</label>
 							<input type="file" id="image-uploader" name="file" style="display:none" />

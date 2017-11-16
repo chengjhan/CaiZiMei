@@ -56,7 +56,7 @@
 									<td>
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/news-sale/edit?ht_id=${bean.ht_id}&page=${currentPage}" title="編輯">
-												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg" />
 											</a>
 										</div>
 									</td>
@@ -64,10 +64,10 @@
 										<div class="ht-status-switch" data-ht-id="${bean.ht_id}">
 											<c:choose>
 												<c:when test="${bean.ht_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ht-status="1">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-ht-status="1" />
 												</c:when>
 												<c:when test="${bean.ht_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ht-status="0" title="開啟">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-ht-status="0" title="開啟" />
 												</c:when>
 											</c:choose>
 										</div>

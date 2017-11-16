@@ -37,7 +37,7 @@
 					<div class="btn-group option" style="width:500px">
 						<div class="add-button">
 							<a href="<%=request.getContextPath()%>/area-country/add" title="新增">
-								<img src="<%=request.getContextPath()%>/images/icon_add.svg">
+								<img src="<%=request.getContextPath()%>/images/icon_add.svg" />
 							</a>
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 									<td>
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/area-country/edit?co_id=${bean.co_id}" title="編輯">
-												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg" />
 											</a>
 										</div>
 									</td>
@@ -75,10 +75,10 @@
 										<div class="co-status-switch" data-co-id="${bean.co_id}" title="切換">
 											<c:choose>
 												<c:when test="${bean.co_status eq 1}">
-													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-co-status="1">
+													<img src="<%=request.getContextPath()%>/images/icon_true.svg" data-co-status="1" />
 												</c:when>
 												<c:when test="${bean.co_status eq 0}">
-													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-co-status="0">
+													<img src="<%=request.getContextPath()%>/images/icon_false.svg" data-co-status="0" />
 												</c:when>
 											</c:choose>
 										</div>

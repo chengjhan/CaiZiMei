@@ -42,13 +42,13 @@
 							<tbody>
 								<tr>
 									<td rowspan="4">${status.count + pageRowCount * (currentPage - 1)}</td>
-									<td rowspan="4"><img src="<%=request.getContextPath()%>/images/image/${bean.im_filename}"></td>
+									<td rowspan="4"><img src="<%=request.getContextPath()%>/images/image/${bean.im_filename}" /></td>
 									<td>名稱</td>
 									<td>${bean.im_name}</td>
 									<td rowspan="4">
 										<div class="edit-button">
 											<a href="<%=request.getContextPath()%>/image/edit?im_id=${bean.im_id}&page=${currentPage}" title="編輯">
-												<img src="<%=request.getContextPath()%>/images/icon_edit.svg">
+												<img src="<%=request.getContextPath()%>/images/icon_edit.svg" />
 											</a>
 										</div>
 									</td>	
@@ -85,7 +85,7 @@
 	
 	<!-- image zoom in -->
 	<div class="image-zoom" style="display:none">
-		<div><img></div>
+		<div><img /></div>
 	</div>
 	
 	<!-- load -->

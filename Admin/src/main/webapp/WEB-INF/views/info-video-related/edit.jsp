@@ -63,7 +63,7 @@
 								<td></td>
 								<td>
 									<input type="submit" class="btn btn-success" value="變更" />
-									<a href="<%=request.getContextPath()%>/info-video-related/list?page=${currentPage}"><input type="button" class="btn btn-danger" value="取消"></a>
+									<a href="<%=request.getContextPath()%>/info-video-related/list?page=${currentPage}"><input type="button" class="btn btn-danger" value="取消" /></a>
 								</td>
 							</tr>
 						</table>
@@ -83,8 +83,8 @@
 	<!-- youtube help -->
 	<div class="youtube-help" style="display:none">
 		<div>
-			<div><img src="<%=request.getContextPath()%>/images/video/youtube_help_1.png"></div>
-			<div><img src="<%=request.getContextPath()%>/images/video/youtube_help_2.png"></div>
+			<div><img src="<%=request.getContextPath()%>/images/video/youtube_help_1.png" /></div>
+			<div><img src="<%=request.getContextPath()%>/images/video/youtube_help_2.png" /></div>
 		</div>
 	</div>
 	

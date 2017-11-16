@@ -15,7 +15,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<div class="logo">
-					<a href="<%=request.getContextPath()%>/index"><img src="<%=request.getContextPath()%>/images/logo_white.svg"></a>
+					<a href="<%=request.getContextPath()%>/index"><img src="<%=request.getContextPath()%>/images/logo_white.svg" /></a>
 				</div>
 				<a class="navbar-brand" href="<%=request.getContextPath()%>/index">采姿美管理系統</a>
 			</div>

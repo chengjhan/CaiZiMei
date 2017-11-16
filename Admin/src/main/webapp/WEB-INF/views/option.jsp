@@ -9,7 +9,7 @@
 	<div class="btn-group option">
 		<div class="add-button">
 			<a href="<%=request.getContextPath()%>/${ca_directory}/add" title="新增">
-				<img src="<%=request.getContextPath()%>/images/icon_add.svg">
+				<img src="<%=request.getContextPath()%>/images/icon_add.svg" />
 			</a>
 		</div>
 	</div>

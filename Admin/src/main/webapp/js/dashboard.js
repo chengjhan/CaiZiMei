@@ -211,9 +211,9 @@ $(document).on("click", ".ba-status-switch", function(){
 // state select
 $(".base-form-table #ba_CountryBean").change(function(){
 	var state_select = $(".base-form-table #ba_StateBean");
-	var city_select = $(".base-form-table #ba_CityBean");
 	state_select.empty();
 	state_select.append("<option value='0'>請選擇區域</option>");
+	var city_select = $(".base-form-table #ba_CityBean");
 	city_select.empty();
 	city_select.append("<option value='0'>請選擇城市</option>");
 	var st_co_id = $(this).val();

@@ -30,15 +30,15 @@
 				<div class="form-group sub-title">登入</div>
 				<div class="form-group">
 					<label for="ad_username" class="control-label">帳號</label>
-					<input type="text" id="ad_username" class="form-control" name="ad_username" value="${ad_username}" autofocus>
+					<input type="text" id="ad_username" class="form-control" name="ad_username" value="${ad_username}" autofocus />
 				</div>
 				<div class="form-group">
 					<label for="ad_password" class="control-label">密碼</label>
-					<input type="password" id="ad_password" class="form-control" name="ad_password" value="${ad_password}">
+					<input type="password" id="ad_password" class="form-control" name="ad_password" value="${ad_password}" />
 					<a href="<%=request.getContextPath()%>/secure/forget-password">忘記密碼？</a>
 				</div>
 				<div class="form-group" style="margin-top:20px">
-					<input type="submit" class="btn btn-primary" style="float:right" value="登入">
+					<input type="submit" class="btn btn-primary" style="float:right" value="登入" />
 				</div>
 			</form>
 		</div>

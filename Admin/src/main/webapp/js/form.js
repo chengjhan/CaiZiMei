@@ -4,18 +4,53 @@
  * +-----------+
  */
 
-var country_select = $("#ci_CountryBean");
-var state_select = $("#ci_StateBean");
+// state select
+$("#ci_CountryBean").change(function(){
+	$("#ci_StateBean").empty();
+	$("#ci_StateBean").append("<option value='0'>請選擇區域</option>");
+	var st_co_id = $("#ci_CountryBean").val();
+	$.getJSON("../area-state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
+		$.each(data, function(index, stateBean){
+			var state_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
+			$("#ci_StateBean").append(state_option);
+		});
+	});
+});
+
+/*
+ * +------+
+ * | base |
+ * +------+
+ */
+
+var country_select = $("#ba_CountryBean");
+var state_select = $("#ba_StateBean");
+var city_select = $("#ba_CityBean");
 
 // state select
 country_select.change(function(){
 	state_select.empty();
 	state_select.append("<option value='0'>請選擇區域</option>");
+	city_select.empty();
+	city_select.append("<option value='0'>請選擇城市</option>");
 	var st_co_id = country_select.val();
 	$.getJSON("../area-state/choice-country-state-list.ajax", {"st_co_id": st_co_id}, function(data){
 		$.each(data, function(index, stateBean){
-			var stateList_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
-			state_select.append(stateList_option);
+			var state_option = $("<option value=" + stateBean.st_id + "></option>").append(stateBean.st_name);
+			state_select.append(state_option);
+		});
+	});
+});
+
+// city select
+state_select.change(function(){
+	city_select.empty();
+	city_select.append("<option value='0'>請選擇城市</option>");
+	var ci_st_id = state_select.val();
+	$.getJSON("../area-city/choice-state-city-list.ajax", {"ci_st_id": ci_st_id}, function(data){
+		$.each(data, function(index, cityBean){
+			var city_option = $("<option value=" + cityBean.ci_id + "></option>").append(cityBean.ci_name);
+			city_select.append(city_option);
 		});
 	});
 });
@@ -81,12 +116,12 @@ $(".youtube-help").on("click", function(){
 	document.body.style.overflow = 'auto';
 });
 
-// validation
 $(document).ready(function(){
 	
 	// 密碼錯誤
 	$("#ad_password_old-error").prev().addClass("form-error");
 	
+	// validation
 	// regex
 	$.validator.addMethod("pattern", function(value, element, regex){
 		return regex.test(value);
@@ -139,7 +174,7 @@ $(document).ready(function(){
 				remote: { // 信箱重複驗證 (AJAX)
 					url: "../admin/email-repeat.ajax", // 後台處理程序
 					type: "post", // 數據發送方式
-					dataType: "text", // 接受數據格式   
+					dataType: "text", // 接受數據格式
 					data: { // 要傳遞的數據
 						ad_email: function(){
 							return $("#ad_email").val();
@@ -201,6 +236,40 @@ $(document).ready(function(){
 			},
 			ci_rank: {
 				max: 99
+			},
+			// base
+			ba_name: {
+				required: true,
+				maxlength: 20
+			},
+			ba_eng_name: {
+				pattern: /^$|^[a-zA-Z0-9 ,.'-]+$/,
+				maxlength: 50
+			},
+			ba_tel_code: {
+				digits: true,
+				maxlength: 5
+			},
+			ba_tel: {
+				digits: true,
+				maxlength: 20
+			},
+			ba_CountryBean: {
+				min: 1
+			},
+			ba_StateBean: {
+				min: 1
+			},
+			ba_CityBean: {
+				min: 1
+			},
+			ba_address: {
+				required: true,
+				maxlength: 20
+			},
+			ba_url: {
+				url: true,
+				maxlength: 100
 			},
 			// image
 			im_name: {
@@ -319,6 +388,40 @@ $(document).ready(function(){
 			ci_rank: {
 				max: "排序必須填入小於99的數字"
 			},
+			// base
+			ba_name: {
+				required: "這裡必須填入資料",
+				maxlength: "名稱必須小於20個字"
+			},
+			ba_eng_name: {
+				pattern: "英文名稱只接受英文大小寫、數字、一般符號及空白",
+				maxlength: "英文名稱必須小於50個字"
+			},
+			ba_tel_code: {
+				digits: "區碼必須為數字",
+				maxlength: "區碼必須小於5個字"
+			},
+			ba_tel: {
+				digits: "電話必須為數字",
+				maxlength: "電話必須小於20個字"
+			},
+			ba_CountryBean: {
+				min: "這裡必須選擇"
+			},
+			ba_StateBean: {
+				min: "這裡必須選擇"
+			},
+			ba_CityBean: {
+				min: "這裡必須選擇"
+			},
+			ba_address: {
+				required: "這裡必須填入資料",
+				maxlength: "地址必須小於20個字"
+			},
+			ba_url: {
+				url: "網址必須填入正確的格式",
+				maxlength: "網址必須小於100個字"
+			},
 			// image
 			im_name: {
 				required: "這裡必須填入資料",
@@ -357,6 +460,17 @@ $(document).ready(function(){
 		},
 		unhighlight: function(element){
 			$(element).removeClass("form-error");
+		},
+		errorPlacement: function(error, element){
+			// error <label>
+			// element <input>
+			if(element.attr("name") == "ba_tel_code"){
+				error.appendTo(element.closest("td").find("#ba_tel_code_error"));
+			}else if(element.attr("name") == "ba_tel"){
+				error.appendTo(element.closest("td").find("#ba_tel_error"));
+			}else{
+				error.insertAfter(element); // default
+			}
 		},
 		submitHandler: function(form){
 			form.submit();

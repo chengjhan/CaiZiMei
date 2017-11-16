@@ -39,18 +39,12 @@
 						<table class="table base-form-table">
 							<tr>
 								<td><form:label path="ba_name">名稱</form:label></td>
-								<td>
-									<form:input path="ba_name" cssClass="form-control" />
-									<div class="error"></div>
-								</td>
+								<td><form:input path="ba_name" cssClass="form-control" /></td>
 								<td><form:errors path="ba_name" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="ba_eng_name">英文名稱</form:label></td>
-								<td>
-									<form:input path="ba_eng_name" cssClass="form-control" />
-									<div class="error"></div>
-								</td>
+								<td><form:input path="ba_eng_name" cssClass="form-control" /></td>
 								<td><form:errors path="ba_eng_name" cssClass="error" /></td>
 							</tr>
 							<tr>
@@ -70,7 +64,6 @@
 										<form:option value="0" label="請選擇國家" />
 										<form:options items="${countryList}" itemValue="co_id" itemLabel="co_name" />
 									</form:select>
-									<div class="error"></div>
 								</td>
 							</tr>
 							<tr>
@@ -79,7 +72,6 @@
 									<form:select path="ba_StateBean" cssClass="form-control">
 										<form:option value="0" label="請選擇區域" />
 									</form:select>
-									<div class="error"></div>
 								</td>
 							</tr>
 							<tr>
@@ -88,23 +80,16 @@
 									<form:select path="ba_CityBean" cssClass="form-control">
 										<form:option value="0" label="請選擇城市" />
 									</form:select>
-									<div class="error"></div>
 								</td>
 							</tr>
 							<tr>
 								<td><form:label path="ba_address">地址</form:label></td>
-								<td>
-									<form:input path="ba_address" cssClass="form-control" />
-									<div class="error"></div>
-								</td>
+								<td><form:input path="ba_address" cssClass="form-control" /></td>
 								<td><form:errors path="ba_address" cssClass="error" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="ba_url">網址</form:label></td>
-								<td>
-									<form:input path="ba_url" cssClass="form-control" />
-									<div class="error"></div>
-								</td>
+								<td><form:input path="ba_url" cssClass="form-control" /></td>
 								<td><form:errors path="ba_url" cssClass="error" /></td>
 							</tr>
 							<tr>
@@ -132,6 +117,6 @@
 	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/validation/jquery.validate.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/base/form.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/form.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

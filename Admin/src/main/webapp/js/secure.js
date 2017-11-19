@@ -1,3 +1,6 @@
+// load
+document.write("<scr" + "ipt src=../js/validation/jquery.validate.min.js type='text/javascript' charset='utf-8'><\/scr" + "ipt>");
+
 // validation
 $(document).ready(function(){
 	

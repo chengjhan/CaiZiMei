@@ -117,8 +117,6 @@
 	</script>
 	
 	<!-- load -->
-	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/validation/jquery.validate.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/validation/jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

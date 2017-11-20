@@ -6,6 +6,8 @@
 <title>header</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/all.css" type="text/css" />
+<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<header>
@@ -23,8 +25,5 @@
 			</div>
 		</div>
 	</header>
-	
-	<!-- load -->
-	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>
 </body>
 </html>

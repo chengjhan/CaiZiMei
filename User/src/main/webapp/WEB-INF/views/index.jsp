@@ -99,9 +99,7 @@
 	<c:import url="footer.jsp" />
 	
 	<!-- load -->
-	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/swiper/swiper.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/swiper/swiper.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<%=request.getContextPath()%>/js/index.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<%=request.getContextPath()%>/js/index-map.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJznZ1ht-uJFa-tBJBpYYtzQ2609ba2Eg&callback=initMap" async defer></script>

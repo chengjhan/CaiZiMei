@@ -18,8 +18,6 @@
 	</nav>
 	
 	<!-- load -->
-	<script src="<%=request.getContextPath()%>/js/jquery/jquery-3.2.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/menu.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -12,4 +12,8 @@ public interface CommonConstants {
 
 	public static final String SLASH = "/";
 
+	public static final String TRUE = "true";
+
+	public static final String FALSE = "false";
+
 }

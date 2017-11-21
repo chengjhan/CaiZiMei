@@ -1,7 +1,7 @@
 package com.czmbeauty.common.constants;
 
-public interface ControllerConstants extends CommonConstants, DirectoryConstants, ModelAttributeConstants,
-		PageNameConstants, PaginationConstants, ParameterConstants {
+public interface ControllerConstants extends CommonConstants, DirectoryConstants, ErrorMessages,
+		ModelAttributeConstants, PageNameConstants, PaginationConstants, ParameterConstants {
 
 	public static final int ADMIN_PAGE_ROW_COUNT_NUMBER = 10;
 

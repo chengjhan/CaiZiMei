@@ -627,7 +627,7 @@ public class AdminController implements ControllerConstants {
 
 		AdminBean bean = adminService.selectByAd_username(ad_username, null);
 
-		return (bean != null) ? "這個帳號已經被使用了" : "true";
+		return (bean != null) ? USERNAME_REPEAT_MSG : TRUE;
 	}
 
 	/**
@@ -644,7 +644,7 @@ public class AdminController implements ControllerConstants {
 
 		AdminBean bean = adminService.selectByAd_email(ad_email, null);
 
-		return (bean != null) ? "這個信箱已經被使用了" : "true";
+		return (bean != null) ? EMAIL_REPEAT_MSG : TRUE;
 	}
 
 	/**
@@ -663,7 +663,7 @@ public class AdminController implements ControllerConstants {
 
 		AdminBean bean = adminService.selectByAd_email(ad_id, ad_email);
 
-		return (bean != null) ? "這個信箱已經被使用了" : "true";
+		return (bean != null) ? EMAIL_REPEAT_MSG : TRUE;
 	}
 
 	/**

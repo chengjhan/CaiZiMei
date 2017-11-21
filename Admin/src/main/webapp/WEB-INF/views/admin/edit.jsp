@@ -30,6 +30,10 @@
 					<!-- form -->
 					<form:form action="/Admin/admin/edit.do" method="post" modelAttribute="admin" cssClass="form-horizontal">
 						<table class="table admin-form-table">
+							<tr style="display:none">
+								<td>流水號</td>
+								<td><form:hidden path="ad_id" /></td>
+							</tr>
 							<tr>
 								<td><form:label path="ad_lastname">姓氏</form:label></td>
 								<td><form:input path="ad_lastname" cssClass="form-control" /></td>
@@ -83,6 +87,9 @@
 							type: "post", // 數據發送方式
 							dataType: "text", // 接受數據格式
 							data: { // 要傳遞的數據
+								ad_id: function(){
+									return $("#ad_id").val();
+								},
 								ad_email: function(){
 									return $("#ad_email").val();
 								}

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/11/14
+ * Date: 2017/11/21
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -659,9 +659,9 @@ public class AdminController implements ControllerConstants {
 	 */
 	@RequestMapping(value = "/admin/edit-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String editEmailRepeatAjax(@ModelAttribute(ADMIN) AdminBean admin, String ad_email) {
+	public String editEmailRepeatAjax(Integer ad_id, String ad_email) {
 
-		AdminBean bean = adminService.selectByAd_email(admin.getAd_id(), ad_email);
+		AdminBean bean = adminService.selectByAd_email(ad_id, ad_email);
 
 		return (bean != null) ? "這個信箱已經被使用了" : "true";
 	}

@@ -52,6 +52,8 @@ public interface ModelAttributeConstants {
 
 	public static final String BASE_BEAN = "baseBean";
 
+	public static final String BASE_ADDRESS_ERROR = "ba_address_error";
+
 	public static final String BASE_LIST = "baseList";
 
 	public static final String IMAGE_BEAN = "imageBean";

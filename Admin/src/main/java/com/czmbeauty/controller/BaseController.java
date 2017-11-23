@@ -222,6 +222,8 @@ public class BaseController implements ControllerConstants {
 
 			} catch (Exception e) {
 
+				model.addAttribute(BASE_ADDRESS_ERROR, BASE_ADDRESS_MISTAKE_MSG);
+
 				logger.error(ca_name + "新增失敗: 找不到經緯度");
 
 				return ca_directory + ADD_PAGE;
@@ -331,6 +333,8 @@ public class BaseController implements ControllerConstants {
 				baseService.update(baseBean);
 
 			} catch (Exception e) {
+
+				model.addAttribute(BASE_ADDRESS_ERROR, BASE_ADDRESS_MISTAKE_MSG);
 
 				logger.error(ca_name + "編輯失敗: 找不到經緯度");
 

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -86,7 +87,12 @@
 							</tr>
 							<tr>
 								<td><form:label path="ba_address">地址</form:label></td>
-								<td><form:input path="ba_address" cssClass="form-control" /></td>
+								<td>
+									<form:input path="ba_address" cssClass="form-control" />
+									<c:if test="${not empty ba_address_error}">
+										<label for="ba_address" id="ba_address-error" class="error"><span>${ba_address_error}</span></label>
+									</c:if>
+								</td>
 								<td><form:errors path="ba_address" cssClass="error" /></td>
 							</tr>
 							<tr>

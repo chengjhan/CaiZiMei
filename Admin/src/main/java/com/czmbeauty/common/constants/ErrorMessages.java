@@ -18,4 +18,6 @@ public interface ErrorMessages {
 
 	public static final String RANDOM_MISTAKE_MSG = "驗證碼錯誤。";
 
+	public static final String BASE_ADDRESS_MISTAKE_MSG = "找不到經緯度，請再次確認地址";
+
 }

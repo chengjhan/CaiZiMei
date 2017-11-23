@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/11/21
+ * Date: 2017/11/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -127,7 +127,7 @@ public class AdminController implements ControllerConstants {
 
 			logger.info("(" + className + "." + methodName + ") 註冊成功");
 
-			return REDIRECT + ADMIN_LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+			return REDIRECT + ADMIN_LIST_PAGE + QUESTION + PAGE + EQUAL + PAGE_ONE;
 		}
 	}
 
@@ -324,7 +324,7 @@ public class AdminController implements ControllerConstants {
 
 			model.addAttribute(ADMIN_USERNAME, ad_username);
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
-			model.addAttribute(ERROR, "請填入帳號。");
+			model.addAttribute(ERROR, USERNAME_REQUIRE_MSG);
 
 			logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號未填");
 
@@ -334,7 +334,7 @@ public class AdminController implements ControllerConstants {
 
 			model.addAttribute(ADMIN_USERNAME, ad_username);
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
-			model.addAttribute(ERROR, "請填入密碼。");
+			model.addAttribute(ERROR, PASSWORD_REQUIRE_MSG);
 
 			logger.error("(" + className + "." + methodName + ") 登入失敗: 密碼未填");
 
@@ -348,7 +348,7 @@ public class AdminController implements ControllerConstants {
 
 				model.addAttribute(ADMIN_USERNAME, ad_username);
 				model.addAttribute(ADMIN_PASSWORD, ad_password);
-				model.addAttribute(ERROR, "帳號或密碼錯誤。");
+				model.addAttribute(ERROR, USERNAME_OR_PASSWORD_MISTAKE_MSG);
 
 				logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號或密碼錯誤");
 
@@ -414,7 +414,7 @@ public class AdminController implements ControllerConstants {
 		if (ad_email == null || ad_email.isEmpty()) {
 
 			model.addAttribute(ADMIN_EMAIL, ad_email);
-			model.addAttribute(ERROR, "請填入信箱。");
+			model.addAttribute(ERROR, EMAIL_REQUIRE_MSG);
 
 			logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱未填");
 
@@ -427,7 +427,7 @@ public class AdminController implements ControllerConstants {
 			if (adminBean == null) {
 
 				model.addAttribute(ADMIN_EMAIL, ad_email);
-				model.addAttribute(ERROR, "信箱錯誤。");
+				model.addAttribute(ERROR, EMAIL_MISTAKE_MSG);
 
 				logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱錯誤");
 
@@ -515,7 +515,7 @@ public class AdminController implements ControllerConstants {
 			model.addAttribute(ADMIN_PASSWORD_RANDOM, ad_password_random);
 			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
 			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
-			model.addAttribute(ERROR, "驗證碼錯誤。");
+			model.addAttribute(ERROR, RANDOM_MISTAKE_MSG);
 
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 驗證碼錯誤");
 

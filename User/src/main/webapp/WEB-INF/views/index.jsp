@@ -11,7 +11,7 @@
 </head>
 <body>
 	<!-- header -->
-	<jsp:include page="header.jsp" />
+	<c:import url="header.jsp" />
 	
 	<!-- menu -->
 	<c:import url="menu.jsp" />

@@ -29,7 +29,7 @@
 						</c:when>
 						<c:when test="${not empty admin}">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${admin.ad_username}<span class="caret"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${admin.ad_firstname}<span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="<%=request.getContextPath()%>/admin/profile">個人資訊</a></li>
 									<li><a href="<%=request.getContextPath()%>/admin/edit">編輯個人資訊</a></li>

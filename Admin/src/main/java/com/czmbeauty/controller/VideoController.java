@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/11/14
+ * Date: 2017/11/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -179,7 +179,7 @@ public class VideoController implements ControllerConstants {
 
 			logger.info(ca_name + "新增成功");
 
-			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + "1";
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + PAGE_ONE;
 		}
 	}
 

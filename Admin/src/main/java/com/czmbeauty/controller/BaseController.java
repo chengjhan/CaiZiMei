@@ -186,15 +186,27 @@ public class BaseController implements ControllerConstants {
 	 *            BaseBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/base*/add.do", method = RequestMethod.POST)
-	public String addAction(@Valid BaseBean baseBean, BindingResult bindingResult) {
+	public String addAction(@Valid BaseBean baseBean, BindingResult bindingResult, Model model) {
 
 		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();
+
+		// 取得表單暫時性資料
+		baseBean.setBa_CountryBean(countryService.selectByCo_id(baseBean.getBa_CountryBean().getCo_id()));
+		baseBean.setBa_StateBean(stateService.selectBySt_id(baseBean.getBa_StateBean().getSt_id()));
+		baseBean.setBa_CityBean(cityService.selectByCi_id(baseBean.getBa_CityBean().getCi_id()));
+
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
+		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
+		model.addAttribute(CURRENT_PAGE, currentPage);
 
 		if (bindingResult.hasErrors()) {
 
@@ -205,9 +217,15 @@ public class BaseController implements ControllerConstants {
 		} else {
 
 			baseBean.setBa_CategoryBean(categoryBean);
+			try {
+				baseService.insert(baseBean);
 
-			baseService.insert(baseBean);
+			} catch (Exception e) {
 
+				logger.error(ca_name + "新增失敗: 找不到經緯度");
+
+				return ca_directory + ADD_PAGE;
+			}
 			logger.info(ca_name + "新增成功");
 
 			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + PAGE_ONE;
@@ -279,27 +297,45 @@ public class BaseController implements ControllerConstants {
 	 *            BaseBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
+	 * @param model
+	 *            Model
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/base*/edit.do", method = RequestMethod.POST)
-	public String editAction(@Valid BaseBean baseBean, BindingResult bindingResult) {
+	public String editAction(@Valid BaseBean baseBean, BindingResult bindingResult, Model model) {
 
 		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();
 
+		// 取得表單暫時性資料
+		baseBean.setBa_CountryBean(countryService.selectByCo_id(baseBean.getBa_CountryBean().getCo_id()));
+		baseBean.setBa_StateBean(stateService.selectBySt_id(baseBean.getBa_StateBean().getSt_id()));
+		baseBean.setBa_CityBean(cityService.selectByCi_id(baseBean.getBa_CityBean().getCi_id()));
+
+		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
+		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
+		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
+		model.addAttribute(CURRENT_PAGE, currentPage);
+
 		if (bindingResult.hasErrors()) {
 
 			logger.error(ca_name + "編輯失敗: 資料未填");
 
-			return ca_directory + EDIT_PAGE + QUESTION + BASE_ID + EQUAL + baseBean.getBa_id() + AND + PAGE + EQUAL
-					+ currentPage;
+			return ca_directory + EDIT_PAGE;
 
 		} else {
 
-			baseService.update(baseBean);
+			try {
+				baseService.update(baseBean);
 
+			} catch (Exception e) {
+
+				logger.error(ca_name + "編輯失敗: 找不到經緯度");
+
+				return ca_directory + EDIT_PAGE;
+			}
 			logger.info(ca_name + "編輯成功");
 
 			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/11/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -96,21 +96,17 @@ public class BaseServiceImpl implements BaseService {
 	 * 
 	 * @param baseBean
 	 *            BaseBean
+	 * @throws Exception
 	 * @return BaseBean
 	 */
 	@Override
 	@Transactional
-	public BaseBean insert(BaseBean baseBean) {
+	public BaseBean insert(BaseBean baseBean) throws Exception {
 
 		// 地址轉換經緯度
 		String ci_name = cityDao.selectByCi_id(baseBean.getBa_CityBean().getCi_id()).getCi_name();
 		String ba_address = baseBean.getBa_address();
-		Double[] LatLng = new Double[2];
-		try {
-			LatLng = Geocoder.addressToLatLng(ci_name + ba_address);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Double[] LatLng = Geocoder.addressToLatLng(ci_name + ba_address);
 
 		baseBean.setBa_latitude(LatLng[0]);
 		baseBean.setBa_longitude(LatLng[1]);
@@ -127,21 +123,17 @@ public class BaseServiceImpl implements BaseService {
 	 * 
 	 * @param baseBean
 	 *            BaseBean
+	 * @throws Exception
 	 * @return BaseBean
 	 */
 	@Override
 	@Transactional
-	public BaseBean update(BaseBean baseBean) {
+	public BaseBean update(BaseBean baseBean) throws Exception {
 
 		// 地址轉換經緯度
 		String ci_name = cityDao.selectByCi_id(baseBean.getBa_CityBean().getCi_id()).getCi_name();
 		String ba_address = baseBean.getBa_address();
-		Double[] LatLng = new Double[2];
-		try {
-			LatLng = Geocoder.addressToLatLng(ci_name + ba_address);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Double[] LatLng = Geocoder.addressToLatLng(ci_name + ba_address);
 
 		baseBean.setBa_latitude(LatLng[0]);
 		baseBean.setBa_longitude(LatLng[1]);

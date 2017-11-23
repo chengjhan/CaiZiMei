@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseService.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/11/23
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -39,12 +39,12 @@ public interface BaseService {
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#insert(BaseBean)
 	 */
-	BaseBean insert(BaseBean baseBean);
+	BaseBean insert(BaseBean baseBean) throws Exception;
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#update(BaseBean)
 	 */
-	BaseBean update(BaseBean baseBean);
+	BaseBean update(BaseBean baseBean) throws Exception;
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.BaseServiceImpl#updateBa_status(Integer)

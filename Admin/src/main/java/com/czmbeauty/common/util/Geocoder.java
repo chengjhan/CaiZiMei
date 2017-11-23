@@ -77,13 +77,15 @@ public class Geocoder {
 				logger.info("緯度: " + latitude + ", 經度: " + longitude);
 
 				return new Double[] { latitude, longitude };
-				
+
 			} else {
 
 				throw new Exception("Error from the API - response status: " + status);
 			}
+		} else {
+
+			return null;
 		}
-		return null;
 	}
 
 	public static void main(String[] args) throws Exception {

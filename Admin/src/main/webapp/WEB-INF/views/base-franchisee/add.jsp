@@ -72,6 +72,7 @@
 								<td>
 									<form:select path="ba_StateBean" cssClass="form-control">
 										<form:option value="0" label="請選擇區域" />
+										<form:options items="${stateList}" itemValue="st_id" itemLabel="st_name" />
 									</form:select>
 								</td>
 							</tr>
@@ -80,6 +81,7 @@
 								<td>
 									<form:select path="ba_CityBean" cssClass="form-control">
 										<form:option value="0" label="請選擇城市" />
+										<form:options items="${cityList}" itemValue="ci_id" itemLabel="ci_name" />
 									</form:select>
 								</td>
 							</tr>

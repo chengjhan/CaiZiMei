@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.czmbeauty.common.constants.ControllerConstants;
-import com.czmbeauty.common.util.PasswordUtil;
 import com.czmbeauty.common.util.PaginationUtil;
+import com.czmbeauty.common.util.PasswordUtil;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.service.AdminService;
@@ -249,7 +249,7 @@ public class AdminController implements ControllerConstants {
 			model.addAttribute(ADMIN_PASSWORD_OLD, ad_password_old);
 			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
 			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
-			model.addAttribute(ADMIN_PASSWORD_OLD_ERROR, "密碼錯誤");
+			model.addAttribute(ADMIN_PASSWORD_OLD_ERROR, ADMIN_PASSWORD_OLD_MISTAKE_MSG);
 
 			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 密碼錯誤");
 
@@ -324,7 +324,7 @@ public class AdminController implements ControllerConstants {
 
 			model.addAttribute(ADMIN_USERNAME, ad_username);
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
-			model.addAttribute(ERROR, USERNAME_REQUIRE_MSG);
+			model.addAttribute(ERROR, ADMIN_USERNAME_REQUIRE_MSG);
 
 			logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號未填");
 
@@ -334,7 +334,7 @@ public class AdminController implements ControllerConstants {
 
 			model.addAttribute(ADMIN_USERNAME, ad_username);
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
-			model.addAttribute(ERROR, PASSWORD_REQUIRE_MSG);
+			model.addAttribute(ERROR, ADMIN_PASSWORD_REQUIRE_MSG);
 
 			logger.error("(" + className + "." + methodName + ") 登入失敗: 密碼未填");
 
@@ -348,7 +348,7 @@ public class AdminController implements ControllerConstants {
 
 				model.addAttribute(ADMIN_USERNAME, ad_username);
 				model.addAttribute(ADMIN_PASSWORD, ad_password);
-				model.addAttribute(ERROR, USERNAME_OR_PASSWORD_MISTAKE_MSG);
+				model.addAttribute(ERROR, ADMIN_USERNAME_OR_PASSWORD_MISTAKE_MSG);
 
 				logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號或密碼錯誤");
 
@@ -414,7 +414,7 @@ public class AdminController implements ControllerConstants {
 		if (ad_email == null || ad_email.isEmpty()) {
 
 			model.addAttribute(ADMIN_EMAIL, ad_email);
-			model.addAttribute(ERROR, EMAIL_REQUIRE_MSG);
+			model.addAttribute(ERROR, ADMIN_EMAIL_REQUIRE_MSG);
 
 			logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱未填");
 
@@ -427,7 +427,7 @@ public class AdminController implements ControllerConstants {
 			if (adminBean == null) {
 
 				model.addAttribute(ADMIN_EMAIL, ad_email);
-				model.addAttribute(ERROR, EMAIL_MISTAKE_MSG);
+				model.addAttribute(ERROR, ADMIN_EMAIL_MISTAKE_MSG);
 
 				logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱錯誤");
 
@@ -515,7 +515,7 @@ public class AdminController implements ControllerConstants {
 			model.addAttribute(ADMIN_PASSWORD_RANDOM, ad_password_random);
 			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
 			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
-			model.addAttribute(ERROR, RANDOM_MISTAKE_MSG);
+			model.addAttribute(ERROR, ADMIN_RANDOM_MISTAKE_MSG);
 
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 驗證碼錯誤");
 
@@ -627,7 +627,7 @@ public class AdminController implements ControllerConstants {
 
 		AdminBean bean = adminService.selectByAd_username(ad_username, null);
 
-		return (bean != null) ? USERNAME_REPEAT_MSG : TRUE;
+		return (bean != null) ? ADMIN_USERNAME_REPEAT_MSG : TRUE;
 	}
 
 	/**
@@ -644,7 +644,7 @@ public class AdminController implements ControllerConstants {
 
 		AdminBean bean = adminService.selectByAd_email(ad_email, null);
 
-		return (bean != null) ? EMAIL_REPEAT_MSG : TRUE;
+		return (bean != null) ? ADMIN_EMAIL_REPEAT_MSG : TRUE;
 	}
 
 	/**
@@ -663,7 +663,7 @@ public class AdminController implements ControllerConstants {
 
 		AdminBean bean = adminService.selectByAd_email(ad_id, ad_email);
 
-		return (bean != null) ? EMAIL_REPEAT_MSG : TRUE;
+		return (bean != null) ? ADMIN_EMAIL_REPEAT_MSG : TRUE;
 	}
 
 	/**

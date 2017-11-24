@@ -229,6 +229,7 @@ public class BaseController implements ControllerConstants {
 
 				return ca_directory + ADD_PAGE;
 			}
+
 			logger.info(ca_name + "新增成功");
 
 			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + PAGE_ONE;
@@ -342,6 +343,7 @@ public class BaseController implements ControllerConstants {
 
 				return ca_directory + EDIT_PAGE;
 			}
+
 			logger.info(ca_name + "編輯成功");
 
 			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;

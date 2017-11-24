@@ -298,6 +298,7 @@ public class AdminController implements ControllerConstants {
 
 			logger.info("(" + className + "." + methodName + ") 原請求頁面: " + INDEX_PAGE);
 		}
+
 		return ADMIN_SIGN_IN_PAGE;
 	}
 

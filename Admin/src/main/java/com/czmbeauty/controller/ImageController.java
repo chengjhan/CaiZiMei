@@ -317,8 +317,7 @@ public class ImageController implements ControllerConstants {
 
 			logger.error(ca_name + "編輯失敗: 資料未填");
 
-			return ca_directory + EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND + PAGE + EQUAL
-					+ currentPage;
+			return ca_directory + EDIT_PAGE;
 
 		} else if (file.isEmpty()) {
 
@@ -331,8 +330,7 @@ public class ImageController implements ControllerConstants {
 
 				logger.error(ca_name + "編輯失敗: 上傳格式錯誤");
 
-				return ca_directory + EDIT_PAGE + QUESTION + IMAGE_ID + EQUAL + imageBean.getIm_id() + AND + PAGE
-						+ EQUAL + currentPage;
+				return ca_directory + EDIT_PAGE;
 			}
 
 			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
@@ -346,6 +344,7 @@ public class ImageController implements ControllerConstants {
 
 			logger.info(ca_name + "上傳成功，位置: " + im_path + im_filename);
 		}
+
 		imageBean.setIm_CategoryBean(categoryBean);
 		imageBean.setIm_path(im_path);
 		imageBean.setIm_filename(im_filename);

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: HtmlController.java
  * Author: 詹晟
- * Date: 2017/11/23
+ * Date: 2017/11/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -255,18 +255,20 @@ public class HtmlController implements ControllerConstants {
 
 			logger.error(ca_name + "編輯失敗: 資料未填");
 
-			return ca_directory + EDIT_PAGE + QUESTION + HTML_ID + EQUAL + htmlBean.getHt_id() + AND + PAGE + EQUAL
-					+ currentPage;
+			return ca_directory + EDIT_PAGE;
+
+		} else {
+
+			htmlBean.setHt_CategoryBean(categoryBean);
+			htmlBean.setHt_status(htmlService.selectByHt_id(htmlBean.getHt_id()).getHt_status());
+			htmlBean.setHt_update_time(new java.util.Date());
+
+			htmlService.update(htmlBean);
+
+			logger.info(ca_name + "編輯成功");
+
+			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 		}
-		htmlBean.setHt_CategoryBean(categoryBean);
-		htmlBean.setHt_status(htmlService.selectByHt_id(htmlBean.getHt_id()).getHt_status());
-		htmlBean.setHt_update_time(new java.util.Date());
-
-		htmlService.update(htmlBean);
-
-		logger.info(ca_name + "編輯成功");
-
-		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 	}
 
 	/**

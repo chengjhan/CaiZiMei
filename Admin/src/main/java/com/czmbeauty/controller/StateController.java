@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/10/26
+ * Date: 2017/11/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,6 +13,7 @@ import static com.czmbeauty.common.constants.ModelAttributeConstants.STATE_BEAN;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.entity.StateBean;
 import com.czmbeauty.model.service.CountryService;
@@ -46,6 +48,12 @@ import com.google.gson.Gson;
 public class StateController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(StateController.class);
+
+	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
 
 	/**
 	 * 注入 CountryService
@@ -173,16 +181,39 @@ public class StateController implements ControllerConstants {
 	 *            StateBean --> form backing object --> GET --> st_id
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/area-state/edit.jsp
 	 */
 	@RequestMapping(value = "/area-state/edit", method = RequestMethod.GET)
 	public String editView(StateBean stateBean_st_id, Model model) {
 
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+
+		StateBean stateBean;
+		try {
+			// 取得選定區域 id 的 StateBean
+			stateBean = stateService.selectBySt_id(stateBean_st_id.getSt_id());
+
+			if (stateBean == null) {
+
+				throw new PageNotFoundException(requestView);
+			}
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+
+		} catch (IllegalArgumentException e) {
+
+			logger.error("找不到這個頁面: " + requestView);
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
+
 		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-		// 取得選定區域 id 的 StateBean，放入 Session，使表單回填 StateBean 內所有資料
-		model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean_st_id.getSt_id()));
+		// 放入 Session，使表單回填 StateBean 內所有資料
+		model.addAttribute(STATE_BEAN, stateBean);
 
 		return AREA_STATE_EDIT_PAGE;
 	}

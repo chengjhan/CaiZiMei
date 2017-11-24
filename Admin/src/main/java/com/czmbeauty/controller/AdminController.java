@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/11/23
+ * Date: 2017/11/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -93,7 +93,6 @@ public class AdminController implements ControllerConstants {
 	 *            AdminBean --> form backing object
 	 * @param bindingResult
 	 *            BindingResult
-	 * @return /WEB-INF/views/admin/sign-up.jsp
 	 * @return /WEB-INF/views/admin/list.jsp
 	 */
 	// 得到 <form:form modelAttribute="adminBean"> 表單新增的資料
@@ -618,8 +617,7 @@ public class AdminController implements ControllerConstants {
 	 * 
 	 * @param ad_username
 	 *            String --> 管理員帳號
-	 * @return "這個帳號已經被使用了"
-	 * @return "true"
+	 * @return String
 	 */
 	@RequestMapping(value = "/admin/username-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -635,8 +633,7 @@ public class AdminController implements ControllerConstants {
 	 * 
 	 * @param ad_email
 	 *            String --> 管理員信箱
-	 * @return "這個信箱已經被使用了"
-	 * @return "true"
+	 * @return String
 	 */
 	@RequestMapping(value = "/admin/email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -650,12 +647,11 @@ public class AdminController implements ControllerConstants {
 	/**
 	 * 信箱重複驗證 (edit) (AJAX)
 	 * 
-	 * @param admin
-	 *            AdminBean --> Session
+	 * @param ad_id
+	 *            Integer --> 管理員流水號
 	 * @param ad_email
 	 *            String --> 管理員信箱
-	 * @return "這個信箱已經被使用了"
-	 * @return "true"
+	 * @return String
 	 */
 	@RequestMapping(value = "/admin/edit-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody

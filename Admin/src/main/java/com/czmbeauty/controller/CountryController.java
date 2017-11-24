@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/10/26
+ * Date: 2017/11/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -135,6 +135,7 @@ public class CountryController implements ControllerConstants {
 
 		CountryBean countryBean;
 		try {
+			// 取得選定國家 id 的 CountryBean
 			countryBean = countryService.selectByCo_id(countryBean_co_id.getCo_id());
 
 			if (countryBean == null) {
@@ -152,7 +153,7 @@ public class CountryController implements ControllerConstants {
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
 
-		// 取得選定國家 id 的 CountryBean，使表單回填 CountryBean 內所有資料
+		// 使表單回填 CountryBean 內所有資料
 		model.addAttribute(COUNTRY_BEAN, countryBean);
 
 		return AREA_COUNTRY_EDIT_PAGE;

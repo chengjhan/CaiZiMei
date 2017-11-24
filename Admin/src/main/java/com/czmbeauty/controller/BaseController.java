@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/11/23
+ * Date: 2017/11/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -188,6 +188,7 @@ public class BaseController implements ControllerConstants {
 	 *            BindingResult
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/ca_directory/add.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/base*/add.do", method = RequestMethod.POST)
@@ -301,6 +302,7 @@ public class BaseController implements ControllerConstants {
 	 *            BindingResult
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/ca_directory/edit.jsp
 	 * @return /WEB-INF/views/ca_directory/list.jsp
 	 */
 	@RequestMapping(value = "/base*/edit.do", method = RequestMethod.POST)

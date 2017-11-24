@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/10/26
+ * Date: 2017/11/24
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -13,6 +13,7 @@ import static com.czmbeauty.common.constants.ModelAttributeConstants.CITY_BEAN;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -31,6 +32,7 @@ import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.editor.CountryBeanPropertyEditor;
 import com.czmbeauty.common.editor.PrimitiveNumberEditor;
 import com.czmbeauty.common.editor.StateBeanPropertyEditor;
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.model.entity.CityBean;
 import com.czmbeauty.model.entity.CountryBean;
 import com.czmbeauty.model.entity.StateBean;
@@ -49,6 +51,12 @@ import com.google.gson.Gson;
 public class CityController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(CityController.class);
+
+	/**
+	 * 注入 HttpServletRequest
+	 */
+	@Autowired
+	private HttpServletRequest request;
 
 	/**
 	 * 注入 CountryService
@@ -189,13 +197,33 @@ public class CityController implements ControllerConstants {
 	 *            CityBean --> form backing object --> GET --> ci_id
 	 * @param model
 	 *            Model
+	 * @return /WEB-INF/views/error/page-not-found.jsp
 	 * @return /WEB-INF/views/area-city/edit.jsp
 	 */
 	@RequestMapping(value = "/area-city/edit", method = RequestMethod.GET)
 	public String editView(CityBean cityBean_ci_id, Model model) {
 
-		// 取得選定城市 id 的 CityBean
-		CityBean cityBean = cityService.selectByCi_id(cityBean_ci_id.getCi_id());
+		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+
+		CityBean cityBean;
+		try {
+			// 取得選定城市 id 的 CityBean
+			cityBean = cityService.selectByCi_id(cityBean_ci_id.getCi_id());
+
+			if (cityBean == null) {
+
+				throw new PageNotFoundException(requestView);
+			}
+		} catch (PageNotFoundException e) {
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+
+		} catch (IllegalArgumentException e) {
+
+			logger.error("找不到這個頁面: " + requestView);
+
+			return ERROR_PAGE_NOT_FOUND_PAGE;
+		}
 
 		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());

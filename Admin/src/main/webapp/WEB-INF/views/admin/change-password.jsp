@@ -42,12 +42,7 @@
 							</tr>
 							<tr>
 								<td><label for="ad_password_new">新密碼</label></td>
-								<td>
-									<input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}" placeholder="請輸入 8 位字元以上並包含英文及數字的密碼" />
-									<c:if test="${not empty ad_password_new_error}">
-										<label for="ad_password_new" id="ad_password_new-error" class="error"><span>${ad_password_new_error}</span></label>
-									</c:if>
-								</td>
+								<td><input type="password" id="ad_password_new" class="form-control" name="ad_password_new" value="${ad_password_new}" placeholder="請輸入 8 位字元以上並包含英文及數字的密碼" /></td>
 								<td></td>
 							</tr>
 							<tr>

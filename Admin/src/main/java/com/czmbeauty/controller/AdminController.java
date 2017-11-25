@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/11/24
+ * Date: 2017/11/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -220,23 +220,17 @@ public class AdminController implements ControllerConstants {
 		if (ad_password_old == null || ad_password_old.isEmpty() || ad_password_new == null || ad_password_new.isEmpty()
 				|| ad_password_new_again == null || ad_password_new_again.isEmpty()) {
 
-			model.addAttribute(ERROR, "密碼未填");
-
 			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 密碼未填");
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
 
-			model.addAttribute(ERROR, "密碼格式錯誤");
-
 			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 密碼格式錯誤");
 
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.equals(ad_password_new_again)) {
-
-			model.addAttribute(ERROR, "新密碼重複錯誤");
 
 			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 新密碼重複錯誤");
 
@@ -255,11 +249,6 @@ public class AdminController implements ControllerConstants {
 			return ADMIN_CHANGE_PASSWORD_PAGE;
 
 		} else if (admin.getAd_password().equals(PasswordUtil.getHashedPassword(ad_password_new, admin.getAd_salt()))) {
-
-			model.addAttribute(ADMIN_PASSWORD_OLD, ad_password_old);
-			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
-			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
-			model.addAttribute(ADMIN_PASSWORD_NEW_ERROR, "密碼未變更");
 
 			logger.error("(" + className + "." + methodName + ") 密碼變更失敗: 密碼未變更");
 
@@ -487,23 +476,17 @@ public class AdminController implements ControllerConstants {
 		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
 				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
 
-			model.addAttribute(ERROR, "密碼未填");
-
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼未填");
 
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
 
-			model.addAttribute(ERROR, "密碼格式錯誤");
-
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼格式錯誤");
 
 			return ADMIN_RESET_PASSWORD_PAGE;
 
 		} else if (!ad_password_new.equals(ad_password_new_again)) {
-
-			model.addAttribute(ERROR, "新密碼重複錯誤");
 
 			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 新密碼重複錯誤");
 

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/11/24
+ * Date: 2017/11/26
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -116,6 +116,7 @@ public class StateController implements ControllerConstants {
 			// 取得編輯或刪除的 StateBean 的國家，並取得此國家中的所有區域 List，放入 table
 			model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(stateBean.getSt_CountryBean().getCo_id()));
 		}
+
 		return AREA_STATE_LIST_PAGE;
 	}
 

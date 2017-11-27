@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/11/24
+ * Date: 2017/11/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -37,6 +37,8 @@ import com.czmbeauty.model.service.CountryService;
 public class CountryController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(CountryController.class);
+
+	private String className = this.getClass().getSimpleName();
 
 	/**
 	 * 注入 HttpServletRequest
@@ -102,9 +104,11 @@ public class CountryController implements ControllerConstants {
 	@RequestMapping(value = "/area-country/add.do", method = RequestMethod.POST)
 	public String addAction(@Valid CountryBean countryBean, BindingResult bindingResult) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (bindingResult.hasErrors()) {
 
-			logger.error("國家新增失敗: 格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 國家新增失敗: 格式錯誤");
 
 			return AREA_COUNTRY_ADD_PAGE;
 
@@ -112,7 +116,7 @@ public class CountryController implements ControllerConstants {
 
 			countryService.insert(countryBean);
 
-			logger.info("國家新增成功");
+			logger.info("(" + className + "." + methodName + ") 國家新增成功");
 
 			return REDIRECT + AREA_COUNTRY_LIST_PAGE;
 		}
@@ -131,6 +135,8 @@ public class CountryController implements ControllerConstants {
 	@RequestMapping(value = "/area-country/edit", method = RequestMethod.GET)
 	public String editView(CountryBean countryBean_co_id, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
 
 		CountryBean countryBean;
@@ -148,7 +154,7 @@ public class CountryController implements ControllerConstants {
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + requestView);
+			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestView);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -171,9 +177,11 @@ public class CountryController implements ControllerConstants {
 	@RequestMapping(value = "/area-country/edit.do", method = RequestMethod.POST)
 	public String editAction(@Valid CountryBean countryBean, BindingResult bindingResult) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (bindingResult.hasErrors()) {
 
-			logger.error("國家編輯失敗: 格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 國家編輯失敗: 格式錯誤");
 
 			return AREA_COUNTRY_EDIT_PAGE;
 
@@ -181,7 +189,7 @@ public class CountryController implements ControllerConstants {
 
 			countryService.update(countryBean);
 
-			logger.info("國家編輯成功");
+			logger.info("(" + className + "." + methodName + ") 國家編輯成功");
 
 			return REDIRECT + AREA_COUNTRY_LIST_PAGE;
 		}

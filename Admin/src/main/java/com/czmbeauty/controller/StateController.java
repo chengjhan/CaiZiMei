@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/11/26
+ * Date: 2017/11/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -48,6 +48,8 @@ import com.google.gson.Gson;
 public class StateController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(StateController.class);
+
+	private String className = this.getClass().getSimpleName();
 
 	/**
 	 * 注入 HttpServletRequest
@@ -153,12 +155,14 @@ public class StateController implements ControllerConstants {
 	@RequestMapping(value = "/area-state/add.do", method = RequestMethod.POST)
 	public String addAction(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (bindingResult.hasErrors()) {
 
 			// 取得所有國家 List，放入 select
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-			logger.error("區域新增失敗: 格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 區域新增失敗: 格式錯誤");
 
 			return AREA_STATE_ADD_PAGE;
 
@@ -169,7 +173,7 @@ public class StateController implements ControllerConstants {
 			// 將新增的 StateBean 放入 Session，使 select 回填國家
 			model.addAttribute(STATE_BEAN, stateBean);
 
-			logger.info("區域新增成功");
+			logger.info("(" + className + "." + methodName + ") 區域新增成功");
 
 			return REDIRECT + AREA_STATE_LIST_PAGE;
 		}
@@ -188,6 +192,8 @@ public class StateController implements ControllerConstants {
 	@RequestMapping(value = "/area-state/edit", method = RequestMethod.GET)
 	public String editView(StateBean stateBean_st_id, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
 
 		StateBean stateBean;
@@ -205,7 +211,7 @@ public class StateController implements ControllerConstants {
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + requestView);
+			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestView);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -233,6 +239,8 @@ public class StateController implements ControllerConstants {
 	@RequestMapping(value = "/area-state/edit.do", method = RequestMethod.POST)
 	public String editAction(@Valid StateBean stateBean, BindingResult bindingResult, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (bindingResult.hasErrors()) {
 
 			// 取得所有國家 List，放入 select
@@ -241,7 +249,7 @@ public class StateController implements ControllerConstants {
 			// 取得選定區域 id 的 StateBean，放入 Session，使表單回填 StateBean 內所有資料
 			model.addAttribute(STATE_BEAN, stateService.selectBySt_id(stateBean.getSt_id()));
 
-			logger.error("區域編輯失敗: 格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 區域編輯失敗: 格式錯誤");
 
 			return AREA_STATE_EDIT_PAGE;
 
@@ -252,7 +260,7 @@ public class StateController implements ControllerConstants {
 			// 將編輯的 StateBean 放入 Session，使 select 回填國家
 			model.addAttribute(STATE_BEAN, stateBean);
 
-			logger.info("區域編輯成功");
+			logger.info("(" + className + "." + methodName + ") 區域編輯成功");
 
 			return REDIRECT + AREA_STATE_LIST_PAGE;
 		}
@@ -269,6 +277,8 @@ public class StateController implements ControllerConstants {
 	@ResponseBody
 	public String choiceCountryStateListAjax(Integer st_co_id) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		List<StateBean> list = stateService.selectBySt_co_id(st_co_id);
 
 		List<StateBean> jsonList = new ArrayList<StateBean>();
@@ -283,7 +293,7 @@ public class StateController implements ControllerConstants {
 
 		String json = new Gson().toJson(jsonList);
 
-		logger.info("JSON = " + json);
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 
 		return json;
 	}

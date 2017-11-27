@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/11/26
+ * Date: 2017/11/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -274,10 +274,10 @@ public class AdminController implements ControllerConstants {
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
 	public String signInView(Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		HttpSession session = request.getSession();
 		String next = (String) session.getAttribute(NEXT_PAGE);
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		if (next != null) { // 經過 NoSignInInterceptor
 
@@ -467,11 +467,11 @@ public class AdminController implements ControllerConstants {
 	public String resetPasswordAction(@RequestParam String ad_password_random, @RequestParam String ad_password_new,
 			@RequestParam String ad_password_new_again, SessionStatus sessionStatus, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		HttpSession session = request.getSession();
 		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
 		AdminBean adminBean = adminService.selectByAd_email(ad_email, 1);
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
 				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
@@ -530,13 +530,13 @@ public class AdminController implements ControllerConstants {
 	@RequestMapping(value = "/secure/sign-out.do", method = RequestMethod.GET)
 	public String signOutAction(SessionStatus sessionStatus) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		// 清除 @SessionAttributes
 		sessionStatus.setComplete();
 
 		// 清除所有 HttpSession
 		request.getSession().invalidate();
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		logger.info("(" + className + "." + methodName + ") 登出成功");
 
@@ -559,9 +559,8 @@ public class AdminController implements ControllerConstants {
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
 
 		int pageRowCount = ADMIN_PAGE_ROW_COUNT_NUMBER;
-		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
-
 		int pageCount = PaginationUtil.getPageCount(adminService.selectCount(), pageRowCount);
+		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, categoryBean.getCa_directory());
@@ -657,6 +656,8 @@ public class AdminController implements ControllerConstants {
 	@ResponseBody
 	public String switchAjax(String ad_id) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		AdminBean bean = adminService.updateAd_status(Integer.valueOf(ad_id));
 
 		GsonBuilder builder = new GsonBuilder();
@@ -665,8 +666,6 @@ public class AdminController implements ControllerConstants {
 		Gson gson = builder.create();
 
 		String json = gson.toJson(bean);
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 

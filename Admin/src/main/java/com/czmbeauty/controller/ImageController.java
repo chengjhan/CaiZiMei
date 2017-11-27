@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/11/24
+ * Date: 2017/11/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -47,6 +47,8 @@ import com.czmbeauty.model.service.ImageService;
 public class ImageController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(ImageController.class);
+
+	private String className = this.getClass().getSimpleName();
 
 	/**
 	 * 當前頁碼
@@ -120,9 +122,8 @@ public class ImageController implements ControllerConstants {
 		String ca_directory = categoryBean.getCa_directory();
 
 		int pageRowCount = IMAGE_PAGE_ROW_COUNT_NUMBER;
-		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
-
 		int pageCount = PaginationUtil.getPageCount(imageService.selectCountByIm_Ca(categoryBean), pageRowCount);
+		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
@@ -190,6 +191,8 @@ public class ImageController implements ControllerConstants {
 	@RequestMapping(value = { "/slider*/add.do", "/image*/add.do" }, method = RequestMethod.POST)
 	public String addAction(@RequestParam MultipartFile file, @Valid ImageBean imageBean, BindingResult bindingResult) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
 		String ca_name = categoryBean.getCa_name();
@@ -197,13 +200,13 @@ public class ImageController implements ControllerConstants {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error(ca_name + "新增失敗: 資料未填");
+			logger.error("(" + className + "." + methodName + ") " + ca_name + "新增失敗: 資料未填");
 
 			return ca_directory + ADD_PAGE;
 
 		} else if (file.isEmpty()) {
 
-			logger.error(ca_name + "新增失敗: 未上傳圖片");
+			logger.error("(" + className + "." + methodName + ") " + ca_name + "新增失敗: 未上傳圖片");
 
 			return ca_directory + ADD_PAGE;
 
@@ -211,7 +214,7 @@ public class ImageController implements ControllerConstants {
 
 			if (!ImageUtil.isImage(file)) {
 
-				logger.error(ca_name + "新增失敗: 上傳格式錯誤");
+				logger.error("(" + className + "." + methodName + ") " + ca_name + "新增失敗: 上傳格式錯誤");
 
 				return ca_directory + ADD_PAGE;
 			}
@@ -223,7 +226,8 @@ public class ImageController implements ControllerConstants {
 				e.printStackTrace();
 			}
 
-			logger.info(ca_name + "上傳成功，位置: " + pathAndFilename[0] + pathAndFilename[1]);
+			logger.info("(" + className + "." + methodName + ") " + ca_name + "上傳成功，位置: " + pathAndFilename[0]
+					+ pathAndFilename[1]);
 
 			imageBean.setIm_CategoryBean(categoryBean);
 			imageBean.setIm_path(pathAndFilename[0]);
@@ -233,7 +237,7 @@ public class ImageController implements ControllerConstants {
 
 			imageService.insert(imageBean);
 
-			logger.info(ca_name + "新增成功");
+			logger.info("(" + className + "." + methodName + ") " + ca_name + "新增成功");
 
 			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + PAGE_ONE;
 		}
@@ -253,6 +257,8 @@ public class ImageController implements ControllerConstants {
 	 */
 	@RequestMapping(value = { "/slider*/edit", "/image*/edit" }, method = RequestMethod.GET)
 	public String editView(ImageBean imageBean_im_id, @RequestParam String page, Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		currentPage = page;
 
@@ -274,7 +280,7 @@ public class ImageController implements ControllerConstants {
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + requestView);
+			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestView);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -303,6 +309,8 @@ public class ImageController implements ControllerConstants {
 	public String editAction(@RequestParam MultipartFile file, @Valid ImageBean imageBean,
 			BindingResult bindingResult) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
 		String ca_name = categoryBean.getCa_name();
@@ -315,7 +323,7 @@ public class ImageController implements ControllerConstants {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error(ca_name + "編輯失敗: 資料未填");
+			logger.error("(" + className + "." + methodName + ") " + ca_name + "編輯失敗: 資料未填");
 
 			return ca_directory + EDIT_PAGE;
 
@@ -328,7 +336,7 @@ public class ImageController implements ControllerConstants {
 
 			if (!ImageUtil.isImage(file)) {
 
-				logger.error(ca_name + "編輯失敗: 上傳格式錯誤");
+				logger.error("(" + className + "." + methodName + ") " + ca_name + "編輯失敗: 上傳格式錯誤");
 
 				return ca_directory + EDIT_PAGE;
 			}
@@ -342,7 +350,7 @@ public class ImageController implements ControllerConstants {
 				e.printStackTrace();
 			}
 
-			logger.info(ca_name + "上傳成功，位置: " + im_path + im_filename);
+			logger.info("(" + className + "." + methodName + ") " + ca_name + "上傳成功，位置: " + im_path + im_filename);
 		}
 
 		imageBean.setIm_CategoryBean(categoryBean);
@@ -353,7 +361,7 @@ public class ImageController implements ControllerConstants {
 
 		imageService.update(imageBean);
 
-		logger.info(ca_name + "編輯成功");
+		logger.info("(" + className + "." + methodName + ") " + ca_name + "編輯成功");
 
 		return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 	}

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: HtmlController.java
  * Author: 詹晟
- * Date: 2017/11/24
+ * Date: 2017/11/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,6 +41,8 @@ import com.czmbeauty.model.service.HtmlService;
 public class HtmlController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(HtmlController.class);
+
+	private String className = this.getClass().getSimpleName();
 
 	/**
 	 * 當前頁碼
@@ -90,9 +92,8 @@ public class HtmlController implements ControllerConstants {
 		String ca_directory = categoryBean.getCa_directory();
 
 		int pageRowCount = HTML_PAGE_ROW_COUNT_NUMBER;
-		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
-
 		int pageCount = PaginationUtil.getPageCount(htmlService.selectCountByHt_Ca(categoryBean), pageRowCount);
+		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
@@ -159,6 +160,8 @@ public class HtmlController implements ControllerConstants {
 			"/info*/add.do" }, method = RequestMethod.POST)
 	public String addAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
 		String ca_name = categoryBean.getCa_name();
@@ -166,7 +169,7 @@ public class HtmlController implements ControllerConstants {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error(ca_name + "新增失敗: 資料未填");
+			logger.error("(" + className + "." + methodName + ") " + ca_name + "新增失敗: 資料未填");
 
 			return ca_directory + ADD_PAGE;
 
@@ -178,7 +181,7 @@ public class HtmlController implements ControllerConstants {
 
 			htmlService.insert(htmlBean);
 
-			logger.info(ca_name + "新增成功");
+			logger.info("(" + className + "." + methodName + ") " + ca_name + "新增成功");
 
 			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + PAGE_ONE;
 		}
@@ -198,6 +201,8 @@ public class HtmlController implements ControllerConstants {
 	 */
 	@RequestMapping(value = { "/about*/edit", "/team*/edit", "/news*/edit", "/info*/edit" }, method = RequestMethod.GET)
 	public String editView(HtmlBean htmlBean_ht_id, @RequestParam String page, Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		currentPage = page;
 
@@ -219,7 +224,7 @@ public class HtmlController implements ControllerConstants {
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + requestView);
+			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestView);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -246,6 +251,8 @@ public class HtmlController implements ControllerConstants {
 			"/info*/edit.do" }, method = RequestMethod.POST)
 	public String editAction(@Valid HtmlBean htmlBean, BindingResult bindingResult) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
 		String ca_name = categoryBean.getCa_name();
@@ -253,7 +260,7 @@ public class HtmlController implements ControllerConstants {
 
 		if (bindingResult.hasErrors()) {
 
-			logger.error(ca_name + "編輯失敗: 資料未填");
+			logger.error("(" + className + "." + methodName + ") " + ca_name + "編輯失敗: 資料未填");
 
 			return ca_directory + EDIT_PAGE;
 
@@ -265,7 +272,7 @@ public class HtmlController implements ControllerConstants {
 
 			htmlService.update(htmlBean);
 
-			logger.info(ca_name + "編輯成功");
+			logger.info("(" + className + "." + methodName + ") " + ca_name + "編輯成功");
 
 			return REDIRECT + ca_directory + LIST_PAGE + QUESTION + PAGE + EQUAL + currentPage;
 		}

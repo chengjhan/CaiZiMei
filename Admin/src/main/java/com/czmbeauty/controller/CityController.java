@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/11/26
+ * Date: 2017/11/27
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -51,6 +51,8 @@ import com.google.gson.Gson;
 public class CityController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(CityController.class);
+
+	private String className = this.getClass().getSimpleName();
 
 	/**
 	 * 注入 HttpServletRequest
@@ -169,12 +171,14 @@ public class CityController implements ControllerConstants {
 	@RequestMapping(value = "/area-city/add.do", method = RequestMethod.POST)
 	public String addAction(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (bindingResult.hasErrors()) {
 
 			// 取得所有國家 List，放入 select
 			model.addAttribute(COUNTRY_LIST, countryService.selectAll());
 
-			logger.error("城市新增失敗: 格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 城市新增失敗: 格式錯誤");
 
 			return AREA_CITY_ADD_PAGE;
 
@@ -185,7 +189,7 @@ public class CityController implements ControllerConstants {
 			// 將新增的 CityBean 放入 Session，使 select 回填國家及區域
 			model.addAttribute(CITY_BEAN, cityBean);
 
-			logger.info("城市新增成功");
+			logger.info("(" + className + "." + methodName + ") 城市新增成功");
 
 			return REDIRECT + AREA_CITY_LIST_PAGE;
 		}
@@ -204,6 +208,8 @@ public class CityController implements ControllerConstants {
 	@RequestMapping(value = "/area-city/edit", method = RequestMethod.GET)
 	public String editView(CityBean cityBean_ci_id, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String requestView = (String) request.getAttribute(REQUEST_VIEW);
 
 		CityBean cityBean;
@@ -221,7 +227,7 @@ public class CityController implements ControllerConstants {
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("找不到這個頁面: " + requestView);
+			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestView);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -252,6 +258,8 @@ public class CityController implements ControllerConstants {
 	@RequestMapping(value = "/area-city/edit.do", method = RequestMethod.POST)
 	public String editAction(@Valid CityBean cityBean, BindingResult bindingResult, Model model) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		if (bindingResult.hasErrors()) {
 
 			// 取得所有國家 List，放入 select
@@ -263,7 +271,7 @@ public class CityController implements ControllerConstants {
 			// 取得選定城市 id 的 CityBean，放入 Session，使表單回填 CityBean 內所有資料
 			model.addAttribute(CITY_BEAN, cityService.selectByCi_id(cityBean.getCi_id()));
 
-			logger.error("城市編輯失敗: 格式錯誤");
+			logger.error("(" + className + "." + methodName + ") 城市編輯失敗: 格式錯誤");
 
 			return AREA_CITY_EDIT_PAGE;
 
@@ -274,7 +282,7 @@ public class CityController implements ControllerConstants {
 			// 將編輯的 CityBean 放入 Session，使 select 回填國家及區域
 			model.addAttribute(CITY_BEAN, cityBean);
 
-			logger.info("城市編輯成功");
+			logger.info("(" + className + "." + methodName + ") 城市編輯成功");
 
 			return REDIRECT + AREA_CITY_LIST_PAGE;
 		}
@@ -291,6 +299,8 @@ public class CityController implements ControllerConstants {
 	@ResponseBody
 	public String choiceStateCityListAjax(Integer ci_st_id) {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		List<CityBean> list = cityService.selectByCi_st_id(ci_st_id);
 
 		List<CityBean> jsonList = new ArrayList<CityBean>();
@@ -305,7 +315,7 @@ public class CityController implements ControllerConstants {
 
 		String json = new Gson().toJson(jsonList);
 
-		logger.info("JSON = " + json);
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 
 		return json;
 	}

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/11/27
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -221,6 +221,7 @@ public class BaseController implements ControllerConstants {
 		} else {
 
 			baseBean.setBa_CategoryBean(categoryBean);
+
 			try {
 				baseService.insert(baseBean);
 

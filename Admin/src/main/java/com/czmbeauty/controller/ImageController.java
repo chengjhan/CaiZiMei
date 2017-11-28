@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/11/27
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -220,10 +220,15 @@ public class ImageController implements ControllerConstants {
 			}
 
 			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
+
 			try {
 				file.transferTo(new File(pathAndFilename[0] + pathAndFilename[1]));
+
 			} catch (Exception e) {
-				e.printStackTrace();
+
+				logger.error("(" + className + "." + methodName + ") " + ca_name + "上傳失敗");
+
+				return ca_directory + ADD_PAGE;
 			}
 
 			logger.info("(" + className + "." + methodName + ") " + ca_name + "上傳成功，位置: " + pathAndFilename[0]
@@ -232,8 +237,6 @@ public class ImageController implements ControllerConstants {
 			imageBean.setIm_CategoryBean(categoryBean);
 			imageBean.setIm_path(pathAndFilename[0]);
 			imageBean.setIm_filename(pathAndFilename[1]);
-			imageBean.setIm_status(1);
-			imageBean.setIm_update_time(new java.util.Date());
 
 			imageService.insert(imageBean);
 
@@ -344,10 +347,15 @@ public class ImageController implements ControllerConstants {
 			String[] pathAndFilename = getPathAndFilename(ca_directory, file);
 			im_path = pathAndFilename[0];
 			im_filename = pathAndFilename[1];
+
 			try {
 				file.transferTo(new File(im_path + im_filename));
+
 			} catch (Exception e) {
-				e.printStackTrace();
+
+				logger.error("(" + className + "." + methodName + ") " + ca_name + "上傳失敗");
+
+				return ca_directory + EDIT_PAGE;
 			}
 
 			logger.info("(" + className + "." + methodName + ") " + ca_name + "上傳成功，位置: " + im_path + im_filename);
@@ -357,7 +365,6 @@ public class ImageController implements ControllerConstants {
 		imageBean.setIm_path(im_path);
 		imageBean.setIm_filename(im_filename);
 		imageBean.setIm_status(oldImageBean.getIm_status());
-		imageBean.setIm_update_time(new java.util.Date());
 
 		imageService.update(imageBean);
 

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -74,6 +74,7 @@ public class StateServiceImpl implements StateService {
 	@Transactional
 	public StateBean insert(StateBean stateBean) {
 
+		stateBean.setSt_name(stateBean.getSt_name().trim());
 		stateBean.setSt_status(1);
 
 		return stateDao.insert(stateBean);
@@ -89,6 +90,8 @@ public class StateServiceImpl implements StateService {
 	@Override
 	@Transactional
 	public StateBean update(StateBean stateBean) {
+
+		stateBean.setSt_name(stateBean.getSt_name().trim());
 
 		return stateDao.update(stateBean);
 	}

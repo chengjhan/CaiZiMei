@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -94,6 +94,10 @@ public class ImageServiceImpl implements ImageService {
 	@Transactional
 	public ImageBean insert(ImageBean imageBean) {
 
+		imageBean.setIm_name(imageBean.getIm_name().trim());
+		imageBean.setIm_status(1);
+		imageBean.setIm_update_time(new java.util.Date());
+
 		return imageDao.insert(imageBean);
 	}
 
@@ -107,6 +111,9 @@ public class ImageServiceImpl implements ImageService {
 	@Override
 	@Transactional
 	public ImageBean update(ImageBean imageBean) {
+
+		imageBean.setIm_name(imageBean.getIm_name().trim());
+		imageBean.setIm_update_time(new java.util.Date());
 
 		return imageDao.update(imageBean);
 	}

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -75,6 +75,7 @@ public class CountryServiceImpl implements CountryService {
 	public CountryBean insert(CountryBean countryBean) {
 
 		countryBean.setCo_iso(countryBean.getCo_iso().toUpperCase());
+		countryBean.setCo_name(countryBean.getCo_name().trim());
 		countryBean.setCo_status(1);
 
 		return countryDao.insert(countryBean);
@@ -90,6 +91,9 @@ public class CountryServiceImpl implements CountryService {
 	@Override
 	@Transactional
 	public CountryBean update(CountryBean countryBean) {
+
+		countryBean.setCo_iso(countryBean.getCo_iso().toUpperCase());
+		countryBean.setCo_name(countryBean.getCo_name().trim());
 
 		return countryDao.update(countryBean);
 	}

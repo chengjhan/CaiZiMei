@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: HtmlController.java
  * Author: 詹晟
- * Date: 2017/11/27
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -176,8 +176,6 @@ public class HtmlController implements ControllerConstants {
 		} else {
 
 			htmlBean.setHt_CategoryBean(categoryBean);
-			htmlBean.setHt_status(0);
-			htmlBean.setHt_update_time(new java.util.Date());
 
 			htmlService.insert(htmlBean);
 
@@ -267,8 +265,6 @@ public class HtmlController implements ControllerConstants {
 		} else {
 
 			htmlBean.setHt_CategoryBean(categoryBean);
-			htmlBean.setHt_status(htmlService.selectByHt_id(htmlBean.getHt_id()).getHt_status());
-			htmlBean.setHt_update_time(new java.util.Date());
 
 			htmlService.update(htmlBean);
 

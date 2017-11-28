@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -94,6 +94,10 @@ public class VideoServiceImpl implements VideoService {
 	@Transactional
 	public VideoBean insert(VideoBean videoBean) {
 
+		videoBean.setVi_name(videoBean.getVi_name().trim());
+		videoBean.setVi_status(0);
+		videoBean.setVi_update_time(new java.util.Date());
+
 		return videoDao.insert(videoBean);
 	}
 
@@ -107,6 +111,10 @@ public class VideoServiceImpl implements VideoService {
 	@Override
 	@Transactional
 	public VideoBean update(VideoBean videoBean) {
+
+		videoBean.setVi_name(videoBean.getVi_name().trim());
+		videoBean.setVi_status(videoDao.selectByVi_id(videoBean.getVi_id()).getVi_status());
+		videoBean.setVi_update_time(new java.util.Date());
 
 		return videoDao.update(videoBean);
 	}

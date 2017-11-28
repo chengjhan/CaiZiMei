@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/11/14
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -53,8 +53,10 @@ public class AdminServiceImpl implements AdminService {
 
 		String ad_salt = PasswordUtil.getSalt();
 
-		adminBean.setAd_salt(ad_salt);
 		adminBean.setAd_password(PasswordUtil.getHashedPassword(adminBean.getAd_password(), ad_salt));
+		adminBean.setAd_salt(ad_salt);
+		adminBean.setAd_lastname(adminBean.getAd_lastname().trim());
+		adminBean.setAd_firstname(adminBean.getAd_firstname().trim());
 		adminBean.setAd_signup_time(new java.util.Date());
 		adminBean.setAd_signin_number(0);
 		adminBean.setAd_update_pwd_time(new java.util.Date());
@@ -208,6 +210,8 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public AdminBean update(AdminBean adminBean) {
 
+		adminBean.setAd_lastname(adminBean.getAd_lastname().trim());
+		adminBean.setAd_firstname(adminBean.getAd_firstname().trim());
 		adminBean.setAd_update_info_time(new java.util.Date());
 
 		return adminDao.update(adminBean);

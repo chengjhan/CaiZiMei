@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: HtmlServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -94,6 +94,10 @@ public class HtmlServiceImpl implements HtmlService {
 	@Transactional
 	public HtmlBean insert(HtmlBean htmlBean) {
 
+		htmlBean.setHt_name(htmlBean.getHt_name().trim());
+		htmlBean.setHt_status(0);
+		htmlBean.setHt_update_time(new java.util.Date());
+
 		return htmlDao.insert(htmlBean);
 	}
 
@@ -107,6 +111,10 @@ public class HtmlServiceImpl implements HtmlService {
 	@Override
 	@Transactional
 	public HtmlBean update(HtmlBean htmlBean) {
+
+		htmlBean.setHt_name(htmlBean.getHt_name().trim());
+		htmlBean.setHt_status(htmlDao.selectByHt_id(htmlBean.getHt_id()).getHt_status());
+		htmlBean.setHt_update_time(new java.util.Date());
 
 		return htmlDao.update(htmlBean);
 	}

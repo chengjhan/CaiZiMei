@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityServiceImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -73,6 +73,7 @@ public class CityServiceImpl implements CityService {
 	@Transactional
 	public CityBean insert(CityBean cityBean) {
 
+		cityBean.setCi_name(cityBean.getCi_name().trim());
 		cityBean.setCi_status(1);
 
 		return cityDao.insert(cityBean);
@@ -88,6 +89,8 @@ public class CityServiceImpl implements CityService {
 	@Override
 	@Transactional
 	public CityBean update(CityBean cityBean) {
+
+		cityBean.setCi_name(cityBean.getCi_name().trim());
 
 		return cityDao.update(cityBean);
 	}

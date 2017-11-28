@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/11/27
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -175,8 +175,6 @@ public class VideoController implements ControllerConstants {
 		} else {
 
 			videoBean.setVi_CategoryBean(categoryBean);
-			videoBean.setVi_status(0);
-			videoBean.setVi_update_time(new java.util.Date());
 
 			videoService.insert(videoBean);
 
@@ -265,8 +263,6 @@ public class VideoController implements ControllerConstants {
 		} else {
 
 			videoBean.setVi_CategoryBean(categoryBean);
-			videoBean.setVi_status(videoService.selectByVi_id(videoBean.getVi_id()).getVi_status());
-			videoBean.setVi_update_time(new java.util.Date());
 
 			videoService.update(videoBean);
 

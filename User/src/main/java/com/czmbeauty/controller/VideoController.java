@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/10/24
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -36,6 +36,8 @@ public class VideoController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(VideoController.class);
 
+	private String className = this.getClass().getSimpleName();
+
 	/**
 	 * 注入 HttpServletRequest
 	 */
@@ -57,7 +59,7 @@ public class VideoController implements ControllerConstants {
 	public String infoVideoRelatedView(Model model) {
 
 		String servletPath = request.getServletPath();
-		String ca_directory = servletPath.split("/")[1] + "-" + servletPath.split("/")[2].split("\\.")[0];
+		String ca_directory = servletPath.split("/")[1] + HYPHEN + servletPath.split("/")[2].split("\\.")[0];
 
 		List<VideoBean> list = videoService.selectOpenVideo(ca_directory);
 
@@ -88,6 +90,8 @@ public class VideoController implements ControllerConstants {
 	@ResponseBody
 	public String openVideoAjax() {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
 
 		VideoBean bean = videoService.selectOpenVideo(ca_directory).get(0);
@@ -99,7 +103,7 @@ public class VideoController implements ControllerConstants {
 
 		String json = new Gson().toJson(jsonBean);
 
-		logger.info("JSON = " + json);
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 
 		return json;
 	}

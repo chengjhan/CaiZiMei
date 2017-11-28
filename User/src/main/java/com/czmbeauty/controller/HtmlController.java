@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: HtmlController.java
  * Author: 詹晟
- * Date: 2017/10/28
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -55,8 +55,8 @@ public class HtmlController implements ControllerConstants {
 		String viewNameFront = servletPath.split("/")[1];
 		String viewNameBack = servletPath.split("/")[2].split("\\.")[0];
 
-		String ca_directory = viewNameFront + "-" + viewNameBack;
-		String viewName = viewNameFront + "/" + viewNameBack;
+		String ca_directory = viewNameFront + HYPHEN + viewNameBack;
+		String viewName = viewNameFront + HYPHEN + viewNameBack;
 
 		List<HtmlBean> list;
 		try {

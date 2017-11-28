@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/10/24
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -35,6 +35,8 @@ public class ImageController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(ImageController.class);
 
+	private String className = this.getClass().getSimpleName();
+
 	/**
 	 * 注入 HttpServletRequest
 	 */
@@ -56,6 +58,8 @@ public class ImageController implements ControllerConstants {
 	@ResponseBody
 	public String openSliderAjax() {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		String ca_directory = request.getServletPath().split("/")[2].split("\\.")[0];
 
 		List<ImageBean> list = imageService.selectOpenImage(ca_directory);
@@ -66,7 +70,7 @@ public class ImageController implements ControllerConstants {
 
 		String json = gson.toJson(list);
 
-		logger.info("JSON = " + json);
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 
 		return json;
 	}

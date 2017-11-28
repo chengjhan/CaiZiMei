@@ -69,4 +69,6 @@ public interface PageNameConstants {
 
 	public static final String VIDEO_SWITCH_AJAX = "video/switch.ajax";
 
+	public static final String HTML_SWITCH_AJAX = "html/switch.ajax";
+
 }

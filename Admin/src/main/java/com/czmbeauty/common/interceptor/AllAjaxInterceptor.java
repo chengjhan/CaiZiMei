@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ParameterConstants;
 import com.czmbeauty.model.service.AdminService;
 import com.czmbeauty.model.service.BaseService;
 import com.czmbeauty.model.service.CityService;
@@ -22,7 +23,8 @@ import com.czmbeauty.model.service.ImageService;
 import com.czmbeauty.model.service.StateService;
 import com.czmbeauty.model.service.VideoService;
 
-public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
+public class AllAjaxInterceptor
+		implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants, ParameterConstants {
 
 	private static final Logger logger = Logger.getLogger(AllAjaxInterceptor.class);
 
@@ -83,7 +85,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 
 		if (ADMIN_SWITCH_AJAX.equals(ajaxName)) {
 
-			String parameter = request.getParameter("ad_id");
+			String parameter = request.getParameter(ADMIN_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| adminService.selectByAd_id(Integer.valueOf(parameter)) == null
@@ -98,7 +100,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 		}
 		if (AREA_COUNTRY_SWITCH_AJAX.equals(ajaxName)) {
 
-			String parameter = request.getParameter("co_id");
+			String parameter = request.getParameter(COUNTRY_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| countryService.selectByCo_id(Integer.valueOf(parameter)) == null) {
@@ -112,7 +114,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 		}
 		if (AREA_STATE_SWITCH_AJAX.equals(ajaxName)) {
 
-			String parameter = request.getParameter("st_id");
+			String parameter = request.getParameter(STATE_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| stateService.selectBySt_id(Integer.valueOf(parameter)) == null) {
@@ -126,7 +128,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 		}
 		if (AREA_CITY_SWITCH_AJAX.equals(ajaxName)) {
 
-			String parameter = request.getParameter("ci_id");
+			String parameter = request.getParameter(CITY_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| cityService.selectByCi_id(Integer.valueOf(parameter)) == null) {
@@ -140,7 +142,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 		}
 		if (BASE_SWITCH_AJAX.equals(ajaxName)) {
 
-			String parameter = request.getParameter("ba_id");
+			String parameter = request.getParameter(BASE_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| baseService.selectByBa_id(Integer.valueOf(parameter)) == null) {
@@ -154,7 +156,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 		}
 		if (IMAGE_SWITCH_AJAX.equals(ajaxName)) {
 
-			String parameter = request.getParameter("im_id");
+			String parameter = request.getParameter(IMAGE_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| imageService.selectByIm_id(Integer.valueOf(parameter)) == null) {
@@ -168,7 +170,21 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ModelAttributeCon
 		}
 		if (VIDEO_SWITCH_AJAX.equals(ajaxName)) {
 
-			String parameter = request.getParameter("vi_id");
+			String parameter = request.getParameter(VIDEO_ID);
+
+			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
+					|| videoService.selectByVi_id(Integer.valueOf(parameter)) == null) {
+
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+
+				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+				return false;
+			}
+		}
+		if (HTML_SWITCH_AJAX.equals(ajaxName)) {
+
+			String parameter = request.getParameter(HTML_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| videoService.selectByVi_id(Integer.valueOf(parameter)) == null) {

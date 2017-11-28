@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/10/16
+ * Date: 2017/11/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,6 +33,8 @@ public class BaseController implements ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(BaseController.class);
 
+	private String className = this.getClass().getSimpleName();
+
 	/**
 	 * 注入 BaseService
 	 */
@@ -48,6 +50,8 @@ public class BaseController implements ControllerConstants {
 	@ResponseBody
 	public String openBaseListAjax() {
 
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
 		List<BaseBean> list = baseService.selectOpenBase();
 
 		GsonBuilder builder = new GsonBuilder();
@@ -56,7 +60,7 @@ public class BaseController implements ControllerConstants {
 
 		String json = gson.toJson(list);
 
-		logger.info("JSON = " + json);
+		logger.info("(" + className + "." + methodName + ") JSON = " + json);
 
 		return json;
 	}

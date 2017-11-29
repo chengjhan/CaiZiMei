@@ -14,4 +14,8 @@ public interface HqlConstants {
 	/** 視圖名搜尋 */
 	public static final String HQL_SELECT_USER_VIEW_BY_VIEW_NAME = "from UserViewBean where uv_view_name=:uv_view_name";
 
+	// category_url
+	/** URL 類別 code 搜尋 */
+	public static final String HQL_SELECT_CATEGORY_URL_BY_CODE = "from CategoryUrlBean where cu_code=:cu_code";
+
 }

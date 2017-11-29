@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.exception.PageNotFoundException;
+import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.service.CategoryUrlService;
 import com.czmbeauty.model.service.UserUrlService;
 
@@ -34,32 +35,32 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		String servletPath = request.getServletPath(); // /URL
-		String uu_url = servletPath.substring(1, servletPath.length()); // URL
-		String cu_code = (uu_url.split("/")[1].indexOf(".") != -1) ? (uu_url.split("/")[1].split("\\.")[1]) : BLANK; // URL類別code
-		String queryString = request.getQueryString(); // 參數
-		String requestUrl = (queryString != null) ? (uu_url + QUESTION + queryString) : uu_url; // 請求URL
+		String servletPath = request.getServletPath(); // /path
+		String path = StringUtil.getPath(servletPath); // path
+		String extension = StringUtil.getExtension(servletPath); // extension
+		String queryString = request.getQueryString(); // query
+		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
 		try {
-			if (userUrlService.selectByUu_url(categoryUrlService.selectByCu_code(cu_code), uu_url) == null) {
+			if (userUrlService.selectByUu_url(categoryUrlService.selectByCu_code(extension), path) == null) {
 
-				// 有 mapping，但資料庫無此 URL
-				throw new PageNotFoundException(requestUrl);
+				// 有 mapping，但資料庫無此 path
+				throw new PageNotFoundException(requestPath);
 			}
 		} catch (PageNotFoundException e) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestUrl);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
 		}
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 進入頁面: " + requestUrl);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 進入頁面: " + requestPath);
 
 		return true;
 	}

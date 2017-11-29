@@ -33,7 +33,6 @@
 				<value>com.czmbeauty.model.entity.ImageBean</value>
 				<value>com.czmbeauty.model.entity.StateBean</value>
 				<value>com.czmbeauty.model.entity.UserUrlBean</value>
-				<value>com.czmbeauty.model.entity.UserViewBean</value>
 				<value>com.czmbeauty.model.entity.VideoBean</value>
 			</list>
 		</property>

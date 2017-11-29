@@ -43,7 +43,7 @@ function initMap(){
 		}
 	}
 	
-	$.getJSON("base/open-base-list.ajax", function(data){
+	$.getJSON("base/list.ajax", function(data){
 		$.each(data, function(index, baseBean){
 			
 			// 加入據點陣列

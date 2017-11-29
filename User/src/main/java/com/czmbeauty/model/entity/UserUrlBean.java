@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,10 +28,11 @@ public class UserUrlBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer uu_id;
+	@ManyToOne
 	@JoinColumn(name = "uu_cu_id")
 	private CategoryUrlBean uu_CategoryUrlBean;
 	private String uu_url;
-	private String uv_name;
+	private String uu_name;
 
 	public Integer getUu_id() {
 		return uu_id;
@@ -57,11 +59,11 @@ public class UserUrlBean {
 	}
 
 	public String getUv_name() {
-		return uv_name;
+		return uu_name;
 	}
 
-	public void setUv_name(String uv_name) {
-		this.uv_name = uv_name;
+	public void setUv_name(String uu_name) {
+		this.uu_name = uu_name;
 	}
 
 }

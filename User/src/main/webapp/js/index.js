@@ -24,7 +24,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/slider-main.ajax", function(data){
+	$.getJSON("slider/main.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-main/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='slider-img' />");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='slider-a'></a>").append(slider_img);
@@ -34,7 +34,7 @@ $(document).ready(function(){
 	});
 	
 	// 相關影音
-	$.getJSON("video/video-main.ajax", function(data){
+	$.getJSON("video/main.ajax", function(data){
 		$("#video-main iframe").attr("src", data.vi_tag);
 	});
 	
@@ -51,7 +51,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/slider-franchisee.ajax", function(data){
+	$.getJSON("slider/franchisee.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-franchisee/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='slider-img' />");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='slider-a'></a>").append(slider_img);
@@ -73,7 +73,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/slider-recent.ajax", function(data){
+	$.getJSON("slider/recent.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-recent/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='slider-img' />");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='slider-a'></a>").append(slider_img);
@@ -95,7 +95,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/slider-sale.ajax", function(data){
+	$.getJSON("slider/sale.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-sale/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='slider-img' />");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='slider-a'></a>").append(slider_img);
@@ -117,7 +117,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/slider-knowledge.ajax", function(data){
+	$.getJSON("slider/knowledge.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-knowledge/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='slider-img' />");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='slider-a'></a>").append(slider_img);
@@ -139,7 +139,7 @@ $(document).ready(function(){
 		loop: true
 	});
 	
-	$.getJSON("image/slider-doctor.ajax", function(data){
+	$.getJSON("slider/doctor.ajax", function(data){
 		$.each(data, function(index, imageBean){
 			var slider_img = $("<img src='/Admin/images/slider-doctor/" + imageBean.im_filename + "' title='" + imageBean.im_name + "' alt='" + imageBean.im_name + "' class='slider-img' />");
 			var slider_a = $("<a href=" + imageBean.im_url + " target='_blank' class='slider-a'></a>").append(slider_img);

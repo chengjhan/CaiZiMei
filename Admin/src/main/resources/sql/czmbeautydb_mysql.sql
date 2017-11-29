@@ -154,20 +154,6 @@ create table admin_log (
 	foreign key (al_aa_id) references admin_action (aa_id)
 );
 
-create table user_view (
-	uv_id					int auto_increment not null,
-	uv_name					nvarchar(20) not null,
-	uv_view_name			varchar(50) not null,
-	primary key (uv_id)
-);
-
-create table user_ajax (
-	uj_id					int auto_increment not null,
-	uj_name					nvarchar(20) not null,
-	uj_ajax_name			varchar(50) not null,
-	primary key (uj_id)
-);
-
 create table category_url (
 	cu_id					int auto_increment not null,
 	cu_name					varchar(10) not null,
@@ -453,31 +439,6 @@ insert into admin_action (aa_name, aa_action_name) values ('新增醫療團隊�
 insert into admin_action (aa_name, aa_action_name) values ('編輯醫療團隊頁面', 'team-doctor/edit.do');
 insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'video-main/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音', 'video-main/edit.do');
-
--- user_view
-insert into user_view (uv_name, uv_view_name) values ('首頁', 'index');
-insert into user_view (uv_name, uv_view_name) values ('加盟店', 'about/franchisee');
-insert into user_view (uv_name, uv_view_name) values ('經營理念', 'about/idea');
-insert into user_view (uv_name, uv_view_name) values ('采姿美介紹', 'about/introduction');
-insert into user_view (uv_name, uv_view_name) values ('公司使命', 'about/mission');
-insert into user_view (uv_name, uv_view_name) values ('事業版圖', 'about/territory');
-insert into user_view (uv_name, uv_view_name) values ('公司願景', 'about/vision');
-insert into user_view (uv_name, uv_view_name) values ('找不到網頁', 'error/page-not-found');
-insert into user_view (uv_name, uv_view_name) values ('醫療新知', 'info/knowleage');
-insert into user_view (uv_name, uv_view_name) values ('相關影音', 'info/video-related');
-insert into user_view (uv_name, uv_view_name) values ('近期活動', 'news/recent');
-insert into user_view (uv_name, uv_view_name) values ('優惠活動', 'news/sale');
-insert into user_view (uv_name, uv_view_name) values ('醫療團隊', 'team/doctor');
-
--- user_ajax
-insert into user_ajax (uj_name, uj_ajax_name) values ('據點一覽', 'base/list.ajax');
-insert into user_ajax (uj_name, uj_ajax_name) values ('醫療團隊輪播', 'slider/doctor.ajax');
-insert into user_ajax (uj_name, uj_ajax_name) values ('加盟店資訊輪播', 'slider/franchisee.ajax');
-insert into user_ajax (uj_name, uj_ajax_name) values ('醫療新知輪播', 'slider/knowledge.ajax');
-insert into user_ajax (uj_name, uj_ajax_name) values ('主輪播', 'slider/main.ajax');
-insert into user_ajax (uj_name, uj_ajax_name) values ('近期活動輪播', 'slider/recent.ajax');
-insert into user_ajax (uj_name, uj_ajax_name) values ('優惠活動輪播', 'slider/sale.ajax');
-insert into user_ajax (uj_name, uj_ajax_name) values ('相關影音', 'video/main.ajax');
 
 -- category_url
 insert into category_url (cu_name, cu_code) values ('view', '');

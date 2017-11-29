@@ -52,11 +52,8 @@ public class HtmlController implements ControllerConstants {
 	public String htmlView(Model model) {
 
 		String servletPath = request.getServletPath();
-		String viewNameFront = servletPath.split("/")[1];
-		String viewNameBack = servletPath.split("/")[2].split("\\.")[0];
-
-		String ca_directory = viewNameFront + HYPHEN + viewNameBack;
-		String viewName = viewNameFront + HYPHEN + viewNameBack;
+		String uu_url = servletPath.substring(1, servletPath.length());
+		String ca_directory = servletPath.split("/")[1] + HYPHEN + servletPath.split("/")[2].split("\\.")[0];
 
 		List<HtmlBean> list;
 		try {
@@ -64,7 +61,7 @@ public class HtmlController implements ControllerConstants {
 
 			if (list.size() == 0) {
 
-				throw new PageNotFoundException(viewName);
+				throw new PageNotFoundException(uu_url);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -73,7 +70,7 @@ public class HtmlController implements ControllerConstants {
 
 		model.addAttribute(HTML_BEAN, list.get(0));
 
-		return viewName;
+		return uu_url;
 	}
 
 }

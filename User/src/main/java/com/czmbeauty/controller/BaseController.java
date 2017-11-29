@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/11/28
+ * Date: 2017/11/29
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -46,7 +46,7 @@ public class BaseController implements ControllerConstants {
 	 * 
 	 * @return base JSON
 	 */
-	@RequestMapping(value = "/base/open-base-list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/base/list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String openBaseListAjax() {
 

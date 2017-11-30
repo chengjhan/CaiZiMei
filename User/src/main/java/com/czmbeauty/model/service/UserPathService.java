@@ -8,7 +8,6 @@
  */
 package com.czmbeauty.model.service;
 
-import com.czmbeauty.model.entity.CategoryPathBean;
 import com.czmbeauty.model.entity.UserPathBean;
 
 /**
@@ -19,9 +18,9 @@ import com.czmbeauty.model.entity.UserPathBean;
 public interface UserPathService {
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.UserPathServiceImpl#selectByUp_path(CategoryPathBean,
+	 * @see com.czmbeauty.model.service.impl.UserPathServiceImpl#selectByUp_path(String,
 	 *      String)
 	 */
-	UserPathBean selectByUp_path(CategoryPathBean up_CategoryPathBean, String up_path);
+	UserPathBean selectByUp_path(String cp_extension, String up_path);
 
 }

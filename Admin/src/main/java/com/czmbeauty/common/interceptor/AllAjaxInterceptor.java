@@ -1,6 +1,5 @@
 package com.czmbeauty.common.interceptor;
 
-import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 import static com.czmbeauty.common.constants.CommonConstants.SLASH;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
 import com.czmbeauty.common.constants.ParameterConstants;
+import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.service.AdminService;
 import com.czmbeauty.model.service.BaseService;
 import com.czmbeauty.model.service.CityService;
@@ -74,16 +74,16 @@ public class AllAjaxInterceptor
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		String servletPath = request.getServletPath(); // /頁面名
-		String ajaxName = servletPath.substring(1, servletPath.length()); // AJAX名
-		String queryString = request.getQueryString(); // 參數
-		String requestAjax = (queryString != null) ? (ajaxName + QUESTION + queryString) : ajaxName; // 請求AJAX
+		String servletPath = request.getServletPath(); // /path
+		String path = StringUtil.getPath(servletPath); // path
+		String queryString = request.getQueryString(); // query
+		String requestPath = StringUtil.getRequestPath(servletPath, queryString);
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		if (ADMIN_SWITCH_AJAX.equals(ajaxName)) {
+		if (ADMIN_SWITCH_AJAX.equals(path)) {
 
 			String parameter = request.getParameter(ADMIN_ID);
 
@@ -91,105 +91,105 @@ public class AllAjaxInterceptor
 					|| adminService.selectByAd_id(Integer.valueOf(parameter)) == null
 					|| adminService.selectByAd_id(Integer.valueOf(parameter)).getAd_authority().intValue() == 1) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 				return false;
 			}
 		}
-		if (AREA_COUNTRY_SWITCH_AJAX.equals(ajaxName)) {
+		if (AREA_COUNTRY_SWITCH_AJAX.equals(path)) {
 
 			String parameter = request.getParameter(COUNTRY_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| countryService.selectByCo_id(Integer.valueOf(parameter)) == null) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 				return false;
 			}
 		}
-		if (AREA_STATE_SWITCH_AJAX.equals(ajaxName)) {
+		if (AREA_STATE_SWITCH_AJAX.equals(path)) {
 
 			String parameter = request.getParameter(STATE_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| stateService.selectBySt_id(Integer.valueOf(parameter)) == null) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 				return false;
 			}
 		}
-		if (AREA_CITY_SWITCH_AJAX.equals(ajaxName)) {
+		if (AREA_CITY_SWITCH_AJAX.equals(path)) {
 
 			String parameter = request.getParameter(CITY_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| cityService.selectByCi_id(Integer.valueOf(parameter)) == null) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 				return false;
 			}
 		}
-		if (BASE_SWITCH_AJAX.equals(ajaxName)) {
+		if (BASE_SWITCH_AJAX.equals(path)) {
 
 			String parameter = request.getParameter(BASE_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| baseService.selectByBa_id(Integer.valueOf(parameter)) == null) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 				return false;
 			}
 		}
-		if (IMAGE_SWITCH_AJAX.equals(ajaxName)) {
+		if (IMAGE_SWITCH_AJAX.equals(path)) {
 
 			String parameter = request.getParameter(IMAGE_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| imageService.selectByIm_id(Integer.valueOf(parameter)) == null) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 				return false;
 			}
 		}
-		if (VIDEO_SWITCH_AJAX.equals(ajaxName)) {
+		if (VIDEO_SWITCH_AJAX.equals(path)) {
 
 			String parameter = request.getParameter(VIDEO_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| videoService.selectByVi_id(Integer.valueOf(parameter)) == null) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 				return false;
 			}
 		}
-		if (HTML_SWITCH_AJAX.equals(ajaxName)) {
+		if (HTML_SWITCH_AJAX.equals(path)) {
 
 			String parameter = request.getParameter(HTML_ID);
 
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| videoService.selectByVi_id(Integer.valueOf(parameter)) == null) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAjax);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
@@ -197,7 +197,7 @@ public class AllAjaxInterceptor
 			}
 		}
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 放行: " + requestAjax);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 放行: " + requestPath);
 
 		return true;
 	}

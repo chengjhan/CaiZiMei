@@ -1,6 +1,5 @@
 package com.czmbeauty.common.interceptor;
 
-import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
 import static com.czmbeauty.common.constants.CommonConstants.SLASH;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.common.constants.ModelAttributeConstants;
 import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.entity.AdminActionBean;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
@@ -40,29 +40,26 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		String requestActionTag = (String) request.getSession().getAttribute(REQUEST_ACTION_TAG);
+		String requestPathTag = (String) request.getSession().getAttribute(REQUEST_ACTION_TAG);
 
-		String contextPath = request.getContextPath(); // /專案名
-		String servletPath = request.getServletPath(); // /頁面名
-		String actionName = servletPath.substring(1, servletPath.length()); // 動作名
-		String queryString = request.getQueryString(); // 參數
-		String requestAction = (queryString != null) ? (actionName + QUESTION + queryString) : actionName; // 請求動作
+		String contextPath = request.getContextPath(); // /project
+		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		if (ADMIN_SIGN_OUT_DO.equals(requestAction)) {
+		if (ADMIN_SIGN_OUT_DO.equals(requestPath)) {
 
-			request.setAttribute(REQUEST_ACTION, requestAction);
+			request.setAttribute(REQUEST_ACTION, requestPath);
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestAction);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestPath);
 
 			return true;
 
-		} else if (requestActionTag == null) { // Session timeout
+		} else if (requestPathTag == null) { // Session timeout
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 閒置過久，攔截: " + requestAction);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 閒置過久，攔截: " + requestPath);
 
 			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);
 
@@ -70,25 +67,25 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 		} else if (handlerMethodName.indexOf("Action") == -1) { // 經過 AllViewInterceptor (GET)
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAction);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
 
-		} else if (!requestActionTag.equals(requestAction)) {
+		} else if (!requestPathTag.equals(requestPath)) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestAction);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
 
-			response.sendRedirect(contextPath + SLASH + requestAction.split(".do")[0]);
+			response.sendRedirect(contextPath + SLASH + requestPath.split(".do")[0]);
 
 			return false;
 
 		} else {
 
-			request.setAttribute(REQUEST_ACTION, requestAction);
+			request.setAttribute(REQUEST_ACTION, requestPath);
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestAction);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestPath);
 
 			return true;
 		}
@@ -105,9 +102,9 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 			return;
 		}
 
-		String servletPath = request.getServletPath(); // /頁面名
-		String actionName = servletPath.substring(1, servletPath.length()); // 動作名
-		AdminActionBean adminActionBean = adminActionService.selectByAa_action_name(actionName);
+		String servletPath = request.getServletPath(); // /path
+		String path = StringUtil.getPath(servletPath); // path
+		AdminActionBean adminActionBean = adminActionService.selectByAa_action_name(path);
 
 		AdminLogBean adminLogBean = new AdminLogBean();
 		adminLogBean.setAl_AdminBean((sessionAdminBean == null) ? modelAndViewAdminBean : sessionAdminBean);

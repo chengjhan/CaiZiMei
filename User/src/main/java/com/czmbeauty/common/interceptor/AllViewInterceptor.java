@@ -12,18 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.common.util.StringUtil;
-import com.czmbeauty.model.service.CategoryPathService;
 import com.czmbeauty.model.service.UserPathService;
 
 public class AllViewInterceptor implements HandlerInterceptor, ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(AllViewInterceptor.class);
-
-	/**
-	 * 注入 CategoryPathService
-	 */
-	@Autowired
-	private CategoryPathService categoryPathService;
 
 	/**
 	 * 注入 UserPathService
@@ -46,7 +39,7 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
 		try {
-			if (userPathService.selectByUp_path(categoryPathService.selectByCp_extension(extension), path) == null) {
+			if (userPathService.selectByUp_path(extension, path) == null) {
 
 				// 有 mapping，但資料庫無此 path
 				throw new PageNotFoundException(requestPath);

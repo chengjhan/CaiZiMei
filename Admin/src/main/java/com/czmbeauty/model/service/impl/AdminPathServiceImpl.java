@@ -1,6 +1,6 @@
 /*
- * CaiZiMei/User
- * File: UserPathServiceImpl.java
+ * CaiZiMei
+ * File: AdminPathServiceImpl.java
  * Author: 詹晟
  * Date: 2017/11/30
  * Version: 1.0
@@ -12,18 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.model.dao.AdminPathDao;
 import com.czmbeauty.model.dao.CategoryPathDao;
-import com.czmbeauty.model.dao.UserPathDao;
-import com.czmbeauty.model.entity.UserPathBean;
-import com.czmbeauty.model.service.UserPathService;
+import com.czmbeauty.model.entity.AdminPathBean;
+import com.czmbeauty.model.service.AdminPathService;
 
 /**
- * user_path service implement
+ * admin_path service implement
  * 
  * @author 詹晟
  */
-@Service(value = "userPathService")
-public class UserPathServiceImpl implements UserPathService {
+@Service(value = "adminPathService")
+public class AdminPathServiceImpl implements AdminPathService {
 
 	/**
 	 * 注入 CategoryPathDao
@@ -32,26 +32,26 @@ public class UserPathServiceImpl implements UserPathService {
 	private CategoryPathDao categoryPathDao;
 
 	/**
-	 * 注入 UserPathDao
+	 * 注入 AdminPathDao
 	 */
 	@Autowired
-	private UserPathDao userPathDao;
+	private AdminPathDao adminPathDao;
 
 	/**
 	 * extension 及 path 搜尋
 	 * 
 	 * @param cp_extension
 	 *            String --> extension
-	 * @param up_path
+	 * @param ap_path
 	 *            String --> path
-	 * @return UserPathBean
+	 * @return AdminPathBean
 	 * @return null
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public UserPathBean selectByUp_path(String cp_extension, String up_path) {
+	public AdminPathBean selectByAp_path(String cp_extension, String ap_path) {
 
-		return userPathDao.selectByUp_path(categoryPathDao.selectByCp_extension(cp_extension), up_path);
+		return adminPathDao.selectByAp_path(categoryPathDao.selectByCp_extension(cp_extension), ap_path);
 	}
 
 }

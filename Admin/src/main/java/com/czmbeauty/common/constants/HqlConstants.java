@@ -2,6 +2,10 @@ package com.czmbeauty.common.constants;
 
 public interface HqlConstants {
 
+	// category_path
+	/** extension 搜尋 */
+	public static final String HQL_SELECT_CATEGORY_PATH_BY_EXTENSION = "from CategoryPathBean where cp_extension=:cp_extension";
+
 	// admin
 	/** 搜尋所有管理員 */
 	public static final String HQL_SELECT_ALL_ADMIN = "from AdminBean order by ad_id asc";

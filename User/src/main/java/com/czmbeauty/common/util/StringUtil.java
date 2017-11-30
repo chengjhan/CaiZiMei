@@ -9,10 +9,11 @@ public class StringUtil {
 
 	public static String getExtension(String servletPath) {
 
-		String path = getPath(servletPath);
+		String lastPath = servletPath.split("/")[servletPath.split("/").length - 1];
+		int indexOfDot = lastPath.lastIndexOf(".");
 
-		if (path.split("/")[1].indexOf(".") != -1) {
-			return path.split("/")[1].split("\\.")[1];
+		if (indexOfDot != -1) {
+			return servletPath.substring(indexOfDot, lastPath.length());
 		} else {
 			return "";
 		}

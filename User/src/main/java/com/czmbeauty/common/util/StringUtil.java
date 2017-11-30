@@ -29,4 +29,9 @@ public class StringUtil {
 		}
 	}
 
+	public static String getDirectory(String servletPath) {
+
+		return servletPath.split("/")[1] + "-" + servletPath.split("/")[2].split("\\.")[0];
+	}
+
 }

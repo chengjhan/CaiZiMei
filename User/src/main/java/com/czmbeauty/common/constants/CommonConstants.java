@@ -16,4 +16,8 @@ public interface CommonConstants {
 
 	public static final String AND = "&";
 
+	public static final String TRUE = "true";
+
+	public static final String FALSE = "false";
+
 }

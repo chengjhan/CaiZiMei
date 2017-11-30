@@ -12,24 +12,24 @@ import org.springframework.web.servlet.ModelAndView;
 import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.common.util.StringUtil;
-import com.czmbeauty.model.service.CategoryUrlService;
-import com.czmbeauty.model.service.UserUrlService;
+import com.czmbeauty.model.service.CategoryPathService;
+import com.czmbeauty.model.service.UserPathService;
 
 public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(AllAjaxInterceptor.class);
 
 	/**
-	 * 注入 CategoryUrlService
+	 * 注入 CategoryPathService
 	 */
 	@Autowired
-	private CategoryUrlService categoryUrlService;
+	private CategoryPathService categoryPathService;
 
 	/**
-	 * 注入 UserUrlService
+	 * 注入 UserPathService
 	 */
 	@Autowired
-	private UserUrlService userUrlService;
+	private UserPathService userPathService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -46,7 +46,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstan
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
 		try {
-			if (userUrlService.selectByUu_url(categoryUrlService.selectByCu_code(extension), path) == null) {
+			if (userPathService.selectByUp_path(categoryPathService.selectByCp_extension(extension), path) == null) {
 
 				// 有 mapping，但資料庫無此 path
 				throw new PageNotFoundException(requestPath);

@@ -154,29 +154,29 @@ create table admin_log (
 	foreign key (al_aa_id) references admin_action (aa_id)
 );
 
-create table category_url (
-	cu_id					int auto_increment not null,
-	cu_name					varchar(10) not null,
-	cu_code					varchar(10) not null,
-	primary key (cu_id)
+create table category_path (
+	cp_id					int auto_increment not null,
+	cp_name					varchar(10) not null,
+	cp_extension			varchar(10) not null,
+	primary key (cp_id)
 );
 
-create table admin_url (
-	au_id					int auto_increment not null,
-	au_cu_id				int not null,
-	au_url					varchar(50) not null,
-	au_name					nvarchar(20) not null,
-	primary key (au_id),
-	foreign key (au_cu_id) references category_url (cu_id)
+create table admin_path (
+	ap_id					int auto_increment not null,
+	ap_cp_id				int not null,
+	ap_path					varchar(50) not null,
+	ap_name					nvarchar(20) not null,
+	primary key (ap_id),
+	foreign key (ap_cp_id) references category_path (cp_id)
 );
 
-create table user_url (
-	uu_id					int auto_increment not null,
-	uu_cu_id				int not null,
-	uu_url					varchar(50) not null,
-	uu_name					nvarchar(20) not null,
-	primary key (uu_id),
-	foreign key (uu_cu_id) references category_url (cu_id)
+create table user_path (
+	up_id					int auto_increment not null,
+	up_cp_id				int not null,
+	up_path					varchar(50) not null,
+	up_name					nvarchar(20) not null,
+	primary key (up_id),
+	foreign key (up_cp_id) references category_path (cp_id)
 );
 
 -- ALTER
@@ -440,30 +440,30 @@ insert into admin_action (aa_name, aa_action_name) values ('編輯醫療團隊�
 insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'video-main/add.do');
 insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音', 'video-main/edit.do');
 
--- category_url
-insert into category_url (cu_name, cu_code) values ('view', '');
-insert into category_url (cu_name, cu_code) values ('action', 'do');
-insert into category_url (cu_name, cu_code) values ('ajax', 'ajax');
+-- category_path
+insert into category_path (cp_name, cp_extension) values ('view', '');
+insert into category_path (cp_name, cp_extension) values ('action', 'do');
+insert into category_path (cp_name, cp_extension) values ('ajax', 'ajax');
 
--- user_url
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'index', '首頁');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'about/franchisee', '加盟店');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'about/idea', '經營理念');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'about/introduction', '采姿美介紹');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'about/mission', '公司使命');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'about/territory', '事業版圖');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'about/vision', '公司願景');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'error/page-not-found', '找不到網頁');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'info/knowleage', '醫療新知');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'info/video-related', '相關影音');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'news/recent', '近期活動');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'news/sale', '優惠活動');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (1, 'team/doctor', '醫療團隊');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (3, 'base/list.ajax', '據點一覽');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (3, 'slider/doctor.ajax', '醫療團隊輪播');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (3, 'slider/franchisee.ajax', '加盟店資訊輪播');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (3, 'slider/knowledge.ajax', '醫療新知輪播');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (3, 'slider/main.ajax', '主輪播');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (3, 'slider/recent.ajax', '近期活動輪播');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (3, 'slider/sale.ajax', '優惠活動輪播');
-insert into user_url (uu_cu_id, uu_url, uu_name) values (3, 'video/main.ajax', '相關影音');
+-- user_path
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'index', '首頁');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/franchisee', '加盟店');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/idea', '經營理念');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/introduction', '采姿美介紹');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/mission', '公司使命');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/territory', '事業版圖');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/vision', '公司願景');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'error/page-not-found', '找不到網頁');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'info/knowleage', '醫療新知');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'info/video-related', '相關影音');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'news/recent', '近期活動');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'news/sale', '優惠活動');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'team/doctor', '醫療團隊');
+insert into user_path (up_cp_id, up_path, up_name) values (3, 'base/list.ajax', '據點一覽');
+insert into user_path (up_cp_id, up_path, up_name) values (3, 'slider/doctor.ajax', '醫療團隊輪播');
+insert into user_path (up_cp_id, up_path, up_name) values (3, 'slider/franchisee.ajax', '加盟店資訊輪播');
+insert into user_path (up_cp_id, up_path, up_name) values (3, 'slider/knowledge.ajax', '醫療新知輪播');
+insert into user_path (up_cp_id, up_path, up_name) values (3, 'slider/main.ajax', '主輪播');
+insert into user_path (up_cp_id, up_path, up_name) values (3, 'slider/recent.ajax', '近期活動輪播');
+insert into user_path (up_cp_id, up_path, up_name) values (3, 'slider/sale.ajax', '優惠活動輪播');
+insert into user_path (up_cp_id, up_path, up_name) values (3, 'video/main.ajax', '相關影音');

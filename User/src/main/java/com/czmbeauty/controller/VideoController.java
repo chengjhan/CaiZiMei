@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/11/29
+ * Date: 2017/11/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.czmbeauty.common.constants.ControllerConstants;
+import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.entity.VideoBean;
 import com.czmbeauty.model.service.VideoService;
 import com.google.gson.Gson;
@@ -59,9 +60,9 @@ public class VideoController implements ControllerConstants {
 	public String infoVideoRelatedView(Model model) {
 
 		String servletPath = request.getServletPath();
-		String ca_directory = servletPath.split("/")[1] + HYPHEN + servletPath.split("/")[2].split("\\.")[0];
+		String directory = StringUtil.getDirectory(servletPath);
 
-		List<VideoBean> list = videoService.selectOpenVideo(ca_directory);
+		List<VideoBean> list = videoService.selectOpenVideo(directory);
 
 		List<VideoBean> videoList = new ArrayList<VideoBean>();
 		if (list.size() > VIDEO_NUMBER) {
@@ -88,14 +89,14 @@ public class VideoController implements ControllerConstants {
 	 */
 	@RequestMapping(value = "/video/*.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openVideoAjax() {
+	public String videoAjax() {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		String servletPath = request.getServletPath();
-		String ca_directory = servletPath.split("/")[1] + HYPHEN + servletPath.split("/")[2].split("\\.")[0];
+		String directory = StringUtil.getDirectory(servletPath);
 
-		VideoBean bean = videoService.selectOpenVideo(ca_directory).get(0);
+		VideoBean bean = videoService.selectOpenVideo(directory).get(0);
 
 		VideoBean jsonBean = new VideoBean();
 		jsonBean.setVi_id(bean.getVi_id());

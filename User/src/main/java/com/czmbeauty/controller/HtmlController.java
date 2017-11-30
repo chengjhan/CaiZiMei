@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: HtmlController.java
  * Author: 詹晟
- * Date: 2017/11/28
+ * Date: 2017/11/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.exception.PageNotFoundException;
+import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.entity.HtmlBean;
 import com.czmbeauty.model.service.HtmlService;
 
@@ -46,22 +47,22 @@ public class HtmlController implements ControllerConstants {
 	/**
 	 * html - 初期處理
 	 * 
-	 * @return /WEB-INF/views/viewName
+	 * @return /WEB-INF/views/path
 	 */
 	@RequestMapping(value = { "/about/*", "/team/*", "/news/*", "/info/*" }, method = RequestMethod.GET)
 	public String htmlView(Model model) {
 
 		String servletPath = request.getServletPath();
-		String uu_url = servletPath.substring(1, servletPath.length());
-		String ca_directory = servletPath.split("/")[1] + HYPHEN + servletPath.split("/")[2].split("\\.")[0];
+		String path = StringUtil.getPath(servletPath);
+		String directory = StringUtil.getDirectory(servletPath);
 
 		List<HtmlBean> list;
 		try {
-			list = (List<HtmlBean>) htmlService.selectOpenHtml(ca_directory);
+			list = (List<HtmlBean>) htmlService.selectOpenHtml(directory);
 
 			if (list.size() == 0) {
 
-				throw new PageNotFoundException(uu_url);
+				throw new PageNotFoundException(path);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -70,7 +71,7 @@ public class HtmlController implements ControllerConstants {
 
 		model.addAttribute(HTML_BEAN, list.get(0));
 
-		return uu_url;
+		return path;
 	}
 
 }

@@ -2,7 +2,11 @@ package com.czmbeauty.common.constants;
 
 public interface CommonConstants {
 
+	public static final String BLANK = "";
+
 	public static final String DOT = ".";
+
+	public static final String HYPHEN = "-";
 
 	public static final String SLASH = "/";
 

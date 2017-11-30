@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/11/29
+ * Date: 2017/11/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.czmbeauty.common.constants.ControllerConstants;
+import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.entity.ImageBean;
 import com.czmbeauty.model.service.ImageService;
 import com.google.gson.Gson;
@@ -56,14 +57,14 @@ public class ImageController implements ControllerConstants {
 	 */
 	@RequestMapping(value = "/slider/*.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openSliderAjax() {
+	public String sliderAjax() {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		String servletPath = request.getServletPath();
-		String ca_directory = servletPath.split("/")[1] + HYPHEN + servletPath.split("/")[2].split("\\.")[0];
+		String directory = StringUtil.getDirectory(servletPath);
 
-		List<ImageBean> list = imageService.selectOpenImage(ca_directory);
+		List<ImageBean> list = imageService.selectOpenImage(directory);
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();

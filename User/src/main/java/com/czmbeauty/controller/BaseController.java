@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/11/29
+ * Date: 2017/11/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -48,7 +48,7 @@ public class BaseController implements ControllerConstants {
 	 */
 	@RequestMapping(value = "/base/list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String openBaseListAjax() {
+	public String baseListAjax() {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 

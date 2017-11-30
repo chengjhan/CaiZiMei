@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/11/27
+ * Date: 2017/11/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -555,8 +555,8 @@ public class AdminController implements ControllerConstants {
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
-		String requestView = (String) request.getAttribute(REQUEST_VIEW);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
+		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 
 		int pageRowCount = ADMIN_PAGE_ROW_COUNT_NUMBER;
 		int pageCount = PaginationUtil.getPageCount(adminService.selectCount(), pageRowCount);

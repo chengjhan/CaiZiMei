@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/11/27
+ * Date: 2017/11/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -194,7 +194,7 @@ public class StateController implements ControllerConstants {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		String requestPath = (String) request.getAttribute(REQUEST_PATH);
 
 		StateBean stateBean;
 		try {
@@ -203,7 +203,7 @@ public class StateController implements ControllerConstants {
 
 			if (stateBean == null) {
 
-				throw new PageNotFoundException(requestView);
+				throw new PageNotFoundException(requestPath);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -211,7 +211,7 @@ public class StateController implements ControllerConstants {
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestView);
+			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestPath);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}

@@ -13,7 +13,7 @@ public class StringUtil {
 		int indexOfDot = lastPath.lastIndexOf(".");
 
 		if (indexOfDot != -1) {
-			return servletPath.substring(indexOfDot, lastPath.length());
+			return lastPath.substring(indexOfDot + 1, lastPath.length());
 		} else {
 			return "";
 		}

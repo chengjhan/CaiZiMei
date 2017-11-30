@@ -8,12 +8,17 @@
  */
 package com.czmbeauty.model.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,6 +38,9 @@ public class AdminPathBean {
 	private CategoryPathBean ap_CategoryPathBean;
 	private String ap_path;
 	private String ap_name;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "al_AdminPathBean")
+	private Set<AdminLogBean> aa_AdminLogBean;
 
 	public Integer getAp_id() {
 		return ap_id;

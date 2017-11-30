@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CategoryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/11/14
+ * Date: 2017/11/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -33,16 +33,16 @@ public class CategoryServiceImpl implements CategoryService {
 	/**
 	 * 類別資料夾名稱搜尋
 	 * 
-	 * @param requestPage
-	 *            String --> 請求頁面
+	 * @param requestPath
+	 *            String --> 請求 path
 	 * @param ca_directory
 	 *            String --> 類別資料夾名稱
 	 * @return CategoryBean
 	 */
 	@Override
-	public CategoryBean selectByCa_directory(String requestPage) {
+	public CategoryBean selectByCa_directory(String requestPath) {
 
-		String ca_directory = StringUtil.getDirectoryName(requestPage);
+		String ca_directory = StringUtil.getDirectory(requestPath);
 
 		return categoryDao.selectByCa_directory(ca_directory);
 	}

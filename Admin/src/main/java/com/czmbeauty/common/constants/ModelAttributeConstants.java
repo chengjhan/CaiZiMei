@@ -2,11 +2,9 @@ package com.czmbeauty.common.constants;
 
 public interface ModelAttributeConstants {
 
-	public static final String REQUEST_VIEW = "requestView";
+	public static final String REQUEST_PATH = "requestPath";
 
-	public static final String REQUEST_ACTION_TAG = "requestActionTag";
-
-	public static final String REQUEST_ACTION = "requestAction";
+	public static final String REQUEST_PATH_TAG = "requestPathTag";
 
 	public static final String ERROR = "error";
 

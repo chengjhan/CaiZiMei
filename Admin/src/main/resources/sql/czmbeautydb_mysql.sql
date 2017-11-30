@@ -129,31 +129,6 @@ create table html (
 	foreign key (ht_ca_id) references category (ca_id)
 );
 
-create table admin_view (
-	av_id					int auto_increment not null,
-	av_name					nvarchar(20) not null,
-	av_view_name			varchar(50) not null,
-	primary key (av_id)
-);
-
-create table admin_action (
-	aa_id					int auto_increment not null,
-	aa_name					nvarchar(20) not null,
-	aa_action_name			varchar(50) not null,
-	primary key (aa_id)
-);
-
-create table admin_log (
-	al_id					int auto_increment not null,
-	al_insert_time			timestamp default current_timestamp not null,
-	al_ad_id				int not null,
-	al_aa_id				int not null,
-	al_ip					varchar(20),
-	primary key (al_id),
-	foreign key (al_ad_id) references admin (ad_id),
-	foreign key (al_aa_id) references admin_action (aa_id)
-);
-
 create table category_path (
 	cp_id					int auto_increment not null,
 	cp_name					varchar(10) not null,
@@ -177,6 +152,17 @@ create table user_path (
 	up_name					nvarchar(20) not null,
 	primary key (up_id),
 	foreign key (up_cp_id) references category_path (cp_id)
+);
+
+create table admin_log (
+	al_id					int auto_increment not null,
+	al_insert_time			timestamp default current_timestamp not null,
+	al_ad_id				int not null,
+	al_ap_id				int not null,
+	al_ip					varchar(20),
+	primary key (al_id),
+	foreign key (al_ad_id) references admin (ad_id),
+	foreign key (al_ap_id) references admin_path (ap_id)
 );
 
 -- ALTER
@@ -293,152 +279,6 @@ insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'g', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'h', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
 insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'i', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());
-
--- admin_view
-insert into admin_view (av_name, av_view_name) values ('首頁', 'index');
-insert into admin_view (av_name, av_view_name) values ('新增加盟店頁面', 'about-franchisee/add');
-insert into admin_view (av_name, av_view_name) values ('編輯加盟店頁面', 'about-franchisee/edit');
-insert into admin_view (av_name, av_view_name) values ('加盟店頁面一覽', 'about-franchisee/list');
-insert into admin_view (av_name, av_view_name) values ('新增經營理念頁面', 'about-idea/add');
-insert into admin_view (av_name, av_view_name) values ('編輯經營理念頁面', 'about-idea/edit');
-insert into admin_view (av_name, av_view_name) values ('經營理念頁面一覽', 'about-idea/list');
-insert into admin_view (av_name, av_view_name) values ('新增采姿美介紹頁面', 'about-introduction/add');
-insert into admin_view (av_name, av_view_name) values ('編輯采姿美介紹頁面', 'about-introduction/edit');
-insert into admin_view (av_name, av_view_name) values ('采姿美介紹頁面一覽', 'about-introduction/list');
-insert into admin_view (av_name, av_view_name) values ('新增公司使命頁面', 'about-mission/add');
-insert into admin_view (av_name, av_view_name) values ('編輯公司使命頁面', 'about-mission/edit');
-insert into admin_view (av_name, av_view_name) values ('公司使命頁面一覽', 'about-mission/list');
-insert into admin_view (av_name, av_view_name) values ('新增事業版圖頁面', 'about-territory/add');
-insert into admin_view (av_name, av_view_name) values ('編輯事業版圖頁面', 'about-territory/edit');
-insert into admin_view (av_name, av_view_name) values ('事業版圖頁面一覽', 'about-territory/list');
-insert into admin_view (av_name, av_view_name) values ('新增公司願景頁面', 'about-vision/add');
-insert into admin_view (av_name, av_view_name) values ('編輯公司願景頁面', 'about-vision/edit');
-insert into admin_view (av_name, av_view_name) values ('公司願景頁面一覽', 'about-vision/list');
-insert into admin_view (av_name, av_view_name) values ('變更密碼', 'admin/change-password');
-insert into admin_view (av_name, av_view_name) values ('編輯個人資訊', 'admin/edit');
-insert into admin_view (av_name, av_view_name) values ('管理員一覽', 'admin/list');
-insert into admin_view (av_name, av_view_name) values ('個人資訊', 'admin/profile');
-insert into admin_view (av_name, av_view_name) values ('註冊', 'admin/sign-up');
-insert into admin_view (av_name, av_view_name) values ('新增城市', 'area-city/add');
-insert into admin_view (av_name, av_view_name) values ('編輯城市', 'area-city/edit');
-insert into admin_view (av_name, av_view_name) values ('城市一覽', 'area-city/list');
-insert into admin_view (av_name, av_view_name) values ('新增國家', 'area-country/add');
-insert into admin_view (av_name, av_view_name) values ('編輯國家', 'area-country/edit');
-insert into admin_view (av_name, av_view_name) values ('國家一覽', 'area-country/list');
-insert into admin_view (av_name, av_view_name) values ('新增區域', 'area-state/add');
-insert into admin_view (av_name, av_view_name) values ('編輯區域', 'area-state/edit');
-insert into admin_view (av_name, av_view_name) values ('區域一覽', 'area-state/list');
-insert into admin_view (av_name, av_view_name) values ('新增診所', 'base-clinic/add');
-insert into admin_view (av_name, av_view_name) values ('編輯診所', 'base-clinic/edit');
-insert into admin_view (av_name, av_view_name) values ('診所一覽', 'base-clinic/list');
-insert into admin_view (av_name, av_view_name) values ('新增加盟店', 'base-franchisee/add');
-insert into admin_view (av_name, av_view_name) values ('編輯加盟店', 'base-franchisee/edit');
-insert into admin_view (av_name, av_view_name) values ('加盟店一覽', 'base-franchisee/list');
-insert into admin_view (av_name, av_view_name) values ('新增辦事處', 'base-office/add');
-insert into admin_view (av_name, av_view_name) values ('編輯辦事處', 'base-office/edit');
-insert into admin_view (av_name, av_view_name) values ('辦事處一覽', 'base-office/list');
-insert into admin_view (av_name, av_view_name) values ('找不到網頁', 'error/page-not-found');
-insert into admin_view (av_name, av_view_name) values ('新增圖片', 'image/add');
-insert into admin_view (av_name, av_view_name) values ('編輯圖片', 'image/edit');
-insert into admin_view (av_name, av_view_name) values ('圖片一覽', 'image/list');
-insert into admin_view (av_name, av_view_name) values ('新增醫療新知頁面', 'info-knowleage/add');
-insert into admin_view (av_name, av_view_name) values ('編輯醫療新知頁面', 'info-knowleage/edit');
-insert into admin_view (av_name, av_view_name) values ('醫療新知頁面一覽', 'info-knowleage/list');
-insert into admin_view (av_name, av_view_name) values ('新增相關影音頁面', 'info-video-related/add');
-insert into admin_view (av_name, av_view_name) values ('編輯相關影音頁面', 'info-video-related/edit');
-insert into admin_view (av_name, av_view_name) values ('相關影音頁面一覽', 'info-video-related/list');
-insert into admin_view (av_name, av_view_name) values ('新增近期活動頁面', 'news-recent/add');
-insert into admin_view (av_name, av_view_name) values ('編輯近期活動頁面', 'news-recent/edit');
-insert into admin_view (av_name, av_view_name) values ('近期活動頁面一覽', 'news-recent/list');
-insert into admin_view (av_name, av_view_name) values ('新增優惠活動頁面', 'news-sale/add');
-insert into admin_view (av_name, av_view_name) values ('編輯優惠活動頁面', 'news-sale/edit');
-insert into admin_view (av_name, av_view_name) values ('優惠活動頁面一覽', 'news-sale/list');
-insert into admin_view (av_name, av_view_name) values ('忘記密碼', 'secure/forget-password');
-insert into admin_view (av_name, av_view_name) values ('重設密碼', 'secure/reset-password');
-insert into admin_view (av_name, av_view_name) values ('登入', 'secure/sign-in');
-insert into admin_view (av_name, av_view_name) values ('新增醫療團隊輪播圖片', 'slider-doctor/add');
-insert into admin_view (av_name, av_view_name) values ('編輯醫療團隊輪播圖片', 'slider-doctor/edit');
-insert into admin_view (av_name, av_view_name) values ('醫療團隊輪播圖片一覽', 'slider-doctor/list');
-insert into admin_view (av_name, av_view_name) values ('新增加盟店資訊輪播圖片', 'slider-franchisee/add');
-insert into admin_view (av_name, av_view_name) values ('編輯加盟店資訊輪播圖片', 'slider-franchisee/edit');
-insert into admin_view (av_name, av_view_name) values ('加盟店資訊輪播圖片一覽', 'slider-franchisee/list');
-insert into admin_view (av_name, av_view_name) values ('新增醫療新知輪播圖片', 'slider-knowledge/add');
-insert into admin_view (av_name, av_view_name) values ('編輯醫療新知輪播圖片', 'slider-knowledge/edit');
-insert into admin_view (av_name, av_view_name) values ('醫療新知輪播圖片一覽', 'slider-knowledge/list');
-insert into admin_view (av_name, av_view_name) values ('新增主輪播圖片', 'slider-main/add');
-insert into admin_view (av_name, av_view_name) values ('編輯主輪播圖片', 'slider-main/edit');
-insert into admin_view (av_name, av_view_name) values ('主輪播圖片一覽', 'slider-main/list');
-insert into admin_view (av_name, av_view_name) values ('新增近期活動輪播圖片', 'slider-recent/add');
-insert into admin_view (av_name, av_view_name) values ('編輯近期活動輪播圖片', 'slider-recent/edit');
-insert into admin_view (av_name, av_view_name) values ('近期活動輪播圖片一覽', 'slider-recent/list');
-insert into admin_view (av_name, av_view_name) values ('新增優惠活動輪播圖片', 'slider-sale/add');
-insert into admin_view (av_name, av_view_name) values ('編輯優惠活動輪播圖片', 'slider-sale/edit');
-insert into admin_view (av_name, av_view_name) values ('優惠活動輪播圖片一覽', 'slider-sale/list');
-insert into admin_view (av_name, av_view_name) values ('新增醫療團隊頁面', 'team-doctor/add');
-insert into admin_view (av_name, av_view_name) values ('編輯醫療團隊頁面', 'team-doctor/edit');
-insert into admin_view (av_name, av_view_name) values ('醫療團隊頁面一覽', 'team-doctor/list');
-insert into admin_view (av_name, av_view_name) values ('新增相關影音', 'video-main/add');
-insert into admin_view (av_name, av_view_name) values ('編輯相關影音', 'video-main/edit');
-insert into admin_view (av_name, av_view_name) values ('相關影音一覽', 'video-main/list');
-
--- admin_action
-insert into admin_action (aa_name, aa_action_name) values ('新增加盟店頁面', 'about-franchisee/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯加盟店頁面', 'about-franchisee/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增經營理念頁面', 'about-idea/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯經營理念頁面', 'about-idea/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增采姿美介紹頁面', 'about-introduction/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯采姿美介紹頁面', 'about-introduction/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增公司使命頁面', 'about-mission/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯公司使命頁面', 'about-mission/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增事業版圖頁面', 'about-territory/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯事業版圖頁面', 'about-territory/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增公司願景頁面', 'about-vision/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯公司願景頁面', 'about-vision/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('變更密碼', 'admin/change-password.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯個人資訊', 'admin/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('註冊', 'admin/sign-up.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增城市', 'area-city/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯城市', 'area-city/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增國家', 'area-country/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯國家', 'area-country/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增區域', 'area-state/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯區域', 'area-state/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增診所', 'base-clinic/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯診所', 'base-clinic/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增加盟店', 'base-franchisee/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯加盟店', 'base-franchisee/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增辦事處', 'base-office/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯辦事處', 'base-office/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增圖片', 'image/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯圖片', 'image/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增醫療新知頁面', 'info-knowleage/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯醫療新知頁面', 'info-knowleage/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增相關影音頁面', 'info-video-related/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音頁面', 'info-video-related/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增近期活動頁面', 'news-recent/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯近期活動頁面', 'news-recent/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增優惠活動頁面', 'news-sale/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯優惠活動頁面', 'news-sale/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('忘記密碼', 'secure/forget-password.do');
-insert into admin_action (aa_name, aa_action_name) values ('重設密碼', 'secure/reset-password.do');
-insert into admin_action (aa_name, aa_action_name) values ('登入', 'secure/sign-in.do');
-insert into admin_action (aa_name, aa_action_name) values ('登出', 'secure/sign-out.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增醫療團隊輪播圖片', 'slider-doctor/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯醫療團隊輪播圖片', 'slider-doctor/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增加盟店資訊輪播圖片', 'slider-franchisee/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯加盟店資訊輪播圖片', 'slider-franchisee/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增醫療新知輪播圖片', 'slider-knowledge/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯醫療新知輪播圖片', 'slider-knowledge/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增主輪播圖片', 'slider-main/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯主輪播圖片', 'slider-main/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增近期活動輪播圖片', 'slider-recent/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯近期活動輪播圖片', 'slider-recent/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增優惠活動輪播圖片', 'slider-sale/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯優惠活動輪播圖片', 'slider-sale/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增醫療團隊頁面', 'team-doctor/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯醫療團隊頁面', 'team-doctor/edit.do');
-insert into admin_action (aa_name, aa_action_name) values ('新增相關影音', 'video-main/add.do');
-insert into admin_action (aa_name, aa_action_name) values ('編輯相關影音', 'video-main/edit.do');
 
 -- category_path
 insert into category_path (cp_name, cp_extension) values ('view', '');

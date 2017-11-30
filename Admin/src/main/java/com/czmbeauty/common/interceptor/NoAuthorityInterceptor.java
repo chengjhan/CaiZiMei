@@ -1,8 +1,5 @@
 package com.czmbeauty.common.interceptor;
 
-import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
-import static com.czmbeauty.common.constants.CommonConstants.SLASH;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,11 +9,11 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
+import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.entity.AdminBean;
 
-public class NoAuthorityInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
+public class NoAuthorityInterceptor implements HandlerInterceptor, ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(NoAuthorityInterceptor.class);
 
@@ -27,10 +24,7 @@ public class NoAuthorityInterceptor implements HandlerInterceptor, ModelAttribut
 		HttpSession session = request.getSession();
 		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
 
-		String servletPath = request.getServletPath(); // /頁面名
-		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
-		String queryString = request.getQueryString(); // 參數
-		String requestPage = (queryString != null) ? (pageName + QUESTION + queryString) : pageName; // 請求頁面
+		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
@@ -38,14 +32,14 @@ public class NoAuthorityInterceptor implements HandlerInterceptor, ModelAttribut
 
 		if (adminBean.getAd_authority() != 1) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 沒有權限，攔截: " + requestPage);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 沒有權限，攔截: " + requestPath);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
 		}
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 有權限，放行: " + requestPage);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 有權限，放行: " + requestPath);
 
 		return true;
 	}

@@ -13,7 +13,7 @@ public class StringUtil {
 		int indexOfDot = lastPath.lastIndexOf(".");
 
 		if (indexOfDot != -1) {
-			return servletPath.substring(indexOfDot, lastPath.length());
+			return lastPath.substring(indexOfDot + 1, lastPath.length());
 		} else {
 			return "";
 		}
@@ -30,19 +30,9 @@ public class StringUtil {
 		}
 	}
 
-	public static String getDirectoryName(String requestPage) {
+	public static String getDirectory(String requestPath) {
 
-		return requestPage.split("/")[0];
-	}
-
-	public static String getPageName(String requestPage) {
-
-		return (requestPage.indexOf("?") != -1) ? requestPage.split("\\?")[0] : requestPage;
-	}
-
-	public static String getQueryString(String requestPage) {
-
-		return (requestPage.indexOf("?") != -1) ? requestPage.split("\\?")[1] : "";
+		return requestPath.split("/")[0];
 	}
 
 }

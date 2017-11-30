@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/11/28
+ * Date: 2017/11/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -87,8 +87,8 @@ public class VideoController implements ControllerConstants {
 	@RequestMapping(value = { "/video*/list", "/info-video-related/list" }, method = RequestMethod.GET)
 	public String listView(@RequestParam Integer page, Model model) {
 
-		String requestView = (String) request.getAttribute(REQUEST_VIEW);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
+		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 		String ca_directory = categoryBean.getCa_directory();
 
 		int pageRowCount = VIDEO_PAGE_ROW_COUNT_NUMBER;
@@ -138,8 +138,8 @@ public class VideoController implements ControllerConstants {
 	@RequestMapping(value = { "/video*/add", "/info-video-related/add" }, method = RequestMethod.GET)
 	public String addView(Model model) {
 
-		String requestView = (String) request.getAttribute(REQUEST_VIEW);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
+		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 
 		// 新增 form backing object
 		model.addAttribute(VIDEO_BEAN, new VideoBean());
@@ -161,8 +161,8 @@ public class VideoController implements ControllerConstants {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();
 
@@ -203,8 +203,8 @@ public class VideoController implements ControllerConstants {
 
 		currentPage = page;
 
-		String requestView = (String) request.getAttribute(REQUEST_VIEW);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestView);
+		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 
 		VideoBean videoBean;
 		try {
@@ -213,7 +213,7 @@ public class VideoController implements ControllerConstants {
 
 			if (videoBean == null) {
 
-				throw new PageNotFoundException(requestView);
+				throw new PageNotFoundException(requestPath);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -221,7 +221,7 @@ public class VideoController implements ControllerConstants {
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestView);
+			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestPath);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}
@@ -249,8 +249,8 @@ public class VideoController implements ControllerConstants {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		String requestAction = (String) request.getAttribute(REQUEST_ACTION);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestAction);
+		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();
 

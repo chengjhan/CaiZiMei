@@ -1,7 +1,5 @@
 package com.czmbeauty.common.interceptor;
 
-import static com.czmbeauty.common.constants.CommonConstants.SLASH;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,16 +9,15 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.util.StringUtil;
-import com.czmbeauty.model.entity.AdminActionBean;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
-import com.czmbeauty.model.service.AdminActionService;
+import com.czmbeauty.model.entity.AdminPathBean;
 import com.czmbeauty.model.service.AdminLogService;
+import com.czmbeauty.model.service.AdminPathService;
 
-public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
+public class AllActionInterceptor implements HandlerInterceptor, ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(AllActionInterceptor.class);
 
@@ -31,16 +28,16 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 	private AdminLogService adminLogService;
 
 	/**
-	 * 注入 AdminActionService
+	 * 注入 AdminPathService
 	 */
 	@Autowired
-	private AdminActionService adminActionService;
+	private AdminPathService adminPathService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		String requestPathTag = (String) request.getSession().getAttribute(REQUEST_ACTION_TAG);
+		String requestPathTag = (String) request.getSession().getAttribute(REQUEST_PATH_TAG);
 
 		String contextPath = request.getContextPath(); // /project
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
@@ -51,7 +48,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 		if (ADMIN_SIGN_OUT_DO.equals(requestPath)) {
 
-			request.setAttribute(REQUEST_ACTION, requestPath);
+			request.setAttribute(REQUEST_PATH, requestPath);
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestPath);
 
@@ -83,7 +80,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 		} else {
 
-			request.setAttribute(REQUEST_ACTION, requestPath);
+			request.setAttribute(REQUEST_PATH, requestPath);
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestPath);
 
@@ -104,18 +101,20 @@ public class AllActionInterceptor implements HandlerInterceptor, ModelAttributeC
 
 		String servletPath = request.getServletPath(); // /path
 		String path = StringUtil.getPath(servletPath); // path
-		AdminActionBean adminActionBean = adminActionService.selectByAa_action_name(path);
+		String extension = StringUtil.getExtension(servletPath); // extension
+
+		AdminPathBean adminPathBean = adminPathService.selectByAp_path(extension, path);
 
 		AdminLogBean adminLogBean = new AdminLogBean();
 		adminLogBean.setAl_AdminBean((sessionAdminBean == null) ? modelAndViewAdminBean : sessionAdminBean);
-		adminLogBean.setAl_AdminActionBean(adminActionBean);
+		adminLogBean.setAl_AdminPathBean(adminPathBean);
 		adminLogBean.setAl_ip(request.getRemoteAddr());
 		adminLogService.insert(adminLogBean);
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 
 		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
-				+ ") 寫入日誌: " + adminActionBean.getAa_name());
+				+ ") 寫入日誌: " + adminPathBean.getAp_name());
 	}
 
 	@Override

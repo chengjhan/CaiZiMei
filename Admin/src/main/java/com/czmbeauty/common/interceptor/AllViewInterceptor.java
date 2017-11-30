@@ -53,7 +53,7 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 			return false;
 		}
 
-		request.setAttribute(REQUEST_VIEW, requestPath);
+		request.setAttribute(REQUEST_PATH, requestPath);
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 進入頁面: " + requestPath);
 
@@ -68,7 +68,7 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 		String path = StringUtil.getPath(servletPath); // path
 		String requestPathTag = path + ".do"; // 請求動作標籤
 
-		request.getSession().setAttribute(REQUEST_ACTION_TAG, requestPathTag);
+		request.getSession().setAttribute(REQUEST_PATH_TAG, requestPathTag);
 	}
 
 	@Override

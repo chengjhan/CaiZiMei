@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/11/27
+ * Date: 2017/11/30
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -210,7 +210,7 @@ public class CityController implements ControllerConstants {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-		String requestView = (String) request.getAttribute(REQUEST_VIEW);
+		String requestPath = (String) request.getAttribute(REQUEST_PATH);
 
 		CityBean cityBean;
 		try {
@@ -219,7 +219,7 @@ public class CityController implements ControllerConstants {
 
 			if (cityBean == null) {
 
-				throw new PageNotFoundException(requestView);
+				throw new PageNotFoundException(requestPath);
 			}
 		} catch (PageNotFoundException e) {
 
@@ -227,7 +227,7 @@ public class CityController implements ControllerConstants {
 
 		} catch (IllegalArgumentException e) {
 
-			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestView);
+			logger.error("(" + className + "." + methodName + ") 找不到這個頁面: " + requestPath);
 
 			return ERROR_PAGE_NOT_FOUND_PAGE;
 		}

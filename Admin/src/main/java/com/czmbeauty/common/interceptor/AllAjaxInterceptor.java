@@ -1,7 +1,5 @@
 package com.czmbeauty.common.interceptor;
 
-import static com.czmbeauty.common.constants.CommonConstants.SLASH;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,9 +9,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
-import com.czmbeauty.common.constants.ParameterConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.service.AdminService;
 import com.czmbeauty.model.service.BaseService;
@@ -23,8 +19,7 @@ import com.czmbeauty.model.service.ImageService;
 import com.czmbeauty.model.service.StateService;
 import com.czmbeauty.model.service.VideoService;
 
-public class AllAjaxInterceptor
-		implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants, ParameterConstants {
+public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(AllAjaxInterceptor.class);
 
@@ -77,7 +72,7 @@ public class AllAjaxInterceptor
 		String servletPath = request.getServletPath(); // /path
 		String path = StringUtil.getPath(servletPath); // path
 		String queryString = request.getQueryString(); // query
-		String requestPath = StringUtil.getRequestPath(servletPath, queryString);
+		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();

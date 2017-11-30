@@ -1,8 +1,5 @@
 package com.czmbeauty.common.interceptor;
 
-import static com.czmbeauty.common.constants.CommonConstants.QUESTION;
-import static com.czmbeauty.common.constants.CommonConstants.SLASH;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,11 +9,11 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.czmbeauty.common.constants.ModelAttributeConstants;
-import com.czmbeauty.common.constants.PageNameConstants;
+import com.czmbeauty.common.constants.ControllerConstants;
+import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.entity.AdminBean;
 
-public class NoSignInInterceptor implements HandlerInterceptor, ModelAttributeConstants, PageNameConstants {
+public class NoSignInInterceptor implements HandlerInterceptor, ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(NoSignInInterceptor.class);
 
@@ -27,11 +24,8 @@ public class NoSignInInterceptor implements HandlerInterceptor, ModelAttributeCo
 		HttpSession session = request.getSession();
 		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
 
-		String contextPath = request.getContextPath(); // /專案名
-		String servletPath = request.getServletPath(); // /頁面名
-		String pageName = servletPath.substring(1, servletPath.length()); // 頁面名
-		String queryString = request.getQueryString(); // 參數
-		String next = (queryString != null) ? (pageName + QUESTION + queryString) : pageName; // 原請求頁面
+		String contextPath = request.getContextPath(); // /path
+		String next = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 原請求 path
 
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();

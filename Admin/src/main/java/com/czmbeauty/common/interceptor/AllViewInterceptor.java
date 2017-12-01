@@ -18,6 +18,8 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 
 	private static final Logger logger = Logger.getLogger(AllViewInterceptor.class);
 
+	private String className = this.getClass().getSimpleName();
+
 	/**
 	 * 注入 AdminPathService
 	 */
@@ -28,9 +30,9 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
+		logger.info("(" + className + "." + Thread.currentThread().getStackTrace()[1].getMethodName() + ") start");
+
 		String servletPath = request.getServletPath(); // /path
-		String path = StringUtil.getPath(servletPath); // path
-		String extension = StringUtil.getExtension(servletPath); // extension
 		String queryString = request.getQueryString(); // query
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
@@ -39,14 +41,15 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
 		try {
-			if (adminPathService.selectByAp_path(extension, path) == null) {
+			if (adminPathService.selectByAp_path(StringUtil.getExtension(servletPath),
+					StringUtil.getPath(servletPath)) == null) {
 
 				// 有 mapping，但資料庫無此 path
 				throw new PageNotFoundException(requestPath);
 			}
 		} catch (PageNotFoundException e) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
@@ -55,7 +58,7 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 
 		request.setAttribute(REQUEST_PATH, requestPath);
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 進入頁面: " + requestPath);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 進入頁面: " + requestPath);
 
 		return true;
 	}
@@ -64,11 +67,17 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
+		logger.info("(" + className + "." + Thread.currentThread().getStackTrace()[1].getMethodName() + ") start");
+
 		String servletPath = request.getServletPath(); // /path
-		String path = StringUtil.getPath(servletPath); // path
-		String requestPathTag = path + ".do"; // 請求動作標籤
+		String requestPathTag = StringUtil.getPath(servletPath) + ".do"; // 請求動作標籤
 
 		request.getSession().setAttribute(REQUEST_PATH_TAG, requestPathTag);
+
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+
+		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
+				+ ") end, tag: " + requestPathTag);
 	}
 
 	@Override

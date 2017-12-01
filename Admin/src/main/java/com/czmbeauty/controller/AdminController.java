@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/11/30
+ * Date: 2017/12/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -31,7 +31,6 @@ import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.util.PaginationUtil;
 import com.czmbeauty.common.util.PasswordUtil;
 import com.czmbeauty.model.entity.AdminBean;
-import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.service.AdminService;
 import com.czmbeauty.model.service.CategoryService;
 import com.google.gson.Gson;
@@ -67,6 +66,285 @@ public class AdminController implements ControllerConstants {
 	 */
 	@Autowired
 	private AdminService adminService;
+
+	/**
+	 * 登入 - 初期處理
+	 * 
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/secure/sign-in.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
+	public String signInView(Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		String next = (String) request.getSession().getAttribute(NEXT_PAGE);
+
+		if (next != null) { // 經過 NoSignInInterceptor
+
+			logger.info("(" + className + "." + methodName + ") 原請求頁面: " + next);
+
+		} else { // 未經過 NoSignInInterceptor
+
+			logger.info("(" + className + "." + methodName + ") 原請求頁面: " + INDEX_PAGE);
+		}
+
+		return ADMIN_SIGN_IN_PAGE;
+	}
+
+	/**
+	 * 登入 - submit
+	 * 
+	 * @param ad_username
+	 *            String --> 管理員帳號
+	 * @param ad_password
+	 *            String --> 管理員密碼(原碼)
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/secure/sign-in.jsp
+	 * @return /WEB-INF/views/next
+	 * @return /WEB-INF/views/index.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
+	public String signInAction(@RequestParam String ad_username, @RequestParam String ad_password, Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		if (ad_username == null || ad_username.isEmpty()) {
+
+			model.addAttribute(ADMIN_USERNAME, ad_username);
+			model.addAttribute(ADMIN_PASSWORD, ad_password);
+			model.addAttribute(ERROR, ADMIN_USERNAME_REQUIRE_MSG);
+
+			logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號未填");
+
+			return ADMIN_SIGN_IN_PAGE;
+
+		} else if (ad_password == null || ad_password.isEmpty()) {
+
+			model.addAttribute(ADMIN_USERNAME, ad_username);
+			model.addAttribute(ADMIN_PASSWORD, ad_password);
+			model.addAttribute(ERROR, ADMIN_PASSWORD_REQUIRE_MSG);
+
+			logger.error("(" + className + "." + methodName + ") 登入失敗: 密碼未填");
+
+			return ADMIN_SIGN_IN_PAGE;
+
+		} else {
+
+			AdminBean adminBean = adminService.signIn(ad_username, ad_password);
+
+			if (adminBean == null) {
+
+				model.addAttribute(ADMIN_USERNAME, ad_username);
+				model.addAttribute(ADMIN_PASSWORD, ad_password);
+				model.addAttribute(ERROR, ADMIN_USERNAME_OR_PASSWORD_MISTAKE_MSG);
+
+				logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號或密碼錯誤");
+
+				return ADMIN_SIGN_IN_PAGE;
+
+			} else {
+
+				// 更新登入資訊
+				adminBean.setAd_signin_number(adminBean.getAd_signin_number() + 1);
+				adminBean.setAd_signin_ip(request.getRemoteAddr());
+				adminBean.setAd_signin_time(new java.util.Date());
+
+				// 放入 Session
+				model.addAttribute(ADMIN, adminBean);
+
+				HttpSession session = request.getSession();
+				String next = (String) session.getAttribute(NEXT_PAGE);
+
+				if (next != null) { // 經過 NoSignInInterceptor
+
+					session.removeAttribute(NEXT_PAGE);
+
+					logger.info("(" + className + "." + methodName + ") 登入成功，導向原請求頁面: " + next);
+
+					return REDIRECT.concat(next);
+
+				} else { // 未經過 NoSignInInterceptor
+
+					logger.info("(" + className + "." + methodName + ") 登入成功，導向首頁: " + INDEX_PAGE);
+
+					return REDIRECT + INDEX_PAGE;
+				}
+			}
+		}
+	}
+
+	/**
+	 * 忘記密碼 - 初期處理
+	 * 
+	 * @return /WEB-INF/views/secure/forget-password.jsp
+	 */
+	@RequestMapping(value = "/secure/forget-password", method = RequestMethod.GET)
+	public String forgetPasswordView() {
+
+		return ADMIN_FORGET_PASSWORD_PAGE;
+	}
+
+	/**
+	 * 忘記密碼 - submit
+	 * 
+	 * @param ad_email
+	 *            String --> 管理員信箱
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/secure/forget-password.jsp
+	 * @return /WEB-INF/views/secure/reset-password.jsp
+	 */
+	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
+	public String forgetPasswordAction(@RequestParam String ad_email, Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		if (ad_email == null || ad_email.isEmpty()) {
+
+			model.addAttribute(ADMIN_EMAIL, ad_email);
+			model.addAttribute(ERROR, ADMIN_EMAIL_REQUIRE_MSG);
+
+			logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱未填");
+
+			return ADMIN_FORGET_PASSWORD_PAGE;
+
+		} else {
+
+			AdminBean adminBean = adminService.selectByAd_email(ad_email, 1);
+
+			if (adminBean == null) {
+
+				model.addAttribute(ADMIN_EMAIL, ad_email);
+				model.addAttribute(ERROR, ADMIN_EMAIL_MISTAKE_MSG);
+
+				logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱錯誤");
+
+				return ADMIN_FORGET_PASSWORD_PAGE;
+
+			} else {
+
+				adminService.updateAd_password(adminBean);
+
+				// 將管理員 email 放入 Session
+				request.getSession().setAttribute(ADMIN_EMAIL_SESSION, ad_email);
+
+				logger.info("(" + className + "." + methodName + ") 發送成功，傳送至: " + ad_email);
+
+				return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
+			}
+		}
+	}
+
+	/**
+	 * 重設密碼 - 初期處理
+	 * 
+	 * @return /WEB-INF/views/secure/reset-password.jsp
+	 */
+	@RequestMapping(value = "/secure/reset-password", method = RequestMethod.GET)
+	public String resetPasswordView() {
+
+		return ADMIN_RESET_PASSWORD_PAGE;
+	}
+
+	/**
+	 * 重設密碼 - submit
+	 * 
+	 * @param ad_password_random
+	 *            String --> 驗證碼(原碼)
+	 * @param ad_password_new
+	 *            String --> 新密碼(原碼)
+	 * @param ad_password_new_again
+	 *            String --> 重複新密碼(原碼)
+	 * @param sessionStatus
+	 *            SessionStatus
+	 * @param model
+	 *            Model
+	 * @return /WEB-INF/views/secure/reset-password.jsp
+	 * @return /WEB-INF/views/secure/sign-in.jsp
+	 */
+	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
+	public String resetPasswordAction(@RequestParam String ad_password_random, @RequestParam String ad_password_new,
+			@RequestParam String ad_password_new_again, SessionStatus sessionStatus, Model model) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		HttpSession session = request.getSession();
+		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
+
+		AdminBean adminBean = adminService.selectByAd_email(ad_email, 1);
+
+		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
+				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
+
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼未填");
+
+			return ADMIN_RESET_PASSWORD_PAGE;
+
+		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
+
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼格式錯誤");
+
+			return ADMIN_RESET_PASSWORD_PAGE;
+
+		} else if (!ad_password_new.equals(ad_password_new_again)) {
+
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 新密碼重複錯誤");
+
+			return ADMIN_RESET_PASSWORD_PAGE;
+
+		} else if (!adminBean.getAd_password()
+				.equals(PasswordUtil.getHashedPassword(ad_password_random, adminBean.getAd_salt()))) {
+
+			model.addAttribute(ADMIN_PASSWORD_RANDOM, ad_password_random);
+			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
+			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
+			model.addAttribute(ERROR, ADMIN_RANDOM_MISTAKE_MSG);
+
+			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 驗證碼錯誤");
+
+			return ADMIN_RESET_PASSWORD_PAGE;
+
+		} else {
+
+			adminService.updateAd_password(adminBean, ad_password_new);
+
+			// 清除 @SessionAttributes
+			sessionStatus.setComplete();
+
+			// 清除所有 HttpSession
+			session.invalidate();
+
+			logger.info("(" + className + "." + methodName + ") 密碼重設成功");
+
+			return REDIRECT + ADMIN_SIGN_IN_PAGE;
+		}
+	}
+
+	/**
+	 * 登出 - submit
+	 * 
+	 * @param sessionStatus
+	 *            SessionStatus
+	 * @return /WEB-INF/views/index.jsp
+	 */
+	@RequestMapping(value = "/secure/sign-out.do", method = RequestMethod.GET)
+	public String signOutAction(SessionStatus sessionStatus) {
+
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+
+		// 清除 @SessionAttributes
+		sessionStatus.setComplete();
+
+		// 清除所有 HttpSession
+		request.getSession().invalidate();
+
+		logger.info("(" + className + "." + methodName + ") 登出成功");
+
+		return REDIRECT + INDEX_PAGE;
+	}
 
 	/**
 	 * 註冊 - 初期處理
@@ -265,285 +543,6 @@ public class AdminController implements ControllerConstants {
 	}
 
 	/**
-	 * 登入 - 初期處理
-	 * 
-	 * @param model
-	 *            Model
-	 * @return /WEB-INF/views/secure/sign-in.jsp
-	 */
-	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
-	public String signInView(Model model) {
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-
-		HttpSession session = request.getSession();
-		String next = (String) session.getAttribute(NEXT_PAGE);
-
-		if (next != null) { // 經過 NoSignInInterceptor
-
-			logger.info("(" + className + "." + methodName + ") 原請求頁面: " + next);
-
-		} else { // 未經過 NoSignInInterceptor
-
-			logger.info("(" + className + "." + methodName + ") 原請求頁面: " + INDEX_PAGE);
-		}
-
-		return ADMIN_SIGN_IN_PAGE;
-	}
-
-	/**
-	 * 登入 - submit
-	 * 
-	 * @param ad_username
-	 *            String --> 管理員帳號
-	 * @param ad_password
-	 *            String --> 管理員密碼(原碼)
-	 * @param model
-	 *            Model
-	 * @return /WEB-INF/views/secure/sign-in.jsp
-	 * @return /WEB-INF/views/next
-	 * @return /WEB-INF/views/index.jsp
-	 */
-	@RequestMapping(value = "/secure/sign-in.do", method = RequestMethod.POST)
-	public String signInAction(@RequestParam String ad_username, @RequestParam String ad_password, Model model) {
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-
-		if (ad_username == null || ad_username.isEmpty()) {
-
-			model.addAttribute(ADMIN_USERNAME, ad_username);
-			model.addAttribute(ADMIN_PASSWORD, ad_password);
-			model.addAttribute(ERROR, ADMIN_USERNAME_REQUIRE_MSG);
-
-			logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號未填");
-
-			return ADMIN_SIGN_IN_PAGE;
-
-		} else if (ad_password == null || ad_password.isEmpty()) {
-
-			model.addAttribute(ADMIN_USERNAME, ad_username);
-			model.addAttribute(ADMIN_PASSWORD, ad_password);
-			model.addAttribute(ERROR, ADMIN_PASSWORD_REQUIRE_MSG);
-
-			logger.error("(" + className + "." + methodName + ") 登入失敗: 密碼未填");
-
-			return ADMIN_SIGN_IN_PAGE;
-
-		} else {
-
-			AdminBean adminBean = adminService.signIn(ad_username, ad_password);
-
-			if (adminService.signIn(ad_username, ad_password) == null) {
-
-				model.addAttribute(ADMIN_USERNAME, ad_username);
-				model.addAttribute(ADMIN_PASSWORD, ad_password);
-				model.addAttribute(ERROR, ADMIN_USERNAME_OR_PASSWORD_MISTAKE_MSG);
-
-				logger.error("(" + className + "." + methodName + ") 登入失敗: 帳號或密碼錯誤");
-
-				return ADMIN_SIGN_IN_PAGE;
-
-			} else {
-
-				// 更新登入資訊
-				adminBean.setAd_signin_number(adminBean.getAd_signin_number() + 1);
-				adminBean.setAd_signin_ip(request.getRemoteAddr());
-				adminBean.setAd_signin_time(new java.util.Date());
-
-				// 放入 Session
-				model.addAttribute(ADMIN, adminBean);
-
-				HttpSession session = request.getSession();
-				String next = (String) session.getAttribute(NEXT_PAGE);
-
-				if (next != null) { // 經過 NoSignInInterceptor
-
-					session.removeAttribute(NEXT_PAGE);
-
-					logger.info("(" + className + "." + methodName + ") 登入成功，導向原請求頁面: " + next);
-
-					return REDIRECT.concat(next);
-
-				} else { // 未經過 NoSignInInterceptor
-
-					logger.info("(" + className + "." + methodName + ") 登入成功，導向首頁: " + INDEX_PAGE);
-
-					return REDIRECT + INDEX_PAGE;
-				}
-			}
-		}
-	}
-
-	/**
-	 * 忘記密碼 - 初期處理
-	 * 
-	 * @return /WEB-INF/views/secure/forget-password.jsp
-	 */
-	@RequestMapping(value = "/secure/forget-password", method = RequestMethod.GET)
-	public String forgetPasswordView() {
-
-		return ADMIN_FORGET_PASSWORD_PAGE;
-	}
-
-	/**
-	 * 忘記密碼 - submit
-	 * 
-	 * @param ad_email
-	 *            String --> 管理員信箱
-	 * @param model
-	 *            Model
-	 * @return /WEB-INF/views/secure/forget-password.jsp
-	 * @return /WEB-INF/views/secure/reset-password.jsp
-	 */
-	@RequestMapping(value = "/secure/forget-password.do", method = RequestMethod.POST)
-	public String forgetPasswordAction(@RequestParam String ad_email, Model model) {
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-
-		if (ad_email == null || ad_email.isEmpty()) {
-
-			model.addAttribute(ADMIN_EMAIL, ad_email);
-			model.addAttribute(ERROR, ADMIN_EMAIL_REQUIRE_MSG);
-
-			logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱未填");
-
-			return ADMIN_FORGET_PASSWORD_PAGE;
-
-		} else {
-
-			AdminBean adminBean = adminService.selectByAd_email(ad_email, 1);
-
-			if (adminBean == null) {
-
-				model.addAttribute(ADMIN_EMAIL, ad_email);
-				model.addAttribute(ERROR, ADMIN_EMAIL_MISTAKE_MSG);
-
-				logger.error("(" + className + "." + methodName + ") 發送失敗: 信箱錯誤");
-
-				return ADMIN_FORGET_PASSWORD_PAGE;
-
-			} else {
-
-				adminService.updateAd_password(adminBean);
-
-				// 將管理員 email 放入 Session
-				request.getSession().setAttribute(ADMIN_EMAIL_SESSION, ad_email);
-
-				logger.info("(" + className + "." + methodName + ") 發送成功，傳送至: " + ad_email);
-
-				return REDIRECT + ADMIN_RESET_PASSWORD_PAGE;
-			}
-		}
-	}
-
-	/**
-	 * 重設密碼 - 初期處理
-	 * 
-	 * @return /WEB-INF/views/secure/reset-password.jsp
-	 */
-	@RequestMapping(value = "/secure/reset-password", method = RequestMethod.GET)
-	public String resetPasswordView() {
-
-		return ADMIN_RESET_PASSWORD_PAGE;
-	}
-
-	/**
-	 * 重設密碼 - submit
-	 * 
-	 * @param ad_password_random
-	 *            String --> 驗證碼(原碼)
-	 * @param ad_password_new
-	 *            String --> 新密碼(原碼)
-	 * @param ad_password_new_again
-	 *            String --> 重複新密碼(原碼)
-	 * @param sessionStatus
-	 *            SessionStatus
-	 * @param model
-	 *            Model
-	 * @return /WEB-INF/views/secure/reset-password.jsp
-	 * @return /WEB-INF/views/secure/sign-in.jsp
-	 */
-	@RequestMapping(value = "/secure/reset-password.do", method = RequestMethod.POST)
-	public String resetPasswordAction(@RequestParam String ad_password_random, @RequestParam String ad_password_new,
-			@RequestParam String ad_password_new_again, SessionStatus sessionStatus, Model model) {
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-
-		HttpSession session = request.getSession();
-		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
-		AdminBean adminBean = adminService.selectByAd_email(ad_email, 1);
-
-		if (ad_password_random == null || ad_password_random.isEmpty() || ad_password_new == null
-				|| ad_password_new.isEmpty() || ad_password_new_again == null || ad_password_new_again.isEmpty()) {
-
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼未填");
-
-			return ADMIN_RESET_PASSWORD_PAGE;
-
-		} else if (!ad_password_new.matches("^[\\S]{8,32}$")) {
-
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 密碼格式錯誤");
-
-			return ADMIN_RESET_PASSWORD_PAGE;
-
-		} else if (!ad_password_new.equals(ad_password_new_again)) {
-
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 新密碼重複錯誤");
-
-			return ADMIN_RESET_PASSWORD_PAGE;
-
-		} else if (!adminBean.getAd_password()
-				.equals(PasswordUtil.getHashedPassword(ad_password_random, adminBean.getAd_salt()))) {
-
-			model.addAttribute(ADMIN_PASSWORD_RANDOM, ad_password_random);
-			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
-			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
-			model.addAttribute(ERROR, ADMIN_RANDOM_MISTAKE_MSG);
-
-			logger.error("(" + className + "." + methodName + ") 密碼重設失敗: 驗證碼錯誤");
-
-			return ADMIN_RESET_PASSWORD_PAGE;
-
-		} else {
-
-			adminService.updateAd_password(adminBean, ad_password_new);
-
-			// 清除 @SessionAttributes
-			sessionStatus.setComplete();
-
-			// 清除所有 HttpSession
-			session.invalidate();
-
-			logger.info("(" + className + "." + methodName + ") 密碼重設成功");
-
-			return REDIRECT + ADMIN_SIGN_IN_PAGE;
-		}
-	}
-
-	/**
-	 * 登出 - submit
-	 * 
-	 * @param sessionStatus
-	 *            SessionStatus
-	 * @return /WEB-INF/views/index.jsp
-	 */
-	@RequestMapping(value = "/secure/sign-out.do", method = RequestMethod.GET)
-	public String signOutAction(SessionStatus sessionStatus) {
-
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-
-		// 清除 @SessionAttributes
-		sessionStatus.setComplete();
-
-		// 清除所有 HttpSession
-		request.getSession().invalidate();
-
-		logger.info("(" + className + "." + methodName + ") 登出成功");
-
-		return REDIRECT + INDEX_PAGE;
-	}
-
-	/**
 	 * 管理員一覽 - 初期處理
 	 * 
 	 * @param page
@@ -556,14 +555,13 @@ public class AdminController implements ControllerConstants {
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
-		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 
 		int pageRowCount = ADMIN_PAGE_ROW_COUNT_NUMBER;
 		int pageCount = PaginationUtil.getPageCount(adminService.selectCount(), pageRowCount);
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
 		// 取得類別資料夾名稱
-		model.addAttribute(CATEGORY_DIRECTORY, categoryBean.getCa_directory());
+		model.addAttribute(CATEGORY_DIRECTORY, categoryService.selectByCa_directory(requestPath).getCa_directory());
 
 		// 取得當前頁碼的管理員 List，放入 table
 		model.addAttribute(ADMIN_LIST, adminService.selectPagination(page, pageRowCount));

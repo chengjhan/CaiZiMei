@@ -35,7 +35,7 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 未登入，攔截: " + next);
 
-			// 將原請求頁面，放入 Session
+			// 將原請求 path，放入 Session
 			session.setAttribute(NEXT_PAGE, ADMIN_SIGN_OUT_DO.equals(next) ? INDEX_PAGE : next);
 
 			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);

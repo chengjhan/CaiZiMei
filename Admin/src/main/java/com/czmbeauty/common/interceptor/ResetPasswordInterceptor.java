@@ -2,7 +2,6 @@ package com.czmbeauty.common.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.method.HandlerMethod;
@@ -20,8 +19,7 @@ public class ResetPasswordInterceptor implements HandlerInterceptor, ControllerC
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		HttpSession session = request.getSession();
-		String ad_email = (String) session.getAttribute(ADMIN_EMAIL_SESSION);
+		String ad_email = (String) request.getSession().getAttribute(ADMIN_EMAIL_SESSION);
 
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 

@@ -29,8 +29,6 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 			throws Exception {
 
 		String servletPath = request.getServletPath(); // /path
-		String path = StringUtil.getPath(servletPath); // path
-		String extension = StringUtil.getExtension(servletPath); // extension
 		String queryString = request.getQueryString(); // query
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
@@ -39,7 +37,8 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
 		try {
-			if (userPathService.selectByUp_path(extension, path) == null) {
+			if (userPathService.selectByUp_path(StringUtil.getExtension(servletPath),
+					StringUtil.getPath(servletPath)) == null) {
 
 				// 有 mapping，但資料庫無此 path
 				throw new PageNotFoundException(requestPath);

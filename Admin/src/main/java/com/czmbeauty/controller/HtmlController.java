@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: HtmlController.java
  * Author: 詹晟
- * Date: 2017/11/30
+ * Date: 2017/12/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -88,6 +88,7 @@ public class HtmlController implements ControllerConstants {
 	public String listView(@RequestParam Integer page, Model model) {
 
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 		String ca_directory = categoryBean.getCa_directory();
 
@@ -139,6 +140,7 @@ public class HtmlController implements ControllerConstants {
 	public String addView(Model model) {
 
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 
 		// 新增 form backing object
@@ -163,6 +165,7 @@ public class HtmlController implements ControllerConstants {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();
@@ -205,6 +208,7 @@ public class HtmlController implements ControllerConstants {
 		currentPage = page;
 
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 
 		HtmlBean htmlBean;
@@ -252,6 +256,7 @@ public class HtmlController implements ControllerConstants {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
+
 		CategoryBean categoryBean = categoryService.selectByCa_directory(requestPath);
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();

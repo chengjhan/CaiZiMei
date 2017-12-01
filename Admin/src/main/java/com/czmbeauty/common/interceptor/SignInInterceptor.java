@@ -2,7 +2,6 @@ package com.czmbeauty.common.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.method.HandlerMethod;
@@ -21,8 +20,7 @@ public class SignInInterceptor implements HandlerInterceptor, ControllerConstant
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		HttpSession session = request.getSession();
-		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
+		AdminBean adminBean = (AdminBean) request.getSession().getAttribute(ADMIN);
 
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 

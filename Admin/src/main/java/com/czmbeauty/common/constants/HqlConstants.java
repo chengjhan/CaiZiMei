@@ -6,6 +6,10 @@ public interface HqlConstants {
 	/** extension 搜尋 */
 	public static final String HQL_SELECT_CATEGORY_PATH_BY_EXTENSION = "from CategoryPathBean where cp_extension=:cp_extension";
 
+	// category
+	/** 類別資料夾名稱搜尋 */
+	public static final String HQL_SELECT_CATEGORY_BY_DIRECTORY = "from CategoryBean where ca_directory=:ca_directory";
+
 	// admin
 	/** 搜尋所有管理員 */
 	public static final String HQL_SELECT_ALL_ADMIN = "from AdminBean order by ad_id asc";
@@ -20,14 +24,6 @@ public interface HqlConstants {
 	/** 管理員流水號搜尋 */
 	public static final String HQL_SELECT_ADMIN_LOG_BY_ADMIN = "from AdminLogBean where al_ad_id=:al_ad_id order by al_insert_time asc, al_id asc";
 
-	// admin_view
-	/** 視圖名搜尋 */
-	public static final String HQL_SELECT_ADMIN_VIEW_BY_VIEW_NAME = "from AdminViewBean where av_view_name=:av_view_name";
-
-	// admin_action
-	/** 動作名搜尋 */
-	public static final String HQL_SELECT_ADMIN_ACTION_BY_ACTION_NAME = "from AdminActionBean where aa_action_name=:aa_action_name";
-
 	// country
 	/** 搜尋所有國家 */
 	public static final String HQL_SELECT_ALL_COUNTRY = "from CountryBean order by co_rank asc, co_id asc";
@@ -39,10 +35,6 @@ public interface HqlConstants {
 	// city
 	/** 區域流水號搜尋 */
 	public static final String HQL_SELECT_CITY_BY_STATE = "from CityBean where ci_st_id=:ci_st_id order by ci_rank asc, ci_id asc";
-
-	// category
-	/** 類別資料夾名稱搜尋 */
-	public static final String HQL_SELECT_CATEGORY_BY_DIRECTORY = "from CategoryBean where ca_directory=:ca_directory";
 
 	// base
 	/** 類別流水號搜尋 */

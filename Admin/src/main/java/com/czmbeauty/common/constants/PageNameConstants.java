@@ -15,6 +15,12 @@ public interface PageNameConstants {
 
 	public static final String EDIT_PAGE = "/edit";
 
+	public static final String ADMIN_SIGN_IN_PAGE = "secure/sign-in";
+
+	public static final String ADMIN_FORGET_PASSWORD_PAGE = "secure/forget-password";
+
+	public static final String ADMIN_RESET_PASSWORD_PAGE = "secure/reset-password";
+
 	public static final String ADMIN_SIGN_UP_PAGE = "admin/sign-up";
 
 	public static final String ADMIN_PROFILE_PAGE = "admin/profile";
@@ -22,12 +28,6 @@ public interface PageNameConstants {
 	public static final String ADMIN_EDIT_PAGE = "admin/edit";
 
 	public static final String ADMIN_CHANGE_PASSWORD_PAGE = "admin/change-password";
-
-	public static final String ADMIN_SIGN_IN_PAGE = "secure/sign-in";
-
-	public static final String ADMIN_FORGET_PASSWORD_PAGE = "secure/forget-password";
-
-	public static final String ADMIN_RESET_PASSWORD_PAGE = "secure/reset-password";
 
 	public static final String ADMIN_LIST_PAGE = "admin/list";
 

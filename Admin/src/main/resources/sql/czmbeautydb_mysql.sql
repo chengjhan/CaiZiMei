@@ -7,6 +7,38 @@ create database if not exists czmbeautydb;
 use czmbeautydb;
 
 -- CREATE
+create table category_path (
+	cp_id					int auto_increment not null,
+	cp_name					varchar(10) not null,
+	cp_extension			varchar(10) not null,
+	primary key (cp_id)
+);
+
+create table admin_path (
+	ap_id					int auto_increment not null,
+	ap_cp_id				int not null,
+	ap_path					varchar(50) not null,
+	ap_name					nvarchar(20) not null,
+	primary key (ap_id),
+	foreign key (ap_cp_id) references category_path (cp_id)
+);
+
+create table user_path (
+	up_id					int auto_increment not null,
+	up_cp_id				int not null,
+	up_path					varchar(50) not null,
+	up_name					nvarchar(20) not null,
+	primary key (up_id),
+	foreign key (up_cp_id) references category_path (cp_id)
+);
+
+create table category (
+	ca_id					int auto_increment not null,
+	ca_name					nvarchar(20) not null,
+	ca_directory			varchar(50) not null,
+	primary key (ca_id)
+);
+
 create table admin (
 	ad_id					int auto_increment not null,
 	ad_username				varchar(50) not null,
@@ -25,6 +57,17 @@ create table admin (
 	ad_status_time			datetime not null,
 	ad_authority			tinyint not null,
 	primary key (ad_id)
+);
+
+create table admin_log (
+	al_id					int auto_increment not null,
+	al_insert_time			timestamp default current_timestamp not null,
+	al_ad_id				int not null,
+	al_ap_id				int not null,
+	al_ip					varchar(20),
+	primary key (al_id),
+	foreign key (al_ad_id) references admin (ad_id),
+	foreign key (al_ap_id) references admin_path (ap_id)
 );
 
 create table country (
@@ -57,13 +100,6 @@ create table city (
 	primary key (ci_id),
 	foreign key (ci_co_id) references country (co_id),
 	foreign key (ci_st_id) references state (st_id)
-);
-
-create table category (
-	ca_id					int auto_increment not null,
-	ca_name					nvarchar(20) not null,
-	ca_directory			varchar(50) not null,
-	primary key (ca_id)
 );
 
 create table base (
@@ -129,157 +165,11 @@ create table html (
 	foreign key (ht_ca_id) references category (ca_id)
 );
 
-create table category_path (
-	cp_id					int auto_increment not null,
-	cp_name					varchar(10) not null,
-	cp_extension			varchar(10) not null,
-	primary key (cp_id)
-);
-
-create table admin_path (
-	ap_id					int auto_increment not null,
-	ap_cp_id				int not null,
-	ap_path					varchar(50) not null,
-	ap_name					nvarchar(20) not null,
-	primary key (ap_id),
-	foreign key (ap_cp_id) references category_path (cp_id)
-);
-
-create table user_path (
-	up_id					int auto_increment not null,
-	up_cp_id				int not null,
-	up_path					varchar(50) not null,
-	up_name					nvarchar(20) not null,
-	primary key (up_id),
-	foreign key (up_cp_id) references category_path (cp_id)
-);
-
-create table admin_log (
-	al_id					int auto_increment not null,
-	al_insert_time			timestamp default current_timestamp not null,
-	al_ad_id				int not null,
-	al_ap_id				int not null,
-	al_ip					varchar(20),
-	primary key (al_id),
-	foreign key (al_ad_id) references admin (ad_id),
-	foreign key (al_ap_id) references admin_path (ap_id)
-);
-
 -- ALTER
 alter table state auto_increment = 11;
 alter table city auto_increment = 101;
 
 -- INSERT
--- admin
-insert into admin (ad_id, ad_username, ad_password, ad_salt, ad_lastname, ad_firstname, ad_email, ad_signup_time, ad_signin_number, ad_signin_ip, ad_signin_time, ad_update_info_time, ad_update_pwd_time, ad_status, ad_status_time, ad_authority) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', 'czmbeauty', 'admin', 'admin@czmbeauty.com', now(), 0, null, null, now(), now(), 1, now(), 1);
-
--- country
-insert into country (co_iso, co_name, co_phonecode, co_rank, co_status) values ('TW', '台灣', '886', 1, 1);
-insert into country (co_iso, co_name, co_phonecode, co_rank, co_status) values ('CN', '中國', '86', 2, 1);
-
--- state
-insert into state (st_co_id, st_name, st_rank, st_status) values (1, '台灣', 1, 1);
-insert into state (st_co_id, st_name, st_rank, st_status) values (1, '澎湖', 2, 1);
-insert into state (st_co_id, st_name, st_rank, st_status) values (1, '金門', 3, 1);
-insert into state (st_co_id, st_name, st_rank, st_status) values (1, '馬祖', 4, 1);
-insert into state (st_co_id, st_name, st_rank, st_status) values (2, '福建省', 1, 1);
-insert into state (st_co_id, st_name, st_rank, st_status) values (2, '廣東省', 2, 1);
-insert into state (st_co_id, st_name, st_rank, st_status) values (2, '甘肅省', 3, 1);
-
--- city
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '基隆市', 1, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺北市', 2, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '新北市', 3, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '桃園市', 4, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '新竹市', 5, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '新竹縣', 6, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '苗栗縣', 7, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺中市', 8, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '彰化縣', 9, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '南投縣', 10, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '雲林縣', 11, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '嘉義市', 12, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '嘉義縣', 13, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺南市', 14, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '高雄市', 15, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '屏東縣', 16, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺東縣', 17, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '花蓮縣', 18, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '宜蘭縣', 19, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 12, '澎湖縣', 1, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 13, '金門縣', 1, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 14, '連江縣', 1, 1);
-insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (2, 17, '天水市', 1, 1);
-
--- category
-insert into category (ca_name, ca_directory) values ('管理員', 'admin');
-insert into category (ca_name, ca_directory) values ('辦事處', 'base-office');
-insert into category (ca_name, ca_directory) values ('加盟店', 'base-franchisee');
-insert into category (ca_name, ca_directory) values ('診所', 'base-clinic');
-insert into category (ca_name, ca_directory) values ('主輪播圖片', 'slider-main');
-insert into category (ca_name, ca_directory) values ('相關影音', 'video-main');
-insert into category (ca_name, ca_directory) values ('加盟店資訊輪播圖片', 'slider-franchisee');
-insert into category (ca_name, ca_directory) values ('近期活動輪播圖片', 'slider-recent');
-insert into category (ca_name, ca_directory) values ('優惠活動輪播圖片', 'slider-sale');
-insert into category (ca_name, ca_directory) values ('醫療新知輪播圖片', 'slider-knowledge');
-insert into category (ca_name, ca_directory) values ('醫療團隊輪播圖片', 'slider-doctor');
-insert into category (ca_name, ca_directory) values ('采姿美介紹頁面', 'about-introduction');
-insert into category (ca_name, ca_directory) values ('經營理念頁面', 'about-idea');
-insert into category (ca_name, ca_directory) values ('公司願景頁面', 'about-vision');
-insert into category (ca_name, ca_directory) values ('公司使命頁面', 'about-mission');
-insert into category (ca_name, ca_directory) values ('事業版圖頁面', 'about-territory');
-insert into category (ca_name, ca_directory) values ('加盟店頁面', 'about-franchisee');
-insert into category (ca_name, ca_directory) values ('醫療團隊頁面', 'team-doctor');
-insert into category (ca_name, ca_directory) values ('近期活動頁面', 'news-recent');
-insert into category (ca_name, ca_directory) values ('優惠活動頁面', 'news-sale');
-insert into category (ca_name, ca_directory) values ('醫療新知頁面', 'info-knowleage');
-insert into category (ca_name, ca_directory) values ('相關影音頁面', 'info-video-related');
-insert into category (ca_name, ca_directory) values ('圖片', 'image');
-
--- base
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (2, '采姿美台北辦事處', 'CaiZiMei', '02', '27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://localhost:8080/User/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (3, '甘肅天水采姿美加盟旗艦館', 'CaiZiMei', null, null, 2, 17, 123, '秦城區陽光麗景灣商鋪19號', 34.576471, 105.721828, 'http://localhost:8080/User/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '曼星整形醫美診所', 'Twinkle Clinic', '02', '27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '晶鑽時尚診所-台北', 'Diamond Cosmetic', '02', '27665066', 1, 11, 102, '信義區忠孝東路4段563號3F', 25.041589, 121.564050, 'http://diamondcosmetic.com.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '晶鑽時尚診所-台中', 'Diamond Cosmetic', '02', '23195800', 1, 11, 108, '西區公益路130號B1', 24.151141, 120.660487, 'http://diamondcosmetic.com.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '晶鑽時尚診所-高雄', 'Diamond Cosmetic', '02', '2367811', 1, 11, 115, '新興區中正三路156號', 22.631456, 120.304368, 'http://diamondcosmetic.com.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '法泊時尚診所-台北', 'Fabulous Clinic', '02', '27199010', 1, 11, 102, '松山區復興北路311號3樓', 25.058785, 121.544431, 'http://www.fabulous-clinic.com', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '法泊時尚診所-高雄', 'Fabulous Clinic', '02', '5585838', 1, 11, 115, '左營區博愛二路656號', 22.669675, 120.303546, 'http://www.fabulous-clinic.com', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '喬雅時尚診所', 'Joya Clinical Beauty', '02', '27715833', 1, 11, 102, '大安區忠孝東路四段147巷1號10樓', 25.041839, 121.544056, 'http://www.joya-beauty.com.tw', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北仁愛', 'Hollywood', '02', '27717771', 1, 11, 102, '大安區仁愛路四段105巷5號', 25.038633, 121.550189, 'http://hollywood.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北忠孝', 'Hollywood', '02', '27315900', 1, 11, 102, '大安區忠孝東路四段94號2樓之1', 25.041701, 121.545949, 'http://hollywood.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北復興', 'Hollywood', '02', '27519600', 1, 11, 102, '大安區忠孝東路三段283號2樓', 25.042171, 121.542878, 'http://hollywood.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北南西', 'Hollywood', '02', '25622701', 1, 11, 102, '中山區南京東路一段24號3樓', 25.052305, 121.523649, 'http://hollywood.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北光復', 'Hollywood', '02', '27786800', 1, 11, 102, '大安區光復南路260巷23號3樓', 25.040441, 121.556414, 'http://hollywood.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北南港', 'Hollywood', '02', '27828200', 1, 11, 102, '南港區三重路26號1樓', 25.056361, 121.614177, 'http://hollywood.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-桃園', 'Hollywood', '03', '3263123', 1, 11, 104, '桃園區新埔六街38號1樓', 25.014528, 121.302752, 'http://hollywood.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台中', 'Hollywood', '04', '22595825', 1, 11, 108, '西屯區市政北一路1號2樓', 24.157116, 120.646442, 'http://hollywood.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '璀璨精品牙醫診所', 'Dazzling Dental Clinic', '02', '28721239', 1, 11, 102, '士林區天玉街41號', 25.121355, 121.529410, 'http://www.dazzlingdental.com.tw/', now(), now(), 1, now());
-insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '何彬彬牙醫診所', 'Ho Bing Bing Dental Clinic', '07', '2270748', 1, 11, 115, '新興區民生一路56號', 22.628011, 120.310796, 'http://1637.tw/07-2270748/', now(), now(), 1, now());
-
--- image
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '曼星整形醫美診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_twinkle_clinic.jpg', 'http://twinkle-clinic.tw', 1, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '晶鑽時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_diamondcosmetic.jpg', 'http://diamondcosmetic.com.tw/', 2, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '法泊時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_fabulous_clinic.png', 'http://www.fabulous-clinic.com', 3, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood.jpg', 'http://hollywood.tw/', 5, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());
-insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (23, '事業版圖', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/image/', 'about_territory.jpg', '', 0, 1, now());
-
--- video
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'aaa', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'bbb', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 0, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'ccc', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 0, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'a', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'b', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'c', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'd', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 4, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'e', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 5, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'f', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 6, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'g', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'h', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
-insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'i', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());
-
 -- category_path
 insert into category_path (cp_name, cp_extension) values ('view', '');
 insert into category_path (cp_name, cp_extension) values ('action', 'do');
@@ -451,3 +341,113 @@ insert into user_path (up_cp_id, up_path, up_name) values (3, 'slider/main.ajax'
 insert into user_path (up_cp_id, up_path, up_name) values (3, 'slider/recent.ajax', '近期活動輪播');
 insert into user_path (up_cp_id, up_path, up_name) values (3, 'slider/sale.ajax', '優惠活動輪播');
 insert into user_path (up_cp_id, up_path, up_name) values (3, 'video/main.ajax', '相關影音');
+
+-- category
+insert into category (ca_name, ca_directory) values ('管理員', 'admin');
+insert into category (ca_name, ca_directory) values ('辦事處', 'base-office');
+insert into category (ca_name, ca_directory) values ('加盟店', 'base-franchisee');
+insert into category (ca_name, ca_directory) values ('診所', 'base-clinic');
+insert into category (ca_name, ca_directory) values ('主輪播圖片', 'slider-main');
+insert into category (ca_name, ca_directory) values ('相關影音', 'video-main');
+insert into category (ca_name, ca_directory) values ('加盟店資訊輪播圖片', 'slider-franchisee');
+insert into category (ca_name, ca_directory) values ('近期活動輪播圖片', 'slider-recent');
+insert into category (ca_name, ca_directory) values ('優惠活動輪播圖片', 'slider-sale');
+insert into category (ca_name, ca_directory) values ('醫療新知輪播圖片', 'slider-knowledge');
+insert into category (ca_name, ca_directory) values ('醫療團隊輪播圖片', 'slider-doctor');
+insert into category (ca_name, ca_directory) values ('采姿美介紹頁面', 'about-introduction');
+insert into category (ca_name, ca_directory) values ('經營理念頁面', 'about-idea');
+insert into category (ca_name, ca_directory) values ('公司願景頁面', 'about-vision');
+insert into category (ca_name, ca_directory) values ('公司使命頁面', 'about-mission');
+insert into category (ca_name, ca_directory) values ('事業版圖頁面', 'about-territory');
+insert into category (ca_name, ca_directory) values ('加盟店頁面', 'about-franchisee');
+insert into category (ca_name, ca_directory) values ('醫療團隊頁面', 'team-doctor');
+insert into category (ca_name, ca_directory) values ('近期活動頁面', 'news-recent');
+insert into category (ca_name, ca_directory) values ('優惠活動頁面', 'news-sale');
+insert into category (ca_name, ca_directory) values ('醫療新知頁面', 'info-knowleage');
+insert into category (ca_name, ca_directory) values ('相關影音頁面', 'info-video-related');
+insert into category (ca_name, ca_directory) values ('圖片', 'image');
+
+-- admin
+insert into admin (ad_id, ad_username, ad_password, ad_salt, ad_lastname, ad_firstname, ad_email, ad_signup_time, ad_signin_number, ad_signin_ip, ad_signin_time, ad_update_info_time, ad_update_pwd_time, ad_status, ad_status_time, ad_authority) values (100, 'admin', '538f10610b9eda06f83d7d73332d2ed0', '37f3d447-fad6-4ec0-b5fb-6a8f05b60c77', 'czmbeauty', 'admin', 'admin@czmbeauty.com', now(), 0, null, null, now(), now(), 1, now(), 1);
+
+-- country
+insert into country (co_iso, co_name, co_phonecode, co_rank, co_status) values ('TW', '台灣', '886', 1, 1);
+insert into country (co_iso, co_name, co_phonecode, co_rank, co_status) values ('CN', '中國', '86', 2, 1);
+
+-- state
+insert into state (st_co_id, st_name, st_rank, st_status) values (1, '台灣', 1, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (1, '澎湖', 2, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (1, '金門', 3, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (1, '馬祖', 4, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (2, '福建省', 1, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (2, '廣東省', 2, 1);
+insert into state (st_co_id, st_name, st_rank, st_status) values (2, '甘肅省', 3, 1);
+
+-- city
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '基隆市', 1, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺北市', 2, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '新北市', 3, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '桃園市', 4, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '新竹市', 5, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '新竹縣', 6, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '苗栗縣', 7, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺中市', 8, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '彰化縣', 9, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '南投縣', 10, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '雲林縣', 11, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '嘉義市', 12, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '嘉義縣', 13, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺南市', 14, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '高雄市', 15, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '屏東縣', 16, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '臺東縣', 17, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '花蓮縣', 18, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 11, '宜蘭縣', 19, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 12, '澎湖縣', 1, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 13, '金門縣', 1, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (1, 14, '連江縣', 1, 1);
+insert into city (ci_co_id, ci_st_id, ci_name, ci_rank, ci_status) values (2, 17, '天水市', 1, 1);
+
+-- base
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (2, '采姿美台北辦事處', 'CaiZiMei', '02', '27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://localhost:8080/User/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (3, '甘肅天水采姿美加盟旗艦館', 'CaiZiMei', null, null, 2, 17, 123, '秦城區陽光麗景灣商鋪19號', 34.576471, 105.721828, 'http://localhost:8080/User/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '曼星整形醫美診所', 'Twinkle Clinic', '02', '27079333', 1, 11, 102, '大安區信義路四段58號3F-2', 25.033072, 121.545437, 'http://twinkle-clinic.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '晶鑽時尚診所-台北', 'Diamond Cosmetic', '02', '27665066', 1, 11, 102, '信義區忠孝東路4段563號3F', 25.041589, 121.564050, 'http://diamondcosmetic.com.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '晶鑽時尚診所-台中', 'Diamond Cosmetic', '02', '23195800', 1, 11, 108, '西區公益路130號B1', 24.151141, 120.660487, 'http://diamondcosmetic.com.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '晶鑽時尚診所-高雄', 'Diamond Cosmetic', '02', '2367811', 1, 11, 115, '新興區中正三路156號', 22.631456, 120.304368, 'http://diamondcosmetic.com.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '法泊時尚診所-台北', 'Fabulous Clinic', '02', '27199010', 1, 11, 102, '松山區復興北路311號3樓', 25.058785, 121.544431, 'http://www.fabulous-clinic.com', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '法泊時尚診所-高雄', 'Fabulous Clinic', '02', '5585838', 1, 11, 115, '左營區博愛二路656號', 22.669675, 120.303546, 'http://www.fabulous-clinic.com', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '喬雅時尚診所', 'Joya Clinical Beauty', '02', '27715833', 1, 11, 102, '大安區忠孝東路四段147巷1號10樓', 25.041839, 121.544056, 'http://www.joya-beauty.com.tw', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北仁愛', 'Hollywood', '02', '27717771', 1, 11, 102, '大安區仁愛路四段105巷5號', 25.038633, 121.550189, 'http://hollywood.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北忠孝', 'Hollywood', '02', '27315900', 1, 11, 102, '大安區忠孝東路四段94號2樓之1', 25.041701, 121.545949, 'http://hollywood.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北復興', 'Hollywood', '02', '27519600', 1, 11, 102, '大安區忠孝東路三段283號2樓', 25.042171, 121.542878, 'http://hollywood.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北南西', 'Hollywood', '02', '25622701', 1, 11, 102, '中山區南京東路一段24號3樓', 25.052305, 121.523649, 'http://hollywood.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北光復', 'Hollywood', '02', '27786800', 1, 11, 102, '大安區光復南路260巷23號3樓', 25.040441, 121.556414, 'http://hollywood.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台北南港', 'Hollywood', '02', '27828200', 1, 11, 102, '南港區三重路26號1樓', 25.056361, 121.614177, 'http://hollywood.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-桃園', 'Hollywood', '03', '3263123', 1, 11, 104, '桃園區新埔六街38號1樓', 25.014528, 121.302752, 'http://hollywood.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '好萊塢診所-台中', 'Hollywood', '04', '22595825', 1, 11, 108, '西屯區市政北一路1號2樓', 24.157116, 120.646442, 'http://hollywood.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '璀璨精品牙醫診所', 'Dazzling Dental Clinic', '02', '28721239', 1, 11, 102, '士林區天玉街41號', 25.121355, 121.529410, 'http://www.dazzlingdental.com.tw/', now(), now(), 1, now());
+insert into base (ba_ca_id, ba_name, ba_eng_name, ba_tel_code, ba_tel, ba_co_id, ba_st_id, ba_ci_id, ba_address, ba_latitude, ba_longitude, ba_url, ba_insert_time, ba_update_time, ba_status, ba_status_time) values (4, '何彬彬牙醫診所', 'Ho Bing Bing Dental Clinic', '07', '2270748', 1, 11, 115, '新興區民生一路56號', 22.628011, 120.310796, 'http://1637.tw/07-2270748/', now(), now(), 1, now());
+
+-- image
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '曼星整形醫美診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_twinkle_clinic.jpg', 'http://twinkle-clinic.tw', 1, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '晶鑽時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_diamondcosmetic.jpg', 'http://diamondcosmetic.com.tw/', 2, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '法泊時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_fabulous_clinic.png', 'http://www.fabulous-clinic.com', 3, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '喬雅時尚診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_joya_beauty.png', 'http://www.joya-beauty.com.tw', 4, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '好萊塢診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_hollywood.jpg', 'http://hollywood.tw/', 5, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (5, '何彬彬牙醫診所', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/slider-main/', 'clinic_1637.jpg', 'http://1637.tw/07-2270748/', 6, 1, now());
+insert into image (im_ca_id, im_name, im_path, im_filename, im_url, im_rank, im_status, im_update_time) values (23, '事業版圖', '/Users/chengjhan/Desktop/Case/CaiZiMei/apache-tomcat-8.0.41/wtpwebapps/Admin/images/image/', 'about_territory.jpg', '', 0, 1, now());
+
+-- video
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'aaa', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'bbb', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 0, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (6, 'ccc', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 0, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'a', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 1, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'b', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 2, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'c', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 3, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'd', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 4, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'e', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 5, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'f', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 6, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'g', '<iframe width="560" height="315" src="https://www.youtube.com/embed/C589vlQLQEA" frameborder="0" allowfullscreen></iframe>', 7, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'h', '<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvg00_5OpM" frameborder="0" allowfullscreen></iframe>', 8, 1, now());
+insert into video (vi_ca_id, vi_name, vi_tag, vi_rank, vi_status, vi_update_time) values (22, 'i', '<iframe width="560" height="315" src="https://www.youtube.com/embed/R82z1DfsKWk" frameborder="0" allowfullscreen></iframe>', 9, 1, now());

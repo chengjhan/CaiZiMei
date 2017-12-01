@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/10/15
+ * Date: 2017/12/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -20,14 +20,14 @@ import com.czmbeauty.model.entity.AdminBean;
 public interface AdminService {
 
 	/**
-	 * @see com.czmbeauty.model.service.AdminService#signUp(AdminBean)
-	 */
-	AdminBean signUp(AdminBean adminBean);
-
-	/**
 	 * @see com.czmbeauty.model.service.AdminService#signIn(String, String)
 	 */
 	AdminBean signIn(String ad_username, String ad_password);
+
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#signUp(AdminBean)
+	 */
+	AdminBean signUp(AdminBean adminBean);
 
 	/**
 	 * @see com.czmbeauty.model.service.AdminService#selectPagination(Integer, int)

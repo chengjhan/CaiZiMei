@@ -21,6 +21,8 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 	private static final Logger logger = Logger.getLogger(AllActionInterceptor.class);
 
+	private String className = this.getClass().getSimpleName();
+
 	/**
 	 * 注入 AdminLogService
 	 */
@@ -39,6 +41,9 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 		String requestPathTag = (String) request.getSession().getAttribute(REQUEST_PATH_TAG);
 
+		logger.info("(" + className + "." + Thread.currentThread().getStackTrace()[1].getMethodName() + ") start, tag: "
+				+ requestPathTag);
+
 		String contextPath = request.getContextPath(); // /project
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
@@ -50,13 +55,13 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 			request.setAttribute(REQUEST_PATH, requestPath);
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
 
 			return true;
 
 		} else if (requestPathTag == null) { // Session timeout
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 閒置過久，攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 閒置過久，攔截: " + requestPath);
 
 			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);
 
@@ -64,7 +69,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 		} else if (handlerMethodName.indexOf("Action") == -1) { // 經過 AllViewInterceptor (GET)
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
@@ -72,7 +77,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 		} else if (!requestPathTag.equals(requestPath)) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
 			response.sendRedirect(contextPath + SLASH + requestPath.split(".do")[0]);
 
@@ -82,7 +87,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 			request.setAttribute(REQUEST_PATH, requestPath);
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行動作: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
 
 			return true;
 		}
@@ -92,6 +97,8 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
+		logger.info("(" + className + "." + Thread.currentThread().getStackTrace()[1].getMethodName() + ") start");
+
 		AdminBean sessionAdminBean = (AdminBean) request.getSession().getAttribute(ADMIN);
 		AdminBean modelAndViewAdminBean = (AdminBean) modelAndView.getModel().get(ADMIN);
 
@@ -100,10 +107,9 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		}
 
 		String servletPath = request.getServletPath(); // /path
-		String path = StringUtil.getPath(servletPath); // path
-		String extension = StringUtil.getExtension(servletPath); // extension
 
-		AdminPathBean adminPathBean = adminPathService.selectByAp_path(extension, path);
+		AdminPathBean adminPathBean = adminPathService.selectByAp_path(StringUtil.getExtension(servletPath),
+				StringUtil.getPath(servletPath));
 
 		AdminLogBean adminLogBean = new AdminLogBean();
 		adminLogBean.setAl_AdminBean((sessionAdminBean == null) ? modelAndViewAdminBean : sessionAdminBean);
@@ -114,7 +120,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 
 		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
-				+ ") 寫入日誌: " + adminPathBean.getAp_name());
+				+ ") end, 寫入日誌: " + adminPathBean.getAp_name());
 	}
 
 	@Override

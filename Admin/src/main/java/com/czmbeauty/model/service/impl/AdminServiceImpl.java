@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/11/28
+ * Date: 2017/12/1
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -41,34 +41,6 @@ public class AdminServiceImpl implements AdminService {
 	private SendMail sendMail;
 
 	/**
-	 * 註冊
-	 * 
-	 * @param adminBean
-	 *            AdminBean
-	 * @return AdminBean
-	 */
-	@Override
-	@Transactional
-	public AdminBean signUp(AdminBean adminBean) {
-
-		String ad_salt = PasswordUtil.getSalt();
-
-		adminBean.setAd_password(PasswordUtil.getHashedPassword(adminBean.getAd_password(), ad_salt));
-		adminBean.setAd_salt(ad_salt);
-		adminBean.setAd_lastname(adminBean.getAd_lastname().trim());
-		adminBean.setAd_firstname(adminBean.getAd_firstname().trim());
-		adminBean.setAd_signup_time(new java.util.Date());
-		adminBean.setAd_signin_number(0);
-		adminBean.setAd_update_pwd_time(new java.util.Date());
-		adminBean.setAd_update_info_time(new java.util.Date());
-		adminBean.setAd_status(1);
-		adminBean.setAd_status_time(new java.util.Date());
-		adminBean.setAd_authority(2);
-
-		return adminDao.insert(adminBean);
-	}
-
-	/**
 	 * 登入
 	 * 
 	 * @param ad_username
@@ -104,6 +76,34 @@ public class AdminServiceImpl implements AdminService {
 			// 帳號錯誤
 			return null;
 		}
+	}
+
+	/**
+	 * 註冊
+	 * 
+	 * @param adminBean
+	 *            AdminBean
+	 * @return AdminBean
+	 */
+	@Override
+	@Transactional
+	public AdminBean signUp(AdminBean adminBean) {
+
+		String ad_salt = PasswordUtil.getSalt();
+
+		adminBean.setAd_password(PasswordUtil.getHashedPassword(adminBean.getAd_password(), ad_salt));
+		adminBean.setAd_salt(ad_salt);
+		adminBean.setAd_lastname(adminBean.getAd_lastname().trim());
+		adminBean.setAd_firstname(adminBean.getAd_firstname().trim());
+		adminBean.setAd_signup_time(new java.util.Date());
+		adminBean.setAd_signin_number(0);
+		adminBean.setAd_update_pwd_time(new java.util.Date());
+		adminBean.setAd_update_info_time(new java.util.Date());
+		adminBean.setAd_status(1);
+		adminBean.setAd_status_time(new java.util.Date());
+		adminBean.setAd_authority(2);
+
+		return adminDao.insert(adminBean);
 	}
 
 	/**

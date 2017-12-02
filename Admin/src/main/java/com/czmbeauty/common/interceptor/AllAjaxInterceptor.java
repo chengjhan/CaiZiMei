@@ -69,14 +69,16 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstan
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
+
 		String servletPath = request.getServletPath(); // /path
 		String path = StringUtil.getPath(servletPath); // path
 		String queryString = request.getQueryString(); // query
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
-
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
-		String handlerMethodName = handlerMethod.getMethod().getName();
 
 		if (ADMIN_SWITCH_AJAX.equals(path)) {
 
@@ -86,7 +88,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstan
 					|| adminService.selectByAd_id(Integer.valueOf(parameter)) == null
 					|| adminService.selectByAd_id(Integer.valueOf(parameter)).getAd_authority().intValue() == 1) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
@@ -100,7 +102,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstan
 			if (parameter == null || parameter.isEmpty() || !parameter.matches("[0-9]+")
 					|| countryService.selectByCo_id(Integer.valueOf(parameter)) == null) {
 
-				logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
 				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 

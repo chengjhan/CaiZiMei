@@ -21,8 +21,6 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 	private static final Logger logger = Logger.getLogger(AllActionInterceptor.class);
 
-	private String className = this.getClass().getSimpleName();
-
 	/**
 	 * 注入 AdminLogService
 	 */
@@ -39,17 +37,16 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		String requestPathTag = (String) request.getSession().getAttribute(REQUEST_PATH_TAG);
-
-		logger.info("(" + className + "." + Thread.currentThread().getStackTrace()[1].getMethodName() + ") start, tag: "
-				+ requestPathTag);
-
-		String contextPath = request.getContextPath(); // /project
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
-
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
+
+		String requestPathKey = (String) request.getSession().getAttribute(REQUEST_PATH_KEY);
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start, key: " + requestPathKey);
+
+		String contextPath = request.getContextPath(); // /project
+		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
 		if (ADMIN_SIGN_OUT_DO.equals(requestPath)) {
 
@@ -59,7 +56,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 			return true;
 
-		} else if (requestPathTag == null) { // Session timeout
+		} else if (requestPathKey == null) { // Session timeout
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 閒置過久，攔截: " + requestPath);
 
@@ -75,7 +72,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 			return false;
 
-		} else if (!requestPathTag.equals(requestPath)) {
+		} else if (!requestPathKey.equals(requestPath)) {
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
@@ -97,7 +94,11 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
-		logger.info("(" + className + "." + Thread.currentThread().getStackTrace()[1].getMethodName() + ") start");
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
 		AdminBean sessionAdminBean = (AdminBean) request.getSession().getAttribute(ADMIN);
 		AdminBean modelAndViewAdminBean = (AdminBean) modelAndView.getModel().get(ADMIN);
@@ -117,10 +118,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		adminLogBean.setAl_ip(request.getRemoteAddr());
 		adminLogService.insert(adminLogBean);
 
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
-
-		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
-				+ ") end, 寫入日誌: " + adminPathBean.getAp_name());
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 寫入日誌: " + adminPathBean.getAp_name());
 	}
 
 	@Override

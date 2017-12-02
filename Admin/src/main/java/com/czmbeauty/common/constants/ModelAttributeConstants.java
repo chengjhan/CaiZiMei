@@ -4,7 +4,7 @@ public interface ModelAttributeConstants {
 
 	public static final String REQUEST_PATH = "requestPath";
 
-	public static final String REQUEST_PATH_TAG = "requestPathTag";
+	public static final String REQUEST_PATH_KEY = "requestPathKey";
 
 	public static final String ERROR = "error";
 

@@ -20,17 +20,17 @@ public class SignInInterceptor implements HandlerInterceptor, ControllerConstant
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		AdminBean adminBean = (AdminBean) request.getSession().getAttribute(ADMIN);
-
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
-
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		if (adminBean != null) {
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 已登入，攔截: " + requestPath);
+		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
+
+		if ((AdminBean) request.getSession().getAttribute(ADMIN) != null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 已登入，攔截: " + requestPath);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
@@ -38,7 +38,7 @@ public class SignInInterceptor implements HandlerInterceptor, ControllerConstant
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 未登入，放行: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 未登入，放行: " + requestPath);
 
 			return true;
 		}

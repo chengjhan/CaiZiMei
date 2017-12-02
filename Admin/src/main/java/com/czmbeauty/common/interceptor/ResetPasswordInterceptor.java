@@ -19,17 +19,17 @@ public class ResetPasswordInterceptor implements HandlerInterceptor, ControllerC
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		String ad_email = (String) request.getSession().getAttribute(ADMIN_EMAIL_SESSION);
-
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
-
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		if (ad_email == null) {
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
+		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
+
+		if ((String) request.getSession().getAttribute(ADMIN_EMAIL_SESSION) == null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
 			response.sendRedirect(request.getContextPath() + SLASH + ADMIN_SIGN_IN_PAGE);
 
@@ -37,7 +37,7 @@ public class ResetPasswordInterceptor implements HandlerInterceptor, ControllerC
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 放行: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 放行: " + requestPath);
 
 			return true;
 		}

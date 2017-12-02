@@ -18,8 +18,6 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 
 	private static final Logger logger = Logger.getLogger(AllViewInterceptor.class);
 
-	private String className = this.getClass().getSimpleName();
-
 	/**
 	 * 注入 AdminPathService
 	 */
@@ -30,15 +28,15 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		logger.info("(" + className + "." + Thread.currentThread().getStackTrace()[1].getMethodName() + ") start");
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
 		String servletPath = request.getServletPath(); // /path
 		String queryString = request.getQueryString(); // query
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
-
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
-		String handlerMethodName = handlerMethod.getMethod().getName();
 
 		try {
 			if (adminPathService.selectByAp_path(StringUtil.getExtension(servletPath),
@@ -67,17 +65,18 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
-		logger.info("(" + className + "." + Thread.currentThread().getStackTrace()[1].getMethodName() + ") start");
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
+		String handlerMethodName = handlerMethod.getMethod().getName();
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
 		String servletPath = request.getServletPath(); // /path
-		String requestPathTag = StringUtil.getPath(servletPath) + ".do"; // 請求動作標籤
+		String requestPathKey = StringUtil.getPath(servletPath) + ".do"; // 請求 path key
 
-		request.getSession().setAttribute(REQUEST_PATH_TAG, requestPathTag);
+		request.getSession().setAttribute(REQUEST_PATH_KEY, requestPathKey);
 
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
-
-		logger.info("(" + handlerMethod.getBeanType().getSimpleName() + "." + handlerMethod.getMethod().getName()
-				+ ") end, tag: " + requestPathTag);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, key: " + requestPathKey);
 	}
 
 	@Override

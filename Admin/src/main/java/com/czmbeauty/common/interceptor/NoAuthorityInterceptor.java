@@ -20,24 +20,24 @@ public class NoAuthorityInterceptor implements HandlerInterceptor, ControllerCon
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		AdminBean adminBean = (AdminBean) request.getSession().getAttribute(ADMIN);
-
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
-
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		if (adminBean.getAd_authority() != 1) {
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 沒有權限，攔截: " + requestPath);
+		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
+
+		if (((AdminBean) request.getSession().getAttribute(ADMIN)).getAd_authority() != 1) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 沒有權限，攔截: " + requestPath);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
 		}
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 有權限，放行: " + requestPath);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 有權限，放行: " + requestPath);
 
 		return true;
 	}

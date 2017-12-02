@@ -21,19 +21,19 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		HttpSession session = request.getSession();
-		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
-
-		String contextPath = request.getContextPath(); // /path
-		String next = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 原請求 path
-
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		if (adminBean == null) {
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 未登入，攔截: " + next);
+		HttpSession session = request.getSession();
+		String contextPath = request.getContextPath(); // /path
+		String next = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 原請求 path
+
+		if ((AdminBean) session.getAttribute(ADMIN) == null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 未登入，攔截: " + next);
 
 			// 將原請求 path，放入 Session
 			session.setAttribute(NEXT_PAGE, ADMIN_SIGN_OUT_DO.equals(next) ? INDEX_PAGE : next);
@@ -44,7 +44,7 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 已登入，放行: " + next);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 已登入，放行: " + next);
 
 			return true;
 		}

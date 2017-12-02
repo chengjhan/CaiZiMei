@@ -28,13 +28,15 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstan
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		String servletPath = request.getServletPath(); // /path
-		String queryString = request.getQueryString(); // query
-		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
-
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
+
+		String servletPath = request.getServletPath(); // /path
+		String queryString = request.getQueryString(); // query
+		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
 		try {
 			if (userPathService.selectByUp_path(StringUtil.getExtension(servletPath),

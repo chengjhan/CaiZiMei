@@ -47,14 +47,14 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstan
 			}
 		} catch (PageNotFoundException e) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") 攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
 		}
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 放行: " + requestPath);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 放行: " + requestPath);
 
 		return true;
 	}

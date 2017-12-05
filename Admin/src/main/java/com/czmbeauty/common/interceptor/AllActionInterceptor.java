@@ -100,6 +100,10 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
+		if ((String) request.getAttribute(SUCCESS_KEY) == null) {
+			return;
+		}
+
 		AdminBean sessionAdminBean = (AdminBean) request.getSession().getAttribute(ADMIN);
 		AdminBean modelAndViewAdminBean = (AdminBean) modelAndView.getModel().get(ADMIN);
 

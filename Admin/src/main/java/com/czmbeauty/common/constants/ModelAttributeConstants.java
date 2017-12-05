@@ -6,6 +6,8 @@ public interface ModelAttributeConstants {
 
 	public static final String REQUEST_PATH_KEY = "requestPathKey";
 
+	public static final String SUCCESS_KEY = "successKey";
+
 	public static final String ERROR = "error";
 
 	public static final String CATEGORY_DIRECTORY = "ca_directory";

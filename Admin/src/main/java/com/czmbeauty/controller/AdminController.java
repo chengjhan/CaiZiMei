@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/12/1
+ * Date: 2017/12/5
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -154,6 +154,8 @@ public class AdminController implements ControllerConstants {
 
 				// 放入 Session
 				model.addAttribute(ADMIN, adminBean);
+
+				request.setAttribute(SUCCESS_KEY, OK);
 
 				HttpSession session = request.getSession();
 				String next = (String) session.getAttribute(NEXT_PAGE);

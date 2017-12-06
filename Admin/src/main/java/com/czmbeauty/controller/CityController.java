@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/11/30
+ * Date: 2017/12/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -189,6 +189,8 @@ public class CityController implements ControllerConstants {
 			// 將新增的 CityBean 放入 Session，使 select 回填國家及區域
 			model.addAttribute(CITY_BEAN, cityBean);
 
+			request.setAttribute(SUCCESS_KEY, OK);
+
 			logger.info("(" + className + "." + methodName + ") 城市新增成功");
 
 			return REDIRECT + AREA_CITY_LIST_PAGE;
@@ -281,6 +283,8 @@ public class CityController implements ControllerConstants {
 
 			// 將編輯的 CityBean 放入 Session，使 select 回填國家及區域
 			model.addAttribute(CITY_BEAN, cityBean);
+
+			request.setAttribute(SUCCESS_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 城市編輯成功");
 

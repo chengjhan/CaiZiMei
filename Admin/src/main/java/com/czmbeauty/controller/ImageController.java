@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/12/1
+ * Date: 2017/12/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -240,8 +240,9 @@ public class ImageController implements ControllerConstants {
 			imageBean.setIm_CategoryBean(categoryBean);
 			imageBean.setIm_path(pathAndFilename[0]);
 			imageBean.setIm_filename(pathAndFilename[1]);
-
 			imageService.insert(imageBean);
+
+			request.setAttribute(SUCCESS_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") " + ca_name + "新增成功");
 
@@ -370,8 +371,9 @@ public class ImageController implements ControllerConstants {
 		imageBean.setIm_path(im_path);
 		imageBean.setIm_filename(im_filename);
 		imageBean.setIm_status(oldImageBean.getIm_status());
-
 		imageService.update(imageBean);
+
+		request.setAttribute(SUCCESS_KEY, OK);
 
 		logger.info("(" + className + "." + methodName + ") " + ca_name + "編輯成功");
 

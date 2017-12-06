@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/11/30
+ * Date: 2017/12/6
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -173,6 +173,8 @@ public class StateController implements ControllerConstants {
 			// 將新增的 StateBean 放入 Session，使 select 回填國家
 			model.addAttribute(STATE_BEAN, stateBean);
 
+			request.setAttribute(SUCCESS_KEY, OK);
+
 			logger.info("(" + className + "." + methodName + ") 區域新增成功");
 
 			return REDIRECT + AREA_STATE_LIST_PAGE;
@@ -259,6 +261,8 @@ public class StateController implements ControllerConstants {
 
 			// 將編輯的 StateBean 放入 Session，使 select 回填國家
 			model.addAttribute(STATE_BEAN, stateBean);
+
+			request.setAttribute(SUCCESS_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 區域編輯成功");
 

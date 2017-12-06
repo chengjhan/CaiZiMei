@@ -178,8 +178,9 @@ public class VideoController implements ControllerConstants {
 		} else {
 
 			videoBean.setVi_CategoryBean(categoryBean);
-
 			videoService.insert(videoBean);
+
+			request.setAttribute(SUCCESS_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") " + ca_name + "新增成功");
 
@@ -268,8 +269,9 @@ public class VideoController implements ControllerConstants {
 		} else {
 
 			videoBean.setVi_CategoryBean(categoryBean);
-
 			videoService.update(videoBean);
+
+			request.setAttribute(SUCCESS_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") " + ca_name + "編輯成功");
 

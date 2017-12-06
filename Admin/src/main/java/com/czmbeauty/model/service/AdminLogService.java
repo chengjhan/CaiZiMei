@@ -2,12 +2,13 @@
  * CaiZiMei
  * File: AdminLogService.java
  * Author: 詹晟
- * Date: 2017/8/2
+ * Date: 2017/12/6
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.czmbeauty.model.entity.AdminLogBean;
@@ -20,14 +21,10 @@ import com.czmbeauty.model.entity.AdminLogBean;
 public interface AdminLogService {
 
 	/**
-	 * @see com.czmbeauty.model.service.impl.AdminLogServiceImpl#selectAll()
+	 * @see com.czmbeauty.model.service.impl.AdminLogServiceImpl#selectByConditions(Date,
+	 *      Date, Integer, Integer)
 	 */
-	List<AdminLogBean> selectAll();
-
-	/**
-	 * @see com.czmbeauty.model.service.impl.AdminLogServiceImpl#selectByAl_ad_id(Integer)
-	 */
-	List<AdminLogBean> selectByAl_ad_id(Integer al_ad_id);
+	List<AdminLogBean> selectByConditions(Date startDate, Date endDate, Integer al_ad_id, Integer al_ap_id);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.AdminLogServiceImpl#insert(AdminLogBean)

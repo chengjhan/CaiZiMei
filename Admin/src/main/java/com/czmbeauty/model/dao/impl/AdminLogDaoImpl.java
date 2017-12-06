@@ -2,20 +2,26 @@
  * CaiZiMei
  * File: AdminLogDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/20
+ * Date: 2017/12/6
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.AdminLogDao;
+import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
+import com.czmbeauty.model.entity.AdminPathBean;
 
 /**
  * admin_log DAO implement
@@ -32,30 +38,42 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 搜尋所有管理員日誌
+	 * 條件搜尋
 	 * 
+	 * @param startDate
+	 *            Date --> 開始日期
+	 * @param endDate
+	 *            Date --> 結束日期
+	 * @param adminBean
+	 *            AdminBean
+	 * @param adminPathBean
+	 *            AdminPathBean
 	 * @return List<AdminLogBean>
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<AdminLogBean> selectAll() {
+	public List<AdminLogBean> selectByConditions(Date startDate, Date endDate, AdminBean adminBean,
+			AdminPathBean adminPathBean) {
 
-		return (List<AdminLogBean>) hibernateTemplate.find(HQL_SELECT_ALL_ADMIN_LOG);
-	}
+		DetachedCriteria criteria = DetachedCriteria.forClass(AdminLogBean.class);
 
-	/**
-	 * 管理員流水號搜尋
-	 * 
-	 * @param al_ad_id
-	 *            Integer --> 管理員流水號
-	 * @return List<AdminLogBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<AdminLogBean> selectByAl_ad_id(Integer al_ad_id) {
+		if (startDate != null) {
+			criteria.add(Restrictions.ge("al_insert_time", startDate));
+		}
+		if (endDate != null) {
+			criteria.add(Restrictions.le("al_insert_time", endDate));
+		}
+		if (adminBean != null) {
+			criteria.add(Restrictions.eq("al_AdminBean", adminBean));
+		}
+		if (adminPathBean != null) {
+			criteria.add(Restrictions.eq("al_AdminPathBean", adminPathBean));
+		}
+		criteria.addOrder(Order.desc("al_insert_time"));
 
-		return (List<AdminLogBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_ADMIN_LOG_BY_ADMIN, "al_ad_id",
-				al_ad_id);
+		List<AdminLogBean> list = (List<AdminLogBean>) hibernateTemplate.findByCriteria(criteria);
+
+		return list;
 	}
 
 	/**

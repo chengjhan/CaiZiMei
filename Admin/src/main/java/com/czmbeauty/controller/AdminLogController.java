@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogController.java
  * Author: 詹晟
- * Date: 2017/12/6
+ * Date: 2017/12/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -68,15 +68,17 @@ public class AdminLogController implements ControllerConstants {
 
 		Date startDate = null;
 		Date endDate = null;
+		Integer al_ad_id = null;
+		Integer al_ap_id = null;
 		try {
 			startDate = dateFormat.parse(start);
 			endDate = dateFormat.parse(end);
+			al_ad_id = Integer.parseInt(ad_id);
+			al_ap_id = Integer.parseInt(ap_id);
 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		Integer al_ad_id = Integer.parseInt(ad_id);
-		Integer al_ap_id = Integer.parseInt(ap_id);
 
 		List<AdminLogBean> list = adminLogService.selectByConditions(startDate, endDate, al_ad_id, al_ap_id);
 

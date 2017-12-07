@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogDao.java
  * Author: 詹晟
- * Date: 2017/12/6
+ * Date: 2017/12/7
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,6 +22,13 @@ import com.czmbeauty.model.entity.AdminPathBean;
  * @author 詹晟
  */
 public interface AdminLogDao extends HqlConstants {
+
+	/**
+	 * @see com.czmbeauty.model.dao.impl.AdminLogDaoImpl#selectByConditions(Date,
+	 *      Date, AdminBean, AdminPathBean, int, int)
+	 */
+	List<AdminLogBean> selectByConditions(Date startDate, Date endDate, AdminBean adminBean,
+			AdminPathBean adminPathBean, int first, int max);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.AdminLogDaoImpl#selectByConditions(Date,

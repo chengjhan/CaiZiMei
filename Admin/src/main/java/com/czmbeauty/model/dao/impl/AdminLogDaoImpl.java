@@ -2,12 +2,13 @@
  * CaiZiMei
  * File: AdminLogDaoImpl.java
  * Author: 詹晟
- * Date: 2017/12/7
+ * Date: 2017/12/8
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -79,12 +80,35 @@ public class AdminLogDaoImpl implements AdminLogDao {
 
 						CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 						CriteriaQuery<AdminLogBean> criteriaQuery = criteriaBuilder.createQuery(AdminLogBean.class);
+
+						// from
 						Root<AdminLogBean> root = criteriaQuery.from(AdminLogBean.class);
 
-						Predicate predicate = criteriaBuilder.equal(root.get("al_AdminBean"), adminBean);
+						// select
+						criteriaQuery.select(root);
 
-						criteriaQuery.select(root).where(predicate);
+						// where
+						List<Predicate> predicates = new ArrayList<Predicate>();
+						if (startDate != null) {
+							predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("al_insert_time"), startDate));
+						}
+						if (endDate != null) {
+							predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("al_insert_time"), endDate));
+						}
+						if (adminBean != null) {
+							predicates.add(criteriaBuilder.equal(root.get("al_AdminBean"), adminBean));
+						}
+						if (adminPathBean != null) {
+							predicates.add(criteriaBuilder.equal(root.get("al_AdminPathBean"), adminPathBean));
+						}
+						if (!predicates.isEmpty()) {
+							criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));
+						}
 
+						// order by
+						criteriaQuery.orderBy(criteriaBuilder.desc(root.get("al_insert_time")));
+
+						// limit
 						TypedQuery<AdminLogBean> typedQuery = session.createQuery(criteriaQuery);
 						typedQuery.setFirstResult(first);
 						typedQuery.setMaxResults(max);

@@ -2,18 +2,18 @@
  * CaiZiMei
  * File: BaseDaoImpl.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/12/8
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -21,7 +21,6 @@ import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.BaseDao;
 import com.czmbeauty.model.entity.BaseBean;
-import com.czmbeauty.model.entity.CategoryBean;
 
 /**
  * base DAO implement
@@ -46,11 +45,13 @@ public class BaseDaoImpl implements BaseDao {
 	 *            int --> 當頁起始筆數
 	 * @param max
 	 *            int --> 每頁最大筆數
-	 * @return List<BaseBean>
+	 * @return Map<String, Object>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<BaseBean> selectPagination(Integer ba_ca_id, int first, int max) {
+	public Map<String, Object> selectPagination(Integer ba_ca_id, int first, int max) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
 
 		// outer method
 		List<BaseBean> result = (List<BaseBean>) hibernateTemplate.execute(
@@ -60,30 +61,22 @@ public class BaseDaoImpl implements BaseDao {
 
 					// inner method
 					public Object doInHibernate(Session session) throws HibernateException {
+
+						// count
+						map.put("count", session.createQuery(HQL_SELECT_BASE_BY_CATEGORY)
+								.setParameter("ba_ca_id", ba_ca_id).getResultList().size());
+
+						// list
 						List<BaseBean> list = session.createQuery(HQL_SELECT_BASE_BY_CATEGORY)
 								.setParameter("ba_ca_id", ba_ca_id).setFirstResult(first).setMaxResults(max)
 								.getResultList();
+
 						return list;
 					}
 				});
-		return result;
-	}
+		map.put("list", result);
 
-	/**
-	 * 搜尋特定類別的所有據點筆數 (分頁)
-	 * 
-	 * @param ba_CategoryBean
-	 *            CategoryBean
-	 * @return int
-	 */
-	@Override
-	public int selectCountByBa_Ca(CategoryBean ba_CategoryBean) {
-
-		DetachedCriteria criteria = DetachedCriteria.forClass(BaseBean.class);
-
-		criteria.add(Restrictions.eq("ba_CategoryBean", ba_CategoryBean));
-
-		return hibernateTemplate.findByCriteria(criteria).size();
+		return map;
 	}
 
 	/**

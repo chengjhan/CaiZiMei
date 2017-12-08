@@ -32,12 +32,6 @@ public interface AdminLogDao extends HqlConstants {
 			AdminPathBean adminPathBean, int first, int max);
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.AdminLogDaoImpl#selectCount(Date, Date,
-	 *      AdminBean, AdminPathBean)
-	 */
-	int selectCount(Date startDate, Date endDate, AdminBean adminBean, AdminPathBean adminPathBean);
-
-	/**
 	 * @see com.czmbeauty.model.dao.impl.AdminLogDaoImpl#selectByConditions(Date,
 	 *      Date, AdminBean, AdminPathBean)
 	 */

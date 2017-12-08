@@ -5,6 +5,8 @@ public interface ControllerConstants extends CommonConstants, DirectoryConstants
 
 	public static final int ADMIN_PAGE_ROW_COUNT_NUMBER = 10;
 
+	public static final int ADMIN_LOG_PAGE_ROW_COUNT_NUMBER = 20;
+
 	public static final int BASE_PAGE_ROW_COUNT_NUMBER = 10;
 
 	public static final int IMAGE_PAGE_ROW_COUNT_NUMBER = 5;

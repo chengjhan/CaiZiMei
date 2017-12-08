@@ -2,14 +2,14 @@
  * CaiZiMei
  * File: AdminLogServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/6
+ * Date: 2017/12/8
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service.impl;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +50,7 @@ public class AdminLogServiceImpl implements AdminLogService {
 	private AdminLogDao adminLogDao;
 
 	/**
-	 * 條件搜尋
+	 * 條件搜尋 (分頁)
 	 * 
 	 * @param startDate
 	 *            Date --> 開始日期
@@ -60,16 +60,24 @@ public class AdminLogServiceImpl implements AdminLogService {
 	 *            Integer --> 管理員流水號
 	 * @param al_ap_id
 	 *            Integer --> path 流水號
-	 * @return List<AdminLogBean>
+	 * @param page
+	 *            Integer --> 當前頁碼
+	 * @param max
+	 *            int --> 每頁最大筆數
+	 * @return Map<String, Object>
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<AdminLogBean> selectByConditions(Date startDate, Date endDate, Integer al_ad_id, Integer al_ap_id) {
+	public Map<String, Object> selectByConditions(Date startDate, Date endDate, Integer al_ad_id, Integer al_ap_id,
+			Integer page, int max) {
 
 		AdminBean adminBean = adminDao.selectByAd_id(al_ad_id);
 		AdminPathBean adminPathBean = adminPathDao.selectByAp_id(al_ap_id);
 
-		return adminLogDao.selectByConditions(startDate, endDate, adminBean, adminPathBean);
+		// 取得當頁起始筆數
+		int first = (page - 1) * max;
+
+		return adminLogDao.selectByConditions(startDate, endDate, adminBean, adminPathBean, first, max);
 	}
 
 	/**

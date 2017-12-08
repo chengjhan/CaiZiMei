@@ -130,40 +130,6 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	}
 
 	/**
-	 * 條件搜尋筆數 (分頁)
-	 * 
-	 * @param startDate
-	 *            Date --> 開始日期
-	 * @param endDate
-	 *            Date --> 結束日期
-	 * @param adminBean
-	 *            AdminBean
-	 * @param adminPathBean
-	 *            AdminPathBean
-	 * @return int
-	 */
-	@Override
-	public int selectCount(Date startDate, Date endDate, AdminBean adminBean, AdminPathBean adminPathBean) {
-
-		DetachedCriteria criteria = DetachedCriteria.forClass(AdminLogBean.class);
-
-		if (startDate != null) {
-			criteria.add(Restrictions.ge("al_insert_time", startDate));
-		}
-		if (endDate != null) {
-			criteria.add(Restrictions.le("al_insert_time", endDate));
-		}
-		if (adminBean != null) {
-			criteria.add(Restrictions.eq("al_AdminBean", adminBean));
-		}
-		if (adminPathBean != null) {
-			criteria.add(Restrictions.eq("al_AdminPathBean", adminPathBean));
-		}
-
-		return hibernateTemplate.findByCriteria(criteria).size();
-	}
-
-	/**
 	 * 條件搜尋
 	 * 
 	 * @param startDate

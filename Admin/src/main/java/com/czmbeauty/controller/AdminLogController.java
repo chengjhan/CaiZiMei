@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogController.java
  * Author: 詹晟
- * Date: 2017/12/7
+ * Date: 2017/12/8
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -56,11 +56,14 @@ public class AdminLogController implements ControllerConstants {
 	 *            String --> 管理員流水號
 	 * @param ap_id
 	 *            String --> path 流水號
+	 * @param page
+	 *            Integer --> 當前頁碼
 	 * @return admin_log JSON
 	 */
 	@RequestMapping(value = "/admin-log/list.ajax", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String listAjax(String start, String end, String ad_id, String ap_id) {
+	@SuppressWarnings("unchecked")
+	public String listAjax(String start, String end, String ad_id, String ap_id, Integer page) {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -80,7 +83,10 @@ public class AdminLogController implements ControllerConstants {
 			e.printStackTrace();
 		}
 
-		List<AdminLogBean> list = adminLogService.selectByConditions(startDate, endDate, al_ad_id, al_ap_id);
+		int pageRowCount = ADMIN_LOG_PAGE_ROW_COUNT_NUMBER;
+
+		List<AdminLogBean> list = (List<AdminLogBean>) adminLogService
+				.selectByConditions(startDate, endDate, al_ad_id, al_ap_id, page, pageRowCount).get("list");
 
 		GsonBuilder builder = new GsonBuilder();
 		builder.excludeFieldsWithoutExposeAnnotation();

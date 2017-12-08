@@ -10,7 +10,9 @@ package com.czmbeauty.model.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -48,7 +50,7 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	private HibernateTemplate hibernateTemplate;
 
 	/**
-	 * 條件搜尋
+	 * 條件搜尋 (分頁)
 	 * 
 	 * @param startDate
 	 *            Date --> 開始日期
@@ -62,12 +64,14 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	 *            int --> 當頁起始筆數
 	 * @param max
 	 *            int --> 每頁最大筆數
-	 * @return List<AdminLogBean>
+	 * @return Map<String, Object>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<AdminLogBean> selectByConditions(Date startDate, Date endDate, AdminBean adminBean,
+	public Map<String, Object> selectByConditions(Date startDate, Date endDate, AdminBean adminBean,
 			AdminPathBean adminPathBean, int first, int max) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
 
 		// outer method
 		List<AdminLogBean> result = (List<AdminLogBean>) hibernateTemplate.execute(
@@ -108,17 +112,55 @@ public class AdminLogDaoImpl implements AdminLogDao {
 						// order by
 						criteriaQuery.orderBy(criteriaBuilder.desc(root.get("al_insert_time")));
 
-						// limit
 						TypedQuery<AdminLogBean> typedQuery = session.createQuery(criteriaQuery);
+
+						// count
+						map.put("count", typedQuery.getResultList().size());
+
+						// limit
 						typedQuery.setFirstResult(first);
 						typedQuery.setMaxResults(max);
 
-						List<AdminLogBean> list = typedQuery.getResultList();
-
-						return list;
+						return typedQuery.getResultList();
 					}
 				});
-		return result;
+		map.put("list", result);
+
+		return map;
+	}
+
+	/**
+	 * 條件搜尋筆數 (分頁)
+	 * 
+	 * @param startDate
+	 *            Date --> 開始日期
+	 * @param endDate
+	 *            Date --> 結束日期
+	 * @param adminBean
+	 *            AdminBean
+	 * @param adminPathBean
+	 *            AdminPathBean
+	 * @return int
+	 */
+	@Override
+	public int selectCount(Date startDate, Date endDate, AdminBean adminBean, AdminPathBean adminPathBean) {
+
+		DetachedCriteria criteria = DetachedCriteria.forClass(AdminLogBean.class);
+
+		if (startDate != null) {
+			criteria.add(Restrictions.ge("al_insert_time", startDate));
+		}
+		if (endDate != null) {
+			criteria.add(Restrictions.le("al_insert_time", endDate));
+		}
+		if (adminBean != null) {
+			criteria.add(Restrictions.eq("al_AdminBean", adminBean));
+		}
+		if (adminPathBean != null) {
+			criteria.add(Restrictions.eq("al_AdminPathBean", adminPathBean));
+		}
+
+		return hibernateTemplate.findByCriteria(criteria).size();
 	}
 
 	/**

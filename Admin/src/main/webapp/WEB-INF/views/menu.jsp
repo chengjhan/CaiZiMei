@@ -13,6 +13,7 @@
 				<ul class="nav nav-sidebar">
 					<li id="id-li-admin-sign-up"><a href="<%=request.getContextPath()%>/admin/sign-up">管理員註冊</a></li>
 					<li id="id-li-admin-list"><a href="<%=request.getContextPath()%>/admin/list?page=1">管理員一覽</a></li>
+					<li id="id-li-admin-log-list"><a href="<%=request.getContextPath()%>/admin-log/list?page=1">管理員日誌一覽</a></li>
 				</ul>
 			</c:when>
 		</c:choose>

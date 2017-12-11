@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/1
+ * Date: 2017/12/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -135,6 +135,18 @@ public class AdminServiceImpl implements AdminService {
 	public int selectCount() {
 
 		return adminDao.selectCount();
+	}
+
+	/**
+	 * 搜尋所有管理員
+	 * 
+	 * @return List<AdminBean>
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<AdminBean> selectAll() {
+
+		return adminDao.selectAll();
 	}
 
 	/**

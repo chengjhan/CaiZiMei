@@ -216,6 +216,7 @@ insert into admin_path (ap_cp_id, ap_path, ap_name) values (1, 'admin/profile', 
 insert into admin_path (ap_cp_id, ap_path, ap_name) values (1, 'admin/sign-up', '註冊');
 insert into admin_path (ap_cp_id, ap_path, ap_name) values (2, 'admin/sign-up.do', '註冊');
 insert into admin_path (ap_cp_id, ap_path, ap_name) values (1, 'admin-log/list', '管理員日誌一覽');
+insert into admin_path (ap_cp_id, ap_path, ap_name) values (2, 'admin-log/list.do', '管理員日誌一覽');
 insert into admin_path (ap_cp_id, ap_path, ap_name) values (1, 'area-city/add', '新增城市');
 insert into admin_path (ap_cp_id, ap_path, ap_name) values (2, 'area-city/add.do', '新增城市');
 insert into admin_path (ap_cp_id, ap_path, ap_name) values (1, 'area-city/edit', '編輯城市');

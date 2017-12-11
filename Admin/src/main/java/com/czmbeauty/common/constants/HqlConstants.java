@@ -6,6 +6,10 @@ public interface HqlConstants {
 	/** extension 搜尋 */
 	public static final String HQL_SELECT_CATEGORY_PATH_BY_EXTENSION = "from CategoryPathBean where cp_extension=:cp_extension";
 
+	// admin_path
+	/** path 類別流水號搜尋 */
+	public static final String HQL_SELECT_ADMIN_PATH_BY_CATEGORY_PATH = "from AdminPathBean where ap_cp_id=:ap_cp_id order by ap_id asc";
+
 	// category
 	/** 類別資料夾名稱搜尋 */
 	public static final String HQL_SELECT_CATEGORY_BY_DIRECTORY = "from CategoryBean where ca_directory=:ca_directory";

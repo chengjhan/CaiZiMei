@@ -38,11 +38,13 @@
 					<!-- option -->
 					<div class="btn-group option" style="width:500px">
 						<form:form modelAttribute="adminLogBean">
+							<label for="start">開始日期</label>
 							<input type="text" id="start" class="form-control" name="start" value="${start}" />
-							<input type="text" id="end" class="form-control" name="end" value="${start}" />
+							<label for="end">結束日期</label>
+							<input type="text" id="end" class="form-control" name="end" value="${end}" />
 							<form:select path="al_AdminBean" cssClass="form-control">
 								<form:option value="0" label="請選擇帳號" />
-								<form:options items="${adminList}" itemValue="ad_id" itemLabel="ad_name" />
+								<form:options items="${adminList}" itemValue="ad_id" itemLabel="ad_username" />
 							</form:select>
 							<form:select path="al_AdminPathBean" cssClass="form-control">
 								<form:option value="0" label="請選擇動作" />

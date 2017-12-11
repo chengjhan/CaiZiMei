@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/12/1
+ * Date: 2017/12/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,6 +38,11 @@ public interface AdminService {
 	 * @see com.czmbeauty.model.service.AdminService#selectCount()
 	 */
 	int selectCount();
+
+	/**
+	 * @see com.czmbeauty.model.service.AdminService#selectAll()
+	 */
+	List<AdminBean> selectAll();
 
 	/**
 	 * @see com.czmbeauty.model.service.AdminService#selectByAd_id(Integer)

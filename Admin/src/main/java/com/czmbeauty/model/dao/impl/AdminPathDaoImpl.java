@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminPathDaoImpl.java
  * Author: 詹晟
- * Date: 2017/12/6
+ * Date: 2017/12/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -45,6 +45,21 @@ public class AdminPathDaoImpl implements AdminPathDao {
 	public AdminPathBean selectByAp_id(Integer ap_id) {
 
 		return hibernateTemplate.get(AdminPathBean.class, ap_id);
+	}
+
+	/**
+	 * path 類別流水號搜尋
+	 * 
+	 * @param ap_cp_id
+	 *            Integer --> path 類別流水號
+	 * @return List<AdminPathBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<AdminPathBean> selectByAp_cp_id(Integer ap_cp_id) {
+
+		return (List<AdminPathBean>) hibernateTemplate.findByNamedParam(HQL_SELECT_ADMIN_PATH_BY_CATEGORY_PATH,
+				"ap_cp_id", ap_cp_id);
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/10/15
+ * Date: 2017/12/11
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -75,6 +75,18 @@ public class AdminDaoImpl implements AdminDao {
 	public int selectCount() {
 
 		return hibernateTemplate.find(HQL_SELECT_ALL_ADMIN).size();
+	}
+
+	/**
+	 * 搜尋所有管理員
+	 * 
+	 * @return List<AdminBean>
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<AdminBean> selectAll() {
+
+		return (List<AdminBean>) hibernateTemplate.find(HQL_SELECT_ALL_ADMIN);
 	}
 
 	/**

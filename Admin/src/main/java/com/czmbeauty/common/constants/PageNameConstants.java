@@ -31,6 +31,8 @@ public interface PageNameConstants {
 
 	public static final String ADMIN_LIST_PAGE = "admin/list";
 
+	public static final String ADMIN_LOG_LIST_PAGE = "admin-log/list";
+
 	public static final String AREA_COUNTRY_LIST_PAGE = "area-country/list";
 
 	public static final String AREA_COUNTRY_ADD_PAGE = "area-country/add";

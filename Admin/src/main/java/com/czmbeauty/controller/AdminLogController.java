@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogController.java
  * Author: 詹晟
- * Date: 2017/12/11
+ * Date: 2017/12/12
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -55,17 +55,17 @@ public class AdminLogController implements ControllerConstants {
 	private HttpServletRequest request;
 
 	/**
-	 * 注入 CategoryService
-	 */
-	@Autowired
-	private CategoryService categoryService;
-	
-	/**
 	 * 注入 AdminPathService
 	 */
 	@Autowired
 	private AdminPathService adminPathService;
-	
+
+	/**
+	 * 注入 CategoryService
+	 */
+	@Autowired
+	private CategoryService categoryService;
+
 	/**
 	 * 注入 AdminService
 	 */
@@ -81,18 +81,20 @@ public class AdminLogController implements ControllerConstants {
 	/**
 	 * 條件搜尋 - 初期處理
 	 * 
+	 * @param adminLogBean
+	 *            AdminLogBean
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/admin-log/list.jsp
 	 */
 	@RequestMapping(value = "/admin-log/list", method = RequestMethod.GET)
 	public String listView(AdminLogBean adminLogBean, Model model) {
-		
-		// 取得所有管理員 List，放入 select
-		model.addAttribute("adminList", adminService.selectAll());
 
-		// 取得所有管理系統 path List，放入 select
-		model.addAttribute("adminPathList", adminPathService.selectByAp_cp_id(2));
+		// 取得所有管理員 List，放入 select
+		model.addAttribute(ADMIN_LIST, adminService.selectAll());
+
+		// 取得管理系統所有動作 path List，放入 select
+		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
 
 		return ADMIN_LOG_LIST_PAGE;
 	}
@@ -115,8 +117,13 @@ public class AdminLogController implements ControllerConstants {
 	 * @return /WEB-INF/views/admin-log/list.jsp
 	 */
 	@RequestMapping(value = "/admin-log/list.do", method = RequestMethod.GET)
-	public String listAction(String start, String end, String ad_id, String ap_id, @RequestParam Integer page,
-			Model model) {
+	public String listAction(@RequestParam(name="start") String start, @RequestParam String end, @RequestParam String ad_id,
+			@RequestParam String ap_id, @RequestParam Integer page, Model model) {
+
+		System.out.println(start);
+		System.out.println(end);
+		System.out.println(ad_id);
+		System.out.println(ap_id);
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 

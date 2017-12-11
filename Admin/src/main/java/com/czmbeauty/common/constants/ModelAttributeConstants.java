@@ -10,6 +10,8 @@ public interface ModelAttributeConstants {
 
 	public static final String ERROR = "error";
 
+	public static final String ADMIN_PATH_LIST = "adminPathList";
+
 	public static final String CATEGORY_DIRECTORY = "ca_directory";
 
 	public static final String ADMIN = "admin";

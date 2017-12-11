@@ -46,9 +46,18 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start, key: " + requestPathKey);
 
 		String contextPath = request.getContextPath(); // /project
+		String path = StringUtil.getPath(contextPath); // path
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
 		if (ADMIN_SIGN_OUT_DO.equals(requestPath)) {
+
+			request.setAttribute(REQUEST_PATH, requestPath);
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
+
+			return true;
+
+		} else if (ADMIN_LOG_LIST_DO.equals(path)) {
 
 			request.setAttribute(REQUEST_PATH, requestPath);
 

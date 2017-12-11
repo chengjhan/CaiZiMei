@@ -36,8 +36,8 @@
 					</ol>
 					
 					<!-- option -->
-					<div class="btn-group option" style="width:500px">
-						<form:form modelAttribute="adminLogBean">
+					<div class="btn-group option">
+						<form:form action="/Admin/admin-log/list.do" method="get" modelAttribute="adminLogBean">
 							<label for="start">開始日期</label>
 							<input type="text" id="start" class="form-control" name="start" value="${start}" />
 							<label for="end">結束日期</label>

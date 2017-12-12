@@ -38,8 +38,6 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 		String queryString = request.getQueryString(); // query
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
-		System.out.println(servletPath);
-		
 		try {
 			if (adminPathService.selectByAp_path(StringUtil.getExtension(servletPath),
 					StringUtil.getPath(servletPath)) == null) {

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/8
+ * Date: 2017/12/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -71,8 +71,8 @@ public class AdminLogServiceImpl implements AdminLogService {
 	public Map<String, Object> selectByConditions(Date startDate, Date endDate, Integer al_ad_id, Integer al_ap_id,
 			Integer page, int max) {
 
-		AdminBean adminBean = adminDao.selectByAd_id(al_ad_id);
-		AdminPathBean adminPathBean = adminPathDao.selectByAp_id(al_ap_id);
+		AdminBean adminBean = al_ad_id == null ? null : adminDao.selectByAd_id(al_ad_id);
+		AdminPathBean adminPathBean = al_ap_id == null ? null : adminPathDao.selectByAp_id(al_ap_id);
 
 		// 取得當頁起始筆數
 		int first = (page - 1) * max;

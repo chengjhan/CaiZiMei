@@ -40,6 +40,8 @@ public interface ModelAttributeConstants {
 
 	public static final String ADMIN_LIST = "adminList";
 
+	public static final String ADMIN_LOG_BEAN = "adminLogBean";
+
 	public static final String ADMIN_LOG_LIST = "adminLogList";
 
 	public static final String COUNTRY_BEAN = "countryBean";

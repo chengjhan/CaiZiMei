@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogController.java
  * Author: 詹晟
- * Date: 2017/12/12
+ * Date: 2017/12/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -21,14 +21,20 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.czmbeauty.common.constants.ControllerConstants;
+import com.czmbeauty.common.editor.AdminBeanPropertyEditor;
+import com.czmbeauty.common.editor.AdminPathBeanPropertyEditor;
 import com.czmbeauty.common.util.PaginationUtil;
+import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
+import com.czmbeauty.model.entity.AdminPathBean;
 import com.czmbeauty.model.service.AdminLogService;
 import com.czmbeauty.model.service.AdminPathService;
 import com.czmbeauty.model.service.AdminService;
@@ -79,22 +85,32 @@ public class AdminLogController implements ControllerConstants {
 	private AdminLogService adminLogService;
 
 	/**
+	 * 提供 form backing object 資料轉換
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		webDataBinder.registerCustomEditor(AdminBean.class, new AdminBeanPropertyEditor());
+		webDataBinder.registerCustomEditor(AdminPathBean.class, new AdminPathBeanPropertyEditor());
+	}
+
+	/**
 	 * 條件搜尋 - 初期處理
 	 * 
-	 * @param adminLogBean
-	 *            AdminLogBean
 	 * @param model
 	 *            Model
 	 * @return /WEB-INF/views/admin-log/list.jsp
 	 */
 	@RequestMapping(value = "/admin-log/list", method = RequestMethod.GET)
-	public String listView(AdminLogBean adminLogBean, Model model) {
+	public String listView(Model model) {
 
 		// 取得所有管理員 List，放入 select
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());
 
 		// 取得管理系統所有動作 path List，放入 select
 		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
+
+		// 新增 form backing object
+		model.addAttribute(ADMIN_LOG_BEAN, new AdminLogBean());
 
 		return ADMIN_LOG_LIST_PAGE;
 	}
@@ -106,10 +122,8 @@ public class AdminLogController implements ControllerConstants {
 	 *            String --> 開始日期
 	 * @param end
 	 *            String --> 結束日期
-	 * @param al_AdminBean
-	 *            String --> 管理員流水號
-	 * @param al_AdminPathBean
-	 *            String --> path 流水號
+	 * @param adminLogBean
+	 *            AdminLogBean --> form backing object
 	 * @param page
 	 *            Integer --> 當前頁碼
 	 * @param model
@@ -117,14 +131,8 @@ public class AdminLogController implements ControllerConstants {
 	 * @return /WEB-INF/views/admin-log/list.jsp
 	 */
 	@RequestMapping(value = "/admin-log/list.do", method = RequestMethod.GET)
-	public String listAction(@RequestParam String start, @RequestParam String end, @RequestParam String al_AdminBean,
-			@RequestParam String al_AdminPathBean, @RequestParam Integer page, Model model) {
-
-		System.out.println(start);
-		System.out.println(end);
-		System.out.println(al_AdminBean);
-		System.out.println(al_AdminPathBean);
-		System.out.println(page);
+	public String listAction(@RequestParam String start, @RequestParam String end, AdminLogBean adminLogBean,
+			@RequestParam Integer page, Model model) {
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -139,11 +147,11 @@ public class AdminLogController implements ControllerConstants {
 			if (!BLANK.equals(end)) {
 				endDate = dateFormat.parse(end);
 			}
-			if (!"0".equals(al_AdminBean)) {
-				al_ad_id = Integer.parseInt(al_AdminBean);
+			if (adminLogBean.getAl_AdminBean() != null) {
+				al_ad_id = adminLogBean.getAl_AdminBean().getAd_id();
 			}
-			if (!"0".equals(al_AdminPathBean)) {
-				al_ap_id = Integer.parseInt(al_AdminPathBean);
+			if (adminLogBean.getAl_AdminPathBean() != null) {
+				al_ap_id = adminLogBean.getAl_AdminPathBean().getAp_id();
 			}
 
 		} catch (ParseException e) {

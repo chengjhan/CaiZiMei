@@ -38,18 +38,26 @@
 					<!-- option -->
 					<div class="btn-group option">
 						<form:form action="/Admin/admin-log/list.do" method="get" modelAttribute="adminLogBean">
-							<label for="start">開始日期</label>
-							<input type="text" id="start" class="form-control" name="start" value="${start}" />
-							<label for="end">結束日期</label>
-							<input type="text" id="end" class="form-control" name="end" value="${end}" />
-							<form:select path="al_AdminBean" cssClass="form-control">
-								<form:option value="0" label="請選擇帳號" />
-								<form:options items="${adminList}" itemValue="ad_id" itemLabel="ad_username" />
-							</form:select>
-							<form:select path="al_AdminPathBean" cssClass="form-control">
-								<form:option value="0" label="請選擇動作" />
-								<form:options items="${adminPathList}" itemValue="ap_id" itemLabel="ap_name" />
-							</form:select>
+							<div>
+								<label for="start">開始日期</label>
+								<input type="text" id="start" class="form-control" name="start" value="${start}" />
+							</div>
+							<div>
+								<label for="end">結束日期</label>
+								<input type="text" id="end" class="form-control" name="end" value="${end}" />
+							</div>
+							<div>
+								<form:select path="al_AdminBean" cssClass="form-control">
+									<form:option value="0" label="請選擇帳號" />
+									<form:options items="${adminList}" itemValue="ad_id" itemLabel="ad_username" />
+								</form:select>
+							</div>
+							<div>
+								<form:select path="al_AdminPathBean" cssClass="form-control">
+									<form:option value="0" label="請選擇動作" />
+									<form:options items="${adminPathList}" itemValue="ap_id" itemLabel="ap_name" />
+								</form:select>
+							</div>
 							<div style="display:none">
 								<input type="hidden" name="page" value="1" />
 							</div>

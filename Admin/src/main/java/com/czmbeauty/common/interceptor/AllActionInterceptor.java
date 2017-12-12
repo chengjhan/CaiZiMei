@@ -22,16 +22,16 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 	private static final Logger logger = Logger.getLogger(AllActionInterceptor.class);
 
 	/**
-	 * 注入 AdminLogService
-	 */
-	@Autowired
-	private AdminLogService adminLogService;
-
-	/**
 	 * 注入 AdminPathService
 	 */
 	@Autowired
 	private AdminPathService adminPathService;
+
+	/**
+	 * 注入 AdminLogService
+	 */
+	@Autowired
+	private AdminLogService adminLogService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -50,7 +50,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		String path = StringUtil.getPath(servletPath); // path
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
-		if (ADMIN_LOG_LIST_DO.equals(path)) {
+		if (ADMIN_LOG_LIST_DO.equals(path)) { // TODO
 
 			request.setAttribute(REQUEST_PATH, requestPath);
 

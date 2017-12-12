@@ -46,10 +46,11 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start, key: " + requestPathKey);
 
 		String contextPath = request.getContextPath(); // /project
-		String path = StringUtil.getPath(contextPath); // path
+		String servletPath = request.getServletPath(); // /path
+		String path = StringUtil.getPath(servletPath); // path
 		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
 
-		if (ADMIN_SIGN_OUT_DO.equals(requestPath)) {
+		if (ADMIN_LOG_LIST_DO.equals(path)) {
 
 			request.setAttribute(REQUEST_PATH, requestPath);
 
@@ -57,7 +58,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 			return true;
 
-		} else if (ADMIN_LOG_LIST_DO.equals(path)) {
+		} else if (ADMIN_SIGN_OUT_DO.equals(requestPath)) {
 
 			request.setAttribute(REQUEST_PATH, requestPath);
 

@@ -106,9 +106,9 @@ public class AdminLogController implements ControllerConstants {
 	 *            String --> 開始日期
 	 * @param end
 	 *            String --> 結束日期
-	 * @param ad_id
+	 * @param al_AdminBean
 	 *            String --> 管理員流水號
-	 * @param ap_id
+	 * @param al_AdminPathBean
 	 *            String --> path 流水號
 	 * @param page
 	 *            Integer --> 當前頁碼
@@ -117,13 +117,14 @@ public class AdminLogController implements ControllerConstants {
 	 * @return /WEB-INF/views/admin-log/list.jsp
 	 */
 	@RequestMapping(value = "/admin-log/list.do", method = RequestMethod.GET)
-	public String listAction(@RequestParam(name="start") String start, @RequestParam String end, @RequestParam String ad_id,
-			@RequestParam String ap_id, @RequestParam Integer page, Model model) {
+	public String listAction(@RequestParam String start, @RequestParam String end, @RequestParam String al_AdminBean,
+			@RequestParam String al_AdminPathBean, @RequestParam Integer page, Model model) {
 
 		System.out.println(start);
 		System.out.println(end);
-		System.out.println(ad_id);
-		System.out.println(ap_id);
+		System.out.println(al_AdminBean);
+		System.out.println(al_AdminPathBean);
+		System.out.println(page);
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -132,14 +133,28 @@ public class AdminLogController implements ControllerConstants {
 		Integer al_ad_id = null;
 		Integer al_ap_id = null;
 		try {
-			startDate = dateFormat.parse(start);
-			endDate = dateFormat.parse(end);
-			al_ad_id = Integer.parseInt(ad_id);
-			al_ap_id = Integer.parseInt(ap_id);
+			if (!BLANK.equals(start)) {
+				startDate = dateFormat.parse(start);
+			}
+			if (!BLANK.equals(end)) {
+				endDate = dateFormat.parse(end);
+			}
+			if (!"0".equals(al_AdminBean)) {
+				al_ad_id = Integer.parseInt(al_AdminBean);
+			}
+			if (!"0".equals(al_AdminPathBean)) {
+				al_ap_id = Integer.parseInt(al_AdminPathBean);
+			}
 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+
+		System.out.println(startDate);
+		System.out.println(endDate);
+		System.out.println(al_ad_id);
+		System.out.println(al_ap_id);
+		System.out.println(page);
 
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
 

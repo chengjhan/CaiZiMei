@@ -50,6 +50,9 @@
 								<form:option value="0" label="請選擇動作" />
 								<form:options items="${adminPathList}" itemValue="ap_id" itemLabel="ap_name" />
 							</form:select>
+							<div style="display:none">
+								<input type="hidden" name="page" value="1" />
+							</div>
 							<input type="submit" class="btn btn-success" value="搜尋" />
 						</form:form>
 					</div>

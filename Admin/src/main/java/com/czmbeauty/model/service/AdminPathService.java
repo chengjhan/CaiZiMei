@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminPathService.java
  * Author: 詹晟
- * Date: 2017/12/11
+ * Date: 2017/12/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -18,6 +18,11 @@ import com.czmbeauty.model.entity.AdminPathBean;
  * @author 詹晟
  */
 public interface AdminPathService {
+
+	/**
+	 * @see com.czmbeauty.model.dao.impl.AdminPathDaoImpl#selectByAp_id(Integer)
+	 */
+	AdminPathBean selectByAp_id(Integer ap_id);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.AdminPathDaoImpl#selectByAp_cp_id(Integer)

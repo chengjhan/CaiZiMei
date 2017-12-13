@@ -39,23 +39,25 @@
 					<div class="btn-group option">
 						<form:form action="/Admin/admin-log/list.do" method="get" modelAttribute="adminLogBean">
 							<div>
+								<fmt:formatDate value="${start}" var="startDate" pattern="yyyy-MM-dd" />
 								<label for="start">開始日期</label>
-								<input type="text" id="start" class="form-control" name="start" value="${start}" />
+								<input type="text" id="start" class="form-control" name="start" value="${startDate}" />
 							</div>
 							<div>
+								<fmt:formatDate value="${end}" var="startDate" pattern="yyyy-MM-dd" />
 								<label for="end">結束日期</label>
-								<input type="text" id="end" class="form-control" name="end" value="${end}" />
+								<input type="text" id="end" class="form-control" name="end" value="${endDate}" />
 							</div>
 							<div>
 								<form:select path="al_AdminBean" cssClass="form-control">
 									<form:option value="0" label="請選擇帳號" />
-									<form:options items="${adminList}" itemValue="ad_id" itemLabel="ad_username" />
+									<form:options items="${adminList}" itemValue="ad_id" itemLabel="ad_username" value="${al_AdminBean}" />
 								</form:select>
 							</div>
 							<div>
 								<form:select path="al_AdminPathBean" cssClass="form-control">
 									<form:option value="0" label="請選擇動作" />
-									<form:options items="${adminPathList}" itemValue="ap_id" itemLabel="ap_name" />
+									<form:options items="${adminPathList}" itemValue="ap_id" itemLabel="ap_name" value="${al_AdminPathBean}" />
 								</form:select>
 							</div>
 							<div style="display:none">
@@ -94,7 +96,47 @@
 					<!-- table end -->
 					
 					<!-- pagination -->
-					<jsp:include page="../pagination.jsp" />
+					<c:if test="${pageCount > 1}">
+						<nav class="page">
+							<ul class="pagination">
+								<c:choose>
+									<c:when test="${currentGroup eq 1}">
+										<li class="disabled"><a><span>&laquo;&laquo;</span></a></li>
+									</c:when>
+									<c:when test="${currentGroup > 1}">
+										<li><a href="<%=request.getContextPath()%>/${ca_directory}/list.do?start=${start}&end=${end}&al_AdminBean=${al_AdminBean}&al_AdminPathBean=${al_AdminPathBean}&page=${(currentGroup - 2)*groupRowCount + 1}"><span>&laquo;&laquo;</span></a></li>
+									</c:when>
+								</c:choose>
+								<c:choose>
+									<c:when test="${currentPage eq 1}">
+										<li class="disabled"><a><span>&laquo;</span></a></li>
+									</c:when>
+									<c:when test="${currentPage > 1}">
+										<li><a href="<%=request.getContextPath()%>/${ca_directory}/list.do?start=${start}&end=${end}&al_AdminBean=${al_AdminBean}&al_AdminPathBean=${al_AdminPathBean}&page=${currentPage - 1}"><span>&laquo;</span></a></li>
+									</c:when>
+								</c:choose>
+								<c:forEach begin="${currentGroupBegin}" end="${currentGroupEnd}" varStatus="status">
+									<li id="id-li-page-${status.count + (currentGroup - 1)*groupRowCount}"><a href="<%=request.getContextPath()%>/${ca_directory}/list.do?start=${start}&end=${end}&al_AdminBean=${al_AdminBean}&al_AdminPathBean=${al_AdminPathBean}&page=${status.count + (currentGroup - 1)*groupRowCount}">${status.count + (currentGroup - 1)*groupRowCount}</a></li>
+								</c:forEach>
+								<c:choose>
+									<c:when test="${currentPage < pageCount}">
+										<li><a href="<%=request.getContextPath()%>/${ca_directory}/list.do?start=${start}&end=${end}&al_AdminBean=${al_AdminBean}&al_AdminPathBean=${al_AdminPathBean}&page=${currentPage + 1}"><span>&raquo;</span></a></li>
+									</c:when>
+									<c:when test="${currentPage eq pageCount}">
+										<li class="disabled"><a><span>&raquo;</span></a></li>
+									</c:when>
+								</c:choose>
+								<c:choose>
+									<c:when test="${currentGroup < groupCount}">
+										<li><a href="<%=request.getContextPath()%>/${ca_directory}/list.do?start=${start}&end=${end}&al_AdminBean=${al_AdminBean}&al_AdminPathBean=${al_AdminPathBean}&page=${currentGroup*groupRowCount + 1}"><span>&raquo;</span></a></li>
+									</c:when>
+									<c:when test="${currentGroup eq groupCount}">
+										<li class="disabled"><a><span>&raquo;&raquo;</span></a></li>
+									</c:when>
+								</c:choose>
+							</ul>
+						</nav>
+					</c:if>
 					
 				</div>
 				<!-- content end -->
@@ -108,5 +150,6 @@
 	
 	<!-- load -->
 	<script src="<%=request.getContextPath()%>/js/dashboard.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=request.getContextPath()%>/js/pagination.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

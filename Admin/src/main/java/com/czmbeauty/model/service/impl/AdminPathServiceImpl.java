@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminPathServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/11
+ * Date: 2017/12/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -38,6 +38,20 @@ public class AdminPathServiceImpl implements AdminPathService {
 	 */
 	@Autowired
 	private AdminPathDao adminPathDao;
+
+	/**
+	 * path 流水號搜尋
+	 * 
+	 * @param ap_id
+	 *            Integer --> path 流水號
+	 * @return AdminPathBean
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public AdminPathBean selectByAp_id(Integer ap_id) {
+
+		return adminPathDao.selectByAp_id(ap_id);
+	}
 
 	/**
 	 * path 類別流水號搜尋

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogController.java
  * Author: 詹晟
- * Date: 2017/12/13
+ * Date: 2017/12/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -125,14 +125,10 @@ public class AdminLogController implements ControllerConstants {
 	public String listAction(@RequestParam String start, @RequestParam String end, AdminLogBean adminLogBean,
 			@RequestParam Integer page, Model model) {
 
-		System.out.println(adminLogBean.getAl_AdminBean());
-		System.out.println(adminLogBean.getAl_AdminPathBean());
-
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		Date startDate = null;
 		Date endDate = null;
-
 		try {
 			if (!BLANK.equals(start)) {
 				startDate = dateFormat.parse(start);
@@ -144,16 +140,22 @@ public class AdminLogController implements ControllerConstants {
 			e.printStackTrace();
 		}
 
-		System.out.println(startDate);
-		System.out.println(endDate);
-		System.out.println(page);
+		AdminBean al_AdminBean = adminLogBean.getAl_AdminBean();
+		AdminPathBean al_AdminPathBean = adminLogBean.getAl_AdminPathBean();
+
+		if (al_AdminBean != null) {
+			adminLogBean.setAl_AdminBean(adminService.selectByAd_id(al_AdminBean.getAd_id()));
+		}
+		if (al_AdminPathBean != null) {
+			adminLogBean.setAl_AdminPathBean(adminPathService.selectByAp_id(al_AdminPathBean.getAp_id()));
+		}
 
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
 
 		int pageRowCount = ADMIN_LOG_PAGE_ROW_COUNT_NUMBER;
 
-		Map<String, Object> map = adminLogService.selectByConditions(startDate, endDate, adminLogBean, page,
-				pageRowCount);
+		Map<String, Object> map = adminLogService.selectByConditions(startDate, endDate, al_AdminBean, al_AdminPathBean,
+				page, pageRowCount);
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
@@ -164,8 +166,20 @@ public class AdminLogController implements ControllerConstants {
 		// 取得管理系統所有動作 path List，放入 select
 		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
 
-		// 新增 form backing object
-		model.addAttribute(ADMIN_LOG_BEAN, new AdminLogBean());
+		// 放入 Request，使表單回填 AdminLogBean 內所有資料
+		model.addAttribute(ADMIN_LOG_BEAN, adminLogBean);
+
+		// 取得參數 start
+		model.addAttribute(ADMIN_LOG_START, startDate);
+
+		// 取得參數 end
+		model.addAttribute(ADMIN_LOG_END, endDate);
+
+		// 取得參數 al_AdminBean
+		model.addAttribute(ADMIN_LOG_ADMIN_BEAN, (al_AdminBean != null) ? al_AdminBean.getAd_id() : 0);
+
+		// 取得參數 al_AdminPathBean
+		model.addAttribute(ADMIN_LOG_ADMIN_PATH_BEAN, (al_AdminPathBean != null) ? al_AdminPathBean.getAp_id() : 0);
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, categoryService.selectByCa_directory(requestPath).getCa_directory());

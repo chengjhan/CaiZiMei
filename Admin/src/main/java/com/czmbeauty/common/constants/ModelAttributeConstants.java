@@ -16,8 +16,6 @@ public interface ModelAttributeConstants {
 
 	public static final String ADMIN = "admin";
 
-	public static final String ADMIN_BEAN = "adminBean";
-
 	public static final String ADMIN_USERNAME = "ad_username";
 
 	public static final String ADMIN_PASSWORD = "ad_password";
@@ -38,7 +36,17 @@ public interface ModelAttributeConstants {
 
 	public static final String ADMIN_EMAIL_SESSION = "ad_email_session";
 
+	public static final String ADMIN_BEAN = "adminBean";
+
 	public static final String ADMIN_LIST = "adminList";
+
+	public static final String ADMIN_LOG_START = "start";
+
+	public static final String ADMIN_LOG_END = "end";
+
+	public static final String ADMIN_LOG_ADMIN_BEAN = "al_AdminBean";
+
+	public static final String ADMIN_LOG_ADMIN_PATH_BEAN = "al_AdminPathBean";
 
 	public static final String ADMIN_LOG_BEAN = "adminLogBean";
 
@@ -56,9 +64,9 @@ public interface ModelAttributeConstants {
 
 	public static final String CITY_LIST = "cityList";
 
-	public static final String BASE_BEAN = "baseBean";
-
 	public static final String BASE_ADDRESS_ERROR = "ba_address_error";
+
+	public static final String BASE_BEAN = "baseBean";
 
 	public static final String BASE_LIST = "baseList";
 

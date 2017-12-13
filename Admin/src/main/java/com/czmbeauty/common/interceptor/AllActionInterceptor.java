@@ -48,17 +48,10 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		String contextPath = request.getContextPath(); // /project
 		String servletPath = request.getServletPath(); // /path
 		String path = StringUtil.getPath(servletPath); // path
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
+		String queryString = request.getQueryString(); // query
+		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
-		if (ADMIN_LOG_LIST_DO.equals(path)) { // TODO
-
-			request.setAttribute(REQUEST_PATH, requestPath);
-
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
-
-			return true;
-
-		} else if (ADMIN_SIGN_OUT_DO.equals(requestPath)) {
+		if (ADMIN_SIGN_OUT_DO.equals(requestPath)) {
 
 			request.setAttribute(REQUEST_PATH, requestPath);
 
@@ -82,7 +75,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 			return false;
 
-		} else if (!requestPathKey.equals(requestPath)) {
+		} else if (!requestPathKey.equals(path)) { // TODO
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 

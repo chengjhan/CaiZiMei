@@ -32,16 +32,16 @@ import com.czmbeauty.model.service.AdminLogService;
 public class AdminLogServiceImpl implements AdminLogService {
 
 	/**
-	 * 注入 AdminDao
-	 */
-	@Autowired
-	private AdminDao adminDao;
-
-	/**
 	 * 注入 AdminPathDao
 	 */
 	@Autowired
 	private AdminPathDao adminPathDao;
+
+	/**
+	 * 注入 AdminDao
+	 */
+	@Autowired
+	private AdminDao adminDao;
 
 	/**
 	 * 注入 AdminLogDao
@@ -56,10 +56,8 @@ public class AdminLogServiceImpl implements AdminLogService {
 	 *            Date --> 開始日期
 	 * @param endDate
 	 *            Date --> 結束日期
-	 * @param al_ad_id
-	 *            Integer --> 管理員流水號
-	 * @param al_ap_id
-	 *            Integer --> path 流水號
+	 * @param adminLogBean
+	 *            AdminLogBean
 	 * @param page
 	 *            Integer --> 當前頁碼
 	 * @param max
@@ -68,16 +66,27 @@ public class AdminLogServiceImpl implements AdminLogService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public Map<String, Object> selectByConditions(Date startDate, Date endDate, Integer al_ad_id, Integer al_ap_id,
-			Integer page, int max) {
+	public Map<String, Object> selectByConditions(Date startDate, Date endDate, AdminLogBean adminLogBean, Integer page,
+			int max) {
 
-		AdminBean adminBean = al_ad_id == null ? null : adminDao.selectByAd_id(al_ad_id);
-		AdminPathBean adminPathBean = al_ap_id == null ? null : adminPathDao.selectByAp_id(al_ap_id);
+		AdminBean al_AdminBean = adminLogBean.getAl_AdminBean();
+
+		if (al_AdminBean != null) {
+
+			al_AdminBean = adminDao.selectByAd_id(al_AdminBean.getAd_id());
+		}
+
+		AdminPathBean al_AdminPathBean = adminLogBean.getAl_AdminPathBean();
+
+		if (al_AdminPathBean != null) {
+
+			al_AdminPathBean = adminPathDao.selectByAp_id(al_AdminPathBean.getAp_id());
+		}
 
 		// 取得當頁起始筆數
 		int first = (page - 1) * max;
 
-		return adminLogDao.selectByConditions(startDate, endDate, adminBean, adminPathBean, first, max);
+		return adminLogDao.selectByConditions(startDate, endDate, al_AdminBean, al_AdminPathBean, first, max);
 	}
 
 	/**

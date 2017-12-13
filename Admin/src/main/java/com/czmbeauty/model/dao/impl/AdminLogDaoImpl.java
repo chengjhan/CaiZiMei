@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogDaoImpl.java
  * Author: 詹晟
- * Date: 2017/12/8
+ * Date: 2017/12/13
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -22,9 +22,6 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -56,9 +53,9 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	 *            Date --> 開始日期
 	 * @param endDate
 	 *            Date --> 結束日期
-	 * @param adminBean
+	 * @param al_AdminBean
 	 *            AdminBean
-	 * @param adminPathBean
+	 * @param al_AdminPathBean
 	 *            AdminPathBean
 	 * @param first
 	 *            int --> 當頁起始筆數
@@ -68,8 +65,8 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Map<String, Object> selectByConditions(Date startDate, Date endDate, AdminBean adminBean,
-			AdminPathBean adminPathBean, int first, int max) {
+	public Map<String, Object> selectByConditions(Date startDate, Date endDate, AdminBean al_AdminBean,
+			AdminPathBean al_AdminPathBean, int first, int max) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -99,11 +96,11 @@ public class AdminLogDaoImpl implements AdminLogDao {
 						if (endDate != null) {
 							predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("al_insert_time"), endDate));
 						}
-						if (adminBean != null) {
-							predicates.add(criteriaBuilder.equal(root.get("al_AdminBean"), adminBean));
+						if (al_AdminBean != null) {
+							predicates.add(criteriaBuilder.equal(root.get("al_AdminBean"), al_AdminBean));
 						}
-						if (adminPathBean != null) {
-							predicates.add(criteriaBuilder.equal(root.get("al_AdminPathBean"), adminPathBean));
+						if (al_AdminPathBean != null) {
+							predicates.add(criteriaBuilder.equal(root.get("al_AdminPathBean"), al_AdminPathBean));
 						}
 						if (!predicates.isEmpty()) {
 							criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));
@@ -127,43 +124,6 @@ public class AdminLogDaoImpl implements AdminLogDao {
 		map.put("list", result);
 
 		return map;
-	}
-
-	/**
-	 * 條件搜尋
-	 * 
-	 * @param startDate
-	 *            Date --> 開始日期
-	 * @param endDate
-	 *            Date --> 結束日期
-	 * @param adminBean
-	 *            AdminBean
-	 * @param adminPathBean
-	 *            AdminPathBean
-	 * @return List<AdminLogBean>
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<AdminLogBean> selectByConditions(Date startDate, Date endDate, AdminBean adminBean,
-			AdminPathBean adminPathBean) {
-
-		DetachedCriteria criteria = DetachedCriteria.forClass(AdminLogBean.class);
-
-		if (startDate != null) {
-			criteria.add(Restrictions.ge("al_insert_time", startDate));
-		}
-		if (endDate != null) {
-			criteria.add(Restrictions.le("al_insert_time", endDate));
-		}
-		if (adminBean != null) {
-			criteria.add(Restrictions.eq("al_AdminBean", adminBean));
-		}
-		if (adminPathBean != null) {
-			criteria.add(Restrictions.eq("al_AdminPathBean", adminPathBean));
-		}
-		criteria.addOrder(Order.desc("al_insert_time"));
-
-		return (List<AdminLogBean>) hibernateTemplate.findByCriteria(criteria);
 	}
 
 	/**

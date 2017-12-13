@@ -61,7 +61,9 @@
 							<div style="display:none">
 								<input type="hidden" name="page" value="1" />
 							</div>
-							<input type="submit" class="btn btn-success" value="搜尋" />
+							<div>
+								<input type="submit" class="btn btn-success" value="搜尋" />
+							</div>
 						</form:form>
 					</div>
 					<!-- option end -->
@@ -70,11 +72,11 @@
 					<table class="table table-hover">
 						<thead>
 							<tr class="active">
-								<td width="50px">編號</td>
-								<td width="150px">時間</td>
+								<td width="75px">編號</td>
+								<td width="200px">時間</td>
 								<td>帳號</td>
 								<td>動作</td>
-								<td>IP</td>
+								<td width="150px">IP</td>
 							</tr>
 						</thead>
 						<tbody>

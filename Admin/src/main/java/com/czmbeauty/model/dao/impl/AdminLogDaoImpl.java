@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogDaoImpl.java
  * Author: 詹晟
- * Date: 2017/12/13
+ * Date: 2017/12/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -49,7 +49,7 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	/**
 	 * 條件搜尋 (分頁)
 	 * 
-	 * @param startDate
+	 * @param beginDate
 	 *            Date --> 開始日期
 	 * @param endDate
 	 *            Date --> 結束日期
@@ -65,7 +65,7 @@ public class AdminLogDaoImpl implements AdminLogDao {
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Map<String, Object> selectByConditions(Date startDate, Date endDate, AdminBean al_AdminBean,
+	public Map<String, Object> selectByConditions(Date beginDate, Date endDate, AdminBean al_AdminBean,
 			AdminPathBean al_AdminPathBean, int first, int max) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -90,8 +90,8 @@ public class AdminLogDaoImpl implements AdminLogDao {
 
 						// where
 						List<Predicate> predicates = new ArrayList<Predicate>();
-						if (startDate != null) {
-							predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("al_insert_time"), startDate));
+						if (beginDate != null) {
+							predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("al_insert_time"), beginDate));
 						}
 						if (endDate != null) {
 							predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("al_insert_time"), endDate));

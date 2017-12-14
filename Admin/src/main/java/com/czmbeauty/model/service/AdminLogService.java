@@ -26,7 +26,7 @@ public interface AdminLogService {
 	 * @see com.czmbeauty.model.service.impl.AdminLogServiceImpl#selectByConditions(Date,
 	 *      Date, AdminBean, AdminPathBean, Integer, int)
 	 */
-	Map<String, Object> selectByConditions(Date startDate, Date endDate, AdminBean al_AdminBean,
+	Map<String, Object> selectByConditions(Date beginDate, Date endDate, AdminBean al_AdminBean,
 			AdminPathBean al_AdminPathBean, Integer page, int max);
 
 	/**

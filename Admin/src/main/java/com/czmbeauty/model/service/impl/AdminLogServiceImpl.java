@@ -38,7 +38,7 @@ public class AdminLogServiceImpl implements AdminLogService {
 	/**
 	 * 條件搜尋 (分頁)
 	 * 
-	 * @param startDate
+	 * @param beginDate
 	 *            Date --> 開始日期
 	 * @param endDate
 	 *            Date --> 結束日期
@@ -54,13 +54,13 @@ public class AdminLogServiceImpl implements AdminLogService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public Map<String, Object> selectByConditions(Date startDate, Date endDate, AdminBean al_AdminBean,
+	public Map<String, Object> selectByConditions(Date beginDate, Date endDate, AdminBean al_AdminBean,
 			AdminPathBean al_AdminPathBean, Integer page, int max) {
 
 		// 取得當頁起始筆數
 		int first = (page - 1) * max;
 
-		return adminLogDao.selectByConditions(startDate, endDate, al_AdminBean, al_AdminPathBean, first, max);
+		return adminLogDao.selectByConditions(beginDate, endDate, al_AdminBean, al_AdminPathBean, first, max);
 	}
 
 	/**

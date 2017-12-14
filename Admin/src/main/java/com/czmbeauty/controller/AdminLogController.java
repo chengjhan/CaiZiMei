@@ -109,7 +109,7 @@ public class AdminLogController implements ControllerConstants {
 	/**
 	 * 條件搜尋 - submit
 	 * 
-	 * @param start
+	 * @param begin
 	 *            String --> 開始日期
 	 * @param end
 	 *            String --> 結束日期
@@ -122,16 +122,16 @@ public class AdminLogController implements ControllerConstants {
 	 * @return /WEB-INF/views/admin-log/list.jsp
 	 */
 	@RequestMapping(value = "/admin-log/list.do", method = RequestMethod.GET)
-	public String listAction(@RequestParam String start, @RequestParam String end, AdminLogBean adminLogBean,
+	public String listAction(@RequestParam String begin, @RequestParam String end, AdminLogBean adminLogBean,
 			@RequestParam Integer page, Model model) {
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-		Date startDate = null;
+		Date beginDate = null;
 		Date endDate = null;
 		try {
-			if (!BLANK.equals(start)) {
-				startDate = dateFormat.parse(start);
+			if (!BLANK.equals(begin)) {
+				beginDate = dateFormat.parse(begin);
 			}
 			if (!BLANK.equals(end)) {
 				endDate = dateFormat.parse(end);
@@ -154,7 +154,7 @@ public class AdminLogController implements ControllerConstants {
 
 		int pageRowCount = ADMIN_LOG_PAGE_ROW_COUNT_NUMBER;
 
-		Map<String, Object> map = adminLogService.selectByConditions(startDate, endDate, al_AdminBean, al_AdminPathBean,
+		Map<String, Object> map = adminLogService.selectByConditions(beginDate, endDate, al_AdminBean, al_AdminPathBean,
 				page, pageRowCount);
 
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
@@ -169,11 +169,11 @@ public class AdminLogController implements ControllerConstants {
 		// 放入 Request，使表單回填 AdminLogBean 內所有資料
 		model.addAttribute(ADMIN_LOG_BEAN, adminLogBean);
 
-		// 取得參數 start
-		model.addAttribute(ADMIN_LOG_START, startDate);
+		// 取得參數 begin
+		model.addAttribute(ADMIN_LOG_BEGIN_DATE, beginDate);
 
 		// 取得參數 end
-		model.addAttribute(ADMIN_LOG_END, endDate);
+		model.addAttribute(ADMIN_LOG_END_DATE, endDate);
 
 		// 取得參數 al_AdminBean
 		model.addAttribute(ADMIN_LOG_ADMIN_BEAN, (al_AdminBean != null) ? al_AdminBean.getAd_id() : 0);
@@ -181,11 +181,11 @@ public class AdminLogController implements ControllerConstants {
 		// 取得參數 al_AdminPathBean
 		model.addAttribute(ADMIN_LOG_ADMIN_PATH_BEAN, (al_AdminPathBean != null) ? al_AdminPathBean.getAp_id() : 0);
 
-		// 取得類別資料夾名稱
-		model.addAttribute(CATEGORY_DIRECTORY, categoryService.selectByCa_directory(requestPath).getCa_directory());
-
 		// 取得當前頁碼的管理員日誌 List，放入 table
 		model.addAttribute(ADMIN_LOG_LIST, map.get("list"));
+
+		// 取得類別資料夾名稱
+		model.addAttribute(CATEGORY_DIRECTORY, categoryService.selectByCa_directory(requestPath).getCa_directory());
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/12/8
+ * Date: 2017/12/14
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -131,11 +131,11 @@ public class BaseController implements ControllerConstants {
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
-		// 取得類別資料夾名稱
-		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
-
 		// 取得當前頁碼的據點 List，放入 table
 		model.addAttribute(BASE_LIST, map.get("list"));
+
+		// 取得類別資料夾名稱
+		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);

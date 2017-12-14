@@ -2,13 +2,14 @@
  * CaiZiMei
  * File: AdminService.java
  * Author: 詹晟
- * Date: 2017/12/11
+ * Date: 2017/12/14
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.czmbeauty.model.entity.AdminBean;
 
@@ -32,12 +33,7 @@ public interface AdminService {
 	/**
 	 * @see com.czmbeauty.model.service.AdminService#selectPagination(Integer, int)
 	 */
-	List<AdminBean> selectPagination(Integer page, int max);
-
-	/**
-	 * @see com.czmbeauty.model.service.AdminService#selectCount()
-	 */
-	int selectCount();
+	Map<String, Object> selectPagination(Integer page, int max);
 
 	/**
 	 * @see com.czmbeauty.model.service.AdminService#selectAll()

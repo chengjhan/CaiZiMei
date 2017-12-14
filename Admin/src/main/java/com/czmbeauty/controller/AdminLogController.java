@@ -160,19 +160,10 @@ public class AdminLogController implements ControllerConstants {
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
-		// 取得所有管理員 List，放入 select
-		model.addAttribute(ADMIN_LIST, adminService.selectAll());
-
-		// 取得管理系統所有動作 path List，放入 select
-		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
-
-		// 放入 Request，使表單回填 AdminLogBean 內所有資料
-		model.addAttribute(ADMIN_LOG_BEAN, adminLogBean);
-
-		// 取得參數 begin
+		// 取得參數 begin，並回填表單
 		model.addAttribute(ADMIN_LOG_BEGIN_DATE, beginDate);
 
-		// 取得參數 end
+		// 取得參數 end，並回填表單
 		model.addAttribute(ADMIN_LOG_END_DATE, endDate);
 
 		// 取得參數 al_AdminBean
@@ -180,6 +171,15 @@ public class AdminLogController implements ControllerConstants {
 
 		// 取得參數 al_AdminPathBean
 		model.addAttribute(ADMIN_LOG_ADMIN_PATH_BEAN, (al_AdminPathBean != null) ? al_AdminPathBean.getAp_id() : 0);
+
+		// 取得所有管理員 List，放入 select
+		model.addAttribute(ADMIN_LIST, adminService.selectAll());
+
+		// 取得管理系統所有動作 path List，放入 select
+		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
+
+		// 使表單回填 AdminLogBean 內所有資料
+		model.addAttribute(ADMIN_LOG_BEAN, adminLogBean);
 
 		// 取得當前頁碼的管理員日誌 List，放入 table
 		model.addAttribute(ADMIN_LOG_LIST, map.get("list"));

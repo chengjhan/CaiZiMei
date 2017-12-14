@@ -67,6 +67,12 @@ public class BaseController implements ControllerConstants {
 	private HttpServletRequest request;
 
 	/**
+	 * 注入 CategoryService
+	 */
+	@Autowired
+	private CategoryService categoryService;
+
+	/**
 	 * 注入 CountryService
 	 */
 	@Autowired
@@ -83,12 +89,6 @@ public class BaseController implements ControllerConstants {
 	 */
 	@Autowired
 	private CityService cityService;
-
-	/**
-	 * 注入 CategoryService
-	 */
-	@Autowired
-	private CategoryService categoryService;
 
 	/**
 	 * 注入 BaseService
@@ -210,14 +210,26 @@ public class BaseController implements ControllerConstants {
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();
 
-		// 取得表單暫時性資料
-		baseBean.setBa_CountryBean(countryService.selectByCo_id(baseBean.getBa_CountryBean().getCo_id()));
-		baseBean.setBa_StateBean(stateService.selectBySt_id(baseBean.getBa_StateBean().getSt_id()));
-		baseBean.setBa_CityBean(cityService.selectByCi_id(baseBean.getBa_CityBean().getCi_id()));
+		// 取得表單資料
+		Integer co_id = baseBean.getBa_CountryBean().getCo_id();
+		Integer st_id = baseBean.getBa_StateBean().getSt_id();
+		Integer ci_id = baseBean.getBa_CityBean().getCi_id();
 
+		// 使表單回填 BaseBean 內所有資料
+		baseBean.setBa_CountryBean(countryService.selectByCo_id(co_id));
+		baseBean.setBa_StateBean(stateService.selectBySt_id(st_id));
+		baseBean.setBa_CityBean(cityService.selectByCi_id(ci_id));
+
+		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
-		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
-		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
+
+		// 取得據點所在國家中的所有區域 List，放入 select
+		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(co_id));
+
+		// 取得據點所在區域中的所有城市 List，放入 select
+		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(st_id));
+
+		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, currentPage);
 
 		if (bindingResult.hasErrors()) {
@@ -334,14 +346,26 @@ public class BaseController implements ControllerConstants {
 		String ca_name = categoryBean.getCa_name();
 		String ca_directory = categoryBean.getCa_directory();
 
-		// 取得表單暫時性資料
-		baseBean.setBa_CountryBean(countryService.selectByCo_id(baseBean.getBa_CountryBean().getCo_id()));
-		baseBean.setBa_StateBean(stateService.selectBySt_id(baseBean.getBa_StateBean().getSt_id()));
-		baseBean.setBa_CityBean(cityService.selectByCi_id(baseBean.getBa_CityBean().getCi_id()));
+		// 取得表單資料
+		Integer co_id = baseBean.getBa_CountryBean().getCo_id();
+		Integer st_id = baseBean.getBa_StateBean().getSt_id();
+		Integer ci_id = baseBean.getBa_CityBean().getCi_id();
 
+		// 使表單回填 BaseBean 內所有資料
+		baseBean.setBa_CountryBean(countryService.selectByCo_id(co_id));
+		baseBean.setBa_StateBean(stateService.selectBySt_id(st_id));
+		baseBean.setBa_CityBean(cityService.selectByCi_id(ci_id));
+
+		// 取得所有國家 List，放入 select
 		model.addAttribute(COUNTRY_LIST, countryService.selectAll());
-		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(baseBean.getBa_CountryBean().getCo_id()));
-		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(baseBean.getBa_StateBean().getSt_id()));
+
+		// 取得據點所在國家中的所有區域 List，放入 select
+		model.addAttribute(STATE_LIST, stateService.selectBySt_co_id(co_id));
+
+		// 取得據點所在區域中的所有城市 List，放入 select
+		model.addAttribute(CITY_LIST, cityService.selectByCi_st_id(st_id));
+
+		// 取得當前頁碼
 		model.addAttribute(CURRENT_PAGE, currentPage);
 
 		if (bindingResult.hasErrors()) {

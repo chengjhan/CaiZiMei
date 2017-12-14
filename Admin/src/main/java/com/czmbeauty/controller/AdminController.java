@@ -2,13 +2,15 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/12/6
+ * Date: 2017/12/14
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
 
 import static com.czmbeauty.common.constants.ModelAttributeConstants.ADMIN;
+
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -113,6 +115,7 @@ public class AdminController implements ControllerConstants {
 
 		if (ad_username == null || ad_username.isEmpty()) {
 
+			// 取得參數，並回填表單
 			model.addAttribute(ADMIN_USERNAME, ad_username);
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
 			model.addAttribute(ERROR, ADMIN_USERNAME_REQUIRE_MSG);
@@ -123,6 +126,7 @@ public class AdminController implements ControllerConstants {
 
 		} else if (ad_password == null || ad_password.isEmpty()) {
 
+			// 取得參數，並回填表單
 			model.addAttribute(ADMIN_USERNAME, ad_username);
 			model.addAttribute(ADMIN_PASSWORD, ad_password);
 			model.addAttribute(ERROR, ADMIN_PASSWORD_REQUIRE_MSG);
@@ -137,6 +141,7 @@ public class AdminController implements ControllerConstants {
 
 			if (adminBean == null) {
 
+				// 取得參數，並回填表單
 				model.addAttribute(ADMIN_USERNAME, ad_username);
 				model.addAttribute(ADMIN_PASSWORD, ad_password);
 				model.addAttribute(ERROR, ADMIN_USERNAME_OR_PASSWORD_MISTAKE_MSG);
@@ -206,6 +211,7 @@ public class AdminController implements ControllerConstants {
 
 		if (ad_email == null || ad_email.isEmpty()) {
 
+			// 取得參數，並回填表單
 			model.addAttribute(ADMIN_EMAIL, ad_email);
 			model.addAttribute(ERROR, ADMIN_EMAIL_REQUIRE_MSG);
 
@@ -219,6 +225,7 @@ public class AdminController implements ControllerConstants {
 
 			if (adminBean == null) {
 
+				// 取得參數，並回填表單
 				model.addAttribute(ADMIN_EMAIL, ad_email);
 				model.addAttribute(ERROR, ADMIN_EMAIL_MISTAKE_MSG);
 
@@ -302,6 +309,7 @@ public class AdminController implements ControllerConstants {
 		} else if (!adminBean.getAd_password()
 				.equals(PasswordUtil.getHashedPassword(ad_password_random, adminBean.getAd_salt()))) {
 
+			// 取得參數，並回填表單
 			model.addAttribute(ADMIN_PASSWORD_RANDOM, ad_password_random);
 			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
 			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
@@ -529,6 +537,7 @@ public class AdminController implements ControllerConstants {
 		} else if (!admin.getAd_password()
 				.equals(PasswordUtil.getHashedPassword(ad_password_old, admin.getAd_salt()))) {
 
+			// 取得參數，並回填表單
 			model.addAttribute(ADMIN_PASSWORD_OLD, ad_password_old);
 			model.addAttribute(ADMIN_PASSWORD_NEW, ad_password_new);
 			model.addAttribute(ADMIN_PASSWORD_NEW_AGAIN, ad_password_new_again);
@@ -571,14 +580,17 @@ public class AdminController implements ControllerConstants {
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
 
 		int pageRowCount = ADMIN_PAGE_ROW_COUNT_NUMBER;
-		int pageCount = PaginationUtil.getPageCount(adminService.selectCount(), pageRowCount);
+
+		Map<String, Object> map = adminService.selectPagination(page, pageRowCount);
+
+		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
+
+		// 取得當前頁碼的管理員 List，放入 table
+		model.addAttribute(ADMIN_LIST, map.get("list"));
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, categoryService.selectByCa_directory(requestPath).getCa_directory());
-
-		// 取得當前頁碼的管理員 List，放入 table
-		model.addAttribute(ADMIN_LIST, adminService.selectPagination(page, pageRowCount));
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);

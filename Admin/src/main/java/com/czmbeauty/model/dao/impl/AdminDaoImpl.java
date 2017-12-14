@@ -2,13 +2,15 @@
  * CaiZiMei
  * File: AdminDaoImpl.java
  * Author: 詹晟
- * Date: 2017/12/11
+ * Date: 2017/12/14
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -44,11 +46,13 @@ public class AdminDaoImpl implements AdminDao {
 	 *            int --> 當頁起始筆數
 	 * @param max
 	 *            int --> 每頁最大筆數
-	 * @return List<AdminBean>
+	 * @return Map<String, Object>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<AdminBean> selectPagination(int first, int max) {
+	public Map<String, Object> selectPagination(int first, int max) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
 
 		// outer method
 		List<AdminBean> result = (List<AdminBean>) hibernateTemplate.execute(
@@ -58,23 +62,20 @@ public class AdminDaoImpl implements AdminDao {
 
 					// inner method
 					public Object doInHibernate(Session session) throws HibernateException {
+
+						// count
+						map.put("count", session.createQuery(HQL_SELECT_ALL_ADMIN).getResultList().size());
+
+						// list
 						List<BaseBean> list = session.createQuery(HQL_SELECT_ALL_ADMIN).setFirstResult(first)
 								.setMaxResults(max).getResultList();
+
 						return list;
 					}
 				});
-		return result;
-	}
+		map.put("list", result);
 
-	/**
-	 * 搜尋所有管理員筆數 (分頁)
-	 * 
-	 * @return int
-	 */
-	@Override
-	public int selectCount() {
-
-		return hibernateTemplate.find(HQL_SELECT_ALL_ADMIN).size();
+		return map;
 	}
 
 	/**

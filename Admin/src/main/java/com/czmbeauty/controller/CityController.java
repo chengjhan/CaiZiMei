@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityController.java
  * Author: 詹晟
- * Date: 2017/12/6
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -293,7 +293,7 @@ public class CityController implements ControllerConstants {
 	}
 
 	/**
-	 * 選定區域中的所有城市 (AJAX)
+	 * 選定區域中的所有城市 - AJAX
 	 * 
 	 * @param ci_st_id
 	 *            Integer --> 區域流水號
@@ -325,7 +325,7 @@ public class CityController implements ControllerConstants {
 	}
 
 	/**
-	 * 城市開關 (AJAX)
+	 * 城市開關 - AJAX
 	 * 
 	 * @param ci_id
 	 *            String --> 城市流水號

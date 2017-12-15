@@ -18,7 +18,7 @@ public interface HqlConstants {
 	/** 搜尋所有管理員 */
 	public static final String HQL_SELECT_ALL_ADMIN = "from AdminBean order by ad_id asc";
 
-	/** 管理員信箱搜尋 (edit) (AJAX) */
+	/** 管理員信箱搜尋 (edit) - AJAX */
 	public static final String HQL_SELECT_ADMIN_BY_EMAIL_EXCEPT_MYSELF = "from AdminBean where ad_id!=:ad_id and ad_email=:ad_email";
 
 	// country

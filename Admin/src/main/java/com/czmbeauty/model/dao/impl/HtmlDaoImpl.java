@@ -2,25 +2,24 @@
  * CaiZiMei
  * File: HtmlDaoImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.HtmlDao;
-import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.HtmlBean;
 
 /**
@@ -46,11 +45,13 @@ public class HtmlDaoImpl implements HtmlDao {
 	 *            int --> 當頁起始筆數
 	 * @param max
 	 *            int --> 每頁最大筆數
-	 * @return List<HtmlBean>
+	 * @return Map<String, Object>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<HtmlBean> selectPagination(Integer ht_ca_id, int first, int max) {
+	public Map<String, Object> selectPagination(Integer ht_ca_id, int first, int max) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
 
 		// outer method
 		List<HtmlBean> result = (List<HtmlBean>) hibernateTemplate.execute(
@@ -60,30 +61,22 @@ public class HtmlDaoImpl implements HtmlDao {
 
 					// inner method
 					public Object doInHibernate(Session session) throws HibernateException {
+
+						// count
+						map.put("count", session.createQuery(HQL_SELECT_HTML_BY_CATEGORY)
+								.setParameter("ht_ca_id", ht_ca_id).getResultList().size());
+
+						// list
 						List<HtmlBean> list = session.createQuery(HQL_SELECT_HTML_BY_CATEGORY)
 								.setParameter("ht_ca_id", ht_ca_id).setFirstResult(first).setMaxResults(max)
 								.getResultList();
+
 						return list;
 					}
 				});
-		return result;
-	}
+		map.put("list", result);
 
-	/**
-	 * 搜尋特定類別的所有 html 筆數 (分頁)
-	 * 
-	 * @param ht_CategoryBean
-	 *            CategoryBean
-	 * @return int
-	 */
-	@Override
-	public int selectCountByHt_Ca(CategoryBean ht_CategoryBean) {
-
-		DetachedCriteria criteria = DetachedCriteria.forClass(HtmlBean.class);
-
-		criteria.add(Restrictions.eq("ht_CategoryBean", ht_CategoryBean));
-
-		return hibernateTemplate.findByCriteria(criteria).size();
+		return map;
 	}
 
 	/**

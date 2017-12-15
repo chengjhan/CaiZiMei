@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/14
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -114,7 +114,7 @@ public class AdminServiceImpl implements AdminService {
 	 *            Integer --> 當前頁碼
 	 * @param max
 	 *            int --> 每頁最大筆數
-	 * @return List<AdminBean>
+	 * @return Map<String, Object>
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -153,7 +153,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	/**
-	 * 管理員帳號搜尋 (sign-up) (AJAX)
+	 * 管理員帳號搜尋 - 帳號重複驗證 (sign-up)
 	 * 
 	 * @param ad_username
 	 *            String --> 管理員帳號
@@ -169,7 +169,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	/**
-	 * 管理員信箱搜尋
+	 * 管理員信箱搜尋 - 信箱重複驗證 (sign-up)
 	 * 
 	 * @param ad_email
 	 *            String --> 管理員信箱
@@ -185,7 +185,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	/**
-	 * 管理員信箱搜尋 (edit) (AJAX)
+	 * 管理員信箱搜尋 - 信箱重複驗證 (edit)
 	 * 
 	 * @param ad_id
 	 *            Integer --> 管理員流水號
@@ -285,6 +285,7 @@ public class AdminServiceImpl implements AdminService {
 			adminBean.setAd_status(1);
 			adminBean.setAd_status_time(new java.util.Date());
 		}
+
 		return adminBean;
 	}
 

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/8
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -159,6 +159,7 @@ public class BaseServiceImpl implements BaseService {
 			baseBean.setBa_status(1);
 			baseBean.setBa_status_time(new java.util.Date());
 		}
+
 		return baseBean;
 	}
 

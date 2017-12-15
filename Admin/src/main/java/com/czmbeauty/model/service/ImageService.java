@@ -2,15 +2,14 @@
  * CaiZiMei
  * File: ImageService.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service;
 
-import java.util.List;
+import java.util.Map;
 
-import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
 
 /**
@@ -24,12 +23,7 @@ public interface ImageService {
 	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectPagination(Integer,
 	 *      Integer, int)
 	 */
-	List<ImageBean> selectPagination(Integer im_ca_id, Integer page, int max);
-
-	/**
-	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectCountByIm_Ca(CategoryBean)
-	 */
-	int selectCountByIm_Ca(CategoryBean im_CategoryBean);
+	Map<String, Object> selectPagination(Integer im_ca_id, Integer page, int max);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.ImageServiceImpl#selectByIm_id(Integer)

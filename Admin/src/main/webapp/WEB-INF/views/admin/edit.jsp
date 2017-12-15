@@ -82,7 +82,7 @@
 						required: true,
 						email: true,
 						maxlength: 50,
-						remote: { // 信箱重複驗證 (edit) (AJAX)
+						remote: { // 信箱重複驗證 (edit) - AJAX
 							url: "../admin/edit-email-repeat.ajax", // 後台處理程序
 							type: "post", // 數據發送方式
 							dataType: "text", // 接受數據格式

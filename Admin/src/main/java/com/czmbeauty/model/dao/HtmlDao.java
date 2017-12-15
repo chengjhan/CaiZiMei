@@ -2,16 +2,16 @@
  * CaiZiMei
  * File: HtmlDao.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.czmbeauty.common.constants.HqlConstants;
-import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.HtmlBean;
 
 /**
@@ -25,12 +25,7 @@ public interface HtmlDao extends HqlConstants {
 	 * @see com.czmbeauty.model.dao.impl.HtmlDaoImpl#selectPagination(Integer, int,
 	 *      int)
 	 */
-	List<HtmlBean> selectPagination(Integer ht_ca_id, int first, int max);
-
-	/**
-	 * @see com.czmbeauty.model.dao.impl.HtmlDaoImpl#selectCountByHt_Ca(CategoryBean)
-	 */
-	int selectCountByHt_Ca(CategoryBean ht_CategoryBean);
+	Map<String, Object> selectPagination(Integer ht_ca_id, int first, int max);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.HtmlDaoImpl#selectByHt_id(Integer)

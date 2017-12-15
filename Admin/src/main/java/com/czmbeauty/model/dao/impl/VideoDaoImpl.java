@@ -2,25 +2,24 @@
  * CaiZiMei
  * File: VideoDaoImpl.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.czmbeauty.model.dao.VideoDao;
-import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.VideoBean;
 
 /**
@@ -46,11 +45,13 @@ public class VideoDaoImpl implements VideoDao {
 	 *            int --> 當頁起始筆數
 	 * @param max
 	 *            int --> 每頁最大筆數
-	 * @return List<VideoBean>
+	 * @return Map<String, Object>
 	 */
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<VideoBean> selectPagination(Integer vi_ca_id, int first, int max) {
+	public Map<String, Object> selectPagination(Integer vi_ca_id, int first, int max) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
 
 		// outer method
 		List<VideoBean> result = (List<VideoBean>) hibernateTemplate.execute(
@@ -60,30 +61,22 @@ public class VideoDaoImpl implements VideoDao {
 
 					// inner method
 					public Object doInHibernate(Session session) throws HibernateException {
+
+						// count
+						map.put("count", session.createQuery(HQL_SELECT_VIDEO_BY_CATEGORY)
+								.setParameter("vi_ca_id", vi_ca_id).getResultList().size());
+
+						// list
 						List<VideoBean> list = session.createQuery(HQL_SELECT_VIDEO_BY_CATEGORY)
 								.setParameter("vi_ca_id", vi_ca_id).setFirstResult(first).setMaxResults(max)
 								.getResultList();
+
 						return list;
 					}
 				});
-		return result;
-	}
+		map.put("list", result);
 
-	/**
-	 * 搜尋特定類別的所有影片筆數 (分頁)
-	 * 
-	 * @param vi_CategoryBean
-	 *            CategoryBean
-	 * @return int
-	 */
-	@Override
-	public int selectCountByVi_Ca(CategoryBean vi_CategoryBean) {
-
-		DetachedCriteria criteria = DetachedCriteria.forClass(VideoBean.class);
-
-		criteria.add(Restrictions.eq("vi_CategoryBean", vi_CategoryBean));
-
-		return hibernateTemplate.findByCriteria(criteria).size();
+		return map;
 	}
 
 	/**

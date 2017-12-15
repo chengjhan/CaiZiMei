@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: ImageController.java
  * Author: 詹晟
- * Date: 2017/11/30
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -51,7 +51,7 @@ public class ImageController implements ControllerConstants {
 	private ImageService imageService;
 
 	/**
-	 * 開啟的輪播圖片 (AJAX)
+	 * 開啟的輪播圖片 - AJAX
 	 * 
 	 * @return image JSON
 	 */

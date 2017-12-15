@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateController.java
  * Author: 詹晟
- * Date: 2017/12/6
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -271,7 +271,7 @@ public class StateController implements ControllerConstants {
 	}
 
 	/**
-	 * 選定國家中的所有區域 (AJAX)
+	 * 選定國家中的所有區域 - AJAX
 	 * 
 	 * @param st_co_id
 	 *            Integer --> 國家流水號
@@ -303,7 +303,7 @@ public class StateController implements ControllerConstants {
 	}
 
 	/**
-	 * 區域開關 (AJAX)
+	 * 區域開關 - AJAX
 	 * 
 	 * @param st_id
 	 *            String --> 區域流水號

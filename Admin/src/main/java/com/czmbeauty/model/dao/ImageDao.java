@@ -2,16 +2,15 @@
  * CaiZiMei
  * File: ImageDao.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.dao;
 
-import java.util.List;
+import java.util.Map;
 
 import com.czmbeauty.common.constants.HqlConstants;
-import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.ImageBean;
 
 /**
@@ -22,15 +21,10 @@ import com.czmbeauty.model.entity.ImageBean;
 public interface ImageDao extends HqlConstants {
 
 	/**
-	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectPagination(Integer,
-	 *      int, int)
+	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectPagination(Integer, int,
+	 *      int)
 	 */
-	List<ImageBean> selectPagination(Integer im_ca_id, int first, int max);
-
-	/**
-	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectCountByIm_Ca(CategoryBean)
-	 */
-	int selectCountByIm_Ca(CategoryBean im_CategoryBean);
+	Map<String, Object> selectPagination(Integer im_ca_id, int first, int max);
 
 	/**
 	 * @see com.czmbeauty.model.dao.impl.ImageDaoImpl#selectByIm_id(Integer)

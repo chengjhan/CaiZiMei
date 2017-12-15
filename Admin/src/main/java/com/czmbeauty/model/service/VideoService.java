@@ -2,15 +2,14 @@
  * CaiZiMei
  * File: VideoService.java
  * Author: 詹晟
- * Date: 2017/9/25
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service;
 
-import java.util.List;
+import java.util.Map;
 
-import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.VideoBean;
 
 /**
@@ -24,12 +23,7 @@ public interface VideoService {
 	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectPagination(Integer,
 	 *      Integer, int)
 	 */
-	List<VideoBean> selectPagination(Integer vi_ca_id, Integer page, int max);
-
-	/**
-	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectCountByVi_Ca(CategoryBean)
-	 */
-	int selectCountByVi_Ca(CategoryBean vi_CategoryBean);
+	Map<String, Object> selectPagination(Integer vi_ca_id, Integer page, int max);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.VideoServiceImpl#selectByVi_id(Integer)

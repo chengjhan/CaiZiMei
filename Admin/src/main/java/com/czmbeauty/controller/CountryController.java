@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/12/6
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -200,7 +200,7 @@ public class CountryController implements ControllerConstants {
 	}
 
 	/**
-	 * 國家開關 (AJAX)
+	 * 國家開關 - AJAX
 	 * 
 	 * @param co_id
 	 *            String --> 國家流水號

@@ -2,15 +2,14 @@
  * CaiZiMei
  * File: HtmlService.java
  * Author: 詹晟
- * Date: 2017/10/23
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.model.service;
 
-import java.util.List;
+import java.util.Map;
 
-import com.czmbeauty.model.entity.CategoryBean;
 import com.czmbeauty.model.entity.HtmlBean;
 
 /**
@@ -24,12 +23,7 @@ public interface HtmlService {
 	 * @see com.czmbeauty.model.service.impl.HtmlServiceImpl#selectPagination(Integer,
 	 *      Integer, int)
 	 */
-	List<HtmlBean> selectPagination(Integer ht_ca_id, Integer page, int max);
-
-	/**
-	 * @see com.czmbeauty.model.service.impl.HtmlServiceImpl#selectCountByHt_Ca(CategoryBean)
-	 */
-	int selectCountByHt_Ca(CategoryBean ht_CategoryBean);
+	Map<String, Object> selectPagination(Integer ht_ca_id, Integer page, int max);
 
 	/**
 	 * @see com.czmbeauty.model.service.impl.HtmlServiceImpl#selectByHt_id(Integer)

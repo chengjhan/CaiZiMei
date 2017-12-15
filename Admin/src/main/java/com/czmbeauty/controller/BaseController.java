@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/12/14
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -397,7 +397,7 @@ public class BaseController implements ControllerConstants {
 	}
 
 	/**
-	 * 據點開關 (AJAX)
+	 * 據點開關 - AJAX
 	 * 
 	 * @param ba_id
 	 *            String --> 據點流水號

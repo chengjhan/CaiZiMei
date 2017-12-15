@@ -2,7 +2,7 @@
  * CaiZiMei/User
  * File: BaseController.java
  * Author: 詹晟
- * Date: 2017/11/30
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -42,7 +42,7 @@ public class BaseController implements ControllerConstants {
 	private BaseService baseService;
 
 	/**
-	 * 開啟的據點 (AJAX)
+	 * 開啟的據點 - AJAX
 	 * 
 	 * @return base JSON
 	 */

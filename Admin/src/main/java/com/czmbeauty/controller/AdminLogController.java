@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogController.java
  * Author: 詹晟
- * Date: 2017/12/14
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -137,12 +137,14 @@ public class AdminLogController implements ControllerConstants {
 				endDate = dateFormat.parse(end);
 			}
 		} catch (ParseException e) {
-			e.printStackTrace();
+			e.printStackTrace(); // TODO
 		}
 
+		// 取得表單資料
 		AdminBean al_AdminBean = adminLogBean.getAl_AdminBean();
 		AdminPathBean al_AdminPathBean = adminLogBean.getAl_AdminPathBean();
 
+		// 使表單回填 AdminLogBean 內所有資料
 		if (al_AdminBean != null) {
 			adminLogBean.setAl_AdminBean(adminService.selectByAd_id(al_AdminBean.getAd_id()));
 		}
@@ -177,9 +179,6 @@ public class AdminLogController implements ControllerConstants {
 
 		// 取得管理系統所有動作 path List，放入 select
 		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
-
-		// 使表單回填 AdminLogBean 內所有資料
-		model.addAttribute(ADMIN_LOG_BEAN, adminLogBean);
 
 		// 取得當前頁碼的管理員日誌 List，放入 table
 		model.addAttribute(ADMIN_LOG_LIST, map.get("list"));

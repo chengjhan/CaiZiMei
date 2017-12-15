@@ -21,7 +21,7 @@ $(document).ready(function(){
 				pattern: /^[a-zA-Z0-9_]+$/,
 				minlength: 3,
 				maxlength: 20,
-				remote: { // 帳號重複驗證 (AJAX)
+				remote: { // 帳號重複驗證 - AJAX
 					url: "../admin/username-repeat.ajax", // 後台處理程序
 					type: "post", // 數據發送方式
 					dataType: "text", // 接受數據格式
@@ -52,7 +52,7 @@ $(document).ready(function(){
 				required: true,
 				email: true,
 				maxlength: 50,
-				remote: { // 信箱重複驗證 (AJAX)
+				remote: { // 信箱重複驗證 - AJAX
 					url: "../admin/email-repeat.ajax", // 後台處理程序
 					type: "post", // 數據發送方式
 					dataType: "text", // 接受數據格式

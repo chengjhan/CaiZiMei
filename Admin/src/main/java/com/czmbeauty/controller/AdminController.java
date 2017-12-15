@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/12/14
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -620,7 +620,7 @@ public class AdminController implements ControllerConstants {
 	}
 
 	/**
-	 * 帳號重複驗證 (sign-up) (AJAX)
+	 * 帳號重複驗證 (sign-up) - AJAX
 	 * 
 	 * @param ad_username
 	 *            String --> 管理員帳號
@@ -636,7 +636,7 @@ public class AdminController implements ControllerConstants {
 	}
 
 	/**
-	 * 信箱重複驗證 (sign-up) (AJAX)
+	 * 信箱重複驗證 (sign-up) - AJAX
 	 * 
 	 * @param ad_email
 	 *            String --> 管理員信箱
@@ -652,7 +652,7 @@ public class AdminController implements ControllerConstants {
 	}
 
 	/**
-	 * 信箱重複驗證 (edit) (AJAX)
+	 * 信箱重複驗證 (edit) - AJAX
 	 * 
 	 * @param ad_id
 	 *            Integer --> 管理員流水號
@@ -670,7 +670,7 @@ public class AdminController implements ControllerConstants {
 	}
 
 	/**
-	 * 帳戶開關 (AJAX)
+	 * 帳戶開關 - AJAX
 	 * 
 	 * @param ad_id
 	 *            String --> 管理員流水號

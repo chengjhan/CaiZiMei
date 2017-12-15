@@ -2,11 +2,13 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/12/6
+ * Date: 2017/12/15
  * Version: 1.0
  * Since: JDK 1.8
  */
 package com.czmbeauty.controller;
+
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -93,14 +95,17 @@ public class VideoController implements ControllerConstants {
 		String ca_directory = categoryBean.getCa_directory();
 
 		int pageRowCount = VIDEO_PAGE_ROW_COUNT_NUMBER;
-		int pageCount = PaginationUtil.getPageCount(videoService.selectCountByVi_Ca(categoryBean), pageRowCount);
+
+		Map<String, Object> map = videoService.selectPagination(categoryBean.getCa_id(), page, pageRowCount);
+
+		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
+
+		// 取得當前頁碼的影片 List，放入 table
+		model.addAttribute(VIDEO_LIST, map.get("list"));
 
 		// 取得類別資料夾名稱
 		model.addAttribute(CATEGORY_DIRECTORY, ca_directory);
-
-		// 取得當前頁碼的影片 List，放入 table
-		model.addAttribute(VIDEO_LIST, videoService.selectPagination(categoryBean.getCa_id(), page, pageRowCount));
 
 		// 取得每頁最大筆數
 		model.addAttribute(PAGE_ROW_COUNT, pageRowCount);
@@ -280,7 +285,7 @@ public class VideoController implements ControllerConstants {
 	}
 
 	/**
-	 * 影片開關 (AJAX)
+	 * 影片開關 - AJAX
 	 * 
 	 * @param vi_id
 	 *            String --> 影片流水號

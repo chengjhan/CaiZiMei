@@ -25,6 +25,20 @@ $(document).on("click", ".ad-status-switch", function(){
 });
 
 /*
+ * +-----------+
+ * | admin-log |
+ * +-----------+
+ */
+
+// option
+$(".option #begin").datepicker({
+	dateFormat: 'yy-mm-dd',
+});
+$(".option #end").datepicker({
+	dateFormat: 'yy-mm-dd',
+});
+
+/*
  * +--------------+
  * | area-country |
  * +--------------+

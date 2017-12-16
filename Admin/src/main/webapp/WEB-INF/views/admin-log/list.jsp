@@ -85,7 +85,7 @@
 							<c:forEach var="bean" items="${adminLogList}" varStatus="status">
 								<fmt:formatDate value="${bean.al_insert_time}" var="al_insert_time" pattern="yyyy-MM-dd HH:mm:ss" />
 								<tr>
-									<td>${status.count}</td>
+									<td>${status.count + pageRowCount * (currentPage - 1)}</td>
 									<td>${al_insert_time}</td>
 									<td>${bean.al_AdminBean.ad_username}</td>
 									<td>${bean.al_AdminPathBean.ap_name}</td>

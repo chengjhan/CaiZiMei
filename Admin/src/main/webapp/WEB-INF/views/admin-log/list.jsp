@@ -36,7 +36,7 @@
 					</ol>
 					
 					<!-- option -->
-					<div class="btn-group option">
+					<div class="btn-group option search">
 						<form:form action="/Admin/admin-log/list.do" method="get" modelAttribute="adminLogBean">
 							<div>
 								<fmt:formatDate value="${beginDate}" var="begin" pattern="yyyy-MM-dd" />

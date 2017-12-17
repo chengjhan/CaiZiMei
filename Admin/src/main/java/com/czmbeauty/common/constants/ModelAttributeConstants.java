@@ -40,7 +40,11 @@ public interface ModelAttributeConstants {
 
 	public static final String ADMIN_LIST = "adminList";
 
+	public static final String ADMIN_LOG_BEGIN = "begin";
+
 	public static final String ADMIN_LOG_BEGIN_DATE = "beginDate";
+
+	public static final String ADMIN_LOG_END = "end";
 
 	public static final String ADMIN_LOG_END_DATE = "endDate";
 

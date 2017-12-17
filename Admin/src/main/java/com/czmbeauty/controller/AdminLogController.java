@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogController.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/17
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -125,11 +125,21 @@ public class AdminLogController implements ControllerConstants {
 	public String listAction(@RequestParam String begin, @RequestParam String end, AdminLogBean adminLogBean,
 			@RequestParam Integer page, Model model) {
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
+		// 取得表單資料
+		AdminBean al_AdminBean = adminLogBean.getAl_AdminBean();
+		AdminPathBean al_AdminPathBean = adminLogBean.getAl_AdminPathBean();
 		Date beginDate = null;
 		Date endDate = null;
 		try {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+			// 使表單回填 AdminLogBean 內所有資料
+			if (al_AdminBean != null) {
+				adminLogBean.setAl_AdminBean(adminService.selectByAd_id(al_AdminBean.getAd_id()));
+			}
+			if (al_AdminPathBean != null) {
+				adminLogBean.setAl_AdminPathBean(adminPathService.selectByAp_id(al_AdminPathBean.getAp_id()));
+			}
 			if (!BLANK.equals(begin)) {
 				beginDate = dateFormat.parse(begin);
 			}
@@ -137,19 +147,20 @@ public class AdminLogController implements ControllerConstants {
 				endDate = dateFormat.parse(end);
 			}
 		} catch (ParseException e) {
-			e.printStackTrace(); // TODO
-		}
 
-		// 取得表單資料
-		AdminBean al_AdminBean = adminLogBean.getAl_AdminBean();
-		AdminPathBean al_AdminPathBean = adminLogBean.getAl_AdminPathBean();
+			// 取得參數 begin，並回填表單
+			model.addAttribute(ADMIN_LOG_BEGIN, begin);
 
-		// 使表單回填 AdminLogBean 內所有資料
-		if (al_AdminBean != null) {
-			adminLogBean.setAl_AdminBean(adminService.selectByAd_id(al_AdminBean.getAd_id()));
-		}
-		if (al_AdminPathBean != null) {
-			adminLogBean.setAl_AdminPathBean(adminPathService.selectByAp_id(al_AdminPathBean.getAp_id()));
+			// 取得參數 end，並回填表單
+			model.addAttribute(ADMIN_LOG_END, end);
+
+			// 取得所有管理員 List，放入 select
+			model.addAttribute(ADMIN_LIST, adminService.selectAll());
+
+			// 取得管理系統所有動作 path List，放入 select
+			model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
+
+			return ADMIN_LOG_LIST_PAGE;
 		}
 
 		String requestPath = (String) request.getAttribute(REQUEST_PATH);
@@ -162,17 +173,17 @@ public class AdminLogController implements ControllerConstants {
 		int pageCount = PaginationUtil.getPageCount((int) map.get("count"), pageRowCount);
 		int groupRowCount = GROUP_ROW_COUNT_NUMBER;
 
-		// 取得參數 begin，並回填表單
-		model.addAttribute(ADMIN_LOG_BEGIN_DATE, beginDate);
-
-		// 取得參數 end，並回填表單
-		model.addAttribute(ADMIN_LOG_END_DATE, endDate);
-
-		// 取得參數 al_AdminBean
+		// 取得參數 al_AdminBean，並生成 URL
 		model.addAttribute(ADMIN_LOG_ADMIN_BEAN, (al_AdminBean != null) ? al_AdminBean.getAd_id() : 0);
 
-		// 取得參數 al_AdminPathBean
+		// 取得參數 al_AdminPathBean，並生成 URL
 		model.addAttribute(ADMIN_LOG_ADMIN_PATH_BEAN, (al_AdminPathBean != null) ? al_AdminPathBean.getAp_id() : 0);
+
+		// 取得 beginDate，並回填表單，及生成 URL
+		model.addAttribute(ADMIN_LOG_BEGIN_DATE, beginDate);
+
+		// 取得 endDate，並回填表單，及生成 URL
+		model.addAttribute(ADMIN_LOG_END_DATE, endDate);
 
 		// 取得所有管理員 List，放入 select
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());

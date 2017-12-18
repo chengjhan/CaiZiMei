@@ -84,11 +84,11 @@
 					<table class="table table-hover">
 						<thead>
 							<tr class="active">
-								<td width="75px">編號</td>
-								<td width="200px">時間</td>
+								<td width="100px">編號</td>
+								<td>時間</td>
 								<td>帳號</td>
 								<td>動作</td>
-								<td width="150px">IP</td>
+								<td>IP</td>
 							</tr>
 						</thead>
 						<tbody>

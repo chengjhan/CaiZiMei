@@ -45,10 +45,14 @@
 /* search */
 .search {
 	width: 100%;
-	min-height: 30px;
 	background-color: #f5f5f5;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 	padding: 10px;
+}
+
+.search .table tr td {
+	padding-top: 4px !important;
+	padding-bottom: 4px !important;
 }
 
 .search .table tr td:first-child {

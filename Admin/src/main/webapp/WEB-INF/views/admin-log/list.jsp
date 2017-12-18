@@ -35,37 +35,47 @@
 						<li class="active">管理員日誌一覽</li>
 					</ol>
 					
-					<!-- option -->
-					<div class="btn-group option search">
+					<!-- search -->
+					<div class="btn-group search">
 						<form:form action="/Admin/admin-log/list.do" method="get" modelAttribute="adminLogBean">
-							<div>
-								<fmt:formatDate value="${beginDate}" var="begin" pattern="yyyy-MM-dd" />
-								<label for="begin">開始日期</label>
-								<input type="text" id="begin" class="form-control" name="begin" value="${begin}" placeholder="yyyy-MM-dd" />
-							</div>
-							<div>
-								<fmt:formatDate value="${endDate}" var="end" pattern="yyyy-MM-dd" />
-								<label for="end">結束日期</label>
-								<input type="text" id="end" class="form-control" name="end" value="${end}" placeholder="yyyy-MM-dd" />
-							</div>
-							<div>
-								<form:select path="al_AdminBean" cssClass="form-control">
-									<form:option value="0" label="請選擇帳號" />
-									<form:options items="${adminList}" itemValue="ad_id" itemLabel="ad_username" />
-								</form:select>
-							</div>
-							<div>
-								<form:select path="al_AdminPathBean" cssClass="form-control">
-									<form:option value="0" label="請選擇動作" />
-									<form:options items="${adminPathList}" itemValue="ap_id" itemLabel="ap_name" />
-								</form:select>
-							</div>
-							<div style="display:none">
-								<input type="hidden" name="page" value="1" />
-							</div>
-							<div>
-								<input type="submit" class="btn btn-success" value="搜尋" />
-							</div>
+							<table class="table">
+								<tr>
+									<td><label>日期</label></td>
+									<td>
+										<fmt:formatDate value="${beginDate}" var="begin" pattern="yyyy-MM-dd" />
+										<fmt:formatDate value="${endDate}" var="end" pattern="yyyy-MM-dd" />
+										<input type="text" id="begin" class="form-control" name="begin" value="${begin}" placeholder="yyyy-MM-dd" />
+										<span> ─ </span>
+										<input type="text" id="end" class="form-control" name="end" value="${end}" placeholder="yyyy-MM-dd" />
+									</td>
+								</tr>
+								<tr>
+									<td><label for="al_AdminBean">帳號</label></td>
+									<td>
+										<form:select path="al_AdminBean" cssClass="form-control">
+											<form:option value="0" label="請選擇帳號" />
+											<form:options items="${adminList}" itemValue="ad_id" itemLabel="ad_username" />
+										</form:select>
+									</td>
+								</tr>
+								<tr>
+									<td><label for="al_AdminPathBean">動作</label></td>
+									<td>
+										<form:select path="al_AdminPathBean" cssClass="form-control">
+											<form:option value="0" label="請選擇動作" />
+											<form:options items="${adminPathList}" itemValue="ap_id" itemLabel="ap_name" />
+										</form:select>
+									</td>
+								</tr>
+								<tr style="display:none">
+									<td>頁碼</td>
+									<td><input type="hidden" name="page" value="1" /></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" class="btn btn-primary" value="搜尋" /></td>
+								</tr>
+							</table>
 						</form:form>
 					</div>
 					<!-- option end -->

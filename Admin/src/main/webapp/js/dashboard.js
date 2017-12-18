@@ -30,11 +30,11 @@ $(document).on("click", ".ad-status-switch", function(){
  * +-----------+
  */
 
-// option
-$(".option #begin").datepicker({
+// search
+$(".search #begin").datepicker({
 	dateFormat: 'yy-mm-dd',
 });
-$(".option #end").datepicker({
+$(".search #end").datepicker({
 	dateFormat: 'yy-mm-dd',
 });
 

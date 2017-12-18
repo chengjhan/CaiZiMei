@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminLogController.java
  * Author: 詹晟
- * Date: 2017/12/17
+ * Date: 2017/12/18
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -98,7 +98,7 @@ public class AdminLogController implements ControllerConstants {
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());
 
 		// 取得管理系統所有動作 path List，放入 select
-		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
+		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(CATEGORY_PATH_ACTION));
 
 		// 新增 form backing object
 		model.addAttribute(ADMIN_LOG_BEAN, new AdminLogBean());
@@ -158,7 +158,7 @@ public class AdminLogController implements ControllerConstants {
 			model.addAttribute(ADMIN_LIST, adminService.selectAll());
 
 			// 取得管理系統所有動作 path List，放入 select
-			model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
+			model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(CATEGORY_PATH_ACTION));
 
 			return ADMIN_LOG_LIST_PAGE;
 		}
@@ -189,7 +189,7 @@ public class AdminLogController implements ControllerConstants {
 		model.addAttribute(ADMIN_LIST, adminService.selectAll());
 
 		// 取得管理系統所有動作 path List，放入 select
-		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(2));
+		model.addAttribute(ADMIN_PATH_LIST, adminPathService.selectByAp_cp_id(CATEGORY_PATH_ACTION));
 
 		// 取得當前頁碼的管理員日誌 List，放入 table
 		model.addAttribute(ADMIN_LOG_LIST, map.get("list"));

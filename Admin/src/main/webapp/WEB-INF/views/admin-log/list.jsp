@@ -45,9 +45,10 @@
 										<fmt:formatDate value="${beginDate}" var="begin" pattern="yyyy-MM-dd" />
 										<fmt:formatDate value="${endDate}" var="end" pattern="yyyy-MM-dd" />
 										<input type="text" id="begin" class="form-control" name="begin" value="${begin}" placeholder="yyyy-MM-dd" />
-										<span> ─ </span>
+										<span>─</span>
 										<input type="text" id="end" class="form-control" name="end" value="${end}" placeholder="yyyy-MM-dd" />
 									</td>
+									<td></td>
 								</tr>
 								<tr>
 									<td><label for="al_AdminBean">帳號</label></td>
@@ -84,9 +85,10 @@
 					<table class="table table-hover">
 						<thead>
 							<tr class="active">
-								<td width="100px">編號</td>
+								<td width="75px">編號</td>
 								<td>時間</td>
 								<td>帳號</td>
+								<td>姓名</td>
 								<td>動作</td>
 								<td>IP</td>
 							</tr>
@@ -98,6 +100,7 @@
 									<td>${status.count + pageRowCount * (currentPage - 1)}</td>
 									<td>${al_insert_time}</td>
 									<td>${bean.al_AdminBean.ad_username}</td>
+									<td>${bean.al_AdminBean.ad_lastname} ${bean.al_AdminBean.ad_firstname}</td>
 									<td>${bean.al_AdminPathBean.ap_name}</td>
 									<td>${bean.al_ip}</td>
 							</c:forEach>

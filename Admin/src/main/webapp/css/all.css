@@ -13,3 +13,12 @@ html, body {
 img {
 	width: 100%;
 }
+
+select {
+	-webkit-appearance: none; /* Safari, Chrome */
+	-moz-appearance: none; /* Firefox*/
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	background: url("../images/icon_arrow_down.svg") white no-repeat calc(100% - 5px) !important;
+}

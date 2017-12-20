@@ -32,17 +32,17 @@ $(document).on("click", ".ad-status-switch", function(){
 
 // search
 $.datepicker.setDefaults({
-	dateFormat: 'yy-mm-dd'
+	dateFormat: "yy-mm-dd"
 });
 $(".search #end").datepicker({
-	maxDate: +1,
+	maxDate: +1
 });
 $(".search #begin").datepicker({
 	maxDate: 0,
 	onSelect: function(dateText, inst){
 		var begin = new Date(dateText);
 		var beginTomorrow = new Date(begin.getTime() + 24 * 60 * 60 * 1000);
-		$(".search #end").datepicker('option', 'minDate', beginTomorrow);
+		$(".search #end").datepicker("option", "minDate", beginTomorrow);
 	}
 });
 

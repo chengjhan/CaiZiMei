@@ -45,6 +45,7 @@
 										<fmt:formatDate value="${beginDate}" var="begin" pattern="yyyy-MM-dd" />
 										<fmt:formatDate value="${endDate}" var="end" pattern="yyyy-MM-dd" />
 										<input type="text" id="begin" class="form-control" name="begin" value="${begin}" placeholder="yyyy-MM-dd" />
+<%-- 										<input type="date" id="begin" class="form-control" name="begin" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" value="${begin}" placeholder="yyyy-MM-dd" /> --%>
 										<span>─</span>
 										<input type="text" id="end" class="form-control" name="end" value="${end}" placeholder="yyyy-MM-dd" />
 									</td>

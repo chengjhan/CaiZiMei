@@ -1,3 +1,13 @@
+// ready
+$(document).ready(function(){
+	
+	// 密碼錯誤
+	$("#ad_password_old-error").prev().addClass("form-error");
+	
+	// 地址錯誤
+	$("#ba_address-error").prev().addClass("form-error");
+});
+
 /*
  * +-------+
  * | admin |
@@ -397,14 +407,4 @@ $(document).on("click", ".ht-status-switch img[data-ht-status='0']", function(){
 		$this.attr("data-ht-status", "1");
 		$this.removeAttr("title");
 	});
-});
-
-// ready
-$(document).ready(function(){
-	
-	// 密碼錯誤
-	$("#ad_password_old-error").prev().addClass("form-error");
-	
-	// 地址錯誤
-	$("#ba_address-error").prev().addClass("form-error");
 });

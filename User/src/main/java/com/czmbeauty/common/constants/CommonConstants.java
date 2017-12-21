@@ -20,4 +20,6 @@ public interface CommonConstants {
 
 	public static final String FALSE = "false";
 
+	public static final String OK = "ok";
+
 }

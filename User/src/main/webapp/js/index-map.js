@@ -11,6 +11,7 @@ function initMap(){
 	var map = new google.maps.Map(document.getElementById("map"), {
 		center: centerLocation,
 		zoom: 7,
+		minZoom: 2,
 		scrollwheel: false // 禁用滾輪縮放
 	});
 	

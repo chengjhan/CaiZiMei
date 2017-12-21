@@ -15,7 +15,7 @@
 						<li class="disabled"><a><span>&laquo;&laquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentGroup > 1}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${(currentGroup - 2)*groupRowCount + 1}"><span>&laquo;&laquo;</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${(currentGroup - 2)*groupRowCount + 1}" title="前 10 頁"><span>&laquo;&laquo;</span></a></li>
 					</c:when>
 				</c:choose>
 				<c:choose>
@@ -23,7 +23,7 @@
 						<li class="disabled"><a><span>&laquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentPage > 1}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage - 1}"><span>&laquo;</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage - 1}" title="上 1 頁"><span>&laquo;</span></a></li>
 					</c:when>
 				</c:choose>
 				<c:forEach begin="${currentGroupBegin}" end="${currentGroupEnd}" varStatus="status">
@@ -31,7 +31,7 @@
 				</c:forEach>
 				<c:choose>
 					<c:when test="${currentPage < pageCount}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage + 1}"><span>&raquo;</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentPage + 1}" title="下 1 頁"><span>&raquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentPage eq pageCount}">
 						<li class="disabled"><a><span>&raquo;</span></a></li>
@@ -39,7 +39,7 @@
 				</c:choose>
 				<c:choose>
 					<c:when test="${currentGroup < groupCount}">
-						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentGroup*groupRowCount + 1}"><span>&raquo;&raquo;</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/${ca_directory}/list?page=${currentGroup*groupRowCount + 1}" title="後 10 頁"><span>&raquo;&raquo;</span></a></li>
 					</c:when>
 					<c:when test="${currentGroup eq groupCount}">
 						<li class="disabled"><a><span>&raquo;&raquo;</span></a></li>

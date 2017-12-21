@@ -13,7 +13,12 @@ select {
 		calc(100% - 5px) !important;
 }
 
-.form-control, .btn {
+.form-control {
+	border-radius: 0px !important;
+	box-shadow: 0 0 !important;
+}
+
+.btn {
 	border-radius: 0px !important;
 }
 
@@ -49,24 +54,24 @@ select {
 	margin-right: 5px;
 }
 
-/* option */
-.option {
-	width: 100%;
-	min-height: 30px;
-	margin-bottom: 5px;
+/* form */
+form .table {
+	margin-bottom: 0px !important;
 }
 
-.option .form-control {
-	width: 125px;
-	box-shadow: 0 0 !important;
-	display: inline;
+form .table td {
+	border: none !important;
+	padding-top: 4px !important;
+	padding-bottom: 4px !important;
 }
 
-.add-button {
-	width: 30px;
-	position: absolute;
-	bottom: 0;
-	right: 12px;
+form .table .form-error {
+	border-color: red !important;
+}
+
+.error {
+	color: red;
+	font-weight: 500 !important;
 }
 
 /* search */
@@ -123,6 +128,25 @@ select {
 	width: 100%;
 }
 
+/* option */
+.option {
+	width: 100%;
+	min-height: 30px;
+	margin-bottom: 5px;
+}
+
+.option .form-control {
+	width: 125px;
+	display: inline;
+}
+
+.add-button {
+	width: 30px;
+	position: absolute;
+	bottom: 0;
+	right: 12px;
+}
+
 /* table */
 .table-hover {
 	border-bottom: 1px solid #ddd;
@@ -147,30 +171,6 @@ select {
 
 .pagination>li:first-child>a, .pagination>li:last-child>a {
 	border-radius: 0px !important;
-}
-
-/* form */
-form .table {
-	margin-bottom: 0px !important;
-}
-
-form .table td {
-	border: none !important;
-	padding-top: 4px !important;
-	padding-bottom: 4px !important;
-}
-
-form .table .form-control {
-	box-shadow: 0 0 !important;
-}
-
-form .table .form-error {
-	border-color: red !important;
-}
-
-.error {
-	color: red;
-	font-weight: 500 !important;
 }
 
 /* admin */

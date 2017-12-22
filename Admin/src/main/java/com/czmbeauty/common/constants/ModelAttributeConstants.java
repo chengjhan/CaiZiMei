@@ -4,8 +4,6 @@ public interface ModelAttributeConstants {
 
 	public static final String REQUEST_PATH = "requestPath";
 
-	public static final String SUCCESS_KEY = "successKey";
-
 	public static final String ERROR = "error";
 
 	public static final String ADMIN_PATH_LIST = "adminPathList";
@@ -37,6 +35,8 @@ public interface ModelAttributeConstants {
 	public static final String ADMIN_BEAN = "adminBean";
 
 	public static final String ADMIN_LIST = "adminList";
+
+	public static final String ADMIN_LOG_KEY = "adminLogKey";
 
 	public static final String ADMIN_LOG_BEGIN = "begin";
 

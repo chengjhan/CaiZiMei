@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoController.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -185,7 +185,7 @@ public class VideoController implements ControllerConstants {
 			videoBean.setVi_CategoryBean(categoryBean);
 			videoService.insert(videoBean);
 
-			request.setAttribute(SUCCESS_KEY, OK);
+			request.setAttribute(ADMIN_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") " + ca_name + "新增成功");
 
@@ -276,7 +276,7 @@ public class VideoController implements ControllerConstants {
 			videoBean.setVi_CategoryBean(categoryBean);
 			videoService.update(videoBean);
 
-			request.setAttribute(SUCCESS_KEY, OK);
+			request.setAttribute(ADMIN_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") " + ca_name + "編輯成功");
 

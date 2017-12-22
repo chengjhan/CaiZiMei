@@ -92,7 +92,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-		if ((String) request.getAttribute(SUCCESS_KEY) == null) {
+		if (!OK.equals((String) request.getAttribute(ADMIN_LOG_KEY))) {
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 不寫入日誌");
 

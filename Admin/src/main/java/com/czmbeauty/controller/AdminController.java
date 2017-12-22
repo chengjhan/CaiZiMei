@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -160,7 +160,7 @@ public class AdminController implements ControllerConstants {
 				// 放入 Session
 				model.addAttribute(ADMIN, adminBean);
 
-				request.setAttribute(SUCCESS_KEY, OK);
+				request.setAttribute(ADMIN_LOG_KEY, OK);
 
 				HttpSession session = request.getSession();
 				String next = (String) session.getAttribute(NEXT_PAGE);
@@ -240,7 +240,7 @@ public class AdminController implements ControllerConstants {
 				// 將管理員 email 放入 Session
 				request.getSession().setAttribute(ADMIN_EMAIL_SESSION, ad_email);
 
-				request.setAttribute(SUCCESS_KEY, OK);
+				request.setAttribute(ADMIN_LOG_KEY, OK);
 
 				logger.info("(" + className + "." + methodName + ") 發送成功，傳送至: " + ad_email);
 
@@ -329,7 +329,7 @@ public class AdminController implements ControllerConstants {
 			// 清除所有 HttpSession
 			session.invalidate();
 
-			request.setAttribute(SUCCESS_KEY, OK);
+			request.setAttribute(ADMIN_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 密碼重設成功");
 
@@ -355,7 +355,7 @@ public class AdminController implements ControllerConstants {
 		// 清除所有 HttpSession
 		request.getSession().invalidate();
 
-		request.setAttribute(SUCCESS_KEY, OK);
+		request.setAttribute(ADMIN_LOG_KEY, OK);
 
 		logger.info("(" + className + "." + methodName + ") 登出成功");
 
@@ -418,7 +418,7 @@ public class AdminController implements ControllerConstants {
 
 			adminService.signUp(adminBean);
 
-			request.setAttribute(SUCCESS_KEY, OK);
+			request.setAttribute(ADMIN_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 註冊成功");
 
@@ -474,7 +474,7 @@ public class AdminController implements ControllerConstants {
 
 			adminService.update(admin);
 
-			request.setAttribute(SUCCESS_KEY, OK);
+			request.setAttribute(ADMIN_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 個人資訊編輯成功");
 
@@ -557,7 +557,7 @@ public class AdminController implements ControllerConstants {
 
 			adminService.updateAd_password(admin, ad_password_new);
 
-			request.setAttribute(SUCCESS_KEY, OK);
+			request.setAttribute(ADMIN_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 密碼變更成功");
 

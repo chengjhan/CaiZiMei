@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryController.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/22
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -116,7 +116,7 @@ public class CountryController implements ControllerConstants {
 
 			countryService.insert(countryBean);
 
-			request.setAttribute(SUCCESS_KEY, OK);
+			request.setAttribute(ADMIN_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 國家新增成功");
 
@@ -191,7 +191,7 @@ public class CountryController implements ControllerConstants {
 
 			countryService.update(countryBean);
 
-			request.setAttribute(SUCCESS_KEY, OK);
+			request.setAttribute(ADMIN_LOG_KEY, OK);
 
 			logger.info("(" + className + "." + methodName + ") 國家編輯成功");
 

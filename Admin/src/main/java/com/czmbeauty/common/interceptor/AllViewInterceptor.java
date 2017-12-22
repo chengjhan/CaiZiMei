@@ -62,21 +62,9 @@ public class AllViewInterceptor implements HandlerInterceptor, ControllerConstan
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
-		String handlerMethodName = handlerMethod.getMethod().getName();
-
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
-
-		String servletPath = request.getServletPath(); // /path
-		String requestPathKey = StringUtil.getPath(servletPath) + ".do"; // 請求 path key
-
-		request.getSession().setAttribute(REQUEST_PATH_KEY, requestPathKey);
-
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, key: " + requestPathKey);
+	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
+			throws Exception {
+		// TODO Auto-generated method stub
 	}
 
 	@Override

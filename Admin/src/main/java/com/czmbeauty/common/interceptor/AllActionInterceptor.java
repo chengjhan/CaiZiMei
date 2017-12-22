@@ -41,11 +41,8 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		String handlerClassName = handlerMethod.getBeanType().getSimpleName();
 		String handlerMethodName = handlerMethod.getMethod().getName();
 
-		String requestPathKey = (String) request.getSession().getAttribute(REQUEST_PATH_KEY);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start, key: " + requestPathKey);
-
-		String contextPath = request.getContextPath(); // /project
 		String servletPath = request.getServletPath(); // /path
 		String path = StringUtil.getPath(servletPath); // path
 		String queryString = request.getQueryString(); // query
@@ -67,27 +64,11 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 			return true;
 
-		} else if (requestPathKey == null) { // Session timeout
-
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 閒置過久，攔截: " + requestPath);
-
-			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);
-
-			return false;
-
 		} else if (handlerMethodName.indexOf("Action") == -1) { // 經過 AllViewInterceptor (GET)
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
-
-			return false;
-
-		} else if (!requestPathKey.equals(requestPath)) {
-
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
-
-			response.sendRedirect(contextPath + SLASH + requestPath.split(".do")[0]);
 
 			return false;
 
@@ -112,6 +93,9 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
 		if ((String) request.getAttribute(SUCCESS_KEY) == null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 不寫入日誌");
+
 			return;
 		}
 
@@ -119,6 +103,9 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		AdminBean modelAndViewAdminBean = (AdminBean) modelAndView.getModel().get(ADMIN);
 
 		if (sessionAdminBean == null && modelAndViewAdminBean == null) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 不寫入日誌");
+
 			return;
 		}
 

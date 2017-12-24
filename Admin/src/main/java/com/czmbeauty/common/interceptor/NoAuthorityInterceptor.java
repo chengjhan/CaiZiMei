@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,10 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.czmbeauty.common.constants.ControllerConstants;
 import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.entity.AdminBean;
+import com.czmbeauty.model.service.AdminPathService;
 
 public class NoAuthorityInterceptor implements HandlerInterceptor, ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(NoAuthorityInterceptor.class);
+
+	/**
+	 * 注入 AdminPathService
+	 */
+	@Autowired
+	private AdminPathService adminPathService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -26,20 +34,34 @@ public class NoAuthorityInterceptor implements HandlerInterceptor, ControllerCon
 
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
-		String requestPath = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 請求 path
+		String servletPath = request.getServletPath(); // /path
+		String queryString = request.getQueryString(); // query
+		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
-		if (((AdminBean) request.getSession().getAttribute(ADMIN)).getAd_authority() != 1) {
+		if (adminPathService.selectByAp_path(StringUtil.getExtension(servletPath), StringUtil.getPath(servletPath))
+				.getAp_authority() == 0) {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 沒有權限，攔截: " + requestPath);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 不須權限，放行: " + requestPath);
 
-			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+			return true;
 
-			return false;
+		} else {
+
+			if (((AdminBean) request.getSession().getAttribute(ADMIN)).getAd_authority() == 0) {
+
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 沒有權限，攔截: " + requestPath);
+
+				request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+				return false;
+
+			} else {
+
+				logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 有權限，放行: " + requestPath);
+
+				return true;
+			}
 		}
-
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 有權限，放行: " + requestPath);
-
-		return true;
 	}
 
 	@Override

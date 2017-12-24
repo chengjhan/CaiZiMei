@@ -27,6 +27,9 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/images/**" />
+			<mvc:exclude-mapping path="/js/**" />
 			<bean class="com.czmbeauty.common.interceptor.StopwatchInterceptor" />
 		</mvc:interceptor>
 		
@@ -65,6 +68,21 @@
 		</mvc:interceptor>
 		
 		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/admin/switch.ajax" />
+			<mvc:exclude-mapping path="/secure/sign-in" />
+			<mvc:exclude-mapping path="/secure/sign-in.do" />
+			<mvc:exclude-mapping path="/secure/forget-password" />
+			<mvc:exclude-mapping path="/secure/forget-password.do" />
+			<mvc:exclude-mapping path="/secure/reset-password" />
+			<mvc:exclude-mapping path="/secure/reset-password.do" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/images/**" />
+			<mvc:exclude-mapping path="/js/**" />
+			<bean class="com.czmbeauty.common.interceptor.NoAuthorityInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
 			<mvc:mapping path="/secure/**" />
 			<mvc:exclude-mapping path="/secure/sign-out.do" />
 			<bean class="com.czmbeauty.common.interceptor.SignInInterceptor" />
@@ -74,14 +92,6 @@
 			<mvc:mapping path="/secure/reset-password" />
 			<mvc:mapping path="/secure/reset-password.do" />
 			<bean class="com.czmbeauty.common.interceptor.ResetPasswordInterceptor" />
-		</mvc:interceptor>
-		
-		<mvc:interceptor>
-			<mvc:mapping path="/admin/sign-up" />
-			<mvc:mapping path="/admin/sign-up.do" />
-			<mvc:mapping path="/admin/list" />
-			<mvc:mapping path="/admin/switch.ajax" />
-			<bean class="com.czmbeauty.common.interceptor.NoAuthorityInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

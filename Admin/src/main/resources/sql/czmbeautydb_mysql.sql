@@ -8,162 +8,162 @@ use czmbeautydb;
 
 -- CREATE
 create table category_path (
-	cp_id					int auto_increment not null,
-	cp_name					varchar(10) not null,
-	cp_extension			varchar(10) not null,
-	primary key (cp_id)
+    cp_id                   int auto_increment not null,
+    cp_name                 varchar(10) not null,
+    cp_extension            varchar(10) not null,
+    primary key (cp_id)
 );
 
 create table admin_path (
-	ap_id					int auto_increment not null,
-	ap_cp_id				int not null,
-	ap_path					varchar(50) not null,
-	ap_name					nvarchar(20) not null,
-	ap_authority			tinyint not null,
-	primary key (ap_id),
-	foreign key (ap_cp_id) references category_path (cp_id)
+    ap_id                   int auto_increment not null,
+    ap_cp_id                int not null,
+    ap_path                 varchar(50) not null,
+    ap_name                 nvarchar(20) not null,
+    ap_authority            tinyint not null,
+    primary key (ap_id),
+    foreign key (ap_cp_id) references category_path (cp_id)
 );
 
 create table user_path (
-	up_id					int auto_increment not null,
-	up_cp_id				int not null,
-	up_path					varchar(50) not null,
-	up_name					nvarchar(20) not null,
-	primary key (up_id),
-	foreign key (up_cp_id) references category_path (cp_id)
+    up_id                   int auto_increment not null,
+    up_cp_id                int not null,
+    up_path                 varchar(50) not null,
+    up_name                 nvarchar(20) not null,
+    primary key (up_id),
+    foreign key (up_cp_id) references category_path (cp_id)
 );
 
 create table category (
-	ca_id					int auto_increment not null,
-	ca_name					nvarchar(20) not null,
-	ca_directory			varchar(50) not null,
-	primary key (ca_id)
+    ca_id                   int auto_increment not null,
+    ca_name                 nvarchar(20) not null,
+    ca_directory            varchar(50) not null,
+    primary key (ca_id)
 );
 
 create table admin (
-	ad_id					int auto_increment not null,
-	ad_username				varchar(50) not null,
-	ad_password				varchar(50) not null,
-	ad_salt					varchar(50) not null,
-	ad_lastname				nvarchar(20),
-	ad_firstname			nvarchar(20),
-	ad_email				varchar(50) not null,
-	ad_signup_time			datetime not null,
-	ad_signin_number		int,
-	ad_signin_ip			varchar(20),
-	ad_signin_time			datetime,
-	ad_update_info_time		datetime not null,
-	ad_update_pwd_time		datetime not null,
-	ad_status				tinyint not null,
-	ad_status_time			datetime not null,
-	ad_authority			tinyint not null,
-	primary key (ad_id)
+    ad_id                   int auto_increment not null,
+    ad_username             varchar(50) not null,
+    ad_password             varchar(50) not null,
+    ad_salt                 varchar(50) not null,
+    ad_lastname             nvarchar(20),
+    ad_firstname            nvarchar(20),
+    ad_email                varchar(50) not null,
+    ad_signup_time          datetime not null,
+    ad_signin_number        int,
+    ad_signin_ip            varchar(20),
+    ad_signin_time          datetime,
+    ad_update_info_time     datetime not null,
+    ad_update_pwd_time      datetime not null,
+    ad_status               tinyint not null,
+    ad_status_time          datetime not null,
+    ad_authority            tinyint not null,
+    primary key (ad_id)
 );
 
 create table admin_log (
-	al_id					int auto_increment not null,
-	al_insert_time			timestamp default current_timestamp not null,
-	al_ad_id				int not null,
-	al_ap_id				int not null,
-	al_ip					varchar(20),
-	primary key (al_id),
-	foreign key (al_ad_id) references admin (ad_id),
-	foreign key (al_ap_id) references admin_path (ap_id)
+    al_id                   int auto_increment not null,
+    al_insert_time          timestamp default current_timestamp not null,
+    al_ad_id                int not null,
+    al_ap_id                int not null,
+    al_ip                   varchar(20),
+    primary key (al_id),
+    foreign key (al_ad_id) references admin (ad_id),
+    foreign key (al_ap_id) references admin_path (ap_id)
 );
 
 create table country (
-	co_id					int auto_increment not null,
-	co_iso					varchar(2),
-	co_name					nvarchar(50) not null,
-	co_phonecode			varchar(5),
-	co_rank					tinyint,
-	co_status				tinyint,
-	primary key (co_id)
+    co_id                   int auto_increment not null,
+    co_iso                  varchar(2),
+    co_name                 nvarchar(50) not null,
+    co_phonecode            varchar(5),
+    co_rank                 tinyint,
+    co_status               tinyint,
+    primary key (co_id)
 );
 
 create table state (
-	st_id					int auto_increment not null,
-	st_co_id				int not null,
-	st_name					nvarchar(50) not null,
-	st_rank					tinyint,
-	st_status				tinyint,
-	primary key (st_id),
-	foreign key (st_co_id) references country (co_id)
+    st_id                   int auto_increment not null,
+    st_co_id                int not null,
+    st_name                 nvarchar(50) not null,
+    st_rank                 tinyint,
+    st_status               tinyint,
+    primary key (st_id),
+    foreign key (st_co_id) references country (co_id)
 );
 
 create table city (
-	ci_id					int auto_increment not null,
-	ci_co_id				int not null,
-	ci_st_id				int not null,
-	ci_name					nvarchar(50) not null,
-	ci_rank					tinyint,
-	ci_status				tinyint,
-	primary key (ci_id),
-	foreign key (ci_co_id) references country (co_id),
-	foreign key (ci_st_id) references state (st_id)
+    ci_id                   int auto_increment not null,
+    ci_co_id                int not null,
+    ci_st_id                int not null,
+    ci_name                 nvarchar(50) not null,
+    ci_rank                 tinyint,
+    ci_status               tinyint,
+    primary key (ci_id),
+    foreign key (ci_co_id) references country (co_id),
+    foreign key (ci_st_id) references state (st_id)
 );
 
 create table base (
-	ba_id					int auto_increment not null,
-	ba_ca_id				int not null,
-	ba_name					nvarchar(20) not null,
-	ba_eng_name				varchar(50),
-	ba_tel_code				varchar(5),
-	ba_tel					varchar(20),
-	ba_co_id				int not null,
-	ba_st_id				int not null,
-	ba_ci_id				int not null,
-	ba_address				nvarchar(50) not null,
-	ba_latitude				decimal(10,6),
-	ba_longitude			decimal(10,6),
-	ba_url					varchar(100),
-	ba_insert_time			datetime not null,
-	ba_update_time			datetime,
-	ba_status				tinyint,
-	ba_status_time			datetime,
-	primary key (ba_id),
-	foreign key (ba_ca_id) references category (ca_id),
-	foreign key (ba_co_id) references country (co_id),
-	foreign key (ba_st_id) references state (st_id),
-	foreign key (ba_ci_id) references city (ci_id)
+    ba_id                   int auto_increment not null,
+    ba_ca_id                int not null,
+    ba_name                 nvarchar(20) not null,
+    ba_eng_name             varchar(50),
+    ba_tel_code             varchar(5),
+    ba_tel                  varchar(20),
+    ba_co_id                int not null,
+    ba_st_id                int not null,
+    ba_ci_id                int not null,
+    ba_address              nvarchar(50) not null,
+    ba_latitude             decimal(10,6),
+    ba_longitude            decimal(10,6),
+    ba_url                  varchar(100),
+    ba_insert_time          datetime not null,
+    ba_update_time          datetime,
+    ba_status               tinyint,
+    ba_status_time          datetime,
+    primary key (ba_id),
+    foreign key (ba_ca_id) references category (ca_id),
+    foreign key (ba_co_id) references country (co_id),
+    foreign key (ba_st_id) references state (st_id),
+    foreign key (ba_ci_id) references city (ci_id)
 );
 
 create table image (
-	im_id					int auto_increment not null,
-	im_ca_id				int not null,
-	im_name					nvarchar(20) not null,
-	im_path					varchar(500) not null,
-	im_filename				varchar(50) not null,
-	im_url					varchar(100),
-	im_rank					tinyint not null,
-	im_status				tinyint not null,
-	im_update_time			datetime not null,
-	primary key (im_id),
-	foreign key (im_ca_id) references category (ca_id)
+    im_id                   int auto_increment not null,
+    im_ca_id                int not null,
+    im_name                 nvarchar(20) not null,
+    im_path                 varchar(500) not null,
+    im_filename             varchar(50) not null,
+    im_url                  varchar(100),
+    im_rank                 tinyint not null,
+    im_status               tinyint not null,
+    im_update_time          datetime not null,
+    primary key (im_id),
+    foreign key (im_ca_id) references category (ca_id)
 );
 
 create table video (
-	vi_id					int auto_increment not null,
-	vi_ca_id				int not null,
-	vi_name					nvarchar(50),
-	vi_tag					varchar(500) not null,
-	vi_rank					tinyint not null,
-	vi_status				tinyint not null,
-	vi_update_time			datetime not null,
-	primary key (vi_id),
-	foreign key (vi_ca_id) references category (ca_id)
+    vi_id                   int auto_increment not null,
+    vi_ca_id                int not null,
+    vi_name                 nvarchar(50),
+    vi_tag                  varchar(500) not null,
+    vi_rank                 tinyint not null,
+    vi_status               tinyint not null,
+    vi_update_time          datetime not null,
+    primary key (vi_id),
+    foreign key (vi_ca_id) references category (ca_id)
 );
 
 create table html (
-	ht_id					int auto_increment not null,
-	ht_ca_id				int not null,
-	ht_name					nvarchar(50),
-	ht_tag					nvarchar(20000) not null,
-	ht_rank					tinyint not null,
-	ht_status				tinyint not null,
-	ht_update_time			datetime not null,
-	primary key (ht_id),
-	foreign key (ht_ca_id) references category (ca_id)
+    ht_id                   int auto_increment not null,
+    ht_ca_id                int not null,
+    ht_name                 nvarchar(50),
+    ht_tag                  nvarchar(20000) not null,
+    ht_rank                 tinyint not null,
+    ht_status               tinyint not null,
+    ht_update_time          datetime not null,
+    primary key (ht_id),
+    foreign key (ht_ca_id) references category (ca_id)
 );
 
 -- ALTER

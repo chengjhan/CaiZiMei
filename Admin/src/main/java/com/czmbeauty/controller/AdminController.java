@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/12/22
+ * Date: 2017/12/25
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -169,13 +169,15 @@ public class AdminController implements ControllerConstants {
 
 					session.removeAttribute(NEXT_PAGE);
 
-					logger.info("(" + className + "." + methodName + ") 登入成功，導向原請求頁面: " + next);
+					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + adminBean.getAd_username()
+							+ "，導向原請求頁面: " + next);
 
 					return REDIRECT.concat(next);
 
 				} else { // 未經過 NoSignInInterceptor
 
-					logger.info("(" + className + "." + methodName + ") 登入成功，導向首頁: " + INDEX_PAGE);
+					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + adminBean.getAd_username()
+							+ "，導向首頁: " + INDEX_PAGE);
 
 					return REDIRECT + INDEX_PAGE;
 				}
@@ -626,9 +628,9 @@ public class AdminController implements ControllerConstants {
 	 *            String --> 管理員帳號
 	 * @return String
 	 */
-	@RequestMapping(value = "/admin/username-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/admin/sign-up-username-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String usernameRepeatAjax(String ad_username) {
+	public String signUpUsernameRepeatAjax(String ad_username) {
 
 		AdminBean bean = adminService.selectByAd_username(ad_username, null);
 
@@ -642,9 +644,9 @@ public class AdminController implements ControllerConstants {
 	 *            String --> 管理員信箱
 	 * @return String
 	 */
-	@RequestMapping(value = "/admin/email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/admin/sign-up-email-repeat.ajax", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String emailRepeatAjax(String ad_email) {
+	public String signUpEmailRepeatAjax(String ad_email) {
 
 		AdminBean bean = adminService.selectByAd_email(ad_email, null);
 

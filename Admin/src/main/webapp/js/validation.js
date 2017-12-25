@@ -21,8 +21,8 @@ $(document).ready(function(){
 				pattern: /^[a-zA-Z0-9_]+$/,
 				minlength: 3,
 				maxlength: 20,
-				remote: { // 帳號重複驗證 - AJAX
-					url: "../admin/username-repeat.ajax", // 後台處理程序
+				remote: { // 帳號重複驗證 (sign-up) - AJAX
+					url: "../admin/sign-up-username-repeat.ajax", // 後台處理程序
 					type: "post", // 數據發送方式
 					dataType: "text", // 接受數據格式
 					data: { // 要傳遞的數據
@@ -52,8 +52,8 @@ $(document).ready(function(){
 				required: true,
 				email: true,
 				maxlength: 50,
-				remote: { // 信箱重複驗證 - AJAX
-					url: "../admin/email-repeat.ajax", // 後台處理程序
+				remote: { // 信箱重複驗證 (sign-up) - AJAX
+					url: "../admin/sign-up-email-repeat.ajax", // 後台處理程序
 					type: "post", // 數據發送方式
 					dataType: "text", // 接受數據格式
 					data: { // 要傳遞的數據

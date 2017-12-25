@@ -69,7 +69,6 @@
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/admin/switch.ajax" />
 			<mvc:exclude-mapping path="/secure/sign-in" />
 			<mvc:exclude-mapping path="/secure/sign-in.do" />
 			<mvc:exclude-mapping path="/secure/forget-password" />

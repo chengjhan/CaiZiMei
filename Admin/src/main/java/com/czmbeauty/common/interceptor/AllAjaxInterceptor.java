@@ -10,7 +10,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.common.constants.ControllerConstants;
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.common.util.StringUtil;
+import com.czmbeauty.model.service.AdminPathService;
 import com.czmbeauty.model.service.AdminService;
 import com.czmbeauty.model.service.BaseService;
 import com.czmbeauty.model.service.CityService;
@@ -22,6 +24,12 @@ import com.czmbeauty.model.service.VideoService;
 public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstants {
 
 	private static final Logger logger = Logger.getLogger(AllAjaxInterceptor.class);
+
+	/**
+	 * 注入 AdminPathService
+	 */
+	@Autowired
+	private AdminPathService adminPathService;
 
 	/**
 	 * 注入 AdminService
@@ -79,6 +87,21 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstan
 		String path = StringUtil.getPath(servletPath); // path
 		String queryString = request.getQueryString(); // query
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
+
+		try {
+			if (adminPathService.selectByAp_path(StringUtil.getExtension(servletPath), path) == null) {
+
+				// 有 mapping，但資料庫無此 path
+				throw new PageNotFoundException(requestPath);
+			}
+		} catch (PageNotFoundException e) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
+
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+			return false;
+		}
 
 		if (ADMIN_SWITCH_AJAX.equals(path)) {
 

@@ -27,6 +27,9 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/images/**" />
+			<mvc:exclude-mapping path="/js/**" />
 			<bean class="com.czmbeauty.common.interceptor.StopwatchInterceptor" />
 		</mvc:interceptor>
 		
@@ -38,7 +41,7 @@
 			<mvc:exclude-mapping path="/js/**" />
 			<bean class="com.czmbeauty.common.interceptor.AllViewInterceptor" />
 		</mvc:interceptor>
-
+		
 		<mvc:interceptor>
 			<mvc:mapping path="/**/*.ajax" />
 			<bean class="com.czmbeauty.common.interceptor.AllAjaxInterceptor" />

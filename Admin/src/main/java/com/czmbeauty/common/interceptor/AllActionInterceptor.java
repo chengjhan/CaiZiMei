@@ -10,6 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.czmbeauty.common.constants.ControllerConstants;
+import com.czmbeauty.common.exception.PageNotFoundException;
 import com.czmbeauty.common.util.StringUtil;
 import com.czmbeauty.model.entity.AdminBean;
 import com.czmbeauty.model.entity.AdminLogBean;
@@ -47,6 +48,21 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		String path = StringUtil.getPath(servletPath); // path
 		String queryString = request.getQueryString(); // query
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
+
+		try {
+			if (adminPathService.selectByAp_path(StringUtil.getExtension(servletPath), path) == null) {
+
+				// 有 mapping，但資料庫無此 path
+				throw new PageNotFoundException(requestPath);
+			}
+		} catch (PageNotFoundException e) {
+
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
+
+			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
+
+			return false;
+		}
 
 		if (ADMIN_LOG_LIST_DO.equals(path)) {
 

@@ -217,7 +217,7 @@ public class AllAjaxInterceptor implements HandlerInterceptor, ControllerConstan
 			}
 		}
 
-		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 放行: " + requestPath);
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") 執行: " + requestPath);
 
 		return true;
 	}

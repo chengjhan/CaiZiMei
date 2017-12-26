@@ -45,12 +45,12 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
 		String servletPath = request.getServletPath(); // /path
-		String path = StringUtil.getPath(servletPath); // path
 		String queryString = request.getQueryString(); // query
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
 		try {
-			if (adminPathService.selectByAp_path(StringUtil.getExtension(servletPath), path) == null) {
+			if (adminPathService.selectByAp_path(StringUtil.getExtension(servletPath),
+					StringUtil.getPath(servletPath)) == null) {
 
 				// 有 mapping，但資料庫無此 path
 				throw new PageNotFoundException(requestPath);
@@ -64,23 +64,7 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 			return false;
 		}
 
-		if (ADMIN_LOG_LIST_DO.equals(path)) {
-
-			request.setAttribute(REQUEST_PATH, requestPath);
-
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
-
-			return true;
-
-		} else if (ADMIN_SIGN_OUT_DO.equals(requestPath)) {
-
-			request.setAttribute(REQUEST_PATH, requestPath);
-
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
-
-			return true;
-
-		} else if (handlerMethodName.indexOf("Action") == -1) { // 經過 AllViewInterceptor (GET)
+		if (handlerMethodName.indexOf("Action") == -1) { // 經過 GET
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 攔截: " + requestPath);
 
@@ -88,14 +72,13 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 
 			return false;
 
-		} else {
-
-			request.setAttribute(REQUEST_PATH, requestPath);
-
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
-
-			return true;
 		}
+
+		request.setAttribute(REQUEST_PATH, requestPath);
+
+		logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 執行動作: " + requestPath);
+
+		return true;
 	}
 
 	@Override

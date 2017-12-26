@@ -177,7 +177,6 @@ insert into category_path (cp_name, cp_extension) values ('action', 'do');
 insert into category_path (cp_name, cp_extension) values ('ajax', 'ajax');
 
 -- admin_path
-insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (1, 'index', '首頁', 0);
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (1, 'about-franchisee/add', '新增加盟店頁面', 0);
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (2, 'about-franchisee/add.do', '新增加盟店頁面', 0);
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (1, 'about-franchisee/edit', '編輯加盟店頁面', 0);
@@ -266,6 +265,7 @@ insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (1, 'im
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (2, 'image/edit.do', '編輯圖片', 0);
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (1, 'image/list', '圖片一覽', 0);
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (3, 'image/switch.ajax', '圖片開關', 0);
+insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (1, 'index', '首頁', 0);
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (1, 'info-knowleage/add', '新增醫療新知頁面', 0);
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (2, 'info-knowleage/add.do', '新增醫療新知頁面', 0);
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (1, 'info-knowleage/edit', '編輯醫療新知頁面', 0);
@@ -336,7 +336,6 @@ insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (2, 'vi
 insert into admin_path (ap_cp_id, ap_path, ap_name, ap_authority) values (1, 'video-main/list', '相關影音一覽', 0);
 
 -- user_path
-insert into user_path (up_cp_id, up_path, up_name) values (1, 'index', '首頁');
 insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/franchisee', '加盟店');
 insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/idea', '經營理念');
 insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/introduction', '采姿美介紹');
@@ -344,6 +343,7 @@ insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/mission', '
 insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/territory', '事業版圖');
 insert into user_path (up_cp_id, up_path, up_name) values (1, 'about/vision', '公司願景');
 insert into user_path (up_cp_id, up_path, up_name) values (1, 'error/page-not-found', '找不到網頁');
+insert into user_path (up_cp_id, up_path, up_name) values (1, 'index', '首頁');
 insert into user_path (up_cp_id, up_path, up_name) values (1, 'info/knowleage', '醫療新知');
 insert into user_path (up_cp_id, up_path, up_name) values (1, 'info/video-related', '相關影音');
 insert into user_path (up_cp_id, up_path, up_name) values (1, 'news/recent', '近期活動');

@@ -39,7 +39,7 @@ public class NoAuthorityInterceptor implements HandlerInterceptor, ControllerCon
 		String requestPath = StringUtil.getRequestPath(servletPath, queryString); // 請求 path
 
 		if (adminPathService.selectByAp_path(StringUtil.getExtension(servletPath), StringUtil.getPath(servletPath))
-				.getAp_authority() == 0) {
+				.getAp_authority() == ADMIN_PATH_AUTHORITY_NOT_NEED) {
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 不須權限，放行: " + requestPath);
 
@@ -47,7 +47,7 @@ public class NoAuthorityInterceptor implements HandlerInterceptor, ControllerCon
 
 		} else {
 
-			if (((AdminBean) request.getSession().getAttribute(ADMIN)).getAd_authority() == 0) {
+			if (((AdminBean) request.getSession().getAttribute(ADMIN)).getAd_authority() == ADMIN_AUTHORITY_NOT_HAVE) {
 
 				logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 沒有權限，攔截: " + requestPath);
 

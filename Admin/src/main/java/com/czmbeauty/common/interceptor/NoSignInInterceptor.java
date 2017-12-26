@@ -28,7 +28,6 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 		logger.info("(" + handlerClassName + "." + handlerMethodName + ") start");
 
 		HttpSession session = request.getSession();
-		String contextPath = request.getContextPath(); // /path
 		String next = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 原請求 path
 
 		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
@@ -41,7 +40,7 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 			// 將原請求 path，放入 Session
 			session.setAttribute(NEXT_PAGE, ADMIN_SIGN_OUT_DO.equals(next) ? INDEX_PAGE : next);
 
-			response.sendRedirect(contextPath + SLASH + ADMIN_SIGN_IN_PAGE);
+			response.sendRedirect(request.getContextPath() + SLASH + ADMIN_SIGN_IN_PAGE);
 
 			return false;
 

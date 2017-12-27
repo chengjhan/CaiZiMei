@@ -71,7 +71,6 @@ public class AllActionInterceptor implements HandlerInterceptor, ControllerConst
 			request.getRequestDispatcher(SLASH + ERROR_PAGE_NOT_FOUND_PAGE).forward(request, response);
 
 			return false;
-
 		}
 
 		request.setAttribute(REQUEST_PATH, requestPath);

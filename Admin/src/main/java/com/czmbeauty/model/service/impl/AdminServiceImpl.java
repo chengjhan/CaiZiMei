@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.constants.ServiceConstants;
 import com.czmbeauty.common.mail.SendMail;
 import com.czmbeauty.common.util.PasswordUtil;
 import com.czmbeauty.model.dao.AdminDao;
@@ -27,7 +28,7 @@ import com.czmbeauty.model.service.AdminService;
  * @author 詹晟
  */
 @Service(value = "adminService")
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceImpl implements AdminService, ServiceConstants {
 
 	/**
 	 * 注入 AdminDao
@@ -56,7 +57,7 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public AdminBean signIn(String ad_username, String ad_password) {
 
-		AdminBean adminBean = adminDao.selectByAd_username(ad_username, 1);
+		AdminBean adminBean = adminDao.selectByAd_username(ad_username, ADMIN_STATUS_OPEN);
 
 		if (adminBean != null) {
 
@@ -100,9 +101,9 @@ public class AdminServiceImpl implements AdminService {
 		adminBean.setAd_signin_number(0);
 		adminBean.setAd_update_pwd_time(new java.util.Date());
 		adminBean.setAd_update_info_time(new java.util.Date());
-		adminBean.setAd_status(1);
+		adminBean.setAd_status(ADMIN_STATUS_OPEN);
 		adminBean.setAd_status_time(new java.util.Date());
-		adminBean.setAd_authority(2);
+		adminBean.setAd_authority(ADMIN_AUTHORITY_NOT_HAVE);
 
 		return adminDao.insert(adminBean);
 	}
@@ -273,16 +274,16 @@ public class AdminServiceImpl implements AdminService {
 		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
 		AdminBean adminBean = adminDao.selectByAd_id(ad_id);
 
-		if (adminBean.getAd_status() == 1) {
+		if (adminBean.getAd_status() == ADMIN_STATUS_OPEN) {
 
 			// 關閉帳號
-			adminBean.setAd_status(0);
+			adminBean.setAd_status(ADMIN_STATUS_CLOSE);
 			adminBean.setAd_status_time(new java.util.Date());
 
 		} else {
 
 			// 開啟帳號
-			adminBean.setAd_status(1);
+			adminBean.setAd_status(ADMIN_STATUS_OPEN);
 			adminBean.setAd_status_time(new java.util.Date());
 		}
 

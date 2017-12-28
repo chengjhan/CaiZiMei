@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CountryServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.constants.ServiceConstants;
 import com.czmbeauty.model.dao.CountryDao;
 import com.czmbeauty.model.entity.BaseBean;
 import com.czmbeauty.model.entity.CityBean;
@@ -28,7 +29,7 @@ import com.czmbeauty.model.service.CountryService;
  * @author 詹晟
  */
 @Service(value = "countryService")
-public class CountryServiceImpl implements CountryService {
+public class CountryServiceImpl implements CountryService, ServiceConstants {
 
 	/**
 	 * 注入 CountryDao
@@ -76,7 +77,7 @@ public class CountryServiceImpl implements CountryService {
 
 		countryBean.setCo_iso(countryBean.getCo_iso().toUpperCase());
 		countryBean.setCo_name(countryBean.getCo_name().trim());
-		countryBean.setCo_status(1);
+		countryBean.setCo_status(COUNTRY_STATUS_OPEN);
 
 		return countryDao.insert(countryBean);
 	}
@@ -112,38 +113,38 @@ public class CountryServiceImpl implements CountryService {
 		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
 		CountryBean countryBean = countryDao.selectByCo_id(co_id);
 
-		if (countryBean.getCo_status() == 1) {
+		if (countryBean.getCo_status() == COUNTRY_STATUS_OPEN) {
 
 			// 不顯示
-			countryBean.setCo_status(0);
+			countryBean.setCo_status(COUNTRY_STATUS_CLOSE);
 			Set<StateBean> stateSet = countryBean.getCo_StateBean();
 			for (StateBean stateBean : stateSet) {
-				stateBean.setSt_status(0);
+				stateBean.setSt_status(STATE_STATUS_CLOSE);
 			}
 			Set<CityBean> citySet = countryBean.getCo_CityBean();
 			for (CityBean cityBean : citySet) {
-				cityBean.setCi_status(0);
+				cityBean.setCi_status(CITY_STATUS_CLOSE);
 			}
 			Set<BaseBean> baseSet = countryBean.getCo_BaseBean();
 			for (BaseBean baseBean : baseSet) {
-				baseBean.setBa_status(0);
+				baseBean.setBa_status(BASE_STATUS_CLOSE);
 				baseBean.setBa_status_time(new java.util.Date());
 			}
 		} else {
 
 			// 顯示
-			countryBean.setCo_status(1);
+			countryBean.setCo_status(COUNTRY_STATUS_OPEN);
 			Set<StateBean> stateSet = countryBean.getCo_StateBean();
 			for (StateBean stateBean : stateSet) {
-				stateBean.setSt_status(1);
+				stateBean.setSt_status(STATE_STATUS_OPEN);
 			}
 			Set<CityBean> citySet = countryBean.getCo_CityBean();
 			for (CityBean cityBean : citySet) {
-				cityBean.setCi_status(1);
+				cityBean.setCi_status(CITY_STATUS_OPEN);
 			}
 			Set<BaseBean> baseSet = countryBean.getCo_BaseBean();
 			for (BaseBean baseBean : baseSet) {
-				baseBean.setBa_status(1);
+				baseBean.setBa_status(BASE_STATUS_OPEN);
 				baseBean.setBa_status_time(new java.util.Date());
 			}
 		}

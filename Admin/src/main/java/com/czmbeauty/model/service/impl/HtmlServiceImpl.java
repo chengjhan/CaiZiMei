@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: HtmlServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.constants.ServiceConstants;
 import com.czmbeauty.model.dao.HtmlDao;
 import com.czmbeauty.model.entity.HtmlBean;
 import com.czmbeauty.model.service.HtmlService;
@@ -25,7 +26,7 @@ import com.czmbeauty.model.service.HtmlService;
  * @author 詹晟
  */
 @Service(value = "htmlService")
-public class HtmlServiceImpl implements HtmlService {
+public class HtmlServiceImpl implements HtmlService, ServiceConstants {
 
 	/**
 	 * 注入 HtmlDao
@@ -81,7 +82,7 @@ public class HtmlServiceImpl implements HtmlService {
 	public HtmlBean insert(HtmlBean htmlBean) {
 
 		htmlBean.setHt_name(htmlBean.getHt_name().trim());
-		htmlBean.setHt_status(0);
+		htmlBean.setHt_status(HTML_STATUS_CLOSE);
 		htmlBean.setHt_update_time(new java.util.Date());
 
 		return htmlDao.insert(htmlBean);
@@ -125,11 +126,11 @@ public class HtmlServiceImpl implements HtmlService {
 
 			for (HtmlBean bean : list) {
 				HtmlBean other = htmlDao.selectByHt_id(bean.getHt_id());
-				other.setHt_status(0);
+				other.setHt_status(HTML_STATUS_CLOSE);
 			}
 		}
 
-		htmlBean.setHt_status(1);
+		htmlBean.setHt_status(HTML_STATUS_OPEN);
 
 		return htmlBean;
 	}

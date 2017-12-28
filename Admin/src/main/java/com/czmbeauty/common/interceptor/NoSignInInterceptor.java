@@ -30,9 +30,9 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 		HttpSession session = request.getSession();
 		String next = StringUtil.getRequestPath(request.getServletPath(), request.getQueryString()); // 原請求 path
 
-		AdminBean adminBean = (AdminBean) session.getAttribute(ADMIN);
+		AdminBean admin = (AdminBean) session.getAttribute(ADMIN);
 
-		if (adminBean == null) {
+		if (admin == null) {
 
 			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 未登入，攔截: " + next + "，跳轉至: "
 					+ ADMIN_SIGN_IN_PAGE);
@@ -46,8 +46,8 @@ public class NoSignInInterceptor implements HandlerInterceptor, ControllerConsta
 
 		} else {
 
-			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 已登入，使用者: "
-					+ adminBean.getAd_username() + "，放行: " + next);
+			logger.info("(" + handlerClassName + "." + handlerMethodName + ") end, 已登入，使用者: " + admin.getAd_username()
+					+ "，放行: " + next);
 
 			return true;
 		}

@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: AdminController.java
  * Author: 詹晟
- * Date: 2017/12/25
+ * Date: 2017/12/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -72,12 +72,10 @@ public class AdminController implements ControllerConstants {
 	/**
 	 * 登入 - 初期處理
 	 * 
-	 * @param model
-	 *            Model
 	 * @return /WEB-INF/views/secure/sign-in.jsp
 	 */
 	@RequestMapping(value = "/secure/sign-in", method = RequestMethod.GET)
-	public String signInView(Model model) {
+	public String signInView() {
 
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 
@@ -137,9 +135,9 @@ public class AdminController implements ControllerConstants {
 
 		} else {
 
-			AdminBean adminBean = adminService.signIn(ad_username, ad_password);
+			AdminBean admin = adminService.signIn(ad_username, ad_password);
 
-			if (adminBean == null) {
+			if (admin == null) {
 
 				// 取得參數，並回填表單
 				model.addAttribute(ADMIN_USERNAME, ad_username);
@@ -153,12 +151,12 @@ public class AdminController implements ControllerConstants {
 			} else {
 
 				// 更新登入資訊
-				adminBean.setAd_signin_number(adminBean.getAd_signin_number() + 1);
-				adminBean.setAd_signin_ip(request.getRemoteAddr());
-				adminBean.setAd_signin_time(new java.util.Date());
+				admin.setAd_signin_number(admin.getAd_signin_number() + 1);
+				admin.setAd_signin_ip(request.getRemoteAddr());
+				admin.setAd_signin_time(new java.util.Date());
 
 				// 放入 Session
-				model.addAttribute(ADMIN, adminBean);
+				model.addAttribute(ADMIN, admin);
 
 				request.setAttribute(ADMIN_LOG_KEY, OK);
 
@@ -169,15 +167,15 @@ public class AdminController implements ControllerConstants {
 
 					session.removeAttribute(NEXT_PAGE);
 
-					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + adminBean.getAd_username()
+					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + admin.getAd_username()
 							+ "，導向原請求頁面: " + next);
 
 					return REDIRECT.concat(next);
 
 				} else { // 未經過 NoSignInInterceptor
 
-					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + adminBean.getAd_username()
-							+ "，導向首頁: " + INDEX_PAGE);
+					logger.info("(" + className + "." + methodName + ") 登入成功，使用者: " + admin.getAd_username() + "，導向首頁: "
+							+ INDEX_PAGE);
 
 					return REDIRECT + INDEX_PAGE;
 				}

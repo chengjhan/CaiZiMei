@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: CityServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.constants.ServiceConstants;
 import com.czmbeauty.model.dao.CityDao;
 import com.czmbeauty.model.entity.BaseBean;
 import com.czmbeauty.model.entity.CityBean;
@@ -26,7 +27,7 @@ import com.czmbeauty.model.service.CityService;
  * @author 詹晟
  */
 @Service(value = "cityService")
-public class CityServiceImpl implements CityService {
+public class CityServiceImpl implements CityService, ServiceConstants {
 
 	/**
 	 * 注入 CityDao
@@ -74,7 +75,7 @@ public class CityServiceImpl implements CityService {
 	public CityBean insert(CityBean cityBean) {
 
 		cityBean.setCi_name(cityBean.getCi_name().trim());
-		cityBean.setCi_status(1);
+		cityBean.setCi_status(CITY_STATUS_OPEN);
 
 		return cityDao.insert(cityBean);
 	}
@@ -109,22 +110,22 @@ public class CityServiceImpl implements CityService {
 		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
 		CityBean cityBean = cityDao.selectByCi_id(ci_id);
 
-		if (cityBean.getCi_status() == 1) {
+		if (cityBean.getCi_status() == CITY_STATUS_OPEN) {
 
 			// 不顯示
-			cityBean.setCi_status(0);
+			cityBean.setCi_status(CITY_STATUS_CLOSE);
 			Set<BaseBean> baseSet = cityBean.getCi_BaseBean();
 			for (BaseBean baseBean : baseSet) {
-				baseBean.setBa_status(0);
+				baseBean.setBa_status(BASE_STATUS_CLOSE);
 				baseBean.setBa_status_time(new java.util.Date());
 			}
 		} else {
 
 			// 顯示
-			cityBean.setCi_status(1);
+			cityBean.setCi_status(CITY_STATUS_OPEN);
 			Set<BaseBean> baseSet = cityBean.getCi_BaseBean();
 			for (BaseBean baseBean : baseSet) {
-				baseBean.setBa_status(1);
+				baseBean.setBa_status(BASE_STATUS_OPEN);
 				baseBean.setBa_status_time(new java.util.Date());
 			}
 		}

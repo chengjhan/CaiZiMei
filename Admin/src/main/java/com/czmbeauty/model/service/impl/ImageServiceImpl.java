@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: ImageServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.constants.ServiceConstants;
 import com.czmbeauty.model.dao.ImageDao;
 import com.czmbeauty.model.entity.ImageBean;
 import com.czmbeauty.model.service.ImageService;
@@ -24,7 +25,7 @@ import com.czmbeauty.model.service.ImageService;
  * @author 詹晟
  */
 @Service(value = "imageService")
-public class ImageServiceImpl implements ImageService {
+public class ImageServiceImpl implements ImageService, ServiceConstants {
 
 	/**
 	 * 注入 ImageDao
@@ -80,7 +81,7 @@ public class ImageServiceImpl implements ImageService {
 	public ImageBean insert(ImageBean imageBean) {
 
 		imageBean.setIm_name(imageBean.getIm_name().trim());
-		imageBean.setIm_status(1);
+		imageBean.setIm_status(IMAGE_STATUS_OPEN);
 		imageBean.setIm_update_time(new java.util.Date());
 
 		return imageDao.insert(imageBean);
@@ -117,15 +118,15 @@ public class ImageServiceImpl implements ImageService {
 		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
 		ImageBean imageBean = imageDao.selectByIm_id(im_id);
 
-		if (imageBean.getIm_status() == 1) {
+		if (imageBean.getIm_status() == IMAGE_STATUS_OPEN) {
 
 			// 不顯示
-			imageBean.setIm_status(0);
+			imageBean.setIm_status(IMAGE_STATUS_CLOSE);
 
 		} else {
 
 			// 顯示
-			imageBean.setIm_status(1);
+			imageBean.setIm_status(IMAGE_STATUS_OPEN);
 		}
 
 		return imageBean;

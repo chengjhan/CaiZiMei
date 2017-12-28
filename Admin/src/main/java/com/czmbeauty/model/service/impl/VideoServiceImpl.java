@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: VideoServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.constants.ServiceConstants;
 import com.czmbeauty.model.dao.VideoDao;
 import com.czmbeauty.model.entity.VideoBean;
 import com.czmbeauty.model.service.VideoService;
@@ -25,7 +26,7 @@ import com.czmbeauty.model.service.VideoService;
  * @author 詹晟
  */
 @Service(value = "videoService")
-public class VideoServiceImpl implements VideoService {
+public class VideoServiceImpl implements VideoService, ServiceConstants {
 
 	/**
 	 * 注入 VideoDao
@@ -81,7 +82,7 @@ public class VideoServiceImpl implements VideoService {
 	public VideoBean insert(VideoBean videoBean) {
 
 		videoBean.setVi_name(videoBean.getVi_name().trim());
-		videoBean.setVi_status(0);
+		videoBean.setVi_status(VIDEO_STATUS_CLOSE);
 		videoBean.setVi_update_time(new java.util.Date());
 
 		return videoDao.insert(videoBean);
@@ -125,11 +126,11 @@ public class VideoServiceImpl implements VideoService {
 
 			for (VideoBean bean : list) {
 				VideoBean other = videoDao.selectByVi_id(bean.getVi_id());
-				other.setVi_status(0);
+				other.setVi_status(VIDEO_STATUS_CLOSE);
 			}
 		}
 
-		videoBean.setVi_status(1);
+		videoBean.setVi_status(VIDEO_STATUS_OPEN);
 
 		return videoBean;
 	}

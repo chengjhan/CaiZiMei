@@ -2,7 +2,7 @@
  * CaiZiMei
  * File: StateServiceImpl.java
  * Author: 詹晟
- * Date: 2017/12/15
+ * Date: 2017/12/28
  * Version: 1.0
  * Since: JDK 1.8
  */
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.czmbeauty.common.constants.ServiceConstants;
 import com.czmbeauty.model.dao.StateDao;
 import com.czmbeauty.model.entity.BaseBean;
 import com.czmbeauty.model.entity.CityBean;
@@ -27,7 +28,7 @@ import com.czmbeauty.model.service.StateService;
  * @author 詹晟
  */
 @Service(value = "stateService")
-public class StateServiceImpl implements StateService {
+public class StateServiceImpl implements StateService, ServiceConstants {
 
 	/**
 	 * 注入 StateDao
@@ -75,7 +76,7 @@ public class StateServiceImpl implements StateService {
 	public StateBean insert(StateBean stateBean) {
 
 		stateBean.setSt_name(stateBean.getSt_name().trim());
-		stateBean.setSt_status(1);
+		stateBean.setSt_status(STATE_STATUS_OPEN);
 
 		return stateDao.insert(stateBean);
 	}
@@ -110,30 +111,30 @@ public class StateServiceImpl implements StateService {
 		// 在同一個 Session 中利用 get() 取出資料為持久化狀態 (Persistent)，物件的內容更新將直接反應至資料庫
 		StateBean stateBean = stateDao.selectBySt_id(st_id);
 
-		if (stateBean.getSt_status() == 1) {
+		if (stateBean.getSt_status() == STATE_STATUS_OPEN) {
 
 			// 不顯示
-			stateBean.setSt_status(0);
+			stateBean.setSt_status(STATE_STATUS_CLOSE);
 			Set<CityBean> citySet = stateBean.getSt_CityBean();
 			for (CityBean cityBean : citySet) {
-				cityBean.setCi_status(0);
+				cityBean.setCi_status(CITY_STATUS_CLOSE);
 			}
 			Set<BaseBean> baseSet = stateBean.getSt_BaseBean();
 			for (BaseBean baseBean : baseSet) {
-				baseBean.setBa_status(0);
+				baseBean.setBa_status(BASE_STATUS_CLOSE);
 				baseBean.setBa_status_time(new java.util.Date());
 			}
 		} else {
 
 			// 顯示
-			stateBean.setSt_status(1);
+			stateBean.setSt_status(STATE_STATUS_OPEN);
 			Set<CityBean> citySet = stateBean.getSt_CityBean();
 			for (CityBean cityBean : citySet) {
-				cityBean.setCi_status(1);
+				cityBean.setCi_status(CITY_STATUS_OPEN);
 			}
 			Set<BaseBean> baseSet = stateBean.getSt_BaseBean();
 			for (BaseBean baseBean : baseSet) {
-				baseBean.setBa_status(1);
+				baseBean.setBa_status(BASE_STATUS_OPEN);
 				baseBean.setBa_status_time(new java.util.Date());
 			}
 		}

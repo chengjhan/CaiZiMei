@@ -107,6 +107,18 @@
 					<!-- pagination -->
 					<jsp:include page="../pagination.jsp" />
 					
+					<!-- output -->
+					<div class="btn-group">
+						<div>
+							<a href="<%=request.getContextPath()%>/${ca_directory}/csv-output">
+								<input type="button" class="btn btn-info" value="CSV輸出" />
+							</a>
+							<a href="<%=request.getContextPath()%>/${ca_directory}/json-output" title="JSON輸出">
+								<input type="button" class="btn btn-info" value="JSON輸出" />
+							</a>
+						</div>
+					</div>
+					
 				</div>
 				<!-- content end -->
 				
